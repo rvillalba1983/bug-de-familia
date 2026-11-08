@@ -12,6 +12,10 @@ func _init() -> void:
 
 ## Cada opción es [clave de texto, Callable].
 func setup(title_key: String, entries: Array) -> void:
+	var backdrop: ColorRect = ColorRect.new()
+	backdrop.color = Color(0.05, 0.05, 0.08, 0.92)
+	backdrop.size = Vector2(1920.0, 1080.0)
+	add_child(backdrop)
 	var box: VBoxContainer = VBoxContainer.new()
 	box.position = Vector2(760.0, 400.0)
 	box.custom_minimum_size = Vector2(400.0, 0.0)

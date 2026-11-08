@@ -18,6 +18,7 @@ var is_open: bool = false
 var mode: Mode = Mode.NORMAL
 
 var _root: VBoxContainer
+var _backdrop: ColorRect
 
 
 func _init() -> void:
@@ -63,10 +64,16 @@ func _clear() -> void:
 	if _root != null:
 		_root.queue_free()
 		_root = null
+		_backdrop.queue_free()
+		_backdrop = null
 
 
 func _rebuild() -> void:
 	_clear()
+	_backdrop = ColorRect.new()
+	_backdrop.color = Color(0.05, 0.05, 0.08, 0.88)
+	_backdrop.size = Vector2(1920.0, 1080.0)
+	add_child(_backdrop)
 	_root = VBoxContainer.new()
 	_root.position = Vector2(520.0, 150.0)
 	_root.custom_minimum_size = Vector2(880.0, 0.0)

@@ -1,7 +1,7 @@
 # Encuentros, misiones y progenitores
 
 ## Progenitores
-- 15 papás y mamás muy distintos (IAs viejas, animales variados, robots antiguos), con personalidad y humor propios. Lista completa: P-01.
+- 15 papás y mamás muy distintos (IAs viejas, animales variados, robots antiguos), con personalidad y humor propios. La beta define solo los suyos (P-01).
 - Son los personajes con los que se habla y dan de todo: historia, piezas, preguntas y desbloqueos.
 - Algunos son volátiles: solo hablarán contigo después de discutir o pelear, y puedes hacer que se enfaden o perderlos.
 - Aparecen al azar por el mapa o al superar misiones. Hacen su vida y se mueven.

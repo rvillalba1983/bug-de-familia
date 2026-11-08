@@ -5,7 +5,7 @@ La mente de Sujeto Sobrante la forman 20 IAs. En cada momento hay 3 activas que 
 ## Reglas
 - Todas existen desde el inicio; las 3 activas salen al azar en cada partida.
 - **Esfuerzo:** nivel fijo de inteligencia y utilidad, de 1 (tonta) a 5 (brillante).
-- **Tokens:** limitados. Cuanto más esfuerzo, antes se agotan. Al agotarse, la IA se calla y entra otra. Descartar piezas recarga a una IA dormida.
+- **Tokens:** limitados. Cuanto más esfuerzo, antes se agotan. Al agotarse, la IA se calla y entra otra. Descartar piezas da una recarga mínima a una IA dormida: hacen falta muchas para despertarla.
 - **Reacciones:** dependen de la misión y de tus respuestas. Una puede enfadarse y dejar de hablarte un rato; otra puede enamorarse y hablarte en tono seductor a menudo.
 - **Parado:** si llevas rato sin moverte, conversan: una aconseja, otra te llama vago y otra le recrimina el insulto.
 - **Voz:** texto con sonido tipo "blabla", acentos humanos reales y frases sin sentido. Sale de la cola.
@@ -13,7 +13,7 @@ La mente de Sujeto Sobrante la forman 20 IAs. En cada momento hay 3 activas que 
 - **Autonomía:** tienen relaciones familiares, sentimentales y conflictivas; pueden ayudar, sabotear y opinar sin órdenes.
 
 ## Pérdida definitiva
-Tras enfados graves o enfrentamientos físicos, según gravedad, personalidad y relación previa. No equivale a la muerte. La IA perdida no vuelve a hablar ni a intervenir. Umbrales: P-05.
+Al acumular varios agravios: tres enfados graves o una pelea física, según personalidad y relación previa. No equivale a la muerte. La IA perdida no vuelve a hablar ni a intervenir.
 
 ## Las 20 IAs
 | IA | Personalidad | Esfuerzo | Ventaja | Frase típica |

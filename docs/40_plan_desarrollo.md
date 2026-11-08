@@ -7,7 +7,7 @@ Objetivo inmediato: una beta jugable que demuestre que el sigilo y la investigac
 | 0. Preparación | Fijar versión de Godot, repositorio, GdUnit4, estructura, escena de prueba con gráficos sencillos | Proyecto mínimo que arranca con sus pruebas | — |
 | 1. Movimiento y cámara | Vista inclinada, ratón y teclado, colisiones, orden Y, oclusión y pausa táctica | Moverse y leer el espacio es fiable | — |
 | 2. **Sigilo** | Conos de visión, ruido, coberturas, guardia, cámara y dron básicos | **Hito de diversión:** un reto resoluble de tres formas, probado por el director | P-04 provisional |
-| 3. Cuerpo modular | Ranuras, inventarios, desgaste, pérdida, sustitución con pausa, muerte, autoguardado y único espacio | Reglas de muerte y guardado superan pruebas | P-03, P-12 |
+| 3. Cuerpo modular | Ranuras, inventarios, desgaste, pérdida, sustitución con pausa, muerte, autoguardado y único espacio | Reglas de muerte y guardado superan pruebas | — |
 | 4. Conversión | Flujo completo con subconjunto de materiales, objetivos y preguntas | Convertir un objeto da una pieza usable y nunca falla | P-02, P-09 |
 | 5. IAs e investigación | 3 activas de un subconjunto, tokens, cola, parloteo; prototipo de investigación con Mohócratas y Jubilados | Investigar, deducir y conversar resulta divertido sin combatir | P-05, P-18 |
 | 6. Combate | Tiempo real con coberturas, armas, daño por extremidad | Peligroso, legible y evitable | — |

@@ -12,6 +12,9 @@ const KEY_ACTIONS: Dictionary = {
 	&"autorun": [KEY_NUMLOCK],
 	&"tactical_pause": [KEY_SPACE],
 	&"target_next": [KEY_TAB],
+	&"crouch": [KEY_X],
+	&"interact": [KEY_E],
+	&"character": [KEY_C],
 }
 const MOUSE_ACTIONS: Dictionary = {
 	&"select": MOUSE_BUTTON_LEFT,

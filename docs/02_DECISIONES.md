@@ -23,7 +23,9 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 ## Guardado y muerte
 - Autoguardado en puntos de guardado y momentos seguros. Un único espacio de partida.
 - Muerte permanente del protagonista. Nueva partida desde cero, que sobrescribe la anterior.
-- Muerte inmediata al quedarse sin piernas, y también con la cabeza rota (8-nov).
+- Muerte inmediata al quedarse sin piernas (8-nov).
+- La cabeza tiene repuestos como las extremidades y se puede cambiar en plena pelea. Si se rompe y no queda ninguno, muerte inmediata (8-nov).
+- Con una sola pierna: mitad de velocidad y sin correr (8-nov).
 - La protección ante corrupción técnica no permite revertir una muerte.
 - Al terminar la partida: resumen de lo aprendido y críticas de las IAs.
 
@@ -39,7 +41,9 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 - La conversión es la única forma de crear piezas. No existe fabricación aparte (8-nov).
 - Las preguntas de conversión también verifican: confirman claramente si un dato era cierto o falso (8-nov).
 - Descartar piezas recarga tokens de una IA dormida; lo que exceda su capacidad se pierde (8-nov).
-- Inventario independiente por zona del cuerpo, máximo cuatro opciones.
+- Inventario: 4 repuestos por zona del cuerpo (6 extremidades y cabeza), 28 en total (8-nov).
+- Una pierna dura unos 10 minutos andando sin parar (8-nov).
+- Los golpes caen sobre todo en extremidades; la cabeza, mucho menos (8-nov).
 - Cambio de piezas (8-nov): si no estás interactuando, libertad total. Si va a empezar una pelea, hay una pausa inicial para elegir piezas. En medio de la pelea, solo se cambia una pieza cuando se destruye una puesta, y la selección pausa el juego.
 
 ## Mundo y misiones
@@ -59,6 +63,10 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 - Los humanos existieron y desaparecieron (8-nov).
 - Sin final fijo. Historias independientes conectadas por un misterio general.
 
+## IAs
+- Una IA se pierde para siempre al acumular varios agravios: tres enfados graves o una pelea física, según su personalidad (8-nov).
+- Descartar una pieza da una recarga mínima de tokens: hacen falta muchas para despertar a una IA (8-nov).
+
 ## Combate
 - Preguntas con tiempo solo al convertir y en encuentros tensos; el resto es conversación contextual (8-nov).
 - Tiempo real con pausa táctica. Durante la pausa: cambiar piezas permitidas, seleccionar objetivos y planificar acciones.
@@ -77,7 +85,8 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 - El prototipo usa gráficos sencillos para probar la diversión; el arte final llega después.
 
 ## Beta
-- Una zona de bosque con ciudades perdidas, cuatro retos y solo Mohócratas y Jubilados de Hierro.
+- Una zona de bosque con ciudades perdidas, cuatro retos y solo Mohócratas y Jubilados de Hierro, en tensión por la chatarra (8-nov).
+- Antes de la beta se define solo el mapa y los progenitores que necesita (8-nov).
 - Progenitores de la beta: El Contestador (IA vieja) y Don Ramón de Mantenimiento (robot).
 
 ## Lo que no se puede inventar

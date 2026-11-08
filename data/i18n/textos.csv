@@ -1,3 +1,23 @@
 keys,es
 UI_PAUSE,PAUSA TÁCTICA
-UI_SANDBOX_HELP,"WASD mover · Mayús correr · Espacio pausa · Clic derecho ir · Clic izquierdo o Tab seleccionar · Rueda zoom"
+UI_SANDBOX_HELP,"WASD mover · Mayús correr · X agacharse · E usar · C piezas · Espacio pausa · Clic derecho ir · Tab objetivo · Rueda zoom"
+UI_OBJECTIVE,"Llega a la salida verde. Hay al menos tres formas, y ninguna exige hacer daño."
+UI_CHALLENGE_DONE,¡Reto superado!
+UI_BODY_TITLE,Piezas del cuerpo
+UI_BODY_PRE_FIGHT,Va a empezar una pelea: elige tus piezas
+UI_BODY_REPLACE,Has perdido una pieza: elige recambio
+UI_BODY_CLOSE,Cerrar
+UI_BODY_START_FIGHT,Empezar
+UI_BODY_EMPTY,vacío
+UI_BODY_EQUIP,Poner
+UI_MENU_TITLE,Bug de Familia
+UI_MENU_CONTINUE,Continuar
+UI_MENU_NEW,Nueva partida
+UI_GAME_OVER,Has muerto. No hay vuelta atrás.
+SLOT_0,Cabeza
+SLOT_1,Brazo principal izquierdo
+SLOT_2,Brazo principal derecho
+SLOT_3,Brazo adicional izquierdo
+SLOT_4,Brazo adicional derecho
+SLOT_5,Pierna izquierda
+SLOT_6,Pierna derecha

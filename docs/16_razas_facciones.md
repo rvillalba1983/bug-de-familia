@@ -15,7 +15,7 @@ Seis razas recorren el mapa en grupos: cuatro alienígenas y dos nacidas en el p
 - Las sociedades importantes se conocen entre sí, aunque no se comprendan. Pueden tener jerarquías, alianzas, creencias, comercio y sistemas propios.
 - Pueden negociar, combatir o coexistir con tensión; cambiar dirigentes, dividirse, migrar o extinguirse.
 - Cada sociedad recuerda las acciones del protagonista. No hay reputación universal.
-- Los grupos pertenecen a facciones. Relaciones entre facciones: P-10. Facciones de cada raza: `50_lore.md`.
+- Los grupos pertenecen a facciones. En la beta, Mohócratas y Jubilados están en tensión por la chatarra: los primeros reciclan robots muertos. Resto de relaciones: P-10. Facciones de cada raza: `50_lore.md`.
 
 ## Comunicación entre especies
 Combina sonidos, gestos, traducción de las IA y aprendizaje de lenguajes. Todas pueden entender algún sistema común, sin compartir idioma ni cultura. Las frases en idiomas humanos pueden ser imitaciones, rituales o humor.

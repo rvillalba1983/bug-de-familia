@@ -35,6 +35,17 @@ func find_path(from: Vector2, to: Vector2) -> PackedVector2Array:
 	return _grid.get_point_path(start, goal)
 
 
+## Libera las celdas de un obstáculo que ya no bloquea, como una puerta abierta.
+func clear_rect(rect: Rect2, agent_radius: float, others: Array[Rect2]) -> void:
+	var grown: Rect2 = rect.grow(agent_radius)
+	for x: int in range(_grid.region.size.x):
+		for y: int in range(_grid.region.size.y):
+			var id: Vector2i = Vector2i(x, y)
+			var point: Vector2 = _grid.get_point_position(id)
+			if grown.has_point(point) and not _hits(point, others, agent_radius):
+				_grid.set_point_solid(id, false)
+
+
 func is_walkable(point: Vector2) -> bool:
 	var cell: Vector2i = _to_cell(point)
 	return _grid.region.has_point(cell) and not _grid.is_point_solid(cell)

@@ -17,6 +17,8 @@ func test_wow_style_keys() -> void:
 	assert_bool(InputMap.event_is_action(_key(KEY_A), &"move_left")).is_true()
 	assert_bool(InputMap.event_is_action(_key(KEY_TAB), &"target_next")).is_true()
 	assert_bool(InputMap.event_is_action(_key(KEY_NUMLOCK), &"autorun")).is_true()
+	assert_bool(InputMap.event_is_action(_key(KEY_X), &"crouch")).is_true()
+	assert_bool(InputMap.event_is_action(_key(KEY_C), &"character")).is_true()
 
 
 func test_space_is_tactical_pause() -> void:

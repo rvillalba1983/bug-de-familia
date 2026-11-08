@@ -31,8 +31,8 @@ Cabeza · torso · brazo principal izquierdo y derecho · brazo adicional izquie
 
 ## Reglas del cuerpo
 - Ranuras: seis extremidades y cabeza. Cada una con compatibilidades específicas.
-- Inventario por zona del cuerpo: máximo cuatro opciones, sin compartir libremente entre posiciones.
-- Las piezas se desgastan con frecuencia al usarse y acaban rompiéndose. Se pierden con facilidad y se crean con facilidad: nunca deben crear callejones sin salida.
+- Inventario por zona del cuerpo: cuatro repuestos, también para la cabeza, 28 en total y sin compartir libremente entre posiciones.
+- Las piezas se desgastan al usarse y acaban rompiéndose: una pierna dura unos 10 minutos andando sin parar. Los golpes caen sobre todo en extremidades. Se pierden con facilidad y se crean con facilidad: nunca deben crear callejones sin salida.
 - Cada pieza tiene funciones y daños independientes. Daño y funcionalidad se muestran con indicadores visuales discretos.
 - Cambio de piezas: si no estás interactuando, libertad total. Antes de una pelea hay una pausa inicial para elegir piezas. En medio de la pelea, solo se cambia una pieza cuando se destruye una puesta, y la selección pausa el juego.
 - Formas de conseguir piezas: conversión (la única forma de crearlas), exploración e intercambio. No existe fabricación aparte.
@@ -41,8 +41,9 @@ Cabeza · torso · brazo principal izquierdo y derecho · brazo adicional izquie
 
 ## Supervivencia y fin de partida
 - No hay salud global, comida ni descanso. Se sobrevive conservando piezas funcionales.
-- Muerte inmediata sin piernas o con la cabeza rota.
-- Pendiente: qué puede hacer con una sola pierna y umbrales exactos de daño (P-03).
+- Muerte inmediata sin piernas.
+- Si se rompe la cabeza, se puede cambiar en plena pelea; si no queda repuesto, muerte inmediata.
+- Con una sola pierna: mitad de velocidad y sin correr.
 
 ## Origen
 Es un experimento con progenitores definidos. Su misterio es uno más entre muchos, puede quedar sin resolver y no debe absorber la historia del mundo.

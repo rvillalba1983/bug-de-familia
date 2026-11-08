@@ -23,6 +23,8 @@ Puedes provocarlas. Cuando estallan, el juego te ofrece unirte a un bando o mira
 ## Enemigos
 Guardias, drones, animales, cámaras y miembros de las razas.
 
+Algunos guardias dan pasadas rápidas y apenas detectan a quien anda: reaccionan sobre todo al ruido. Es un comportamiento válido para usar en el juego (8-nov).
+
 ## Peligros
 - Procesos naturales y trampas con mucha importancia. Por ejemplo, la lluvia ácida destruye las piezas metálicas.
 - Ciertas zonas y enemigos quitan una habilidad o un objeto: no hay aviso, se descubre por las malas y lo perdido no se recupera.

@@ -5,7 +5,7 @@ Objetivo inmediato: una beta jugable que demuestre que el sigilo y la investigac
 | Fase | Contenido | Criterio de aceptación | Necesita |
 |---|---|---|---|
 | 0. Preparación | Fijar versión de Godot, repositorio, GdUnit4, estructura, escena de prueba con gráficos sencillos | Proyecto mínimo que arranca con sus pruebas | — |
-| 1. Movimiento y cámara | Vista inclinada, ratón y teclado, colisiones, orden Y, oclusión y pausa táctica | Moverse y leer el espacio es fiable | P-07 |
+| 1. Movimiento y cámara | Vista inclinada, ratón y teclado, colisiones, orden Y, oclusión y pausa táctica | Moverse y leer el espacio es fiable | — |
 | 2. **Sigilo** | Conos de visión, ruido, coberturas, guardia, cámara y dron básicos | **Hito de diversión:** un reto resoluble de tres formas, probado por el director | P-04 provisional |
 | 3. Cuerpo modular | Ranuras, inventarios, desgaste, pérdida, sustitución con pausa, muerte, autoguardado y único espacio | Reglas de muerte y guardado superan pruebas | P-03, P-12 |
 | 4. Conversión | Flujo completo con subconjunto de materiales, objetivos y preguntas | Convertir un objeto da una pieza usable y nunca falla | P-02, P-09 |
@@ -22,7 +22,7 @@ El plan anterior ponía el combate antes que la investigación y construía el e
 ## Primera sesión de Claude Code
 1. Leer `CLAUDE.md`, `00_LEEME.md` y `02_DECISIONES.md`.
 2. Comprobar la versión estable de Godot 4 y registrarla.
-3. Ejecutar la fase 0 y proponer P-07.
+3. Seguir por la primera fase sin terminar.
 
 ## Riesgos a validar pronto
 1. Que ChatGPT mantenga al personaje y el ángulo pieza a pieza.

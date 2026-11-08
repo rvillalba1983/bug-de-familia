@@ -9,6 +9,7 @@ Paquete unificado creado el 8 de noviembre de 2026. Cada tema vive en un solo si
 | `02_DECISIONES.md` | Lo que está decidido. Manda sobre todo lo demás |
 | `01_CONFLICTOS_Y_PENDIENTES.md` | Lo que está sin resolver o falta |
 | `40_plan_desarrollo.md` | Orden de trabajo y criterios de aceptación |
+| `controles.md` | Controles del juego |
 
 ## Qué leer según la tarea
 | Tarea | Documentos |

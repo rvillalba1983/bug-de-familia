@@ -17,6 +17,11 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://data/i18n/textos.es.translation")
+locale/fallback="es"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

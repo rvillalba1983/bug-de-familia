@@ -12,7 +12,6 @@ Los 13 conflictos entre documentos quedaron resueltos el 8 de noviembre: ver `02
 | P-03 | Capacidades con una sola pierna, umbrales de daño y desgaste | Reglas del cuerpo | Fase 3 |
 | P-04 | Reglas de daño, catálogo de enemigos, peligros y zonas que quitan habilidades | Sigilo y combate | Fase 2 (parámetros provisionales) |
 | P-05 | Umbrales de pérdida definitiva de una IA y capacidad de tokens de la IA dormida | Sistema de IAs | Fase 5 |
-| P-07 | Mapa de controles de teclado y ratón: propuesta en `propuesta_controles.md`, pendiente de aprobar | Lo propone Claude y lo aprueba el director | Fase 1 |
 | P-08 | Los cuatro retos de la beta con sus tres soluciones cada uno | Contenido de la beta | Fase 7 |
 | P-09 | Banco de preguntas, motes ofensivos por IA y por progenitor, y comentarios del protagonista | Humor y conversión | Fase 4 |
 | P-10 | Facciones aliadas o enemigas, asentamientos y distribución de grupos | Encuentros y batallas | Fase 7 |

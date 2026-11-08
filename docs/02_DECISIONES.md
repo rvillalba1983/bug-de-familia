@@ -8,7 +8,7 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 | Tema | Decisión | Fecha |
 |---|---|---|
 | Plataforma | PC exclusivamente. Android descartado definitivamente | 8-nov |
-| Controles | Teclado y ratón exclusivamente. Sin mando ni táctil | 8-nov |
+| Controles | Teclado y ratón exclusivamente, al estilo WoW adaptado a cámara fija (`controles.md`). Sin mando ni táctil | 8-nov |
 | Perspectiva | Vista alta inclinada, tipo Zelda, con cámara de ángulo fijo. Ni isométrica ni cenital pura | 8-nov |
 | Núcleo | Sigilo táctico + investigación | 8-nov |
 | Motor | Godot 4.7.2 estable con GDScript tipado (ver `adr/0001-motor-y-pruebas.md`) | 8-nov |

@@ -12,7 +12,7 @@
 - Principalmente integrada en el mundo: señales visuales, gestos, animaciones, sonidos y cambios ambientales. La información crítica debe ser siempre comprensible.
 - Interacción con objetos al acercarse. Pocos elementos interactivos ocultos, para evitar frustración.
 - Objetos importantes e información de piezas, principalmente a través de las IA.
-- Opciones básicas de accesibilidad. Mapa detallado de controles: P-07.
+- Opciones básicas de accesibilidad. Controles: `controles.md`.
 
 ## Sonido como información
 Las señales sonoras son esenciales para interpretar el mundo, las criaturas y los peligros. Producción en `37_audio.md`.

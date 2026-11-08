@@ -4,10 +4,9 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 
 | Fase | Estado |
 |---|---|
-| 0 a 6 | Fusionadas en `main` y probadas por el usuario |
-| 7. Beta | Siguiente. Necesita definir el mapa de la beta, los 4 retos y qué cuenta cada progenitor |
+| 0 a 7 | Fusionadas en `main` y probadas por el usuario |
 | Arte | En paralelo. Necesita las imágenes del usuario |
-| 8. Mundo vivo | Sin empezar |
+| 8. Mundo vivo | Siguiente. Necesita P-11, P-13, P-14 y la parte abierta de P-17 |
 | 9. Contenido y pulido | Sin empezar |
 
 ## Pendiente de respuesta del usuario (no bloquea)
@@ -17,6 +16,12 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 ## Tras la fase 6
 - Los valores de daño, alcance y recarga del combate son provisionales (`docs/adr/0005-combate.md`).
 - Los disparos solo afectan a guardias y tiradores, no a drones ni cámaras.
+
+## Tras la fase 7
+- Valores provisionales de la beta: `docs/adr/0006-zona-beta.md`.
+- Las rutas de sigilo con enemigos activos no tienen prueba automática: las ha probado el usuario en partida.
+- Sin hacer: viaje entre puntos de guardado, consecuencias al salir de la zona, piezas que den los progenitores y huella visible al morir un aliado único.
+- El siguiente pendiente más útil es P-09 (preguntas, motes y comentarios).
 
 ## Preparar el entorno en una conversación nueva
 1. Clonar `rvillalba1983/bug-de-familia`. Si la copia es superficial, usar `git fetch origin main` y `FETCH_HEAD`.

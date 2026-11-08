@@ -116,6 +116,11 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 - **Cadenas de consecuencias:** máximo 4 pasos, y el mismo suceso no se repite en una zona hasta pasado un tiempo de enfriamiento (P-13).
 - **Difusión de información:** si pasa algo interesante, quienes lo ven van hacia otros personajes o incluso a otras zonas a contarlo (P-14).
 - **Relaciones entre razas:** las iniciales salen del lore y cambian con lo que ocurra en cada partida (P-10).
+- **Viaje rápido:** desde un punto de guardado a cualquier otro ya visitado, nunca en plena pelea. El mundo sigue durante el viaje y cada viaje tiene un coste, desgaste de piernas o tokens.
+- **Progenitores en la beta:** Don Ramón te suelda un repuesto al contarte la verdad; El Contestador solo da historia.
+- **Zonas lejanas:** solo ocurren sucesos grandes (población, guerras, migraciones y festividades), que llegan como rumores o se ven al volver (P-13).
+- **Tono:** muy ofensivo con el protagonista, la humanidad y las máquinas, sin ataques a colectivos reales (P-09).
+- **Peligros de la beta:** mina de 45 de daño; lluvia ácida a intervalos irregulares; de 5 a 10 s al azar para responder en encuentros tensos; Don Ramón se rinde al perder el 70 % de su salud.
 - **Contenido por encargo:** Claude propone las compatibilidades del catálogo y el director revisa la tabla (P-02); Claude implementa las 20 IAs definidas y ajusta números jugando (P-05); Claude escribe preguntas, motes y comentarios, y el director marca lo que no le haga gracia (P-09).
 
 ## Lo que no se puede inventar

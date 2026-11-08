@@ -240,7 +240,7 @@ func test_ramon_only_opens_up_after_arguing() -> void:
 
 func test_ramon_yields_when_beaten_and_can_die() -> void:
 	# El golpe abre la pausa previa a la pelea, así que se avanza a mano.
-	zone.ramon.take_damage(45.0)
+	zone.ramon.take_damage(75.0)
 	zone.challenges._follow_ramon()
 	assert_bool(_case().has_flag("ramon_peleado")).is_true()
 	zone.ramon.take_damage(100.0)
@@ -292,7 +292,8 @@ func test_encounter_interrupts_and_silence_is_an_answer() -> void:
 	zone.player.global_position = group.global_position + Vector2(100.0, 0.0)
 	zone.challenges._check_encounters()
 	assert_str(_case().current_node).is_equal("moho_alto")
-	_case()._tick_answer_limit(9.0)
+	assert_float(_case().answer_time_left).is_between(5.0, 10.0)
+	_case()._tick_answer_limit(11.0)
 	assert_str(_case().current_node).is_empty()
 	assert_bool(_case().has_flag("moho_bronca")).is_true()
 

@@ -6,6 +6,6 @@
 
 **Don Ramón** es un `Guard` pasivo: se le puede atacar y convertir con los sistemas existentes.
 
-**Valores provisionales**, a ajustar al probar: 12 minas (daño 45), lluvia 30 s cada 5 min (0,4 de desgaste por segundo), 8 s para responder en encuentros, Don Ramón cede por debajo de 60 de salud.
+**Valores provisionales**, a ajustar al probar: 12 minas (daño 45), lluvia de 30 s a intervalos irregulares de 2 a 8 min (0,4 de desgaste por segundo), de 5 a 10 s al azar para responder en encuentros, Don Ramón cede por debajo de 30 de salud.
 
 **Pendiente.** Los valores anteriores no están aprobados como definitivos. No hay viaje entre puntos de guardado todavía.

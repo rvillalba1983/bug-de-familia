@@ -20,7 +20,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 ## Tras la fase 7
 - Valores provisionales de la beta: `docs/adr/0006-zona-beta.md`.
 - Las rutas de sigilo con enemigos activos no tienen prueba automática: las ha probado el usuario en partida.
-- Sin hacer: viaje entre puntos de guardado, consecuencias al salir de la zona, piezas que den los progenitores y huella visible al morir un aliado único.
+- Sin hacer: viaje entre puntos de guardado, consecuencias al salir de la zona, la pieza que suelda Don Ramón y huella visible al morir un aliado único. Lo decidido está en `02_DECISIONES.md`.
 - El siguiente pendiente más útil es P-09 (preguntas, motes y comentarios).
 
 ## Preparar el entorno en una conversación nueva

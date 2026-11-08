@@ -6,7 +6,8 @@ signal started
 signal ended
 
 ## Valores provisionales, a ajustar al probar.
-const DRY_TIME: float = 300.0
+const DRY_TIME_MIN: float = 120.0
+const DRY_TIME_MAX: float = 480.0
 const RAIN_TIME: float = 30.0
 const WEAR_PER_SECOND: float = 0.4
 
@@ -14,7 +15,13 @@ var player: Player
 var shelters: Array[Rect2] = []
 var raining: bool = false
 
-var _time_left: float = DRY_TIME
+var rng: RandomNumberGenerator
+
+var _time_left: float = 0.0
+
+
+func _ready() -> void:
+	_time_left = _next_dry_time()
 
 
 func _physics_process(delta: float) -> void:
@@ -39,9 +46,14 @@ func wear(delta: float) -> void:
 			player.body.wear_piece(slot as ModularBody.Slot, WEAR_PER_SECOND * delta)
 
 
+## La lluvia llega por sorpresa, sin un ritmo que aprender.
+func _next_dry_time() -> float:
+	return rng.randf_range(DRY_TIME_MIN, DRY_TIME_MAX)
+
+
 func _set_raining(value: bool) -> void:
 	raining = value
-	_time_left = RAIN_TIME if raining else DRY_TIME
+	_time_left = RAIN_TIME if raining else _next_dry_time()
 	if raining:
 		started.emit()
 	else:

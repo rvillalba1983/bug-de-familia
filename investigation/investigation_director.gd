@@ -229,10 +229,18 @@ func _tick_answer_limit(delta: float) -> void:
 		choose(available_options(current_node).size() - 1)
 
 
+## Devuelve 0 si la conversación no tiene límite de tiempo.
+func _roll_answer_limit(node: Dictionary) -> float:
+	if not node.has("limit"):
+		return 0.0
+	var limits: Array = node["limit"]
+	return level.rng.randf_range(float(limits[0]), float(limits[1]))
+
+
 func _show_node(node_id: String) -> void:
 	current_node = node_id
 	var node: Dictionary = case_data["dialogue"][node_id]
-	answer_time_left = float(node.get("limit", 0.0))
+	answer_time_left = _roll_answer_limit(node)
 	if answer_time_left > 0.0:
 		level.show_notice(tr("UI_ANSWER_NOW"))
 	_bubble_for(node["speaker"]).say(node["text"], Color.BLACK, 3600.0)

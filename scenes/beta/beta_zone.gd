@@ -239,6 +239,7 @@ func _build_investigation() -> void:
 	add_child(challenges)
 	rain = AcidRain.new()
 	rain.player = player
+	rain.rng = rng
 	rain.shelters = BetaLayout.SHELTERS
 	add_child(rain)
 

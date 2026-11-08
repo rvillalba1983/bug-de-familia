@@ -1085,7 +1085,7 @@
      ]
     }
    ],
-   "limit": 8.0
+   "limit": [5.0, 10.0]
   },
   "jub_alto": {
    "speaker": "patrulla_jub",
@@ -1129,7 +1129,7 @@
      ]
     }
    ],
-   "limit": 8.0
+   "limit": [5.0, 10.0]
   }
  }
 }

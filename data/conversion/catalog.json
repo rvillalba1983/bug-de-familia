@@ -2,6 +2,7 @@
  "materials": {
   "nanoacero": {
    "name": "Nanoacero vivo",
+   "metal": true,
    "properties": [
     "p001",
     "p005"
@@ -9,6 +10,7 @@
   },
   "cristal_plasma": {
    "name": "Cristal de plasma",
+   "metal": false,
    "properties": [
     "p006",
     "p007",
@@ -17,6 +19,7 @@
   },
   "aleacion_magnetica": {
    "name": "Aleación magnética",
+   "metal": true,
    "properties": [
     "p022",
     "p025"
@@ -24,6 +27,7 @@
   },
   "madera_cuantica": {
    "name": "Madera fósil cuántica",
+   "metal": false,
    "properties": [
     "p036",
     "p037",

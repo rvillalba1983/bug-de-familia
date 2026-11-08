@@ -77,8 +77,7 @@ func _physics_process(_delta: float) -> void:
 	if fight.phase == FightDirector.Phase.CALM and not player.body.is_dead:
 		for point: SavePoint in save_points:
 			point.track(feet)
-	if not challenge_done and SandboxLayout.GOAL.has_point(feet):
-		_complete_challenge()
+	_check_goal(feet)
 
 
 func _process(delta: float) -> void:
@@ -102,8 +101,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO, Vector2(1920.0, 1080.0)), COLOR_BACKGROUND)
-	draw_rect(SandboxLayout.FLOOR_RECT, COLOR_FLOOR)
+	draw_rect(Rect2(Vector2.ZERO, world_size()), COLOR_BACKGROUND)
+	draw_rect(floor_rect(), COLOR_FLOOR)
 	draw_rect(SandboxLayout.GOAL, COLOR_GOAL)
 	var goal_top: Vector2 = SandboxLayout.GOAL.get_center() - Vector2(0.0, 8.0)
 	WorldLabel.draw_on(self, tr("ITEM_GOAL"), goal_top)
@@ -130,6 +129,35 @@ func spawn_tracer(from: Vector2, to: Vector2, color: Color) -> void:
 	var tracer: Tracer = Tracer.new()
 	tracer.setup(from, to, color)
 	ground.add_child(tracer)
+
+
+## Geometría del nivel. Cada zona la sustituye por la suya.
+func world_size() -> Vector2:
+	return Vector2(1920.0, 1080.0)
+
+
+func floor_rect() -> Rect2:
+	return SandboxLayout.FLOOR_RECT
+
+
+func start_point() -> Vector2:
+	return SandboxLayout.PLAYER_START
+
+
+func wall_rects() -> Array[Rect2]:
+	return SandboxLayout.WALLS
+
+
+func low_cover_rects() -> Array[Rect2]:
+	return SandboxLayout.LOW_COVERS
+
+
+func door_rects() -> Array[Rect2]:
+	return [SandboxLayout.DOOR]
+
+
+func save_point_positions() -> Array[Vector2]:
+	return SandboxLayout.SAVE_POINTS
 
 
 func snapshot() -> Dictionary:
@@ -173,7 +201,7 @@ func start_new_game() -> void:
 		"dead": false,
 		"seed": seed_value,
 		"body": default_body().to_dict(),
-		"player": {"x": SandboxLayout.PLAYER_START.x, "y": SandboxLayout.PLAYER_START.y},
+		"player": {"x": start_point().x, "y": start_point().y},
 		"used": [],
 		"converted": [],
 		"fallen": [],
@@ -210,8 +238,8 @@ func _build_world() -> void:
 	_build_walls()
 	_build_boundaries()
 	var blockers: Array[Rect2] = _all_blockers()
-	blockers.append(SandboxLayout.DOOR)
-	nav = NavGrid.new(SandboxLayout.FLOOR_RECT, blockers, Player.RADIUS)
+	blockers.append_array(door_rects())
+	nav = NavGrid.new(floor_rect(), blockers, Player.RADIUS)
 	noise_bus = NoiseBus.new()
 	noise_bus.ground = ground
 	add_child(noise_bus)
@@ -225,8 +253,8 @@ func _build_world() -> void:
 	add_child(selection)
 	fight = FightDirector.new()
 	fight.body = player.body
-	fight.track(guard)
-	fight.track(shooter)
+	for enemy: Guard in guards():
+		fight.track(enemy)
 	add_child(fight)
 	combat = CombatSystem.new()
 	combat.level = self
@@ -275,8 +303,8 @@ func _remove_entity(id: String) -> void:
 
 func _all_blockers() -> Array[Rect2]:
 	var result: Array[Rect2] = []
-	result.append_array(SandboxLayout.WALLS)
-	result.append_array(SandboxLayout.LOW_COVERS)
+	result.append_array(wall_rects())
+	result.append_array(low_cover_rects())
 	return result
 
 
@@ -291,16 +319,16 @@ func _add_wall(rect: Rect2, height: float, kind: Wall.Kind) -> Wall:
 
 func _build_walls() -> void:
 	var tall: float = SandboxLayout.WALL_FRONT_HEIGHT
-	for rect: Rect2 in SandboxLayout.WALLS:
+	for rect: Rect2 in wall_rects():
 		_add_wall(rect, tall, Wall.Kind.SOLID)
-	for rect: Rect2 in SandboxLayout.LOW_COVERS:
+	for rect: Rect2 in low_cover_rects():
 		_add_wall(rect, SandboxLayout.LOW_FRONT_HEIGHT, Wall.Kind.LOW)
-	door = _add_wall(SandboxLayout.DOOR, tall, Wall.Kind.DOOR)
+	door = _add_wall(door_rects()[0], tall, Wall.Kind.DOOR)
 	door.label_key = "ITEM_DOOR"
 
 
 func _build_boundaries() -> void:
-	var area: Rect2 = SandboxLayout.FLOOR_RECT
+	var area: Rect2 = floor_rect()
 	var t: float = 64.0
 	var sides: Array[Rect2] = [
 		Rect2(area.position.x - t, area.position.y - t, area.size.x + t * 2.0, t),
@@ -322,14 +350,14 @@ func _build_boundaries() -> void:
 
 func _build_player() -> void:
 	player = Player.new()
-	player.position = SandboxLayout.PLAYER_START
+	player.position = start_point()
 	player.noise_bus = noise_bus
 	actors.add_child(player)
 	var camera: CameraZoom = CameraZoom.new()
 	camera.limit_left = 0
 	camera.limit_top = 0
-	camera.limit_right = 1920
-	camera.limit_bottom = 1080
+	camera.limit_right = int(world_size().x)
+	camera.limit_bottom = int(world_size().y)
 	player.add_child(camera)
 
 
@@ -378,7 +406,7 @@ func _build_items() -> void:
 
 
 func _build_save_points() -> void:
-	for at: Vector2 in SandboxLayout.SAVE_POINTS:
+	for at: Vector2 in save_point_positions():
 		var point: SavePoint = SavePoint.new()
 		point.position = at
 		point.entered.connect(autosave)
@@ -399,7 +427,7 @@ func _build_interface() -> void:
 	_notice_label.visible = false
 	_notice_label.process_mode = Node.PROCESS_MODE_ALWAYS
 	_add_label(layer, "UI_SANDBOX_HELP", Vector2(24.0, 1040.0), 20)
-	_add_label(layer, "UI_OBJECTIVE", Vector2(24.0, 16.0), 22)
+	_add_label(layer, _objective_key(), Vector2(24.0, 16.0), 22)
 	var hud: BodyHud = BodyHud.new()
 	hud.body = player.body
 	layer.add_child(hud)
@@ -434,12 +462,7 @@ func _add_label(layer: CanvasLayer, key: String, at: Vector2, font_size: int) ->
 
 func _connect_systems() -> void:
 	pause.paused_changed.connect(_on_paused_changed)
-	for enemy: Guard in guards():
-		noise_bus.noise_emitted.connect(enemy.hear)
-		drone.alarm_raised.connect(enemy.investigate)
-		security_camera.alarm_raised.connect(enemy.investigate)
-		enemy.fell.connect(_on_enemy_fell)
-		enemy.corpse_expired.connect(_on_corpse_expired)
+	_connect_enemies()
 	fight.pre_fight_started.connect(_on_pre_fight_started)
 	fight.fight_ended.connect(autosave)
 	panel.closed.connect(_on_panel_closed)
@@ -453,6 +476,24 @@ func _connect_systems() -> void:
 	fight.pre_fight_started.connect(ai.say.bind("fight"))
 	actions.door_hacked.connect(_open_door)
 	_connect_body()
+
+
+func _connect_enemies() -> void:
+	for enemy: Guard in guards():
+		noise_bus.noise_emitted.connect(enemy.hear)
+		drone.alarm_raised.connect(enemy.investigate)
+		security_camera.alarm_raised.connect(enemy.investigate)
+		enemy.fell.connect(_on_enemy_fell)
+		enemy.corpse_expired.connect(_on_corpse_expired)
+
+
+func _objective_key() -> String:
+	return "UI_OBJECTIVE"
+
+
+func _check_goal(feet: Vector2) -> void:
+	if not challenge_done and SandboxLayout.GOAL.has_point(feet):
+		_complete_challenge()
 
 
 func _connect_body() -> void:
@@ -500,8 +541,8 @@ func _apply_save(data: Dictionary) -> bool:
 	rng.seed = int(data.get("seed", 0))
 	var at: Dictionary = data.get("player", {})
 	player.global_position = Vector2(
-		float(at.get("x", SandboxLayout.PLAYER_START.x)),
-		float(at.get("y", SandboxLayout.PLAYER_START.y))
+		float(at.get("x", start_point().x)),
+		float(at.get("y", start_point().y))
 	)
 	for id: Variant in data.get("used", []):
 		if items.has(id):
@@ -564,7 +605,7 @@ func _continue_game() -> void:
 
 func _open_door() -> void:
 	door.set_open(true)
-	nav.clear_rect(SandboxLayout.DOOR, Player.RADIUS, _all_blockers())
+	nav.clear_rect(door_rects()[0], Player.RADIUS, _all_blockers())
 
 
 func _complete_challenge() -> void:

@@ -19,6 +19,7 @@ static func forge(
 	var power: float = roll_power(score, rng)
 	var material: Dictionary = catalog.materials[material_id]
 	var objective: Dictionary = catalog.objectives[objective_id]
+	piece.metallic = bool(material.get("metal", true))
 	var chosen: Array = _pick_properties(catalog, material["properties"], score, rng)
 	for id: String in chosen:
 		_apply_effects(piece, catalog.properties[id], power)

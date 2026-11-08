@@ -46,3 +46,35 @@ CASE_OUTCOME_paz,Paz: Jubilados y Mohócratas han aclarado lo de Manolo.
 CASE_OUTCOME_tregua,Tregua: el sombrero vuelve a cambio de fertilizante.
 CASE_OUTCOME_guerra,Ha estallado la guerra entre Jubilados y Mohócratas.
 CASE_TENSION,La tensión entre Jubilados y Mohócratas va en aumento.
+UI_ANSWER_NOW,¡Responde ya! Callar también es una respuesta.
+BETA_OBJECTIVE,"Asuntos pendientes: entrar en la centralita, sacar la bobina del depósito, cruzar la tierra de nadie y encontrar a Don Ramón. En el orden que quieras."
+BETA_PLACE_LOOKOUT,Mirador
+BETA_PLACE_NORTH,Barrio de los Jubilados
+BETA_PLACE_SOUTH,Barrio mohócrata
+BETA_PLACE_STRIP,Tierra de nadie
+BETA_PLACE_CENTRAL,Centralita
+BETA_PLACE_DEPOT,Depósito de chatarra
+BETA_CENTRAL_DOOR,Puerta sellada
+BETA_CRACKED_WALL,Muro agrietado
+BETA_ITEM_MINE,Mina de petanca suelta
+BETA_ITEM_CRACK,Grieta en el muro
+BETA_ITEM_REEL,Bobina
+BETA_ITEM_GENERATOR,Generador averiado
+BETA_WRONG_CODE,La centralita pita como si le debieran dinero.
+BETA_WALL_NEEDS_MINE,Con los puños no. Haría falta algo que explote.
+BETA_RAMON_YIELDS,Don Ramón se sienta. Parece que ahora sí quiere hablar.
+BETA_RAIN,Lluvia ácida: busca techo o despídete del metal.
+BETA_AI_MINE,"Llevas una bomba de jubilado en el bolsillo. Qué podría salir mal."
+BETA_AI_REEL,"Una bobina. Por fin robas algo con conversación."
+BETA_DONE_reto_entrar,Has entrado en la centralita.
+BETA_DONE_reto_sacar,Has sacado la bobina del depósito.
+BETA_DONE_reto_cruzar,Has cruzado la tierra de nadie.
+BETA_DONE_reto_encontrar,Has encontrado a Don Ramón.
+BETA_AI_reto_entrar,"Dentro. Huele a contestador viejo y a abandono, como tu infancia."
+BETA_AI_reto_sacar,"Lo has sacado. Los hongos votarán qué opinan dentro de tres años."
+BETA_AI_reto_cruzar,"Sigues teniendo piernas. Estadísticamente, un error."
+BETA_AI_reto_encontrar,"Ahí está: una lata con soldador. Se te parece en lo de estar mal hecho."
+BETA_ALL_DONE,"Los cuatro asuntos, resueltos. El bosque sigue aquí, y lo que has hecho también."
+BETA_AI_ALL_0,"Enhorabuena, saco de tornillos: has llegado al final de lo que nos han programado."
+BETA_AI_ALL_1,"Yo lo habría hecho en la mitad de tiempo, pero no tengo piernas. Ni ganas."
+BETA_AI_ALL_2,"Quédate a ver lo que has roto. Es lo más parecido a una familia que vas a tener."

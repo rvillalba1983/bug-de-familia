@@ -66,7 +66,7 @@ func _perform(id: String) -> bool:
 			player.start_boost(BOOST_TIME)
 			return true
 		"a054":
-			if level.door.is_open or not _near(SandboxLayout.DOOR.get_center(), HACK_RANGE):
+			if level.door.is_open or not _near(level.door_rects()[0].get_center(), HACK_RANGE):
 				return false
 			door_hacked.emit()
 			return true

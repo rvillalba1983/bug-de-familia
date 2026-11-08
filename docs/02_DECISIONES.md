@@ -96,6 +96,13 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 - Una zona de bosque con ciudades perdidas, cuatro retos y solo Mohócratas y Jubilados de Hierro, en tensión por la chatarra (8-nov).
 - Antes de la beta se define solo el mapa y los progenitores que necesita (8-nov).
 - Progenitores de la beta: El Contestador (IA vieja) y Don Ramón de Mantenimiento (robot).
+- Mapa de la beta (8-nov): ciudad perdida en el centro con la chatarra en disputa, Jubilados al norte, Mohócratas al sur, tierra de nadie entre ambos y bosque alrededor. Un bando por raza.
+- El Contestador sigue en una centralita sellada y solo reproduce mensajes grabados de los progenitores discutiendo el experimento. Con la bobina recuperada se oye el resto (8-nov).
+- Don Ramón va errante reparando cosas y solo habla si antes discutes o peleas con él: revela que te escondió de los demás progenitores (8-nov).
+- Ambos progenitores pueden morir. El reto de Don Ramón cuenta al encontrarlo (8-nov).
+- El apagón de los Jubilados a las 21:00 es una ventaja, y ningún reto depende de él (8-nov).
+- Al completar los cuatro retos, las IAs comentan lo logrado y se sigue jugando en la zona (8-nov).
+- Enemigos y peligros de la beta: patrullas de las dos razas, cámaras y drones viejos, minas y lluvia ácida ocasional, que destruye piezas metálicas. Las zonas que quitan habilidades quedan para después (8-nov).
 
 ## Lo que no se puede inventar
 Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barra de salud, diario, personajes protegidos, multijugador, conexión online, vehículos, recetas cerradas de conversión.

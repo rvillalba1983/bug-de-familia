@@ -16,6 +16,8 @@ var description: String = ""
 var effects: Dictionary = {}
 ## Lista de { id, name, active }.
 var actions: Array = []
+## La lluvia ácida solo ataca a las piezas metálicas.
+var metallic: bool = true
 
 
 func _init(new_kind: Kind, new_durability: float = MAX_DURABILITY) -> void:
@@ -31,6 +33,7 @@ func to_dict() -> Dictionary:
 		"description": description,
 		"effects": effects,
 		"actions": actions,
+		"metallic": metallic,
 	}
 
 
@@ -47,6 +50,7 @@ static func from_dict(data: Variant) -> BodyPiece:
 	var piece: BodyPiece = BodyPiece.new(kind_value as Kind, float(values["durability"]))
 	piece.label = str(values.get("label", ""))
 	piece.description = str(values.get("description", ""))
+	piece.metallic = bool(values.get("metallic", true))
 	if values.get("effects") is Dictionary:
 		piece.effects = values["effects"]
 	if values.get("actions") is Array:

@@ -62,6 +62,9 @@ var health: float = MAX_HEALTH
 var ranged: bool = false
 var tracer_host: Sandbox
 var _windup_left: float = 0.0
+## Un guardia pasivo no vigila ni acude a ruidos; solo responde si le atacan.
+var passive: bool = false
+var body_color: Color = Color.TRANSPARENT
 var _aim_point: Vector2 = Vector2.ZERO
 var _corpse_time: float = 0.0
 
@@ -91,7 +94,8 @@ func _physics_process(delta: float) -> void:
 	if state == State.STUNNED:
 		_tick_stun(delta)
 		return
-	detector.update(global_position, get_world_2d(), target, delta)
+	if not passive:
+		detector.update(global_position, get_world_2d(), target, delta)
 	match state:
 		State.PATROL:
 			_move_toward_point(_patrol[_patrol_index], PATROL_SPEED, _on_patrol_point)
@@ -112,6 +116,8 @@ func _draw() -> void:
 		draw_circle(Vector2.ZERO, BODY_HEIGHT * 0.42, COLOR_DOWN)
 		return
 	var color: Color = COLOR_SHOOTER if ranged else COLOR_BODY
+	if body_color.a > 0.0:
+		color = body_color
 	if state == State.ALERT:
 		color = COLOR_ALERT
 	draw_circle(Vector2(0.0, -BODY_HEIGHT * 0.5), BODY_HEIGHT * 0.42, color)
@@ -144,13 +150,27 @@ func take_damage(amount: float) -> void:
 		_on_detected(target.global_position)
 
 
+## Sustituye la ronda, por ejemplo cuando un conflicto mueve a los bandos.
+func set_patrol(points: Array[Vector2]) -> void:
+	_patrol = points
+	_patrol_index = 0
+	if nav != null:
+		investigate(points[0])
+
+
+func set_passive(value: bool) -> void:
+	passive = value
+	if _view != null:
+		_view.visible = not value and state != State.STUNNED
+
+
 func is_down() -> bool:
 	return state == State.DOWN
 
 
 ## Reacciona a un ruido si llega hasta aquí. Las paredes lo atenúan a la mitad.
 func hear(origin: Vector2, radius: float) -> void:
-	if state == State.ALERT or state == State.STUNNED or state == State.DOWN:
+	if passive or state == State.ALERT or state == State.STUNNED or state == State.DOWN:
 		return
 	var heard: float = radius
 	var world: World2D = get_world_2d()
@@ -202,7 +222,7 @@ func _on_detected(at: Vector2) -> void:
 func _tick_stun(delta: float) -> void:
 	_timer -= delta
 	if _timer <= 0.0:
-		_view.visible = true
+		_view.visible = not passive
 		state = State.PATROL
 
 

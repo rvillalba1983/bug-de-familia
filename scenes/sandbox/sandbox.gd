@@ -13,6 +13,7 @@ const ID_PICKUP_LEG: String = "pickup_leg_1"
 const ID_PICKUP_ARM: String = "pickup_arm_1"
 const ID_GUARD: String = "guard_1"
 const ID_DRONE: String = "drone_1"
+const ID_SHOOTER: String = "shooter_1"
 const ID_CAMERA: String = "camera_1"
 
 ## El menú inicial solo aparece al abrir el juego.
@@ -32,6 +33,8 @@ var ground: Node2D
 var walls: Array[Wall] = []
 var door: Wall
 var guard: Guard
+var shooter: Guard
+var combat: CombatSystem
 var drone: Drone
 var security_camera: SecurityCamera
 var items: Dictionary = {}
@@ -44,6 +47,7 @@ var conversion: ConversionDirector
 var actions: ActionSystem
 var entities: Dictionary = {}
 var converted_ids: Array = []
+var fallen_ids: Array = []
 var action_bar: ActionBar
 var ai: AiChatter
 var investigation: InvestigationDirector
@@ -88,7 +92,13 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"move_to"):
-		player.set_path(nav.find_path(player.global_position, get_global_mouse_position()))
+		var point: Vector2 = get_global_mouse_position()
+		var enemy: Guard = _enemy_at(point)
+		if enemy != null:
+			combat.engage(enemy)
+			return
+		combat.disengage()
+		player.set_path(nav.find_path(player.global_position, point))
 
 
 func _draw() -> void:
@@ -102,9 +112,24 @@ func _draw() -> void:
 ## Para pruebas de sistemas que no necesitan enemigos.
 func set_enemies_active(active: bool) -> void:
 	var mode: ProcessMode = PROCESS_MODE_INHERIT if active else PROCESS_MODE_DISABLED
-	for enemy: Node in [guard, drone, security_camera]:
+	for enemy: Node in [guard, shooter, drone, security_camera]:
 		if is_instance_valid(enemy):
 			enemy.process_mode = mode
+
+
+## Enemigos que pueden pelear o seguir en el suelo.
+func guards() -> Array[Guard]:
+	var result: Array[Guard] = []
+	for enemy: Variant in [guard, shooter]:
+		if is_instance_valid(enemy):
+			result.append(enemy as Guard)
+	return result
+
+
+func spawn_tracer(from: Vector2, to: Vector2, color: Color) -> void:
+	var tracer: Tracer = Tracer.new()
+	tracer.setup(from, to, color)
+	ground.add_child(tracer)
 
 
 func snapshot() -> Dictionary:
@@ -119,6 +144,7 @@ func snapshot() -> Dictionary:
 		"player": {"x": player.global_position.x, "y": player.global_position.y},
 		"used": used,
 		"converted": converted_ids,
+		"fallen": fallen_ids,
 		"door_open": door.is_open,
 		"ai": ai.team.to_dict(),
 		"case": investigation.to_dict(),
@@ -150,6 +176,7 @@ func start_new_game() -> void:
 		"player": {"x": SandboxLayout.PLAYER_START.x, "y": SandboxLayout.PLAYER_START.y},
 		"used": [],
 		"converted": [],
+		"fallen": [],
 		"door_open": false,
 		"ai": {},
 		"case": {},
@@ -199,7 +226,11 @@ func _build_world() -> void:
 	fight = FightDirector.new()
 	fight.body = player.body
 	fight.track(guard)
+	fight.track(shooter)
 	add_child(fight)
+	combat = CombatSystem.new()
+	combat.level = self
+	add_child(combat)
 	_register_convertibles()
 	catalog = ConversionCatalog.load_default()
 	_build_investigation()
@@ -226,6 +257,7 @@ func _add_convertible(id: String, owner_node: Node2D, material: String) -> void:
 
 func _register_convertibles() -> void:
 	_add_convertible(ID_GUARD, guard, "nanoacero")
+	_add_convertible(ID_SHOOTER, shooter, "nanoacero")
 	_add_convertible(ID_DRONE, drone, "aleacion_magnetica")
 	_add_convertible(ID_CAMERA, security_camera, "cristal_plasma")
 	_add_convertible(ID_CRATE, items[ID_CRATE], "madera_cuantica")
@@ -308,6 +340,13 @@ func _build_enemies() -> void:
 	guard.rng = rng
 	guard.setup(SandboxLayout.GUARD_PATROL, ground)
 	actors.add_child(guard)
+	shooter = Guard.new()
+	shooter.target = player
+	shooter.nav = nav
+	shooter.rng = rng
+	shooter.make_ranged(self)
+	shooter.setup(SandboxLayout.SHOOTER_PATROL, ground)
+	actors.add_child(shooter)
 	drone = Drone.new()
 	drone.target = player
 	drone.setup(SandboxLayout.DRONE_PATROL, ground)
@@ -368,7 +407,7 @@ func _build_interface() -> void:
 	layer.add_child(action_bar)
 	action_bar.body = player.body
 	_add_label(layer, "UI_SANDBOX_HELP2", Vector2(1560.0, 1040.0), 20)
-	var conversion_hint: Label = _add_label(layer, "UI_CONVERT_TARGET", Vector2(620.0, 70.0), 24)
+	var conversion_hint: Label = _add_label(layer, "UI_CONVERT_NONE", Vector2(620.0, 70.0), 24)
 	conversion_hint.visible = false
 	var screen: ConversionScreen = ConversionScreen.new()
 	add_child(screen)
@@ -395,9 +434,12 @@ func _add_label(layer: CanvasLayer, key: String, at: Vector2, font_size: int) ->
 
 func _connect_systems() -> void:
 	pause.paused_changed.connect(_on_paused_changed)
-	noise_bus.noise_emitted.connect(guard.hear)
-	drone.alarm_raised.connect(guard.investigate)
-	security_camera.alarm_raised.connect(guard.investigate)
+	for enemy: Guard in guards():
+		noise_bus.noise_emitted.connect(enemy.hear)
+		drone.alarm_raised.connect(enemy.investigate)
+		security_camera.alarm_raised.connect(enemy.investigate)
+		enemy.fell.connect(_on_enemy_fell)
+		enemy.corpse_expired.connect(_on_corpse_expired)
 	fight.pre_fight_started.connect(_on_pre_fight_started)
 	fight.fight_ended.connect(autosave)
 	panel.closed.connect(_on_panel_closed)
@@ -468,6 +510,9 @@ func _apply_save(data: Dictionary) -> bool:
 				_open_door()
 	for id: Variant in data.get("converted", []):
 		converted_ids.append(id)
+		_remove_entity(str(id))
+	for id: Variant in data.get("fallen", []):
+		fallen_ids.append(id)
 		_remove_entity(str(id))
 	if data.get("door_open", false):
 		_open_door()
@@ -544,10 +589,8 @@ func _on_item_activated(item: Interactable) -> void:
 			noise_bus.emit_noise(item.global_position, SandboxLayout.CRATE_NOISE_RADIUS)
 		Interactable.Kind.TERMINAL:
 			_open_door()
-		Interactable.Kind.PICKUP_LEG:
-			_add_pickup([ModularBody.Slot.LEG_LEFT, ModularBody.Slot.LEG_RIGHT])
-		Interactable.Kind.PICKUP_ARM:
-			_add_pickup([ModularBody.Slot.ARM_MAIN_LEFT, ModularBody.Slot.ARM_MAIN_RIGHT])
+		Interactable.Kind.PICKUP_LEG, Interactable.Kind.PICKUP_ARM:
+			_add_pickup(item.pickup_slots())
 
 
 func _on_converted(entity_id: String) -> void:
@@ -555,6 +598,30 @@ func _on_converted(entity_id: String) -> void:
 	_remove_entity(entity_id)
 	if fight.phase == FightDirector.Phase.CALM:
 		autosave()
+
+
+func _enemy_at(point: Vector2) -> Guard:
+	for enemy: Guard in guards():
+		if not enemy.is_down() and enemy.global_position.distance_to(point) <= Selectable.RADIUS * 1.5:
+			return enemy
+		if not enemy.is_down():
+			var body_center: Vector2 = enemy.global_position - Vector2(0.0, Guard.BODY_HEIGHT * 0.5)
+			if body_center.distance_to(point) <= Selectable.RADIUS * 1.5:
+				return enemy
+	return null
+
+
+func _id_of(enemy: Guard) -> String:
+	return ID_GUARD if enemy == guard else ID_SHOOTER
+
+
+## La muerte es permanente: el caído no reaparece aunque se recargue la partida.
+func _on_enemy_fell(enemy: Guard) -> void:
+	fallen_ids.append(_id_of(enemy))
+
+
+func _on_corpse_expired(enemy: Guard) -> void:
+	_remove_entity(_id_of(enemy))
 
 
 func _on_paused_changed(is_paused: bool) -> void:

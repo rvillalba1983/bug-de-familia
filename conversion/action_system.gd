@@ -86,11 +86,11 @@ func _perform(id: String) -> bool:
 
 
 func _stun_guard(duration: float) -> bool:
-	var guard: Guard = level.guard
-	if not is_instance_valid(guard) or not _near(guard.global_position, MELEE_RANGE):
-		return false
-	guard.stun(duration)
-	return true
+	for guard: Guard in level.guards():
+		if not guard.is_down() and _near(guard.global_position, MELEE_RANGE):
+			guard.stun(duration)
+			return true
+	return false
 
 
 func _near(point: Vector2, distance: float) -> bool:

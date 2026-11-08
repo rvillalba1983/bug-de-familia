@@ -29,6 +29,7 @@ static func forge(
 		var action: Dictionary = catalog.actions[id]
 		piece.actions.append({"id": id, "name": action["name"], "active": action["active"]})
 	piece.label = _build_label(catalog, material, objective, chosen, piece.actions)
+	piece.description = _build_description(catalog, chosen, piece.actions)
 	return piece
 
 
@@ -75,6 +76,15 @@ static func _build_label(
 	for action: Dictionary in actions:
 		names.append(str(action["name"]))
 	return "%s · %s: %s" % [material["name"], objective["name"], ", ".join(names)]
+
+
+static func _build_description(catalog: ConversionCatalog, chosen: Array, actions: Array) -> String:
+	var lines: Array[String] = []
+	for action: Dictionary in actions:
+		lines.append(str(catalog.actions[action["id"]]["desc"]))
+	for id: String in chosen:
+		lines.append(str(catalog.properties[id]["desc"]))
+	return " ".join(lines)
 
 
 static func _shuffle(items: Array, rng: RandomNumberGenerator) -> void:

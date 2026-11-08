@@ -22,6 +22,7 @@ const GOAL: Rect2 = Rect2(1600.0, 440.0, 160.0, 220.0)
 const PLAYER_START: Vector2 = Vector2(240.0, 880.0)
 const SAVE_POINTS: Array[Vector2] = [Vector2(240.0, 880.0), Vector2(1200.0, 550.0)]
 const GUARD_PATROL: Array[Vector2] = [Vector2(880.0, 440.0), Vector2(880.0, 680.0)]
+const SHOOTER_PATROL: Array[Vector2] = [Vector2(450.0, 590.0), Vector2(620.0, 590.0)]
 const DRONE_PATROL: Array[Vector2] = [Vector2(460.0, 500.0), Vector2(860.0, 500.0)]
 const CAMERA_POSITION: Vector2 = Vector2(330.0, 130.0)
 const CAMERA_CENTER_DEGREES: float = 20.0

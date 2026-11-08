@@ -31,4 +31,6 @@ Algunos guardias dan pasadas rápidas y apenas detectan a quien anda: reaccionan
 - Las criaturas reaccionan al peligro según instinto, grupo y especie. Los NPC también mueren por accidentes.
 - Ningún lugar es completamente seguro.
 
-Pendiente: reglas de daño, catálogo de enemigos y zonas que quitan habilidades (P-04).
+Los golpes y disparos se anuncian antes de llegar y se pueden esquivar. Los enemigos caídos quedan en el suelo un rato y se pueden convertir; una vez caídos no reaparecen.
+
+Pendiente: reglas de daño definitivas, catálogo de enemigos y zonas que quitan habilidades (P-04).

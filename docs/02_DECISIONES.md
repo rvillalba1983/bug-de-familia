@@ -84,6 +84,10 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 - Recursos por paquetes completos y validados. Todo recurso de la partida es local.
 - El prototipo usa gráficos sencillos para probar la diversión; el arte final llega después.
 
+## Interacción (8-nov)
+- Los objetos se recogen solo con pasar por encima, sin pulsar nada.
+- Convertir usa una tecla propia (Q): actúa sobre lo convertible más cercano al alcance, que se marca en el mundo.
+
 ## Beta
 - Una zona de bosque con ciudades perdidas, cuatro retos y solo Mohócratas y Jubilados de Hierro, en tensión por la chatarra (8-nov).
 - Antes de la beta se define solo el mapa y los progenitores que necesita (8-nov).

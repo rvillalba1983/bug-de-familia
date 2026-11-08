@@ -162,7 +162,7 @@ func _track_idle(delta: float) -> void:
 
 
 func _track_danger() -> void:
-	if _danger_cooldown > 0.0 or not is_instance_valid(level.guard):
+	if _danger_cooldown > 0.0 or not is_instance_valid(level.guard) or level.guard.is_down():
 		return
 	var guard: Guard = level.guard
 	var distance: float = level.player.global_position.distance_to(guard.global_position)

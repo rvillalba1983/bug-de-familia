@@ -84,8 +84,21 @@ func test_can_convert_an_enemy() -> void:
 	assert_int(restored.player.body.spares(ARM).size()).is_equal(1)
 
 
-func test_out_of_range_cannot_be_selected() -> void:
+func test_nothing_in_range_cannot_be_converted() -> void:
 	var sandbox: Sandbox = _scene()
-	var far: Convertible = _target(sandbox, Sandbox.ID_TERMINAL)
-	sandbox.conversion.try_target(far.global_position)
+	sandbox.player.global_position = Vector2(-5000.0, -5000.0)
+	assert_bool(sandbox.conversion.convert_nearest()).is_false()
 	assert_int(sandbox.conversion.step).is_equal(ConversionDirector.Step.IDLE)
+	assert_bool(sandbox.conversion.hint.visible).is_true()
+
+
+func test_key_converts_the_nearest_and_marks_it() -> void:
+	var sandbox: Sandbox = _scene()
+	var crate: Convertible = _target(sandbox, Sandbox.ID_CRATE)
+	sandbox.player.global_position = crate.global_position + Vector2(20.0, 0.0)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	assert_bool(crate.highlighted).is_true()
+	assert_bool(sandbox.conversion.convert_nearest()).is_true()
+	assert_int(sandbox.conversion.step).is_equal(ConversionDirector.Step.OBJECTIVE)
+	assert_bool(crate.highlighted).is_false()

@@ -9,6 +9,7 @@ const CROUCH_SPEED: float = 110.0
 const RUN_NOISE_RADIUS: float = 340.0
 const RUN_NOISE_INTERVAL: float = 0.4
 const RADIUS: float = 18.0
+const PICKUP_RADIUS: float = 40.0
 const BODY_HEIGHT: float = 60.0
 const CROUCH_HEIGHT: float = 38.0
 const CROUCH_RANGE_FACTOR: float = 0.7
@@ -69,6 +70,7 @@ func _physics_process(delta: float) -> void:
 	var before: Vector2 = global_position
 	move_and_slide()
 	_after_move(global_position.distance_to(before), delta)
+	_collect_pickups()
 	queue_redraw()
 
 
@@ -190,13 +192,23 @@ func _after_move(moved: float, delta: float) -> void:
 		noise_bus.emit_noise(global_position, WORRY_NOISE_RADIUS)
 
 
+## Los repuestos se recogen al pasar por encima, si queda sitio para ellos.
+func _collect_pickups() -> void:
+	for node: Node in get_tree().get_nodes_in_group(Interactable.GROUP):
+		var item: Interactable = node as Interactable
+		if item.used or not item.is_pickup() or not body.can_stow_in(item.pickup_slots()):
+			continue
+		if global_position.distance_to(item.global_position) <= PICKUP_RADIUS:
+			item.activate()
+
+
 func _interact_nearest() -> void:
 	var best: Interactable = null
 	var best_distance: float = Interactable.RANGE
 	for node: Node in get_tree().get_nodes_in_group(Interactable.GROUP):
 		var item: Interactable = node as Interactable
 		var distance: float = global_position.distance_to(item.global_position)
-		if not item.used and distance <= best_distance:
+		if not item.used and not item.is_pickup() and distance <= best_distance:
 			best = item
 			best_distance = distance
 	if best != null:

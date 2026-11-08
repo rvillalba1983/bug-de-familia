@@ -7,9 +7,10 @@ signal answered(correct: bool)
 ## Se emite al terminar las preguntas con todas falladas.
 signal all_wrong
 
-enum Step { IDLE, TARGETING, OBJECTIVE, SLOT, QUESTION, FEEDBACK, RESULT }
+enum Step { IDLE, OBJECTIVE, SLOT, QUESTION, FEEDBACK, RESULT }
 
 const FEEDBACK_TIME: float = 1.4
+const HINT_TIME: float = 2.5
 
 var step: Step = Step.IDLE
 var catalog: ConversionCatalog
@@ -22,6 +23,8 @@ var hint: Label
 var advisor: Callable = Callable()
 
 var _target: Convertible
+var _highlighted: Convertible
+var _hint_left: float = 0.0
 var _objective_id: String = ""
 var _slot: ModularBody.Slot = ModularBody.Slot.HEAD
 var _session: ConversionSession
@@ -37,12 +40,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"convert") and not event.is_echo():
 		if step == Step.IDLE and not get_tree().paused and not player.body.is_dead:
-			_enter_targeting()
-		elif step == Step.TARGETING:
-			cancel_targeting()
-	elif step == Step.TARGETING and event.is_action_pressed(&"select"):
-		get_viewport().set_input_as_handled()
-		try_target(get_global_mouse_position())
+			convert_nearest()
 	elif step == Step.QUESTION:
 		_read_answer_keys(event)
 
@@ -52,9 +50,12 @@ func _process(delta: float) -> void:
 
 
 func tick(delta: float) -> void:
+	if _hint_left > 0.0:
+		_hint_left -= delta
+		hint.visible = _hint_left > 0.0
 	match step:
-		Step.TARGETING:
-			_update_highlights(true)
+		Step.IDLE:
+			_refresh_highlight()
 		Step.QUESTION:
 			_time_left -= delta
 			screen.set_time_fraction(_time_left / ConversionSession.TIME_LIMIT)
@@ -66,14 +67,24 @@ func tick(delta: float) -> void:
 				_next_question_or_result()
 
 
+## Convierte lo más cercano al alcance. Devuelve si había algo que convertir.
+func convert_nearest() -> bool:
+	var target: Convertible = _nearest_in_range()
+	if target == null:
+		_flash_hint(tr("UI_CONVERT_NONE"))
+		return false
+	begin_on(target)
+	return true
+
+
 func begin_on(target: Convertible) -> void:
-	_update_highlights(false)
+	_set_highlighted(null)
 	_target = target
 	if not _any_room():
 		step = Step.IDLE
-		hint.text = tr("UI_CONVERT_NO_ROOM")
-		hint.visible = true
+		_flash_hint(tr("UI_CONVERT_NO_ROOM"))
 		return
+	_hint_left = 0.0
 	hint.visible = false
 	pause.begin_modal()
 	step = Step.OBJECTIVE
@@ -81,20 +92,6 @@ func begin_on(target: Convertible) -> void:
 	for id: String in catalog.objectives:
 		entries.append([str(catalog.objectives[id]["name"]), choose_objective.bind(id)])
 	screen.show_choices(tr("UI_CONVERT_OBJECTIVE"), entries)
-
-
-func try_target(point: Vector2) -> void:
-	for node: Node in get_tree().get_nodes_in_group(Convertible.GROUP):
-		var candidate: Convertible = node as Convertible
-		if candidate.contains_point(point) and _in_range(candidate):
-			begin_on(candidate)
-			return
-
-
-func cancel_targeting() -> void:
-	_update_highlights(false)
-	hint.visible = false
-	step = Step.IDLE
 
 
 func choose_objective(id: String) -> void:
@@ -138,20 +135,38 @@ func confirm_result() -> void:
 	_target = null
 
 
-func _enter_targeting() -> void:
-	step = Step.TARGETING
-	hint.text = tr("UI_CONVERT_TARGET")
+func _flash_hint(text: String) -> void:
+	hint.text = text
 	hint.visible = true
+	_hint_left = HINT_TIME
 
 
-func _in_range(candidate: Convertible) -> bool:
-	return player.global_position.distance_to(candidate.global_position) <= Convertible.RANGE
-
-
-func _update_highlights(active: bool) -> void:
+func _nearest_in_range() -> Convertible:
+	var best: Convertible = null
+	var best_distance: float = Convertible.RANGE
 	for node: Node in get_tree().get_nodes_in_group(Convertible.GROUP):
 		var candidate: Convertible = node as Convertible
-		candidate.set_highlight(active, _in_range(candidate))
+		var distance: float = player.global_position.distance_to(candidate.global_position)
+		if distance <= best_distance:
+			best = candidate
+			best_distance = distance
+	return best
+
+
+## Marca en el mundo lo que convertiría Q ahora mismo.
+func _refresh_highlight() -> void:
+	var active: bool = not get_tree().paused and not player.body.is_dead
+	_set_highlighted(_nearest_in_range() if active else null)
+
+
+func _set_highlighted(candidate: Convertible) -> void:
+	if candidate == _highlighted:
+		return
+	if is_instance_valid(_highlighted):
+		_highlighted.set_highlight(false)
+	_highlighted = candidate
+	if candidate != null:
+		candidate.set_highlight(true)
 
 
 func _any_room() -> bool:
@@ -196,5 +211,5 @@ func _next_question_or_result() -> void:
 	)
 	player.body.receive(_slot, piece)
 	step = Step.RESULT
-	screen.show_message(tr("UI_CONVERT_RESULT"), piece.label)
+	screen.show_message(tr("UI_CONVERT_RESULT"), "%s\n\n%s" % [piece.label, piece.description])
 	screen.add_accept(tr("UI_CONVERT_ACCEPT"), confirm_result)

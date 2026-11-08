@@ -159,6 +159,13 @@ func has_worried_piece() -> bool:
 	return false
 
 
+func can_stow_in(slots: Array[Slot]) -> bool:
+	for slot: Slot in slots:
+		if spares(slot).size() < MAX_SPARES:
+			return true
+	return false
+
+
 func has_room(slot: Slot) -> bool:
 	return equipped(slot) == null or spares(slot).size() < MAX_SPARES
 
@@ -189,6 +196,14 @@ func wear_legs(distance: float) -> void:
 	var amount: float = distance / 100.0 * LEG_WEAR_PER_100_PX
 	wear_piece(Slot.LEG_LEFT, amount)
 	wear_piece(Slot.LEG_RIGHT, amount)
+
+
+func arm_count() -> int:
+	var arms: int = 0
+	for slot: int in Slot.values():
+		if kind_of(slot as Slot) == BodyPiece.Kind.ARM and equipped(slot as Slot) != null:
+			arms += 1
+	return arms
 
 
 func leg_count() -> int:

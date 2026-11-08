@@ -53,6 +53,20 @@ func _draw() -> void:
 		WorldLabel.draw_on(self, text, Vector2(0.0, -40.0))
 
 
+## Ranuras donde puede guardarse este objeto; vacío si no se recoge.
+func pickup_slots() -> Array[ModularBody.Slot]:
+	match kind:
+		Kind.PICKUP_LEG:
+			return [ModularBody.Slot.LEG_LEFT, ModularBody.Slot.LEG_RIGHT]
+		Kind.PICKUP_ARM:
+			return [ModularBody.Slot.ARM_MAIN_LEFT, ModularBody.Slot.ARM_MAIN_RIGHT]
+	return []
+
+
+func is_pickup() -> bool:
+	return not pickup_slots().is_empty()
+
+
 func activate() -> void:
 	if used:
 		return

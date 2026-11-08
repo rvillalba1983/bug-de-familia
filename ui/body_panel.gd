@@ -107,6 +107,8 @@ func _build_row(slot: ModularBody.Slot) -> HBoxContainer:
 	label.text = "%s: %s %s" % [tr("SLOT_%d" % slot), state, worn]
 	label.custom_minimum_size = Vector2(380.0, 0.0)
 	row.add_child(label)
+	label.tooltip_text = "" if piece == null else piece.description
+	label.mouse_filter = Control.MOUSE_FILTER_PASS
 	var spares: Array[BodyPiece] = body.spares(slot)
 	for index: int in range(spares.size()):
 		var button: Button = Button.new()
@@ -114,6 +116,7 @@ func _build_row(slot: ModularBody.Slot) -> HBoxContainer:
 			tr("UI_BODY_EQUIP"), roundi(spares[index].durability), spares[index].label
 		]
 		button.disabled = not body.can_swap(slot)
+		button.tooltip_text = spares[index].description
 		button.pressed.connect(swap_spare.bind(slot, index))
 		row.add_child(button)
 		var drop: Button = Button.new()

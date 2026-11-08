@@ -35,8 +35,12 @@
   "arma": {
    "name": "Arma cuerpo a cuerpo",
    "actions": [
+    "a001",
+    "a002",
     "a003",
-    "a006"
+    "a005",
+    "a006",
+    "a008"
    ]
   },
   "velocidad": {
@@ -81,42 +85,48 @@
    "positive": true,
    "effects": {
     "self_repair": 0.2
-   }
+   },
+   "desc": "Se repara sola, despacio."
   },
   "p005": {
    "name": "Hipocondría",
    "positive": false,
    "effects": {
     "worry_noise": 1.0
-   }
+   },
+   "desc": "Por debajo de la mitad, hace ruido al moverte."
   },
   "p006": {
    "name": "Filo insolente",
    "positive": true,
    "effects": {
     "stun": 1.5
-   }
+   },
+   "desc": "Tus aturdimientos duran más."
   },
   "p007": {
    "name": "Orgullo frágil",
    "positive": false,
    "effects": {
     "damage_taken": 1.5
-   }
+   },
+   "desc": "Se rompe antes con los golpes."
   },
   "p009": {
    "name": "Soprano",
    "positive": false,
    "effects": {
     "run_noise": 1.5
-   }
+   },
+   "desc": "Correr hace más ruido."
   },
   "p022": {
    "name": "Repelemetal",
    "positive": true,
    "effects": {
     "dodge": 0.1
-   }
+   },
+   "desc": "Puede desviar algún golpe."
   },
   "p025": {
    "name": "Interferencia",
@@ -124,78 +134,114 @@
    "effects": {
     "jam_radius": 150.0,
     "wear": 1.3
-   }
+   },
+   "desc": "Cámaras y drones cercanos no te ven, pero se gasta antes."
   },
   "p036": {
    "name": "Ingrávida",
    "positive": true,
    "effects": {
     "speed": 1.1
-   }
+   },
+   "desc": "Te hace más rápido."
   },
   "p037": {
    "name": "Parpadeo",
    "positive": true,
    "effects": {
     "dodge": 0.15
-   }
+   },
+   "desc": "Puede evitar algún golpe."
   },
   "p040": {
    "name": "Carcoma temporal",
    "positive": false,
    "effects": {
     "wear": 2.0
-   }
+   },
+   "desc": "Se gasta el doble de rápido."
   }
  },
  "actions": {
   "a003": {
    "name": "Porrazo aturdidor",
-   "active": true
+   "active": true,
+   "desc": "Tecla: deja fuera de combate 5 s a un enemigo pegado a ti."
   },
   "a006": {
    "name": "Colleja sónica",
-   "active": true
+   "active": true,
+   "desc": "Tecla: aturde 3 s a un enemigo pegado a ti, pero hace ruido."
   },
   "a009": {
    "name": "Acelerón corto",
-   "active": true
+   "active": true,
+   "desc": "Tecla: corres mucho más durante 2 s."
   },
   "a015": {
    "name": "Turbo de pánico",
-   "active": false
+   "active": false,
+   "desc": "Más velocidad mientras haya pelea."
   },
   "a023": {
    "name": "Pasos mudos",
-   "active": false
+   "active": false,
+   "desc": "Correr no hace ruido."
   },
   "a024": {
    "name": "Camuflaje al quedarte quieto",
-   "active": false
+   "active": false,
+   "desc": "Si no te mueves, te ven desde mucho menos lejos."
   },
   "a044": {
    "name": "Burbuja de un solo impacto",
-   "active": false
+   "active": false,
+   "desc": "Absorbe un golpe; se recarga en 15 s."
   },
   "a046": {
    "name": "Pinchos que aturden al agresor",
-   "active": false
+   "active": false,
+   "desc": "Quien te golpea queda aturdido un momento."
   },
   "a054": {
    "name": "Abrir puertas",
-   "active": true
+   "active": true,
+   "desc": "Tecla: abre la puerta cercana."
   },
   "a055": {
    "name": "Cegar cámaras",
-   "active": true
+   "active": true,
+   "desc": "Tecla: ciega una cámara cercana 6 s."
   },
   "a056": {
    "name": "Confundir drones",
-   "active": true
+   "active": true,
+   "desc": "Tecla: inutiliza un dron cercano 6 s."
   },
   "a062": {
    "name": "Lanzar un ruido",
-   "active": true
+   "active": true,
+   "desc": "Tecla: hace ruido donde apuntes con el ratón."
+  },
+  "a001": {
+   "name": "Tajo ancho",
+   "active": false,
+   "desc": "Golpes más fuertes que alcanzan también al enemigo de al lado."
+  },
+  "a002": {
+   "name": "Estocada silenciosa",
+   "active": false,
+   "desc": "Por sorpresa hace mucho daño y no hace ruido."
+  },
+  "a005": {
+   "name": "Bofetada de cuatro brazos",
+   "active": false,
+   "desc": "Cuantos más brazos tengas, más duele."
+  },
+  "a008": {
+   "name": "Golpe de jubilado",
+   "active": false,
+   "desc": "Golpes lentos y devastadores."
   }
  }
 }

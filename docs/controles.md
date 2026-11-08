@@ -14,10 +14,12 @@ Basados en los de World of Warcraft, adaptados a una cámara de ángulo fijo. Ap
 | Pausa táctica | Espacio | Hecho |
 | Zoom | Rueda del ratón | Hecho |
 | Agacharse | X | Hecho |
-| Interactuar o atacar | Clic derecho sobre el objeto o enemigo | Fases posteriores |
+| Atacar cuerpo a cuerpo | Clic derecho sobre el enemigo | Hecho |
+| Lanzar chatarra | F, hacia el ratón | Hecho |
 | Interactuar, examinar y conversar | E | Hecho |
 | Elegir respuesta al conversar | Teclas 1 a 6 o clic | Hecho |
-| Convertir | Q y clic izquierdo en el objeto o enemigo | Hecho |
+| Convertir lo más cercano (marcado en morado) | Q | Hecho |
+| Recoger repuestos | Pasar por encima | Hecho |
 | Acciones de las piezas y respuestas | Teclas 1 a 6 | Hecho |
 | Piezas del cuerpo | C | Hecho |
 | Inventario | B | Fase 3 |

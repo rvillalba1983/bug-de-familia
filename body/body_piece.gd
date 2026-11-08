@@ -10,6 +10,8 @@ var kind: Kind
 var durability: float = MAX_DURABILITY
 ## Nombre visible; los valores numéricos nunca se muestran.
 var label: String = ""
+## Qué hace la pieza, en lenguaje claro.
+var description: String = ""
 ## Efectos ya resueltos por la conversión, ocultos para el jugador.
 var effects: Dictionary = {}
 ## Lista de { id, name, active }.
@@ -26,6 +28,7 @@ func to_dict() -> Dictionary:
 		"kind": int(kind),
 		"durability": durability,
 		"label": label,
+		"description": description,
 		"effects": effects,
 		"actions": actions,
 	}
@@ -43,6 +46,7 @@ static func from_dict(data: Variant) -> BodyPiece:
 		return null
 	var piece: BodyPiece = BodyPiece.new(kind_value as Kind, float(values["durability"]))
 	piece.label = str(values.get("label", ""))
+	piece.description = str(values.get("description", ""))
 	if values.get("effects") is Dictionary:
 		piece.effects = values["effects"]
 	if values.get("actions") is Array:

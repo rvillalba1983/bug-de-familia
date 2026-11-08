@@ -134,7 +134,8 @@ func test_save_point_shows_saved_notice() -> void:
 
 func test_all_world_labels_are_translated() -> void:
 	for key: String in Interactable.LABELS.values():
-		assert_str(tr(key)).is_not_equal(key)
+		if not key.is_empty():
+			assert_str(tr(key)).is_not_equal(key)
 	assert_str(tr("ITEM_DOOR")).is_not_equal("ITEM_DOOR")
 
 

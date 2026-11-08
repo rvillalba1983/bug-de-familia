@@ -8,6 +8,7 @@ Paquete unificado creado el 8 de noviembre de 2026. Cada tema vive en un solo si
 | `CLAUDE.md` | Instrucciones permanentes para Claude Code |
 | `02_DECISIONES.md` | Lo que está decidido. Manda sobre todo lo demás |
 | `01_CONFLICTOS_Y_PENDIENTES.md` | Lo que está sin resolver o falta |
+| `03_ESTADO.md` | Por dónde va el desarrollo y cómo preparar el entorno |
 | `40_plan_desarrollo.md` | Orden de trabajo y criterios de aceptación |
 | `controles.md` | Controles del juego |
 

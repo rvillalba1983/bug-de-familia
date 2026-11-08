@@ -25,5 +25,10 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 - No subas código ni recursos a servicios externos sin autorización.
 - Registra origen y herramienta de cada recurso generado.
 
+## Una fase por conversación
+- Cada fase del plan se hace en una conversación propia, que termina al fusionar esa fase en `main`.
+- Al empezar, lee también `docs/03_ESTADO.md`: indica por dónde vamos y cómo preparar el entorno.
+- Al fusionar en `main`: actualiza `docs/03_ESTADO.md` y comunica al usuario que hay que cambiar de conversación.
+
 ## Al cerrar una tarea
 Informa de: qué se ha hecho, archivos afectados, pruebas y resultados, validación manual necesaria, limitaciones y decisiones que requieren aprobación.

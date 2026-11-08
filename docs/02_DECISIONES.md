@@ -97,6 +97,7 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barra de salud, diario, personajes protegidos, multijugador, conexión online, vehículos, recetas cerradas de conversión.
 
 ## Autonomía de Claude
+- Una fase por conversación: termina al fusionar en `main`, se anota el avance en `03_ESTADO.md` y se avisa al usuario de que hay que cambiar de conversación (8-nov).
 **Decide solo y documenta:** módulos, algoritmos, datos, herramientas locales, orden técnico de tareas, parámetros provisionales, refactorizaciones, optimizaciones medidas y decisiones artísticas menores.
 
 **Pregunta antes de:** cambiar plataforma, motor, controles o perspectiva; alterar mecánicas, muerte, guardado, combate, conversión, tokens o el protagonista; añadir dependencias online; eliminar características; convertir objetivos orientativos en límites que reduzcan el alcance; y subir código o recursos a servicios externos.

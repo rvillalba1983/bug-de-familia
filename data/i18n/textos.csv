@@ -1,6 +1,6 @@
 keys,es
 UI_PAUSE,PAUSA TÁCTICA
-UI_SANDBOX_HELP,"WASD mover · Mayús correr · X agacharse · E usar · C piezas · Espacio pausa · Clic derecho ir · Tab objetivo · Rueda zoom"
+UI_SANDBOX_HELP,"WASD mover · Mayús correr · X agacharse · E usar · C piezas · Espacio pausa · Clic derecho ir o atacar · F lanzar · Tab objetivo · Rueda zoom"
 UI_OBJECTIVE,"Llega a la salida verde. Hay al menos tres formas, y ninguna exige hacer daño."
 UI_CHALLENGE_DONE,¡Reto superado!
 UI_BODY_TITLE,Piezas del cuerpo

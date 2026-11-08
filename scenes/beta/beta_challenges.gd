@@ -200,8 +200,9 @@ func _apply_conflict() -> void:
 			enemy.set_patrol(BetaLayout.BRAWL_PATROL)
 	elif (flag("paz") or flag("tregua")) and not level.moved_home:
 		level.moved_home = true
-		level.strip_jubilado.set_patrol(BetaLayout.JUB_HOME_PATROL)
-		level.strip_mohocrata.set_patrol(BetaLayout.MOHO_HOME_PATROL)
+		for enemy: Guard in strip:
+			var is_jubilado: bool = enemy == level.strip_jubilado
+			enemy.set_patrol(BetaLayout.JUB_HOME_PATROL if is_jubilado else BetaLayout.MOHO_HOME_PATROL)
 
 
 func _apply_power_off() -> void:

@@ -353,3 +353,22 @@ func test_war_positions_and_mines_persist() -> void:
 	var restored: BetaZone = second.scene()
 	assert_bool(restored.moved_to_war).is_true()
 	assert_bool(restored.mines.has("mine_2")).is_false()
+
+
+func test_peace_after_a_strip_guard_is_gone_does_not_crash() -> void:
+	_quiet()
+	zone._on_converted("jub_tierra")
+	await await_millis(60)
+	assert_bool(is_instance_valid(zone.strip_jubilado)).is_false()
+	_case().set_flag("paz")
+	assert_bool(zone.moved_home).is_true()
+	assert_array(zone.strip_guards()).has_size(1)
+
+
+func test_war_after_guards_are_gone_does_not_crash() -> void:
+	_quiet()
+	for id: String in ["jub_tierra", "moho_tierra", "moho_deposito", "moho_puerta"]:
+		zone._on_converted(id)
+	await await_millis(60)
+	_case().set_flag("guerra")
+	assert_bool(zone.moved_to_war).is_true()

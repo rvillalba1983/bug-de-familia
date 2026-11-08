@@ -29,3 +29,13 @@ ITEM_PICKUP_ARM,Brazo de repuesto (E)
 ITEM_DOOR,Puerta de servicio
 ITEM_SAVE_POINT,Punto de guardado
 ITEM_GOAL,SALIDA
+UI_CONVERT_TARGET,Elige qué convertir con clic izquierdo. Q para cancelar.
+UI_CONVERT_OBJECTIVE,¿Para qué quieres la pieza?
+UI_CONVERT_SLOT,¿Dónde va la pieza?
+UI_CONVERT_RESULT,Pieza creada
+UI_CONVERT_ACCEPT,Aceptar
+UI_CONVERT_CORRECT,¡Correcto!
+UI_CONVERT_WRONG,Error.
+UI_CONVERT_TRUTH,La respuesta era:
+UI_CONVERT_NO_ROOM,No queda sitio para más repuestos.
+UI_SANDBOX_HELP2,Q convertir · 1-6 acciones

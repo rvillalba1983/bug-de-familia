@@ -15,6 +15,13 @@ const KEY_ACTIONS: Dictionary = {
 	&"crouch": [KEY_X],
 	&"interact": [KEY_E],
 	&"character": [KEY_C],
+	&"convert": [KEY_Q],
+	&"action_1": [KEY_1],
+	&"action_2": [KEY_2],
+	&"action_3": [KEY_3],
+	&"action_4": [KEY_4],
+	&"action_5": [KEY_5],
+	&"action_6": [KEY_6],
 }
 const MOUSE_ACTIONS: Dictionary = {
 	&"select": MOUSE_BUTTON_LEFT,

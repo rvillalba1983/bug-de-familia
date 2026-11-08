@@ -8,6 +8,12 @@ const MAX_DURABILITY: float = 100.0
 
 var kind: Kind
 var durability: float = MAX_DURABILITY
+## Nombre visible; los valores numéricos nunca se muestran.
+var label: String = ""
+## Efectos ya resueltos por la conversión, ocultos para el jugador.
+var effects: Dictionary = {}
+## Lista de { id, name, active }.
+var actions: Array = []
 
 
 func _init(new_kind: Kind, new_durability: float = MAX_DURABILITY) -> void:
@@ -16,7 +22,13 @@ func _init(new_kind: Kind, new_durability: float = MAX_DURABILITY) -> void:
 
 
 func to_dict() -> Dictionary:
-	return {"kind": int(kind), "durability": durability}
+	return {
+		"kind": int(kind),
+		"durability": durability,
+		"label": label,
+		"effects": effects,
+		"actions": actions,
+	}
 
 
 ## Devuelve null si los datos no son válidos.
@@ -29,4 +41,17 @@ static func from_dict(data: Variant) -> BodyPiece:
 	var kind_value: int = int(values["kind"])
 	if kind_value < 0 or kind_value >= Kind.size():
 		return null
-	return BodyPiece.new(kind_value as Kind, float(values["durability"]))
+	var piece: BodyPiece = BodyPiece.new(kind_value as Kind, float(values["durability"]))
+	piece.label = str(values.get("label", ""))
+	if values.get("effects") is Dictionary:
+		piece.effects = values["effects"]
+	if values.get("actions") is Array:
+		piece.actions = values["actions"]
+	return piece
+
+
+func has_action(action_id: String) -> bool:
+	for action: Dictionary in actions:
+		if action["id"] == action_id:
+			return true
+	return false

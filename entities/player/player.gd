@@ -11,6 +11,14 @@ const RUN_NOISE_INTERVAL: float = 0.4
 const RADIUS: float = 18.0
 const BODY_HEIGHT: float = 60.0
 const CROUCH_HEIGHT: float = 38.0
+const CROUCH_RANGE_FACTOR: float = 0.7
+const CAMOUFLAGE_RANGE_FACTOR: float = 0.5
+const BOOST_FACTOR: float = 1.6
+const PANIC_FACTOR: float = 1.25
+const BUBBLE_RECHARGE: float = 15.0
+const WORRY_NOISE_RADIUS: float = 120.0
+const WORRY_NOISE_INTERVAL: float = 3.0
+const SPIKES_STUN_TIME: float = 1.5
 const WAYPOINT_TOLERANCE: float = 6.0
 
 const COLOR_BODY: Color = Color("#e0651f")
@@ -23,12 +31,16 @@ var facing: Vector2 = Vector2.DOWN
 var is_crouching: bool = false
 var body: ModularBody = ModularBody.new()
 var noise_bus: NoiseBus
+var in_danger: bool = false
 
 var _path: PackedVector2Array = PackedVector2Array()
 var _path_index: int = 0
 var _autorun: bool = false
 var _run_toggled: bool = false
 var _noise_timer: float = 0.0
+var _worry_timer: float = 0.0
+var _boost_time: float = 0.0
+var _bubble_cooldown: float = 0.0
 
 
 func _ready() -> void:
@@ -46,6 +58,7 @@ func _physics_process(delta: float) -> void:
 	if body.is_dead:
 		velocity = Vector2.ZERO
 		return
+	_tick_body(delta)
 	_read_toggles()
 	var direction: Vector2 = _resolve_direction()
 	velocity = direction * current_speed()
@@ -97,7 +110,39 @@ func current_speed() -> float:
 		speed = CROUCH_SPEED
 	elif is_running():
 		speed = RUN_SPEED
-	return speed * body.speed_factor()
+	speed *= body.speed_factor() * body.multiplier("speed")
+	if _boost_time > 0.0:
+		speed *= BOOST_FACTOR
+	if in_danger and body.has_action("a015"):
+		speed *= PANIC_FACTOR
+	return speed
+
+
+## Parte del alcance de visión enemigo que se aplica a este personaje.
+func stealth_factor() -> float:
+	var factor: float = CROUCH_RANGE_FACTOR if is_crouching else 1.0
+	if velocity == Vector2.ZERO and body.has_action("a024"):
+		factor *= CAMOUFLAGE_RANGE_FACTOR
+	return factor
+
+
+func jam_radius() -> float:
+	return body.total("jam_radius")
+
+
+func start_boost(duration: float) -> void:
+	_boost_time = duration
+
+
+func receive_hit(amount: float, rng: RandomNumberGenerator, attacker: Guard) -> void:
+	if body.has_action("a044") and _bubble_cooldown <= 0.0:
+		_bubble_cooldown = BUBBLE_RECHARGE
+		return
+	if rng.randf() < body.total("dodge"):
+		return
+	body.damage_random(amount, rng)
+	if body.has_action("a046") and attacker != null:
+		attacker.stun(SPIKES_STUN_TIME * body.multiplier("stun"))
 
 
 func is_autorunning() -> bool:
@@ -107,6 +152,12 @@ func is_autorunning() -> bool:
 ## Una de las 8 direcciones de sprite: 0 es este y aumenta en sentido horario.
 static func octant_of(direction: Vector2) -> int:
 	return posmod(roundi(direction.angle() / (TAU / 8.0)), 8)
+
+
+func _tick_body(delta: float) -> void:
+	body.tick(delta)
+	_boost_time = maxf(_boost_time - delta, 0.0)
+	_bubble_cooldown = maxf(_bubble_cooldown - delta, 0.0)
 
 
 func _read_toggles() -> void:
@@ -126,9 +177,14 @@ func _after_move(moved: float, delta: float) -> void:
 		return
 	body.wear_legs(moved)
 	_noise_timer -= delta
-	if is_running() and _noise_timer <= 0.0 and noise_bus != null:
+	var silent: bool = body.has_action("a023")
+	if is_running() and not silent and _noise_timer <= 0.0 and noise_bus != null:
 		_noise_timer = RUN_NOISE_INTERVAL
-		noise_bus.emit_noise(global_position, RUN_NOISE_RADIUS)
+		noise_bus.emit_noise(global_position, RUN_NOISE_RADIUS * body.multiplier("run_noise"))
+	_worry_timer -= delta
+	if body.has_worried_piece() and _worry_timer <= 0.0 and noise_bus != null:
+		_worry_timer = WORRY_NOISE_INTERVAL
+		noise_bus.emit_noise(global_position, WORRY_NOISE_RADIUS)
 
 
 func _interact_nearest() -> void:

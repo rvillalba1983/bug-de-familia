@@ -1,0 +1,201 @@
+{
+ "materials": {
+  "nanoacero": {
+   "name": "Nanoacero vivo",
+   "properties": [
+    "p001",
+    "p005"
+   ]
+  },
+  "cristal_plasma": {
+   "name": "Cristal de plasma",
+   "properties": [
+    "p006",
+    "p007",
+    "p009"
+   ]
+  },
+  "aleacion_magnetica": {
+   "name": "Aleación magnética",
+   "properties": [
+    "p022",
+    "p025"
+   ]
+  },
+  "madera_cuantica": {
+   "name": "Madera fósil cuántica",
+   "properties": [
+    "p036",
+    "p037",
+    "p040"
+   ]
+  }
+ },
+ "objectives": {
+  "arma": {
+   "name": "Arma cuerpo a cuerpo",
+   "actions": [
+    "a003",
+    "a006"
+   ]
+  },
+  "velocidad": {
+   "name": "Velocidad",
+   "actions": [
+    "a009",
+    "a015"
+   ]
+  },
+  "sigilo": {
+   "name": "Sigilo",
+   "actions": [
+    "a023",
+    "a024"
+   ]
+  },
+  "defensa": {
+   "name": "Defensa",
+   "actions": [
+    "a044",
+    "a046"
+   ]
+  },
+  "hackeo": {
+   "name": "Hackeo",
+   "actions": [
+    "a054",
+    "a055",
+    "a056"
+   ]
+  },
+  "senuelo": {
+   "name": "Señuelo",
+   "actions": [
+    "a062"
+   ]
+  }
+ },
+ "properties": {
+  "p001": {
+   "name": "Autorreparación lenta",
+   "positive": true,
+   "effects": {
+    "self_repair": 0.2
+   }
+  },
+  "p005": {
+   "name": "Hipocondría",
+   "positive": false,
+   "effects": {
+    "worry_noise": 1.0
+   }
+  },
+  "p006": {
+   "name": "Filo insolente",
+   "positive": true,
+   "effects": {
+    "stun": 1.5
+   }
+  },
+  "p007": {
+   "name": "Orgullo frágil",
+   "positive": false,
+   "effects": {
+    "damage_taken": 1.5
+   }
+  },
+  "p009": {
+   "name": "Soprano",
+   "positive": false,
+   "effects": {
+    "run_noise": 1.5
+   }
+  },
+  "p022": {
+   "name": "Repelemetal",
+   "positive": true,
+   "effects": {
+    "dodge": 0.1
+   }
+  },
+  "p025": {
+   "name": "Interferencia",
+   "positive": false,
+   "effects": {
+    "jam_radius": 150.0,
+    "wear": 1.3
+   }
+  },
+  "p036": {
+   "name": "Ingrávida",
+   "positive": true,
+   "effects": {
+    "speed": 1.1
+   }
+  },
+  "p037": {
+   "name": "Parpadeo",
+   "positive": true,
+   "effects": {
+    "dodge": 0.15
+   }
+  },
+  "p040": {
+   "name": "Carcoma temporal",
+   "positive": false,
+   "effects": {
+    "wear": 2.0
+   }
+  }
+ },
+ "actions": {
+  "a003": {
+   "name": "Porrazo aturdidor",
+   "active": true
+  },
+  "a006": {
+   "name": "Colleja sónica",
+   "active": true
+  },
+  "a009": {
+   "name": "Acelerón corto",
+   "active": true
+  },
+  "a015": {
+   "name": "Turbo de pánico",
+   "active": false
+  },
+  "a023": {
+   "name": "Pasos mudos",
+   "active": false
+  },
+  "a024": {
+   "name": "Camuflaje al quedarte quieto",
+   "active": false
+  },
+  "a044": {
+   "name": "Burbuja de un solo impacto",
+   "active": false
+  },
+  "a046": {
+   "name": "Pinchos que aturden al agresor",
+   "active": false
+  },
+  "a054": {
+   "name": "Abrir puertas",
+   "active": true
+  },
+  "a055": {
+   "name": "Cegar cámaras",
+   "active": true
+  },
+  "a056": {
+   "name": "Confundir drones",
+   "active": true
+  },
+  "a062": {
+   "name": "Lanzar un ruido",
+   "active": true
+  }
+ }
+}

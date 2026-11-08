@@ -5,7 +5,6 @@ extends RefCounted
 signal detected(position: Vector2)
 
 ## Valores provisionales, a ajustar al probar.
-const CROUCH_RANGE_FACTOR: float = 0.7
 const MIN_FILL_TIME: float = 0.6
 const EXTRA_FILL_TIME_AT_RANGE: float = 1.0
 const DECAY_TIME: float = 1.5
@@ -40,7 +39,9 @@ func update(origin: Vector2, world: World2D, target: Player, delta: float) -> vo
 
 
 func can_see(origin: Vector2, world: World2D, target: Player) -> bool:
-	var reach: float = view_range * (CROUCH_RANGE_FACTOR if target.is_crouching else 1.0)
+	var reach: float = view_range * target.stealth_factor()
+	if not low_cover_blocks and origin.distance_to(target.global_position) < target.jam_radius():
+		return false
 	if not in_cone(origin, facing_angle, half_angle, reach, target.global_position):
 		return false
 	var mask: int = PhysicsLayers.WALLS

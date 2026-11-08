@@ -96,13 +96,16 @@ func _build_row(slot: ModularBody.Slot) -> HBoxContainer:
 	var label: Label = Label.new()
 	var piece: BodyPiece = body.equipped(slot)
 	var state: String = tr("UI_BODY_EMPTY") if piece == null else "%d%%" % roundi(piece.durability)
-	label.text = "%s: %s" % [tr("SLOT_%d" % slot), state]
+	var worn: String = "" if piece == null else piece.label
+	label.text = "%s: %s %s" % [tr("SLOT_%d" % slot), state, worn]
 	label.custom_minimum_size = Vector2(380.0, 0.0)
 	row.add_child(label)
 	var spares: Array[BodyPiece] = body.spares(slot)
 	for index: int in range(spares.size()):
 		var button: Button = Button.new()
-		button.text = "%s %d%%" % [tr("UI_BODY_EQUIP"), roundi(spares[index].durability)]
+		button.text = "%s %d%% %s" % [
+			tr("UI_BODY_EQUIP"), roundi(spares[index].durability), spares[index].label
+		]
 		button.disabled = not body.can_swap(slot)
 		button.pressed.connect(swap_spare.bind(slot, index))
 		row.add_child(button)

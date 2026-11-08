@@ -32,6 +32,7 @@ Paquete unificado creado el 8 de noviembre de 2026. Cada tema vive en un solo si
 | `10_vision.md` | Identidad, pilares y tono |
 | `11_protagonista.md` | Anatomía, piezas y supervivencia |
 | `12_conversion.md` | Convertir objetos en piezas |
+| `12b_catalogo_conversion.md` | Las 50 propiedades y 100 acciones aprobadas |
 | `13_ias.md` | Las 20 IAs, tokens y familia |
 | `14_sigilo_combate_peligros.md` | Núcleo de juego |
 | `15_mundo_tiempo.md` | Zonas, calendario, población y simulación |

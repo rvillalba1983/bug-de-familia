@@ -1,0 +1,164 @@
+[
+ {
+  "type": "choice",
+  "text": "¿Cuántas veces votan los Mohócratas antes de atacar?",
+  "options": [
+   "Una",
+   "Dos",
+   "Tres",
+   "Ninguna: atacan y luego dimiten"
+  ],
+  "answer": 2
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué odian los Mohócratas?",
+  "options": [
+   "La luz",
+   "Las escaleras",
+   "Los susurros",
+   "Los impuestos sobre esporas"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Con qué se compran los votos de un Mohócrata?",
+  "options": [
+   "Dientes",
+   "Fertilizante",
+   "Chatarra pulida",
+   "Un café"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿A qué hora se apagan los Jubilados de Hierro?",
+  "options": [
+   "A las 21:00",
+   "A medianoche",
+   "Al oír un mitin",
+   "Nunca"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué odian los Jubilados de Hierro?",
+  "options": [
+   "La lluvia ácida",
+   "Las escaleras",
+   "El fertilizante",
+   "A los jóvenes"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿A qué juegan los Jubilados con minas?",
+  "options": [
+   "Al dominó",
+   "A la petanca",
+   "A la rayuela",
+   "A las siete y media"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Quién sale de tu cola cuando te hablan?",
+  "options": [
+   "Tus progenitores",
+   "Tus IAs",
+   "Un Eco de Vurm",
+   "Mejor no preguntar"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "Te ve un guardia y estás detrás de una cobertura baja. ¿Qué te salva?",
+  "options": [
+   "Agacharte",
+   "Correr",
+   "Gritar",
+   "Pedir la hoja de reclamaciones"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué delata más tu posición?",
+  "options": [
+   "Andar",
+   "Agacharte",
+   "Correr",
+   "Pensar en tus padres"
+  ],
+  "answer": 2
+ },
+ {
+  "type": "truefalse",
+  "text": "Los Mohócratas son colonias de hongos con sombreros de chatarra.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "truefalse",
+  "text": "A un Jubilado de Hierro le encanta que le llamen viejo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "Una cobertura baja te oculta también del dron.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "Una pared reduce el alcance de un ruido.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "truefalse",
+  "text": "Convertir un objeto puede fallar.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "Te llaman Sujeto Sobrante porque sobraste de un experimento.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "truefalse",
+  "text": "Con una sola pierna puedes correr igual.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ }
+]

@@ -16,8 +16,8 @@ Basados en los de World of Warcraft, adaptados a una cámara de ángulo fijo. Ap
 | Agacharse | X | Hecho |
 | Interactuar o atacar | Clic derecho sobre el objeto o enemigo | Fases posteriores |
 | Interactuar | E | Hecho |
-| Convertir | Q y clic en el objeto o enemigo | Fase 4 |
-| Barra de acciones y respuestas | Teclas numéricas | Fases posteriores |
+| Convertir | Q y clic izquierdo en el objeto o enemigo | Hecho |
+| Acciones de las piezas y respuestas | Teclas 1 a 6 | Hecho |
 | Piezas del cuerpo | C | Hecho |
 | Inventario | B | Fase 3 |
 | Mapa | M | Fases posteriores |

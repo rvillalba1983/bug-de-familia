@@ -8,11 +8,11 @@ Los 13 conflictos entre documentos quedaron resueltos el 8 de noviembre: ver `02
 | ID | Qué falta | Por qué importa | Bloquea |
 |---|---|---|---|
 | P-01 | **Mapa y progenitores que necesita la beta.** Se definirá solo lo necesario para la zona de bosque, con El Contestador y Don Ramón de Mantenimiento. El resto, tras la beta | No se pueden inventar sin aprobación | Fase 7 |
-| P-02 | Catálogos de 50 propiedades y 100 acciones, y compatibilidades entre materiales, objetivos, propiedades y acciones | Base de la conversión | Fase 4 (basta un subconjunto) |
+| P-02 | Compatibilidades del catálogo completo (`12b_catalogo_conversion.md`): la fase 4 usa 4 materiales, 6 objetivos, 10 propiedades y 12 acciones | Resto de la conversión | Antes de la beta completa |
 | P-04 | Reglas de daño, catálogo de enemigos, peligros y zonas que quitan habilidades | Sigilo y combate | Fase 2 (parámetros provisionales) |
 | P-05 | Cifras exactas de tokens por IA y de la recarga mínima | Sistema de IAs | Fase 5 |
 | P-08 | Los cuatro retos de la beta con sus tres soluciones cada uno | Contenido de la beta | Fase 7 |
-| P-09 | Banco de preguntas, motes ofensivos por IA y por progenitor, y comentarios del protagonista | Humor y conversión | Fase 4 |
+| P-09 | Banco definitivo de preguntas (hay 16 provisionales en `data/conversion/questions.json`), motes ofensivos por IA y por progenitor, y comentarios del protagonista | Humor y conversión | Fase 4 |
 | P-10 | Facciones aliadas o enemigas, asentamientos y distribución de grupos | Encuentros y batallas | Fase 7 |
 | P-11 | Reglas exactas de misiones emergentes y su presentación sin HUD convencional, recompensas y economía | Capa emergente | Fase 8 |
 | P-13 | Cómo se cuentan las cuatro cadenas de consecuencias, cómo se evitan bucles y qué sucesos ocurren en zonas lejanas | Simulación | Fase 8 |

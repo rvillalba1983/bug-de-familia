@@ -5,7 +5,7 @@ extends CharacterBody2D
 signal alert_started
 signal alert_ended
 
-enum State { PATROL, WAIT, INVESTIGATE, LOOK_AROUND, ALERT }
+enum State { PATROL, WAIT, INVESTIGATE, LOOK_AROUND, ALERT, STUNNED }
 
 ## Valores provisionales, a ajustar al probar.
 const PATROL_SPEED: float = 110.0
@@ -61,6 +61,9 @@ func setup(points: Array[Vector2], ground: Node2D) -> void:
 
 func _physics_process(delta: float) -> void:
 	_hit_timer = maxf(_hit_timer - delta, 0.0)
+	if state == State.STUNNED:
+		_tick_stun(delta)
+		return
 	detector.update(global_position, get_world_2d(), target, delta)
 	match state:
 		State.PATROL:
@@ -84,7 +87,7 @@ func _draw() -> void:
 
 ## Reacciona a un ruido si llega hasta aquí. Las paredes lo atenúan a la mitad.
 func hear(origin: Vector2, radius: float) -> void:
-	if state == State.ALERT:
+	if state == State.ALERT or state == State.STUNNED:
 		return
 	var heard: float = radius
 	var world: World2D = get_world_2d()
@@ -96,10 +99,26 @@ func hear(origin: Vector2, radius: float) -> void:
 
 ## Va a comprobar un punto, sin que empiece una pelea.
 func investigate(point: Vector2) -> void:
-	if state == State.ALERT:
+	if state == State.ALERT or state == State.STUNNED:
 		return
 	_set_path_to(point)
 	state = State.INVESTIGATE
+
+
+## Deja al guardia fuera de combate un rato, sin matarlo.
+func stun(duration: float) -> void:
+	var was_alert: bool = state == State.ALERT
+	state = State.STUNNED
+	_timer = duration
+	detector.reset()
+	_view.visible = false
+	velocity = Vector2.ZERO
+	if was_alert:
+		alert_ended.emit()
+
+
+func _exit_tree() -> void:
+	_view.queue_free()
 
 
 func is_alert() -> bool:
@@ -112,6 +131,13 @@ func _on_detected(at: Vector2) -> void:
 	_repath = 0.0
 	state = State.ALERT
 	alert_started.emit()
+
+
+func _tick_stun(delta: float) -> void:
+	_timer -= delta
+	if _timer <= 0.0:
+		_view.visible = true
+		state = State.PATROL
 
 
 func _tick_wait(delta: float) -> void:
@@ -151,7 +177,7 @@ func _tick_alert(delta: float) -> void:
 	_follow_path(CHASE_SPEED, Callable())
 	if global_position.distance_to(target.global_position) <= HIT_RANGE and _hit_timer <= 0.0:
 		_hit_timer = HIT_COOLDOWN
-		target.body.damage_random(HIT_DAMAGE, rng)
+		target.receive_hit(HIT_DAMAGE, rng, self)
 
 
 func _on_patrol_point() -> void:

@@ -100,12 +100,78 @@ func swap(slot: Slot, spare_index: int) -> bool:
 
 func damage(slot: Slot, amount: float) -> void:
 	var piece: BodyPiece = equipped(slot)
-	if piece == null or is_dead:
-		return
-	piece.durability = maxf(piece.durability - amount, 0.0)
-	if piece.durability <= 0.0:
-		_destroy(slot)
-	changed.emit()
+	if piece != null:
+		_reduce(slot, amount * float(piece.effects.get("damage_taken", 1.0)))
+
+
+func wear_piece(slot: Slot, amount: float) -> void:
+	var piece: BodyPiece = equipped(slot)
+	if piece != null:
+		_reduce(slot, amount * float(piece.effects.get("wear", 1.0)))
+
+
+## Multiplica un efecto de todas las piezas puestas.
+func multiplier(key: String) -> float:
+	var result: float = 1.0
+	for piece: BodyPiece in _worn_pieces():
+		result *= float(piece.effects.get(key, 1.0))
+	return result
+
+
+## Suma un efecto de todas las piezas puestas.
+func total(key: String) -> float:
+	var result: float = 0.0
+	for piece: BodyPiece in _worn_pieces():
+		result += float(piece.effects.get(key, 0.0))
+	return result
+
+
+func has_action(action_id: String) -> bool:
+	for piece: BodyPiece in _worn_pieces():
+		if piece.has_action(action_id):
+			return true
+	return false
+
+
+## Lista de { id, name, slot } de las acciones que se activan con tecla.
+func active_actions() -> Array:
+	var result: Array = []
+	for slot: int in Slot.values():
+		var piece: BodyPiece = equipped(slot as Slot)
+		if piece != null:
+			for action: Dictionary in piece.actions:
+				if action["active"]:
+					result.append({"id": action["id"], "name": action["name"], "slot": slot})
+	return result
+
+
+func tick(delta: float) -> void:
+	for piece: BodyPiece in _worn_pieces():
+		var repair: float = float(piece.effects.get("self_repair", 0.0))
+		if repair > 0.0:
+			piece.durability = minf(piece.durability + repair * delta, BodyPiece.MAX_DURABILITY)
+
+
+func has_worried_piece() -> bool:
+	for piece: BodyPiece in _worn_pieces():
+		if piece.effects.has("worry_noise") and piece.durability < 50.0:
+			return true
+	return false
+
+
+func has_room(slot: Slot) -> bool:
+	return equipped(slot) == null or spares(slot).size() < MAX_SPARES
+
+
+## Pone la pieza si la ranura está vacía; si no, la guarda como repuesto.
+func receive(slot: Slot, piece: BodyPiece) -> bool:
+	if piece.kind != kind_of(slot):
+		return false
+	if equipped(slot) == null:
+		_equipped[slot] = piece
+		changed.emit()
+		return true
+	return add_spare(slot, piece)
 
 
 func damage_random(amount: float, rng: RandomNumberGenerator) -> void:
@@ -121,8 +187,8 @@ func damage_random(amount: float, rng: RandomNumberGenerator) -> void:
 
 func wear_legs(distance: float) -> void:
 	var amount: float = distance / 100.0 * LEG_WEAR_PER_100_PX
-	damage(Slot.LEG_LEFT, amount)
-	damage(Slot.LEG_RIGHT, amount)
+	wear_piece(Slot.LEG_LEFT, amount)
+	wear_piece(Slot.LEG_RIGHT, amount)
 
 
 func leg_count() -> int:
@@ -185,6 +251,24 @@ static func from_dict(data: Variant) -> ModularBody:
 			if spare == null or not body.add_spare(slot as Slot, spare):
 				return null
 	return body
+
+
+func _worn_pieces() -> Array[BodyPiece]:
+	var result: Array[BodyPiece] = []
+	for slot: int in Slot.values():
+		if _equipped[slot] != null:
+			result.append(_equipped[slot])
+	return result
+
+
+func _reduce(slot: Slot, amount: float) -> void:
+	var piece: BodyPiece = equipped(slot)
+	if piece == null or is_dead:
+		return
+	piece.durability = maxf(piece.durability - amount, 0.0)
+	if piece.durability <= 0.0:
+		_destroy(slot)
+	changed.emit()
 
 
 func _destroy(slot: Slot) -> void:

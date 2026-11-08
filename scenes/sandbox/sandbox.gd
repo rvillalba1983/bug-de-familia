@@ -10,6 +10,9 @@ const ID_CRATE: String = "crate_1"
 const ID_TERMINAL: String = "terminal_1"
 const ID_PICKUP_LEG: String = "pickup_leg_1"
 const ID_PICKUP_ARM: String = "pickup_arm_1"
+const ID_GUARD: String = "guard_1"
+const ID_DRONE: String = "drone_1"
+const ID_CAMERA: String = "camera_1"
 
 ## El menú inicial solo aparece al abrir el juego.
 static var session_started: bool = false
@@ -35,6 +38,12 @@ var save_points: Array[SavePoint] = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var challenge_done: bool = false
 var overlay: MessageScreen
+var catalog: ConversionCatalog
+var conversion: ConversionDirector
+var actions: ActionSystem
+var entities: Dictionary = {}
+var converted_ids: Array = []
+var action_bar: ActionBar
 
 var _pause_label: Label
 var _done_label: Label
@@ -55,6 +64,7 @@ func _physics_process(_delta: float) -> void:
 	var feet: Vector2 = player.global_position
 	for wall: Wall in walls:
 		wall.update_occlusion(feet, player.current_height())
+	player.in_danger = fight.phase != FightDirector.Phase.CALM
 	if fight.phase == FightDirector.Phase.CALM and not player.body.is_dead:
 		for point: SavePoint in save_points:
 			point.track(feet)
@@ -84,9 +94,9 @@ func _draw() -> void:
 ## Para pruebas de sistemas que no necesitan enemigos.
 func set_enemies_active(active: bool) -> void:
 	var mode: ProcessMode = PROCESS_MODE_INHERIT if active else PROCESS_MODE_DISABLED
-	guard.process_mode = mode
-	drone.process_mode = mode
-	security_camera.process_mode = mode
+	for enemy: Node in [guard, drone, security_camera]:
+		if is_instance_valid(enemy):
+			enemy.process_mode = mode
 
 
 func snapshot() -> Dictionary:
@@ -100,6 +110,8 @@ func snapshot() -> Dictionary:
 		"body": player.body.to_dict(),
 		"player": {"x": player.global_position.x, "y": player.global_position.y},
 		"used": used,
+		"converted": converted_ids,
+		"door_open": door.is_open,
 		"challenge_done": challenge_done,
 	}
 
@@ -120,6 +132,8 @@ func start_new_game() -> void:
 		"body": default_body().to_dict(),
 		"player": {"x": SandboxLayout.PLAYER_START.x, "y": SandboxLayout.PLAYER_START.y},
 		"used": [],
+		"converted": [],
+		"door_open": false,
 		"challenge_done": false,
 	}
 	SaveSystem.write(data)
@@ -167,6 +181,35 @@ func _build_world() -> void:
 	fight.body = player.body
 	fight.track(guard)
 	add_child(fight)
+	_register_convertibles()
+	catalog = ConversionCatalog.load_default()
+	actions = ActionSystem.new()
+	actions.level = self
+	add_child(actions)
+
+
+func _add_convertible(id: String, owner_node: Node2D, material: String) -> void:
+	var convertible: Convertible = Convertible.new()
+	convertible.setup(id, material)
+	owner_node.add_child(convertible)
+	entities[id] = owner_node
+
+
+func _register_convertibles() -> void:
+	_add_convertible(ID_GUARD, guard, "nanoacero")
+	_add_convertible(ID_DRONE, drone, "aleacion_magnetica")
+	_add_convertible(ID_CAMERA, security_camera, "cristal_plasma")
+	_add_convertible(ID_CRATE, items[ID_CRATE], "madera_cuantica")
+	_add_convertible(ID_TERMINAL, items[ID_TERMINAL], "aleacion_magnetica")
+
+
+func _remove_entity(id: String) -> void:
+	if not entities.has(id):
+		return
+	var node: Node = entities[id]
+	entities.erase(id)
+	items.erase(id)
+	node.queue_free()
 
 
 func _all_blockers() -> Array[Rect2]:
@@ -289,6 +332,20 @@ func _build_interface() -> void:
 	var hud: BodyHud = BodyHud.new()
 	hud.body = player.body
 	layer.add_child(hud)
+	action_bar = ActionBar.new()
+	layer.add_child(action_bar)
+	action_bar.body = player.body
+	_add_label(layer, "UI_SANDBOX_HELP2", Vector2(1560.0, 1040.0), 20)
+	var conversion_hint: Label = _add_label(layer, "UI_CONVERT_TARGET", Vector2(620.0, 70.0), 24)
+	conversion_hint.visible = false
+	var screen: ConversionScreen = ConversionScreen.new()
+	add_child(screen)
+	conversion = ConversionDirector.new()
+	conversion.catalog = catalog
+	conversion.player = player
+	conversion.rng = rng
+	conversion.screen = screen
+	conversion.hint = conversion_hint
 	panel = BodyPanel.new()
 	panel.body = player.body
 	panel.pause = pause
@@ -312,6 +369,10 @@ func _connect_systems() -> void:
 	fight.pre_fight_started.connect(_on_pre_fight_started)
 	fight.fight_ended.connect(autosave)
 	panel.closed.connect(_on_panel_closed)
+	conversion.pause = pause
+	add_child(conversion)
+	conversion.converted.connect(_on_converted)
+	actions.door_hacked.connect(_open_door)
 	_connect_body()
 
 
@@ -364,6 +425,11 @@ func _apply_save(data: Dictionary) -> bool:
 			(items[id] as Interactable).mark_used()
 			if id == ID_TERMINAL:
 				_open_door()
+	for id: Variant in data.get("converted", []):
+		converted_ids.append(id)
+		_remove_entity(str(id))
+	if data.get("door_open", false):
+		_open_door()
 	if data.get("challenge_done", false):
 		challenge_done = true
 		_done_label.visible = true
@@ -374,6 +440,7 @@ func _replace_body(new_body: ModularBody) -> void:
 	player.body = new_body
 	fight.body = new_body
 	panel.body = new_body
+	action_bar.body = new_body
 	_connect_body()
 	var hud_parent: Node = _pause_label.get_parent()
 	for child: Node in hud_parent.get_children():
@@ -434,6 +501,13 @@ func _on_item_activated(item: Interactable) -> void:
 			_add_pickup([ModularBody.Slot.LEG_LEFT, ModularBody.Slot.LEG_RIGHT])
 		Interactable.Kind.PICKUP_ARM:
 			_add_pickup([ModularBody.Slot.ARM_MAIN_LEFT, ModularBody.Slot.ARM_MAIN_RIGHT])
+
+
+func _on_converted(entity_id: String) -> void:
+	converted_ids.append(entity_id)
+	_remove_entity(entity_id)
+	if fight.phase == FightDirector.Phase.CALM:
+		autosave()
 
 
 func _on_paused_changed(is_paused: bool) -> void:

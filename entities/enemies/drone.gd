@@ -17,6 +17,7 @@ var target: Player
 var _patrol: Array[Vector2] = []
 var _patrol_index: int = 0
 var _view: VisionConeView
+var _disabled_time: float = 0.0
 
 
 func setup(points: Array[Vector2], ground: Node2D) -> void:
@@ -26,7 +27,22 @@ func setup(points: Array[Vector2], ground: Node2D) -> void:
 	detector.detected.connect(func(at: Vector2) -> void: alarm_raised.emit(at))
 
 
+## Inutiliza el aparato durante un rato.
+func confuse(duration: float) -> void:
+	_disabled_time = duration
+	detector.reset()
+	_view.visible = false
+
+
+func _exit_tree() -> void:
+	_view.queue_free()
+
+
 func _physics_process(delta: float) -> void:
+	if _disabled_time > 0.0:
+		_disabled_time -= delta
+		_view.visible = _disabled_time <= 0.0
+		return
 	var goal: Vector2 = _patrol[_patrol_index]
 	if global_position.distance_to(goal) < 4.0:
 		_patrol_index = (_patrol_index + 1) % _patrol.size()

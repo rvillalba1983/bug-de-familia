@@ -18,6 +18,7 @@ var _center: float = 0.0
 var _amplitude: float = 0.0
 var _phase: float = 0.0
 var _view: VisionConeView
+var _disabled_time: float = 0.0
 
 
 func setup(at: Vector2, center_degrees: float, amplitude_degrees: float, ground: Node2D) -> void:
@@ -29,7 +30,22 @@ func setup(at: Vector2, center_degrees: float, amplitude_degrees: float, ground:
 	detector.detected.connect(func(where: Vector2) -> void: alarm_raised.emit(where))
 
 
+## Inutiliza el aparato durante un rato.
+func blind(duration: float) -> void:
+	_disabled_time = duration
+	detector.reset()
+	_view.visible = false
+
+
+func _exit_tree() -> void:
+	_view.queue_free()
+
+
 func _physics_process(delta: float) -> void:
+	if _disabled_time > 0.0:
+		_disabled_time -= delta
+		_view.visible = _disabled_time <= 0.0
+		return
 	_phase += delta * SWEEP_SPEED * TAU * 0.5
 	detector.facing_angle = _center + sin(_phase) * _amplitude
 	detector.update(global_position, get_world_2d(), target, delta)

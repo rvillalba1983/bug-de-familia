@@ -20,6 +20,7 @@ var _calm_time: float = 0.0
 func track(guard: Guard) -> void:
 	_guards.append(guard)
 	guard.alert_started.connect(_on_alert_started)
+	guard.tree_exiting.connect(func() -> void: _guards.erase(guard))
 
 
 func confirm_pre_fight() -> void:

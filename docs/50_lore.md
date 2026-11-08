@@ -1,3 +1,5 @@
+> **Prevalece sobre este documento (8-nov):** Mohócratas y Grux llegaron a este planeta después del colapso. Las otras dos razas alienígenas ya estaban, y todas se conocían fuera de él: su intervención en sucesos anteriores fue desde fuera.
+
 > Borrador narrativo v0.1. Vale esta historia larga; dos razas alienígenas llegaron a este planeta antes del colapso y dos después (P-18). Los humanos existieron y desaparecieron (8-nov).
 
 BUG DE FAMILIA

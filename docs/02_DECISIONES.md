@@ -26,6 +26,7 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 - Muerte inmediata al quedarse sin piernas (8-nov).
 - La cabeza tiene repuestos como las extremidades y se puede cambiar en plena pelea. Si se rompe y no queda ninguno, muerte inmediata (8-nov).
 - Con una sola pierna: mitad de velocidad y sin correr (8-nov).
+- Si el único guardado se corrompe, se empieza otra partida, sin copias de seguridad (8-nov).
 - La protección ante corrupción técnica no permite revertir una muerte.
 - Al terminar la partida: resumen de lo aprendido y críticas de las IAs.
 
@@ -62,6 +63,8 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 - Muerte individual permanente de NPC; las poblaciones se recuperan por reproducción.
 - Los humanos existieron y desaparecieron (8-nov).
 - Sin final fijo. Historias independientes conectadas por un misterio general.
+- Mohócratas y Grux llegaron a este planeta después del colapso; las otras dos razas alienígenas ya estaban. Todas se conocían fuera de este planeta, y por eso pudieron influir en sucesos anteriores (8-nov).
+- Si muere un personaje único aliado, se pierde para siempre y deja huella: restos y comentarios de otros personajes. Lo que sabía solo se recupera por otras pistas (8-nov).
 
 ## IAs
 - Una IA se pierde para siempre al acumular varios agravios: tres enfados graves o una pelea física, según su personalidad (8-nov).
@@ -100,7 +103,7 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 - El Contestador sigue en una centralita sellada y solo reproduce mensajes grabados de los progenitores discutiendo el experimento. Con la bobina recuperada se oye el resto (8-nov).
 - Don Ramón va errante reparando cosas y solo habla si antes discutes o peleas con él: revela que te escondió de los demás progenitores (8-nov).
 - Ambos progenitores pueden morir. El reto de Don Ramón cuenta al encontrarlo (8-nov).
-- El apagón de los Jubilados a las 21:00 es una ventaja, y ningún reto depende de él (8-nov).
+- El apagón de los Jubilados va de las 21:00 a las 8:00 reales. Es una ventaja, y ningún reto depende de él (8-nov).
 - Al completar los cuatro retos, las IAs comentan lo logrado y se sigue jugando en la zona (8-nov).
 - Enemigos y peligros de la beta: patrullas de las dos razas, cámaras y drones viejos, minas y lluvia ácida ocasional, que destruye piezas metálicas. Las zonas que quitan habilidades quedan para después (8-nov).
 

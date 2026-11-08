@@ -12,6 +12,7 @@ var _inside: bool = true
 
 func _draw() -> void:
 	draw_arc(Vector2.ZERO, RADIUS, 0.0, TAU, 32, COLOR_RING, 2.0)
+	WorldLabel.draw_on(self, tr("ITEM_SAVE_POINT"), Vector2(0.0, RADIUS + 20.0))
 
 
 func track(character_position: Vector2) -> void:

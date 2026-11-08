@@ -9,6 +9,12 @@ const RANGE: float = 100.0
 
 enum Kind { CRATE, TERMINAL, PICKUP_LEG, PICKUP_ARM }
 
+const LABELS: Dictionary = {
+	Kind.CRATE: "ITEM_CRATE",
+	Kind.TERMINAL: "ITEM_TERMINAL",
+	Kind.PICKUP_LEG: "ITEM_PICKUP_LEG",
+	Kind.PICKUP_ARM: "ITEM_PICKUP_ARM",
+}
 const COLORS: Dictionary = {
 	Kind.CRATE: Color("#b98a4e"),
 	Kind.TERMINAL: Color("#35e0ff"),
@@ -33,6 +39,8 @@ func _draw() -> void:
 		return
 	var color: Color = Color("#55606a") if used else COLORS[kind]
 	draw_rect(Rect2(-16.0, -32.0, 32.0, 32.0), color)
+	if not used:
+		WorldLabel.draw_on(self, tr(LABELS[kind] as String), Vector2(0.0, -40.0))
 
 
 func activate() -> void:

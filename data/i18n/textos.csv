@@ -21,3 +21,11 @@ SLOT_3,Brazo adicional izquierdo
 SLOT_4,Brazo adicional derecho
 SLOT_5,Pierna izquierda
 SLOT_6,Pierna derecha
+UI_SAVED,Partida guardada
+ITEM_CRATE,Caja (E: romper; hace ruido)
+ITEM_TERMINAL,Terminal (E: abre la puerta)
+ITEM_PICKUP_LEG,Pierna de repuesto (E)
+ITEM_PICKUP_ARM,Brazo de repuesto (E)
+ITEM_DOOR,Puerta de servicio
+ITEM_SAVE_POINT,Punto de guardado
+ITEM_GOAL,SALIDA

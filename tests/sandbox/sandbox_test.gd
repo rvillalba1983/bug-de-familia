@@ -122,6 +122,22 @@ func test_goal_completes_challenge() -> void:
 	assert_bool(sandbox.challenge_done).is_true()
 
 
+func test_save_point_shows_saved_notice() -> void:
+	var sandbox: Sandbox = _quiet_scene()
+	assert_bool(sandbox._saved_label.visible).is_false()
+	await await_physics(4)
+	sandbox.player.global_position = SandboxLayout.SAVE_POINTS[1]
+	await await_physics(4)
+	await await_physics(4)
+	assert_bool(sandbox._saved_label.visible).is_true()
+
+
+func test_all_world_labels_are_translated() -> void:
+	for key: String in Interactable.LABELS.values():
+		assert_str(tr(key)).is_not_equal(key)
+	assert_str(tr("ITEM_DOOR")).is_not_equal("ITEM_DOOR")
+
+
 func _path_length(path: PackedVector2Array) -> float:
 	var total: float = 0.0
 	for index: int in range(path.size() - 1):

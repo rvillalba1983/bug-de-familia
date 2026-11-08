@@ -5,6 +5,7 @@ extends Node2D
 const COLOR_BACKGROUND: Color = Color("#1d1b26")
 const COLOR_FLOOR: Color = Color("#3b4a3a")
 const COLOR_GOAL: Color = Color(0.3, 1.0, 0.5, 0.35)
+const SAVED_NOTICE_TIME: float = 2.5
 const ID_CRATE: String = "crate_1"
 const ID_TERMINAL: String = "terminal_1"
 const ID_PICKUP_LEG: String = "pickup_leg_1"
@@ -37,6 +38,8 @@ var overlay: MessageScreen
 
 var _pause_label: Label
 var _done_label: Label
+var _saved_label: Label
+var _saved_time: float = 0.0
 
 
 func _ready() -> void:
@@ -59,6 +62,12 @@ func _physics_process(_delta: float) -> void:
 		_complete_challenge()
 
 
+func _process(delta: float) -> void:
+	if _saved_time > 0.0:
+		_saved_time -= delta
+		_saved_label.visible = _saved_time > 0.0
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"move_to"):
 		player.set_path(nav.find_path(player.global_position, get_global_mouse_position()))
@@ -68,6 +77,8 @@ func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, Vector2(1920.0, 1080.0)), COLOR_BACKGROUND)
 	draw_rect(SandboxLayout.FLOOR_RECT, COLOR_FLOOR)
 	draw_rect(SandboxLayout.GOAL, COLOR_GOAL)
+	var goal_top: Vector2 = SandboxLayout.GOAL.get_center() - Vector2(0.0, 8.0)
+	WorldLabel.draw_on(self, tr("ITEM_GOAL"), goal_top)
 
 
 ## Para pruebas de sistemas que no necesitan enemigos.
@@ -94,8 +105,9 @@ func snapshot() -> Dictionary:
 
 
 func autosave() -> void:
-	if not player.body.is_dead:
-		SaveSystem.write(snapshot())
+	if not player.body.is_dead and SaveSystem.write(snapshot()):
+		_saved_time = SAVED_NOTICE_TIME
+		_saved_label.visible = true
 
 
 func start_new_game() -> void:
@@ -180,6 +192,7 @@ func _build_walls() -> void:
 	for rect: Rect2 in SandboxLayout.LOW_COVERS:
 		_add_wall(rect, SandboxLayout.LOW_FRONT_HEIGHT, Wall.Kind.LOW)
 	door = _add_wall(SandboxLayout.DOOR, tall, Wall.Kind.DOOR)
+	door.label_key = "ITEM_DOOR"
 
 
 func _build_boundaries() -> void:
@@ -269,6 +282,8 @@ func _build_interface() -> void:
 	_pause_label.visible = false
 	_done_label = _add_label(layer, "UI_CHALLENGE_DONE", Vector2(820.0, 70.0), 32)
 	_done_label.visible = false
+	_saved_label = _add_label(layer, "UI_SAVED", Vector2(860.0, 980.0), 26)
+	_saved_label.visible = false
 	_add_label(layer, "UI_SANDBOX_HELP", Vector2(24.0, 1040.0), 20)
 	_add_label(layer, "UI_OBJECTIVE", Vector2(24.0, 16.0), 22)
 	var hud: BodyHud = BodyHud.new()
@@ -328,7 +343,7 @@ func _start_session() -> void:
 func _begin_fresh() -> void:
 	rng.seed = randi() if forced_seed < 0 else forced_seed
 	_replace_body(default_body())
-	autosave()
+	SaveSystem.write(snapshot())
 
 
 func _apply_save(data: Dictionary) -> bool:

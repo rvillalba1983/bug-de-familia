@@ -12,6 +12,7 @@ const COLOR_DOOR_TOP: Color = Color("#b0505a")
 const COLOR_DOOR_FRONT: Color = Color("#7c343e")
 const COLOR_SHADOW: Color = Color(0.0, 0.0, 0.0, 0.35)
 const SHADOW_HEIGHT: float = 14.0
+const CHARACTER_WIDTH: float = 36.0
 
 enum Kind { SOLID, LOW, DOOR }
 
@@ -19,6 +20,7 @@ var footprint: Rect2
 var front_height: float
 var kind: Kind = Kind.SOLID
 var is_open: bool = false
+var label_key: String = ""
 
 var _collider: CollisionShape2D
 
@@ -54,6 +56,8 @@ func _draw() -> void:
 	draw_rect(Rect2(0.0, -front_height, width, front_height), front_color)
 	var top_height: float = footprint.size.y
 	draw_rect(Rect2(0.0, -front_height - top_height, width, top_height), top_color)
+	if not label_key.is_empty():
+		WorldLabel.draw_on(self, tr(label_key), Vector2(width * 0.5, -front_height - top_height - 6.0))
 
 
 func set_open(value: bool) -> void:
@@ -77,5 +81,6 @@ func update_occlusion(character_feet: Vector2, character_height: float) -> void:
 static func hides_character(
 	visible_area: Rect2, base_y: float, feet: Vector2, height: float
 ) -> bool:
-	var torso: Vector2 = feet - Vector2(0.0, height * 0.5)
-	return feet.y < base_y and visible_area.has_point(torso)
+	var width: float = CHARACTER_WIDTH
+	var character: Rect2 = Rect2(feet.x - width * 0.5, feet.y - height, width, height)
+	return feet.y < base_y and visible_area.intersects(character)

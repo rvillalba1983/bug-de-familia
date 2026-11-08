@@ -9,6 +9,10 @@ func test_character_behind_wall_is_hidden() -> void:
 	assert_bool(Wall.hides_character(AREA, BASE_Y, Vector2(200.0, 170.0), HEIGHT)).is_true()
 
 
+func test_character_with_only_legs_covered_is_hidden() -> void:
+	assert_bool(Wall.hides_character(AREA, BASE_Y, Vector2(200.0, 105.0), HEIGHT)).is_true()
+
+
 func test_character_in_front_is_not_hidden() -> void:
 	assert_bool(Wall.hides_character(AREA, BASE_Y, Vector2(200.0, 200.0), HEIGHT)).is_false()
 

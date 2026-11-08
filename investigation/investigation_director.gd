@@ -11,7 +11,9 @@ const HEAR_RANGE: float = 380.0
 const AMBIENT_LINE_TIME: float = 3.6
 const OBSERVATION_RANGE: float = 200.0
 ## Tiempo provisional hasta que el conflicto estalla si nadie interviene.
-const NEGLECT_LIMIT: float = 300.0
+const NEGLECT_LIMIT: float = 600.0
+const TENSION_WARNING: float = 420.0
+const ZONE_START_X: float = 1100.0
 const COLOR_MOHOCRATA: Color = Color("#8fbf60")
 const COLOR_JUBILADO: Color = Color("#a0a8b8")
 const COLOR_EVIDENCE_NEAR: float = 1.0
@@ -20,6 +22,7 @@ var level: Sandbox
 var case_data: Dictionary = {}
 var flags: Dictionary = {}
 var neglect_time: float = 0.0
+var zone_entered: bool = false
 var current_node: String = ""
 var bar: ConversationBar
 var bubbles: Dictionary = {}
@@ -29,6 +32,8 @@ var _ambient_index: int = 0
 var _line_index: int = 0
 var _line_time: float = 0.0
 var _observed: Dictionary = {}
+var _announced: bool = false
+var _tension_warned: bool = false
 
 
 func _ready() -> void:
@@ -55,6 +60,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if get_tree().paused:
 		return
+	if level.player.global_position.x >= ZONE_START_X:
+		zone_entered = true
 	tick_ambient(delta)
 	advance_neglect(delta)
 	_observe_nearby()
@@ -148,16 +155,19 @@ func tick_ambient(delta: float) -> void:
 
 
 func advance_neglect(delta: float) -> void:
-	if is_resolved():
+	if is_resolved() or not zone_entered:
 		return
 	neglect_time += delta
+	if neglect_time >= TENSION_WARNING and not _tension_warned:
+		_tension_warned = true
+		level.show_notice(tr("CASE_TENSION"))
 	if neglect_time >= NEGLECT_LIMIT:
 		flags["guerra"] = true
 		_check_outcome()
 
 
 func to_dict() -> Dictionary:
-	return {"flags": flags.keys(), "neglect": neglect_time}
+	return {"flags": flags.keys(), "neglect": neglect_time, "zone": zone_entered}
 
 
 func restore(data: Dictionary) -> void:
@@ -165,6 +175,8 @@ func restore(data: Dictionary) -> void:
 	for flag: Variant in data.get("flags", []):
 		flags[flag] = true
 	neglect_time = float(data.get("neglect", 0.0))
+	zone_entered = bool(data.get("zone", false))
+	_announced = is_resolved()
 	_apply_outcome_look()
 
 
@@ -223,6 +235,9 @@ func _check_outcome() -> void:
 	for result: String in OUTCOMES:
 		if has_flag(result):
 			_apply_outcome_look()
+			if not _announced:
+				_announced = true
+				level.show_notice(tr("CASE_OUTCOME_%s" % result))
 			outcome_reached.emit(result)
 			if level.fight.phase == FightDirector.Phase.CALM and current_node.is_empty():
 				level.autosave()

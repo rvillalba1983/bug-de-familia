@@ -12,7 +12,7 @@ Fecha: 2026-11-08 · Estado: provisional, a ajustar al probar
 
 ## Investigación
 - Caso de prueba en `data/investigation/case_01.json`: la desaparición de Manolo Cojinete. Personajes y textos provisionales, pendientes de revisión del director.
-- Salidas: paz (deducción con pruebas), tregua (negociación), guerra (mentira o no intervenir en 5 minutos).
+- Salidas: paz (deducción con pruebas), tregua (negociación), guerra (mentira o no intervenir en 10 minutos desde que entras en la zona, con aviso a los 7). Cada desenlace se anuncia en pantalla.
 - El estado interno no se muestra: no hay diario.
 - Este motor de opciones con condiciones sirve para el prototipo; el motor social completo se integra en la fase 8.
 - Las conversaciones detienen el tiempo.

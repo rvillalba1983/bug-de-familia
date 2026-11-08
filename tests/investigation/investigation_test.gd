@@ -94,9 +94,15 @@ func test_lie_starts_war() -> void:
 
 
 func test_staying_out_lets_conflict_break() -> void:
-	var director: InvestigationDirector = _scene().investigation
+	var sandbox: Sandbox = _scene()
+	var director: InvestigationDirector = sandbox.investigation
+	director.advance_neglect(InvestigationDirector.NEGLECT_LIMIT + 1.0)
+	assert_bool(director.has_flag("guerra")).is_false()
+	director.zone_entered = true
 	director.advance_neglect(InvestigationDirector.NEGLECT_LIMIT + 1.0)
 	assert_bool(director.has_flag("guerra")).is_true()
+	assert_bool(sandbox._notice_label.visible).is_true()
+	assert_str(sandbox._notice_label.text).contains("guerra")
 
 
 func test_consequences_persist_after_reload() -> void:

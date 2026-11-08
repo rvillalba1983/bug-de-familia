@@ -40,3 +40,7 @@ UI_CONVERT_TRUTH,La respuesta era:
 UI_CONVERT_NO_ROOM,No queda sitio para más repuestos.
 UI_SANDBOX_HELP2,Q convertir · 1-6 acciones
 UI_BODY_DISCARD,Descartar
+CASE_OUTCOME_paz,Paz: Jubilados y Mohócratas han aclarado lo de Manolo.
+CASE_OUTCOME_tregua,Tregua: el sombrero vuelve a cambio de fertilizante.
+CASE_OUTCOME_guerra,Ha estallado la guerra entre Jubilados y Mohócratas.
+CASE_TENSION,La tensión entre Jubilados y Mohócratas va en aumento.

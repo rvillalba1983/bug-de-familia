@@ -6,6 +6,7 @@ const COLOR_BACKGROUND: Color = Color("#1d1b26")
 const COLOR_FLOOR: Color = Color("#3b4a3a")
 const COLOR_GOAL: Color = Color(0.3, 1.0, 0.5, 0.35)
 const SAVED_NOTICE_TIME: float = 2.5
+const NOTICE_TIME: float = 7.0
 const ID_CRATE: String = "crate_1"
 const ID_TERMINAL: String = "terminal_1"
 const ID_PICKUP_LEG: String = "pickup_leg_1"
@@ -51,6 +52,8 @@ var _pause_label: Label
 var _done_label: Label
 var _saved_label: Label
 var _saved_time: float = 0.0
+var _notice_label: Label
+var _notice_time: float = 0.0
 
 
 func _ready() -> void:
@@ -78,6 +81,9 @@ func _process(delta: float) -> void:
 	if _saved_time > 0.0:
 		_saved_time -= delta
 		_saved_label.visible = _saved_time > 0.0
+	if _notice_time > 0.0:
+		_notice_time -= delta
+		_notice_label.visible = _notice_time > 0.0
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -118,6 +124,13 @@ func snapshot() -> Dictionary:
 		"case": investigation.to_dict(),
 		"challenge_done": challenge_done,
 	}
+
+
+## Aviso breve de algo importante que ha pasado en el mundo.
+func show_notice(text: String) -> void:
+	_notice_label.text = text
+	_notice_label.visible = true
+	_notice_time = NOTICE_TIME
 
 
 func autosave() -> void:
@@ -343,6 +356,9 @@ func _build_interface() -> void:
 	_done_label.visible = false
 	_saved_label = _add_label(layer, "UI_SAVED", Vector2(860.0, 980.0), 26)
 	_saved_label.visible = false
+	_notice_label = _add_label(layer, "UI_SAVED", Vector2(420.0, 110.0), 26)
+	_notice_label.visible = false
+	_notice_label.process_mode = Node.PROCESS_MODE_ALWAYS
 	_add_label(layer, "UI_SANDBOX_HELP", Vector2(24.0, 1040.0), 20)
 	_add_label(layer, "UI_OBJECTIVE", Vector2(24.0, 16.0), 22)
 	var hud: BodyHud = BodyHud.new()

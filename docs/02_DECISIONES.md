@@ -107,6 +107,17 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 - Al completar los cuatro retos, las IAs comentan lo logrado y se sigue jugando en la zona (8-nov).
 - Enemigos y peligros de la beta: patrullas de las dos razas, cámaras y drones viejos, minas y lluvia ácida ocasional, que destruye piezas metálicas. Las zonas que quitan habilidades quedan para después (8-nov).
 
+## Pendientes cerrados (8-nov)
+- **Lumi Influencer:** crea señuelos y atrae seguidores curiosos que distraen a los enemigos (P-15).
+- **Publicación:** itch.io, descarga gratuita (P-16).
+- **Ausencias largas:** si una especie cae mucho en una zona sin el jugador, llegan individuos que migran desde otra (P-17).
+- **Zonas que quitan cosas:** hay dos tipos, las que desgastan o rompen piezas de forma permanente y las que silencian a las IAs activas y anulan sus ventajas mientras estés dentro (P-04).
+- **Misiones emergentes:** las cuentan las IAs activas y los personajes cercanos, sin lista ni marcadores. Pueden dar piezas, información y favores, sin moneda, o no dar premio directo y solo cambiar el mundo (P-11).
+- **Cadenas de consecuencias:** máximo 4 pasos, y el mismo suceso no se repite en una zona hasta pasado un tiempo de enfriamiento (P-13).
+- **Difusión de información:** si pasa algo interesante, quienes lo ven van hacia otros personajes o incluso a otras zonas a contarlo (P-14).
+- **Relaciones entre razas:** las iniciales salen del lore y cambian con lo que ocurra en cada partida (P-10).
+- **Contenido por encargo:** Claude propone las compatibilidades del catálogo y el director revisa la tabla (P-02); Claude implementa las 20 IAs definidas y ajusta números jugando (P-05); Claude escribe preguntas, motes y comentarios, y el director marca lo que no le haga gracia (P-09).
+
 ## Lo que no se puede inventar
 Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barra de salud, diario, personajes protegidos, multijugador, conexión online, vehículos, recetas cerradas de conversión.
 

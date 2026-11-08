@@ -6,7 +6,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 |---|---|
 | 0 a 7 | Fusionadas en `main` y probadas por el usuario |
 | Arte | En paralelo. Necesita las imágenes del usuario |
-| 8. Mundo vivo | Siguiente. Necesita P-11, P-13, P-14 y la parte abierta de P-17 |
+| 8. Mundo vivo | Siguiente. Sus preguntas de diseño están cerradas en `02_DECISIONES.md` |
 | 9. Contenido y pulido | Sin empezar |
 
 ## Pendiente de respuesta del usuario (no bloquea)

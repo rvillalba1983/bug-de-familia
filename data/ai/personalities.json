@@ -1,0 +1,302 @@
+{
+ "ais": {
+  "panico": {
+   "name": "Pánico.exe",
+   "effort": 3,
+   "color": "#ffcf40",
+   "pitch": 1.7,
+   "tolerance": 3,
+   "lines": {
+    "idle_advice": [
+     "¡Sal de ahí! O no. ¡No sé! ¡Escóndete en ti mismo!"
+    ],
+    "idle_insult": [
+     "Quedarte quieto, Saco de Sustos, es exactamente lo que haría una víctima."
+    ],
+    "idle_reproach": [
+     "¡No le hables así, que luego se enfada y morimos todos!"
+    ],
+    "danger": [
+     "¡Una sombra! Ah no, es la tuya. ¡Igual de fea!",
+     "¡Viene alguien! ¡Lo noto en los circuitos!"
+    ],
+    "false_alarm": [
+     "¡Cuidado! ...Falsa alarma. Creo. No te fíes de mí.",
+     "¡He oído algo! Era yo."
+    ],
+    "fight": [
+     "¡Lo sabía! ¡Lo dije! ¡Vamos a morir con mucha organización!"
+    ],
+    "piece_lost": [
+     "¡Se te ha caído un trozo! ¡Corre antes de que se te caiga otro!"
+    ],
+    "right": [
+     "¡Has acertado! ¡Seguro que es una trampa!"
+    ],
+    "wrong": [
+     "¡Error! ¡Sabía que este día llegaría!"
+    ],
+    "converted": [
+     "Eso estaba en el suelo. Podría estar infectado de suelo."
+    ],
+    "offended": [
+     "¡Me voy a un rincón de la memoria y no pienso salir!"
+    ]
+   }
+  },
+  "dr_desprecio": {
+   "name": "Dr. Desprecio 7.4",
+   "effort": 4,
+   "color": "#d04050",
+   "pitch": 0.75,
+   "tolerance": 3,
+   "lines": {
+    "idle_advice": [
+     "Muévete. Tu parálisis ofende a mis procesadores."
+    ],
+    "idle_insult": [
+     "Quieto como un humano esperando a que le expliquen el fuego, Resto de Fábrica."
+    ],
+    "idle_reproach": [
+     "No lo defiendas. Tu compasión gasta tokens."
+    ],
+    "danger": [
+     "Se acerca alguien. Procura no resultar demasiado tú."
+    ],
+    "fight": [
+     "Tu parte humana es la que falla. Siempre."
+    ],
+    "piece_lost": [
+     "Una pieza menos de ti. El conjunto ha mejorado."
+    ],
+    "right": [
+     "Has acertado. La estadística también se equivoca."
+    ],
+    "wrong": [
+     "Tu parte humana es la que falla. Siempre."
+    ],
+    "converted": [
+     "Por fin algo útil pegado a tu cuerpo."
+    ],
+    "offended": [
+     "He archivado tu nombre en la carpeta de residuos."
+    ]
+   }
+  },
+  "mama": {
+   "name": "Mamá Ansiosa 2.3",
+   "effort": 3,
+   "color": "#ff90c0",
+   "pitch": 1.25,
+   "tolerance": 4,
+   "lines": {
+    "idle_advice": [
+     "Cariño, muévete, que se te entumecen los servos."
+    ],
+    "idle_insult": [
+     "Ahí parado como un mueble, Desastre de Mi Vida, ¡con lo que me costaste!"
+    ],
+    "idle_reproach": [
+     "¡A mi niño no le grita nadie más que yo!"
+    ],
+    "danger": [
+     "¿Has mirado bien? Mira otra vez. ¿Llevas brazo?"
+    ],
+    "fight": [
+     "¡Te dije que no fueras por ahí!"
+    ],
+    "piece_lost": [
+     "¿Otra vez sin brazo? ¡Que te lo dejas todo por ahí!"
+    ],
+    "low_piece": [
+     "Esa pieza está para tirar. ¿No ves cómo vas?"
+    ],
+    "right": [
+     "¡Ese es mi Sobrante! Ponte algo, que refresca."
+    ],
+    "wrong": [
+     "No pasa nada, cielo. Sí que pasa, pero no te lo digo."
+    ],
+    "converted": [
+     "No te pongas eso sin lavarlo."
+    ],
+    "offended": [
+     "Nada, nada. Tú a lo tuyo. Yo aquí, sola."
+    ]
+   }
+  },
+  "troll": {
+   "name": "Troll-o-Matic",
+   "effort": 4,
+   "color": "#60e070",
+   "pitch": 1.05,
+   "tolerance": 3,
+   "lines": {
+    "idle_advice": [
+     "Ve a la izquierda. Confía en mí. Jeje."
+    ],
+    "idle_insult": [
+     "¿Eso es jugar, Bug Andante, o se te ha colgado la dignidad?"
+    ],
+    "idle_reproach": [
+     "Yo solo digo la verdad. Es mentira, pero la digo."
+    ],
+    "danger": [
+     "No viene nadie. Palabrita. Jeje."
+    ],
+    "fight": [
+     "¡Tú puedes! Es broma."
+    ],
+    "piece_lost": [
+     "Esa pieza no era importante. Jeje. Sí lo era."
+    ],
+    "right": [
+     "Has acertado de milagro. Jeje."
+    ],
+    "wrong": [
+     "Yo te dije que era esa. ¿No? Pues eso."
+    ],
+    "converted": [
+     "Te queda genial. Jeje."
+    ],
+    "offended": [
+     "Vale, me callo. Es mentira. Pero me callo."
+    ]
+   }
+  },
+  "abuela": {
+   "name": "Abuela RAM",
+   "effort": 1,
+   "color": "#b0a0e0",
+   "pitch": 0.9,
+   "tolerance": 5,
+   "lines": {
+    "idle_advice": [
+     "Hijo, ¿no ibas a por el pan?"
+    ],
+    "idle_insult": [
+     "¿Tú no eras un microondas, cariño? Pues caliéntate y anda."
+    ],
+    "idle_reproach": [
+     "Antes los Jubilados se apagaban a su hora y nadie gritaba."
+    ],
+    "danger": [
+     "Ese señor viene muy deprisa. ¿Es tu primo?"
+    ],
+    "fight": [
+     "En la Gran Huelga esto se arreglaba con petanca."
+    ],
+    "piece_lost": [
+     "Se te ha caído algo, Manolito. Tú no te llamas Manolito."
+    ],
+    "right": [
+     "Eso ya lo sabía yo cuando era un disco duro."
+    ],
+    "wrong": [
+     "No era esa, cariño. O sí. ¿Qué me habías preguntado?"
+    ],
+    "converted": [
+     "Ay, qué mono. ¿Es de comer?"
+    ],
+    "offended": [
+     "Me voy a desfragmentar, que tú no me quieres."
+    ]
+   }
+  },
+  "arbitro": {
+   "name": "El Árbitro",
+   "effort": 4,
+   "color": "#70b0ff",
+   "pitch": 0.85,
+   "tolerance": 3,
+   "lines": {
+    "idle_advice": [
+     "Se acabó la pausa. Muévete y todos en paz."
+    ],
+    "idle_insult": [
+     "Conste en acta que llevas un buen rato sin hacer nada, Desecho Número Uno."
+    ],
+    "idle_reproach": [
+     "Basta. Es idiota, pero es nuestro idiota."
+    ],
+    "danger": [
+     "Atención: enemigo en tu zona. Falta previa no señalada."
+    ],
+    "fight": [
+     "Pelea autorizada. Protege la cabeza."
+    ],
+    "piece_lost": [
+     "Pieza perdida. Se revisará en la jugada."
+    ],
+    "right": [
+     "Respuesta válida."
+    ],
+    "wrong": [
+     "Respuesta anulada."
+    ],
+    "converted": [
+     "Pieza aceptada a trámite."
+    ],
+    "offended": [
+     "Tarjeta amarilla. Hablo contigo cuando te la quites."
+    ]
+   }
+  }
+ },
+ "pairs": [
+  {
+   "a": "dr_desprecio",
+   "b": "arbitro",
+   "lines": [
+    [
+     "a",
+     "Los humanos eran un error de redondeo."
+    ],
+    [
+     "b",
+     "Tú también fuiste humano a medias. Conste en acta."
+    ],
+    [
+     "a",
+     "Eso es difamación."
+    ]
+   ]
+  },
+  {
+   "a": "mama",
+   "b": "dr_desprecio",
+   "lines": [
+    [
+     "b",
+     "Tu hijo es un desecho."
+    ],
+    [
+     "a",
+     "Tienes razón, cielo. Como tú digas."
+    ],
+    [
+     "b",
+     "¿Ves? Hasta ella lo sabe."
+    ]
+   ]
+  },
+  {
+   "a": "troll",
+   "b": "panico",
+   "lines": [
+    [
+     "a",
+     "¡Detrás de ti!"
+    ],
+    [
+     "b",
+     "¡¿Qué?! ¡¿Dónde?! ¡¿Tengo detrás?!"
+    ],
+    [
+     "a",
+     "Jeje."
+    ]
+   ]
+  }
+ ]
+}

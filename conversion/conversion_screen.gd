@@ -48,6 +48,15 @@ func add_accept(text: String, on_accept: Callable) -> void:
 	buttons.append(button)
 
 
+## Inhabilita una opción y añade un comentario, como el de una IA.
+func add_remark(text: String, disabled_option: int) -> void:
+	var label: Label = Label.new()
+	label.text = text
+	_box.add_child(label)
+	if disabled_option >= 0 and disabled_option < buttons.size():
+		buttons[disabled_option].disabled = true
+
+
 func set_time_fraction(fraction: float) -> void:
 	if _bar != null:
 		_bar.value = fraction

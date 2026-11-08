@@ -50,7 +50,7 @@ func trigger(index: int) -> bool:
 
 func _perform(id: String) -> bool:
 	var player: Player = level.player
-	var stun_factor: float = player.body.multiplier("stun")
+	var stun_factor: float = player.body.multiplier("stun") * level.ai.stun_bonus()
 	match id:
 		"a003":
 			return _stun_guard(STUN_TIME * stun_factor)

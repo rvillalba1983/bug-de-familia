@@ -1,0 +1,513 @@
+{
+ "npcs": [
+  {
+   "id": "paca",
+   "name": "Paca Bisagra (Jubilada)",
+   "race": "jubilado",
+   "pos": [
+    1450,
+    480
+   ],
+   "dialogue": "paca_start"
+  },
+  {
+   "id": "eusebio",
+   "name": "Eusebio Rulemán (Jubilado)",
+   "race": "jubilado",
+   "pos": [
+    1525,
+    520
+   ],
+   "dialogue": "eusebio_start"
+  },
+  {
+   "id": "seta",
+   "name": "Seta Remedios (Mohócrata)",
+   "race": "mohocrata",
+   "pos": [
+    1240,
+    880
+   ],
+   "dialogue": "seta_start"
+  },
+  {
+   "id": "anselmo",
+   "name": "Anselmo Moho (Mohócrata)",
+   "race": "mohocrata",
+   "pos": [
+    1160,
+    840
+   ],
+   "dialogue": "anselmo_start"
+  }
+ ],
+ "evidence": [
+  {
+   "id": "e_sombrero",
+   "name": "Sombrero",
+   "pos": [
+    1300,
+    800
+   ],
+   "text": "Sombrero de chatarra. Dentro pone: «Propiedad de M. Cojinete. Devuélvase o denuncio».",
+   "observation": "Ese sombrero tiene dueño, y no parece un hongo."
+  },
+  {
+   "id": "e_acta",
+   "name": "Acta",
+   "pos": [
+    1130,
+    930
+   ],
+   "text": "Acta mohócrata: «¿Desguazar al robot del sombrero? Sí: 0. No: 1.204. Se abstiene un champiñón».",
+   "observation": "Un papel húmedo. Lleva firmas de esporas."
+  },
+  {
+   "id": "e_aceite",
+   "name": "Rastro de aceite",
+   "pos": [
+    1370,
+    560
+   ],
+   "text": "Un rastro de aceite va hacia el norte, recto y sin señales de pelea.",
+   "observation": "Alguien pierde aceite. Va hacia detrás de esa pared."
+  },
+  {
+   "id": "e_manolo",
+   "name": "Robot apagado",
+   "pos": [
+    1420,
+    235
+   ],
+   "text": "Manolo Cojinete, sentado y apagado. Su reloj interno marca las 21:00. Sin un rasguño.",
+   "observation": "Ese robot no se mueve. Mira su reloj."
+  }
+ ],
+ "ambient": [
+  {
+   "npcs": [
+    "seta",
+    "anselmo"
+   ],
+   "forbids": [
+    "guerra"
+   ],
+   "lines": [
+    [
+     "anselmo",
+     "¿Has votado ya?"
+    ],
+    [
+     "seta",
+     "Voto que sí."
+    ],
+    [
+     "anselmo",
+     "¿A qué?"
+    ],
+    [
+     "seta",
+     "Ya saldrá."
+    ],
+    [
+     "anselmo",
+     "Ese sombrero apareció solo, ¿eh? Conste."
+    ]
+   ]
+  },
+  {
+   "npcs": [
+    "paca",
+    "eusebio"
+   ],
+   "forbids": [
+    "paz",
+    "tregua",
+    "guerra"
+   ],
+   "lines": [
+    [
+     "paca",
+     "A Manolo lo han hecho abono, te lo digo yo."
+    ],
+    [
+     "eusebio",
+     "Salió anoche sin decir nada."
+    ],
+    [
+     "paca",
+     "Antes los hongos no se llevaban a la gente."
+    ],
+    [
+     "eusebio",
+     "Y las escaleras, ¿qué?"
+    ]
+   ]
+  },
+  {
+   "npcs": [
+    "paca",
+    "eusebio"
+   ],
+   "requires": [
+    "paz"
+   ],
+   "lines": [
+    [
+     "paca",
+     "Manolo, apagado a su hora. Qué formalidad."
+    ],
+    [
+     "eusebio",
+     "Mañana le ponemos un despertador."
+    ]
+   ]
+  },
+  {
+   "npcs": [
+    "paca",
+    "eusebio"
+   ],
+   "requires": [
+    "tregua"
+   ],
+   "lines": [
+    [
+     "paca",
+     "Los hongos han devuelto el sombrero."
+    ],
+    [
+     "eusebio",
+     "Previo pago. Como la gente decente."
+    ]
+   ]
+  },
+  {
+   "npcs": [
+    "paca",
+    "eusebio"
+   ],
+   "requires": [
+    "guerra"
+   ],
+   "lines": [
+    [
+     "paca",
+     "¡Ni un sombrero más!"
+    ],
+    [
+     "eusebio",
+     "¡A las minas de petanca!"
+    ]
+   ]
+  },
+  {
+   "npcs": [
+    "seta",
+    "anselmo"
+   ],
+   "requires": [
+    "guerra"
+   ],
+   "lines": [
+    [
+     "seta",
+     "Moción de guerra aprobada a la tercera."
+    ],
+    [
+     "anselmo",
+     "Voto que nos escondamos."
+    ]
+   ]
+  }
+ ],
+ "dialogue": {
+  "paca_start": {
+   "speaker": "paca",
+   "text": "¡Esos hongos han hecho abono a Manolo Cojinete! ¿Tú qué quieres, joven?",
+   "options": [
+    {
+     "text": "¿Qué le pasó a Manolo?",
+     "next": "paca_story",
+     "requires": [],
+     "forbids": [],
+     "sets": []
+    },
+    {
+     "text": "He encontrado a Manolo. Está apagado y su reloj marca las 21:00.",
+     "next": "paca_truth",
+     "requires": [
+      "e_manolo"
+     ],
+     "forbids": [
+      "paz",
+      "tregua",
+      "guerra"
+     ],
+     "sets": []
+    },
+    {
+     "text": "Los hongos te devuelven el sombrero a cambio de fertilizante.",
+     "next": "paca_tregua",
+     "requires": [
+      "oferta_seta"
+     ],
+     "forbids": [
+      "paz",
+      "tregua",
+      "guerra"
+     ],
+     "sets": [
+      "tregua"
+     ]
+    },
+    {
+     "text": "Sí, lo vi: los hongos lo desguazaron.",
+     "next": "paca_guerra",
+     "requires": [
+      "oido_paca"
+     ],
+     "forbids": [
+      "paz",
+      "tregua",
+      "guerra"
+     ],
+     "sets": [
+      "guerra"
+     ]
+    },
+    {
+     "text": "Nada, adiós.",
+     "next": "",
+     "requires": [],
+     "forbids": [],
+     "sets": []
+    }
+   ]
+  },
+  "paca_story": {
+   "speaker": "paca",
+   "text": "Salió anoche y no ha vuelto. Y los hongos reciclan robots muertos. Saca tus cuentas.",
+   "options": [
+    {
+     "text": "Lo investigaré.",
+     "next": "",
+     "requires": [],
+     "forbids": [],
+     "sets": [
+      "oido_paca"
+     ]
+    }
+   ]
+  },
+  "paca_truth": {
+   "speaker": "paca",
+   "text": "¿Apagado? A las 21:00, claro. Pero eso no quita que los hongos le quitaran el sombrero.",
+   "options": [
+    {
+     "text": "Votaron no desguazarlo. Aquí está el acta.",
+     "next": "paca_conv",
+     "requires": [
+      "e_acta"
+     ],
+     "forbids": [],
+     "sets": [
+      "paca_convencida"
+     ]
+    },
+    {
+     "text": "Ya volveré.",
+     "next": "",
+     "requires": [],
+     "forbids": [],
+     "sets": []
+    }
+   ]
+  },
+  "paca_conv": {
+   "speaker": "paca",
+   "text": "Mil doscientos votos en contra... Eso es más de lo que votan para respirar. Está bien, habla con ellos.",
+   "options": [
+    {
+     "text": "Hablaré con ellos.",
+     "next": "",
+     "requires": [],
+     "forbids": [],
+     "sets": []
+    }
+   ]
+  },
+  "paca_tregua": {
+   "speaker": "paca",
+   "text": "¿Fertilizante? Qué vergüenza. Trato hecho.",
+   "options": [
+    {
+     "text": "Adiós.",
+     "next": "",
+     "requires": [],
+     "forbids": [],
+     "sets": []
+    }
+   ]
+  },
+  "paca_guerra": {
+   "speaker": "paca",
+   "text": "¡Lo sabía! ¡Eusebio, saca las minas de petanca!",
+   "options": [
+    {
+     "text": "Uy.",
+     "next": "",
+     "requires": [],
+     "forbids": [],
+     "sets": []
+    }
+   ]
+  },
+  "eusebio_start": {
+   "speaker": "eusebio",
+   "text": "Manolo tenía la manía de salir a mirar el atardecer. Por el norte. Yo no digo nada.",
+   "options": [
+    {
+     "text": "Gracias.",
+     "next": "",
+     "requires": [],
+     "forbids": [],
+     "sets": [
+      "pista_norte"
+     ]
+    }
+   ]
+  },
+  "seta_start": {
+   "speaker": "seta",
+   "text": "¿Vienes a votar? Tenemos una moción sobre si respirar.",
+   "options": [
+    {
+     "text": "¿Sabéis algo de un tal Manolo?",
+     "next": "seta_manolo",
+     "requires": [],
+     "forbids": [],
+     "sets": []
+    },
+    {
+     "text": "Ese sombrero que tenéis es de un Jubilado.",
+     "next": "seta_sombrero",
+     "requires": [
+      "e_sombrero"
+     ],
+     "forbids": [
+      "paz",
+      "tregua",
+      "guerra"
+     ],
+     "sets": []
+    },
+    {
+     "text": "Manolo se apagó solo, y Paca ya lo sabe. Devolved el sombrero.",
+     "next": "seta_paz",
+     "requires": [
+      "e_manolo",
+      "paca_convencida"
+     ],
+     "forbids": [
+      "paz",
+      "tregua",
+      "guerra"
+     ],
+     "sets": [
+      "paz"
+     ]
+    },
+    {
+     "text": "Los Jubilados vienen a por vosotros.",
+     "next": "seta_guerra",
+     "requires": [
+      "oido_paca"
+     ],
+     "forbids": [
+      "paz",
+      "tregua",
+      "guerra"
+     ],
+     "sets": [
+      "guerra"
+     ]
+    },
+    {
+     "text": "Otro día.",
+     "next": "",
+     "requires": [],
+     "forbids": [],
+     "sets": []
+    }
+   ]
+  },
+  "seta_manolo": {
+   "speaker": "seta",
+   "text": "Votamos no desguazar a nadie. Está en el acta, por ahí, entre el compost.",
+   "options": [
+    {
+     "text": "Gracias.",
+     "next": "",
+     "requires": [],
+     "forbids": [],
+     "sets": []
+    }
+   ]
+  },
+  "seta_sombrero": {
+   "speaker": "seta",
+   "text": "Apareció solo. Votamos quedárnoslo. Por un poco de fertilizante podríamos volver a votar.",
+   "options": [
+    {
+     "text": "Se lo diré a los Jubilados.",
+     "next": "",
+     "requires": [],
+     "forbids": [],
+     "sets": [
+      "oferta_seta"
+     ]
+    }
+   ]
+  },
+  "seta_paz": {
+   "speaker": "seta",
+   "text": "Moción aprobada a la tercera: devolvemos el sombrero y pedimos perdón por si acaso.",
+   "options": [
+    {
+     "text": "Adiós.",
+     "next": "",
+     "requires": [],
+     "forbids": [],
+     "sets": []
+    }
+   ]
+  },
+  "seta_guerra": {
+   "speaker": "seta",
+   "text": "Moción de guerra. Primera votación: sí. Vuelve dentro de tres votaciones para verlo.",
+   "options": [
+    {
+     "text": "Uy.",
+     "next": "",
+     "requires": [],
+     "forbids": [],
+     "sets": []
+    }
+   ]
+  },
+  "anselmo_start": {
+   "speaker": "anselmo",
+   "text": "Yo voto lo que vote ella. Ella vota lo que vote yo. Funciona fatal.",
+   "options": [
+    {
+     "text": "Ya veo.",
+     "next": "",
+     "requires": [],
+     "forbids": [],
+     "sets": []
+    }
+   ]
+  }
+ }
+}

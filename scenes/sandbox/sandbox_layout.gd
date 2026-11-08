@@ -30,4 +30,4 @@ const CRATE: Vector2 = Vector2(470.0, 790.0)
 const CRATE_NOISE_RADIUS: float = 640.0
 const TERMINAL: Vector2 = Vector2(560.0, 195.0)
 const PICKUP_LEG: Vector2 = Vector2(300.0, 520.0)
-const PICKUP_ARM: Vector2 = Vector2(1400.0, 850.0)
+const PICKUP_ARM: Vector2 = Vector2(1500.0, 860.0)

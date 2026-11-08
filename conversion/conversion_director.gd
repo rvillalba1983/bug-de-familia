@@ -3,6 +3,9 @@ extends Node2D
 ## Dirige el flujo: elegir objeto, objetivo, ranura, preguntas y resultado.
 
 signal converted(entity_id: String)
+signal answered(correct: bool)
+## Se emite al terminar las preguntas con todas falladas.
+signal all_wrong
 
 enum Step { IDLE, TARGETING, OBJECTIVE, SLOT, QUESTION, FEEDBACK, RESULT }
 
@@ -15,6 +18,8 @@ var pause: TacticalPause
 var rng: RandomNumberGenerator
 var screen: ConversionScreen
 var hint: Label
+## Recibe la pregunta y devuelve { "text": String, "disabled": int }.
+var advisor: Callable = Callable()
 
 var _target: Convertible
 var _objective_id: String = ""
@@ -22,6 +27,7 @@ var _slot: ModularBody.Slot = ModularBody.Slot.HEAD
 var _session: ConversionSession
 var _time_left: float = 0.0
 var _feedback_left: float = 0.0
+var _correct_count: int = 0
 
 
 func _ready() -> void:
@@ -104,6 +110,7 @@ func choose_objective(id: String) -> void:
 func choose_slot(slot: int) -> void:
 	_slot = slot as ModularBody.Slot
 	_session = ConversionSession.new(catalog.questions, rng)
+	_correct_count = 0
 	_show_question()
 
 
@@ -112,6 +119,8 @@ func answer_current(option: int) -> void:
 		return
 	var question: Dictionary = _session.current()
 	var correct: bool = _session.answer(option, _time_left)
+	_correct_count += 1 if correct else 0
+	answered.emit(correct)
 	var truth: String = str(question["options"][int(question["answer"])])
 	var verdict: String = tr("UI_CONVERT_CORRECT" if correct else "UI_CONVERT_WRONG")
 	screen.show_message(verdict, "%s %s" % [tr("UI_CONVERT_TRUTH"), truth])
@@ -161,6 +170,10 @@ func _show_question() -> void:
 	for index: int in range(options.size()):
 		entries.append(["%d. %s" % [index + 1, options[index]], answer_current.bind(index)])
 	screen.show_choices(str(question["text"]), entries, true)
+	if advisor.is_valid():
+		var advice: Dictionary = advisor.call(question)
+		if not advice.is_empty():
+			screen.add_remark(advice["text"], advice["disabled"])
 
 
 func _read_answer_keys(event: InputEvent) -> void:
@@ -175,6 +188,8 @@ func _next_question_or_result() -> void:
 	if not _session.is_finished():
 		_show_question()
 		return
+	if _correct_count == 0:
+		all_wrong.emit()
 	var kind: BodyPiece.Kind = ModularBody.kind_of(_slot)
 	var piece: BodyPiece = PieceForge.forge(
 		catalog, _target.material_id, _objective_id, kind, _session.score(), rng

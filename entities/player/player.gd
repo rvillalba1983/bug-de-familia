@@ -32,6 +32,8 @@ var is_crouching: bool = false
 var body: ModularBody = ModularBody.new()
 var noise_bus: NoiseBus
 var in_danger: bool = false
+var tail_color: Color = Color("#404050")
+var tail_speaking: bool = false
 
 var _path: PackedVector2Array = PackedVector2Array()
 var _path_index: int = 0
@@ -73,6 +75,7 @@ func _physics_process(delta: float) -> void:
 func _draw() -> void:
 	var height: float = current_height()
 	draw_circle(Vector2(0.0, 4.0), RADIUS, COLOR_SHADOW)
+	_draw_tail(height)
 	_draw_limbs(height)
 	var head: Vector2 = Vector2(0.0, -height * 0.5)
 	draw_circle(head, height * 0.42, COLOR_BODY)
@@ -219,6 +222,22 @@ func _next_path_direction() -> Vector2:
 			return global_position.direction_to(target)
 		_path_index += 1
 	return Vector2.ZERO
+
+
+func _draw_tail(height: float) -> void:
+	var back: Vector2 = -facing
+	var side: Vector2 = back.orthogonal()
+	var base: Vector2 = Vector2(0.0, -height * 0.25)
+	var pulse: float = 1.0
+	if tail_speaking:
+		pulse = 0.75 + 0.25 * sin(Time.get_ticks_msec() * 0.02)
+	var points: PackedVector2Array = PackedVector2Array()
+	for index: int in range(9):
+		var along: float = float(index) * 7.0
+		points.append(base + back * along + side * sin(float(index) * 0.9) * 7.0)
+	var color: Color = tail_color
+	color.a = pulse
+	draw_polyline(points, color, 6.0 if tail_speaking else 4.0)
 
 
 func _draw_limbs(height: float) -> void:

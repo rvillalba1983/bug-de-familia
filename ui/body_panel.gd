@@ -3,6 +3,7 @@ extends CanvasLayer
 ## Ventana para cambiar piezas. Pausa el juego mientras está abierta.
 
 signal closed(mode: Mode)
+signal discarded
 
 enum Mode { NORMAL, PRE_FIGHT, REPLACE }
 
@@ -60,6 +61,12 @@ func swap_spare(slot: ModularBody.Slot, index: int) -> void:
 		_rebuild()
 
 
+func discard_spare(slot: ModularBody.Slot, index: int) -> void:
+	body.discard_spare(slot, index)
+	discarded.emit()
+	_rebuild()
+
+
 func _clear() -> void:
 	if _root != null:
 		_root.queue_free()
@@ -109,4 +116,8 @@ func _build_row(slot: ModularBody.Slot) -> HBoxContainer:
 		button.disabled = not body.can_swap(slot)
 		button.pressed.connect(swap_spare.bind(slot, index))
 		row.add_child(button)
+		var drop: Button = Button.new()
+		drop.text = tr("UI_BODY_DISCARD")
+		drop.pressed.connect(discard_spare.bind(slot, index))
+		row.add_child(drop)
 	return row

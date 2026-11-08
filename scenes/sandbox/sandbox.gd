@@ -44,6 +44,8 @@ var actions: ActionSystem
 var entities: Dictionary = {}
 var converted_ids: Array = []
 var action_bar: ActionBar
+var ai: AiChatter
+var investigation: InvestigationDirector
 
 var _pause_label: Label
 var _done_label: Label
@@ -112,6 +114,8 @@ func snapshot() -> Dictionary:
 		"used": used,
 		"converted": converted_ids,
 		"door_open": door.is_open,
+		"ai": ai.team.to_dict(),
+		"case": investigation.to_dict(),
 		"challenge_done": challenge_done,
 	}
 
@@ -134,6 +138,8 @@ func start_new_game() -> void:
 		"used": [],
 		"converted": [],
 		"door_open": false,
+		"ai": {},
+		"case": {},
 		"challenge_done": false,
 	}
 	SaveSystem.write(data)
@@ -183,9 +189,19 @@ func _build_world() -> void:
 	add_child(fight)
 	_register_convertibles()
 	catalog = ConversionCatalog.load_default()
+	_build_investigation()
 	actions = ActionSystem.new()
 	actions.level = self
 	add_child(actions)
+
+
+func _build_investigation() -> void:
+	ai = AiChatter.new()
+	ai.level = self
+	add_child(ai)
+	investigation = InvestigationDirector.new()
+	investigation.level = self
+	add_child(investigation)
 
 
 func _add_convertible(id: String, owner_node: Node2D, material: String) -> void:
@@ -372,6 +388,11 @@ func _connect_systems() -> void:
 	conversion.pause = pause
 	add_child(conversion)
 	conversion.converted.connect(_on_converted)
+	conversion.answered.connect(ai.on_answered)
+	conversion.all_wrong.connect(ai.on_all_wrong)
+	conversion.advisor = ai.question_advice
+	panel.discarded.connect(ai.on_piece_discarded)
+	fight.pre_fight_started.connect(ai.say.bind("fight"))
 	actions.door_hacked.connect(_open_door)
 	_connect_body()
 
@@ -379,6 +400,8 @@ func _connect_systems() -> void:
 func _connect_body() -> void:
 	player.body.piece_destroyed.connect(_on_piece_destroyed)
 	player.body.died.connect(_on_player_died)
+	player.body.piece_destroyed.connect(ai.on_piece_destroyed)
+	player.body.changed.connect(ai.check_low_pieces)
 
 
 func _start_session() -> void:
@@ -404,6 +427,8 @@ func _start_session() -> void:
 func _begin_fresh() -> void:
 	rng.seed = randi() if forced_seed < 0 else forced_seed
 	_replace_body(default_body())
+	ai.restore({})
+	investigation.restore({})
 	SaveSystem.write(snapshot())
 
 
@@ -430,6 +455,8 @@ func _apply_save(data: Dictionary) -> bool:
 		_remove_entity(str(id))
 	if data.get("door_open", false):
 		_open_door()
+	ai.restore(data.get("ai", {}))
+	investigation.restore(data.get("case", {}))
 	if data.get("challenge_done", false):
 		challenge_done = true
 		_done_label.visible = true
@@ -493,6 +520,10 @@ func _add_pickup(slots: Array[ModularBody.Slot]) -> void:
 
 func _on_item_activated(item: Interactable) -> void:
 	match item.kind:
+		Interactable.Kind.NPC:
+			investigation.open_dialogue(item.item_id)
+		Interactable.Kind.EVIDENCE:
+			investigation.examine(item.item_id)
 		Interactable.Kind.CRATE:
 			noise_bus.emit_noise(item.global_position, SandboxLayout.CRATE_NOISE_RADIUS)
 		Interactable.Kind.TERMINAL:

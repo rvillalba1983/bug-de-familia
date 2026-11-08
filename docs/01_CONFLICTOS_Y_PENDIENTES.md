@@ -10,7 +10,7 @@ Los 13 conflictos entre documentos quedaron resueltos el 8 de noviembre: ver `02
 | P-01 | **Mapa y progenitores que necesita la beta.** Se definirá solo lo necesario para la zona de bosque, con El Contestador y Don Ramón de Mantenimiento. El resto, tras la beta | No se pueden inventar sin aprobación | Fase 7 |
 | P-02 | Compatibilidades del catálogo completo (`12b_catalogo_conversion.md`): la fase 4 usa 4 materiales, 6 objetivos, 10 propiedades y 12 acciones | Resto de la conversión | Antes de la beta completa |
 | P-04 | Reglas de daño, catálogo de enemigos, peligros y zonas que quitan habilidades | Sigilo y combate | Fase 2 (parámetros provisionales) |
-| P-05 | Cifras exactas de tokens por IA y de la recarga mínima | Sistema de IAs | Fase 5 |
+| P-05 | Ajuste final de tokens, enfados y las 14 IAs restantes (hay 6 jugables) | Sistema de IAs | Antes de la beta completa |
 | P-08 | Los cuatro retos de la beta con sus tres soluciones cada uno | Contenido de la beta | Fase 7 |
 | P-09 | Banco definitivo de preguntas (hay 16 provisionales en `data/conversion/questions.json`), motes ofensivos por IA y por progenitor, y comentarios del protagonista | Humor y conversión | Fase 4 |
 | P-10 | Facciones aliadas o enemigas, asentamientos y distribución de grupos | Encuentros y batallas | Fase 7 |

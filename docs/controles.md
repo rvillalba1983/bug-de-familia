@@ -16,6 +16,7 @@ Basados en los de World of Warcraft, adaptados a una cámara de ángulo fijo. Ap
 | Agacharse | X | Hecho |
 | Atacar cuerpo a cuerpo | Clic derecho sobre el enemigo | Hecho |
 | Lanzar chatarra | F, hacia el ratón | Hecho |
+| Disparar un arma a distancia | Su tecla (1-6), apuntando con el ratón | Hecho |
 | Interactuar, examinar y conversar | E | Hecho |
 | Elegir respuesta al conversar | Teclas 1 a 6 o clic | Hecho |
 | Convertir lo más cercano (marcado en morado) | Q | Hecho |

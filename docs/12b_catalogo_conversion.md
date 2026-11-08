@@ -80,7 +80,13 @@ Aprobado el 8-nov. Las propiedades dependen del material y las acciones del obje
 49. **Favorita de una IA:** esa IA gasta menos tokens.
 50. **Defecto de fábrica:** efecto sorpresa, bueno o terrible.
 
-## 100 acciones (según el objetivo)
+## 104 acciones (según el objetivo)
+
+**Arma a distancia** (añadidas el 8-nov, numeradas al final para no alterar las demás)
+101. Tirachinas de tornillos: flojo, rápido y casi mudo.
+102. Escopeta de chatarra: abanico corto y devastador, muy ruidosa.
+103. Clavadora de largo alcance: potente, lenta y de largo alcance.
+104. Lanzamocos adhesivo: inmoviliza sin dañar.
 
 **Arma cuerpo a cuerpo**
 1. Tajo ancho.

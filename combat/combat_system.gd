@@ -11,10 +11,35 @@ const SILENT_SNEAK_FACTOR: float = 4.0
 const ATTACK_NOISE_RADIUS: float = 220.0
 const ARM_WEAR_PER_ATTACK: float = 1.0
 const REPATH_TIME: float = 0.3
-const THROW_DAMAGE: float = 8.0
-const THROW_RANGE: float = 320.0
 const THROW_COOLDOWN: float = 1.0
-const THROW_NOISE_RADIUS: float = 160.0
+const HIT_MARGIN: float = 10.0
+const THROWN: Dictionary = {
+	"damage": 8.0, "stun": 0.0, "range": 320.0, "pellets": 1, "spread": 0.0,
+	"noise": 160.0, "noise_at_impact": true, "stops_at_aim": true, "color": Color("#c0c0c0"),
+}
+## Armas a distancia del catálogo, por acción. Valores provisionales: ver el ADR 0005.
+const RANGED_WEAPONS: Dictionary = {
+	"a101": {
+		"damage": 10.0, "stun": 0.0, "range": 380.0, "pellets": 1, "spread": 0.0,
+		"noise": 120.0, "noise_at_impact": true, "cooldown": 1.0, "wear": 1.0,
+		"color": Color("#d8d0a0"),
+	},
+	"a102": {
+		"damage": 9.0, "stun": 0.0, "range": 200.0, "pellets": 5, "spread": 18.0,
+		"noise": 420.0, "noise_at_impact": false, "cooldown": 3.0, "wear": 6.0,
+		"color": Color("#ffa040"),
+	},
+	"a103": {
+		"damage": 40.0, "stun": 0.0, "range": 560.0, "pellets": 1, "spread": 0.0,
+		"noise": 240.0, "noise_at_impact": false, "cooldown": 4.0, "wear": 4.0,
+		"color": Color("#70d0ff"),
+	},
+	"a104": {
+		"damage": 0.0, "stun": 4.0, "range": 300.0, "pellets": 1, "spread": 0.0,
+		"noise": 100.0, "noise_at_impact": true, "cooldown": 7.0, "wear": 3.0,
+		"color": Color("#90e040"),
+	},
+}
 const SLAP_BONUS_PER_ARM: float = 5.0
 const WIDE_SLASH_BONUS: float = 12.0
 const WIDE_SLASH_RADIUS: float = 90.0
@@ -98,19 +123,63 @@ func throw_at(point: Vector2) -> bool:
 	if _throw_timer > 0.0 or level.player.body.arm_count() == 0:
 		return false
 	_throw_timer = THROW_COOLDOWN
+	_shoot(THROWN, point)
+	return true
+
+
+## Dispara el arma de la acción hacia el punto. Las recargas las lleva ActionSystem.
+func fire_weapon(id: String, point: Vector2) -> bool:
+	if not RANGED_WEAPONS.has(id):
+		return false
+	_shoot(RANGED_WEAPONS[id] as Dictionary, point)
+	return true
+
+
+func _shoot(weapon: Dictionary, point: Vector2) -> void:
 	var origin: Vector2 = level.player.global_position
-	var aim: Vector2 = origin + (point - origin).limit_length(THROW_RANGE)
+	var offset: Vector2 = point - origin
+	var direction: Vector2 = level.player.facing if offset.is_zero_approx() else offset.normalized()
+	var reach: float = float(weapon["range"])
+	if weapon.get("stops_at_aim", false):
+		reach = minf(reach, offset.length())
+	var pellets: int = weapon["pellets"]
+	var spread: float = float(weapon["spread"])
+	var impact: Vector2 = origin
+	for pellet: int in range(pellets):
+		var weight: float = 0.5 if pellets == 1 else float(pellet) / float(pellets - 1)
+		var angle: float = deg_to_rad(lerpf(-spread, spread, weight))
+		impact = _cast_shot(weapon, origin, origin + direction.rotated(angle) * reach)
+	var noise_at: Vector2 = impact if weapon["noise_at_impact"] else origin
+	level.noise_bus.emit_noise(noise_at, float(weapon["noise"]))
+
+
+## Paredes y coberturas detienen el tiro; solo lo recibe el primer enemigo de la línea.
+func _cast_shot(weapon: Dictionary, origin: Vector2, aim: Vector2) -> Vector2:
 	var mask: int = PhysicsLayers.WALLS | PhysicsLayers.LOW_COVER
 	var end: Vector2 = Detector.ray_end(origin, aim, level.player.get_world_2d(), mask)
-	level.spawn_tracer(origin, end, Color("#c0c0c0"))
-	level.noise_bus.emit_noise(end, THROW_NOISE_RADIUS)
+	var victim: Guard = null
+	var best: float = INF
 	for enemy: Guard in level.guards():
-		if not enemy.is_down() and Geometry2D.get_closest_point_to_segment(
-			enemy.global_position, origin, end
-		).distance_to(enemy.global_position) <= Guard.RADIUS + 10.0:
-			enemy.take_damage(THROW_DAMAGE)
-			return true
-	return true
+		if enemy.is_down():
+			continue
+		var at: Vector2 = enemy.global_position
+		var closest: Vector2 = Geometry2D.get_closest_point_to_segment(at, origin, end)
+		if closest.distance_to(at) <= Guard.RADIUS + HIT_MARGIN and origin.distance_to(closest) < best:
+			best = origin.distance_to(closest)
+			victim = enemy
+	if victim != null:
+		end = origin + (end - origin).limit_length(best)
+		_apply_shot(weapon, victim)
+	level.spawn_tracer(origin, end, weapon["color"] as Color)
+	return end
+
+
+func _apply_shot(weapon: Dictionary, victim: Guard) -> void:
+	if float(weapon["damage"]) > 0.0:
+		victim.take_damage(float(weapon["damage"]))
+	if float(weapon["stun"]) > 0.0:
+		var factor: float = level.player.body.multiplier("stun") * level.ai.stun_bonus()
+		victim.stun(float(weapon["stun"]) * factor)
 
 
 func _pursue(delta: float) -> void:

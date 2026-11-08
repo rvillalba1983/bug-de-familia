@@ -40,6 +40,14 @@ func test_walking_over_picks_up() -> void:
 	assert_int(_spares(sandbox)).is_equal(before + 1)
 
 
+func test_broken_crate_leaves_rubble_that_can_be_converted() -> void:
+	var sandbox: Sandbox = _scene()
+	var crate: Interactable = sandbox.items[Sandbox.ID_CRATE]
+	crate.activate()
+	assert_bool(crate.is_rubble()).is_true()
+	assert_bool(sandbox.entities.has(Sandbox.ID_CRATE)).is_true()
+
+
 func test_full_spares_leave_the_item_on_the_ground() -> void:
 	var sandbox: Sandbox = _scene()
 	var body: ModularBody = sandbox.player.body

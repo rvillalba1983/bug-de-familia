@@ -39,6 +39,7 @@ Los caídos en batalla dan materiales propios de su raza.
 | Objetivo | Ejemplos |
 |---|---|
 | Arma cuerpo a cuerpo | |
+| Arma a distancia | |
 | Velocidad | |
 | Visión | |
 | Sigilo | Pasos mudos, camuflaje |

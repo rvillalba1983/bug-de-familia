@@ -238,6 +238,83 @@ func test_forged_pieces_explain_themselves() -> void:
 	assert_bool(piece.description.is_empty()).is_false()
 
 
+func test_at_least_four_ranged_weapons_can_be_forged() -> void:
+	var sandbox: Sandbox = _scene()
+	var weapons: Array = sandbox.catalog.objectives["distancia"]["actions"]
+	assert_int(weapons.size()).is_greater_equal(4)
+	for id: Variant in weapons:
+		assert_bool(CombatSystem.RANGED_WEAPONS.has(id)).is_true()
+
+
+func test_slingshot_hurts_a_little() -> void:
+	var sandbox: Sandbox = _scene()
+	var guard: Guard = sandbox.guard
+	_place(sandbox, guard, Vector2(200.0, 0.0))
+	await _frames(3)
+	sandbox.combat.fire_weapon("a101", guard.global_position)
+	assert_float(guard.health).is_equal(Guard.MAX_HEALTH - 10.0)
+
+
+func test_nail_gun_reaches_where_slingshot_does_not() -> void:
+	var sandbox: Sandbox = _scene()
+	var guard: Guard = sandbox.guard
+	sandbox.player.global_position = Vector2(1500.0, 525.0)
+	guard.global_position = Vector2(1020.0, 525.0)
+	sandbox.shooter.global_position = Vector2(300.0, 900.0)
+	await _frames(3)
+	sandbox.combat.fire_weapon("a101", guard.global_position)
+	assert_float(guard.health).is_equal(Guard.MAX_HEALTH)
+	sandbox.combat.fire_weapon("a103", guard.global_position)
+	assert_float(guard.health).is_equal(Guard.MAX_HEALTH - 40.0)
+
+
+func test_shotgun_is_deadly_close_short_and_loud() -> void:
+	var sandbox: Sandbox = _scene()
+	var guard: Guard = sandbox.guard
+	_place(sandbox, guard, Vector2(250.0, 0.0))
+	await _frames(3)
+	sandbox.combat.fire_weapon("a102", guard.global_position)
+	assert_float(guard.health).is_equal(Guard.MAX_HEALTH)
+	var noises: Array[float] = []
+	sandbox.noise_bus.noise_emitted.connect(func(_at: Vector2, r: float) -> void: noises.append(r))
+	guard.global_position = OPEN + Vector2(60.0, 0.0)
+	await _frames(3)
+	sandbox.combat.fire_weapon("a102", guard.global_position)
+	assert_float(guard.health).is_less(Guard.MAX_HEALTH - 30.0)
+	assert_array(noises).contains_exactly([420.0])
+
+
+func test_snot_gun_immobilizes_without_damage() -> void:
+	var sandbox: Sandbox = _scene()
+	var guard: Guard = sandbox.guard
+	_place(sandbox, guard, Vector2(200.0, 0.0))
+	await _frames(3)
+	sandbox.combat.fire_weapon("a104", guard.global_position)
+	assert_int(guard.state).is_equal(Guard.State.STUNNED)
+	assert_float(guard.health).is_equal(Guard.MAX_HEALTH)
+
+
+func test_shot_hits_only_the_first_in_line() -> void:
+	var sandbox: Sandbox = _scene()
+	_place(sandbox, sandbox.shooter, Vector2(300.0, 0.0))
+	sandbox.guard.global_position = OPEN + Vector2(150.0, 0.0)
+	await _frames(3)
+	sandbox.combat.fire_weapon("a103", sandbox.shooter.global_position)
+	assert_float(sandbox.guard.health).is_less(Guard.MAX_HEALTH)
+	assert_float(sandbox.shooter.health).is_equal(Guard.MAX_HEALTH)
+
+
+func test_weapon_is_fired_by_its_key_with_its_own_cooldown() -> void:
+	var sandbox: Sandbox = _scene()
+	var piece: BodyPiece = BodyPiece.new(BodyPiece.Kind.ARM)
+	piece.actions.append({"id": "a101", "name": "x", "active": true})
+	sandbox.player.body.add_spare(ARM, piece)
+	sandbox.player.body.swap(ARM, 0)
+	assert_bool(sandbox.actions.trigger(0)).is_true()
+	assert_float(float(sandbox.actions._cooldowns["a101"])).is_equal(1.0)
+	assert_bool(sandbox.actions.trigger(0)).is_false()
+
+
 func _total(body: ModularBody) -> float:
 	var total: float = 0.0
 	for slot: int in ModularBody.Slot.values():

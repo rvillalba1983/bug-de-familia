@@ -23,6 +23,7 @@ SLOT_5,Pierna izquierda
 SLOT_6,Pierna derecha
 UI_SAVED,Partida guardada
 ITEM_CRATE,Caja (E: romper; hace ruido)
+ITEM_CRATE_BROKEN,Restos de caja
 ITEM_TERMINAL,Terminal (E: abre la puerta)
 ITEM_PICKUP_LEG,Pierna de repuesto
 ITEM_PICKUP_ARM,Brazo de repuesto

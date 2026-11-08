@@ -42,6 +42,9 @@ func setup(new_id: String, new_kind: Kind, at: Vector2) -> void:
 
 
 func _draw() -> void:
+	if is_rubble():
+		_draw_rubble()
+		return
 	if used and kind != Kind.TERMINAL:
 		return
 	var color: Color = Color("#55606a") if used else COLORS[kind]
@@ -51,6 +54,19 @@ func _draw() -> void:
 	if not used:
 		var text: String = custom_label if not custom_label.is_empty() else tr(LABELS[kind] as String)
 		WorldLabel.draw_on(self, text, Vector2(0.0, -40.0))
+
+
+## Una caja rota deja restos, que se siguen pudiendo convertir.
+func is_rubble() -> bool:
+	return used and kind == Kind.CRATE
+
+
+func _draw_rubble() -> void:
+	var color: Color = COLORS[Kind.CRATE]
+	draw_rect(Rect2(-20.0, -9.0, 15.0, 9.0), color.darkened(0.15))
+	draw_rect(Rect2(-3.0, -13.0, 11.0, 13.0), color.darkened(0.35))
+	draw_rect(Rect2(10.0, -6.0, 11.0, 6.0), color.darkened(0.25))
+	WorldLabel.draw_on(self, tr("ITEM_CRATE_BROKEN"), Vector2(0.0, -20.0))
 
 
 ## Ranuras donde puede guardarse este objeto; vacío si no se recoge.

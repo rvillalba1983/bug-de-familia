@@ -43,13 +43,16 @@ func trigger(index: int) -> bool:
 	var id: String = action["id"]
 	if float(_cooldowns.get(id, 0.0)) > 0.0 or not _perform(id):
 		return false
-	_cooldowns[id] = COOLDOWN
-	body.wear_piece(action["slot"] as ModularBody.Slot, USE_WEAR)
+	var weapon: Dictionary = CombatSystem.RANGED_WEAPONS.get(id, {})
+	_cooldowns[id] = float(weapon.get("cooldown", COOLDOWN))
+	body.wear_piece(action["slot"] as ModularBody.Slot, float(weapon.get("wear", USE_WEAR)))
 	return true
 
 
 func _perform(id: String) -> bool:
 	var player: Player = level.player
+	if CombatSystem.RANGED_WEAPONS.has(id):
+		return level.combat.fire_weapon(id, player.get_global_mouse_position())
 	var stun_factor: float = player.body.multiplier("stun") * level.ai.stun_bonus()
 	match id:
 		"a003":

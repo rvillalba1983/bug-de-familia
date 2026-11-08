@@ -77,6 +77,15 @@
    "actions": [
     "a062"
    ]
+  },
+  "distancia": {
+   "name": "Arma a distancia",
+   "actions": [
+    "a101",
+    "a102",
+    "a103",
+    "a104"
+   ]
   }
  },
  "properties": {
@@ -242,6 +251,26 @@
    "name": "Golpe de jubilado",
    "active": false,
    "desc": "Golpes lentos y devastadores."
+  },
+  "a101": {
+   "name": "Tirachinas de tornillos",
+   "active": true,
+   "desc": "Tecla, apunta con el ratón: disparo flojo y rápido, casi sin ruido."
+  },
+  "a102": {
+   "name": "Escopeta de chatarra",
+   "active": true,
+   "desc": "Tecla, apunta con el ratón: abanico devastador de cerca. Se oye desde lejos."
+  },
+  "a103": {
+   "name": "Clavadora de largo alcance",
+   "active": true,
+   "desc": "Tecla, apunta con el ratón: clavo muy potente que llega lejos. Recarga lenta."
+  },
+  "a104": {
+   "name": "Lanzamocos adhesivo",
+   "active": true,
+   "desc": "Tecla, apunta con el ratón: pega al enemigo 4 s sin hacerle daño."
   }
  }
 }

@@ -121,6 +121,7 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 - **Zonas lejanas:** solo ocurren sucesos grandes (población, guerras, migraciones y festividades), que llegan como rumores o se ven al volver (P-13).
 - **Tono:** muy ofensivo con el protagonista, la humanidad y las máquinas, sin ataques a colectivos reales (P-09).
 - **Peligros de la beta:** mina de 45 de daño; lluvia ácida a intervalos irregulares; de 5 a 10 s al azar para responder en encuentros tensos; Don Ramón se rinde al perder el 70 % de su salud.
+- **Alcance de los rumores:** no se mide en distancia. Cada personaje que ha visto el acontecimiento dedica 4 minutos a contarlo, y llega hasta donde le dé tiempo (P-14).
 - **Rumores:** cada persona que cuenta algo puede cambiar detalles. Un suceso grande altera a esa especie en la zona durante unos días (P-14).
 - **Conocimiento por individuo:** cada rol sabe de lo suyo y la especie marca cómo lo cuenta. El rol es fijo y se asigna al nacer según lo que necesite su grupo (P-14).
 - **Descubrir consecuencias:** por restos, cambios en el mundo y conversaciones, y las IAs dicen lo que observan sin explicar la causa. El resumen de fin de partida revela cada cadena solo hasta donde llegó (P-13).

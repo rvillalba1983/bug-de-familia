@@ -11,7 +11,8 @@ const DAMAGE: float = 45.0
 const EXPLOSION_NOISE: float = 700.0
 const STUN_RADIUS: float = 190.0
 const STUN_TIME: float = 6.0
-const COLOR_BALL: Color = Color("#c8b070")
+const ART_PATH: String = "res://art/beta/mina_petanca.svg"
+const ART_RECT: Rect2 = Rect2(-20.0, -36.0, 40.0, 40.0)
 
 var mine_id: String = ""
 var level: Sandbox
@@ -27,8 +28,7 @@ func setup(id: String, at: Vector2, host: Sandbox) -> void:
 
 
 func _draw() -> void:
-	draw_circle(Vector2(0.0, -8.0), 9.0, COLOR_BALL)
-	draw_arc(Vector2(0.0, -8.0), 9.0, 0.0, TAU, 16, Color.BLACK, 1.5)
+	draw_texture_rect(load(ART_PATH) as Texture2D, ART_RECT, false)
 
 
 func _physics_process(_delta: float) -> void:

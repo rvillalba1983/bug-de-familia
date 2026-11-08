@@ -32,6 +32,8 @@ var used: bool = false
 var custom_label: String = ""
 var custom_color: Color = Color.TRANSPARENT
 var reusable: bool = false
+## Si existe, se dibuja en lugar del cuadro de color.
+var art: Texture2D
 
 
 func setup(new_id: String, new_kind: Kind, at: Vector2) -> void:
@@ -50,7 +52,10 @@ func _draw() -> void:
 	var color: Color = Color("#55606a") if used else COLORS[kind]
 	if custom_color.a > 0.0:
 		color = custom_color
-	draw_rect(Rect2(-16.0, -32.0, 32.0, 32.0), color)
+	if art != null:
+		draw_texture_rect(art, Rect2(-24.0, -44.0, 48.0, 48.0), false)
+	else:
+		draw_rect(Rect2(-16.0, -32.0, 32.0, 32.0), color)
 	if not used:
 		var text: String = custom_label if not custom_label.is_empty() else tr(LABELS[kind] as String)
 		WorldLabel.draw_on(self, text, Vector2(0.0, -40.0))

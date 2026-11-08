@@ -41,6 +41,11 @@ const COLOR_SHOOTER: Color = Color("#3fb0a0")
 const COLOR_DOWN: Color = Color("#505868")
 const COLOR_WINDUP: Color = Color(1.0, 0.2, 0.15, 0.85)
 const COLOR_ALERT: Color = Color("#e04040")
+const COLOR_FALLEN: Color = Color(0.5, 0.5, 0.6)
+const COLOR_ART_SHADOW: Color = Color(0.0, 0.0, 0.0, 0.4)
+const ART_HEIGHT: float = 96.0
+## Altura de los pies dentro del dibujo, medida desde arriba.
+const ART_FEET: float = 0.93
 
 var state: State = State.PATROL
 var detector: Detector = Detector.new(VIEW_RANGE, VIEW_HALF_ANGLE, true)
@@ -65,6 +70,8 @@ var _windup_left: float = 0.0
 ## Un guardia pasivo no vigila ni acude a ruidos; solo responde si le atacan.
 var passive: bool = false
 var body_color: Color = Color.TRANSPARENT
+## Si existe, se dibuja este arte en lugar del círculo de color.
+var art: Texture2D
 var _aim_point: Vector2 = Vector2.ZERO
 var _corpse_time: float = 0.0
 
@@ -113,14 +120,12 @@ func _physics_process(delta: float) -> void:
 
 func _draw() -> void:
 	if state == State.DOWN:
-		draw_circle(Vector2.ZERO, BODY_HEIGHT * 0.42, COLOR_DOWN)
+		_draw_down()
 		return
-	var color: Color = COLOR_SHOOTER if ranged else COLOR_BODY
-	if body_color.a > 0.0:
-		color = body_color
-	if state == State.ALERT:
-		color = COLOR_ALERT
-	draw_circle(Vector2(0.0, -BODY_HEIGHT * 0.5), BODY_HEIGHT * 0.42, color)
+	if art != null:
+		_draw_art()
+	else:
+		_draw_placeholder()
 	if _windup_left > 0.0:
 		if ranged:
 			draw_line(Vector2(0.0, -30.0), _aim_point - global_position, COLOR_WINDUP, 2.0)
@@ -131,6 +136,33 @@ func _draw() -> void:
 		draw_rect(bar, Color(0.0, 0.0, 0.0, 0.6))
 		bar.size.x *= health / MAX_HEALTH
 		draw_rect(bar, COLOR_ALERT)
+
+
+func _draw_down() -> void:
+	if art == null:
+		draw_circle(Vector2.ZERO, BODY_HEIGHT * 0.42, COLOR_DOWN)
+		return
+	draw_set_transform(Vector2(-ART_HEIGHT * 0.45, -14.0), PI * 0.5)
+	draw_texture_rect(art, Rect2(-ART_HEIGHT * 0.5, -ART_HEIGHT * 0.5, ART_HEIGHT, ART_HEIGHT), false, COLOR_FALLEN)
+	draw_set_transform(Vector2.ZERO)
+
+
+func _draw_art() -> void:
+	var size: Vector2 = Vector2(ART_HEIGHT * art.get_size().aspect(), ART_HEIGHT)
+	if cos(detector.facing_angle) < 0.0:
+		size.x = -size.x
+	var tint: Color = COLOR_ALERT.lightened(0.5) if state == State.ALERT else Color.WHITE
+	draw_circle(Vector2(0.0, 2.0), 20.0, COLOR_ART_SHADOW)
+	draw_texture_rect(art, Rect2(Vector2(-size.x * 0.5, -ART_HEIGHT * ART_FEET), size), false, tint)
+
+
+func _draw_placeholder() -> void:
+	var color: Color = COLOR_SHOOTER if ranged else COLOR_BODY
+	if body_color.a > 0.0:
+		color = body_color
+	if state == State.ALERT:
+		color = COLOR_ALERT
+	draw_circle(Vector2(0.0, -BODY_HEIGHT * 0.5), BODY_HEIGHT * 0.42, color)
 
 
 ## Convierte a este guardia en tirador. Llamar antes de setup.

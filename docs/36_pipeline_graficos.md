@@ -19,7 +19,7 @@ Vista alta inclinada, de ángulo fijo. Se ven la cara y el cuerpo escorzado. Cad
 | Aprobar el resultado en el juego | Usuario |
 
 ## Herramientas
-Godot 2D (Sprite2D, Skeleton2D, Bone2D, AnimationPlayer, AnimationTree, TileMapLayer, GPUParticles2D, shaders, Light2D), Krita para retoques puntuales y Git para versiones. SVG y técnicas procedurales siguen disponibles para iconos, formas simples y efectos, pero no como arte principal de personajes.
+Godot 2D (Sprite2D, Skeleton2D, Bone2D, AnimationPlayer, AnimationTree, TileMapLayer, GPUParticles2D, shaders, Light2D), Krita para retoques puntuales y Git para versiones. SVG y técnicas procedurales siguen disponibles para iconos, formas simples y efectos, pero no como arte principal de personajes, salvo la prueba de estilo de la beta (ver `adr/0007-estilo-visual-beta.md`).
 
 ## Protagonista y especies
 - Piezas independientes con esqueleto: animaciones iniciales de reposo, caminar, atacar, recibir daño, perder una extremidad, sustituir pieza, interactuar y reaccionar.

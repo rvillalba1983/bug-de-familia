@@ -9,7 +9,8 @@ const SPEED: float = 130.0
 const VIEW_RANGE: float = 200.0
 const VIEW_HALF_ANGLE: float = 40.0
 const FLY_HEIGHT: float = 70.0
-const COLOR_BODY: Color = Color("#d0d060")
+const ART_PATH: String = "res://art/beta/dron_viejo.svg"
+const ART_SIZE: float = 64.0
 
 var detector: Detector = Detector.new(VIEW_RANGE, VIEW_HALF_ANGLE, false)
 var target: Player
@@ -55,5 +56,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _draw() -> void:
-	draw_circle(Vector2(0.0, -FLY_HEIGHT), 16.0, COLOR_BODY)
+	var corner: Vector2 = Vector2(-ART_SIZE * 0.5, -FLY_HEIGHT - ART_SIZE * 0.5)
+	draw_texture_rect(load(ART_PATH) as Texture2D, Rect2(corner, Vector2(ART_SIZE, ART_SIZE)), false)
 	draw_line(Vector2.ZERO, Vector2(0.0, -FLY_HEIGHT), Color(1.0, 1.0, 1.0, 0.2), 1.0)

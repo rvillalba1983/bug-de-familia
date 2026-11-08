@@ -9,9 +9,10 @@ const ID_REEL: String = "bobina"
 const ID_GENERATOR: String = "generador"
 const ID_RAMON: String = "ramon"
 const ID_CONTESTADOR: String = "contestador"
-const COLOR_FOREST: Color = Color("#2f4a33")
-const COLOR_CITY: Color = Color("#4a4640")
-const COLOR_NO_MANS_LAND: Color = Color("#5a4436")
+const ART_JUBILADO: String = "res://art/beta/jubilado_hierro.svg"
+const ART_MOHOCRATA: String = "res://art/beta/mohocrata.svg"
+const ART_RAMON: String = "res://art/beta/don_ramon.svg"
+const ART_REEL: String = "res://art/beta/bobina.svg"
 const COLOR_SHELTER: Color = Color(0.2, 0.5, 0.8, 0.22)
 const COLOR_GOAL_MARK: Color = Color(0.3, 1.0, 0.5, 0.25)
 const COLOR_JUBILADO: Color = Color("#a0a8b8")
@@ -23,6 +24,7 @@ static var forced_hour: int = -1
 
 var challenges: BetaChallenges
 var rain: AcidRain
+var atmosphere: BetaAtmosphere
 var cracked_wall: Wall
 var ramon: Guard
 var strip_jubilado: Guard
@@ -115,9 +117,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, world_size()), COLOR_BACKGROUND)
-	draw_rect(floor_rect(), COLOR_FOREST)
-	draw_rect(BetaLayout.CITY, COLOR_CITY)
-	draw_rect(BetaLayout.NO_MANS_LAND, COLOR_NO_MANS_LAND)
+	BetaGround.paint(self)
 	draw_rect(BetaLayout.CROSSING_GOAL, COLOR_GOAL_MARK)
 	for shelter: Rect2 in BetaLayout.SHELTERS:
 		draw_rect(shelter, COLOR_SHELTER)
@@ -177,6 +177,7 @@ func _add_guard(
 	enemy.nav = nav
 	enemy.rng = rng
 	enemy.body_color = color
+	enemy.art = load(_art_path(id, color)) as Texture2D
 	if is_ranged:
 		enemy.make_ranged(self)
 	enemy.setup(route, ground)
@@ -190,6 +191,7 @@ func _build_items() -> void:
 	_add_named(ID_MINE, BetaLayout.MINE_PICKUP, "BETA_ITEM_MINE", false)
 	_add_named(ID_CRACK, BetaLayout.CRACKED_MARK, "BETA_ITEM_CRACK", true)
 	_add_named(ID_REEL, BetaLayout.REEL, "BETA_ITEM_REEL", false)
+	(items[ID_REEL] as Interactable).art = load(ART_REEL) as Texture2D
 	_add_named(ID_GENERATOR, BetaLayout.GENERATOR, "BETA_ITEM_GENERATOR", false)
 	_add_item(ID_CRATE, Interactable.Kind.CRATE, BetaLayout.CRATE_NORTH)
 	_add_item("crate_2", Interactable.Kind.CRATE, BetaLayout.CRATE_SOUTH)
@@ -197,6 +199,12 @@ func _build_items() -> void:
 	_add_item(ID_PICKUP_ARM, Interactable.Kind.PICKUP_ARM, BetaLayout.PICKUP_ARM)
 	for index: int in range(BetaLayout.MINES.size()):
 		_add_mine(index)
+
+
+func _art_path(id: String, color: Color) -> String:
+	if id == ID_RAMON:
+		return ART_RAMON
+	return ART_JUBILADO if color == COLOR_JUBILADO else ART_MOHOCRATA
 
 
 func _add_named(id: String, at: Vector2, label_key: String, is_reusable: bool) -> void:
@@ -242,6 +250,10 @@ func _build_investigation() -> void:
 	rain.rng = rng
 	rain.shelters = BetaLayout.SHELTERS
 	add_child(rain)
+	atmosphere = BetaAtmosphere.new()
+	atmosphere.player = player
+	atmosphere.hour_source = challenges.hour_source
+	add_child(atmosphere)
 
 
 func _connect_systems() -> void:
@@ -305,6 +317,7 @@ func _on_mine_exploded(mine: PetanqueMine) -> void:
 
 func _on_rain(is_raining: bool) -> void:
 	_rain_label.visible = is_raining
+	atmosphere.set_raining(is_raining)
 
 
 func _apply_save(data: Dictionary) -> bool:

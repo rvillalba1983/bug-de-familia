@@ -22,11 +22,7 @@ const WORRY_NOISE_INTERVAL: float = 3.0
 const SPIKES_STUN_TIME: float = 1.5
 const WAYPOINT_TOLERANCE: float = 6.0
 
-const COLOR_BODY: Color = Color("#e0651f")
-const COLOR_EYE: Color = Color("#35e0ff")
-const COLOR_SHADOW: Color = Color(0.0, 0.0, 0.0, 0.35)
-const COLOR_LIMB: Color = Color("#c9c4e0")
-const COLOR_LIMB_WORN: Color = Color("#e05050")
+const WALK_ANIMATION_SPEED: float = 11.0
 
 var facing: Vector2 = Vector2.DOWN
 var is_crouching: bool = false
@@ -42,6 +38,7 @@ var _autorun: bool = false
 var _run_toggled: bool = false
 var _noise_timer: float = 0.0
 var _worry_timer: float = 0.0
+var _walk_phase: float = 0.0
 var _boost_time: float = 0.0
 var _bubble_cooldown: float = 0.0
 
@@ -69,19 +66,16 @@ func _physics_process(delta: float) -> void:
 		facing = direction
 	var before: Vector2 = global_position
 	move_and_slide()
+	if velocity != Vector2.ZERO:
+		_walk_phase += delta * WALK_ANIMATION_SPEED
 	_after_move(global_position.distance_to(before), delta)
 	_collect_pickups()
 	queue_redraw()
 
 
 func _draw() -> void:
-	var height: float = current_height()
-	draw_circle(Vector2(0.0, 4.0), RADIUS, COLOR_SHADOW)
-	_draw_tail(height)
-	_draw_limbs(height)
-	var head: Vector2 = Vector2(0.0, -height * 0.5)
-	draw_circle(head, height * 0.42, COLOR_BODY)
-	draw_circle(head + facing * 14.0, 6.0, COLOR_EYE)
+	var height_ratio: float = current_height() / BODY_HEIGHT
+	ProtagonistArt.draw(self, facing, height_ratio, body, tail_color, tail_speaking, _walk_phase)
 
 
 func set_path(path: PackedVector2Array) -> void:
@@ -234,40 +228,3 @@ func _next_path_direction() -> Vector2:
 			return global_position.direction_to(target)
 		_path_index += 1
 	return Vector2.ZERO
-
-
-func _draw_tail(height: float) -> void:
-	var back: Vector2 = -facing
-	var side: Vector2 = back.orthogonal()
-	var base: Vector2 = Vector2(0.0, -height * 0.25)
-	var pulse: float = 1.0
-	if tail_speaking:
-		pulse = 0.75 + 0.25 * sin(Time.get_ticks_msec() * 0.02)
-	var points: PackedVector2Array = PackedVector2Array()
-	for index: int in range(9):
-		var along: float = float(index) * 7.0
-		points.append(base + back * along + side * sin(float(index) * 0.9) * 7.0)
-	var color: Color = tail_color
-	color.a = pulse
-	draw_polyline(points, color, 6.0 if tail_speaking else 4.0)
-
-
-func _draw_limbs(height: float) -> void:
-	var shoulder: float = -height * 0.45
-	var low: Vector2 = Vector2(36.0, shoulder + 22.0)
-	var high: Vector2 = Vector2(40.0, shoulder - 26.0)
-	_draw_limb(ModularBody.Slot.ARM_MAIN_LEFT, Vector2(-14.0, shoulder), Vector2(-low.x, low.y))
-	_draw_limb(ModularBody.Slot.ARM_MAIN_RIGHT, Vector2(14.0, shoulder), low)
-	var back: float = shoulder - 10.0
-	_draw_limb(ModularBody.Slot.ARM_EXTRA_LEFT, Vector2(-12.0, back), Vector2(-high.x, high.y))
-	_draw_limb(ModularBody.Slot.ARM_EXTRA_RIGHT, Vector2(12.0, back), high)
-	_draw_limb(ModularBody.Slot.LEG_LEFT, Vector2(-8.0, -8.0), Vector2(-10.0, 4.0))
-	_draw_limb(ModularBody.Slot.LEG_RIGHT, Vector2(8.0, -8.0), Vector2(10.0, 4.0))
-
-
-func _draw_limb(slot: ModularBody.Slot, from: Vector2, to: Vector2) -> void:
-	var piece: BodyPiece = body.equipped(slot)
-	if piece == null:
-		return
-	var ratio: float = piece.durability / BodyPiece.MAX_DURABILITY
-	draw_line(from, to, COLOR_LIMB_WORN.lerp(COLOR_LIMB, ratio), 6.0)

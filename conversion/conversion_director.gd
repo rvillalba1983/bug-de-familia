@@ -188,6 +188,7 @@ func _show_question() -> void:
 	step = Step.QUESTION
 	_time_total = ConversionSession.TIME_LIMIT if perks == null else perks.question_time()
 	_time_left = _time_total
+	screen.time_shown = _time_total
 	var question: Dictionary = _session.current()
 	var entries: Array = []
 	var options: Array = question["options"]

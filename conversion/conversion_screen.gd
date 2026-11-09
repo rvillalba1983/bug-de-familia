@@ -9,6 +9,10 @@ const VIEW_SIZE: Vector2 = Vector2(1920.0, 1080.0)
 const PANEL_HALF_WIDTH: float = 540.0
 const PANEL_MARGIN: float = 34.0
 const FADE_TIME: float = 0.18
+const TAUNT_WIDTH: float = 1080.0
+const TAUNT_TOP: float = 60.0
+const TAUNT_FONT_SIZE: int = 38
+const REMARK_FONT_SIZE: int = 30
 const TWO_COLUMNS_FROM: int = 5
 const TIME_LIMIT_SHOWN: float = 5.0
 const PANIC_FRACTION: float = 0.45
@@ -16,6 +20,8 @@ const PANIC_SHAKE: float = 9.0
 const VERDICT_SHAKE: float = 16.0
 const SHAKE_DECAY: float = 60.0
 
+## Segundos que muestra la cuenta atrás; Nihil.0 los alarga.
+var time_shown: float = TIME_LIMIT_SHOWN
 var buttons: Array[Button] = []
 
 var _backdrop: ColorRect
@@ -92,6 +98,8 @@ func add_remark(text: String, disabled_option: int) -> void:
 	var label: Label = Label.new()
 	label.text = text
 	label.add_theme_color_override(&"font_color", Palette.OBRA)
+	label.add_theme_font_size_override(&"font_size", REMARK_FONT_SIZE)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_box.add_child(label)
 	if disabled_option >= 0 and disabled_option < buttons.size():
@@ -105,15 +113,16 @@ func show_taunt(speaker: String, text: String, color: Color) -> void:
 	var label: Label = Label.new()
 	label.text = "%s: %s" % [speaker, text]
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	label.custom_minimum_size = Vector2(620.0, 0.0)
+	label.custom_minimum_size = Vector2(TAUNT_WIDTH, 0.0)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.add_theme_color_override(&"font_color", Palette.INK)
-	label.add_theme_font_size_override(&"font_size", 26)
+	label.add_theme_font_size_override(&"font_size", TAUNT_FONT_SIZE)
 	_taunt.add_child(label)
 	_shaker.add_child(_taunt)
-	_taunt.position = Vector2(1240.0, 150.0)
-	_taunt.rotation = deg_to_rad(-3.0)
+	_taunt.position = Vector2((VIEW_SIZE.x - TAUNT_WIDTH) * 0.5, TAUNT_TOP)
+	_taunt.rotation = deg_to_rad(-1.5)
 	_taunt.scale = Vector2.ZERO
-	_taunt.pivot_offset = Vector2(310.0, 40.0)
+	_taunt.pivot_offset = Vector2(TAUNT_WIDTH * 0.5, 50.0)
 	create_tween().tween_property(_taunt, "scale", Vector2.ONE, 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 
@@ -126,7 +135,7 @@ func set_time_fraction(fraction: float) -> void:
 	var danger: float = clampf(1.0 - left / PANIC_FRACTION, 0.0, 1.0)
 	var color: Color = Palette.OBRA.lerp(Palette.ROSA, 1.0 - left)
 	_bar.color = color
-	_count.text = ("%.1f" % (left * TIME_LIMIT_SHOWN)).replace(".", ",")
+	_count.text = ("%.1f" % (left * time_shown)).replace(".", ",")
 	_count.add_theme_color_override(&"font_color", color)
 	_count.scale = Vector2.ONE * (1.0 + 0.3 * danger * absf(sin(left * 40.0)))
 	_shake = maxf(_shake, PANIC_SHAKE * danger)

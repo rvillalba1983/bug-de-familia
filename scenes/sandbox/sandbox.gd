@@ -479,6 +479,8 @@ func _connect_systems() -> void:
 	conversion.answered.connect(ai.on_answered)
 	conversion.all_wrong.connect(ai.on_all_wrong)
 	conversion.advisor = ai.question_advice
+	conversion.perks = ai.perks
+	conversion.material_hinter = ai.material_hint
 	conversion.taunter = ai.question_taunt
 	panel.discarded.connect(ai.on_piece_discarded)
 	fight.pre_fight_started.connect(ai.say.bind("fight"))

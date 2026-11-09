@@ -66,21 +66,24 @@ func _perform(id: String) -> bool:
 			player.start_boost(BOOST_TIME)
 			return true
 		"a054":
-			if level.door.is_open or not _near(level.door_rects()[0].get_center(), HACK_RANGE):
+			if level.door.is_open or not _near(level.door_rects()[0].get_center(), HACK_RANGE * level.ai.perks.hack_factor()):
 				return false
 			door_hacked.emit()
+			level.ai.on_hacked()
 			return true
 		"a055":
 			var camera: SecurityCamera = level.security_camera
 			if not is_instance_valid(camera) or not _near(camera.global_position, HACK_RANGE):
 				return false
-			camera.blind(DISABLE_TIME)
+			camera.blind(DISABLE_TIME * level.ai.perks.hack_factor())
+			level.ai.on_hacked()
 			return true
 		"a056":
 			var drone: Drone = level.drone
 			if not is_instance_valid(drone) or not _near(drone.global_position, HACK_RANGE):
 				return false
-			drone.confuse(DISABLE_TIME)
+			drone.confuse(DISABLE_TIME * level.ai.perks.hack_factor())
+			level.ai.on_hacked()
 			return true
 		"a062":
 			level.noise_bus.emit_noise(player.get_global_mouse_position(), LURE_NOISE_RADIUS)

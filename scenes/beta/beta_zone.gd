@@ -317,6 +317,7 @@ func _build_investigation() -> void:
 func _connect_systems() -> void:
 	super()
 	investigation.flags_changed.connect(challenges.apply_flags)
+	rain.warning.connect(ai.warn_rain)
 	rain.started.connect(_on_rain.bind(true))
 	rain.ended.connect(_on_rain.bind(false))
 	protagonist.connect_world()
@@ -356,12 +357,27 @@ func _build_interface() -> void:
 	irc.set_topic(tr(_objective_key()))
 	ai.chat = irc
 	layer.add_child(ControlsWindow.new())
+	var spectres: AiSpectres = AiSpectres.new()
+	spectres.team = ai.team
+	layer.add_child(spectres)
+	pause.paused_changed.connect(spectres.set_shown)
+	ai.route_hint = challenges.next_route
+	ai.treason_hint = _least_friendly_species
 	var controls: ControlsPanel = ControlsPanel.new()
 	controls.pause = pause
 	add_child(controls)
 	var hint: KeyHint = KeyHint.new()
 	hint.player = player
 	actors.add_child(hint)
+
+
+## El bando que peor te ve; Conspi-Ranoia acierta solo a veces.
+func _least_friendly_species() -> String:
+	var standing: Dictionary = live_world.sim.player_standing
+	var worst: bool = float(standing.get("jubilado", 0.0)) < float(standing.get("mohocrata", 0.0))
+	if rng.randf() < 0.35:
+		worst = not worst
+	return "Jubilados" if worst else "Mohócratas"
 
 
 func _id_of(enemy: Guard) -> String:

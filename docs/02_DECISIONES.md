@@ -135,6 +135,13 @@ Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barr
 - Las zonas nuevas, los tres niveles de simulación y el viaje entre puntos de guardado se aplazan a una etapa post-beta. La fase 8 se hace dentro de la zona beta, sin cambiar lo decidido para el juego completo.
 - Claude escribe las 36 festividades (`data/world/festivals.json`) y el director tacha las que no le gusten.
 
+## Fase 9 (9-nov)
+- Las otras cuatro razas y los 13 progenitores restantes se aplazan a la etapa post-beta. La zona beta sigue con solo Mohócratas y Jubilados.
+- La música se sintetiza por código hasta las 100 melodías, sabiendo que serán más parecidas entre sí.
+- Controles: chapa con F1 y ventana tipo chat arriba a la izquierda.
+- La silueta del cuerpo se usa también al cambiar piezas.
+- En la pausa táctica aparecen todas las IAs como espectros que divagan. No gasta tokens.
+
 ## Autonomía de Claude
 - Una fase por conversación: termina al fusionar en `main`, se anota el avance en `03_ESTADO.md` y se avisa al usuario de que hay que cambiar de conversación (8-nov).
 **Decide solo y documenta:** módulos, algoritmos, datos, herramientas locales, orden técnico de tareas, parámetros provisionales, refactorizaciones, optimizaciones medidas y decisiones artísticas menores.

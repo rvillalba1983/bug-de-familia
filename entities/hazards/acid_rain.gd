@@ -2,6 +2,7 @@ class_name AcidRain
 extends Node
 ## Lluvia ácida ocasional: desgasta las piezas metálicas de quien no esté a cubierto.
 
+signal warning
 signal started
 signal ended
 
@@ -9,6 +10,7 @@ signal ended
 const DRY_TIME_MIN: float = 120.0
 const DRY_TIME_MAX: float = 480.0
 const RAIN_TIME: float = 30.0
+const WARNING_TIME: float = 10.0
 const WEAR_PER_SECOND: float = 0.4
 
 var player: Player
@@ -18,6 +20,7 @@ var raining: bool = false
 var rng: RandomNumberGenerator
 
 var _time_left: float = 0.0
+var _warned: bool = false
 
 
 func _ready() -> void:
@@ -26,6 +29,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_time_left -= delta
+	if not raining and not _warned and _time_left <= WARNING_TIME:
+		_warned = true
+		warning.emit()
 	if _time_left <= 0.0:
 		_set_raining(not raining)
 	if raining and not is_sheltered():

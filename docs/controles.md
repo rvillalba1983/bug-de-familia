@@ -23,6 +23,7 @@ Basados en los de World of Warcraft, adaptados a una cámara de ángulo fijo. Ap
 | Recoger repuestos | Pasar por encima | Hecho |
 | Acciones de las piezas y respuestas | Teclas 1 a 6 | Hecho |
 | Piezas del cuerpo | C | Hecho |
+| Ver todos los controles | F1 (la misma tecla cierra) | Hecho |
 | Inventario | B | Fase 3 |
 | Mapa | M | Fases posteriores |
 | Menú | Esc | Fases posteriores |

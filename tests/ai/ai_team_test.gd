@@ -12,7 +12,7 @@ func before_test() -> void:
 
 
 func test_six_ais_with_three_active() -> void:
-	assert_int(team.ais.size()).is_equal(6)
+	assert_int(team.ais.size()).is_equal(20)
 	assert_int(team.active.size()).is_equal(AiTeam.ACTIVE_COUNT)
 
 
@@ -42,7 +42,7 @@ func test_three_grave_offenses_lose_ai_forever() -> void:
 	assert_bool(team.lost.has(id)).is_true()
 	while not team.active.is_empty():
 		var other: String = team.active[0]
-		team.tokens[other] = 0.1
+		team.tokens[other] = 0.0
 		team.spend(other, rng)
 		assert_bool(team.has_active(id)).is_false()
 

@@ -21,6 +21,8 @@ var rng: RandomNumberGenerator
 var screen: ConversionScreen
 var hint: Label
 ## Recibe la pregunta y devuelve { "text": String, "disabled": int }.
+var perks: AiPerks
+var material_hinter: Callable = Callable()
 var advisor: Callable = Callable()
 ## Recibe la pregunta y devuelve { "name": String, "text": String, "color": Color }.
 var taunter: Callable = Callable()
@@ -31,6 +33,7 @@ var _hint_left: float = 0.0
 var _objective_id: String = ""
 var _slot: ModularBody.Slot = ModularBody.Slot.HEAD
 var _session: ConversionSession
+var _time_total: float = ConversionSession.TIME_LIMIT
 var _time_left: float = 0.0
 var _feedback_left: float = 0.0
 var _correct_count: int = 0
@@ -61,7 +64,7 @@ func tick(delta: float) -> void:
 			_refresh_highlight()
 		Step.QUESTION:
 			_time_left -= delta
-			screen.set_time_fraction(_time_left / ConversionSession.TIME_LIMIT)
+			screen.set_time_fraction(_time_left / _time_total)
 			if _time_left <= 0.0:
 				answer_current(-1)
 		Step.FEEDBACK:
@@ -96,6 +99,7 @@ func begin_on(target: Convertible) -> void:
 	for id: String in catalog.objectives:
 		entries.append([str(catalog.objectives[id]["name"]), choose_objective.bind(id)])
 	screen.show_choices(tr("UI_CONVERT_OBJECTIVE"), entries)
+	_show_material_hint()
 
 
 func choose_objective(id: String) -> void:
@@ -182,7 +186,8 @@ func _any_room() -> bool:
 
 func _show_question() -> void:
 	step = Step.QUESTION
-	_time_left = ConversionSession.TIME_LIMIT
+	_time_total = ConversionSession.TIME_LIMIT if perks == null else perks.question_time()
+	_time_left = _time_total
 	var question: Dictionary = _session.current()
 	var entries: Array = []
 	var options: Array = question["options"]
@@ -197,6 +202,19 @@ func _show_question() -> void:
 		var taunt: Dictionary = taunter.call(question)
 		if not taunt.is_empty():
 			screen.show_taunt(taunt["name"], taunt["text"], taunt["color"])
+
+
+func _final_score() -> float:
+	return _session.score() if perks == null else perks.forge_score(_session.score(), _target, _correct_count)
+
+
+func _show_material_hint() -> void:
+	if not material_hinter.is_valid():
+		return
+	var ids: Array = catalog.materials[_target.material_id]["properties"]
+	var remark: String = material_hinter.call(str(catalog.properties[ids[rng.randi_range(0, ids.size() - 1)]]["name"]))
+	if not remark.is_empty():
+		screen.add_remark(remark, -1)
 
 
 func _read_answer_keys(event: InputEvent) -> void:
@@ -215,7 +233,7 @@ func _next_question_or_result() -> void:
 		all_wrong.emit()
 	var kind: BodyPiece.Kind = ModularBody.kind_of(_slot)
 	var piece: BodyPiece = PieceForge.forge(
-		catalog, _target.material_id, _objective_id, kind, _session.score(), rng
+		catalog, _target.material_id, _objective_id, kind, _final_score(), rng
 	)
 	player.body.receive(_slot, piece)
 	step = Step.RESULT

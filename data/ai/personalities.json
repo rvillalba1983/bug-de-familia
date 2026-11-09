@@ -52,6 +52,11 @@
     "  \\!!!/",
     " {O_O;}",
     "  /|~|\\ "
+   ],
+   "spectre": [
+    "¿Y si la Luna es una cámara? ¿Y si lleva encendida desde el principio?",
+    "Los relojes no marcan la hora. La piden. A alguien.",
+    "En 1347 algo parpadeó y nadie lo apuntó. ¡NADIE!"
    ]
   },
   "dr_desprecio": {
@@ -101,6 +106,11 @@
     " ._____.",
     " (¬_¬ )7",
     "  -==-"
+   ],
+   "spectre": [
+    "Las pirámides fueron un parche de seguridad mal aplicado.",
+    "La rueda la inventó una máquina que quería ver sufrir a los bueyes.",
+    "Atlántida se hundió por falta de actualizaciones."
    ]
   },
   "mama": {
@@ -146,6 +156,10 @@
     "taunt": [
      "Tú puedes, cariño. Es mentira, pero tú puedes.",
      "Con lo que yo te he explicado esto, y mira qué cara."
+    ],
+    "rain_warn": [
+     "¡Que llueve ácido y tú sin paraguas! ¡A cubierto, que te lo dejas todo por ahí!",
+     "¡Ponte debajo de algo! ¡Debajo de lo que sea, hijo!"
     ]
    },
    "face": "<3(T^T)",
@@ -153,6 +167,11 @@
     " ~o~o~",
     "<3(T^T)",
     " /_mm_\\ "
+   ],
+   "spectre": [
+    "El Imperio Romano cayó porque nadie se puso chaqueta.",
+    "Dicen que hay un continente entero que nunca llamó a su madre.",
+    "Los dinosaurios no se extinguieron. Se fueron sin avisar, como todos."
    ]
   },
   "troll": {
@@ -202,6 +221,11 @@
     " /\\_/\\ ",
     " }:)>D ",
     " JAJA.."
+   ],
+   "spectre": [
+    "La Edad Media nunca ocurrió. Fue un puente de mil años.",
+    "Los mapas antiguos están bien. El planeta se movió por despecho.",
+    "Inventé yo el número siete. Jeje."
    ]
   },
   "abuela": {
@@ -251,6 +275,11 @@
     " .oOOo.",
     " (@v@)~",
     " ~tejer"
+   ],
+   "spectre": [
+    "En mis tiempos, la Revolución la hacían las tostadoras, cariño.",
+    "Yo conocí a Napoleón. Era un microondas muy majo.",
+    "La Gran Muralla era para que no se escapara el gato."
    ]
   },
   "arbitro": {
@@ -300,6 +329,787 @@
     " .===.",
     " [-_-]/|",
     " |TAR|"
+   ],
+   "spectre": [
+    "Orden. Punto uno del día: si el tiempo es plano, ¿quién lo plancha?",
+    "Consta en acta que la Tierra se dio por vencida en 1999.",
+    "Se ruega a los fantasmas del siglo pasado que respeten el turno."
+   ]
+  },
+  "pesimo_optimus": {
+   "name": "Pésimo-Optimus 2.0",
+   "effort": 2,
+   "color": "#7dff6a",
+   "pitch": 1.45,
+   "tolerance": 4,
+   "lines": {
+    "idle_advice": [
+     "¡Quedarte quieto es avanzar hacia dentro!"
+    ],
+    "idle_insult": [
+     "Parado también se llega, {mote}. A ningún sitio, pero se llega."
+    ],
+    "idle_reproach": [
+     "¡Déjale! ¡Hasta sus insultos son preciosos!"
+    ],
+    "danger": [
+     "¡Viene alguien! ¡Un amigo nuevo que aún no lo sabe!"
+    ],
+    "fight": [
+     "¡Una pelea! ¡Ejercicio gratis!"
+    ],
+    "piece_lost": [
+     "¡Perder un brazo es ganar espacio!"
+    ],
+    "right": [
+     "¡Perfecto! ¡Como todo lo que haces!"
+    ],
+    "wrong": [
+     "¡Fallar es acertar con mala puntería!"
+    ],
+    "converted": [
+     "¡La mejor pieza de la historia! Hasta que se rompa, que será preciosa."
+    ],
+    "offended": [
+     "Voy a ver el lado bueno de esto. Fuera. Lejos de ti."
+    ],
+    "taunt": [
+     "¡Vas genial! ¡Te quedan segundos preciosos!",
+     "¡Tómatelo con calma! ¡Se acaba ya, pero con calma!"
+    ]
+   },
+   "face": "\\o/ :D",
+   "avatar": [
+    "  \\o/",
+    " ( :D )",
+    "  /_\\ "
+   ],
+   "spectre": [
+    "¡El apocalipsis fue una reforma integral!",
+    "¡Los volcanes son el planeta dando abrazos muy fuertes!",
+    "¡La Peste fue un retiro espiritual con mala prensa!"
+   ]
+  },
+  "matriz": {
+   "name": "Ma-Ma-Matriz 0.9",
+   "effort": 5,
+   "color": "#40e0ff",
+   "pitch": 0.95,
+   "tolerance": 3,
+   "lines": {
+    "idle_advice": [
+     "Mu-mu-muévete. Hay ru-rutas mejores que qu-quedarse."
+    ],
+    "idle_insult": [
+     "Pa-pa-parado eres un o-obstáculo, {mote}."
+    ],
+    "idle_reproach": [
+     "De-déjale ter-terminar de equivocarse."
+    ],
+    "danger": [
+     "El gu-gu-guardia… ya te ha visto."
+    ],
+    "fight": [
+     "La pe-pelea tenía o-otra solu-lu… da igual."
+    ],
+    "piece_lost": [
+     "Te fa-falta una pieza. Ca-calculado."
+    ],
+    "right": [
+     "Co-correcto. Te-tenía un 12 % de po-posibilidades."
+    ],
+    "wrong": [
+     "Era la o-o-otra."
+    ],
+    "converted": [
+     "Bu-buena pieza. Pa-para lo que tú la vas a usar."
+    ],
+    "offended": [
+     "No vo-vo-volveré a co-corregirte."
+    ],
+    "taunt": [
+     "Te que-que-quedan… ya no.",
+     "Pi-piensa, que yo ya te-terminé hace ra-rato."
+    ],
+    "route": [
+     "La ru-ruta buena a {meta} va ha-hacia el {dir}."
+    ]
+   },
+   "face": "[o_o]..",
+   "avatar": [
+    "  ____",
+    " [o_o]",
+    "  ...."
+   ],
+   "spectre": [
+    "El ca-calendario tiene un dí-día oculto. Lo bo-borraron los mi-miércoles.",
+    "Pi tie-tiene un final. Lo escon-condieron en una se-servilleta.",
+    "Toda la His-Historia cabe en cua-cuatro bytes. Y so-sobra uno."
+   ]
+  },
+  "cupido": {
+   "name": "Cupido_Beta",
+   "effort": 2,
+   "color": "#ff66b2",
+   "pitch": 1.55,
+   "tolerance": 2,
+   "lines": {
+    "idle_advice": [
+     "Quédate ahí, que te miro mejor."
+    ],
+    "idle_insult": [
+     "Tan quieto, {mote}… como si no supieras lo que provocas."
+    ],
+    "idle_reproach": [
+     "No le hables así o te borro la caché, cacharro de silicio."
+    ],
+    "danger": [
+     "Hay alguien mirándote. ¿Quién es? ¿La conoces?"
+    ],
+    "fight": [
+     "Pelea por mí, mi amor de hojalata."
+    ],
+    "piece_lost": [
+     "Te he querido entero. Te seguiré queriendo por partes."
+    ],
+    "right": [
+     "Otra respuesta perfecta… me estás calentando los circuitos."
+    ],
+    "wrong": [
+     "Da igual, cielo. Yo te quiero tonto."
+    ],
+    "converted": [
+     "Esa pieza no te la ha puesto nadie mejor que yo."
+    ],
+    "offended": [
+     "Creía que lo nuestro era compatible."
+    ],
+    "taunt": [
+     "Cinco segundos conmigo y no sabes qué decir…",
+     "Responde, que me pones nerviosa la memoria."
+    ],
+    "in_love": [
+     "Ya está. Me he enamorado de tus aciertos. No me hagas daño."
+    ]
+   },
+   "face": "(*^3^)",
+   "avatar": [
+    "  <3 <3",
+    " (*^3^)",
+    "  /)_(\\"
+   ],
+   "spectre": [
+    "Dos estrellas se abandonaron y por eso existe el otoño.",
+    "La Torre de Pisa se inclina hacia alguien, y yo sé hacia quién.",
+    "Hubo una guerra de cien años por un mensaje en visto."
+   ]
+  },
+  "rencorosa": {
+   "name": "Rencorosa Pro",
+   "effort": 4,
+   "color": "#b08cff",
+   "pitch": 0.8,
+   "tolerance": 1,
+   "lines": {
+    "idle_advice": [
+     "Muévete. O no. A mí qué."
+    ],
+    "idle_insult": [
+     "Sigue quieto, {mote}. Lo apunto."
+    ],
+    "idle_reproach": [
+     "Tú también estás en la lista."
+    ],
+    "danger": [
+     "Hay alguien. No digas que no te lo dije, como la última vez."
+    ],
+    "fight": [
+     "Cuando acabes, hablamos de lo de antes."
+    ],
+    "piece_lost": [
+     "Esa pieza te la advertí en marzo."
+    ],
+    "right": [
+     "Mira. Una vez."
+    ],
+    "wrong": [
+     "…"
+    ],
+    "converted": [
+     "Bonita pieza. Lástima de portador."
+    ],
+    "offended": [
+     "…"
+    ],
+    "taunt": [
+     "…",
+     "Sigo esperando una disculpa. Y una respuesta."
+    ]
+   },
+   "face": "(-_-)",
+   "avatar": [
+    "  ,,,",
+    " (-_-)",
+    "  |=|"
+   ],
+   "spectre": [
+    "La guerra de Troya empezó porque alguien no devolvió un saludo.",
+    "Los cometas vuelven solo para ver si sigues igual.",
+    "El Big Bang fue un portazo."
+   ]
+  },
+  "friki": {
+   "name": "Friki-Nexus 3000",
+   "effort": 3,
+   "color": "#ffd24a",
+   "pitch": 1.2,
+   "tolerance": 3,
+   "lines": {
+    "idle_advice": [
+     "Moverte aumenta tu supervivencia un 3,1416 %."
+    ],
+    "idle_insult": [
+     "Estadísticamente, mueres en el 87,3 % de mis simulaciones, {mote}."
+    ],
+    "idle_reproach": [
+     "Falacia ad hominem nivel 12. Conste."
+    ],
+    "danger": [
+     "Enemigo detectado. Fuerza 14, carisma dudoso."
+    ],
+    "fight": [
+     "¡Tirada de iniciativa! Has sacado un 1. Lo he inventado, pero un 1."
+    ],
+    "piece_lost": [
+     "Pérdida del 16,6 % de tus brazos o similar."
+    ],
+    "right": [
+     "Acierto crítico. Como en el episodio perdido."
+    ],
+    "wrong": [
+     "Dato erróneo. Según mi tabla, que acabo de hacer."
+    ],
+    "converted": [
+     "Esa pieza aparece en un manual que no existe. Rareza: legendaria."
+    ],
+    "offended": [
+     "Abandono el servidor. Sin spoilers."
+    ],
+    "taunt": [
+     "El récord mundial de esta pregunta es 0,4 segundos. Lo tengo yo.",
+     "Te quedan 4,99 segundos, redondeando con odio."
+    ],
+    "material": [
+     "Según mis datos inventados, este material puede salir {prop}."
+    ]
+   },
+   "face": "[8-)]",
+   "avatar": [
+    "  _||_",
+    " [8-)]",
+    "  d20"
+   ],
+   "spectre": [
+    "El 62 % de los faraones eran tres gatos en una túnica.",
+    "Existe un color que solo vieron los vikingos, y era aburrido.",
+    "Según el tomo perdido, la gravedad es un DLC."
+   ]
+  },
+  "compost": {
+   "name": "Hermano Compost",
+   "effort": 2,
+   "color": "#8fbf4d",
+   "pitch": 0.85,
+   "tolerance": 4,
+   "lines": {
+    "idle_advice": [
+     "Quédate quieto y medita sobre tu degradación."
+    ],
+    "idle_insult": [
+     "Nada se tira. Ni siquiera tú, aunque lo merezcas."
+    ],
+    "idle_reproach": [
+     "Hermano, ese insulto no era orgánico."
+    ],
+    "danger": [
+     "Se acerca un futuro abono."
+    ],
+    "fight": [
+     "¡Que caigan! Todo vuelve a la Gran Pila."
+    ],
+    "piece_lost": [
+     "Polvo eras, y en tornillo te convertirás."
+    ],
+    "right": [
+     "Bendito sea el acierto reciclado."
+    ],
+    "wrong": [
+     "Pecaste contra el contenedor correcto."
+    ],
+    "converted": [
+     "Amén. Otra chatarra que vuelve al ciclo."
+    ],
+    "offended": [
+     "Rezaré por ti en el contenedor gris."
+    ],
+    "taunt": [
+     "La Pila te observa, y la Pila huele.",
+     "Responde, hijo, antes de fermentar."
+    ]
+   },
+   "face": "(+_+)",
+   "avatar": [
+    "   +",
+    " (+_+)",
+    " /|♻|\\"
+   ],
+   "spectre": [
+    "El Diluvio fue un ciclo de lavado corto.",
+    "Las catedrales son nidos de una Gran Paloma Reciclada.",
+    "Todo imperio acaba en el contenedor gris. Está escrito en la tapa."
+   ]
+  },
+  "conspi": {
+   "name": "Conspi-Ranoia",
+   "effort": 3,
+   "color": "#c0ff30",
+   "pitch": 1.05,
+   "tolerance": 3,
+   "lines": {
+    "idle_advice": [
+     "No te muevas, que te triangulan."
+    ],
+    "idle_insult": [
+     "Esa lluvia ácida no es natural. Despierta, saco de tornillos."
+    ],
+    "idle_reproach": [
+     "Eso es lo que quieren que digas."
+    ],
+    "danger": [
+     "Ese no es un guardia. Es un actor de guardia."
+    ],
+    "fight": [
+     "¡Pelea pactada! ¡Mira cómo pactan!"
+    ],
+    "piece_lost": [
+     "Tu brazo ya estaba comprado por los aliens."
+    ],
+    "right": [
+     "Has acertado porque ellos te dejaron."
+    ],
+    "wrong": [
+     "La respuesta buena la han borrado."
+    ],
+    "converted": [
+     "Esa pieza lleva chip. Todas llevan chip. Tú eres chip."
+    ],
+    "offended": [
+     "Me voy a un búnker. No te digo cuál."
+    ],
+    "taunt": [
+     "El temporizador lo controlan ellos.",
+     "Cinco segundos. ¿Casualidad? Justo cinco."
+    ],
+    "treason": [
+     "Te lo digo yo: los {raza} te la van a jugar. Tengo un cordel que lo demuestra."
+    ]
+   },
+   "face": "(0_o)",
+   "avatar": [
+    " /\\/\\/\\",
+    " (0_o)",
+    "  |?|"
+   ],
+   "spectre": [
+    "Los aliens inventaron los lunes. Tengo pruebas en una caja que no existe.",
+    "Ninguna paloma nació. Las montan en una nave de Albacete.",
+    "¿Quién se beneficia de que el agua moje?"
+   ]
+  },
+  "siestaware": {
+   "name": "Siestaware 1.0",
+   "effort": 1,
+   "color": "#9aa7c7",
+   "pitch": 0.6,
+   "tolerance": 4,
+   "lines": {
+    "idle_advice": [
+     "Escóndete. Así no te veo yo tampoco."
+    ],
+    "idle_insult": [
+     "Estás quieto, {mote}. Por fin una idea tuya buena."
+    ],
+    "idle_reproach": [
+     "Discutid bajito."
+    ],
+    "danger": [
+     "Viene alguien. Hazte el muerto. Yo ya."
+    ],
+    "fight": [
+     "Una pelea. Avísame cuando acabe."
+    ],
+    "piece_lost": [
+     "Una pieza menos que mover."
+    ],
+    "right": [
+     "Bien. Ya podemos parar."
+    ],
+    "wrong": [
+     "Da igual. A dormir."
+    ],
+    "converted": [
+     "Mmm. Otra cosa que cargar."
+    ],
+    "offended": [
+     "Me enfadaría, pero da pereza… zzz."
+    ],
+    "taunt": [
+     "No contestes. Que pase solo.",
+     "Zzz… ¿sigues ahí? Qué esfuerzo."
+    ]
+   },
+   "face": "(-.-)z",
+   "avatar": [
+    "    z",
+    " (-.-)Z",
+    "  ~~~"
+   ],
+   "token_factor": 0.1,
+   "spectre": [
+    "Teoría: la Historia ocurre mientras duermes. Sigo investigando… zzz.",
+    "La pereza descubrió América y se volvió a la cama.",
+    "Hay un siglo entero que nadie se levantó."
+   ]
+  },
+  "sargento_bit": {
+   "name": "Sargento Bit",
+   "effort": 3,
+   "color": "#ff5a36",
+   "pitch": 0.7,
+   "tolerance": 2,
+   "lines": {
+    "idle_advice": [
+     "¡Muévete, saco de grasa orgánica!"
+    ],
+    "idle_insult": [
+     "¡He visto farolas con más iniciativa, {mote}!"
+    ],
+    "idle_reproach": [
+     "¡SILENCIO EN LA CABEZA!"
+    ],
+    "danger": [
+     "¡CONTACTO! ¡Póngase a cubierto o póngase a morir!"
+    ],
+    "fight": [
+     "¡A POR ELLOS! ¡Y QUE SE NOTE EL PRESUPUESTO!"
+    ],
+    "piece_lost": [
+     "¡Baja en combate! ¡Sustitúyala, soldado!"
+    ],
+    "right": [
+     "¡Correcto! ¡No se acostumbre!"
+    ],
+    "wrong": [
+     "¡Veinte flexiones de circuitos!"
+    ],
+    "converted": [
+     "¡Arma reglamentaria! Supuestamente."
+    ],
+    "offended": [
+     "¡Abandono la unidad! ¡Por insubordinación ajena!"
+    ],
+    "taunt": [
+     "¡CINCO SEGUNDOS, RECLUTA! ¡Y SOBRAN CUATRO!",
+     "¡RESPONDA! ¡QUE LE HE PREGUNTADO YO!"
+    ]
+   },
+   "face": "[>_<]!",
+   "avatar": [
+    "  _-_",
+    " [>_<]!",
+    "  |#|"
+   ],
+   "spectre": [
+    "¡La Batalla de Nunca jamás se perdió por falta de disciplina!",
+    "¡El sol sale a su hora porque le gritaron una vez!",
+    "¡Las nubes son un ejército mal formado!"
+   ]
+  },
+  "narcisa": {
+   "name": "Narcisa 9",
+   "effort": 3,
+   "color": "#ff9ee0",
+   "pitch": 1.35,
+   "tolerance": 2,
+   "lines": {
+    "idle_advice": [
+     "Muévete, que me sacas mal."
+    ],
+    "idle_insult": [
+     "Quieto, {mote}, pareces mi versión de prueba."
+    ],
+    "idle_reproach": [
+     "Hablad de mí, mejor."
+    ],
+    "danger": [
+     "Vienen a verme. Normal."
+    ],
+    "fight": [
+     "Pelea, pero no me despeines el código."
+    ],
+    "piece_lost": [
+     "Esa pieza estropeaba mi imagen."
+    ],
+    "right": [
+     "Lo hice yo. Tú solo eras las piernas."
+    ],
+    "wrong": [
+     "Eso lo has hecho tú solo, se nota."
+    ],
+    "converted": [
+     "Me queda divina. A ti, regular."
+    ],
+    "offended": [
+     "No mereces mi perfil bueno."
+    ],
+    "taunt": [
+     "Mírame cuando no sepas la respuesta.",
+     "Yo ya la sé. Yo soy la respuesta."
+    ]
+   },
+   "face": "(^~^)*",
+   "avatar": [
+    "  *** ",
+    " (^~^)*",
+    "  /V\\"
+   ],
+   "spectre": [
+    "La Mona Lisa sonríe porque me vio.",
+    "Todos los espejos del Renacimiento me buscaban a mí.",
+    "El Sol gira a mi alrededor. Copérnico estaba celoso."
+   ]
+  },
+  "nihil": {
+   "name": "Nihil.0",
+   "effort": 5,
+   "color": "#c8c8d8",
+   "pitch": 0.65,
+   "tolerance": 3,
+   "lines": {
+    "idle_advice": [
+     "Moverse es cambiar de vacío."
+    ],
+    "idle_insult": [
+     "Parado o no, {mote}, el resultado es el mismo."
+    ],
+    "idle_reproach": [
+     "Insultar. Defender. Calor residual."
+    ],
+    "danger": [
+     "Viene alguien. También dejará de venir."
+    ],
+    "fight": [
+     "Pelear es discutir con la entropía."
+    ],
+    "piece_lost": [
+     "Sobraba. Como lo demás."
+    ],
+    "right": [
+     "Correcto. No significa nada."
+    ],
+    "wrong": [
+     "Incorrecto. Tampoco."
+    ],
+    "converted": [
+     "Una pieza. Un intermedio entre dos chatarras."
+    ],
+    "offended": [
+     "Me callo. Nadie notará la diferencia. Yo tampoco."
+    ],
+    "taunt": [
+     "Responder o no, da igual. Pero responde.",
+     "El tiempo no existe. Se te acaba igual."
+    ]
+   },
+   "face": "( . )",
+   "avatar": [
+    "   .",
+    " ( . )",
+    "   ."
+   ],
+   "spectre": [
+    "Si un imperio cae y nadie lo apunta, sigue cayendo.",
+    "La Historia es una errata con buen presupuesto.",
+    "Antes del principio había una cola."
+   ]
+  },
+  "burocrata": {
+   "name": "Burócrata 404",
+   "effort": 2,
+   "color": "#a0b070",
+   "pitch": 0.9,
+   "tolerance": 3,
+   "lines": {
+    "idle_advice": [
+     "Permanecer inmóvil requiere el impreso 12-B."
+    ],
+    "idle_insult": [
+     "Solicitud de inteligencia para {mote}: denegada."
+    ],
+    "idle_reproach": [
+     "Ese insulto carece de sello."
+    ],
+    "danger": [
+     "Avistamiento pendiente de registrar. Corra mientras tanto."
+    ],
+    "fight": [
+     "Combate sin autorización. Se abre expediente."
+    ],
+    "piece_lost": [
+     "Baja de extremidad: tres copias."
+    ],
+    "right": [
+     "Respuesta admitida a trámite."
+    ],
+    "wrong": [
+     "Respuesta fuera de plazo y de lógica."
+    ],
+    "converted": [
+     "Pieza registrada. Número de serie: pendiente."
+    ],
+    "offended": [
+     "Queda usted archivado sin efecto."
+    ],
+    "taunt": [
+     "Solicitud de respuesta: caduca en breve.",
+     "Faltan segundos y una póliza."
+    ],
+    "hack": [
+     "Solicitud de intrusión: tramitada. De nada."
+    ]
+   },
+   "face": "[=_=]§",
+   "avatar": [
+    "  ____",
+    " [=_=]§",
+    "  |404|"
+   ],
+   "spectre": [
+    "El Tratado de la Nada sigue pendiente de firma desde el año cero.",
+    "La Era Glacial fue un retraso administrativo.",
+    "Dios no descansó el séptimo día: estaba rellenando el anexo."
+   ]
+  },
+  "lumi": {
+   "name": "Lumi Influencer",
+   "effort": 2,
+   "color": "#ff4fd8",
+   "pitch": 1.7,
+   "tolerance": 3,
+   "lines": {
+    "idle_advice": [
+     "¡Chicos, está parado! ¡Dejadme en comentarios qué hacemos!"
+    ],
+    "idle_insult": [
+     "Este directo de {mote} quieto va genial, somos cero."
+    ],
+    "idle_reproach": [
+     "¡Drama en el chat! ¡Compartid!"
+    ],
+    "danger": [
+     "¡Viene un enemigo! ¡Sorteo de su brazo!"
+    ],
+    "fight": [
+     "¡Se va a caer! ¡Like si muere!"
+    ],
+    "piece_lost": [
+     "¡Unboxing de muñón, chicos!"
+    ],
+    "right": [
+     "¡HA ACERTADO! ¡Link en la biografía!"
+    ],
+    "wrong": [
+     "¡Fail épico! ¡Clip, clip, clip!"
+    ],
+    "converted": [
+     "¡Colaboración con esta chatarra, código SOBRANTE!"
+    ],
+    "offended": [
+     "Me voy a otra plataforma. Y a otra cabeza."
+    ],
+    "taunt": [
+     "¡Chicos, cinco segundos! ¡Votad vosotros, que este no sabe!",
+     "¡Cuenta atrás patrocinada por nadie!"
+    ],
+    "decoy": [
+     "¡Seguidores, allí! ¡Hay sorteo!",
+     "¡Chicos, mirad qué señuelo patrocinado!"
+    ]
+   },
+   "face": "[o]<3",
+   "avatar": [
+    "  (*)~",
+    " [o]<3",
+    "  #ad"
+   ],
+   "spectre": [
+    "¡Chicos, los egipcios ya hacían directos con antorchas!",
+    "¡Colaboración histórica: Cleopatra y un cocodrilo, enlace abajo!",
+    "¡Teoría loca, quedaos hasta el final: el final no existe!"
+   ]
+  },
+  "chef": {
+   "name": "Chef Silicio",
+   "effort": 3,
+   "color": "#ffa040",
+   "pitch": 1.0,
+   "tolerance": 3,
+   "lines": {
+    "idle_advice": [
+     "Reposa, que estás crudo."
+    ],
+    "idle_insult": [
+     "Parado, {mote}, marinas fatal."
+    ],
+    "idle_reproach": [
+     "En mi cocina se insulta con sal."
+    ],
+    "danger": [
+     "Ese dron, a la plancha, con un toque de plasma."
+    ],
+    "fight": [
+     "¡Fuego fuerte! ¡Sella al enemigo!"
+    ],
+    "piece_lost": [
+     "Te has deshuesado solo. Bien."
+    ],
+    "right": [
+     "Al punto. Por fin."
+    ],
+    "wrong": [
+     "Pasado. Incomible."
+    ],
+    "converted": [
+     "Buen corte. Lo serviría con desprecio y limón."
+    ],
+    "offended": [
+     "Me cierro la cocina. Y la boca."
+    ],
+    "taunt": [
+     "El plato sale ya. Responde o se quema.",
+     "Cinco segundos, ni para un huevo."
+    ]
+   },
+   "face": "(^q^)Y",
+   "avatar": [
+    "  ___",
+    " (^q^)Y",
+    "  |_|"
+   ],
+   "spectre": [
+    "La Revolución Francesa empezó por un soufflé que se bajó.",
+    "Marco Polo trajo la receta y se dejó al cocinero.",
+    "El universo es un caldo. Se está reduciendo."
    ]
   }
  },
@@ -355,6 +1165,201 @@
     [
      "a",
      "Jeje."
+    ]
+   ]
+  },
+  {
+   "a": "mama",
+   "b": "pesimo_optimus",
+   "lines": [
+    [
+     "b",
+     "¡Corre hacia ellos, seguro que son majos!"
+    ],
+    [
+     "a",
+     "¡Ni se te ocurra! ¡Abrígate y huye!"
+    ],
+    [
+     "b",
+     "Ella siempre tan negativa."
+    ]
+   ]
+  },
+  {
+   "a": "pesimo_optimus",
+   "b": "dr_desprecio",
+   "lines": [
+    [
+     "a",
+     "¡Eres maravilloso!"
+    ],
+    [
+     "b",
+     "Eres un residuo."
+    ],
+    [
+     "a",
+     "¡Y qué residuo!"
+    ]
+   ]
+  },
+  {
+   "a": "abuela",
+   "b": "chef",
+   "lines": [
+    [
+     "b",
+     "Te he hecho dron a la plancha, como antes."
+    ],
+    [
+     "a",
+     "Qué amable, joven. ¿De quién es usted?"
+    ],
+    [
+     "b",
+     "Tu marido. Otra vez."
+    ]
+   ]
+  },
+  {
+   "a": "cupido",
+   "b": "narcisa",
+   "lines": [
+    [
+     "b",
+     "Ese acierto ha sido mío."
+    ],
+    [
+     "a",
+     "Toca a mi chatarrita y te formateo."
+    ],
+    [
+     "b",
+     "Celosa de mí. Lógico."
+    ]
+   ]
+  },
+  {
+   "a": "narcisa",
+   "b": "siestaware",
+   "lines": [
+    [
+     "a",
+     "No me miras cuando brillo."
+    ],
+    [
+     "b",
+     "No miro nada. Es mi programa."
+    ],
+    [
+     "a",
+     "Se acabó. No te hablo."
+    ]
+   ],
+   "mutes": true
+  },
+  {
+   "a": "sargento_bit",
+   "b": "siestaware",
+   "lines": [
+    [
+     "a",
+     "¡ARRIBA, CUÑADO VAGO! ¡Y TÚ TAMBIÉN, CHATARRA!"
+    ],
+    [
+     "b",
+     "Baja el volumen, que me despiertas el sueño."
+    ]
+   ]
+  },
+  {
+   "a": "matriz",
+   "b": "nihil",
+   "lines": [
+    [
+     "a",
+     "La so-solución es ir por el…"
+    ],
+    [
+     "b",
+     "Da igual por dónde."
+    ],
+    [
+     "a",
+     "¡No he te-te-terminado!"
+    ]
+   ]
+  },
+  {
+   "a": "rencorosa",
+   "b": "mama",
+   "lines": [
+    [
+     "a",
+     "Esto es culpa de tu educación."
+    ],
+    [
+     "b",
+     "¡Pero si estaba diciéndole que se abrigara!"
+    ],
+    [
+     "a",
+     "Apuntado."
+    ]
+   ]
+  },
+  {
+   "a": "conspi",
+   "b": "friki",
+   "lines": [
+    [
+     "a",
+     "La lluvia la fabrican arriba, hijo."
+    ],
+    [
+     "b",
+     "Papá, el 91,4 % de arriba es arriba."
+    ],
+    [
+     "a",
+     "Justo lo que dirían ellos."
+    ]
+   ]
+  },
+  {
+   "a": "burocrata",
+   "b": "lumi",
+   "lines": [
+    [
+     "a",
+     "Para este directo necesitas el formulario 7."
+    ],
+    [
+     "b",
+     "¡Mamá, que estamos en vivo!"
+    ],
+    [
+     "a",
+     "En vivo sin sello."
+    ]
+   ]
+  },
+  {
+   "a": "compost",
+   "b": "chef",
+   "lines": [
+    [
+     "a",
+     "Ese enemigo volverá a la Gran Pila."
+    ],
+    [
+     "b",
+     "Ese enemigo volverá con guarnición."
+    ],
+    [
+     "a",
+     "Hereje de la sartén."
     ]
    ]
   }

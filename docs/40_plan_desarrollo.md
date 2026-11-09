@@ -15,8 +15,8 @@ Objetivo inmediato: una beta jugable que demuestre que el sigilo y la investigac
 | Arte | En paralelo desde la fase 2: arte con Godot y SVG, protagonista por piezas y zona de bosque | Se ve bien en el juego y se aprueba | — |
 | 7b. Pulido visual e interfaz | Animación, impacto, acabado de pantalla, shaders, escena de convertir, silueta del cuerpo y resto de `42_pulido_visual_interfaz.md` | Aprobado en partida por el director, sin empeorar el rendimiento | Arte verificado en Godot |
 | 8. Mundo vivo (en la zona beta) | Acontecimientos, cadenas de consecuencias, misiones emergentes, 36 festividades, nacimientos y llegadas en directo y motor social completo | Sin duplicados ni estados incoherentes | P-11, P-13, P-14 |
-| 9. Contenido y pulido | Resto de razas, IAs y progenitores; batallas y vista de estrategia; música y voces; rendimiento | Medido, estable y documentado | — |
-| Post-beta. Mundo completo | Zonas nuevas, cargas y transiciones, tres niveles de simulación, migraciones entre zonas, viaje entre puntos de guardado y consecuencias al salir de la zona | Sin perder ni duplicar nada al cambiar de zona o de nivel | Mapa del director |
+| 9. Contenido y pulido | Resto de IAs; batallas y vista de estrategia; música y voces; rendimiento | Medido, estable y documentado | — |
+| Post-beta. Mundo completo | Las otras cuatro razas y 13 progenitores, zonas nuevas, cargas y transiciones, tres niveles de simulación, migraciones entre zonas, viaje entre puntos de guardado y consecuencias al salir de la zona | Sin perder ni duplicar nada al cambiar de zona o de nivel | Mapa del director |
 
 ## Por qué este orden
 El plan anterior ponía el combate antes que la investigación y construía el ecosistema muy pronto. Con el núcleo decidido el 8-nov, lo primero es probar lo más arriesgado y barato de cambiar: si el sigilo divierte. La simulación masiva es lo más caro y se apoya en decisiones aún abiertas, así que va después de la beta.

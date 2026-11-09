@@ -31,12 +31,34 @@ const GROUPS: Dictionary = {
 	"patrulla_jub": {"prefix": "jub", "route": BetaLayout.JUB_GROUP_ROUTE},
 }
 
+const ROUTE_GOALS: Dictionary = {
+	ENTER: {"name": "la ce-centralita", "at": Vector2(2570.0, 1040.0)},
+	EXTRACT: {"name": "el de-depósito", "at": Vector2(2500.0, 1815.0)},
+	CROSS: {"name": "el fi-final de la tierra de nadie", "at": Vector2(3525.0, 1320.0)},
+}
+
 var level: BetaZone
 var hour_source: Callable = _system_hour
 
 var _group_index: Dictionary = {}
 var _offline_time: float = 0.0
 var _announced_complete: bool = false
+
+
+## El primer reto sin hacer y hacia dónde queda, para Ma-Ma-Matriz.
+func next_route() -> Dictionary:
+	for id: String in ALL_CHALLENGES:
+		if not flag(id) and ROUTE_GOALS.has(id):
+			var goal: Dictionary = ROUTE_GOALS[id]
+			var to: Vector2 = (goal["at"] as Vector2) - level.player.global_position
+			return {"meta": goal["name"], "dir": _compass(to)}
+	return {}
+
+
+func _compass(to: Vector2) -> String:
+	if absf(to.x) > absf(to.y):
+		return "este" if to.x > 0.0 else "oeste"
+	return "sur" if to.y > 0.0 else "norte"
 
 
 func flag(id: String) -> bool:

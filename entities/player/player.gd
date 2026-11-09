@@ -28,6 +28,8 @@ const HIT_SHAKE: float = 14.0
 const HIT_STOP: float = 0.07
 const HIT_SQUASH: Vector2 = Vector2(1.22, 0.78)
 
+## Lo fija Siestaware cuando está activa.
+var still_stealth_factor: float = 1.0
 var facing: Vector2 = Vector2.DOWN
 var is_crouching: bool = false
 var body: ModularBody = ModularBody.new()
@@ -127,6 +129,8 @@ func current_speed() -> float:
 ## Parte del alcance de visión enemigo que se aplica a este personaje.
 func stealth_factor() -> float:
 	var factor: float = CROUCH_RANGE_FACTOR if is_crouching else 1.0
+	if velocity == Vector2.ZERO:
+		factor *= still_stealth_factor
 	if velocity == Vector2.ZERO and body.has_action("a024"):
 		factor *= CAMOUFLAGE_RANGE_FACTOR
 	return factor

@@ -13,6 +13,11 @@ const DANGER_COOLDOWN: float = 8.0
 const LOW_PIECE_LEVEL: float = 25.0
 const PANIC_SENSE_RANGE: float = 260.0
 const DESPRECIO_STUN_BONUS: float = 1.3
+const HINT_INTERVAL: float = 55.0
+const DECOY_INTERVAL: float = 40.0
+const DECOY_DISTANCE: float = 340.0
+const DECOY_NOISE: float = 420.0
+const ARGUMENT_MUTE: float = 15.0
 const TAIL_IDLE: Color = Color("#404050")
 const MOTE_CHANCE: float = 0.3
 const MOTE_EVENTS: Array[String] = ["danger", "fight", "piece_lost", "right", "wrong", "converted"]
@@ -24,6 +29,10 @@ const PROTAGONIST_PITCH: float = 1.0
 
 var level: Sandbox
 var team: AiTeam = AiTeam.new()
+var perks: AiPerks = AiPerks.new(team)
+## Devuelven los datos de los avisos de zona; sin ellos, esas IAs no los dan.
+var route_hint: Callable = Callable()
+var treason_hint: Callable = Callable()
 var nicknames: Nicknames = Nicknames.new()
 var bubble: SpeechBubble
 var voice: BlablaVoice
@@ -37,6 +46,8 @@ var _alarm_time: float = FALSE_ALARM_INTERVAL
 var _danger_cooldown: float = 0.0
 var _low_warned: bool = false
 var _line_time: float = 0.0
+var _hint_time: float = HINT_INTERVAL
+var _decoy_time: float = DECOY_INTERVAL
 
 
 func _ready() -> void:
@@ -66,6 +77,7 @@ func _physics_process(delta: float) -> void:
 		_alarm_time = FALSE_ALARM_INTERVAL
 		if team.can_speak("panico"):
 			_enqueue("panico", "false_alarm")
+	_track_perks(delta)
 	_play_next()
 
 
@@ -105,6 +117,11 @@ func question_advice(question: Dictionary) -> Dictionary:
 	for index: int in range(options.size()):
 		if index != answer:
 			wrong.append(index)
+	if perks.in_love():
+		return {"text": "Cupido_Beta: «La %d, mi vida. No se lo digas a Narcisa»." % (answer + 1), "disabled": -1}
+	if team.can_speak("rencorosa") and options.size() > 2:
+		var cut: int = wrong[level.rng.randi_range(0, wrong.size() - 1)]
+		return {"text": "Rencorosa Pro: «Esa no. Y no te acostumbres».", "disabled": cut}
 	if team.can_speak("abuela") and options.size() > 2:
 		var discarded: int = wrong[level.rng.randi_range(0, wrong.size() - 1)]
 		return {"text": "Abuela RAM: «Esa no era, cariño, creo».", "disabled": discarded}
@@ -133,6 +150,12 @@ func question_taunt(question: Dictionary) -> Dictionary:
 
 
 func on_answered(correct: bool) -> void:
+	perks.streak = perks.streak + 1 if correct else 0
+	if perks.streak == AiPerks.CUPIDO_STREAK and team.can_speak("cupido"):
+		_enqueue("cupido", "in_love")
+	if not correct and team.can_speak("rencorosa"):
+		_enqueue("rencorosa", "offended")
+		team.muted["rencorosa"] = AiTeam.OFFENDED_MUTE_TIME
 	say("right" if correct else "wrong")
 
 
@@ -152,11 +175,11 @@ func on_piece_destroyed(_slot: ModularBody.Slot) -> void:
 
 
 func on_piece_discarded() -> void:
-	team.recharge_sleeping()
+	team.recharge_sleeping(level.rng)
 
 
 func check_low_pieces() -> void:
-	if not team.can_speak("mama"):
+	if not perks.mama_warns():
 		return
 	var body: ModularBody = level.player.body
 	var low: bool = false
@@ -232,11 +255,67 @@ func _track_danger() -> void:
 			say("danger")
 
 
+func warn_rain() -> void:
+	if perks.mama_warns():
+		_enqueue("mama", "rain_warn")
+
+
+func material_hint(text: String) -> String:
+	if not team.can_speak("friki"):
+		return ""
+	return "Friki-Nexus 3000: «%s»" % (team.ais["friki"]["lines"]["material"][0] as String).format({"prop": text})
+
+
+func on_hacked() -> void:
+	if team.can_speak("burocrata"):
+		_enqueue("burocrata", "hack")
+
+
+func _track_perks(delta: float) -> void:
+	level.player.still_stealth_factor = perks.still_stealth_factor()
+	_hint_time -= delta
+	if _hint_time <= 0.0:
+		_hint_time = HINT_INTERVAL
+		_give_hint()
+	_decoy_time -= delta
+	if _decoy_time <= 0.0 and team.can_speak("lumi"):
+		_try_decoy()
+
+
+func _give_hint() -> void:
+	if team.can_speak("matriz") and route_hint.is_valid():
+		var route: Dictionary = route_hint.call()
+		if not route.is_empty():
+			_enqueue_formatted("matriz", "route", route)
+	if team.can_speak("conspi") and treason_hint.is_valid():
+		_enqueue_formatted("conspi", "treason", {"raza": treason_hint.call()})
+
+
+func _enqueue_formatted(id: String, event: String, values: Dictionary) -> void:
+	var lines: Array = team.ais[id]["lines"][event]
+	_queue.append({"id": id, "text": str(lines[level.rng.randi_range(0, lines.size() - 1)]).format(values)})
+
+
+## Lumi crea un señuelo cuando alguien está a punto de verte.
+func _try_decoy() -> void:
+	for guard: Guard in level.guards():
+		if not guard.is_down() and guard.detector.meter > 0.5:
+			var away: Vector2 = guard.global_position.direction_to(level.player.global_position)
+			var spot: Vector2 = guard.global_position - away.orthogonal() * DECOY_DISTANCE
+			level.noise_bus.emit_noise(spot, DECOY_NOISE)
+			_decoy_time = DECOY_INTERVAL
+			_enqueue("lumi", "decoy")
+			return
+
+
 func _start_argument() -> void:
 	for pair: Dictionary in team.pairs:
 		if team.can_speak(pair["a"]) and team.can_speak(pair["b"]):
 			for line: Array in pair["lines"]:
 				_queue.append({"id": pair[line[0]], "text": line[1]})
+			if pair.get("mutes", false):
+				team.muted[pair["a"]] = ARGUMENT_MUTE
+				team.muted[pair["b"]] = ARGUMENT_MUTE
 			return
 
 

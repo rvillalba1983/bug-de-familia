@@ -97,6 +97,7 @@ func attack_damage(enemy: Guard) -> float:
 		damage += SLAP_BONUS_PER_ARM * float(body.arm_count())
 	if body.has_action("a008"):
 		damage += OLD_BLOW_BONUS
+	damage *= level.ai.perks.melee_factor()
 	if not enemy.is_alert():
 		damage *= SILENT_SNEAK_FACTOR if body.has_action("a002") else SNEAK_FACTOR
 	return damage

@@ -6,7 +6,9 @@ const DATA_PATH: String = "res://data/ai/personalities.json"
 const ACTIVE_COUNT: int = 3
 ## Valores provisionales: ver docs/adr/0004-ias-e-investigacion.md.
 const MAX_TOKENS: float = 100.0
-const COST_PER_EFFORT: float = 1.5
+const COST_PER_EFFORT: float = 0.5
+## Una IA agotada no vuelve hasta recargarla mucho: decisión del 8-nov.
+const WAKE_THRESHOLD: float = 24.0
 const DISCARD_RECHARGE: float = 4.0
 const OFFENDED_MUTE_TIME: float = 20.0
 
@@ -53,7 +55,8 @@ func speakers() -> Array:
 
 ## Gasta tokens al hablar. Sin tokens se duerme y entra otra.
 func spend(id: String, rng: RandomNumberGenerator) -> void:
-	tokens[id] = maxf(float(tokens[id]) - COST_PER_EFFORT * float(ais[id]["effort"]), 0.0)
+	var factor: float = float(ais[id].get("token_factor", 1.0))
+	tokens[id] = maxf(float(tokens[id]) - COST_PER_EFFORT * float(ais[id]["effort"]) * factor, 0.0)
 	if float(tokens[id]) <= 0.0:
 		active.erase(id)
 		_activate_random(rng)
@@ -65,7 +68,7 @@ func tick(delta: float) -> void:
 
 
 ## Da un poco de tokens a la IA dormida con menos. Lo que exceda se pierde.
-func recharge_sleeping() -> String:
+func recharge_sleeping(rng_for_wake: RandomNumberGenerator = null) -> String:
 	var best: String = ""
 	for id: String in ais:
 		if not active.has(id) and not lost.has(id):
@@ -73,6 +76,8 @@ func recharge_sleeping() -> String:
 				best = id
 	if not best.is_empty():
 		tokens[best] = minf(float(tokens[best]) + DISCARD_RECHARGE, MAX_TOKENS)
+		if rng_for_wake != null and active.size() < ACTIVE_COUNT:
+			_activate_random(rng_for_wake)
 	return best
 
 
@@ -112,7 +117,7 @@ func restore(data: Dictionary, rng: RandomNumberGenerator) -> void:
 func _activate_random(rng: RandomNumberGenerator) -> void:
 	var options: Array = []
 	for id: String in ais:
-		if not active.has(id) and not lost.has(id) and float(tokens[id]) > 0.0:
+		if not active.has(id) and not lost.has(id) and float(tokens[id]) >= WAKE_THRESHOLD:
 			options.append(id)
 	if not options.is_empty():
 		active.append(options[rng.randi_range(0, options.size() - 1)])

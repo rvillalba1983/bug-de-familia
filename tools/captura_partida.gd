@@ -17,7 +17,7 @@ func _run() -> void:
 	change_scene_to_file("res://scenes/beta/beta_zone.tscn")
 	await create_timer(1.5).timeout
 	var zone: BetaZone = current_scene as BetaZone
-	_act(zone, OS.get_environment("ACCION"))
+	await _act(zone, OS.get_environment("ACCION"))
 	if OS.has_environment("SUCESO"):
 		var sim: WorldSim = zone.live_world.sim
 		sim.events.stage(sim, OS.get_environment("SUCESO"), -1, 1)
@@ -48,6 +48,20 @@ func _act(zone: BetaZone, action: String) -> void:
 		"piezas":
 			zone.player.body.equipped(ModularBody.Slot.values()[1] as ModularBody.Slot).durability = 18.0
 			zone.panel.open(BodyPanel.Mode.NORMAL)
+		"pausa":
+			zone.pause.set_paused(true)
+		"charla":
+			zone.ai.team.active = ["cupido", "sargento_bit", "siestaware"]
+			zone.ai.say_chain(["idle_advice", "idle_insult", "idle_reproach"])
+			zone.ai._start_argument()
+		"conversion":
+			zone.ai.team.active = ["friki", "nihil", "rencorosa"]
+			var target: Convertible = get_nodes_in_group(Convertible.GROUP)[0] as Convertible
+			zone.player.global_position = target.global_position + Vector2(60.0, 0.0)
+			zone.conversion.begin_on(target)
+			await create_timer(1.6, true, false, true).timeout
+			zone.conversion.choose_objective(zone.catalog.objectives.keys()[0])
+			zone.conversion.choose_slot(ModularBody.Slot.values()[1])
 		"controles":
 			zone.get_children().filter(func(n: Node) -> bool: return n is ControlsPanel)[0].toggle()
 		"nacimiento":

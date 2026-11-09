@@ -63,13 +63,18 @@ func report(sim: WorldSim, type: String, a: String, b: String, place: Vector2) -
 
 
 func text_for(type: String, belief: Dictionary) -> String:
-	return (catalog[type]["text"] as String).format(
+	return _contract((catalog[type]["text"] as String).format(
 		{"a": belief["a"], "b": belief["b"], "x": belief["x"], "w": belief["where"]}
-	)
+	))
 
 
 func fragment_text(belief: Dictionary) -> String:
-	return "Me ha llegado algo de %s, por %s. No sé más." % [belief["x"], belief["where"]]
+	return _contract("Me ha llegado algo de %s, por %s. No sé más." % [belief["x"], belief["where"]])
+
+
+## Los lugares y objetos llevan artículo: «a el barrio» debe leerse «al barrio».
+func _contract(text: String) -> String:
+	return text.replace(" a el ", " al ").replace(" de el ", " del ")
 
 
 func twist_for(sim: WorldSim, belief: Dictionary) -> String:

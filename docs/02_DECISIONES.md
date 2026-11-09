@@ -82,8 +82,9 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 
 ## Producción
 - Sprites en 8 direcciones (8-nov).
-- Las imágenes base las genera el usuario con ChatGPT, con el acabado pintado de la hoja de diseño. Claude recorta, limpia, prepara, anima e integra (8-nov).
-- Las versiones SVG del protagonista se descartaron por no alcanzar ese acabado.
+- Todo el arte del juego se hace con Godot y SVG. Se descarta generar imágenes con ChatGPT (9-nov).
+- La hoja de diseño del protagonista sigue siendo la referencia visual. El protagonista se dibuja con polígonos de Godot, por piezas, calcado de ella (9-nov).
+- Paleta «Cuñado Radiactivo» y reglas de estilo en `36_pipeline_graficos.md` (9-nov).
 - Recursos por paquetes completos y validados. Todo recurso de la partida es local.
 - El prototipo usa gráficos sencillos para probar la diversión; el arte final llega después.
 
@@ -149,6 +150,8 @@ Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barr
 | Misiones solo fijas o solo dinámicas | Dos capas |
 | Gráficos solo SVG sin generadores externos | Imágenes base con ChatGPT |
 | Generador de imágenes integrado en Claude | El usuario genera con ChatGPT |
+| Imágenes base con ChatGPT | Arte con Godot y SVG |
+| Descarte del protagonista en SVG por su acabado | Protagonista con polígonos de Godot, aprobado para seguir (9-nov) |
 | Fabricación experimental aparte | Solo conversión |
 | Solo sustituir piezas rotas, siempre | Libre fuera de peleas, pausa inicial y sustitución al destruirse en pelea |
 | Protagonista cuadrúpedo tipo zorro | Humanoide de cuatro brazos, dos piernas y cola |

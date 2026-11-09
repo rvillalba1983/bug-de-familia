@@ -13,7 +13,7 @@
 | Encontrar a Don Ramón | Seguir su rastro de reparaciones | Sonsacar su ruta a los Jubilados | Romper algo a propósito para que venga a repararlo |
 
 - **Mapa, progenitores y peligros:** ver `02_DECISIONES.md`, apartado Beta. Geometría en `scenes/beta/beta_layout.gd`.
-- **Gráficos:** sencillos primero para probar la diversión; arte final después.
+- **Gráficos:** estilo con Godot y SVG, paleta «Cuñado Radiactivo». Ver `36_pipeline_graficos.md`.
 
 ## Qué debe demostrar
 - Dos especies con relaciones tensas y personajes de personalidades diferentes.

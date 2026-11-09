@@ -5,7 +5,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | Fase | Estado |
 |---|---|
 | 0 a 7 | Fusionadas en `main` y probadas por el usuario |
-| Arte | En paralelo. Necesita las imágenes del usuario |
+| Arte | Estilo de la beta en la rama `arte/estilo-beta`, sin ejecutar en Godot todavía. Ver `adr/0007-estilo-visual-beta.md` |
 | 8. Mundo vivo | Siguiente. Sus preguntas de diseño están cerradas en `02_DECISIONES.md` |
 | 9. Contenido y pulido | Sin empezar |
 

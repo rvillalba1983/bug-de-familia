@@ -1,6 +1,53 @@
 # Producción gráfica
 
-Decisión vigente: el usuario genera las imágenes base con ChatGPT tomando como referencia la hoja de diseño; Claude hace el resto.
+Decisión vigente (9-nov): todo el arte se hace con Godot y SVG, sin generadores de imágenes. La hoja de diseño del protagonista sigue siendo la referencia.
+
+## Paleta «Cuñado Radiactivo»
+Código en `entities/art/palette.gd`.
+
+| Nombre | Color | Uso |
+|---|---|---|
+| Moratón | `#1B0E2A` | Contornos |
+| Berenjena Rencorosa | `#6A2BA8` | Sombras y lujo cutre |
+| Cian Reseteo | `#00E5FF` | Pantallas y ojos robot |
+| Azul Mono de Currela | `#0A7FC2` | Metal pintado |
+| Rosa Multa | `#FF1F8F` | Alarmas y sombreros |
+| Naranja Butano | `#FF6A00` | Calor y óxido vivo |
+| Amarillo Obra | `#FFD400` | Avisos y latón |
+| Ácido de Batería | `#C6FF00` | Esporas y energía |
+| Verde Moho Electoral | `#2FBF71` | Mohócratas |
+| Óxido de Abuelo | `#A8482A` | Chapa vieja |
+| Hierro de Jubilado | `#8894B5` | Robots |
+| Hueso Sucio | `#F6E7C8` | Dientes y papeles |
+
+## Qué se hace con cada herramienta
+| Godot | SVG |
+|---|---|
+| Suelo, grietas, cráteres y charcos | Enemigos, progenitores y objetos |
+| Edificios, paredes y árboles | Fachadas e iconos |
+| Noche, luces, partículas y shaders | Formas base para animar por piezas |
+| Cono de visión, colas y animación por huesos | |
+| Protagonista, con polígonos por piezas | |
+
+## Reglas técnicas del SVG
+- Para importar directamente en Godot: formas, trazos y degradados. Sin filtros ni `<text>`.
+- Lo que necesite filtros (pincel, grano, brillo) se hornea antes a PNG con Chromium. Así se hacen las texturas del suelo (`tools/art/ground_gen.py`).
+- Tamaño del SVG acorde al de pantalla, para que no se vea borroso.
+
+## Perspectiva y profundidad
+- Cámara de juego: vista alta inclinada, de ángulo fijo.
+- La perspectiva marcada solo es correcta desde un punto fijo: se reserva para escenas fijas. Referencia: `tools/art/city_scene_gen.py`, que proyecta edificios 3D y añade sombras, neblina lejana y primer plano desenfocado.
+- En el mapa con scroll: convergencia muy suave o ninguna, orden Y y capas a distinta velocidad.
+
+## Generadores y recursos
+| Archivo | Contenido |
+|---|---|
+| `tools/art/beta_assets_gen.py` | Los 10 elementos de la beta, en `art/beta/fuentes/` |
+| `tools/art/protagonist_gen.py` | Protagonista por piezas, en `data/art/protagonista.json` |
+| `tools/art/ground_gen.py` | Texturas repetibles del suelo |
+| `tools/art/city_scene_gen.py` | Escena de ejemplo con perspectiva |
+
+Elementos de la beta: mina de petanca, bobina, cartel de tierra de nadie, dron viejo, urna de esporas, Mohócrata votante, Jubilado de Hierro, Don Ramón, centralita del Contestador y depósito mohócrata. El cartel, la urna y las dos fachadas aún no están integrados.
 
 ## Estilo
 Cartoon grotesco de acabado pintado: anatomías extrañas, formas asimétricas, ojos, bocas y extremidades exagerados, colores saturados y poco naturales, mezcla de atractivo y desagradable, y humor visual. Estética adulta. Cada especie con identidad propia.
@@ -12,7 +59,7 @@ Vista alta inclinada, de ángulo fijo. Se ven la cara y el cuerpo escorzado. Cad
 | Paso | Quién |
 |---|---|
 | Brief y prompt de cada recurso | Claude |
-| Generar la imagen en ChatGPT | Usuario |
+| Crear el arte en SVG o Godot | Claude |
 | Quitar fondo, recortar, igualar escala y paleta | Claude |
 | Anclajes, pivotes, capas, atlas | Claude |
 | Rigging, animación e integración en Godot | Claude |
@@ -105,7 +152,7 @@ Crear una ficha maestra por personaje/especie con:
 
 Flujo sugerido:
 1. Brief visual y ficha de consistencia.
-2. Generación de referencias o imágenes base: las genera el usuario con ChatGPT, tomando como referencia la hoja de diseño del protagonista; Claude se encarga del recorte, limpieza, preparación e integración.
+2. Creación del arte en SVG o Godot, tomando como referencia la hoja de diseño del protagonista.
 3. Edición y corrección.
 4. Construcción de sprites/atlas o recursos riggeables.
 5. Preparación de pivotes, anclajes, máscaras y capas.
@@ -113,7 +160,7 @@ Flujo sugerido:
 7. Pruebas de escala, oclusión, colisión y animación.
 8. Aprobación del paquete.
 
-Claude puede usar herramientas externas locales para generar o procesar imágenes, pero debe registrar modelos, versiones, parámetros relevantes y licencias. La partida nunca debe llamar a esos servicios.
+Claude puede usar herramientas locales para procesar imágenes, pero debe registrar versiones, parámetros relevantes y licencias. La partida nunca debe llamar a esos servicios.
 
 
 ## 9. Contenido configurable

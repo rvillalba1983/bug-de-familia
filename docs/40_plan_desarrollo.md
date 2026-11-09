@@ -12,7 +12,7 @@ Objetivo inmediato: una beta jugable que demuestre que el sigilo y la investigac
 | 5. IAs e investigación | 3 activas de un subconjunto, tokens, cola, parloteo; prototipo de investigación con Mohócratas y Jubilados | Investigar, deducir y conversar resulta divertido sin combatir | P-05, P-18 |
 | 6. Combate | Tiempo real con coberturas, armas, daño por extremidad | Peligroso, legible y evitable | — |
 | 7. **Beta** | Zona de bosque, 4 retos, 2 progenitores, encuentros, peligros | Se completa de varias formas sin matar | P-01, P-08, P-10 |
-| Arte | En paralelo desde la fase 2: prueba de ángulo con ChatGPT, luego protagonista por piezas y zona de bosque | Se ve bien en el juego y se aprueba | — |
+| Arte | En paralelo desde la fase 2: arte con Godot y SVG, protagonista por piezas y zona de bosque | Se ve bien en el juego y se aprueba | — |
 | 8. Mundo vivo | Varias zonas, tres niveles de simulación, acontecimientos, misiones emergentes, festividades y motor social completo | Sin duplicados ni estados incoherentes | P-11, P-13, P-14 |
 | 9. Contenido y pulido | Resto de razas, IAs y progenitores; batallas y vista de estrategia; música y voces; rendimiento | Medido, estable y documentado | — |
 
@@ -25,7 +25,7 @@ El plan anterior ponía el combate antes que la investigación y construía el e
 3. Seguir por la primera fase sin terminar.
 
 ## Riesgos a validar pronto
-1. Que ChatGPT mantenga al personaje y el ángulo pieza a pieza.
+1. Que el arte vectorial mantenga al personaje y el ángulo pieza a pieza.
 2. Legibilidad de cuatro brazos y piezas intercambiables en cámara.
 3. Lectura de conos de visión con vista inclinada.
 4. Coste de arte por dirección.

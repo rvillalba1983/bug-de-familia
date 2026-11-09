@@ -525,7 +525,7 @@ Algunos registros parecen demostrar que determinadas infraestructuras existían 
 Hay diferentes hipótesis:
 
 - Las seis especies podrían haber heredado o reutilizado tecnología de una civilización anterior.
-- Podría haberse producido un accidente colectivo que alteró los registros históricos.
+- Podría haberse producido un accidente colectivo, por interdependencia y arrogancia, que alteró los registros históricos.
 - Una entidad externa podría haber intervenido en el desarrollo de las civilizaciones.
 - Las instalaciones podrían formar parte de un protocolo antiguo cuyo propósito todavía se desconoce.
 
@@ -555,5 +555,4 @@ Los personajes no conocen automáticamente la verdad. Cada uno dispone de inform
 - **Hitos que solo constan en el lore v0.1:** Primer Eco y Guerra de Frecuencias (Ecos); Gran Hambruna (Mohócratas).
 - En la Guerra de las Esquinas, los Mohócratas actuaron de mediadores y la Manada de transporte.
 - La Gran Emisión era una señal automática de publicidad y control comercial.
-- **Hipótesis abiertas sobre la infraestructura anterior:** A) accidente colectivo por interdependencia y arrogancia; B) intervención externa; C) protocolo antiguo de función desconocida. Ninguna está decidida.
 - **Secretos por raza:** Plegados, archivos de seres vivos; Ecos, la Gran Emisión sigue transmitiendo; Mohócratas, la red original conserva memoria; Grux, deuda universal y registros de infraestructura financiera; Manada, el sistema central sigue activo y queda un último destino; Jubilados, existe una orden cero y órdenes originales de los fabricantes.

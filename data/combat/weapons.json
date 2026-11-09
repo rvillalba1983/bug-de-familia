@@ -1,0 +1,83 @@
+{
+ "player": {
+  "lanzar": {
+   "damage": 8,
+   "stun": 0,
+   "range": 320,
+   "pellets": 1,
+   "spread": 0,
+   "noise": 160,
+   "noise_at_impact": true,
+   "stops_at_aim": true,
+   "color": "#c0c0c0"
+  },
+  "a101": {
+   "damage": 10,
+   "stun": 0,
+   "range": 380,
+   "pellets": 1,
+   "spread": 0,
+   "noise": 120,
+   "noise_at_impact": true,
+   "cooldown": 1,
+   "wear": 1,
+   "color": "#d8d0a0"
+  },
+  "a102": {
+   "damage": 9,
+   "stun": 0,
+   "range": 200,
+   "pellets": 5,
+   "spread": 18,
+   "noise": 420,
+   "noise_at_impact": false,
+   "cooldown": 3,
+   "wear": 6,
+   "color": "#ffa040"
+  },
+  "a103": {
+   "damage": 40,
+   "stun": 0,
+   "range": 560,
+   "pellets": 1,
+   "spread": 0,
+   "noise": 240,
+   "noise_at_impact": false,
+   "cooldown": 4,
+   "wear": 4,
+   "color": "#70d0ff"
+  },
+  "a104": {
+   "damage": 0,
+   "stun": 4,
+   "range": 300,
+   "pellets": 1,
+   "spread": 0,
+   "noise": 100,
+   "noise_at_impact": true,
+   "cooldown": 7,
+   "wear": 3,
+   "color": "#90e040"
+  }
+ },
+ "enemy": {
+  "golpe": {
+   "kind": "melee",
+   "damage": 34,
+   "range": 46,
+   "windup": 0.4,
+   "cooldown": 1.2,
+   "grace": 14
+  },
+  "pistola": {
+   "kind": "ranged",
+   "damage": 20,
+   "range": 340,
+   "windup": 0.7,
+   "cooldown": 1.8,
+   "aim_tolerance": 44,
+   "view_range": 220,
+   "view_half_angle": 30
+  }
+ }
+}

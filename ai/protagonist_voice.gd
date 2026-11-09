@@ -190,12 +190,12 @@ func _check_low_leg() -> void:
 
 
 func _check_sightings() -> void:
-	var jubilado_near: bool = _any_guard_near(level.jubilado_guards(), SIGHT_RANGE)
+	var jubilado_near: bool = _any_guard_near(level.guards_of("jubilado"), SIGHT_RANGE)
 	if jubilado_near and level.challenges.is_power_off_hour():
 		comment("power_off", VERY_LONG_COOLDOWN)
 	elif jubilado_near:
 		comment("see_jubilados", LONG_COOLDOWN)
-	if _any_guard_near(level.mohocrata_guards(), SIGHT_RANGE):
+	if _any_guard_near(level.guards_of("mohocrata"), SIGHT_RANGE):
 		comment("see_mohocratas", LONG_COOLDOWN)
 	if level.player.is_crouching and _any_guard_near(level.guards(), HIDE_RANGE):
 		comment("hiding", LONG_COOLDOWN)

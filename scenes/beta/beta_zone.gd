@@ -12,13 +12,6 @@ const ID_GENERATOR: String = "generador"
 const ID_RAMON: String = "ramon"
 const ID_CONTESTADOR: String = "contestador"
 const ART_FOLDER: String = "res://art/beta/"
-const ART_JUBILADO: String = "jubilado_hierro"
-const ART_MOHOCRATA: String = "mohocrata"
-const ART_RAMON: String = "don_ramon"
-const ART_REEL: String = "res://art/beta/bobina.svg"
-const COLOR_JUBILADO: Color = Color("#a0a8b8")
-const COLOR_MOHOCRATA: Color = Color("#8fbf60")
-const COLOR_RAMON: Color = Color("#e0a040")
 const CHAINS_IN_SUMMARY: int = 3
 const BURST_RADIUS: float = 170.0
 
@@ -43,38 +36,38 @@ var moved_to_war: bool = false
 var moved_home: bool = false
 
 var _enemy_ids: Dictionary = {}
-var _jubilados: Array[Guard] = []
-var _mohocratas: Array[Guard] = []
+var _rosters: Dictionary = {}
+var _materials: Dictionary = {}
 var _depot: Array[Guard] = []
 var _contestador_at: Vector2 = Vector2.ZERO
 
 
 func world_size() -> Vector2:
-	return BetaLayout.WORLD_SIZE
+	return BetaLayout.world_size
 
 
 func floor_rect() -> Rect2:
-	return BetaLayout.FLOOR_RECT
+	return BetaLayout.floor_rect
 
 
 func start_point() -> Vector2:
-	return BetaLayout.START
+	return BetaLayout.start
 
 
 func wall_rects() -> Array[Rect2]:
-	return BetaLayout.WALLS
+	return BetaLayout.walls
 
 
 func low_cover_rects() -> Array[Rect2]:
-	return BetaLayout.LOW_COVERS
+	return BetaLayout.low_covers
 
 
 func door_rects() -> Array[Rect2]:
-	return [BetaLayout.CENTRAL_DOOR, BetaLayout.CRACKED_WALL]
+	return [BetaLayout.central_door, BetaLayout.cracked_wall]
 
 
 func save_point_positions() -> Array[Vector2]:
-	return BetaLayout.SAVE_POINTS
+	return BetaLayout.save_points
 
 
 func guards() -> Array[Guard]:
@@ -93,12 +86,8 @@ func depot_guards() -> Array[Guard]:
 	return _valid(_depot)
 
 
-func jubilado_guards() -> Array[Guard]:
-	return _valid(_jubilados)
-
-
-func mohocrata_guards() -> Array[Guard]:
-	return _valid(_mohocratas)
+func guards_of(species: String) -> Array[Guard]:
+	return _valid(_rosters.get(species, []))
 
 
 func is_enemy_id(id: String) -> bool:
@@ -129,7 +118,7 @@ func open_central_door() -> void:
 
 func open_cracked_wall() -> void:
 	cracked_wall.set_open(true)
-	nav.clear_rect(BetaLayout.CRACKED_WALL, Player.RADIUS, _all_blockers())
+	nav.clear_rect(BetaLayout.cracked_wall, Player.RADIUS, _all_blockers())
 
 
 func _ready() -> void:
@@ -140,9 +129,9 @@ func _ready() -> void:
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, world_size()), COLOR_BACKGROUND)
 	BetaGround.paint(self)
-	for index: int in range(BetaLayout.OUTDOOR_SHELTERS):
-		draw_texture_rect(PropArt.texture("toldo"), BetaLayout.SHELTERS[index], false)
-	var goal: Vector2 = BetaLayout.CROSSING_GOAL.get_center()
+	for index: int in range(BetaLayout.outdoor_shelters):
+		draw_texture_rect(PropArt.texture("toldo"), BetaLayout.shelters[index], false)
+	var goal: Vector2 = BetaLayout.crossing_goal.get_center()
 	draw_texture_rect(PropArt.texture("mirador"), Rect2(goal - Vector2(110.0, 90.0), Vector2(220.0, 180.0)), false)
 
 
@@ -165,80 +154,116 @@ func _check_goal(_feet: Vector2) -> void:
 
 func _build_walls() -> void:
 	super()
-	cracked_wall = _add_wall(BetaLayout.CRACKED_WALL, SandboxLayout.WALL_FRONT_HEIGHT, Wall.Kind.DOOR)
+	cracked_wall = _add_wall(BetaLayout.cracked_wall, SandboxLayout.WALL_FRONT_HEIGHT, Wall.Kind.DOOR)
 	cracked_wall.label_key = "BETA_CRACKED_WALL"
 	door.label_key = "BETA_CENTRAL_DOOR"
 
 
 func _build_enemies() -> void:
-	guard = _add_guard("jub_barrio", BetaLayout.JUB_BARRIO_PATROL, COLOR_JUBILADO, _jubilados)
-	_add_guard("jub_frente", BetaLayout.JUB_FRONT_PATROL, COLOR_JUBILADO, _jubilados)
-	strip_jubilado = _add_guard("jub_tierra", BetaLayout.JUB_STRIP_PATROL, COLOR_JUBILADO, _jubilados)
-	strip_mohocrata = _add_guard("moho_tierra", BetaLayout.MOHO_STRIP_PATROL, COLOR_MOHOCRATA, _mohocratas)
-	_depot.append(_add_guard("moho_deposito", BetaLayout.MOHO_DEPOT_PATROL, COLOR_MOHOCRATA, _mohocratas))
-	shooter = _add_guard("moho_puerta", BetaLayout.MOHO_GATE_PATROL, COLOR_MOHOCRATA, _mohocratas, true)
-	_depot.append(shooter)
-	ramon = _add_guard(ID_RAMON, BetaLayout.RAMON_ROUTE, COLOR_RAMON, [])
-	ramon.set_passive(true)
+	for species: String in BetaLayout.zone.species():
+		_rosters[species] = []
+	for actor: Dictionary in BetaLayout.zone.list("actors"):
+		_spawn_actor(actor)
 	drone = Drone.new()
 	drone.target = player
-	drone.setup(BetaLayout.DRONE_PATROL, ground)
+	drone.setup(BetaLayout.drone_patrol, ground)
 	actors.add_child(drone)
 	security_camera = SecurityCamera.new()
 	security_camera.target = player
 	security_camera.setup(
-		BetaLayout.CAMERA_POSITION,
-		BetaLayout.CAMERA_CENTER_DEGREES,
-		BetaLayout.CAMERA_AMPLITUDE_DEGREES,
+		BetaLayout.camera_position,
+		BetaLayout.camera_center_degrees,
+		BetaLayout.camera_amplitude_degrees,
 		ground
 	)
 	actors.add_child(security_camera)
 
 
-func _material_of(enemy: Guard) -> String:
-	return "bioceramica" if enemy.visual.body_color == COLOR_MOHOCRATA else "nanoacero"
+func _spawn_actor(actor: Dictionary) -> void:
+	var look: Dictionary = _look_of(actor)
+	var route: Array[Vector2] = BetaLayout.zone.points(str(actor["route"]))
+	var enemy: Guard = _add_guard(str(actor["id"]), route, look, str(actor.get("weapon", "")))
+	if actor.get("passive", false):
+		enemy.set_passive(true)
+	for role: String in actor["roles"]:
+		match role:
+			"guard":
+				guard = enemy
+			"shooter":
+				shooter = enemy
+			"strip_jubilado":
+				strip_jubilado = enemy
+			"strip_mohocrata":
+				strip_mohocrata = enemy
+			"ramon":
+				ramon = enemy
+			"depot":
+				_depot.append(enemy)
 
 
-func _add_guard(
-	id: String, route: Array[Vector2], color: Color, roster: Array, is_ranged: bool = false
-) -> Guard:
+func _look_of(actor: Dictionary) -> Dictionary:
+	if actor.has("species"):
+		return _species_look(str(actor["species"]))
+	var entry: Dictionary = ProgenitorCatalog.entry(str(actor["progenitor"]))
+	return {
+		"species": "", "color": Color(str(entry["color"])), "art": entry["art"],
+		"material": entry["material"], "deaths": entry["deaths"],
+	}
+
+
+func _species_look(species: String) -> Dictionary:
+	return {
+		"species": species, "color": SpeciesCatalog.color(species), "art": SpeciesCatalog.art(species),
+		"material": SpeciesCatalog.material(species), "deaths": SpeciesCatalog.deaths(species),
+	}
+
+
+func _add_guard(id: String, route: Array[Vector2], look: Dictionary, weapon_id: String = "") -> Guard:
 	var enemy: Guard = Guard.new()
 	enemy.target = player
 	enemy.nav = nav
 	enemy.rng = rng
-	enemy.visual.body_color = color
-	enemy.visual.art_views = _load_views(_art_base(id, color))
-	enemy.visual.rig_folder = ART_FOLDER + "rig/" + _art_base(id, color)
-	if is_ranged:
-		enemy.make_ranged(self)
+	enemy.visual.body_color = look["color"]
+	enemy.visual.art_views = _load_views(str(look["art"]))
+	enemy.visual.rig_folder = ART_FOLDER + "rig/" + str(look["art"])
+	enemy.death = DeathCatalog.pick(look["deaths"], rng)
+	if not weapon_id.is_empty():
+		enemy.make_ranged(self, weapon_id)
 	enemy.setup(route, ground)
-	if color != COLOR_RAMON:
-		enemy.detector.faction = "jubilado" if color == COLOR_JUBILADO else "mohocrata"
+	var species: String = look["species"]
+	if not species.is_empty():
+		enemy.detector.faction = species
+		(_rosters[species] as Array).append(enemy)
 	actors.add_child(enemy)
 	_enemy_ids[enemy] = id
-	roster.append(enemy)
+	_materials[enemy] = look["material"]
 	return enemy
 
 
 func _build_items() -> void:
-	_add_named(ID_MINE, BetaLayout.MINE_PICKUP, "BETA_ITEM_MINE", false)
-	_add_named(ID_CRACK, BetaLayout.CRACKED_MARK, "BETA_ITEM_CRACK", true)
-	_add_named(ID_REEL, BetaLayout.REEL, "BETA_ITEM_REEL", false)
-	(items[ID_REEL] as Interactable).art = load(ART_REEL) as Texture2D
-	_add_named(ID_GENERATOR, BetaLayout.GENERATOR, "BETA_ITEM_GENERATOR", false)
-	_add_item(ID_CRATE, Interactable.Kind.CRATE, BetaLayout.CRATE_NORTH)
-	_add_item("crate_2", Interactable.Kind.CRATE, BetaLayout.CRATE_SOUTH)
-	_add_item(ID_PICKUP_LEG, Interactable.Kind.PICKUP_LEG, BetaLayout.PICKUP_LEG)
-	_add_item(ID_PICKUP_ARM, Interactable.Kind.PICKUP_ARM, BetaLayout.PICKUP_ARM)
-	for index: int in range(BetaLayout.MINES.size()):
+	for entry: Dictionary in BetaLayout.zone.list("items"):
+		_build_item(entry)
+	for index: int in range(BetaLayout.mines.size()):
 		_add_mine(index)
 	BetaFacades.build(self)
 
 
-func _art_base(id: String, color: Color) -> String:
-	if id == ID_RAMON:
-		return ART_RAMON
-	return ART_JUBILADO if color == COLOR_JUBILADO else ART_MOHOCRATA
+func _build_item(entry: Dictionary) -> void:
+	var id: String = entry["id"]
+	var at: Vector2 = BetaLayout.zone.point(str(entry["at"]))
+	match str(entry["type"]):
+		"named":
+			_add_named(id, at, str(entry["label"]), bool(entry["reusable"]))
+			if entry.has("art"):
+				(items[id] as Interactable).art = load(str(entry["art"])) as Texture2D
+		"crate":
+			_add_item(id, Interactable.Kind.CRATE, at)
+		"leg":
+			_add_item(id, Interactable.Kind.PICKUP_LEG, at)
+		"arm":
+			_add_item(id, Interactable.Kind.PICKUP_ARM, at)
+		_:
+			push_error("%s: tipo de objeto desconocido en «%s»" % [BetaLayout.PATH, id])
 
 
 func _load_views(base: String) -> Array[Texture2D]:
@@ -257,7 +282,7 @@ func _add_named(id: String, at: Vector2, label_key: String, is_reusable: bool) -
 
 func _add_mine(index: int) -> void:
 	var mine: PetanqueMine = PetanqueMine.new()
-	mine.setup("mine_%d" % index, BetaLayout.MINES[index], self)
+	mine.setup("mine_%d" % index, BetaLayout.mines[index], self)
 	mine.exploded.connect(_on_mine_exploded)
 	actors.add_child(mine)
 	mines[mine.mine_id] = mine
@@ -265,19 +290,40 @@ func _add_mine(index: int) -> void:
 
 func _register_convertibles() -> void:
 	for enemy: Guard in guards():
-		_add_convertible(_enemy_ids[enemy], enemy, _material_of(enemy))
-	_add_convertible("drone_1", drone, "aleacion_magnetica")
-	_add_convertible("camera_1", security_camera, "cristal_plasma")
-	_add_convertible(ID_CRATE, items[ID_CRATE], "madera_cuantica")
-	_add_convertible("crate_2", items["crate_2"], "madera_cuantica")
-	(entities[ID_RAMON] as Node).get_children().filter(func(n: Node) -> bool: return n is Convertible)[0].fixed_property = "p047"
-	for index: int in range(BetaLayout.ANTENNAS.size()):
-		var antenna: WorldProp = WorldProp.new()
-		antenna.setup("antena", BetaLayout.ANTENNAS[index], Vector2(70.0, 130.0))
-		actors.add_child(antenna)
-		_add_convertible("antena_%d" % index, antenna, "fibra_fotonica")
+		_add_convertible(_enemy_ids[enemy], enemy, _materials[enemy])
+	for entry: Dictionary in BetaLayout.zone.list("convertibles"):
+		_add_convertible(str(entry["id"]), _convertible_node(entry), str(entry["material"]))
+	_fix_progenitor_property(ID_RAMON)
+	for prop: Dictionary in BetaLayout.zone.list("props"):
+		_build_prop(prop)
 	for id: String in mines:
-		_add_convertible(id, mines[id], "antimateria")
+		_add_convertible(id, mines[id], str(BetaLayout.zone.data["mine_material"]))
+
+
+func _convertible_node(entry: Dictionary) -> Node2D:
+	match str(entry["node"]):
+		"drone":
+			return drone
+		"camera":
+			return security_camera
+	return items[entry["id"]]
+
+
+func _build_prop(prop: Dictionary) -> void:
+	var spots: Array[Vector2] = BetaLayout.zone.points(str(prop["at"]))
+	var size: Vector2 = Vector2(float(prop["size"][0]), float(prop["size"][1]))
+	for index: int in range(spots.size()):
+		var world_prop: WorldProp = WorldProp.new()
+		world_prop.setup(str(prop["prop"]), spots[index], size)
+		actors.add_child(world_prop)
+		_add_convertible("%s_%d" % [prop["id_prefix"], index], world_prop, str(prop["material"]))
+
+
+func _fix_progenitor_property(id: String) -> void:
+	var entry: Dictionary = ProgenitorCatalog.entry(id)
+	for child: Node in (entities[id] as Node).get_children():
+		if child is Convertible:
+			(child as Convertible).fixed_property = str(entry["fixed_property"])
 
 
 func _build_investigation() -> void:
@@ -288,9 +334,10 @@ func _build_investigation() -> void:
 	investigation.level = self
 	investigation.case_path = CASE_PATH
 	add_child(investigation)
-	_add_convertible(ID_CONTESTADOR, investigation.npc_nodes[ID_CONTESTADOR], "gel_memoria")
+	var contestador: Dictionary = ProgenitorCatalog.entry(ID_CONTESTADOR)
+	_add_convertible(ID_CONTESTADOR, investigation.npc_nodes[ID_CONTESTADOR], str(contestador["material"]))
 	_contestador_at = (entities[ID_CONTESTADOR] as Node2D).global_position
-	(entities[ID_CONTESTADOR] as Node).get_children().filter(func(n: Node) -> bool: return n is Convertible)[0].fixed_property = "p049"
+	_fix_progenitor_property(ID_CONTESTADOR)
 	challenges = BetaChallenges.new()
 	challenges.level = self
 	if forced_hour >= 0:
@@ -299,7 +346,7 @@ func _build_investigation() -> void:
 	rain = AcidRain.new()
 	rain.player = player
 	rain.rng = rng
-	rain.shelters = BetaLayout.SHELTERS
+	rain.shelters = BetaLayout.shelters
 	add_child(rain)
 	protagonist = ProtagonistVoice.new()
 	protagonist.level = self
@@ -352,10 +399,11 @@ func _build_interface() -> void:
 ## El bando que peor te ve; Conspi-Ranoia acierta solo a veces.
 func least_friendly_species() -> String:
 	var standing: Dictionary = live_world.sim.player_standing
-	var worst: bool = float(standing.get("jubilado", 0.0)) < float(standing.get("mohocrata", 0.0))
+	var sides: Array[String] = BetaLayout.zone.species()
+	var worst: bool = float(standing.get(sides[0], 0.0)) < float(standing.get(sides[1], 0.0))
 	if rng.randf() < 0.35:
 		worst = not worst
-	return "Jubilados" if worst else "Mohócratas"
+	return SpeciesCatalog.plural(sides[0] if worst else sides[1])
 
 
 func id_of_guard(enemy: Guard) -> String:
@@ -430,13 +478,11 @@ func snapshot() -> Dictionary:
 
 ## Pone en escena a un habitante del mundo vivo. Admite nacimientos en plena partida.
 func add_citizen(id: String, species: String, at: Vector2, home: Rect2) -> Guard:
-	var color: Color = COLOR_JUBILADO if species == "jubilado" else COLOR_MOHOCRATA
-	var roster: Array = _jubilados if species == "jubilado" else _mohocratas
 	var route: Array[Vector2] = [at, at + Vector2(90.0, 0.0)]
 	route[1] = route[1].clamp(home.position, home.end)
-	var enemy: Guard = _add_guard(id, route, color, roster)
+	var enemy: Guard = _add_guard(id, route, _species_look(species))
 	enemy.set_passive(true)
-	_add_convertible(id, enemy, _material_of(enemy))
+	_add_convertible(id, enemy, _materials[enemy])
 	fight.track(enemy)
 	enemy.fell.connect(_on_enemy_fell)
 	enemy.corpse_expired.connect(_on_corpse_expired)

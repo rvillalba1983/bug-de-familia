@@ -13,33 +13,6 @@ const ARM_WEAR_PER_ATTACK: float = 1.0
 const REPATH_TIME: float = 0.3
 const THROW_COOLDOWN: float = 1.0
 const HIT_MARGIN: float = 10.0
-const THROWN: Dictionary = {
-	"damage": 8.0, "stun": 0.0, "range": 320.0, "pellets": 1, "spread": 0.0,
-	"noise": 160.0, "noise_at_impact": true, "stops_at_aim": true, "color": Color("#c0c0c0"),
-}
-## Armas a distancia del catálogo, por acción. Valores provisionales: ver el ADR 0005.
-const RANGED_WEAPONS: Dictionary = {
-	"a101": {
-		"damage": 10.0, "stun": 0.0, "range": 380.0, "pellets": 1, "spread": 0.0,
-		"noise": 120.0, "noise_at_impact": true, "cooldown": 1.0, "wear": 1.0,
-		"color": Color("#d8d0a0"),
-	},
-	"a102": {
-		"damage": 9.0, "stun": 0.0, "range": 200.0, "pellets": 5, "spread": 18.0,
-		"noise": 420.0, "noise_at_impact": false, "cooldown": 3.0, "wear": 6.0,
-		"color": Color("#ffa040"),
-	},
-	"a103": {
-		"damage": 40.0, "stun": 0.0, "range": 560.0, "pellets": 1, "spread": 0.0,
-		"noise": 240.0, "noise_at_impact": false, "cooldown": 4.0, "wear": 4.0,
-		"color": Color("#70d0ff"),
-	},
-	"a104": {
-		"damage": 0.0, "stun": 4.0, "range": 300.0, "pellets": 1, "spread": 0.0,
-		"noise": 100.0, "noise_at_impact": true, "cooldown": 7.0, "wear": 3.0,
-		"color": Color("#90e040"),
-	},
-}
 const SLAP_BONUS_PER_ARM: float = 5.0
 const WIDE_SLASH_BONUS: float = 12.0
 const WIDE_SLASH_RADIUS: float = 90.0
@@ -126,15 +99,15 @@ func throw_at(point: Vector2) -> bool:
 	if _throw_timer > 0.0 or level.player.body.arm_count() == 0:
 		return false
 	_throw_timer = THROW_COOLDOWN
-	_shoot(THROWN, point)
+	_shoot(WeaponCatalog.thrown(), point)
 	return true
 
 
 ## Dispara el arma de la acción hacia el punto. Las recargas las lleva ActionSystem.
 func fire_weapon(id: String, point: Vector2) -> bool:
-	if not RANGED_WEAPONS.has(id):
+	if not WeaponCatalog.has_player_weapon(id):
 		return false
-	_shoot(RANGED_WEAPONS[id] as Dictionary, point)
+	_shoot(WeaponCatalog.player(id), point)
 	return true
 
 

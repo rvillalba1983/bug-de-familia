@@ -88,7 +88,7 @@ func test_camera_alarm_sends_guard() -> void:
 func test_guard_hit_damages_a_piece() -> void:
 	var sandbox: Sandbox = _scene()
 	var total_before: float = _total_durability(sandbox.player.body)
-	sandbox.player.body.damage_random(Guard.HIT_DAMAGE, sandbox.rng)
+	sandbox.player.body.damage_random(float(WeaponCatalog.enemy(WeaponCatalog.ENEMY_MELEE)["damage"]), sandbox.rng)
 	assert_float(_total_durability(sandbox.player.body)).is_less(total_before)
 
 

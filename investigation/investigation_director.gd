@@ -15,8 +15,8 @@ const OBSERVATION_RANGE: float = 200.0
 const NEGLECT_LIMIT: float = 600.0
 const TENSION_WARNING: float = 420.0
 const ZONE_START_X: float = 1100.0
-const COLOR_MOHOCRATA: Color = Color("#8fbf60")
-const COLOR_JUBILADO: Color = Color("#a0a8b8")
+## Para quien no pertenece a una raza con datos, como las máquinas.
+const COLOR_OTHER_RACE: Color = Color("#8fbf60")
 const COLOR_EVIDENCE_NEAR: float = 1.0
 
 var level: Sandbox
@@ -313,7 +313,8 @@ func _apply_outcome_look() -> void:
 
 func _build_world() -> void:
 	for npc: Dictionary in case_data["npcs"]:
-		var color: Color = COLOR_JUBILADO if npc["race"] == "jubilado" else COLOR_MOHOCRATA
+		var race: String = npc["race"]
+		var color: Color = SpeciesCatalog.color(race) if SpeciesCatalog.has(race) else COLOR_OTHER_RACE
 		var item: Interactable = _spawn(npc, Interactable.Kind.NPC, color)
 		npc_nodes[npc["id"]] = item
 		var bubble: SpeechBubble = SpeechBubble.new()

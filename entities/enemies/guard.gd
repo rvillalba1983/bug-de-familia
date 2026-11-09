@@ -20,9 +20,6 @@ const LOSE_TIME: float = 4.0
 const VIEW_RANGE: float = 320.0
 const VIEW_HALF_ANGLE: float = 35.0
 const REPATH_TIME: float = 0.4
-const HIT_RANGE: float = 46.0
-const HIT_COOLDOWN: float = 1.2
-const HIT_DAMAGE: float = 34.0
 const RADIUS: float = 18.0
 const SCREEN_MARGIN: float = 120.0
 ## Provisionales. Quedan dentro de HIT_RANGE, y el ángulo reparte bien a cualquier número.
@@ -30,17 +27,7 @@ const FIGHT_SPREAD: float = 34.0
 const FIGHT_ANGLE_STEP: float = 2.4
 const BODY_HEIGHT: float = 60.0
 const WAYPOINT_TOLERANCE: float = 6.0
-const MELEE_WINDUP: float = 0.4
-const MELEE_GRACE: float = 14.0
 const MAX_HEALTH: float = 100.0
-const CORPSE_TIME: float = 25.0
-const SHOOTER_VIEW_RANGE: float = 220.0
-const SHOOTER_HALF_ANGLE: float = 30.0
-const SHOOT_RANGE: float = 340.0
-const SHOT_WINDUP: float = 0.7
-const SHOT_COOLDOWN: float = 1.8
-const SHOT_DAMAGE: float = 20.0
-const AIM_TOLERANCE: float = 44.0
 
 var state: State = State.PATROL
 var detector: Detector = Detector.new(VIEW_RANGE, VIEW_HALF_ANGLE, true)
@@ -66,6 +53,7 @@ var passive: bool = false
 var visual: GuardVisual
 var attack: GuardAttack
 var impacts: GuardImpacts
+var death: Dictionary = DeathCatalog.entry(DeathCatalog.DEFAULT_ID)
 var _corpse_time: float = 0.0
 
 
@@ -135,9 +123,10 @@ func _draw() -> void:
 
 
 ## Convierte a este guardia en tirador. Llamar antes de setup.
-func make_ranged(host: Sandbox) -> void:
-	attack.make_ranged(host)
-	detector = Detector.new(SHOOTER_VIEW_RANGE, SHOOTER_HALF_ANGLE, true)
+func make_ranged(host: Sandbox, weapon_id: String = WeaponCatalog.ENEMY_RANGED) -> void:
+	attack.make_ranged(host, weapon_id)
+	var weapon: Dictionary = attack.weapon
+	detector = Detector.new(float(weapon["view_range"]), float(weapon["view_half_angle"]), true)
 
 
 func take_damage(amount: float) -> void:
@@ -308,7 +297,7 @@ func _fall() -> void:
 	var was_alert: bool = state == State.ALERT
 	state = State.DOWN
 	attack.cancel()
-	_corpse_time = CORPSE_TIME
+	_corpse_time = float(death["corpse_time"])
 	velocity = Vector2.ZERO
 	_view.visible = false
 	collision_layer = 0

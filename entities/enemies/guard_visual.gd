@@ -69,7 +69,7 @@ func update_rig() -> void:
 		rig.scale.x = absf(rig.scale.x) * (-1.0 if flipped else 1.0)
 	rig.modulate = _rig_tint(state)
 	if state == Guard.State.DOWN:
-		rig.show_animation(EnemyRig.FALL)
+		rig.show_animation(StringName(str(_guard.death["animation"])))
 	elif state == Guard.State.ALERT and not _was_alert:
 		rig.show_animation(EnemyRig.ALERT)
 	elif state != Guard.State.ALERT or not rig.player.is_playing():
@@ -91,7 +91,7 @@ func _draw_windup() -> void:
 		var aim: Vector2 = attack.aim_point - _guard.global_position
 		_guard.draw_line(Vector2(0.0, -30.0), aim, COLOR_WINDUP, 2.0)
 	else:
-		_guard.draw_arc(Vector2(0.0, -30.0), Guard.HIT_RANGE, 0.0, TAU, 32, COLOR_WINDUP, 3.0)
+		_guard.draw_arc(Vector2(0.0, -30.0), float(attack.weapon["range"]), 0.0, TAU, 32, COLOR_WINDUP, 3.0)
 
 
 func _draw_health() -> void:

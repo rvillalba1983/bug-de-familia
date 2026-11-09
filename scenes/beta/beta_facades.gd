@@ -8,16 +8,16 @@ const ART_DEPOT: String = "res://art/beta/fachada_deposito.svg"
 
 static func build(zone: BetaZone) -> void:
 	var central: BuildingFacade = _add(
-		zone, ART_CENTRAL, BetaLayout.CENTRAL_DOOR.end.y, BetaLayout.CENTRAL_FACADE,
-		BetaLayout.CENTRAL_INSIDE, [zone.door, zone.cracked_wall]
+		zone, ART_CENTRAL, BetaLayout.central_door.end.y, BetaLayout.central_facade,
+		BetaLayout.central_inside, [zone.door, zone.cracked_wall]
 	)
 	central.door_wall = zone.door
 	central.door_hole = Rect2(
-		BetaLayout.CENTRAL_DOOR.position.x - central.position.x,
-		-BetaLayout.FACADE_DOOR_HEIGHT - 8.0,
-		BetaLayout.CENTRAL_DOOR.size.x, BetaLayout.FACADE_DOOR_HEIGHT
+		BetaLayout.central_door.position.x - central.position.x,
+		-BetaLayout.facade_door_height - 8.0,
+		BetaLayout.central_door.size.x, BetaLayout.facade_door_height
 	)
-	_add(zone, ART_DEPOT, BetaLayout.DEPOT.end.y + 40.0, BetaLayout.DEPOT_FACADE, BetaLayout.DEPOT, [])
+	_add(zone, ART_DEPOT, BetaLayout.depot.end.y + 40.0, BetaLayout.depot_facade, BetaLayout.depot, [])
 
 
 static func _add(

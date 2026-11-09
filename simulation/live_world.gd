@@ -40,9 +40,12 @@ func _ready() -> void:
 
 
 func start(data: Dictionary) -> void:
-	sim.spawn_areas = {"jubilado": BetaLayout.JUB_HOME, "mohocrata": BetaLayout.MOHO_HOME}
-	sim.open_spots = BetaLayout.OPEN_SPOTS
-	sim.gates = {"jubilado": BetaLayout.JUB_GATE, "mohocrata": BetaLayout.MOHO_GATE}
+	var zone: ZoneDefinition = BetaLayout.zone
+	for species: String in zone.species():
+		var home: Dictionary = zone.data["homes"][species]
+		sim.spawn_areas[species] = zone.rect(str(home["area"]))
+		sim.gates[species] = zone.point(str(home["gate"]))
+	sim.open_spots = BetaLayout.open_spots
 	sim.start(level.rng.seed, data)
 	var added_traces: Array = sim.festivals.collect_traces(sim, sim.last_seen_day)
 	sim.last_seen_day = WorldCalendar.today()

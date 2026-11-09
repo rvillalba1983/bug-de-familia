@@ -104,7 +104,7 @@ func _radial(size: int) -> GradientTexture2D:
 
 
 func _build_spores() -> GPUParticles2D:
-	var area: Rect2 = BetaLayout.SOUTH_QUARTER
+	var area: Rect2 = BetaLayout.south_quarter
 	var process: ParticleProcessMaterial = ParticleProcessMaterial.new()
 	process.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_BOX
 	process.emission_box_extents = Vector3(area.size.x * 0.5, area.size.y * 0.5, 0.0)

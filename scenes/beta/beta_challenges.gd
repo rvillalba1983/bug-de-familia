@@ -34,9 +34,9 @@ const OFFLINE_REFRESH: float = 2.0
 const OFFLINE_STUN: float = 5.0
 const POWER_OFF_HOUR: int = 21
 const POWER_ON_HOUR: int = 8
-const GROUPS: Dictionary = {
-	"cuadrilla_moho": {"prefix": "moho", "route": BetaLayout.MOHO_GROUP_ROUTE},
-	"patrulla_jub": {"prefix": "jub", "route": BetaLayout.JUB_GROUP_ROUTE},
+static var groups: Dictionary = {
+	"cuadrilla_moho": {"prefix": "moho", "route": BetaLayout.moho_group_route},
+	"patrulla_jub": {"prefix": "jub", "route": BetaLayout.jub_group_route},
 }
 
 const ROUTE_GOALS: Dictionary = {
@@ -84,7 +84,7 @@ func apply_flags() -> void:
 	var case: InvestigationDirector = level.investigation
 	if flag("clave_mal"):
 		case.clear_flag("clave_mal")
-		level.noise_bus.emit_noise(BetaLayout.CENTRAL_DOOR.get_center(), WRONG_CODE_NOISE)
+		level.noise_bus.emit_noise(BetaLayout.central_door.get_center(), WRONG_CODE_NOISE)
 		level.show_notice(tr("BETA_WRONG_CODE"))
 	if flag("clave_ok") and not level.door.is_open:
 		level.open_central_door()
@@ -96,7 +96,7 @@ func apply_flags() -> void:
 	_apply_conflict()
 	_solder_piece()
 	_show_footprints()
-	for id: String in GROUPS:
+	for id: String in groups:
 		_apply_group(id)
 
 
@@ -122,7 +122,7 @@ func use_cracked_wall() -> void:
 		return
 	level.investigation.clear_flag("tiene_mina")
 	level.investigation.set_flag("muro_volado")
-	var at: Vector2 = BetaLayout.CRACKED_WALL.get_center()
+	var at: Vector2 = BetaLayout.cracked_wall.get_center()
 	for enemy: Guard in level.guards():
 		if enemy.global_position.distance_to(at) <= BLOWN_WALL_STUN_RADIUS:
 			enemy.stun(BLOWN_WALL_STUN_TIME)
@@ -135,9 +135,9 @@ func take_reel() -> void:
 
 
 func break_generator() -> void:
-	level.noise_bus.emit_noise(BetaLayout.GENERATOR, SandboxLayout.CRATE_NOISE_RADIUS)
+	level.noise_bus.emit_noise(BetaLayout.generator, SandboxLayout.CRATE_NOISE_RADIUS)
 	if is_instance_valid(level.ramon) and not level.ramon.is_down():
-		level.ramon.investigate(BetaLayout.GENERATOR)
+		level.ramon.investigate(BetaLayout.generator)
 
 
 func on_ramon_fell() -> void:
@@ -202,11 +202,11 @@ func _system_hour() -> int:
 
 func _check_challenges() -> void:
 	var feet: Vector2 = level.player.global_position
-	if BetaLayout.CENTRAL_INSIDE.has_point(feet):
+	if BetaLayout.central_inside.has_point(feet):
 		_complete(ENTER)
-	if flag("tiene_bobina") and not BetaLayout.DEPOT.has_point(feet):
+	if flag("tiene_bobina") and not BetaLayout.depot.has_point(feet):
 		_complete(EXTRACT)
-	if BetaLayout.CROSSING_GOAL.has_point(feet):
+	if BetaLayout.crossing_goal.has_point(feet):
 		_complete(CROSS)
 	if is_instance_valid(level.ramon) and not level.ramon.is_down():
 		if level.ramon.global_position.distance_to(feet) <= FIND_RANGE:
@@ -282,26 +282,26 @@ func _apply_conflict() -> void:
 			level.investigation.flags["batalla_guerra"] = true
 			level.battles.begin()
 		for enemy: Guard in level.depot_guards():
-			enemy.set_patrol(BetaLayout.BRAWL_PATROL)
+			enemy.set_patrol(BetaLayout.brawl_patrol)
 		for enemy: Guard in strip:
-			enemy.set_patrol(BetaLayout.BRAWL_PATROL)
+			enemy.set_patrol(BetaLayout.brawl_patrol)
 	elif (flag("paz") or flag("tregua")) and not level.moved_home:
 		level.moved_home = true
 		for enemy: Guard in strip:
 			var is_jubilado: bool = enemy == level.strip_jubilado
-			enemy.set_patrol(BetaLayout.JUB_HOME_PATROL if is_jubilado else BetaLayout.MOHO_HOME_PATROL)
+			enemy.set_patrol(BetaLayout.jub_home_patrol if is_jubilado else BetaLayout.moho_home_patrol)
 
 
 func _apply_power_off() -> void:
 	if not is_power_off_hour():
 		return
-	for enemy: Guard in level.jubilado_guards():
+	for enemy: Guard in level.guards_of("jubilado"):
 		if not enemy.is_alert():
 			enemy.stun(OFFLINE_STUN)
 
 
 func _apply_group(id: String) -> void:
-	var prefix: String = GROUPS[id]["prefix"]
+	var prefix: String = groups[id]["prefix"]
 	var node: Variant = level.investigation.npc_nodes.get(id)
 	if flag(prefix + "_desviada") and is_instance_valid(node):
 		(node as Interactable).visible = false
@@ -319,12 +319,12 @@ func _alert_nearby() -> void:
 
 
 func _move_groups(delta: float) -> void:
-	for id: String in GROUPS:
+	for id: String in groups:
 		var item: Variant = level.investigation.npc_nodes.get(id)
 		if not is_instance_valid(item) or (item as Interactable).used:
 			continue
 		var node: Interactable = item
-		var route: Array[Vector2] = GROUPS[id]["route"]
+		var route: Array[Vector2] = groups[id]["route"]
 		var index: int = _group_index.get(id, 0)
 		node.position = node.position.move_toward(route[index], GROUP_SPEED * delta)
 		if node.position.is_equal_approx(route[index]):
@@ -335,7 +335,7 @@ func _check_encounters() -> void:
 	var case: InvestigationDirector = level.investigation
 	if not case.current_node.is_empty() or level.player.is_crouching:
 		return
-	for id: String in GROUPS:
+	for id: String in groups:
 		var item: Variant = case.npc_nodes.get(id)
 		var seen: String = "encuentro_%s" % id
 		if flag(seen) or not is_instance_valid(item) or (item as Interactable).used:

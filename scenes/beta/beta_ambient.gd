@@ -63,7 +63,7 @@ func _draw() -> void:
 	for at: Vector2 in PLANTS:
 		if at.distance_to(feet) < NEAR:
 			_plant(at, clock)
-	var drift: Vector2 = (feet - BetaLayout.WORLD_SIZE * 0.5) * CANOPY_PARALLAX
+	var drift: Vector2 = (feet - BetaLayout.world_size * 0.5) * CANOPY_PARALLAX
 	for index: int in range(CANOPIES.size()):
 		var top: Vector2 = CANOPIES[index] - drift
 		if top.distance_to(feet) < NEAR * 1.3:

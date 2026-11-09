@@ -129,7 +129,7 @@ func test_birth_in_scene_appears_live_once() -> void:
 	await await_millis(100)
 	var world: LiveWorld = zone.live_world
 	var count_before: int = world.citizens.size()
-	var npc: NpcState = world.sim.spawn("jubilado", BetaLayout.JUB_GATE, "llegado")
+	var npc: NpcState = world.sim.spawn("jubilado", BetaLayout.jub_gate, "llegado")
 	assert_int(world.citizens.size()).is_equal(count_before + 1)
 	assert_bool(is_instance_valid(world.citizens[npc.id])).is_true()
 	assert_array(ConsistencyChecker.check(world.sim)).is_empty()

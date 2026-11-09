@@ -1,0 +1,17 @@
+{
+  "ramon": {
+    "name": "Don Ramón",
+    "art": "don_ramon",
+    "color": "#e0a040",
+    "material": "nanoacero",
+    "fixed_property": "p047",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "contestador": {
+    "name": "El Contestador",
+    "material": "gel_memoria",
+    "fixed_property": "p049"
+  }
+}

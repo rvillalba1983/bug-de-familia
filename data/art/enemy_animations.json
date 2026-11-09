@@ -1,0 +1,33 @@
+{
+  "quieto": {"length": 1.6, "loop": true, "tracks": [
+      {"path": "pecho:position", "keys": [[0, [0, 0]], [0.8, [0, -5]], [1.6, [0, 0]]]},
+      {"path": "pecho/cabeza:rotation", "keys": [[0, 0.025], [0.8, -0.025], [1.6, 0.025]]}
+  ]},
+  "andar": {"length": 0.7, "loop": true, "tracks": [
+      {"path": "pierna_i:position", "when": {"side": true}, "keys": [[0, [52, 0]], [0.35, [-52, 0]], [0.525, [0, -26]], [0.7, [52, 0]]]},
+      {"path": "pierna_d:position", "when": {"side": true}, "keys": [[0, [-52, 0]], [0.175, [0, -26]], [0.35, [52, 0]], [0.7, [-52, 0]]]},
+      {"path": "pierna_i:position", "when": {"side": false}, "keys": [[0, [0, 0]], [0.175, [0, -30]], [0.35, [0, 0]], [0.7, [0, 0]]]},
+      {"path": "pierna_d:position", "when": {"side": false}, "keys": [[0, [0, 0]], [0.35, [0, 0]], [0.525, [0, -30]], [0.7, [0, 0]]]},
+      {"path": "pecho:rotation", "keys": [[0, 0.11], [0.35, -0.11], [0.7, 0.11]], "when": {"waddle": true}},
+      {"path": "pecho:rotation", "keys": [[0, 0.05], [0.35, -0.05], [0.7, 0.05]], "when": {"waddle": false}},
+      {"path": "pecho/brazo_i:rotation", "keys": [[0, 0.16], [0.35, -0.16], [0.7, 0.16]]},
+      {"path": "pecho/brazo_d:rotation", "keys": [[0, -0.09], [0.35, 0.09], [0.7, -0.09]]},
+      {"path": "pecho/cabeza:rotation", "keys": [[0, -0.09], [0.35, 0.09], [0.7, -0.09]], "when": {"waddle": true}},
+      {"path": "pecho/cabeza:rotation", "keys": [[0, -0.04], [0.35, 0.04], [0.7, -0.04]], "when": {"waddle": false}},
+      {"path": "pecho:position", "when": {"waddle": true}, "keys": [[0, [0, 0]], [0.175, [0, -20]], [0.35, [0, 0]], [0.525, [0, -20]], [0.7, [0, 0]]]},
+      {"path": "pecho:position", "when": {"waddle": false}, "keys": [[0, [0, 0]], [0.175, [0, 9]], [0.35, [0, 0]], [0.525, [0, 9]], [0.7, [0, 0]]]}
+  ]},
+  "alerta": {"length": 0.5, "loop": false, "tracks": [
+      {"path": "pecho:position", "keys": [[0, [0, 0]], [0.1, [0, -44]], [0.3, [0, 0]]]},
+      {"path": "pecho/brazo_i:rotation", "keys": [[0, 0], [0.1, 0.7], [0.5, 0.3]]},
+      {"path": "pecho/brazo_d:rotation", "keys": [[0, 0], [0.1, -0.5], [0.5, -0.2]]},
+      {"path": "pecho/cabeza:position", "keys": [[0, [0, 0]], [0.1, [0, -32]], [0.3, [0, 0]]]}
+  ]},
+  "caer": {"length": 0.55, "loop": false, "tracks": [
+      {"path": ".:rotation", "keys": [[0, 0], [0.15, -0.2], [0.45, 1.570796]]},
+      {"path": ".:position", "keys": [[0, [0, 0]], [0.15, [0, -40]], [0.45, [0, 0]], [0.55, [0, 22]]]},
+      {"path": "pecho/cabeza:rotation", "keys": [[0, 0], [0.45, 0], [0.55, 0.3]]},
+      {"path": "pecho/brazo_i:rotation", "keys": [[0, 0], [0.45, 0.9]]},
+      {"path": "pecho/brazo_d:rotation", "keys": [[0, 0], [0.45, -0.7]]}
+  ]}
+}

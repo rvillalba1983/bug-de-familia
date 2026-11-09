@@ -243,7 +243,7 @@ func test_at_least_four_ranged_weapons_can_be_forged() -> void:
 	var weapons: Array = sandbox.catalog.objectives["distancia"]["actions"]
 	assert_int(weapons.size()).is_greater_equal(4)
 	for id: Variant in weapons:
-		assert_bool(CombatSystem.RANGED_WEAPONS.has(id)).is_true()
+		assert_bool(WeaponCatalog.has_player_weapon(id)).is_true()
 
 
 func test_slingshot_hurts_a_little() -> void:

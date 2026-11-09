@@ -1,5 +1,6 @@
 {
   "jubilado": {
+    "actor": {"color": "#a0a8b8", "map_color": "#a0c8ff", "art": "jubilado_hierro", "material": "nanoacero", "plural": "Jubilados", "doll": "jubilado", "deaths": ["caida"]},
     "rival": "mohocrata", "start": 18, "target": 20, "max": 26,
     "roles": ["petanquista", "vigilante", "archivero", "mecanico"],
     "names": ["Paco", "Encarna", "Fermín", "Remedios", "Sisebuto", "Angustias", "Evaristo", "Pura", "Nicanor", "Benita"],
@@ -19,6 +20,7 @@
     ]
   },
   "mohocrata": {
+    "actor": {"color": "#8fbf60", "map_color": "#a0f060", "art": "mohocrata", "material": "bioceramica", "plural": "Mohócratas", "doll": "mohocrata", "deaths": ["caida"]},
     "rival": "jubilado", "start": 18, "target": 20, "max": 26,
     "roles": ["votante", "recolector", "escrutador", "reciclador"],
     "names": ["Hongoberto", "Espora", "Micelio", "Colmenilla", "Níscalo", "Boletina", "Trufo", "Amanita", "Champi", "Yesquero"],

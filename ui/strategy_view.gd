@@ -14,7 +14,6 @@ const COLOR_DIRT: Color = Color("#957548")
 const COLOR_INK: Color = Color("#1a1024")
 const COLOR_TONGUE: Color = Color("#e0405a")
 const MOOD_TIME: float = 1.3
-const COLORS: Dictionary = {"jubilado": Color("#a0c8ff"), "mohocrata": Color("#a0f060")}
 
 enum Mood { ANGRY, DISGUST, SCREAM, SMUG, PANIC }
 
@@ -89,10 +88,10 @@ func _process(delta: float) -> void:
 func _draw_map() -> void:
 	_canvas.draw_rect(Rect2(Vector2.ZERO, VIEW), COLOR_GROUND)
 	_draw_dirt()
-	for species: String in BattleDirector.SPECIES:
+	for species: String in director.species:
 		_draw_fallen(species)
 	var fighters: Array = []
-	for species: String in BattleDirector.SPECIES:
+	for species: String in director.species:
 		for guard: Guard in director.alive_in(species):
 			fighters.append([guard, species])
 	fighters.sort_custom(func(a: Array, b: Array) -> bool:
@@ -105,10 +104,10 @@ func _draw_map() -> void:
 func _draw_labels() -> void:
 	var font: Font = ThemeDB.fallback_font
 	var line: float = 44.0
-	for species: String in BattleDirector.SPECIES:
+	for species: String in director.species:
 		var text: String = "%s: %d" % [director.data["names"][species], director.alive_in(species).size()]
 		_canvas.draw_string_outline(font, Vector2(1590.0, line), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, 6, Color.BLACK)
-		_canvas.draw_string(font, Vector2(1590.0, line), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, COLORS[species])
+		_canvas.draw_string(font, Vector2(1590.0, line), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, SpeciesCatalog.map_color(species))
 		line += 36.0
 	var help: String = "x%d   ·   1: x1   2: x2   3: x4   ·   M: salir" % roundi(director.speed)
 	_canvas.draw_string_outline(font, Vector2(24.0, 44.0), help, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, 6, Color.BLACK)
@@ -123,7 +122,7 @@ func _to_view(point: Vector2) -> Vector2:
 func _update_camera(delta: float, snap: bool) -> void:
 	var box: Rect2 = Rect2()
 	var first: bool = true
-	for species: String in BattleDirector.SPECIES:
+	for species: String in director.species:
 		for guard: Guard in director.alive_in(species):
 			box = Rect2(guard.global_position, Vector2.ZERO) if first else box.expand(guard.global_position)
 			first = false
@@ -177,7 +176,7 @@ func _draw_fighter(guard: Guard, species: String) -> void:
 
 
 func _is_fighting(guard: Guard, species: String) -> bool:
-	var rival: String = "mohocrata" if species == "jubilado" else "jubilado"
+	var rival: String = SpeciesCatalog.rival(species)
 	for foe: Guard in director.alive_in(rival):
 		if guard.global_position.distance_to(foe.global_position) <= BattleDirector.STRIKE_RANGE * 1.4:
 			return true
@@ -206,7 +205,7 @@ func _draw_body(at: Vector2, species: String, beat: float, tilt: float, squash: 
 	_canvas.draw_line(Vector2(24.0, -30.0), Vector2(44.0, raised - arm), COLOR_INK, 6.0)
 	_canvas.draw_circle(Vector2(-44.0, raised + arm), 7.0, Color("#ffd8b0"))
 	_canvas.draw_circle(Vector2(44.0, raised - arm), 7.0, Color("#ffd8b0"))
-	if species == "jubilado":
+	if SpeciesCatalog.doll(species) == "jubilado":
 		_draw_jubilado()
 	else:
 		_draw_mohocrata()

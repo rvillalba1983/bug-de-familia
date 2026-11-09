@@ -28,7 +28,6 @@ const NATURAL_CHECK: float = 30.0
 const NATURAL_RELATION: float = -55.0
 const NATURAL_CHANCE: float = 0.25
 const NATURAL_COOLDOWN: float = 600.0
-const SPECIES: Array[String] = ["jubilado", "mohocrata"]
 
 ## Las pruebas lo apagan: la oferta espera al jugador y pausa el juego.
 static var auto_start: bool = true
@@ -36,7 +35,8 @@ static var auto_start: bool = true
 var level: BetaZone
 var phase: Phase = Phase.NONE
 var joined: String = ""
-var sides: Dictionary = {"jubilado": [], "mohocrata": []}
+var species: Array[String] = BetaLayout.zone.species()
+var sides: Dictionary = _empty_sides()
 var fallen: Array[String] = []
 var data: Dictionary = {}
 var speed: float = 1.0
@@ -66,7 +66,12 @@ func _exit_tree() -> void:
 
 
 func is_fighter(id: String) -> bool:
-	return phase == Phase.RUNNING and ((sides["jubilado"] as Array).has(id) or (sides["mohocrata"] as Array).has(id))
+	if phase != Phase.RUNNING:
+		return false
+	for side: String in species:
+		if (sides[side] as Array).has(id):
+			return true
+	return false
 
 
 func strategy_view() -> StrategyView:
@@ -78,13 +83,13 @@ func begin() -> bool:
 	if phase != Phase.NONE:
 		return false
 	var world: LiveWorld = level.live_world
-	for species: String in SPECIES:
-		sides[species] = []
-		for npc: NpcState in world.sim.alive_of(species):
-			if (sides[species] as Array).size() < MAX_PER_SIDE and world.citizens.has(npc.id):
-				(sides[species] as Array).append(npc.id)
-		if (sides[species] as Array).size() < MIN_PER_SIDE:
-			sides = {"jubilado": [], "mohocrata": []}
+	for side: String in species:
+		sides[side] = []
+		for npc: NpcState in world.sim.alive_of(side):
+			if (sides[side] as Array).size() < MAX_PER_SIDE and world.citizens.has(npc.id):
+				(sides[side] as Array).append(npc.id)
+		if (sides[side] as Array).size() < MIN_PER_SIDE:
+			sides = _empty_sides()
 			return false
 	phase = Phase.OFFER
 	joined = ""
@@ -113,11 +118,11 @@ func on_converted(entity_id: String) -> void:
 	if not fallen.has(entity_id):
 		return
 	var world: LiveWorld = level.live_world
-	var species: String = (world.sim.npcs[entity_id] as NpcState).species
-	for npc: NpcState in world.sim.alive_of(species):
+	var side: String = (world.sim.npcs[entity_id] as NpcState).species
+	for npc: NpcState in world.sim.alive_of(side):
 		if npc.pos.distance_to(level.player.global_position) <= WITNESS_RANGE:
-			world.sim.change_standing(species, WITNESS_STANDING)
-			world.say_from(npc, str(data["witness"][species]))
+			world.sim.change_standing(side, WITNESS_STANDING)
+			world.say_from(npc, str(data["witness"][side]))
 			return
 
 
@@ -150,14 +155,14 @@ func _on_offer_chosen(option: int) -> void:
 	_offer.close()
 	phase = Phase.RUNNING
 	var world: LiveWorld = level.live_world
-	if option < SPECIES.size():
-		joined = SPECIES[option]
+	if option < species.size():
+		joined = species[option]
 		var other: String = _rival(joined)
 		world.sim.change_standing(joined, JOIN_STANDING)
 		world.sim.change_standing(other, AGAINST_STANDING)
 		for id: String in sides[other]:
 			(world.citizens[id] as Guard).set_passive(false)
-	elif option == SPECIES.size():
+	elif option == species.size():
 		_view.open()
 	started.emit()
 
@@ -172,15 +177,15 @@ func _run(delta: float) -> void:
 		_give_orders()
 	if not joined.is_empty():
 		_shout(delta)
-	var alive_a: int = alive_in("jubilado").size()
-	var alive_b: int = alive_in("mohocrata").size()
+	var alive_a: int = alive_in(species[0]).size()
+	var alive_b: int = alive_in(species[1]).size()
 	if alive_a == 0 or alive_b == 0 or _clock >= TIME_LIMIT:
 		_finish(alive_a, alive_b)
 
 
-func alive_in(species: String) -> Array[Guard]:
+func alive_in(side: String) -> Array[Guard]:
 	var result: Array[Guard] = []
-	for id: String in sides[species]:
+	for id: String in sides[side]:
 		var guard: Variant = level.live_world.citizens.get(id)
 		if is_instance_valid(guard) and not (guard as Guard).is_down():
 			result.append(guard as Guard)
@@ -188,11 +193,11 @@ func alive_in(species: String) -> Array[Guard]:
 
 
 func _give_orders() -> void:
-	for species: String in SPECIES:
-		var foes: Array[Guard] = alive_in(_rival(species))
+	for side: String in species:
+		var foes: Array[Guard] = alive_in(_rival(side))
 		if foes.is_empty():
 			return
-		for id: String in sides[species]:
+		for id: String in sides[side]:
 			var guard: Variant = level.live_world.citizens.get(id)
 			if not is_instance_valid(guard) or (guard as Guard).is_down() or (guard as Guard).is_alert():
 				continue
@@ -248,7 +253,7 @@ func _compass(to: Vector2) -> String:
 func _finish(alive_a: int, alive_b: int) -> void:
 	var winner: String = ""
 	if alive_a != alive_b and (alive_a == 0 or alive_b == 0):
-		winner = "jubilado" if alive_a > 0 else "mohocrata"
+		winner = species[0] if alive_a > 0 else species[1]
 	var world: LiveWorld = level.live_world
 	if not joined.is_empty():
 		for id: String in sides[_rival(joined)]:
@@ -267,9 +272,16 @@ func _finish(alive_a: int, alive_b: int) -> void:
 
 
 func _any_id(winner: String) -> String:
-	var species: String = winner if not winner.is_empty() else "jubilado"
-	return (sides[species] as Array)[0]
+	var side: String = winner if not winner.is_empty() else species[0]
+	return (sides[side] as Array)[0]
 
 
-func _rival(species: String) -> String:
-	return "mohocrata" if species == "jubilado" else "jubilado"
+func _rival(side: String) -> String:
+	return SpeciesCatalog.rival(side)
+
+
+func _empty_sides() -> Dictionary:
+	var empty: Dictionary = {}
+	for side: String in species:
+		empty[side] = []
+	return empty

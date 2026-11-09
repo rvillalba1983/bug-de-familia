@@ -72,10 +72,10 @@ func _build() -> void:
 	title.add_theme_color_override(&"font_color", Color("#ff9a3c"))
 	plate.add_child(title)
 	var names: Dictionary = data["names"]
-	var texts: Array[String] = [
-		str(data["offer_join"]) % names["jubilado"], str(data["offer_join"]) % names["mohocrata"],
-		str(data["offer_watch"]), str(data["offer_leave"]),
-	]
+	var texts: Array[String] = []
+	for species: String in _director.species:
+		texts.append(str(data["offer_join"]) % names[species])
+	texts.append_array([str(data["offer_watch"]), str(data["offer_leave"])])
 	for index: int in range(texts.size()):
 		var button: Button = Button.new()
 		button.text = "%d. %s" % [index + 1, texts[index]]

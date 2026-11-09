@@ -11,7 +11,9 @@ const FALL: StringName = &"caer"
 const BLEND: float = 0.12
 const ALL_PARTS: Array[String] = ["pierna_i", "pierna_d", "brazo_i", "brazo_d", "torso", "cabeza"]
 const FAR_LEG_TINT: Color = Color(0.68, 0.68, 0.76)
-const STRIDE: float = 52.0
+const CLIPS_PATH: String = "res://data/art/enemy_animations.json"
+
+static var _clips: Dictionary = {}
 
 var player: AnimationPlayer
 
@@ -49,10 +51,10 @@ func build(folder: String, height: float, feet: float) -> void:
 	add_child(player)
 	player.root_node = player.get_path_to(_hips)
 	var library: AnimationLibrary = AnimationLibrary.new()
-	library.add_animation(IDLE, _make_idle())
-	library.add_animation(WALK, _make_walk())
-	library.add_animation(ALERT, _make_alert())
-	library.add_animation(FALL, _make_fall())
+	if _clips.is_empty():
+		_clips = DataFile.load_dictionary(CLIPS_PATH)
+	for clip: String in _clips:
+		library.add_animation(StringName(clip), _make_clip(_clips[clip]))
 	player.add_animation_library(&"", library)
 	player.play(IDLE)
 
@@ -110,105 +112,34 @@ func _rest(path: String) -> Vector2:
 	return (_hips.get_node(path) as Node2D).position
 
 
-func _track(animation: Animation, path: String, keys: Array) -> void:
-	if not _has(path.get_slice(":", 0)):
-		return
+## Las posiciones de los datos son desplazamientos sobre el reposo; los giros, absolutos.
+func _make_clip(clip: Dictionary) -> Animation:
+	var animation: Animation = Animation.new()
+	animation.length = float(clip["length"])
+	if clip["loop"]:
+		animation.loop_mode = Animation.LOOP_LINEAR
+	for track: Dictionary in clip["tracks"]:
+		var path: String = track["path"]
+		if _applies(track.get("when", {})) and _has(path.get_slice(":", 0)):
+			_add_track(animation, path, track["keys"])
+	return animation
+
+
+func _applies(when: Dictionary) -> bool:
+	if when.has("side") and bool(when["side"]) != bool(_data["side"]):
+		return false
+	var waddle: bool = _data["gait"] == EnemyRigData.NO_LEGS
+	return not when.has("waddle") or bool(when["waddle"]) == waddle
+
+
+func _add_track(animation: Animation, path: String, keys: Array) -> void:
 	var track: int = animation.add_track(Animation.TYPE_VALUE)
 	animation.track_set_path(track, NodePath(path))
+	var rest: Vector2 = _rest(path.get_slice(":", 0))
 	for key: Array in keys:
-		animation.track_insert_key(track, key[0], key[1])
-
-
-func _rock(animation: Animation, path: String, time: float, amount: float) -> void:
-	_track(animation, path + ":rotation", [[0.0, amount], [time * 0.5, -amount], [time, amount]])
-
-
-func _lift(animation: Animation, part: String, time: float, first_half: bool) -> void:
-	if not _has(part):
-		return
-	var rest: Vector2 = _rest(part)
-	var up: Vector2 = rest + Vector2(0.0, -30.0)
-	var keys: Array = [[0.0, rest], [time * 0.25, up], [time * 0.5, rest], [time, rest]]
-	if not first_half:
-		keys = [[0.0, rest], [time * 0.5, rest], [time * 0.75, up], [time, rest]]
-	_track(animation, part + ":position", keys)
-
-
-## De perfil la pierna avanza y retrocede; la que vuelve va levantada.
-func _stride(animation: Animation, part: String, time: float, first_half: bool) -> void:
-	if not _has(part):
-		return
-	var rest: Vector2 = _rest(part)
-	var ahead: Vector2 = rest + Vector2(STRIDE, 0.0)
-	var behind: Vector2 = rest + Vector2(-STRIDE, 0.0)
-	var up: Vector2 = rest + Vector2(0.0, -26.0)
-	var keys: Array = [[0.0, ahead], [time * 0.5, behind], [time * 0.75, up], [time, ahead]]
-	if not first_half:
-		keys = [[0.0, behind], [time * 0.25, up], [time * 0.5, ahead], [time, behind]]
-	_track(animation, part + ":position", keys)
-
-
-func _make_idle() -> Animation:
-	var animation: Animation = Animation.new()
-	animation.length = 1.6
-	animation.loop_mode = Animation.LOOP_LINEAR
-	var rest: Vector2 = _rest("pecho")
-	var breath: Vector2 = rest + Vector2(0.0, -5.0)
-	_track(animation, "pecho:position", [[0.0, rest], [0.8, breath], [1.6, rest]])
-	_rock(animation, "pecho/cabeza", 1.6, 0.025)
-	return animation
-
-
-func _make_walk() -> Animation:
-	var animation: Animation = Animation.new()
-	var time: float = 0.7
-	animation.length = time
-	animation.loop_mode = Animation.LOOP_LINEAR
-	var waddle: bool = _data["gait"] == EnemyRigData.NO_LEGS
-	if bool(_data["side"]):
-		_stride(animation, "pierna_i", time, true)
-		_stride(animation, "pierna_d", time, false)
-	else:
-		_lift(animation, "pierna_i", time, true)
-		_lift(animation, "pierna_d", time, false)
-	_rock(animation, "pecho", time, 0.11 if waddle else 0.05)
-	_rock(animation, "pecho/brazo_i", time, 0.16)
-	_rock(animation, "pecho/brazo_d", time, -0.09)
-	_rock(animation, "pecho/cabeza", time, -0.09 if waddle else -0.04)
-	var rest: Vector2 = _rest("pecho")
-	var step: Vector2 = rest + Vector2(0.0, -20.0 if waddle else 9.0)
-	_track(
-		animation, "pecho:position",
-		[[0.0, rest], [time * 0.25, step], [time * 0.5, rest], [time * 0.75, step], [time, rest]]
-	)
-	return animation
-
-
-func _make_alert() -> Animation:
-	var animation: Animation = Animation.new()
-	animation.length = 0.5
-	var rest: Vector2 = _rest("pecho")
-	var jump: Vector2 = rest + Vector2(0.0, -44.0)
-	_track(animation, "pecho:position", [[0.0, rest], [0.1, jump], [0.3, rest]])
-	_track(animation, "pecho/brazo_i:rotation", [[0.0, 0.0], [0.1, 0.7], [0.5, 0.3]])
-	_track(animation, "pecho/brazo_d:rotation", [[0.0, 0.0], [0.1, -0.5], [0.5, -0.2]])
-	var head: Vector2 = _rest("pecho/cabeza")
-	_track(animation, "pecho/cabeza:position", [[0.0, head], [0.1, head + Vector2(0.0, -32.0)], [0.3, head]])
-	return animation
-
-
-func _make_fall() -> Animation:
-	var animation: Animation = Animation.new()
-	animation.length = 0.55
-	var hips: Vector2 = _hips.position
-	var keys_at: Vector2 = hips + Vector2(0.0, -40.0)
-	var track: int = animation.add_track(Animation.TYPE_VALUE)
-	animation.track_set_path(track, NodePath(".:rotation"))
-	animation.track_insert_key(track, 0.0, 0.0)
-	animation.track_insert_key(track, 0.15, -0.2)
-	animation.track_insert_key(track, 0.45, PI * 0.5)
-	_track(animation, ".:position", [[0.0, hips], [0.15, keys_at], [0.45, hips], [0.55, hips + Vector2(0.0, 22.0)]])
-	_track(animation, "pecho/cabeza:rotation", [[0.0, 0.0], [0.45, 0.0], [0.55, 0.3]])
-	_track(animation, "pecho/brazo_i:rotation", [[0.0, 0.0], [0.45, 0.9]])
-	_track(animation, "pecho/brazo_d:rotation", [[0.0, 0.0], [0.45, -0.7]])
-	return animation
+		var value: Variant = key[1]
+		if value is Array:
+			value = rest + Vector2(float(value[0]), float(value[1]))
+		else:
+			value = float(value)
+		animation.track_insert_key(track, float(key[0]), value)

@@ -65,11 +65,11 @@ func situation() -> String:
 
 func zone() -> String:
 	var feet: Vector2 = level.player.global_position
-	if BetaLayout.NORTH_QUARTER.has_point(feet):
+	if BetaLayout.north_quarter.has_point(feet):
 		return "barrio_jubilado"
-	if BetaLayout.SOUTH_QUARTER.has_point(feet):
+	if BetaLayout.south_quarter.has_point(feet):
 		return "barrio_mohocrata"
-	if BetaLayout.NO_MANS_LAND.has_point(feet):
+	if BetaLayout.no_mans_land.has_point(feet):
 		return "tierra_de_nadie"
 	return "bosque"
 

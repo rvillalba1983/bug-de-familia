@@ -1,0 +1,14 @@
+{
+  "caida": {
+    "animation": "caer",
+    "shake": 9,
+    "stop": 0.08,
+    "land_delay": 0.45,
+    "land_shake": 6,
+    "land_squash": [
+      1.2,
+      0.72
+    ],
+    "corpse_time": 25
+  }
+}

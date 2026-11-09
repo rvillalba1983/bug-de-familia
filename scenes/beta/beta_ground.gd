@@ -18,10 +18,10 @@ const STREET_LINE_GAP: float = 70.0
 static func paint(canvas: CanvasItem) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.seed = SEED
-	var city: Rect2 = BetaLayout.CITY
-	var strip: Rect2 = BetaLayout.NO_MANS_LAND
+	var city: Rect2 = BetaLayout.city
+	var strip: Rect2 = BetaLayout.no_mans_land
 	canvas.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
-	canvas.draw_texture_rect(TEXTURE_FOREST, BetaLayout.FLOOR_RECT, true)
+	canvas.draw_texture_rect(TEXTURE_FOREST, BetaLayout.floor_rect, true)
 	canvas.draw_texture_rect(TEXTURE_CITY, city, true)
 	_street_lines(canvas, city, strip)
 	_cracks(canvas, rng, city)

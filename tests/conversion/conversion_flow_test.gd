@@ -102,3 +102,23 @@ func test_key_converts_the_nearest_and_marks_it() -> void:
 	assert_bool(sandbox.conversion.convert_nearest()).is_true()
 	assert_int(sandbox.conversion.step).is_equal(ConversionDirector.Step.OBJECTIVE)
 	assert_bool(crate.highlighted).is_false()
+
+
+func test_screen_stops_on_target_and_counts_down() -> void:
+	var sandbox: Sandbox = _scene()
+	var screen: ConversionScreen = sandbox.conversion.screen
+	screen.begin(Vector2(960.0, 540.0))
+	screen.show_choices("Pregunta", [["1", func() -> void: pass]], true)
+	screen.set_time_fraction(0.2)
+	assert_str(screen._count.text).is_equal("1,0")
+	assert_float(screen._bar.scale.x).is_equal_approx(0.2, 0.001)
+	assert_object(screen._backdrop.material).is_not_null()
+	screen.close()
+
+
+func test_taunt_comes_from_a_speaking_ai_and_keeps_the_seed() -> void:
+	var sandbox: Sandbox = _scene()
+	var state_before: int = sandbox.rng.state
+	var taunt: Dictionary = sandbox.ai.question_taunt({"text": "¿Quién?"})
+	assert_str(str(taunt["text"])).is_not_empty()
+	assert_int(sandbox.rng.state).is_equal(state_before)

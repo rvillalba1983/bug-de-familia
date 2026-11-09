@@ -11,6 +11,7 @@ enum Step { IDLE, OBJECTIVE, SLOT, QUESTION, FEEDBACK, RESULT }
 
 const FEEDBACK_TIME: float = 1.4
 const HINT_TIME: float = 2.5
+const FOCUS_OFFSET: Vector2 = Vector2(0.0, -20.0)
 
 var step: Step = Step.IDLE
 var catalog: ConversionCatalog
@@ -21,6 +22,8 @@ var screen: ConversionScreen
 var hint: Label
 ## Recibe la pregunta y devuelve { "text": String, "disabled": int }.
 var advisor: Callable = Callable()
+## Recibe la pregunta y devuelve { "name": String, "text": String, "color": Color }.
+var taunter: Callable = Callable()
 
 var _target: Convertible
 var _highlighted: Convertible
@@ -87,6 +90,7 @@ func begin_on(target: Convertible) -> void:
 	_hint_left = 0.0
 	hint.visible = false
 	pause.begin_modal()
+	screen.begin(target.get_global_transform_with_canvas().origin + FOCUS_OFFSET)
 	step = Step.OBJECTIVE
 	var entries: Array = []
 	for id: String in catalog.objectives:
@@ -120,7 +124,7 @@ func answer_current(option: int) -> void:
 	answered.emit(correct)
 	var truth: String = str(question["options"][int(question["answer"])])
 	var verdict: String = tr("UI_CONVERT_CORRECT" if correct else "UI_CONVERT_WRONG")
-	screen.show_message(verdict, "%s %s" % [tr("UI_CONVERT_TRUTH"), truth])
+	screen.show_verdict(correct, verdict, "%s %s" % [tr("UI_CONVERT_TRUTH"), truth])
 	step = Step.FEEDBACK
 	_feedback_left = FEEDBACK_TIME
 
@@ -189,6 +193,10 @@ func _show_question() -> void:
 		var advice: Dictionary = advisor.call(question)
 		if not advice.is_empty():
 			screen.add_remark(advice["text"], advice["disabled"])
+	if taunter.is_valid():
+		var taunt: Dictionary = taunter.call(question)
+		if not taunt.is_empty():
+			screen.show_taunt(taunt["name"], taunt["text"], taunt["color"])
 
 
 func _read_answer_keys(event: InputEvent) -> void:

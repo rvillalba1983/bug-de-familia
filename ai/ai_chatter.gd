@@ -16,6 +16,7 @@ const DESPRECIO_STUN_BONUS: float = 1.3
 const TAIL_IDLE: Color = Color("#404050")
 const MOTE_CHANCE: float = 0.3
 const MOTE_EVENTS: Array[String] = ["danger", "fight", "piece_lost", "right", "wrong", "converted"]
+const TAUNT_EVENT: String = "taunt"
 const PROTAGONIST: String = "protagonista"
 const PROTAGONIST_NAME: String = "Sujeto Sobrante"
 const PROTAGONIST_COLOR: Color = Color("#ff9a3c")
@@ -111,6 +112,23 @@ func question_advice(question: Dictionary) -> Dictionary:
 	return {}
 
 
+## Burla de una IA activa al convertir. Elige con el texto de la pregunta para no gastar
+## la semilla de la partida: es solo presentación.
+func question_taunt(question: Dictionary) -> Dictionary:
+	var speakers: Array = team.speakers().filter(_has_taunt)
+	if speakers.is_empty():
+		return {}
+	var seed_value: int = absi(str(question["text"]).hash())
+	var id: String = speakers[seed_value % speakers.size()]
+	var data: Dictionary = team.ais[id]
+	var lines: Array = data["lines"][TAUNT_EVENT]
+	return {
+		"name": data["name"],
+		"text": lines[seed_value % lines.size()],
+		"color": Color(data["color"] as String),
+	}
+
+
 func on_answered(correct: bool) -> void:
 	say("right" if correct else "wrong")
 
@@ -161,6 +179,10 @@ func enqueue_protagonist(text: String) -> void:
 func speak_protagonist_now(text: String) -> void:
 	if not bubble.is_busy():
 		_show_protagonist(text)
+
+
+func _has_taunt(id: String) -> bool:
+	return _has_line(id, TAUNT_EVENT)
 
 
 func _has_line(id: String, event: String) -> bool:

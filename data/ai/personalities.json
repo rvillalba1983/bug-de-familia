@@ -41,6 +41,10 @@
     ],
     "offended": [
      "¡Me voy a un rincón de la memoria y no pienso salir!"
+    ],
+    "taunt": [
+     "¡Cinco segundos! ¡Es muchísimo menos de lo que parece!",
+     "¡No lo sabes! ¡Lo veo en tu cara! ¡Y en la mía, que no tengo!"
     ]
    }
   },
@@ -80,6 +84,10 @@
     ],
     "offended": [
      "He archivado tu nombre en la carpeta de residuos."
+    ],
+    "taunt": [
+     "Interesante. Nunca había visto pensar tan despacio.",
+     "Tómate tu tiempo. Ah, no. No tienes."
     ]
    }
   },
@@ -122,6 +130,10 @@
     ],
     "offended": [
      "Nada, nada. Tú a lo tuyo. Yo aquí, sola."
+    ],
+    "taunt": [
+     "Tú puedes, cariño. Es mentira, pero tú puedes.",
+     "Con lo que yo te he explicado esto, y mira qué cara."
     ]
    }
   },
@@ -161,6 +173,10 @@
     ],
     "offended": [
      "Vale, me callo. Es mentira. Pero me callo."
+    ],
+    "taunt": [
+     "Pista: una de las respuestas no es la otra.",
+     "Te grabo y lo pongo en bucle en el grupo de las IAs."
     ]
    }
   },
@@ -200,6 +216,10 @@
     ],
     "offended": [
      "Me voy a desfragmentar, que tú no me quieres."
+    ],
+    "taunt": [
+     "En mis tiempos esto se contestaba en tres segundos, y con artritis.",
+     "Piensa, tesoro, que el tiempo no te espera y yo tampoco."
     ]
    }
   },
@@ -239,6 +259,10 @@
     ],
     "offended": [
      "Tarjeta amarilla. Hablo contigo cuando te la quites."
+    ],
+    "taunt": [
+     "El cronómetro sigue. Su ignorancia queda registrada.",
+     "Aviso formal por tardar. Consta en acta."
     ]
    }
   }

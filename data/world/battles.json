@@ -1,6 +1,15 @@
 {
- "names": {"jubilado": "Jubilados de Hierro", "mohocrata": "Mohócratas"},
- "roles": ["cebo", "carne de cañón", "escudo con patas", "distracción cara", "voluntario forzoso"],
+ "names": {
+  "jubilado": "Jubilados de Hierro",
+  "mohocrata": "Mohócratas"
+ },
+ "roles": [
+  "cebo",
+  "carne de cañón",
+  "escudo con patas",
+  "distracción cara",
+  "voluntario forzoso"
+ ],
  "orders": {
   "jubilado": [
    "¡Tú, el de los brazos! ¡Al {dir}, de {rol}! En mis tiempos lo hacíamos con menos piezas.",
@@ -22,5 +31,14 @@
  "offer_watch": "Mirarla desde lejos (vista de estrategia)",
  "offer_leave": "Pasar del tema",
  "won": "Han ganado los %s. Mañana dirán que fue idea suya.",
- "draw": "Tablas: se han ido todos a casa fingiendo que ganaron."
+ "draw": "Tablas: se han ido todos a casa fingiendo que ganaron.",
+ "bonks": [
+  "¡POM!",
+  "¡AY!",
+  "¡ÑACA!",
+  "¡CLONC!",
+  "¡TOMA!",
+  "¡MI RODILLA!",
+  "¡VOTO!"
+ ]
 }

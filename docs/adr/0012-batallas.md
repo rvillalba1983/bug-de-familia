@@ -2,7 +2,7 @@
 
 Estado: pendiente de aprobación del director.
 
-- `scenes/beta/battle_director.gd` organiza la batalla; `ui/battle_offer.gd` ofrece unirse, mirar o pasar; `ui/strategy_view.gd` es la vista de estrategia.
+- `scenes/beta/battle_director.gd` organiza la batalla; `ui/battle_offer.gd` ofrece unirse, mirar o pasar; `ui/strategy_view.gd` es la vista de estrategia: solo la zona de la pelea, ampliada y sin información del mapa, con muñequitos propios de cada raza moviéndose de forma patosa.
 - Empieza al estallar la guerra de la investigación (una vez por partida) o, con la relación entre razas muy baja, por azar.
 - Luchan hasta 8 habitantes por bando. Los golpes entre ellos no se atribuyen al jugador. Los caídos se pueden convertir, y si te ve uno de su bando lo recuerda.
 - x2 y x4 usan `Engine.time_scale`, y se restaura al salir. Si empieza una pelea con el jugador, la vista se cierra sola.

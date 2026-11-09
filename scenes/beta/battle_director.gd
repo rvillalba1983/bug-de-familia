@@ -30,6 +30,9 @@ const NATURAL_CHANCE: float = 0.25
 const NATURAL_COOLDOWN: float = 600.0
 const SPECIES: Array[String] = ["jubilado", "mohocrata"]
 
+## Las pruebas lo apagan: la oferta espera al jugador y pausa el juego.
+static var auto_start: bool = true
+
 var level: BetaZone
 var phase: Phase = Phase.NONE
 var joined: String = ""
@@ -133,7 +136,7 @@ func _physics_process(delta: float) -> void:
 
 func _check_natural(delta: float) -> void:
 	_natural_time -= delta
-	if _natural_time > 0.0:
+	if not auto_start or _natural_time > 0.0:
 		return
 	_natural_time = NATURAL_CHECK
 	var sim: WorldSim = level.live_world.sim

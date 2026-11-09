@@ -1,6 +1,6 @@
 # P-09 · Lote 1 de textos
 
-Aprobado íntegro por el director el 9-nov-2026, incluida la voz del protagonista (sarcástico abandonado que va de duro y quiere una familia) y las preguntas P18 y P19. Preguntas integradas en `data/conversion/questions.json`; motes y comentarios, pendientes de integrar.
+Aprobado íntegro por el director el 9-nov-2026, incluida la voz del protagonista (sarcástico abandonado que va de duro y quiere una familia) y las preguntas P18 y P19. Todo integrado en el juego.
 
 La respuesta correcta va en **negrita**. Las preguntas tienen que poder leerse en 5 segundos, así que ninguna pasa de 22 palabras con sus opciones.
 

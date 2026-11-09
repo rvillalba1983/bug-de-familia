@@ -2,6 +2,9 @@ class_name AiChatter
 extends Node
 ## Decide qué IA habla y cuándo, y aplica sus ventajas.
 
+signal ai_fell_asleep
+signal ai_lost_forever
+
 ## Valores provisionales.
 const IDLE_TIME: float = 12.0
 const ARGUMENT_INTERVAL: float = 45.0
@@ -11,9 +14,16 @@ const LOW_PIECE_LEVEL: float = 25.0
 const PANIC_SENSE_RANGE: float = 260.0
 const DESPRECIO_STUN_BONUS: float = 1.3
 const TAIL_IDLE: Color = Color("#404050")
+const MOTE_CHANCE: float = 0.3
+const MOTE_EVENTS: Array[String] = ["danger", "fight", "piece_lost", "right", "wrong", "converted"]
+const PROTAGONIST: String = "protagonista"
+const PROTAGONIST_NAME: String = "Sujeto Sobrante"
+const PROTAGONIST_COLOR: Color = Color("#ff9a3c")
+const PROTAGONIST_PITCH: float = 1.0
 
 var level: Sandbox
 var team: AiTeam = AiTeam.new()
+var nicknames: Nicknames = Nicknames.new()
 var bubble: SpeechBubble
 var voice: BlablaVoice
 
@@ -112,7 +122,8 @@ func on_all_wrong() -> void:
 		return
 	var id: String = options[level.rng.randi_range(0, options.size() - 1)]
 	_enqueue(id, "offended")
-	team.offend(id, level.rng)
+	if team.offend(id, level.rng):
+		ai_lost_forever.emit()
 
 
 func on_piece_destroyed(_slot: ModularBody.Slot) -> void:
@@ -141,6 +152,17 @@ func pending() -> Array:
 	return _queue
 
 
+## El protagonista no gasta tokens y pasa delante de lo que esté en cola.
+func enqueue_protagonist(text: String) -> void:
+	_queue.push_front({"id": PROTAGONIST, "text": text})
+
+
+## Para cuando el juego está en pausa y la cola no avanza.
+func speak_protagonist_now(text: String) -> void:
+	if not bubble.is_busy():
+		_show_protagonist(text)
+
+
 func _has_line(id: String, event: String) -> bool:
 	return (team.ais[id]["lines"] as Dictionary).has(event)
 
@@ -148,7 +170,17 @@ func _has_line(id: String, event: String) -> bool:
 func _enqueue(id: String, event: String) -> void:
 	var lines: Array = team.ais[id]["lines"].get(event, [])
 	if not lines.is_empty():
-		_queue.append({"id": id, "text": lines[level.rng.randi_range(0, lines.size() - 1)]})
+		var text: String = lines[level.rng.randi_range(0, lines.size() - 1)]
+		_queue.append({"id": id, "text": _with_mote(text, id, event)})
+
+
+## Algunas frases llevan el mote escrito; otras, a veces, lo reciben delante.
+func _with_mote(text: String, id: String, event: String) -> String:
+	if text.contains(Nicknames.TOKEN):
+		return nicknames.resolve(text, id, level.rng)
+	if MOTE_EVENTS.has(event) and level.rng.randf() < MOTE_CHANCE:
+		return "%s. %s" % [nicknames.pick(id, level.rng), text]
+	return text
 
 
 func _track_idle(delta: float) -> void:
@@ -191,6 +223,9 @@ func _play_next() -> void:
 		return
 	var entry: Dictionary = _queue.pop_front()
 	var id: String = entry["id"]
+	if id == PROTAGONIST:
+		_show_protagonist(entry["text"])
+		return
 	if not team.ais.has(id) or team.lost.has(id):
 		return
 	var info: Dictionary = team.ais[id]
@@ -201,3 +236,12 @@ func _play_next() -> void:
 	level.player.tail_color = color
 	level.player.tail_speaking = true
 	team.spend(id, level.rng)
+	if not team.active.has(id):
+		ai_fell_asleep.emit()
+
+
+func _show_protagonist(text: String) -> void:
+	var duration: float = 1.6 + float(text.length()) * 0.045
+	bubble.say("%s: %s" % [PROTAGONIST_NAME, text], PROTAGONIST_COLOR, duration)
+	voice.speak(PROTAGONIST_PITCH)
+	level.player.tail_speaking = false

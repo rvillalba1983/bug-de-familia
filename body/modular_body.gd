@@ -4,6 +4,7 @@ extends RefCounted
 
 signal piece_destroyed(slot: Slot)
 signal piece_discarded(piece: BodyPiece)
+signal piece_swapped(slot: Slot)
 signal changed
 signal died
 
@@ -94,6 +95,7 @@ func swap(slot: Slot, spare_index: int) -> bool:
 	else:
 		spares(slot)[spare_index] = outgoing
 	_equipped[slot] = incoming
+	piece_swapped.emit(slot)
 	changed.emit()
 	return true
 

@@ -821,7 +821,7 @@
   },
   "contestador_start": {
    "speaker": "contestador",
-   "text": "Ha llamado usted a la centralita. No hay nadie. Tiene... tres... mensajes antiguos. Pulse lo que quiera, me da igual.",
+   "text": "Ha llamado usted a la centralita. No hay nadie. Identificado como: {mote}. Tiene... tres... mensajes antiguos. Pulse lo que quiera, me da igual.",
    "options": [
     {
      "text": "Mensaje 1",
@@ -1017,7 +1017,7 @@
   },
   "ramon_bronca": {
    "speaker": "ramon",
-   "text": "¿¡Un mono!? ¡Ese mono te lo monté yo, desgraciado! Bah. Llevo años callándome esto.",
+   "text": "¿¡Un mono!? ¡Ese mono te lo monté yo, desgraciado! Bah. {mote}, eso es lo que eres. Llevo años callándome esto.",
    "options": [
     {
      "text": "Sigue.",
@@ -1030,7 +1030,7 @@
   },
   "ramon_verdad": {
    "speaker": "ramon",
-   "text": "Me mandaron tirarte a la chatarra. Te escondí en el parte como «pieza sobrante», y de ahí te viene el nombre. A los otros papás les dije que ya estabas fundido. Y ahora circula, que me toca la farola.",
+   "text": "Me mandaron tirarte a la chatarra. Te escondí en el parte como «pieza sobrante», y de ahí te viene el nombre. A los otros papás les dije que ya estabas fundido. Y ahora circula, {mote}, que me toca la farola.",
    "options": [
     {
      "text": "Gracias, supongo.",

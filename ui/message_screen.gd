@@ -4,6 +4,8 @@ extends CanvasLayer
 
 var options: Array[Button] = []
 
+var _box: VBoxContainer
+
 
 func _init() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -21,6 +23,7 @@ func setup(title_key: String, entries: Array) -> void:
 	box.custom_minimum_size = Vector2(400.0, 0.0)
 	box.add_theme_constant_override(&"separation", 16)
 	add_child(box)
+	_box = box
 	var title: Label = Label.new()
 	title.text = tr(title_key)
 	title.add_theme_font_size_override(&"font_size", 34)
@@ -32,3 +35,11 @@ func setup(title_key: String, entries: Array) -> void:
 		button.pressed.connect(entry[1] as Callable)
 		box.add_child(button)
 		options.append(button)
+
+
+## Frase debajo de las opciones, por ejemplo la última del protagonista.
+func add_line(text: String) -> void:
+	var label: Label = Label.new()
+	label.text = text
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_box.add_child(label)

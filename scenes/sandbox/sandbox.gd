@@ -51,6 +51,8 @@ var fallen_ids: Array = []
 var action_bar: ActionBar
 var ai: AiChatter
 var investigation: InvestigationDirector
+## Si la sesión ha continuado una partida ya empezada.
+var resumed: bool = false
 
 var _pause_label: Label
 var _done_label: Label
@@ -519,6 +521,7 @@ func _start_session() -> void:
 		SaveSystem.set_aside_corrupt()
 		_begin_fresh()
 		return
+	resumed = not (data.get("case", {}) as Dictionary).is_empty()
 	if not session_started:
 		_show_start_menu()
 

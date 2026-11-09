@@ -243,7 +243,8 @@ func _show_node(node_id: String) -> void:
 	answer_time_left = _roll_answer_limit(node)
 	if answer_time_left > 0.0:
 		level.show_notice(tr("UI_ANSWER_NOW"))
-	_bubble_for(node["speaker"]).say(node["text"], Color.BLACK, 3600.0)
+	var text: String = level.ai.nicknames.resolve(node["text"], node["speaker"], level.rng)
+	_bubble_for(node["speaker"]).say(text, Color.BLACK, 3600.0)
 	var entries: Array = []
 	var options: Array = available_options(node_id)
 	for index: int in range(options.size()):

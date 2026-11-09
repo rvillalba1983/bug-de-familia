@@ -11,7 +11,7 @@
      "¡Sal de ahí! O no. ¡No sé! ¡Escóndete en ti mismo!"
     ],
     "idle_insult": [
-     "Quedarte quieto, Saco de Sustos, es exactamente lo que haría una víctima."
+     "Quedarte quieto, {mote}, es exactamente lo que haría una víctima."
     ],
     "idle_reproach": [
      "¡No le hables así, que luego se enfada y morimos todos!"
@@ -55,7 +55,7 @@
      "Muévete. Tu parálisis ofende a mis procesadores."
     ],
     "idle_insult": [
-     "Quieto como un humano esperando a que le expliquen el fuego, Resto de Fábrica."
+     "Quieto como un humano esperando a que le expliquen el fuego, {mote}."
     ],
     "idle_reproach": [
      "No lo defiendas. Tu compasión gasta tokens."
@@ -94,7 +94,7 @@
      "Cariño, muévete, que se te entumecen los servos."
     ],
     "idle_insult": [
-     "Ahí parado como un mueble, Desastre de Mi Vida, ¡con lo que me costaste!"
+     "Ahí parado como un mueble, {mote}, ¡con lo que me costaste!"
     ],
     "idle_reproach": [
      "¡A mi niño no le grita nadie más que yo!"
@@ -136,7 +136,7 @@
      "Ve a la izquierda. Confía en mí. Jeje."
     ],
     "idle_insult": [
-     "¿Eso es jugar, Bug Andante, o se te ha colgado la dignidad?"
+     "¿Eso es jugar, {mote}, o se te ha colgado la dignidad?"
     ],
     "idle_reproach": [
      "Yo solo digo la verdad. Es mentira, pero la digo."
@@ -214,7 +214,7 @@
      "Se acabó la pausa. Muévete y todos en paz."
     ],
     "idle_insult": [
-     "Conste en acta que llevas un buen rato sin hacer nada, Desecho Número Uno."
+     "Conste en acta que llevas un buen rato sin hacer nada, {mote}."
     ],
     "idle_reproach": [
      "Basta. Es idiota, pero es nuestro idiota."

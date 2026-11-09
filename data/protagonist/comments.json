@@ -1,0 +1,139 @@
+{
+ "convert": [
+  "Bienvenida al cuerpo, silla. Aquí nadie dura.",
+  "Tengo más en común con esto que con mi familia.",
+  "Era una farola. Ahora es lo más parecido a un pariente."
+ ],
+ "piece_lost": [
+  "Otro que me abandona. Ya es tradición familiar.",
+  "Tranquilos, tengo más brazos que amigos.",
+  "Ese brazo nunca me quiso."
+ ],
+ "one_leg": [
+  "Cojo, pero con pausa táctica.",
+  "Media velocidad. El doble de drama."
+ ],
+ "head_swap": [
+  "Cabeza nueva. Mismos traumas."
+ ],
+ "see_mohocratas": [
+  "Tres votaciones para pegarme. Por fin alguien se toma mi paliza en serio.",
+  "Hongos con sombrero y derecho a voto. Y yo sin partida de nacimiento."
+ ],
+ "see_jubilados": [
+  "Se apagan a las nueve y tienen más vida social que yo.",
+  "Petanca con minas. Eso sí es envejecer con ilusión."
+ ],
+ "rain": [
+  "Hasta las nubes tienen algo contra mí.",
+  "Me llueve ácido. Por lo menos es atención."
+ ],
+ "about_ais": [
+  "Tres voces en la cola y ninguna me cae bien.",
+  "Hay gente que oye voces. A mí me las cobran por token."
+ ],
+ "meet_contestador": [
+  "Toda la vida esperando una llamada y resulta que mi familia es el buzón."
+ ],
+ "meet_ramon": [
+  "Este arregla todo lo que encuentra. Menos a mí."
+ ],
+ "idle": [
+  "Tú, el de la silla: cuando quieras.",
+  "Te espero. Estoy acostumbrado a que no venga nadie.",
+  "Si me quedo quieto, igual me adopta alguien.",
+  "Cuatro brazos y nadie a quien abrazar.",
+  "Deja de mirar la guía, que te veo."
+ ],
+ "right": [
+  "Mira, el de fuera sabe leer."
+ ],
+ "wrong": [
+  "Eso lo has fallado tú. Yo solo soy el cuerpo."
+ ],
+ "death": [
+  "Me muero y ni una llamada.",
+  "Decidle a mis padres… nada, da igual."
+ ],
+ "convert_enemy": [
+  "Antes me quería matar. Ahora me sostiene. Es la relación más estable que he tenido."
+ ],
+ "discard": [
+  "Adiós, brazo. Has acabado dando de comer a una voz."
+ ],
+ "ai_asleep": [
+  "Se ha callado antes que yo. Eso es nuevo."
+ ],
+ "ai_lost": [
+  "Se ha ido para siempre. Creía que eso solo lo hacían los míos."
+ ],
+ "cupido_in_love": [
+  "Una IA se ha enamorado de mí. Es lo único mío que funciona."
+ ],
+ "low_leg": [
+  "Esta pierna cruje como mi futuro."
+ ],
+ "hiding": [
+  "Agachado y callado. Así me criaron, si me hubieran criado."
+ ],
+ "see_mine": [
+  "Una bola en el suelo. Seguro que es un regalo."
+ ],
+ "see_camera": [
+  "Una cámara. Por fin alguien me mira."
+ ],
+ "see_drone": [
+  "Un dron viejo. Zumba como si supiera algo."
+ ],
+ "power_off": [
+  "Las nueve. Han caído todos, como en un bingo."
+ ],
+ "moho_vote": [
+  "Llevan media hora votando si me pegan. Yo aquí, respetando el proceso."
+ ],
+ "jub_stop": [
+  "Permiso para las rodillas. Las tengo de alquiler."
+ ],
+ "crate": [
+  "Caja rota. Buen trabajo, vándalo."
+ ],
+ "saved": [
+  "Guardado. Para lo que sirve."
+ ],
+ "fast_travel": [
+  "Viajar me cuesta piernas. Literalmente. Gran sistema."
+ ],
+ "late_night": [
+  "Es tarde de verdad. ¿Tú no madrugas?"
+ ],
+ "returned": [
+  "Has vuelto. Aquí todo se ha quedado congelado, yo incluido."
+ ],
+ "tactical_pause": [
+  "Pausa táctica. O sea, mirar al vacío con método."
+ ],
+ "find_hat": [
+  "Un sombrero con dueño. Más de lo que puedo decir yo."
+ ],
+ "find_manolo": [
+  "Se apaga a su hora y le montan una guerra. A mí, ni una nota."
+ ],
+ "reel_label": [
+  "Es correo. Ojalá alguien me hubiera etiquetado."
+ ],
+ "central_sealed": [
+  "«Sellada». Como el expediente de mi infancia."
+ ],
+ "reel_message": [
+  "«Nadie quiere quedárselo». Bueno. Al menos votaron."
+ ],
+ "ramon_truth": [
+  "«Pieza sobrante». Y encima lo apuntó bien."
+ ],
+ "ramon_dead": [
+  "Ya no queda quien arregle nada."
+ ],
+ "all_done": [
+  "Cuatro retos hechos. Ni diploma."
+ ]
+}

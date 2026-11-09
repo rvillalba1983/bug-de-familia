@@ -1,6 +1,6 @@
 # P-09 · Lote 2 de textos
 
-Aprobado íntegro por el director el 9-nov-2026. Las preguntas P31 a P60 están integradas en `data/conversion/questions.json`; las reservadas (P61 a P72), los motes y los comentarios, pendientes de integrar.
+Aprobado íntegro por el director el 9-nov-2026. Integrado en el juego, salvo las preguntas reservadas (P61 a P72), que esperan a las otras razas.
 
 La respuesta correcta va en **negrita**.
 

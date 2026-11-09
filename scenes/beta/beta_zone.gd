@@ -22,6 +22,7 @@ const COLOR_RAMON: Color = Color("#e0a040")
 static var forced_hour: int = -1
 
 var challenges: BetaChallenges
+var protagonist: ProtagonistVoice
 var rain: AcidRain
 var cracked_wall: Wall
 var ramon: Guard
@@ -33,6 +34,7 @@ var moved_home: bool = false
 
 var _enemy_ids: Dictionary = {}
 var _jubilados: Array[Guard] = []
+var _mohocratas: Array[Guard] = []
 var _depot: Array[Guard] = []
 var _rain_label: Label
 
@@ -83,6 +85,18 @@ func depot_guards() -> Array[Guard]:
 
 func jubilado_guards() -> Array[Guard]:
 	return _valid(_jubilados)
+
+
+func mohocrata_guards() -> Array[Guard]:
+	return _valid(_mohocratas)
+
+
+func is_enemy_id(id: String) -> bool:
+	return _enemy_ids.values().has(id) or id == ID_DRONE or id == ID_CAMERA
+
+
+func local_hour() -> int:
+	return challenges.hour_source.call()
 
 
 func ramon_item() -> Interactable:
@@ -148,9 +162,9 @@ func _build_enemies() -> void:
 	guard = _add_guard("jub_barrio", BetaLayout.JUB_BARRIO_PATROL, COLOR_JUBILADO, _jubilados)
 	_add_guard("jub_frente", BetaLayout.JUB_FRONT_PATROL, COLOR_JUBILADO, _jubilados)
 	strip_jubilado = _add_guard("jub_tierra", BetaLayout.JUB_STRIP_PATROL, COLOR_JUBILADO, _jubilados)
-	strip_mohocrata = _add_guard("moho_tierra", BetaLayout.MOHO_STRIP_PATROL, COLOR_MOHOCRATA, [])
-	_depot.append(_add_guard("moho_deposito", BetaLayout.MOHO_DEPOT_PATROL, COLOR_MOHOCRATA, []))
-	shooter = _add_guard("moho_puerta", BetaLayout.MOHO_GATE_PATROL, COLOR_MOHOCRATA, [], true)
+	strip_mohocrata = _add_guard("moho_tierra", BetaLayout.MOHO_STRIP_PATROL, COLOR_MOHOCRATA, _mohocratas)
+	_depot.append(_add_guard("moho_deposito", BetaLayout.MOHO_DEPOT_PATROL, COLOR_MOHOCRATA, _mohocratas))
+	shooter = _add_guard("moho_puerta", BetaLayout.MOHO_GATE_PATROL, COLOR_MOHOCRATA, _mohocratas, true)
 	_depot.append(shooter)
 	ramon = _add_guard(ID_RAMON, BetaLayout.RAMON_ROUTE, COLOR_RAMON, [])
 	ramon.set_passive(true)
@@ -242,6 +256,9 @@ func _build_investigation() -> void:
 	rain.rng = rng
 	rain.shelters = BetaLayout.SHELTERS
 	add_child(rain)
+	protagonist = ProtagonistVoice.new()
+	protagonist.level = self
+	add_child(protagonist)
 
 
 func _connect_systems() -> void:
@@ -249,6 +266,17 @@ func _connect_systems() -> void:
 	investigation.flags_changed.connect(challenges.apply_flags)
 	rain.started.connect(_on_rain.bind(true))
 	rain.ended.connect(_on_rain.bind(false))
+	protagonist.connect_world()
+
+
+func _connect_body() -> void:
+	super()
+	protagonist.connect_body(player.body)
+
+
+func _show_game_over() -> void:
+	super()
+	overlay.add_line(protagonist.pick_line("death"))
 
 
 func _connect_enemies() -> void:
@@ -295,6 +323,8 @@ func _on_item_activated(item: Interactable) -> void:
 		ID_GENERATOR:
 			challenges.break_generator()
 		_:
+			if item.kind == Interactable.Kind.CRATE:
+				protagonist.comment("crate", ProtagonistVoice.LONG_COOLDOWN)
 			super(item)
 
 

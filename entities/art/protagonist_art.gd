@@ -17,6 +17,12 @@ const TAIL_STEP: float = 3.6
 const TAIL_WIDTH: float = 8.0
 const TAIL_DARK: Color = Color("#1a1450")
 
+const SILHOUETTE_VIEW: String = "S"
+const SILHOUETTE_NEUTRAL: Color = Color("#8894b5")
+const SILHOUETTE_HOLLOW: Color = Color(0.96, 0.9, 0.78, 0.55)
+const SILHOUETTE_HOLLOW_WIDTH: float = 5.0
+const SILHOUETTE_LOW: float = 0.25
+
 const VIEWS: Array[String] = ["E", "SE", "S", "SW", "W", "NW", "N", "NE"]
 const VIEWS_FROM_BEHIND: Array[String] = ["N", "NE", "NW"]
 const PART_SLOTS: Dictionary = {
@@ -66,6 +72,74 @@ static func draw(
 	canvas.draw_set_transform_matrix(Transform2D.IDENTITY)
 	if away:
 		_draw_tail(canvas, facing, height_ratio, tail_color, tail_speaking)
+
+
+## Silueta de frente para la interfaz. Cada pieza se pinta según lo gastada que está;
+## la que falta se queda en un hueco con el contorno. hits: ranuras recién golpeadas.
+static func draw_silhouette(
+	canvas: CanvasItem, feet: Vector2, size: float, body: ModularBody, hits: Dictionary, pulse: float
+) -> void:
+	_ensure_loaded()
+	var view: Dictionary = _views[SILHOUETTE_VIEW]
+	var transform: Transform2D = Transform2D(0.0, Vector2(size, size), 0.0, feet)
+	canvas.draw_set_transform_matrix(transform)
+	for part_name: String in view["order"]:
+		_draw_silhouette_part(canvas, part_name, body, hits, pulse)
+	canvas.draw_set_transform_matrix(Transform2D.IDENTITY)
+
+
+## Color del estado de una pieza: verde entera, amarillo a medias y rojo al final.
+static func wear_color(ratio: float) -> Color:
+	if ratio >= 0.5:
+		return Palette.OBRA.lerp(Palette.ACIDO, (ratio - 0.5) * 2.0)
+	return Palette.ROSA.lerp(Palette.OBRA, ratio * 2.0)
+
+
+static func _draw_silhouette_part(
+	canvas: CanvasItem, part_name: String, body: ModularBody, hits: Dictionary, pulse: float
+) -> void:
+	var base: Color = SILHOUETTE_NEUTRAL
+	var missing: bool = false
+	if PART_SLOTS.has(part_name):
+		var slot: int = PART_SLOTS[part_name]
+		var piece: BodyPiece = body.equipped(slot as ModularBody.Slot)
+		if piece == null:
+			missing = true
+		else:
+			var ratio: float = piece.durability / BodyPiece.MAX_DURABILITY
+			base = wear_color(ratio)
+			if ratio < SILHOUETTE_LOW:
+				base = base.lerp(Color.WHITE, 0.45 * pulse)
+			if hits.has(slot):
+				base = Color.WHITE
+	for shape: Dictionary in _shapes_for(SILHOUETTE_VIEW, part_name, "", 0, false):
+		_draw_silhouette_shape(canvas, shape, base, missing)
+
+
+static func _draw_silhouette_shape(canvas: CanvasItem, shape: Dictionary, base: Color, missing: bool) -> void:
+	if shape.has("line"):
+		if not missing:
+			canvas.draw_polyline(shape["line"] as PackedVector2Array, _shaded(base, shape["color"] as Color), shape["width"] as float)
+		return
+	var outline_only: bool = missing
+	if outline_only:
+		canvas.draw_polyline(shape["outline"] as PackedVector2Array, SILHOUETTE_HOLLOW, SILHOUETTE_HOLLOW_WIDTH)
+		return
+	var source: PackedColorArray = shape["colors"]
+	var colors: PackedColorArray = PackedColorArray()
+	for color: Color in source:
+		colors.append(_shaded(base, color))
+	canvas.draw_polygon(shape["points"] as PackedVector2Array, colors)
+	var width: float = shape["width"]
+	if width > 0.0:
+		canvas.draw_polyline(shape["outline"] as PackedVector2Array, Palette.INK, width)
+
+
+## Conserva las luces y sombras del dibujo, pero con el color de estado.
+static func _shaded(base: Color, original: Color) -> Color:
+	var shade: float = lerpf(0.55, 1.1, original.get_luminance())
+	var result: Color = Color(base.r * shade, base.g * shade, base.b * shade, original.a)
+	return result
 
 
 ## Vista de las 8 que corresponde a una dirección.

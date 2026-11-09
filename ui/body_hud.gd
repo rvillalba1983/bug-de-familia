@@ -1,26 +1,73 @@
 class_name BodyHud
 extends Control
-## Indicador discreto del estado de cada pieza.
+## El cuerpo es la interfaz: la silueta del protagonista muestra el desgaste de cada pieza.
+## Valores provisionales, a ajustar al probar.
 
-const BAR_SIZE: Vector2 = Vector2(46.0, 8.0)
-const COLOR_OK: Color = Color("#7fe07f")
-const COLOR_LOW: Color = Color("#e05050")
-const COLOR_EMPTY: Color = Color(1.0, 1.0, 1.0, 0.15)
+const FEET: Vector2 = Vector2(1812.0, 1018.0)
+const ART_SIZE: float = 0.17
+const PLATE: Rect2 = Rect2(1702.0, 808.0, 220.0, 226.0)
+const PLATE_COLOR: Color = Color(0.106, 0.055, 0.165, 0.62)
+const HIT_DROP: float = 0.02
+const HIT_TIME: float = 0.3
+const LOW_RATIO: float = 0.25
+const LOW_PULSE_SPEED: float = 8.0
 
 var body: ModularBody
 
+var _ratios: Dictionary = {}
+var _hits: Dictionary = {}
+
 
 func _ready() -> void:
-	position = Vector2(1840.0, 930.0)
-	body.changed.connect(queue_redraw)
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	body.changed.connect(_on_body_changed)
+	_remember_ratios()
+
+
+func _process(delta: float) -> void:
+	var animating: bool = _any_low()
+	for slot: int in _hits.keys():
+		_hits[slot] = float(_hits[slot]) - delta
+		animating = true
+		if float(_hits[slot]) <= 0.0:
+			_hits.erase(slot)
+	if animating:
+		queue_redraw()
 
 
 func _draw() -> void:
+	draw_rect(PLATE, PLATE_COLOR)
+	var pulse: float = 0.5 + 0.5 * sin(Time.get_ticks_msec() * 0.001 * LOW_PULSE_SPEED)
+	ProtagonistArt.draw_silhouette(self, FEET, ART_SIZE, body, _hits, pulse)
+
+
+## Parte de un golpe: se marca la pieza que ha perdido vida de repente.
+func was_just_hit(slot: ModularBody.Slot) -> bool:
+	return _hits.has(slot)
+
+
+func _on_body_changed() -> void:
 	for slot: int in ModularBody.Slot.values():
-		var at: Vector2 = Vector2(0.0, 13.0 * slot)
-		draw_rect(Rect2(at, BAR_SIZE), COLOR_EMPTY)
-		var piece: BodyPiece = body.equipped(slot as ModularBody.Slot)
-		if piece != null:
-			var ratio: float = piece.durability / BodyPiece.MAX_DURABILITY
-			var fill: Rect2 = Rect2(at, Vector2(BAR_SIZE.x * ratio, BAR_SIZE.y))
-			draw_rect(fill, COLOR_LOW.lerp(COLOR_OK, ratio))
+		var ratio: float = _ratio_of(slot)
+		if float(_ratios.get(slot, 0.0)) - ratio >= HIT_DROP:
+			_hits[slot] = HIT_TIME
+	_remember_ratios()
+	queue_redraw()
+
+
+func _remember_ratios() -> void:
+	for slot: int in ModularBody.Slot.values():
+		_ratios[slot] = _ratio_of(slot)
+
+
+func _ratio_of(slot: int) -> float:
+	var piece: BodyPiece = body.equipped(slot as ModularBody.Slot)
+	return 0.0 if piece == null else piece.durability / BodyPiece.MAX_DURABILITY
+
+
+func _any_low() -> bool:
+	for slot: int in ModularBody.Slot.values():
+		var ratio: float = _ratio_of(slot)
+		if ratio > 0.0 and ratio < LOW_RATIO:
+			return true
+	return false

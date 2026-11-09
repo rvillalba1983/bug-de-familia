@@ -160,6 +160,12 @@ Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barr
 - En pelea, si la zona rota solo tiene un repuesto se pone solo, y sin repuestos no se abre nada. Solo hay que elegir con dos o más.
 - Al recibir daño, protagonista y enemigos retroceden 4,5 metros (80 unidades, provisional), sin atravesar paredes. No se aplica en las batallas de la vista de estrategia.
 
+## Rejugabilidad, información y pruebas (9-nov)
+- **Segunda partida:** la historia base es fija y una parte de los detalles varía entre partidas (por ejemplo, quién miente o dónde están los progenitores). Qué varía exactamente está por definir.
+- **Muertes de personajes clave:** la misma información se puede obtener de pistas, de NPC o de progenitores, para que ninguna muerte deje la partida sin salida.
+- **Hora real:** se acepta como gracia del juego que quien juegue siempre a la misma hora no vea parte del mundo. No se añade forma de saltar el tiempo.
+- **Pruebas finales de la beta:** incluyen observar a una o dos personas ajenas jugando sin explicarles nada.
+
 ## Autonomía de Claude
 - Una fase por conversación: termina al fusionar en `main`, se anota el avance en `03_ESTADO.md` y se avisa al usuario de que hay que cambiar de conversación (8-nov).
 **Decide solo y documenta:** módulos, algoritmos, datos, herramientas locales, orden técnico de tareas, parámetros provisionales, refactorizaciones, optimizaciones medidas y decisiones artísticas menores.

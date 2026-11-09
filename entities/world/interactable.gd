@@ -38,6 +38,8 @@ var reusable: bool = false
 var art: Texture2D
 ## Para personajes que ya se dibujan solos.
 var body_hidden: bool = false
+## Ya no se puede usar, pero se sigue viendo: por ejemplo, un grupo que se marcha andando.
+var drawn_when_used: bool = false
 
 
 func setup(new_id: String, new_kind: Kind, at: Vector2) -> void:
@@ -53,7 +55,7 @@ func _draw() -> void:
 	if is_rubble():
 		PropArt.draw_entry(self, RUBBLE_ART)
 		return
-	if used and kind != Kind.TERMINAL:
+	if used and kind != Kind.TERMINAL and not drawn_when_used:
 		return
 	if art != null:
 		draw_texture_rect(art, Rect2(-28.0, -56.0, 56.0, 56.0), false)

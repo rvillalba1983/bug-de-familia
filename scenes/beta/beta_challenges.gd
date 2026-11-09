@@ -23,6 +23,8 @@ const SOLDER_SCORE: float = 0.8
 const FIND_RANGE: float = 150.0
 const ENCOUNTER_RANGE: float = 170.0
 const GROUP_SPEED: float = 70.0
+## Provisional: un grupo engañado se marcha más deprisa de lo que patrulla.
+const GROUP_LEAVE_SPEED: float = 150.0
 const RAMON_YIELD_HEALTH: float = 30.0
 const RAMON_YIELD_STUN: float = 6.0
 const WRONG_CODE_NOISE: float = 900.0
@@ -35,8 +37,8 @@ const OFFLINE_STUN: float = 5.0
 const POWER_OFF_HOUR: int = 21
 const POWER_ON_HOUR: int = 8
 static var groups: Dictionary = {
-	"cuadrilla_moho": {"prefix": "moho", "route": BetaLayout.moho_group_route},
-	"patrulla_jub": {"prefix": "jub", "route": BetaLayout.jub_group_route},
+	"cuadrilla_moho": {"prefix": "moho", "route": BetaLayout.moho_group_route, "exit": BetaLayout.moho_group_exit},
+	"patrulla_jub": {"prefix": "jub", "route": BetaLayout.jub_group_route, "exit": BetaLayout.jub_group_exit},
 }
 
 const ROUTE_GOALS: Dictionary = {
@@ -46,6 +48,10 @@ const ROUTE_GOALS: Dictionary = {
 }
 
 var level: BetaZone
+## Grupos que se están marchando tras ser engañados.
+var _leaving: Dictionary = {}
+## La primera aplicación viene de cargar: quien ya se fue no vuelve a irse andando.
+var _flags_applied: bool = false
 var hour_source: Callable = _system_hour
 
 var _group_index: Dictionary = {}
@@ -98,6 +104,7 @@ func apply_flags() -> void:
 	_show_footprints()
 	for id: String in groups:
 		_apply_group(id)
+	_flags_applied = true
 
 
 func _physics_process(delta: float) -> void:
@@ -303,9 +310,13 @@ func _apply_power_off() -> void:
 func _apply_group(id: String) -> void:
 	var prefix: String = groups[id]["prefix"]
 	var node: Variant = level.investigation.npc_nodes.get(id)
-	if flag(prefix + "_desviada") and is_instance_valid(node):
-		(node as Interactable).visible = false
+	if flag(prefix + "_desviada") and is_instance_valid(node) and not (node as Interactable).used:
+		(node as Interactable).drawn_when_used = _flags_applied
 		(node as Interactable).mark_used()
+		if _flags_applied:
+			_leaving[id] = true
+		else:
+			(node as Interactable).visible = false
 	if flag(prefix + "_bronca") and not flag(prefix + "_avisados"):
 		level.investigation.flags[prefix + "_avisados"] = true
 		_alert_nearby()
@@ -321,6 +332,8 @@ func _alert_nearby() -> void:
 func _move_groups(delta: float) -> void:
 	for id: String in groups:
 		var item: Variant = level.investigation.npc_nodes.get(id)
+		if _leaving.has(id) and is_instance_valid(item):
+			_walk_away(id, item as Interactable, delta)
 		if not is_instance_valid(item) or (item as Interactable).used:
 			continue
 		var node: Interactable = item
@@ -329,6 +342,15 @@ func _move_groups(delta: float) -> void:
 		node.position = node.position.move_toward(route[index], GROUP_SPEED * delta)
 		if node.position.is_equal_approx(route[index]):
 			_group_index[id] = (index + 1) % route.size()
+
+
+## Se va andando hasta donde le han dicho; al llegar deja de estar en la zona.
+func _walk_away(id: String, node: Interactable, delta: float) -> void:
+	var goal: Vector2 = groups[id]["exit"]
+	node.position = node.position.move_toward(goal, GROUP_LEAVE_SPEED * delta)
+	if node.position.is_equal_approx(goal):
+		node.visible = false
+		_leaving.erase(id)
 
 
 func _check_encounters() -> void:

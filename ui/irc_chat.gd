@@ -3,8 +3,9 @@ extends Control
 ## El canal de las IAs, al estilo de los scripts de IRC de los 90: colores, adornos y barra de estado.
 ## Solo se ven los últimos mensajes: no hay scroll ni historial al que volver.
 
-const AREA: Rect2 = Rect2(14.0, 716.0, 660.0, 350.0)
-const NICKS_WIDTH: float = 176.0
+## El lateral izquierdo es un panel uniforme: controles, cuerpo y chat tienen este ancho.
+const AREA: Rect2 = Rect2(14.0, 592.0, 480.0, 474.0)
+const NICKS_WIDTH: float = 160.0
 const TITLE_HEIGHT: float = 24.0
 const TOPIC_HEIGHT: float = 22.0
 const VISIBLE_MESSAGES: int = 4
@@ -21,6 +22,7 @@ const COLOR_TITLE: Color = Color("#000080")
 const COLOR_BACK: Color = Color("#000000")
 const COLOR_TOPIC: Color = Color("#1a1a40")
 const COLOR_DARK: Color = Color("#808080")
+const COLOR_TOOLBAR_SPARE: Color = Color("#ffd400")
 const COLOR_SYSTEM: String = "#00c000"
 const COLOR_TIME: String = "#808080"
 const TEXT_EFFECTS: Dictionary = {

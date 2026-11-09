@@ -36,3 +36,14 @@ func test_hit_mark_expires() -> void:
 	hud.body.changed.emit()
 	hud._process(BodyHud.HIT_TIME + 0.1)
 	assert_bool(hud.was_just_hit(ModularBody.Slot.HEAD)).is_false()
+
+
+func test_el_lateral_tiene_un_solo_ancho() -> void:
+	assert_float(BodyHud.PLATE.size.x).is_equal(IrcChat.AREA.size.x)
+	assert_float(ControlsWindow.AREA.size.x).is_equal(IrcChat.AREA.size.x)
+	assert_float(BodyHud.PLATE.position.x).is_equal(IrcChat.AREA.position.x)
+
+
+func test_la_informacion_cubre_todas_las_zonas() -> void:
+	assert_int(BodyHud.ROWS.size()).is_equal(ModularBody.Slot.size())
+

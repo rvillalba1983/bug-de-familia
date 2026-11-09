@@ -2,7 +2,7 @@ class_name ControlsWindow
 extends Control
 ## Ventana de controles, con el mismo aspecto que el chat, arriba a la izquierda.
 
-const AREA: Rect2 = Rect2(14.0, 14.0, 430.0, 232.0)
+const AREA: Rect2 = Rect2(14.0, 14.0, IrcChat.AREA.size.x, 232.0)
 const TITLE_HEIGHT: float = 24.0
 const FONT_SIZE: int = 15
 const CHANNEL_TITLE: String = "IRCabeza - [#controles] F1: todos"

@@ -101,6 +101,7 @@ func _rebuild() -> void:
 	_silhouette.feet = SILHOUETTE_FEET
 	_silhouette.art_size = SILHOUETTE_SIZE
 	_silhouette.plate = Rect2()
+	_silhouette.show_info = false
 	add_child(_silhouette)
 	_root = Control.new()
 	_root.theme = UiStyle.make_theme()

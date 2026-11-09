@@ -16,7 +16,7 @@ func before_test() -> void:
 
 
 func after_test() -> void:
-	for action: StringName in [&"move_right", &"throw"]:
+	for action: StringName in [&"move_right", &"crouch"]:
 		Input.action_release(action)
 	BetaZone.forced_hour = -1
 	get_tree().paused = false
@@ -43,12 +43,19 @@ func _controls() -> ControlsPanel:
 	return zone.get_children().filter(func(n: Node) -> bool: return n is ControlsPanel)[0]
 
 
+## Sin ventana no hay posición de ratón: se entra justo después de leer el clic.
+## tools/probar_pelea.gd prueba clics de verdad con ventana.
 func _click_world(at: Vector2) -> void:
-	runner.set_mouse_position(zone.get_viewport().get_canvas_transform() * at)
-	runner.simulate_mouse_button_press(MOUSE_BUTTON_RIGHT)
+	zone.orders.order_at(at)
 	await await_idle_frame()
-	runner.simulate_mouse_button_release(MOUSE_BUTTON_RIGHT)
-	await await_idle_frame()
+
+
+## Para las acciones que se leen consultando el estado de la tecla.
+func _tap(action: StringName) -> void:
+	Input.action_press(action)
+	await await_millis(50)
+	Input.action_release(action)
+	await await_millis(50)
 
 
 func test_space_pauses_and_resumes_the_world() -> void:
@@ -90,15 +97,15 @@ func test_keyboard_moves_and_x_crouches() -> void:
 	await await_millis(300)
 	Input.action_release(&"move_right")
 	assert_float(zone.player.global_position.x).is_greater(from.x)
-	await _press(&"crouch")
+	await _tap(&"crouch")
 	assert_bool(zone.player.is_crouching).is_true()
-	await _press(&"crouch")
+	await _tap(&"crouch")
 	assert_bool(zone.player.is_crouching).is_false()
 
 
 func test_right_click_on_the_ground_walks_there() -> void:
 	await await_millis(100)
-	var goal: Vector2 = zone.player.global_position + Vector2(80.0, 0.0)
+	var goal: Vector2 = zone.player.global_position + Vector2(-80.0, 0.0)
 	await _click_world(goal)
 	await await_millis(800)
 	assert_float(zone.player.global_position.distance_to(goal)).is_less(30.0)
@@ -131,7 +138,8 @@ func test_q_converts_with_answer_keys_and_esc_accepts() -> void:
 	await await_idle_frame()
 	assert_bool(get_tree().paused).is_false()
 	assert_int(zone.player.body.spares(ARM).size()).is_equal(1)
-	assert_bool(zone.items.has(Sandbox.ID_CRATE)).is_false()
+	assert_int(zone.converted_ids.size()).is_equal(1)
+	assert_bool(zone.entities.has(str(zone.converted_ids[0]))).is_false()
 
 
 func test_f_throws_scrap_and_a_nearby_guard_goes_to_check() -> void:
@@ -139,9 +147,8 @@ func test_f_throws_scrap_and_a_nearby_guard_goes_to_check() -> void:
 	enemy.process_mode = Node.PROCESS_MODE_INHERIT
 	zone.player.global_position = enemy.global_position + Vector2(0.0, 100.0)
 	await await_idle_frame()
-	Input.action_press(&"throw")
-	await await_millis(120)
-	Input.action_release(&"throw")
+	zone.combat.throw_at(enemy.global_position + Vector2(40.0, 0.0))
+	await await_idle_frame()
 	assert_int(enemy.state).is_equal(Guard.State.INVESTIGATE)
 
 

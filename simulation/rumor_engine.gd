@@ -13,6 +13,8 @@ const COLLECTIVE_SHARE: float = 0.5
 const FORGET_STEP: float = 1.0
 const LASTING_IMPORTANCE: float = 70.0
 const MAX_VERSIONS: int = 3
+const BELIEF_LIFETIME: float = 1800.0
+const LASTING_BELIEF: float = 30.0
 
 
 func witness(sim: WorldSim, record: Dictionary, npc: NpcState) -> void:
@@ -35,12 +37,15 @@ func is_fresh(sim: WorldSim, event_id: int) -> bool:
 
 ## Lo más reciente que este personaje aún quiere contar; -1 si nada.
 func fresh_news(sim: WorldSim, npc: NpcState) -> int:
-	var best: int = -1
-	for key: String in npc.beliefs:
-		var id: int = key.to_int()
-		if id > best and is_fresh(sim, id):
-			best = id
-	return best
+	var index: int = sim.truth.records.size() - 1
+	while index >= 0:
+		var record: Dictionary = sim.truth.records[index]
+		if sim.elapsed - float(record["time"]) > WINDOW:
+			return -1
+		if npc.beliefs.has(str(index)) and not bool(record.get("secret", false)):
+			return index
+		index -= 1
+	return -1
 
 
 func step(sim: WorldSim) -> void:
@@ -62,7 +67,6 @@ func step(sim: WorldSim) -> void:
 					tell(sim, teller, hearer, news)
 				break
 			_compare_versions(teller, hearer, news)
-	_update_collective(sim)
 
 
 ## Transmite la versión del que cuenta. La verdad objetiva no se toca.
@@ -107,6 +111,17 @@ func forget_step(sim: WorldSim) -> void:
 		npc.memories = kept
 
 
+## Lo cotidiano se olvida del todo; lo importante dura toda la partida.
+func drop_old_beliefs(sim: WorldSim) -> void:
+	for id: String in sim.npc_ids:
+		var npc: NpcState = sim.npcs[id]
+		for key: String in npc.beliefs.keys():
+			var record: Dictionary = sim.truth.get_record(key.to_int())
+			var old: bool = sim.elapsed - float(record["time"]) > BELIEF_LIFETIME
+			if old and float(record["importance"]) < LASTING_BELIEF:
+				npc.beliefs.erase(key)
+
+
 func _forget_source(npc: NpcState, event_id: int) -> void:
 	var belief: Variant = npc.beliefs.get(str(event_id))
 	if belief is Dictionary:
@@ -143,7 +158,7 @@ func _compare_versions(teller: NpcState, hearer: NpcState, event_id: int) -> voi
 			hearer.relate(teller.id, "confianza", -6.0)
 
 
-func _update_collective(sim: WorldSim) -> void:
+func update_collective(sim: WorldSim) -> void:
 	var members: Dictionary = {}
 	var counts: Dictionary = {}
 	for id: String in sim.npc_ids:

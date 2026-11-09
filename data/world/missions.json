@@ -1,0 +1,12 @@
+{
+  "pertenencia": {"deadline": 600,
+    "ask": "¿Qué te pasa?", "told": "He perdido {x} por {w}. Tráemelo y te doy algo que me sobra.",
+    "deliver": "Toma, lo tuyo.", "done": "Anda, {x}. Toma, para que no digas.", "hint": "Ese de ahí busca algo. Y no parece buscarlo bien.", "item": "Objeto perdido"},
+  "aviso": {"deadline": 420,
+    "ask": "¿Por qué pones esa cara?", "told": "Algo huele raro por {w}. Si tienes narices, ve a mirar.",
+    "done": "Has ido a mirar. No te ha matado. Curioso.", "hint": "Hay alguien muy preocupado por el aire."},
+  "recado": {"deadline": 540,
+    "ask": "¿Algún problema?", "told": "Dile a {b} que lo de {x} no se va a quedar así. O que lo siento. Tú verás.",
+    "peace": "Traigo disculpas de parte de {a}.", "war": "{a} dice que eres un desperdicio.",
+    "peace_done": "Mira. Bueno. Que no se repita.", "war_done": "¿Ah, sí? Pues se va a enterar.", "hint": "Aquel parece a punto de mandar un recado a alguien."}
+}

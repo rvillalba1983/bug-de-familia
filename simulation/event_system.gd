@@ -59,7 +59,7 @@ func stage(sim: WorldSim, type: String, cause: int, depth: int) -> bool:
 
 ## Un hecho ya ocurrido fuera del catálogo automático, como una muerte a manos del jugador.
 func report(sim: WorldSim, type: String, a: String, b: String, place: Vector2) -> Dictionary:
-	return _apply(sim, type, [a, b], place, -1, 1)
+	return _apply(sim, type, [a] if b.is_empty() else [a, b], place, -1, 1)
 
 
 func text_for(type: String, belief: Dictionary) -> String:
@@ -262,6 +262,7 @@ func _apply(
 	_notify_witnesses(sim, spec, record, place)
 	_apply_social(sim, spec, actors)
 	_schedule_next(sim, spec, record, depth)
+	sim.missions.on_event(sim, record)
 	sim.event_happened.emit(record)
 	return sim.truth.get_record(int(record["id"]))
 

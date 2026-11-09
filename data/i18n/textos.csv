@@ -88,3 +88,8 @@ LIVE_SOURCE_NONE,"Ni idea de quién. Se dice, y ya."
 LIVE_SOURCE_SELF,"Lo vi yo con estos ojos, o con lo que tenga."
 LIVE_SOURCE_NAME,Me lo dijo %s.
 LIVE_REFUSE,Contigo no hablo. Lárgate.
+LIVE_ASK_FEST,¿Qué fue de esos restos?
+LIVE_JOIN_FEST,Me apunto a la fiesta.
+LIVE_JOINED,"Pues trae algo, gorrón."
+LIVE_TODAY_FEST,"Hoy es %s. Lo pone en ninguna parte, pero todo el mundo actúa raro."
+LIVE_TRACE_LABEL,Restos de fiesta

@@ -8,6 +8,15 @@ const LABEL_RANGE: float = 170.0
 const BUBBLE_TIME: float = 3.2
 const WANDER_CHANCE: float = 0.08
 const SEE_RANGE: float = 700.0
+const BUBBLE_SPACING: float = 260.0
+const CALL_RANGE: float = 320.0
+const CALL_INTERVAL: float = 25.0
+const FEST_NOISE: float = 700.0
+const FEST_RANGE: float = 320.0
+const FEST_REACH: float = 170.0
+const FEST_LINE_CHANCE: float = 0.05
+const ID_TRACE: String = "rastro_"
+const ID_LOST: String = "perdido_"
 
 var level: BetaZone
 var sim: WorldSim = WorldSim.new()
@@ -18,6 +27,9 @@ var started: bool = false
 var _talk_items: Dictionary = {}
 var _bubbles: Dictionary = {}
 var _direct_time: float = 0.0
+var _call_time: float = 0.0
+var _decor: FestivalDecor
+var _mission_items: Dictionary = {}
 
 
 func _ready() -> void:
@@ -29,7 +41,11 @@ func _ready() -> void:
 func start(data: Dictionary) -> void:
 	sim.spawn_areas = {"jubilado": BetaLayout.JUB_HOME, "mohocrata": BetaLayout.MOHO_HOME}
 	sim.open_spots = BetaLayout.OPEN_SPOTS
+	sim.gates = {"jubilado": BetaLayout.JUB_GATE, "mohocrata": BetaLayout.MOHO_GATE}
 	sim.start(level.rng.seed, data)
+	var added_traces: Array = sim.festivals.collect_traces(sim, sim.last_seen_day)
+	sim.last_seen_day = WorldCalendar.today()
+	sim.festivals.update(sim)
 	for id: String in sim.npc_ids:
 		if (sim.npcs[id] as NpcState).alive:
 			_show_citizen(sim.npcs[id])
@@ -38,6 +54,11 @@ func start(data: Dictionary) -> void:
 	sim.rumor_told.connect(_on_rumor_told)
 	sim.event_happened.connect(_on_event_happened)
 	sim.event_staged.connect(_on_event_staged)
+	sim.mission_changed.connect(_on_mission_changed)
+	level.noise_bus.noise_emitted.connect(_on_noise)
+	_build_festival_view(added_traces)
+	for mission: Dictionary in sim.missions.open_missions():
+		_show_mission_item(mission)
 	started = true
 
 
@@ -49,10 +70,15 @@ func _physics_process(delta: float) -> void:
 	if _direct_time <= 0.0:
 		_direct_time = DIRECT_INTERVAL
 		_direct_all()
+		_check_player_missions()
+		_call_player(delta)
 
 
 func to_dict() -> Dictionary:
 	_sync_positions()
+	if OS.is_debug_build():
+		for problem: String in ConsistencyChecker.check(sim):
+			push_error("Mundo incoherente: %s" % problem)
 	return sim.to_dict()
 
 
@@ -61,6 +87,13 @@ func bubble_of(id: String) -> SpeechBubble:
 
 
 func handles_item(item: Interactable) -> bool:
+	if item.item_id.begins_with(ID_TRACE):
+		_read_trace(item)
+		return true
+	if item.item_id.begins_with(ID_LOST):
+		sim.missions.item_taken(sim, item.item_id.trim_prefix(ID_LOST).to_int())
+		_remove_mission_item(item.item_id)
+		return true
 	if not sim.npcs.has(item.item_id):
 		return false
 	var npc: NpcState = sim.npcs[item.item_id]
@@ -70,8 +103,15 @@ func handles_item(item: Interactable) -> bool:
 
 
 ## Opciones que añaden otros sistemas, como las misiones.
-func extra_options(_npc: NpcState) -> Array:
-	return []
+func extra_options(npc: NpcState) -> Array:
+	var entries: Array = []
+	for option: Array in sim.missions.options_for(npc):
+		entries.append([option[0], _do_mission.bind(option[1], option[2])])
+	if sim.festivals.is_running() and not sim.festivals.joined and not sim.festivals.ruined:
+		entries.append([tr("LIVE_JOIN_FEST"), _join_festival])
+	if not sim.festivals.traces.is_empty():
+		entries.append([tr("LIVE_ASK_FEST"), _ask_trace])
+	return entries
 
 
 ## Un habitante ha caído o se ha convertido por lo que sea.
@@ -112,6 +152,13 @@ func _show_citizen(npc: NpcState) -> void:
 	bubble.visible = false
 	guard.add_child(bubble)
 	_bubbles[npc.id] = bubble
+	guard.tree_exiting.connect(_forget_citizen.bind(npc.id))
+
+
+func _forget_citizen(id: String) -> void:
+	citizens.erase(id)
+	_talk_items.erase(id)
+	_bubbles.erase(id)
 
 
 func _direct_all() -> void:
@@ -129,7 +176,7 @@ func _direct_all() -> void:
 
 
 func _festival_running() -> bool:
-	return false
+	return sim.festivals.is_running() and not sim.festivals.ruined
 
 
 func _update_label(id: String, distance: float) -> void:
@@ -147,6 +194,12 @@ func _direct(npc: NpcState, guard: Guard, activity: String) -> void:
 			var target: NpcState = _nearest_unaware(npc)
 			if target != null:
 				guard.investigate(target.pos)
+		"fiesta":
+			if npc.pos.distance_to(sim.festivals.spot) > FEST_REACH:
+				guard.investigate(sim.festivals.spot + _spread(npc))
+			elif sim.rng.randf() < FEST_LINE_CHANCE:
+				var said: Array = sim.festivals.current["lines"]
+				_speak(npc, said[sim.rng.randi_range(0, said.size() - 1)])
 		"huir":
 			guard.investigate(_home_point(npc.species))
 		"rarezas":
@@ -178,8 +231,23 @@ func _nearest_unaware(npc: NpcState) -> NpcState:
 	return best
 
 
+func _spread(npc: NpcState) -> Vector2:
+	var seed_value: int = absi(npc.id.hash())
+	return Vector2(float(seed_value % 240) - 120.0, float(seed_value % 170) - 85.0)
+
+
+## Nunca dos bocadillos encima: si alguien cerca ya habla, este se calla.
+func _crowded(npc: NpcState) -> bool:
+	for id: String in _bubbles:
+		var other: NpcState = sim.npcs[id]
+		if other != npc and other.pos.distance_to(npc.pos) < BUBBLE_SPACING:
+			if (_bubbles[id] as SpeechBubble).is_busy():
+				return true
+	return false
+
+
 func _speak(npc: NpcState, text: String) -> void:
-	if not _bubbles.has(npc.id) or dialogue.npc == npc:
+	if not _bubbles.has(npc.id) or dialogue.npc == npc or _crowded(npc):
 		return
 	if npc.pos.distance_to(level.player.global_position) <= HEAR_RANGE:
 		(_bubbles[npc.id] as SpeechBubble).say(text, Color.BLACK, BUBBLE_TIME)
@@ -213,3 +281,115 @@ func _on_event_happened(record: Dictionary) -> void:
 		level.ai.say_custom(observe)
 	if sim.npcs.has(record["actors"][0]):
 		_speak(sim.npcs[record["actors"][0]], sim.events.text_for(record["type"], record))
+
+
+func _build_festival_view(added: Array) -> void:
+	_decor = FestivalDecor.new()
+	level.actors.add_child(_decor)
+	_refresh_decor()
+	for trace: Dictionary in sim.festivals.traces:
+		var item: Interactable = Interactable.new()
+		item.setup(ID_TRACE + str(trace["id"]), Interactable.Kind.EVIDENCE, Vector2(float(trace["x"]), float(trace["y"])))
+		item.custom_label = tr("LIVE_TRACE_LABEL")
+		item.custom_color = FestivalDecor.COLOR_RUIN
+		item.reusable = true
+		item.activated.connect(level._on_item_activated)
+		level.actors.add_child(item)
+	if not added.is_empty():
+		level.ai.say_custom("%s: %s" % [added[-1]["name"], added[-1]["text"]])
+	if sim.festivals.is_running():
+		level.ai.say_custom(tr("LIVE_TODAY_FEST") % sim.festivals.current["name"])
+
+
+func _refresh_decor() -> void:
+	var festivals: FestivalSystem = sim.festivals
+	_decor.visible = festivals.is_running()
+	if festivals.is_running():
+		_decor.show_at(festivals.spot, festivals.current["name"], festivals.ruined)
+
+
+func _read_trace(item: Interactable) -> void:
+	for trace: Dictionary in sim.festivals.traces:
+		if ID_TRACE + str(trace["id"]) == item.item_id:
+			trace["read"] = true
+			level.ai.bubble.say("%s: %s" % [trace["name"], trace["text"]], Color.WHITE, 6.0)
+
+
+func _ask_trace() -> void:
+	var trace: Dictionary = sim.festivals.traces[-1]
+	dialogue.reply("Eso fue %s. Tú no estabas, claro." % trace["name"])
+
+
+func _join_festival() -> void:
+	sim.festivals.join(sim)
+	dialogue.reply(tr("LIVE_JOINED"))
+
+
+func _do_mission(id: int, action: String) -> void:
+	var was: Dictionary = sim.missions._by_id(id)
+	var text: String = sim.missions.perform(sim, id, action)
+	if action == "entregar":
+		level.reward_piece()
+	if was["state"] == "cerrada":
+		_remove_mission_item(ID_LOST + str(id))
+	dialogue.reply(text)
+
+
+func _on_mission_changed(mission: Dictionary) -> void:
+	if mission["stage"] == "sin_contar" and mission["state"] == "abierta":
+		_show_mission_item(mission)
+		var teller: NpcState = sim.npcs[mission["teller"]]
+		if teller.pos.distance_to(level.player.global_position) <= SEE_RANGE:
+			level.ai.say_custom(sim.missions.hint(mission))
+	if mission["state"] == "cerrada":
+		_remove_mission_item(ID_LOST + str(int(mission["id"])))
+
+
+func _show_mission_item(mission: Dictionary) -> void:
+	if mission["template"] != "pertenencia" or mission["stage"] == "recogido":
+		return
+	var id: String = ID_LOST + str(int(mission["id"]))
+	if _mission_items.has(id):
+		return
+	var item: Interactable = Interactable.new()
+	item.setup(id, Interactable.Kind.EVIDENCE, Vector2(float(mission["x"]), float(mission["y"])))
+	item.custom_label = sim.missions.templates["pertenencia"]["item"]
+	item.custom_color = FestivalDecor.COLOR_LOST
+	item.activated.connect(level._on_item_activated)
+	level.actors.add_child(item)
+	_mission_items[id] = item
+
+
+func _remove_mission_item(id: String) -> void:
+	if _mission_items.has(id):
+		(_mission_items[id] as Interactable).queue_free()
+		_mission_items.erase(id)
+
+
+func _check_player_missions() -> void:
+	var feet: Vector2 = level.player.global_position
+	var mission: Dictionary = sim.missions.player_at(sim, feet)
+	if not mission.is_empty():
+		level.ai.say_custom(sim.missions.done_text(mission))
+		var species: Array = sim.species_data[(sim.npcs[mission["teller"]] as NpcState).species]["lore"]
+		level.ai.say_custom(str((species[0] as Dictionary)["text"]))
+
+
+## Quien tiene un problema te llama si pasas cerca. No hay marcadores.
+func _call_player(delta: float) -> void:
+	_call_time -= DIRECT_INTERVAL
+	if _call_time > 0.0:
+		return
+	var _unused: float = delta
+	for mission: Dictionary in sim.missions.open_missions():
+		var teller: NpcState = sim.npcs[mission["teller"]]
+		if mission["stage"] == "sin_contar" and teller.pos.distance_to(level.player.global_position) <= CALL_RANGE:
+			_speak(teller, "¡Eh, tú, el de los brazos!")
+			_call_time = CALL_INTERVAL
+			return
+
+
+func _on_noise(origin: Vector2, radius: float) -> void:
+	if _festival_running() and radius >= FEST_NOISE and origin.distance_to(sim.festivals.spot) <= FEST_RANGE:
+		sim.festivals.ruin(sim)
+		_refresh_decor()

@@ -5,6 +5,7 @@ extends RefCounted
 signal npc_added(npc: NpcState)
 signal npc_died(npc: NpcState)
 signal event_happened(record: Dictionary)
+signal mission_changed(mission: Dictionary)
 signal event_staged(entry: Dictionary)
 signal rumor_told(teller: String, hearer: String, event_id: int)
 
@@ -19,6 +20,9 @@ var calendar: WorldCalendar = WorldCalendar.new()
 var truth: TruthLog = TruthLog.new()
 var rumors: RumorEngine = RumorEngine.new()
 var events: EventSystem = EventSystem.new()
+var population: PopulationSystem = PopulationSystem.new()
+var missions: MissionSystem = MissionSystem.new()
+var festivals: FestivalSystem = FestivalSystem.new()
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var species_data: Dictionary = {}
 var npcs: Dictionary = {}
@@ -37,6 +41,7 @@ var place_names: Array[String] = ["el barrio norte", "el barrio sur", "la tierra
 ## Puntos de la zona donde se puede estar. Los pone la zona.
 var spawn_areas: Dictionary = {}
 var open_spots: Array[Vector2] = []
+var gates: Dictionary = {}
 
 var _accumulated: float = 0.0
 var _steps: int = 0
@@ -60,6 +65,8 @@ func start(seed_value: int, data: Dictionary) -> void:
 	species_relation = float(data["species_relation"])
 	truth.restore(data["truth"])
 	events.restore(data["events"])
+	missions.restore(data["missions"])
+	festivals.restore(self, data["festivals"])
 	for entry: Dictionary in data["npcs"]:
 		var npc: NpcState = NpcState.from_dict(entry)
 		npcs[npc.id] = npc
@@ -142,6 +149,23 @@ func change_species_relation(amount: float) -> void:
 	species_relation = clampf(species_relation + amount, -100.0, 100.0)
 
 
+## Cada cadena de sucesos, solo hasta donde llegó, para el resumen final.
+func chain_summaries(limit: int) -> Array[String]:
+	var result: Array[String] = []
+	for record: Dictionary in truth.records:
+		if int(record["cause"]) >= 0 or result.size() >= limit:
+			continue
+		var steps: Array[String] = [events.text_for(record["type"], record)]
+		var current: int = int(record["id"])
+		for other: Dictionary in truth.records:
+			if int(other["cause"]) == current:
+				steps.append(events.text_for(other["type"], other))
+				current = int(other["id"])
+		if steps.size() > 1:
+			result.append(" → ".join(steps))
+	return result
+
+
 func to_dict() -> Dictionary:
 	var list: Array = []
 	for id: String in npc_ids:
@@ -150,7 +174,8 @@ func to_dict() -> Dictionary:
 		"seed": rng.seed, "rng_state": str(rng.state), "elapsed": elapsed,
 		"last_seen_day": last_seen_day, "next_npc": next_npc, "group_beliefs": group_beliefs,
 		"player_standing": player_standing, "species_relation": species_relation,
-		"truth": truth.to_list(), "events": events.to_dict(), "npcs": list,
+		"truth": truth.to_list(), "events": events.to_dict(), "missions": missions.to_dict(),
+		"festivals": festivals.to_dict(), "npcs": list,
 	}
 
 
@@ -173,8 +198,14 @@ func _step() -> void:
 		(npcs[id] as NpcState).calm_down(CALM_PER_STEP)
 	rumors.step(self)
 	events.step(self)
+	missions.step(self)
+	festivals.update(self)
+	if _steps % PopulationSystem.INTERVAL == 0:
+		population.step(self)
 	if _steps % FORGET_INTERVAL == 0:
 		rumors.forget_step(self)
+		rumors.drop_old_beliefs(self)
+		rumors.update_collective(self)
 
 
 func _pick_name(info: Dictionary) -> String:

@@ -17,15 +17,47 @@ func _run() -> void:
 	change_scene_to_file("res://scenes/beta/beta_zone.tscn")
 	await create_timer(1.5).timeout
 	var zone: BetaZone = current_scene as BetaZone
+	_act(zone, OS.get_environment("ACCION"))
 	if OS.has_environment("SUCESO"):
 		var sim: WorldSim = zone.live_world.sim
 		sim.events.stage(sim, OS.get_environment("SUCESO"), -1, 1)
 	for shot: String in OS.get_environment("CAPTURAS").split(" ", false):
 		var part: PackedStringArray = shot.split(",")
-		zone.player.global_position = Vector2(part[0].to_float(), part[1].to_float())
+		if part[0] == "fiesta":
+			zone.player.global_position = zone.live_world.sim.festivals.spot + Vector2(-140.0, 170.0)
+		elif part[0] != "aqui":
+			zone.player.global_position = Vector2(part[0].to_float(), part[1].to_float())
 		await create_timer(part[2].to_float(), true, false, true).timeout
 		await RenderingServer.frame_post_draw
 		root.get_texture().get_image().save_png("%s/%s.png" % [out, part[3]])
 		print("captura ", part[3])
+	var frames: int = int(OS.get_environment("FOTOGRAMAS")) if OS.has_environment("FOTOGRAMAS") else 0
+	for index: int in range(frames):
+		await create_timer(0.1, true, false, true).timeout
+		await RenderingServer.frame_post_draw
+		root.get_texture().get_image().save_png("%s/video_%04d.png" % [out, index])
 	SaveSystem.delete_all()
 	quit()
+
+
+func _act(zone: BetaZone, action: String) -> void:
+	var world: LiveWorld = zone.live_world
+	var sim: WorldSim = world.sim
+	var near: Vector2 = Vector2(1500.0, 900.0)
+	match action:
+		"nacimiento":
+			zone.player.global_position = near
+			var npc: NpcState = sim.spawn("jubilado", near + Vector2(120.0, 40.0), "nacido")
+			sim.events.report(sim, "nacimiento", npc.id, "", npc.pos)
+		"mision":
+			zone.player.global_position = near
+			var teller: NpcState = sim.alive_of("jubilado")[0]
+			(world.citizens[teller.id] as Guard).global_position = near + Vector2(90.0, 20.0)
+			teller.pos = near + Vector2(90.0, 20.0)
+			sim.events.report(sim, "sombrero_perdido", teller.id, "", near + Vector2(250.0, 60.0))
+			world.dialogue.open(teller)
+			world.dialogue.choose(3)
+		"rastro":
+			var added: Array = sim.festivals.collect_traces(sim, WorldCalendar.today() - 10)
+			world._build_festival_view(added)
+			world._refresh_decor()

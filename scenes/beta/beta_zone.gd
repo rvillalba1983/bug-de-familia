@@ -21,6 +21,7 @@ const COLOR_GOAL_MARK: Color = Color(0.3, 1.0, 0.5, 0.25)
 const COLOR_JUBILADO: Color = Color("#a0a8b8")
 const COLOR_MOHOCRATA: Color = Color("#8fbf60")
 const COLOR_RAMON: Color = Color("#e0a040")
+const CHAINS_IN_SUMMARY: int = 3
 
 ## Las pruebas fijan aquí la hora para no depender del reloj real.
 static var forced_hour: int = -1
@@ -332,6 +333,8 @@ func _connect_body() -> void:
 func _show_game_over() -> void:
 	super()
 	overlay.add_line(protagonist.pick_line("death"))
+	for chain: String in live_world.sim.chain_summaries(CHAINS_IN_SUMMARY):
+		overlay.add_line(chain)
 
 
 func _connect_enemies() -> void:
@@ -416,6 +419,11 @@ func add_citizen(id: String, species: String, at: Vector2, home: Rect2) -> Guard
 	enemy.fell.connect(_on_enemy_fell)
 	enemy.corpse_expired.connect(_on_corpse_expired)
 	return enemy
+
+
+## Premio de una misión: una pieza de repuesto.
+func reward_piece() -> void:
+	_add_pickup([ModularBody.Slot.ARM_MAIN_LEFT, ModularBody.Slot.ARM_MAIN_RIGHT])
 
 
 func _begin_fresh() -> void:

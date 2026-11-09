@@ -1,6 +1,6 @@
 # ADR 0016: revisión de código, datos, pruebas y rendimiento (P-24)
 
-Estado: pendiente de aprobación del director.
+Estado: aprobado por el director el 9-nov.
 
 ## Separación de clases
 Sin cambios de comportamiento ni de controles.
@@ -61,7 +61,7 @@ Apagar partes en `main` mostró que filtro (3 ms), interfaz (4 ms) y resolución
 
 Cambios: `CircleDot` sustituye a `draw_circle` en ambiente, árboles, sombras, atrezo y vista de estrategia (textura compartida, en vez de un polígono por círculo). La vista de estrategia oculta el mundo y las capas que tapa mientras está abierta.
 
-Queda por bajar de 29 ms a los 16,6 de 60 imágenes por segundo. Tras la mejora, apagar personajes o paredes ahorra unos 2,5 ms cada uno; objetos, fachadas y conos, nada medible. Sin los actores son 16 ms: lo que falta apunta al protagonista, dibujado con polígonos en cada fotograma.
+Queda por bajar de 29 ms a los 16,6 de 60 imágenes por segundo. Tras la mejora, apagar personajes o paredes ahorra unos 2,5 ms cada uno; objetos, fachadas y conos, nada medible. Una medición posterior, más ruidosa (el portátil daba tiempos peores en casos sin cambios), situó al protagonista en unos 5 ms y 254 de 984 llamadas de dibujo. Se aplaza a una tarea aparte: pintarlo en textura, paredes en bloques y atlas de personajes.
 
 ## Exportación
 `export_presets.cfg`: Linux y Windows finales, sin `addons`, `tests`, `tools` ni `docs`, más «Medicion Linux» con la herramienta de medir. Para medir: exportar ese preajuste y poner junto al ejecutable un `override.cfg` con `[application]` y `run/main_scene="res://tools/medir_exportado.tscn"`. La exportación de Windows no se ha ejecutado.

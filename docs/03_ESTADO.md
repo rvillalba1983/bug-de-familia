@@ -11,8 +11,8 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | 9. Contenido y pulido | Fusionada en `main` el 9-nov y aprobada por el director. 255 pruebas pasan. Ver `adr/0011-ias-y-controles.md`, `adr/0012-batallas.md` y `adr/0013-audio-y-rendimiento.md` |
 | Cierre de la beta | Fusionada en `main` el 9-nov con aprobación del director. 261 pruebas pasan. Ver `adr/0014-cierre-beta.md` |
 | Arreglos tras probar la beta | Fusionada en `main` el 9-nov con aprobación del director. 266 pruebas pasan. Ver `adr/0015-arreglos-beta.md` |
-| Revisión de código y pruebas (P-24) | En la rama `revision-codigo`, pendiente de aprobación. Ver `adr/0016-revision-codigo.md` |
-| Post-beta. Mundo completo | Después, tras revisar la beta: otras cuatro razas, 13 progenitores, zonas nuevas, tres niveles de simulación y viaje entre puntos de guardado |
+| Revisión de código, pruebas y rendimiento (P-24) | Fusionada en `main` el 9-nov con aprobación del director. 293 pruebas pasan. Ver `adr/0016-revision-codigo.md` |
+| Post-beta. Mundo completo | Siguiente fase, tras revisar la beta: otras cuatro razas, 13 progenitores, zonas nuevas, tres niveles de simulación y viaje entre puntos de guardado |
 
 ## Pendiente de respuesta del usuario (no bloquea)
 - Textos provisionales del caso y de las IAs.
@@ -61,7 +61,8 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 
 ## Tras la revisión de código (P-24)
 - Razas, zona, progenitores, armas, animaciones y muertes viven en datos: ver `adr/0016-revision-codigo.md`.
-- Medir el juego exportado con `tools/medir_exportado.tscn`. Sin medir en una gráfica real.
+- Medido en la gráfica del director (Intel HD 520): ciudad de 84 a unos 30 ms, batalla de 250 a 16-28 ms. Para 60 imágenes por segundo aún faltan protagonista en textura, paredes en bloques y atlas de personajes.
+- Medir el juego exportado con `tools/medir_exportado.tscn` y el preajuste «Medicion Windows».
 - Al ejecutar dos Godot a la vez, usar un `XDG_DATA_HOME` distinto: comparten `user://`.
 
 ## Preparar el entorno en una conversación nueva

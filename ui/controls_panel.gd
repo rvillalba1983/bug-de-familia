@@ -104,6 +104,7 @@ func _refresh_options() -> void:
 	_add_option("Texto: %d %%" % roundi(GameSettings.text_scale * 100.0), _cycle_text)
 	_add_option("Reducir temblores y destellos: %s" % ("sí" if GameSettings.reduce_motion else "no"), _toggle_motion)
 	_add_option("Alto contraste: %s" % ("sí" if GameSettings.high_contrast else "no"), _toggle_contrast)
+	_add_option("Limitar a 30 imágenes por segundo: %s" % ("sí" if GameSettings.limit_30_fps else "no"), _toggle_frame_limit)
 	_add_option("Música: %d %%" % roundi(GameSettings.music_volume * 100.0), _cycle_music)
 	_add_option("Voces: %d %%" % roundi(GameSettings.voice_volume * 100.0), _cycle_voice)
 
@@ -135,6 +136,12 @@ func _toggle_motion() -> void:
 
 func _toggle_contrast() -> void:
 	GameSettings.high_contrast = not GameSettings.high_contrast
+	_changed()
+
+
+func _toggle_frame_limit() -> void:
+	GameSettings.limit_30_fps = not GameSettings.limit_30_fps
+	GameSettings.apply_frame_limit()
 	_changed()
 
 

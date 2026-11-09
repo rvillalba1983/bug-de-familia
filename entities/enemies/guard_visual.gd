@@ -89,15 +89,15 @@ func _draw_windup() -> void:
 		return
 	if attack.is_ranged():
 		var aim: Vector2 = attack.aim_point - _guard.global_position
-		_guard.draw_line(Vector2(0.0, -30.0), aim, COLOR_WINDUP, 2.0)
+		_guard.draw_line(Vector2(0.0, -30.0 * CharacterScale.value), aim, COLOR_WINDUP, 2.0)
 	else:
-		_guard.draw_arc(Vector2(0.0, -30.0), float(attack.weapon["range"]), 0.0, TAU, 32, COLOR_WINDUP, 3.0)
+		_guard.draw_arc(Vector2(0.0, -30.0 * CharacterScale.value), float(attack.weapon["range"]), 0.0, TAU, 32, COLOR_WINDUP, 3.0)
 
 
 func _draw_health() -> void:
 	if _guard.health >= Guard.MAX_HEALTH:
 		return
-	var bar: Rect2 = Rect2(-24.0, -Guard.BODY_HEIGHT - 16.0, 48.0, 6.0)
+	var bar: Rect2 = Rect2(-24.0, -Guard.BODY_HEIGHT * CharacterScale.value - 16.0, 48.0, 6.0)
 	_guard.draw_rect(bar, Color(0.0, 0.0, 0.0, 0.6))
 	bar.size.x *= _guard.health / Guard.MAX_HEALTH
 	_guard.draw_rect(bar, COLOR_ALERT)
@@ -105,27 +105,29 @@ func _draw_health() -> void:
 
 func _draw_down() -> void:
 	if art_views.is_empty():
-		CircleDot.draw(_guard, Vector2.ZERO, Guard.BODY_HEIGHT * 0.42, COLOR_DOWN)
+		CircleDot.draw(_guard, Vector2.ZERO, Guard.BODY_HEIGHT * 0.42 * CharacterScale.value, COLOR_DOWN)
 		return
 	if rig != null:
 		_draw_shadow()
 		return
 	var art: Texture2D = art_views[VIEW_SOUTH]
-	var half: float = ART_HEIGHT * 0.5
-	_guard.draw_set_transform(Vector2(-ART_HEIGHT * 0.45, -14.0), PI * 0.5)
-	_guard.draw_texture_rect(art, Rect2(-half, -half, ART_HEIGHT, ART_HEIGHT), false, COLOR_FALLEN)
+	var height: float = _art_height()
+	var half: float = height * 0.5
+	_guard.draw_set_transform(Vector2(-height * 0.45, -14.0 * CharacterScale.value), PI * 0.5)
+	_guard.draw_texture_rect(art, Rect2(-half, -half, height, height), false, COLOR_FALLEN)
 	_guard.draw_set_transform(Vector2.ZERO)
 
 
 ## Sombra aplastada: un disco entero parecía un agujero bajo los pies.
 func _draw_shadow() -> void:
-	_guard.draw_set_transform(Vector2(0.0, 2.0), 0.0, Vector2(1.0, 0.38))
+	var radius: float = 22.0 * CharacterScale.value
+	_guard.draw_set_transform(Vector2(0.0, 2.0 * CharacterScale.value), 0.0, Vector2(1.0, 0.38))
 	if PieceAtlas.has_entry(PieceAtlas.SHADOW):
-		var side: Vector2 = Vector2(22.0, 22.0)
+		var side: Vector2 = Vector2(radius, radius)
 		var area: Rect2 = Rect2(-side, side * 2.0)
 		_guard.draw_texture_rect_region(PieceAtlas.texture(), area, PieceAtlas.region(PieceAtlas.SHADOW), COLOR_ART_SHADOW)
 	else:
-		CircleDot.draw(_guard, Vector2.ZERO, 22.0, COLOR_ART_SHADOW)
+		CircleDot.draw(_guard, Vector2.ZERO, radius, COLOR_ART_SHADOW)
 	_guard.draw_set_transform(Vector2.ZERO)
 
 
@@ -136,12 +138,13 @@ func _draw_art() -> void:
 	var direction: Vector2 = Vector2.from_angle(_guard.detector.facing_angle)
 	var view: int = view_for(direction)
 	var art: Texture2D = art_views[view]
-	var size: Vector2 = Vector2(ART_HEIGHT * art.get_size().aspect(), ART_HEIGHT)
+	var height: float = _art_height()
+	var size: Vector2 = Vector2(height * art.get_size().aspect(), height)
 	if view == VIEW_EAST and direction.x < 0.0:
 		size.x = -size.x
 	var tint: Color = COLOR_ALERT.lightened(0.5) if _guard.state == Guard.State.ALERT else Color.WHITE
 	_draw_shadow()
-	var at: Vector2 = Vector2(-size.x * 0.5, -ART_HEIGHT * ART_FEET)
+	var at: Vector2 = Vector2(-size.x * 0.5, -height * ART_FEET)
 	_guard.draw_texture_rect(art, Rect2(at, size), false, tint)
 
 
@@ -151,8 +154,12 @@ func _draw_placeholder() -> void:
 		color = body_color
 	if _guard.state == Guard.State.ALERT:
 		color = COLOR_ALERT
-	var center: Vector2 = Vector2(0.0, -Guard.BODY_HEIGHT * 0.5)
-	CircleDot.draw(_guard, center, Guard.BODY_HEIGHT * 0.42, color)
+	var body_height: float = Guard.BODY_HEIGHT * CharacterScale.value
+	CircleDot.draw(_guard, Vector2(0.0, -body_height * 0.5), body_height * 0.42, color)
+
+
+func _art_height() -> float:
+	return ART_HEIGHT * CharacterScale.value
 
 
 func _ensure_rig_root() -> Node2D:
@@ -170,7 +177,7 @@ func _show_view(view: int) -> void:
 	if _rigs[view] == null:
 		_rigs[view] = EnemyRig.new()
 		_ensure_rig_root().add_child(_rigs[view])
-		_rigs[view].build(rig_folder + VIEW_SUFFIX[view], ART_HEIGHT, ART_FEET)
+		_rigs[view].build(rig_folder + VIEW_SUFFIX[view], _art_height(), ART_FEET)
 	rig = _rigs[view]
 	_rig_view = view
 	rig.visible = true

@@ -59,7 +59,7 @@ static func draw(
 	height_ratio: float,
 	body: ModularBody,
 	tail_color: Color,
-	tail_speaking: bool,
+	_tail_speaking: bool,
 	walk_phase: float,
 	squash: Vector2 = Vector2.ONE
 ) -> void:
@@ -67,19 +67,21 @@ static func draw(
 	var view_name: String = view_for(facing)
 	var away: bool = VIEWS_FROM_BEHIND.has(view_name)
 	canvas.draw_set_transform_matrix(Transform2D.IDENTITY)
-	CircleDot.draw(canvas, Vector2(0.0, 3.0), 22.0, SHADOW_COLOR)
+	var size: float = CharacterScale.value
+	CircleDot.draw(canvas, Vector2(0.0, 3.0 * size), 22.0 * size, SHADOW_COLOR)
 	if not away:
-		_draw_tail(canvas, facing, height_ratio, tail_color, tail_speaking)
-	var bob: float = -absf(sin(walk_phase)) * 1.5
+		_draw_tail(canvas, facing, height_ratio, tail_color)
+	var bob: float = -absf(sin(walk_phase)) * 1.5 * size
+	var art: float = ART_SCALE * size
 	var base: Transform2D = Transform2D(
-		0.0, Vector2(ART_SCALE * squash.x, ART_SCALE * height_ratio * squash.y), 0.0, Vector2(0.0, bob)
+		0.0, Vector2(art * squash.x, art * height_ratio * squash.y), 0.0, Vector2(0.0, bob)
 	)
 	var view: Dictionary = _views[view_name]
 	for part_name: String in view["order"]:
 		_draw_part(canvas, view_name, part_name, base, body, walk_phase)
 	canvas.draw_set_transform_matrix(Transform2D.IDENTITY)
 	if away:
-		_draw_tail(canvas, facing, height_ratio, tail_color, tail_speaking)
+		_draw_tail(canvas, facing, height_ratio, tail_color)
 
 
 ## Silueta de frente para la interfaz. Cada pieza se pinta según lo gastada que está;
@@ -290,36 +292,29 @@ static func _draw_shape(canvas: CanvasItem, shape: Dictionary) -> void:
 		canvas.draw_polyline(shape["outline"] as PackedVector2Array, Palette.INK, width)
 
 
-static func _draw_tail(
-	canvas: CanvasItem, facing: Vector2, height_ratio: float, color: Color, speaking: bool
-) -> void:
+## Cola quieta, por rendimiento. Su color sigue indicando qué IA habla.
+static func _draw_tail(canvas: CanvasItem, facing: Vector2, height_ratio: float, color: Color) -> void:
+	var size: float = CharacterScale.value
 	var back: Vector2 = -facing
 	var side: Vector2 = back.orthogonal()
-	var base: Vector2 = Vector2(0.0, -30.0 * height_ratio)
-	var clock: float = Time.get_ticks_msec() * 0.003
-	var pulse: float = 1.0 + (0.25 * sin(clock * 6.0) if speaking else 0.0)
+	var base: Vector2 = Vector2(0.0, -30.0 * height_ratio * size)
 	var points: PackedVector2Array = PackedVector2Array()
 	for index: int in range(TAIL_POINTS):
 		var along: float = float(index) * TAIL_STEP
-		var sway: float = sin(float(index) * 0.32 + clock) * float(index) * 0.75
-		points.append(base + back * along + side * sway)
-	var glow: Color = color
-	glow.a = 0.18 * pulse
-	canvas.draw_polyline(points, glow, TAIL_WIDTH * 3.4)
+		var sway: float = sin(float(index) * 0.32) * float(index) * 0.75
+		points.append(base + (back * along + side * sway) * size)
 	for index: int in range(TAIL_POINTS):
-		CircleDot.draw(canvas, points[index], _tail_width(index, pulse) + 1.6, Palette.INK)
+		CircleDot.draw(canvas, points[index], (_tail_width(index) + 1.6) * size, Palette.INK)
 	for index: int in range(TAIL_POINTS):
-		var lit: bool = (index + int(clock * 3.0)) / 4 % 2 == 0
-		CircleDot.draw(canvas, points[index], _tail_width(index, pulse), color if lit else TAIL_DARK)
+		var lit: bool = index / 4 % 2 == 0
+		CircleDot.draw(canvas, points[index], _tail_width(index) * size, color if lit else TAIL_DARK)
 		if lit and index % 4 == 2:
-			var spark: float = _tail_width(index, pulse) * 0.7
-			canvas.draw_line(points[index] + Vector2.LEFT * spark, points[index] + Vector2.RIGHT * spark, Color.WHITE, 1.2)
-			canvas.draw_line(points[index] + Vector2.UP * spark, points[index] + Vector2.DOWN * spark, Color.WHITE, 1.2)
+			CircleDot.draw(canvas, points[index], _tail_width(index) * 0.3 * size, Color.WHITE)
 
 
-static func _tail_width(index: int, pulse: float) -> float:
+static func _tail_width(index: int) -> float:
 	var ratio: float = float(index) / float(TAIL_POINTS - 1)
-	return TAIL_WIDTH * pulse * (1.0 - 0.75 * pow(ratio, 1.4))
+	return TAIL_WIDTH * (1.0 - 0.75 * pow(ratio, 1.4))
 
 
 static func _ensure_loaded() -> void:

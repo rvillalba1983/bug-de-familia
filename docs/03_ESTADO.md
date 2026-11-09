@@ -12,6 +12,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | Cierre de la beta | Fusionada en `main` el 9-nov con aprobación del director. 261 pruebas pasan. Ver `adr/0014-cierre-beta.md` |
 | Arreglos tras probar la beta | Fusionada en `main` el 9-nov con aprobación del director. 266 pruebas pasan. Ver `adr/0015-arreglos-beta.md` |
 | Revisión de código, pruebas y rendimiento (P-24) | Fusionada en `main` el 9-nov con aprobación del director. 293 pruebas pasan. Ver `adr/0016-revision-codigo.md` |
+| Optimización en gráfica integrada | En la rama `optimizacion-integrada`, pendiente de medir en la gráfica del director y de su aprobación. Ver `adr/0017-optimizacion-integrada.md` |
 | Post-beta. Mundo completo | Siguiente fase, tras revisar la beta: otras cuatro razas, 13 progenitores, zonas nuevas, tres niveles de simulación y viaje entre puntos de guardado |
 
 ## Pendiente de respuesta del usuario (no bloquea)

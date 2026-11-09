@@ -71,7 +71,7 @@ Godot 2D (Sprite2D, Skeleton2D, Bone2D, AnimationPlayer, AnimationTree, TileMapL
 
 ## Protagonista y especies
 - Piezas independientes con esqueleto: animaciones iniciales de reposo, caminar, atacar, recibir daño, perder una extremidad, sustituir pieza, interactuar y reaccionar.
-- Cola con animación procedural y shaders para identificar a cada IA.
+- Cola quieta por rendimiento (9-nov), con color para identificar a cada IA.
 - Especies por familias anatómicas (humanoides, insectoides, gelatinosos, tentaculares, cuadrúpedos, amorfos), sin un esqueleto universal.
 - Separar especie, modelo visual e individuo. Variantes por parámetros y componentes: tamaño, proporciones, color, ojos, bocas, extremidades, marcas y accesorios.
 
@@ -85,7 +85,7 @@ Ordenación por coordenada Y, sombras simples, luces limitadas, CanvasModulate p
 Objetos con estados visuales (cerrado, abierto, activado, dañado, destruido, oculto, descubierto, recogido). TileMapLayer para terrenos repetitivos y escenas para edificios y estructuras, con piezas reutilizables. Bibliotecas de plantas, hongos y organismos.
 
 ## Rendimiento
-Texturas razonables, atlas, partículas y luces limitadas, nodos justos y carga controlada de zonas.
+Texturas razonables, atlas, partículas y luces limitadas, nodos justos y carga controlada de zonas. Las piezas de personajes van en `art/beta/atlas/piezas.png` (generada con `tools/art/piece_atlas_gen.gd`: hay que volver a ejecutarla si cambia un SVG de `art/beta/rig/`). Las formas de color estáticas o repetidas se juntan en mallas con `PolyBatch`.
 
 ## Herramienta interna
 Fábrica de recursos: importar y preparar imágenes, configurar esqueletos y anclajes, validar dimensiones, transparencias, nombres, escalas y orientaciones, y mantener una biblioteca central. Se construye cuando el flujo manual ya esté probado.

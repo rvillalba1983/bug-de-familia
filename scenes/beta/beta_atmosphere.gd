@@ -119,7 +119,7 @@ func _build_spores() -> GPUParticles2D:
 	var particles: GPUParticles2D = GPUParticles2D.new()
 	particles.process_material = process
 	particles.texture = _radial(64)
-	particles.amount = 180
+	particles.amount = 45
 	particles.lifetime = 9.0
 	particles.preprocess = 9.0
 	particles.visibility_rect = Rect2(-area.size * 0.6, area.size * 1.2)
@@ -144,7 +144,7 @@ func _build_rain() -> GPUParticles2D:
 	var particles: GPUParticles2D = GPUParticles2D.new()
 	particles.process_material = process
 	particles.texture = streak
-	particles.amount = 320
+	particles.amount = 100
 	particles.lifetime = 1.1
 	particles.local_coords = true
 	particles.visibility_rect = Rect2(-1400.0, -200.0, 2800.0, 2000.0)

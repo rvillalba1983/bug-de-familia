@@ -150,6 +150,12 @@ Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barr
 - Al convertir se ve qué llevas y cuántos repuestos quedan en cada zona.
 - Las consecuencias al salir de la zona siguen en la etapa post-beta: no hay por dónde salir.
 
+## Optimización en gráfica integrada (9-nov)
+- Personajes dibujados al 50 % de su tamaño. Solo visual: colisiones, alcances y detección no cambian.
+- Cola del protagonista quieta. Su color sigue indicando qué IA habla.
+- Efectos en movimiento reducidos: charcos, cables, plantas y copas quietos, sin moscas ni humo, y menos lluvia y esporas.
+- Límite opcional de 30 imágenes por segundo en las opciones, apagado por defecto.
+
 ## Autonomía de Claude
 - Una fase por conversación: termina al fusionar en `main`, se anota el avance en `03_ESTADO.md` y se avisa al usuario de que hay que cambiar de conversación (8-nov).
 **Decide solo y documenta:** módulos, algoritmos, datos, herramientas locales, orden técnico de tareas, parámetros provisionales, refactorizaciones, optimizaciones medidas y decisiones artísticas menores.

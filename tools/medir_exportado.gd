@@ -30,6 +30,8 @@ func _run() -> void:
 	Sandbox.session_started = true
 	Sandbox.forced_seed = 77
 	BattleDirector.auto_start = false
+	if OS.has_environment("ESCALA"):
+		CharacterScale.value = float(OS.get_environment("ESCALA"))
 	BetaZone.forced_hour = 23 if mode == "noche" else 12
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	Engine.max_fps = 0

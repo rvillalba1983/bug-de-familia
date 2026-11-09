@@ -3,6 +3,7 @@ extends RefCounted
 ## Qué dibujo lleva cada objeto de la zona: [archivo, ancho, alto y, opcional, copias].
 
 const FOLDER: String = "res://art/beta/props/"
+const CHARACTER_ART: Array[String] = ["res://art/beta/jubilado_hierro.svg", "res://art/beta/mohocrata.svg"]
 const BY_ID: Dictionary = {
 	"paca": ["res://art/beta/jubilado_hierro.svg", 77.0, 77.0],
 	"eusebio": ["res://art/beta/jubilado_hierro.svg", 77.0, 77.0],
@@ -53,9 +54,15 @@ static func entry_for(item_id: String, kind: Interactable.Kind) -> Array:
 
 
 ## Dibuja el objeto con los pies en el origen del nodo.
+## Los personajes con nombre se dibujan al mismo tamaño que los demás.
+static func scale_of(entry: Array) -> float:
+	return CharacterScale.value if CHARACTER_ART.has(str(entry[0])) else 1.0
+
+
 static func draw_entry(node: CanvasItem, entry: Array) -> void:
-	var size: Vector2 = Vector2(float(entry[1]), float(entry[2]))
+	var factor: float = scale_of(entry)
+	var size: Vector2 = Vector2(float(entry[1]), float(entry[2])) * factor
 	var copies: int = int(entry[3]) if entry.size() > 3 else 1
 	for index: int in range(copies):
-		var shift: Vector2 = COPY_OFFSET * Vector2(float(index) - float(copies - 1) * 0.5, float(index % 2))
+		var shift: Vector2 = COPY_OFFSET * factor * Vector2(float(index) - float(copies - 1) * 0.5, float(index % 2))
 		node.draw_texture_rect(texture(entry[0]), Rect2(shift - Vector2(size.x * 0.5, size.y), size), false)

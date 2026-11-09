@@ -1,5 +1,5 @@
 @echo off
-rem Bug de Familia: medicion en la grafica real. Tarda unos 15 minutos.
+rem Bug de Familia: medicion en la grafica real. Tarda unos 20 minutos.
 rem Deja el portatil enchufado y no toques nada hasta que ponga TERMINADO.
 cd /d "%~dp0"
 if not exist BugDeFamilia_medir.exe (
@@ -27,6 +27,14 @@ for %%R in (1 2) do (
   )
 )
 
+rem Personajes al tamano anterior, para ver cuanto aporta el 50 por ciento.
+for %%R in (1 2 3) do (
+  for %%C in (ciudad caminando) do (
+    call :medir %%C "" t%%R opengl3 1.0
+    call :medir %%C "" t%%R opengl3_angle 1.0
+  )
+)
+
 echo.
 echo TERMINADO. Enviame el archivo medicion.txt de esta carpeta.
 pause
@@ -37,5 +45,6 @@ echo Midiendo: %~1 quitar=%~2 ronda=%~3 driver=%~4
 set CASO=%~1
 set QUITAR=%~2
 set RONDA=%~3
+set ESCALA=%~5
 start /wait "" BugDeFamilia_medir.exe --rendering-driver %~4
 exit /b 0

@@ -5,6 +5,7 @@ extends RefCounted
 const PATH: String = "user://opciones.cfg"
 const TEXT_SCALES: Array[float] = [1.0, 1.25, 1.5]
 const VOLUMES: Array[float] = [1.0, 0.5, 0.0]
+const FRAME_LIMIT: int = 30
 
 static var path: String = PATH
 static var text_scale: float = 1.0
@@ -12,6 +13,7 @@ static var reduce_motion: bool = false
 static var high_contrast: bool = false
 static var music_volume: float = 0.7
 static var voice_volume: float = 1.0
+static var limit_30_fps: bool = false
 static var _loaded: bool = false
 
 
@@ -27,6 +29,8 @@ static func ensure_loaded() -> void:
 	high_contrast = bool(file.get_value("opciones", "contraste", false))
 	music_volume = float(file.get_value("opciones", "musica", 0.7))
 	voice_volume = float(file.get_value("opciones", "voces", 1.0))
+	limit_30_fps = bool(file.get_value("opciones", "limite_30", false))
+	apply_frame_limit()
 
 
 static func save() -> void:
@@ -36,6 +40,7 @@ static func save() -> void:
 	file.set_value("opciones", "contraste", high_contrast)
 	file.set_value("opciones", "musica", music_volume)
 	file.set_value("opciones", "voces", voice_volume)
+	file.set_value("opciones", "limite_30", limit_30_fps)
 	var result: Error = file.save(path)
 	if result != OK:
 		push_error("No se han podido guardar las opciones en %s: %s" % [path, error_string(result)])
@@ -48,7 +53,12 @@ static func reset() -> void:
 	high_contrast = false
 	music_volume = 0.7
 	voice_volume = 1.0
+	limit_30_fps = false
 	_loaded = true
+
+
+static func apply_frame_limit() -> void:
+	Engine.max_fps = FRAME_LIMIT if limit_30_fps else 0
 
 
 static func font_size(base: int) -> int:

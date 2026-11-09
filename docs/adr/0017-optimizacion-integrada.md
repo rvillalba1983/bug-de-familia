@@ -39,4 +39,4 @@ Los milisegundos en la gráfica del director están pendientes. El recurso `art/
 Godot obligaba a usar ANGLE en cualquier «Intel HD Graphics». Mediana de fotograma en ms, directo frente a ANGLE: ciudad 12,7 y 28,2; caminando 118 y 715; pelea 30 y 463; pausa 20 y 143. La lista de `project.godot` deja de forzar ANGLE en las HD modernas y lo mantiene en las generaciones antiguas (2000 a 6000). Sin el protagonista, caminando bajaba de 118 a 30 ms: era el principal coste.
 
 ## Pausa táctica
-Solo aparecen las tres IAs activas, con ojos y boca propios (`data/art/ai_faces.json`, `AiFace`). P-26 sigue fuera.
+Solo aparecen las tres IAs activas, como fantasmas de colores, con ojos y boca propios (`data/art/ai_faces.json`, `AiFace`). P-26 sigue fuera.

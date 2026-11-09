@@ -1,6 +1,6 @@
 class_name AiSpectres
 extends Control
-## Durante la pausa táctica, las tres IAs activas son caras exageradas en butacas enormes.
+## Durante la pausa táctica, las tres IAs activas son fantasmas de colores, con ojos y boca propios.
 ## Solo es ambiente: no gasta tokens y usa su propio azar para no tocar la semilla de la partida.
 
 const SPEAK_INTERVAL: float = 3.2
@@ -17,6 +17,11 @@ const COLOR_TEETH: Color = Color("#fff6e0")
 const COLOR_INK: Color = Color("#140a1e")
 const SLOTS: Array[Vector2] = [Vector2(720, 215), Vector2(1090, 215), Vector2(1460, 215)]
 const SIZE: float = 1.7
+const GHOST_HALF_WIDTH: float = 66.0
+const GHOST_ALPHA: float = 0.94
+const GHOST_ARC_STEPS: int = 20
+const GHOST_WAVE_STEPS: int = 24
+const FLOAT_HEIGHT: float = 4.0
 
 var team: AiTeam
 
@@ -81,28 +86,46 @@ func _draw() -> void:
 		var color: Color = Color(info["color"] as String)
 		var at: Vector2 = SLOTS[index]
 		draw_set_transform(Vector2.ZERO, 0.0, Vector2(SIZE, SIZE))
-		_draw_armchair(at / SIZE, color)
-		_draw_gesture(at, color, float(index), _spoken.has(id), AiFace.face_of(id))
+		_draw_ghost(at / SIZE + Vector2(0.0, _float_offset(index)), color)
+		_draw_gesture(at + Vector2(0.0, _float_offset(index) * SIZE), color, float(index), _spoken.has(id), AiFace.face_of(id))
 		draw_set_transform(Vector2.ZERO)
 		_draw_name(at, str(info["name"]))
 		if _spoken.has(id):
 			_draw_line(at, str(_spoken[id]), color)
 
 
-func _draw_armchair(at: Vector2, color: Color) -> void:
-	var fabric: Color = color.darkened(0.45)
-	var cushion: Color = color.darkened(0.2)
-	_box(Rect2(at + Vector2(-58, -74), Vector2(116, 112)), fabric)
-	_box(Rect2(at + Vector2(-48, 8), Vector2(96, 36)), cushion)
-	_box(Rect2(at + Vector2(-78, -18), Vector2(30, 64)), cushion)
-	_box(Rect2(at + Vector2(48, -18), Vector2(30, 64)), cushion)
-	for x: float in [-66.0, 62.0]:
-		draw_rect(Rect2(at + Vector2(x, 46), Vector2(9, 12)), COLOR_INK)
+func _float_offset(index: int) -> float:
+	return sin(_time * 1.6 + float(index) * 2.0) * FLOAT_HEIGHT
 
 
-func _box(area: Rect2, color: Color) -> void:
-	draw_rect(area, color)
-	draw_rect(area, COLOR_INK, false, 3.0)
+## Sábana de fantasma: cabeza redonda, dos bracitos y el borde inferior ondulado.
+func _draw_ghost(at: Vector2, color: Color) -> void:
+	var fabric: Color = color.lightened(0.3)
+	fabric.a = GHOST_ALPHA
+	var outline: PackedVector2Array = _ghost_outline(at)
+	draw_colored_polygon(outline, fabric)
+	outline.append(outline[0])
+	draw_polyline(outline, COLOR_INK, 3.0)
+
+
+func _ghost_outline(at: Vector2) -> PackedVector2Array:
+	var points: PackedVector2Array = PackedVector2Array()
+	for step: int in range(GHOST_ARC_STEPS + 1):
+		var angle: float = PI + PI * float(step) / float(GHOST_ARC_STEPS)
+		points.append(at + Vector2(cos(angle) * GHOST_HALF_WIDTH, -38.0 + sin(angle) * 66.0))
+	points.append(at + Vector2(GHOST_HALF_WIDTH + 2.0, 0.0))
+	points.append(at + Vector2(GHOST_HALF_WIDTH + 24.0, 8.0))
+	points.append(at + Vector2(GHOST_HALF_WIDTH + 2.0, 24.0))
+	var bottom: float = 60.0
+	for step: int in range(GHOST_WAVE_STEPS + 1):
+		var t: float = float(step) / float(GHOST_WAVE_STEPS)
+		var x: float = lerpf(GHOST_HALF_WIDTH + 2.0, -GHOST_HALF_WIDTH - 2.0, t)
+		var wave: float = sin(t * TAU * 3.0 + _time * 2.0) * 9.0
+		points.append(at + Vector2(x, bottom + wave))
+	points.append(at + Vector2(-GHOST_HALF_WIDTH - 2.0, 24.0))
+	points.append(at + Vector2(-GHOST_HALF_WIDTH - 24.0, 8.0))
+	points.append(at + Vector2(-GHOST_HALF_WIDTH - 2.0, 0.0))
+	return points
 
 
 ## Quien habla abre la boca a lo bestia; el resto hace muecas lentas.
@@ -190,15 +213,15 @@ func _closed(top: PackedVector2Array, bottom: PackedVector2Array) -> PackedVecto
 
 func _draw_name(at: Vector2, label: String) -> void:
 	draw_string_outline(
-		_mono, at + Vector2(-110.0, 74.0 * SIZE + 8.0), label, HORIZONTAL_ALIGNMENT_CENTER, 220.0, 16, 4, COLOR_INK
+		_mono, at + Vector2(-110.0, 78.0 * SIZE + 8.0), label, HORIZONTAL_ALIGNMENT_CENTER, 220.0, 16, 4, COLOR_INK
 	)
-	draw_string(_mono, at + Vector2(-110.0, 74.0 * SIZE + 8.0), label, HORIZONTAL_ALIGNMENT_CENTER, 220.0, 16, Color.WHITE)
+	draw_string(_mono, at + Vector2(-110.0, 78.0 * SIZE + 8.0), label, HORIZONTAL_ALIGNMENT_CENTER, 220.0, 16, Color.WHITE)
 
 
 func _draw_line(at: Vector2, text: String, color: Color) -> void:
 	color.a = LINE_ALPHA
 	var x: float = clampf(at.x - LINE_WIDTH * 0.5, 20.0, 1900.0 - LINE_WIDTH)
-	var y: float = at.y + 74.0 * SIZE + 44.0
+	var y: float = at.y + 78.0 * SIZE + 44.0
 	draw_rect(Rect2(x - 8.0, y - 20.0, LINE_WIDTH + 16.0, 70.0), Color(0.04, 0.02, 0.1, 0.86))
 	draw_multiline_string(
 		_mono, Vector2(x, y), text, HORIZONTAL_ALIGNMENT_LEFT, LINE_WIDTH, FONT_SIZE, 3, color

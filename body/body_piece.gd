@@ -5,6 +5,8 @@ extends RefCounted
 enum Kind { HEAD, ARM, LEG }
 
 const MAX_DURABILITY: float = 100.0
+## Aspectos disponibles en la hoja de diseño para cada tipo de pieza.
+const VISUAL_VARIANTS: Dictionary = {Kind.HEAD: 10, Kind.ARM: 20, Kind.LEG: 10}
 
 var kind: Kind
 var durability: float = MAX_DURABILITY
@@ -18,6 +20,8 @@ var effects: Dictionary = {}
 var actions: Array = []
 ## La lluvia ácida solo ataca a las piezas metálicas.
 var metallic: bool = true
+## Qué aspecto tiene al llevarla puesta. El 0 es el de la hoja de diseño.
+var visual_variant: int = 0
 
 
 func _init(new_kind: Kind, new_durability: float = MAX_DURABILITY) -> void:
@@ -34,6 +38,7 @@ func to_dict() -> Dictionary:
 		"effects": effects,
 		"actions": actions,
 		"metallic": metallic,
+		"visual_variant": visual_variant,
 	}
 
 
@@ -51,11 +56,18 @@ static func from_dict(data: Variant) -> BodyPiece:
 	piece.label = str(values.get("label", ""))
 	piece.description = str(values.get("description", ""))
 	piece.metallic = bool(values.get("metallic", true))
+	piece.visual_variant = int(values.get("visual_variant", 0))
 	if values.get("effects") is Dictionary:
 		piece.effects = values["effects"]
 	if values.get("actions") is Array:
 		piece.actions = values["actions"]
 	return piece
+
+
+## Elige un aspecto distinto del original a partir de un texto, sin gastar azar de la partida.
+func pick_visual_variant(source: String) -> void:
+	var count: int = VISUAL_VARIANTS[kind]
+	visual_variant = 1 + posmod(hash(source), count - 1)
 
 
 func has_action(action_id: String) -> bool:

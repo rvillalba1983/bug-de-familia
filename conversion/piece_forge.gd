@@ -31,6 +31,7 @@ static func forge(
 		piece.actions.append({"id": id, "name": action["name"], "active": action["active"]})
 	piece.label = _build_label(catalog, material, objective, chosen, piece.actions)
 	piece.description = _build_description(catalog, chosen, piece.actions)
+	piece.pick_visual_variant(piece.label)
 	return piece
 
 

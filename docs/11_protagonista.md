@@ -8,7 +8,7 @@ Exactamente una cabeza, un torso humanoide, dos piernas, cuatro brazos y una col
 - **Las "seis extremidades"** son los cuatro brazos y las dos piernas. La cola no cuenta como extremidad.
 
 ## Aspecto
-El de la hoja de diseño: medio mono, medio robot. En la historia es un experimento híbrido. En el juego se dibuja con polígonos de Godot por piezas: de momento frente y espalda, con los lados reflejados; las 8 direcciones reales están pendientes.
+El de la hoja de diseño: medio mono, medio robot. En la historia es un experimento híbrido. En el juego se dibuja con polígonos de Godot por piezas, con 8 direcciones propias: mirando al este se ve el lado mono y al oeste el lado robot, sin reflejar la cabeza. Hay 10 cabezas, 20 brazos y 10 piernas distintos, como en la hoja de diseño; cada pieza guarda su aspecto.
 
 ## Cabeza
 Dividida en dos mitades de una misma criatura, no una máscara: orangután con pelaje naranja y expresión marcada, y estructura robótica con placas, mecanismos y un ojo luminoso. Expresión simpática, descarada y gamberra.

@@ -85,3 +85,14 @@ func test_convertir_un_caido_ante_testigos_se_recuerda() -> void:
 	var before: float = float(sim.player_standing.get("mohocrata", 0.0))
 	battles.on_converted(victim)
 	assert_float(float(sim.player_standing["mohocrata"])).is_less(before)
+
+
+func test_la_vista_oculta_lo_que_tapa_y_lo_devuelve_al_salir() -> void:
+	zone.battles.begin()
+	zone.battles.choose(2)
+	await await_idle_frame()
+	assert_bool(zone.visible).is_false()
+	assert_bool(zone.hud.visible).is_false()
+	zone.battles.close_view()
+	assert_bool(zone.visible).is_true()
+	assert_bool(zone.hud.visible).is_true()

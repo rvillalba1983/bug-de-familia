@@ -24,6 +24,7 @@ var _canvas: Control
 var _focus: Vector2 = Vector2.ZERO
 var _zoom: float = 1.0
 var _time: float = 0.0
+var _covered: Array[CanvasLayer] = []
 
 
 func _init() -> void:
@@ -43,6 +44,7 @@ func _ready() -> void:
 func open() -> void:
 	is_open = true
 	visible = true
+	_hide_what_is_covered()
 	_update_camera(0.0, true)
 	director.level.player.controls_locked = true
 
@@ -52,7 +54,27 @@ func close() -> void:
 		return
 	is_open = false
 	visible = false
+	_show_what_was_covered()
 	director.level.player.controls_locked = false
+
+
+## La vista tapa toda la pantalla: dibujar el mundo y la interfaz debajo costaba 90 ms (ADR 0016).
+func _hide_what_is_covered() -> void:
+	var level: Node2D = director.level
+	level.visible = false
+	_covered.clear()
+	for child: Node in level.get_children():
+		if child is CanvasLayer and child != self and (child as CanvasLayer).visible:
+			_covered.append(child)
+			(child as CanvasLayer).visible = false
+
+
+func _show_what_was_covered() -> void:
+	director.level.visible = true
+	for layer_node: CanvasLayer in _covered:
+		if is_instance_valid(layer_node):
+			layer_node.visible = true
+	_covered.clear()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -145,7 +167,7 @@ func _draw_dirt() -> void:
 			var seed_value: int = hash(world)
 			var offset: Vector2 = Vector2(posmod(seed_value, 70), posmod(seed_value / 7, 70))
 			var size: float = (10.0 + float(posmod(seed_value / 13, 26))) * _zoom
-			_canvas.draw_circle(_to_view(world + offset), size, COLOR_DIRT)
+			CircleDot.draw(_canvas, _to_view(world + offset), size, COLOR_DIRT)
 
 
 func _draw_fallen(species: String) -> void:
@@ -168,7 +190,7 @@ func _draw_fighter(guard: Guard, species: String) -> void:
 	var squash: float = 0.84 + 0.2 * absf(cos(beat))
 	var spot: Vector2 = _to_view(at)
 	_canvas.draw_set_transform(spot, 0.0, Vector2.ONE)
-	_canvas.draw_circle(Vector2(0.0, 6.0), 26.0 * _zoom, Color(0.0, 0.0, 0.0, 0.3))
+	CircleDot.draw(_canvas, Vector2(0.0, 6.0), 26.0 * _zoom, Color(0.0, 0.0, 0.0, 0.3))
 	_canvas.draw_set_transform(Vector2.ZERO)
 	_draw_body(spot - Vector2(0.0, hop), species, beat, tilt, squash, false, near, _mood_of(phase, near))
 	if near and sin(beat * 0.5) > 0.93:
@@ -203,8 +225,8 @@ func _draw_body(at: Vector2, species: String, beat: float, tilt: float, squash: 
 	var raised: float = -48.0 if flailing else -22.0
 	_canvas.draw_line(Vector2(-24.0, -30.0), Vector2(-44.0, raised + arm), COLOR_INK, 6.0)
 	_canvas.draw_line(Vector2(24.0, -30.0), Vector2(44.0, raised - arm), COLOR_INK, 6.0)
-	_canvas.draw_circle(Vector2(-44.0, raised + arm), 7.0, Color("#ffd8b0"))
-	_canvas.draw_circle(Vector2(44.0, raised - arm), 7.0, Color("#ffd8b0"))
+	CircleDot.draw(_canvas, Vector2(-44.0, raised + arm), 7.0, Color("#ffd8b0"))
+	CircleDot.draw(_canvas, Vector2(44.0, raised - arm), 7.0, Color("#ffd8b0"))
 	if SpeciesCatalog.doll(species) == "jubilado":
 		_draw_jubilado()
 	else:
@@ -217,20 +239,20 @@ func _draw_body(at: Vector2, species: String, beat: float, tilt: float, squash: 
 
 
 func _draw_jubilado() -> void:
-	_canvas.draw_circle(Vector2(0.0, -34.0), 32.0, COLOR_INK)
-	_canvas.draw_circle(Vector2(0.0, -34.0), 28.0, Color("#a8b0c4"))
+	CircleDot.draw(_canvas, Vector2(0.0, -34.0), 32.0, COLOR_INK)
+	CircleDot.draw(_canvas, Vector2(0.0, -34.0), 28.0, Color("#a8b0c4"))
 	_canvas.draw_rect(Rect2(-22.0, -68.0, 44.0, 10.0), Color("#6a3fa8"))
-	_canvas.draw_circle(Vector2(0.0, -70.0), 16.0, Color("#6a3fa8"))
-	_canvas.draw_circle(Vector2(0.0, -16.0), 5.0, Color("#ff9a3c"))
+	CircleDot.draw(_canvas, Vector2(0.0, -70.0), 16.0, Color("#6a3fa8"))
+	CircleDot.draw(_canvas, Vector2(0.0, -16.0), 5.0, Color("#ff9a3c"))
 
 
 func _draw_mohocrata() -> void:
 	_canvas.draw_rect(Rect2(-20.0, -36.0, 40.0, 36.0), COLOR_INK)
 	_canvas.draw_rect(Rect2(-16.0, -36.0, 32.0, 32.0), Color("#a0d060"))
-	_canvas.draw_circle(Vector2(0.0, -52.0), 36.0, COLOR_INK)
-	_canvas.draw_circle(Vector2(0.0, -52.0), 32.0, Color("#e0408a"))
-	_canvas.draw_circle(Vector2(-16.0, -62.0), 6.0, Color("#ffe6f0"))
-	_canvas.draw_circle(Vector2(15.0, -68.0), 5.0, Color("#ffe6f0"))
+	CircleDot.draw(_canvas, Vector2(0.0, -52.0), 36.0, COLOR_INK)
+	CircleDot.draw(_canvas, Vector2(0.0, -52.0), 32.0, Color("#e0408a"))
+	CircleDot.draw(_canvas, Vector2(-16.0, -62.0), 6.0, Color("#ffe6f0"))
+	CircleDot.draw(_canvas, Vector2(15.0, -68.0), 5.0, Color("#ffe6f0"))
 	_canvas.draw_rect(Rect2(-14.0, -92.0, 28.0, 14.0), Color("#8a5a30"))
 
 
@@ -250,10 +272,10 @@ func _draw_face(mood: int, beat: float) -> void:
 		Mood.DISGUST:
 			_brows(-0.2)
 			_canvas.draw_polyline(_wavy(-12.0, 12.0, -15.0), COLOR_INK, 4.0)
-			_canvas.draw_circle(Vector2(5.0, -9.0), 6.0, COLOR_TONGUE)
+			CircleDot.draw(_canvas, Vector2(5.0, -9.0), 6.0, COLOR_TONGUE)
 		Mood.SCREAM:
 			_brows(-0.5)
-			_canvas.draw_circle(Vector2(0.0, -11.0), 8.0 + 2.0 * absf(sin(beat)), COLOR_INK)
+			CircleDot.draw(_canvas, Vector2(0.0, -11.0), 8.0 + 2.0 * absf(sin(beat)), COLOR_INK)
 		Mood.SMUG:
 			_canvas.draw_arc(Vector2(3.0, -22.0), 13.0, PI * 0.15, PI * 0.7, 8, COLOR_INK, 4.0)
 		Mood.PANIC:
@@ -282,8 +304,8 @@ func _draw_eye_pair(pupil: float, beat: float, half_lid: bool, squint: bool) -> 
 		if squint and side > 0.0:
 			_canvas.draw_line(eye + Vector2(-8, 0), eye + Vector2(8, -3), COLOR_INK, 5.0)
 			continue
-		_canvas.draw_circle(eye, 10.0, Color.WHITE)
-		_canvas.draw_circle(eye + Vector2(sin(beat * 0.7) * 3.0, cos(beat * 0.9) * 2.0), 5.0 * pupil, COLOR_INK)
+		CircleDot.draw(_canvas, eye, 10.0, Color.WHITE)
+		CircleDot.draw(_canvas, eye + Vector2(sin(beat * 0.7) * 3.0, cos(beat * 0.9) * 2.0), 5.0 * pupil, COLOR_INK)
 		if half_lid:
 			_canvas.draw_rect(Rect2(eye + Vector2(-10, -10), Vector2(20, 10)), Color("#8a90a8"))
 
@@ -293,17 +315,17 @@ func _draw_death(style: int, beat: float) -> void:
 	match style % 4:
 		0:
 			_x_eyes()
-			_canvas.draw_circle(Vector2(6.0, -9.0), 7.0, COLOR_TONGUE)
+			CircleDot.draw(_canvas, Vector2(6.0, -9.0), 7.0, COLOR_TONGUE)
 		1:
 			for side: float in [-11.0, 11.0]:
 				_canvas.draw_arc(Vector2(side, -30.0), 9.0, beat, beat + TAU * 1.4, 20, COLOR_INK, 3.0)
 			_canvas.draw_polyline(_wavy(-11.0, 11.0, -12.0), COLOR_INK, 3.0)
 		2:
 			_x_eyes()
-			_canvas.draw_circle(Vector2(0.0, -10.0), 9.0, COLOR_INK)
+			CircleDot.draw(_canvas, Vector2(0.0, -10.0), 9.0, COLOR_INK)
 		3:
-			_canvas.draw_circle(Vector2(-11.0, -30.0), 10.0, Color.WHITE)
-			_canvas.draw_circle(Vector2(-11.0, -30.0), 3.0, COLOR_INK)
+			CircleDot.draw(_canvas, Vector2(-11.0, -30.0), 10.0, Color.WHITE)
+			CircleDot.draw(_canvas, Vector2(-11.0, -30.0), 3.0, COLOR_INK)
 			_canvas.draw_line(Vector2(3.0, -30.0), Vector2(19.0, -30.0), COLOR_INK, 4.0)
 			_canvas.draw_arc(Vector2(0.0, -2.0), 10.0, PI * 1.2, PI * 1.8, 8, COLOR_INK, 3.0)
 
@@ -320,6 +342,6 @@ func _draw_soul(at: Vector2, phase: float) -> void:
 	var rise: float = fmod(_time * 26.0 + phase * 40.0, 120.0)
 	var soul: Vector2 = at + Vector2(sin(rise * 0.09) * 12.0, -50.0 - rise) * _zoom
 	var alpha: float = 0.75 * (1.0 - rise / 120.0)
-	_canvas.draw_circle(soul, 11.0 * _zoom, Color(1.0, 1.0, 1.0, alpha))
-	_canvas.draw_circle(soul + Vector2(-3.5, -2.0) * _zoom, 1.6 * _zoom, Color(0.1, 0.1, 0.2, alpha))
-	_canvas.draw_circle(soul + Vector2(3.5, -2.0) * _zoom, 1.6 * _zoom, Color(0.1, 0.1, 0.2, alpha))
+	CircleDot.draw(_canvas, soul, 11.0 * _zoom, Color(1.0, 1.0, 1.0, alpha))
+	CircleDot.draw(_canvas, soul + Vector2(-3.5, -2.0) * _zoom, 1.6 * _zoom, Color(0.1, 0.1, 0.2, alpha))
+	CircleDot.draw(_canvas, soul + Vector2(3.5, -2.0) * _zoom, 1.6 * _zoom, Color(0.1, 0.1, 0.2, alpha))

@@ -172,7 +172,7 @@ func _draw_tree() -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.seed = hash(footprint.position)
 	var center: float = footprint.size.x * 0.5
-	draw_circle(Vector2(center, 2.0), 30.0, COLOR_SHADOW)
+	CircleDot.draw(self, Vector2(center, 2.0), 30.0, COLOR_SHADOW)
 	draw_rect(Rect2(center - 9.0, -46.0, 18.0, 46.0), Palette.OXIDO_OSCURO)
 	draw_rect(Rect2(center - 9.0, -46.0, 18.0, 46.0), Palette.INK, false, OUTLINE)
 	var mushroom: bool = rng.randf() < 0.3
@@ -181,11 +181,11 @@ func _draw_tree() -> void:
 		var offset: Vector2 = Vector2.ZERO if mushroom else Vector2(rng.randf_range(-26.0, 26.0), rng.randf_range(-18.0, 18.0))
 		var radius: float = 42.0 if mushroom else rng.randf_range(20.0, 30.0)
 		var spot: Vector2 = Vector2(center, -70.0) + offset
-		draw_circle(spot, radius + 3.0, Palette.INK)
-		draw_circle(spot, radius, color.darkened(rng.randf_range(0.0, 0.3)))
+		CircleDot.draw(self, spot, radius + 3.0, Palette.INK)
+		CircleDot.draw(self, spot, radius, color.darkened(rng.randf_range(0.0, 0.3)))
 	if mushroom:
 		for _index: int in range(6):
-			draw_circle(Vector2(center + rng.randf_range(-28.0, 28.0), -70.0 + rng.randf_range(-24.0, 16.0)), rng.randf_range(4.0, 8.0), Palette.HUESO)
+			CircleDot.draw(self, Vector2(center + rng.randf_range(-28.0, 28.0), -70.0 + rng.randf_range(-24.0, 16.0)), rng.randf_range(4.0, 8.0), Palette.HUESO)
 
 
 func set_open(value: bool) -> void:

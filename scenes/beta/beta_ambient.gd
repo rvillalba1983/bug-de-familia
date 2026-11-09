@@ -72,7 +72,7 @@ func _draw() -> void:
 
 func _puddle(at: Vector2, clock: float) -> void:
 	draw_set_transform(at, 0.0, Vector2(1.0, 0.4))
-	draw_circle(Vector2.ZERO, 62.0, Color(0.18, 0.3, 0.4, 0.55))
+	CircleDot.draw(self, Vector2.ZERO, 62.0, Color(0.18, 0.3, 0.4, 0.55))
 	for ring: int in range(3):
 		var phase: float = fmod(clock * 0.5 + float(ring) / 3.0, 1.0)
 		draw_arc(Vector2.ZERO, 8.0 + 52.0 * phase, 0.0, TAU, 24, Color(COLOR_WATER, COLOR_WATER.a * (1.0 - phase)), 2.0)
@@ -83,14 +83,14 @@ func _flies(at: Vector2, clock: float) -> void:
 	for index: int in range(6):
 		var seed_value: float = float(index) * 1.7
 		var spot: Vector2 = at + Vector2(sin(clock * 3.1 + seed_value) * 26.0, cos(clock * 4.3 + seed_value * 2.0) * 16.0 - 30.0)
-		draw_circle(spot, 2.0, COLOR_FLY)
+		CircleDot.draw(self, spot, 2.0, COLOR_FLY)
 
 
 func _smoke(at: Vector2, clock: float) -> void:
 	for index: int in range(7):
 		var phase: float = fmod(clock * 0.12 + float(index) / 7.0, 1.0)
 		var spot: Vector2 = at + Vector2(sin(phase * 7.0 + float(index)) * 20.0 + phase * 30.0, -phase * 150.0)
-		draw_circle(spot, 10.0 + phase * 24.0, Color(COLOR_SMOKE, COLOR_SMOKE.a * (1.0 - phase)))
+		CircleDot.draw(self, spot, 10.0 + phase * 24.0, Color(COLOR_SMOKE, COLOR_SMOKE.a * (1.0 - phase)))
 
 
 func _cable(from: Vector2, to: Vector2, clock: float) -> void:
@@ -120,4 +120,4 @@ func _canopy(at: Vector2, index: int, clock: float, alpha: float) -> void:
 	var wobble: float = sin(clock * 0.6 + float(index)) * 5.0
 	for blob: int in range(5):
 		var angle: float = TAU * float(blob) / 5.0 + float(index)
-		draw_circle(at + Vector2.from_angle(angle) * (54.0 + wobble), 62.0, Color(COLOR_CANOPY, alpha))
+		CircleDot.draw(self, at + Vector2.from_angle(angle) * (54.0 + wobble), 62.0, Color(COLOR_CANOPY, alpha))

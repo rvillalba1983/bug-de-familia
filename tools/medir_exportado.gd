@@ -71,6 +71,23 @@ func _remove_part(zone: BetaZone, part: String) -> void:
 		"ambiente":
 			for node: Node in zone.find_children("*", "BetaAmbient", true, false):
 				(node as CanvasItem).visible = false
+		"personajes":
+			for guard: Guard in zone.guards():
+				guard.visible = false
+		"paredes":
+			for node: Node in zone.actors.get_children():
+				if node is Wall:
+					(node as Wall).visible = false
+		"objetos":
+			for node: Node in zone.actors.get_children():
+				if node is Interactable or node is PetanqueMine or node is WorldProp:
+					(node as CanvasItem).visible = false
+		"fachadas":
+			for node: Node in zone.actors.get_children():
+				if node is BuildingFacade:
+					(node as CanvasItem).visible = false
+		"conos":
+			zone.ground.visible = false
 		"720p":
 			get_window().size = Vector2i(1280, 720)
 

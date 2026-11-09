@@ -105,7 +105,7 @@ func _draw_health() -> void:
 
 func _draw_down() -> void:
 	if art_views.is_empty():
-		_guard.draw_circle(Vector2.ZERO, Guard.BODY_HEIGHT * 0.42, COLOR_DOWN)
+		CircleDot.draw(_guard, Vector2.ZERO, Guard.BODY_HEIGHT * 0.42, COLOR_DOWN)
 		return
 	if rig != null:
 		_draw_shadow()
@@ -120,7 +120,7 @@ func _draw_down() -> void:
 ## Sombra aplastada: un disco entero parecía un agujero bajo los pies.
 func _draw_shadow() -> void:
 	_guard.draw_set_transform(Vector2(0.0, 2.0), 0.0, Vector2(1.0, 0.38))
-	_guard.draw_circle(Vector2.ZERO, 22.0, COLOR_ART_SHADOW)
+	CircleDot.draw(_guard, Vector2.ZERO, 22.0, COLOR_ART_SHADOW)
 	_guard.draw_set_transform(Vector2.ZERO)
 
 
@@ -147,7 +147,7 @@ func _draw_placeholder() -> void:
 	if _guard.state == Guard.State.ALERT:
 		color = COLOR_ALERT
 	var center: Vector2 = Vector2(0.0, -Guard.BODY_HEIGHT * 0.5)
-	_guard.draw_circle(center, Guard.BODY_HEIGHT * 0.42, color)
+	CircleDot.draw(_guard, center, Guard.BODY_HEIGHT * 0.42, color)
 
 
 func _ensure_rig_root() -> Node2D:

@@ -184,3 +184,8 @@ func test_a_hidden_bubble_stops_processing_and_wakes_when_it_talks() -> void:
 	bubble.say("Hola", Color.WHITE, 5.0)
 	assert_bool(bubble.is_processing()).is_true()
 	assert_bool(bubble.visible).is_true()
+
+
+func test_circle_dot_draws_through_a_shared_texture_of_each_size() -> void:
+	assert_object(CircleDot._texture_for(4.0)).is_not_same(CircleDot._texture_for(40.0))
+	assert_object(CircleDot._texture_for(40.0)).is_same(CircleDot._texture_for(80.0))

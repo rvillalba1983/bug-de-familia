@@ -72,14 +72,23 @@ func test_ia_agotada_necesita_muchas_recargas() -> void:
 
 func test_espectros_no_gastan_ni_incluyen_perdidas() -> void:
 	var team: AiTeam = _team(["panico", "mama", "troll"])
-	team.lost.append("abuela")
+	team.lost.append("mama")
 	var before: Dictionary = team.tokens.duplicate()
 	var view: AiSpectres = auto_free(AiSpectres.new())
 	view.team = team
 	add_child(view)
 	view.set_shown(true)
 	view._process(0.1)
-	assert_int(view.ghosts().size()).is_equal(19)
-	assert_bool(view.ghosts().has("abuela")).is_false()
-	assert_int(view.speaking().size()).is_equal(3)
+	assert_array(view.ghosts()).contains_exactly_in_any_order(["panico", "troll"])
+	assert_int(view.speaking().size()).is_equal(2)
 	assert_dict(team.tokens).is_equal(before)
+
+
+func test_cada_ia_tiene_cara_propia() -> void:
+	var team: AiTeam = _team(["panico", "mama", "troll"])
+	var seen: Dictionary = {}
+	for id: String in team.ais:
+		var face: Dictionary = AiFace.face_of(id)
+		assert_bool(AiFace.EYE_TYPES.has(str(face["eyes"]))).is_true()
+		seen[JSON.stringify(face)] = true
+	assert_int(seen.size()).is_equal(team.ais.size())

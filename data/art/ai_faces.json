@@ -1,0 +1,22 @@
+{
+  "panico": {"eyes": "desorbitados", "smile": -0.9, "width": 1.0, "rest_open": 0.45, "teeth": "todos", "wobble": 3.0, "brow": -0.5},
+  "dr_desprecio": {"eyes": "entornados", "smile": -0.3, "width": 0.85, "rest_open": 0.04, "teeth": "ninguno", "skew": 0.4, "brow": 0.45},
+  "mama": {"eyes": "normales", "smile": -0.6, "width": 0.65, "rest_open": 0.2, "teeth": "ninguno", "brow": -0.55},
+  "troll": {"eyes": "guino", "smile": 1.6, "width": 1.25, "rest_open": 0.2, "teeth": "todos", "skew": 0.2, "brow": 0.2},
+  "abuela": {"eyes": "miopes", "smile": 0.3, "width": 0.75, "rest_open": 0.14, "teeth": "uno", "brow": 0.0},
+  "arbitro": {"eyes": "normales", "smile": 0.0, "width": 0.8, "rest_open": 0.02, "teeth": "ninguno", "brow": 0.15, "raised": true},
+  "pesimo_optimus": {"eyes": "estrellas", "smile": 1.8, "width": 1.2, "rest_open": 0.35, "teeth": "todos", "brow": -0.2},
+  "matriz": {"eyes": "pantalla", "smile": 0.0, "width": 0.8, "rest_open": 0.1, "teeth": "ninguno", "wobble": 4.0, "brow": 0.0},
+  "cupido": {"eyes": "corazones", "smile": 0.5, "width": 0.5, "rest_open": 0.12, "teeth": "ninguno", "lip": "#ff1f8f", "brow": -0.25},
+  "rencorosa": {"eyes": "lado", "smile": -0.5, "width": 0.7, "rest_open": 0.0, "teeth": "ninguno", "brow": 0.5},
+  "friki": {"eyes": "gafas", "smile": 0.8, "width": 0.9, "rest_open": 0.14, "teeth": "conejo", "brow": 0.0},
+  "compost": {"eyes": "cielo", "smile": 0.2, "width": 0.7, "rest_open": 0.5, "teeth": "ninguno", "brow": -0.4},
+  "conspi": {"eyes": "desiguales", "smile": -0.2, "width": 0.9, "rest_open": 0.1, "teeth": "uno", "skew": -0.4, "brow": 0.3},
+  "siestaware": {"eyes": "dormidos", "smile": 0.0, "width": 0.8, "rest_open": 0.3, "teeth": "ninguno", "brow": 0.0},
+  "sargento_bit": {"eyes": "furiosos", "smile": -1.0, "width": 1.15, "rest_open": 0.5, "teeth": "todos", "brow": 0.75},
+  "narcisa": {"eyes": "pestanas", "smile": 0.9, "width": 0.85, "rest_open": 0.08, "teeth": "ninguno", "lip": "#c81e6e", "brow": 0.1},
+  "nihil": {"eyes": "vacios", "smile": 0.0, "width": 0.6, "rest_open": 0.0, "teeth": "ninguno", "brow": 0.0},
+  "burocrata": {"eyes": "gafas_cuadradas", "smile": -0.2, "width": 0.55, "rest_open": 0.03, "teeth": "ninguno", "brow": 0.2},
+  "lumi": {"eyes": "aro", "smile": 1.5, "width": 1.05, "rest_open": 0.3, "teeth": "todos", "lip": "#ff6ad5", "brow": -0.2},
+  "chef": {"eyes": "hambrientos", "smile": 1.0, "width": 1.0, "rest_open": 0.25, "teeth": "ninguno", "tongue_out": true, "brow": 0.1}
+}

@@ -25,8 +25,8 @@ La respuesta correcta va en **negrita**. Las preguntas tienen que poder leerse e
 | P15 | ¿A quién recarga descartar una pieza? | A tu autoestima · A un Mohócrata · **A una IA dormida** · A Hacienda | 02 |
 | P16 | Una IA se queda sin tokens. ¿Qué hace? | Te pasa la factura · Muere entre gritos · Sigue gratis · **Se calla y entra otra** | 13 |
 | P17 | ¿Qué IA se enamora si aciertas mucho? | **Cupido_Beta** · Rencorosa Pro · Dr. Desprecio · Ninguna, mírate | 13 |
-| P18 | ¿Quién guarda la bobina que te falta? | El Contestador · **Los Mohócratas** · Don Ramón · Tu conciencia | 41 · da pista |
-| P19 | ¿Qué hace venir a Don Ramón? | Un silbido · El olor a café · **Que rompas algo** · Que le llores | 41 · da pista |
+| P18 | ¿Quién guarda la bobina que te falta? | El Contestador · **Los Mohócratas** · Don Ramón · Tu conciencia | 41 |
+| P19 | ¿Qué hace venir a Don Ramón? | Un silbido · El olor a café · **Que rompas algo** · Que le llores | 41 |
 | P20 | Esta pregunta dura cinco segundos. ¿Cuántos te quedan? | Cinco · Diez · Los de tu madre · **Menos que antes** | trampa |
 | P21 | La lluvia ácida destruye las piezas metálicas. | **Verdadero** · Falso | 02 |
 | P22 | Puedes cambiar piezas en plena pelea cuando te apetezca. | Verdadero · **Falso** | 02 |

@@ -2,7 +2,7 @@
 
 Borrador para que el director marque lo que no le haga gracia, por ejemplo «fuera P37, M90 y C31». Sigue la numeración del lote 1. No está integrado en el juego.
 
-La respuesta correcta va en **negrita**. «Da pista» significa que ayuda a resolver un reto o el caso de la beta.
+La respuesta correcta va en **negrita**.
 
 ## Preguntas de conversión para la beta
 
@@ -13,13 +13,13 @@ La respuesta correcta va en **negrita**. «Da pista» significa que ayuda a reso
 | P33 | ¿Qué manía tenía Manolo? | Robar sombreros · Votar a escondidas · **Mirar el atardecer** · Dimitir | caso |
 | P34 | ¿Qué te grita una cuadrilla mohócrata? | «¡Manos arriba!» · «¡Vaya rodillas!» · «Buenas tardes» · **«¿Votas o cotizas?»** | caso |
 | P35 | Según los Jubilados, ¿qué necesita permiso? | **Tener rodillas** · Ser joven · Respirar · Mirarles | caso |
-| P36 | La bobina es correo. ¿Qué se ruega? | No votar · **No compostar** · No escuchar · Propina | caso · da pista |
+| P36 | La bobina es correo. ¿Qué se ruega? | No votar · **No compostar** · No escuchar · Propina | caso |
 | P37 | ¿Cuántos mensajes antiguos guarda El Contestador? | Uno · Ninguno para ti · **Tres** · Doce de tu madre | caso |
 | P38 | ¿Qué responde Don Ramón si preguntas con educación? | «Hijo mío» · «Pase usted» · «Vote» · **«Ticket cerrado. Circule»** | caso |
 | P39 | ¿Cómo suelda Don Ramón? | **Con más fe que estaño** · De maravilla · Por votación · Con certificado | caso |
-| P40 | Tras el bosque del norte, ¿por dónde baja Don Ramón? | Por el este · **Por el oeste** · No baja · Por la chimenea | caso · da pista |
-| P41 | ¿Qué vuela el muro agrietado de la centralita? | Un voto · Un insulto bien dicho · **Una mina de petanca** · Soplar | 41 · da pista |
-| P42 | ¿Qué cuota piden los Mohócratas por cruzar? | Un diente · Tu voto · Una disculpa · **Un repuesto** | caso · da pista |
+| P40 | Tras el bosque del norte, ¿por dónde baja Don Ramón? | Por el este · **Por el oeste** · No baja · Por la chimenea | caso |
+| P41 | ¿Qué vuela el muro agrietado de la centralita? | Un voto · Un insulto bien dicho · **Una mina de petanca** · Soplar | 41 |
+| P42 | ¿Qué cuota piden los Mohócratas por cruzar? | Un diente · Tu voto · Una disculpa · **Un repuesto** | caso |
 | P43 | Según Paca, ¿qué no saben hacer las minas? | **Leer** · Perdonar · Votar · Esperar | caso |
 | P44 | ¿Qué tecla te deja pensar, si es que piensas? | X · **Espacio** · Tab · Alt+F4 | controles |
 | P45 | ¿Cuánto dura una pierna andando sin parar? | Una hora · Toda la vida · **Unos 10 minutos** · Hasta que te vean | 02 |

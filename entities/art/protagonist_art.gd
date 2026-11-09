@@ -88,6 +88,29 @@ static func draw_silhouette(
 	canvas.draw_set_transform_matrix(Transform2D.IDENTITY)
 
 
+## Dibuja una pieza suelta, entera, ajustada al recuadro.
+static func draw_piece(canvas: CanvasItem, box: Rect2, slot: ModularBody.Slot, piece: BodyPiece) -> void:
+	_ensure_loaded()
+	var part_name: String = PART_SLOTS.find_key(slot)
+	var group: String = VARIANT_GROUPS[piece.kind]
+	var shapes: Array = _shapes_for(SILHOUETTE_VIEW, part_name, group, piece.visual_variant, false)
+	var bounds: Rect2 = Rect2()
+	var first: bool = true
+	for shape: Dictionary in shapes:
+		var key: String = "points" if shape.has("points") else "line"
+		for point: Vector2 in shape[key] as PackedVector2Array:
+			bounds = Rect2(point, Vector2.ZERO) if first else bounds.expand(point)
+			first = false
+	if first:
+		return
+	var zoom: float = minf(box.size.x / maxf(bounds.size.x, 1.0), box.size.y / maxf(bounds.size.y, 1.0))
+	var offset: Vector2 = box.get_center() - bounds.get_center() * zoom
+	canvas.draw_set_transform_matrix(Transform2D(0.0, Vector2(zoom, zoom), 0.0, offset))
+	for shape: Dictionary in shapes:
+		_draw_shape(canvas, shape)
+	canvas.draw_set_transform_matrix(Transform2D.IDENTITY)
+
+
 ## Color del estado de una pieza: verde entera, amarillo a medias y rojo al final.
 static func wear_color(ratio: float) -> Color:
 	if ratio >= 0.5:

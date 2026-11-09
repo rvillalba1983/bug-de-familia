@@ -13,17 +13,22 @@ const TITLES: Dictionary = {
 	Mode.REPLACE: "UI_BODY_REPLACE",
 }
 
-## Provisional: la misma silueta del juego, en grande junto a la lista.
-const SILHOUETTE_FEET: Vector2 = Vector2(265.0, 800.0)
-const SILHOUETTE_SIZE: float = 0.44
-const SILHOUETTE_PLATE: Rect2 = Rect2(30.0, 270.0, 470.0, 560.0)
+## Provisional: la silueta ocupa casi toda la pantalla, con las piezas a los lados.
+const SILHOUETTE_FEET: Vector2 = Vector2(960.0, 1060.0)
+const SILHOUETTE_SIZE: float = 0.88
+const COLUMN_X: Array[float] = [20.0, 1410.0]
+const ROW_Y: Array[float] = [70.0, 300.0, 530.0, 760.0]
+const COLUMNS: Array = [
+	[ModularBody.Slot.HEAD, ModularBody.Slot.ARM_MAIN_LEFT, ModularBody.Slot.ARM_EXTRA_LEFT, ModularBody.Slot.LEG_LEFT],
+	[null, ModularBody.Slot.ARM_MAIN_RIGHT, ModularBody.Slot.ARM_EXTRA_RIGHT, ModularBody.Slot.LEG_RIGHT],
+]
 
 var body: ModularBody
 var pause: TacticalPause
 var is_open: bool = false
 var mode: Mode = Mode.NORMAL
 
-var _root: VBoxContainer
+var _root: Control
 var _backdrop: ColorRect
 var _silhouette: BodyHud
 
@@ -86,55 +91,82 @@ func _clear() -> void:
 func _rebuild() -> void:
 	_clear()
 	_backdrop = ColorRect.new()
-	_backdrop.color = Color(0.05, 0.05, 0.08, 0.88)
+	_backdrop.color = Color(0.05, 0.04, 0.08, 0.95)
 	_backdrop.size = Vector2(1920.0, 1080.0)
 	add_child(_backdrop)
 	_silhouette = BodyHud.new()
 	_silhouette.body = body
 	_silhouette.feet = SILHOUETTE_FEET
 	_silhouette.art_size = SILHOUETTE_SIZE
-	_silhouette.plate = SILHOUETTE_PLATE
+	_silhouette.plate = Rect2()
 	add_child(_silhouette)
-	_root = VBoxContainer.new()
-	_root.position = Vector2(520.0, 150.0)
-	_root.custom_minimum_size = Vector2(880.0, 0.0)
-	_root.add_theme_constant_override(&"separation", 8)
+	_root = Control.new()
 	add_child(_root)
+	_build_header()
+	for index: int in range(COLUMNS.size()):
+		_build_column(COLUMNS[index], COLUMN_X[index])
+
+
+func _build_header() -> void:
 	var title: Label = Label.new()
 	title.text = tr(TITLES[mode] as String)
-	title.add_theme_font_size_override(&"font_size", 28)
+	title.position = Vector2(COLUMN_X[1], ROW_Y[0] - 40.0)
+	title.add_theme_font_size_override(&"font_size", 26)
 	_root.add_child(title)
-	for slot: int in ModularBody.Slot.values():
-		_root.add_child(_build_row(slot as ModularBody.Slot))
+	var legend: Label = Label.new()
+	legend.text = "Marco = nivel  ·  Estrella = especial\nClic: poner  ·  Clic derecho: descartar"
+	legend.position = Vector2(COLUMN_X[1], ROW_Y[0] + 28.0)
+	legend.add_theme_font_size_override(&"font_size", 18)
+	_root.add_child(legend)
+	for level: int in range(1, PieceCard.LEVEL_COLORS.size() + 1):
+		var swatch: ColorRect = ColorRect.new()
+		swatch.color = PieceCard.level_color(level)
+		swatch.position = Vector2(COLUMN_X[1] + float(level - 1) * 84.0, ROW_Y[0] + 88.0)
+		swatch.size = Vector2(76.0, 26.0)
+		_root.add_child(swatch)
+		var number: Label = Label.new()
+		number.text = "Nv %d" % level
+		number.position = Vector2(14.0, 0.0)
+		number.add_theme_color_override(&"font_color", Color.BLACK)
+		swatch.add_child(number)
 	var close_button: Button = Button.new()
 	close_button.text = tr("UI_BODY_START_FIGHT" if mode == Mode.PRE_FIGHT else "UI_BODY_CLOSE")
+	close_button.position = Vector2(COLUMN_X[1], ROW_Y[0] + 126.0)
 	close_button.pressed.connect(close)
 	_root.add_child(close_button)
 
 
-func _build_row(slot: ModularBody.Slot) -> HBoxContainer:
+func _build_column(slots: Array, x: float) -> void:
+	for slot: Variant in slots:
+		if slot != null:
+			_build_slot(slot as ModularBody.Slot, Vector2(x, ROW_Y[slots.find(slot)]))
+
+
+func _build_slot(slot: ModularBody.Slot, at: Vector2) -> void:
+	var heading: Label = Label.new()
+	heading.text = tr("SLOT_%d" % slot)
+	heading.position = at
+	heading.add_theme_font_size_override(&"font_size", 22)
+	_root.add_child(heading)
 	var row: HBoxContainer = HBoxContainer.new()
-	var label: Label = Label.new()
-	var piece: BodyPiece = body.equipped(slot)
-	var state: String = tr("UI_BODY_EMPTY") if piece == null else "%d%%" % roundi(piece.durability)
-	var worn: String = "" if piece == null else piece.label
-	label.text = "%s: %s %s" % [tr("SLOT_%d" % slot), state, worn]
-	label.custom_minimum_size = Vector2(380.0, 0.0)
-	row.add_child(label)
-	label.tooltip_text = "" if piece == null else piece.description
-	label.mouse_filter = Control.MOUSE_FILTER_PASS
+	row.position = at + Vector2(0.0, 36.0)
+	row.add_theme_constant_override(&"separation", 6)
+	_root.add_child(row)
+	var worn: BodyPiece = body.equipped(slot)
+	if worn != null:
+		row.add_child(_card(worn, slot, true, -1))
 	var spares: Array[BodyPiece] = body.spares(slot)
 	for index: int in range(spares.size()):
-		var button: Button = Button.new()
-		button.text = "%s %d%% %s" % [
-			tr("UI_BODY_EQUIP"), roundi(spares[index].durability), spares[index].label
-		]
-		button.disabled = not body.can_swap(slot)
-		button.tooltip_text = spares[index].description
-		button.pressed.connect(swap_spare.bind(slot, index))
-		row.add_child(button)
-		var drop: Button = Button.new()
-		drop.text = tr("UI_BODY_DISCARD")
-		drop.pressed.connect(discard_spare.bind(slot, index))
-		row.add_child(drop)
-	return row
+		row.add_child(_card(spares[index], slot, false, index))
+
+
+func _card(piece: BodyPiece, slot: ModularBody.Slot, worn: bool, index: int) -> PieceCard:
+	var card: PieceCard = PieceCard.new()
+	card.piece = piece
+	card.slot = slot
+	card.is_worn = worn
+	card.can_equip = body.can_swap(slot)
+	if not worn:
+		card.equip_requested.connect(swap_spare.bind(slot, index))
+		card.discard_requested.connect(discard_spare.bind(slot, index))
+	return card

@@ -421,6 +421,7 @@ func _build_save_points() -> void:
 
 func _build_interface() -> void:
 	var layer: CanvasLayer = CanvasLayer.new()
+	layer.layer = 2
 	add_child(layer)
 	_pause_label = _add_label(layer, "UI_PAUSE", Vector2(860.0, 24.0), 32)
 	_pause_label.visible = false

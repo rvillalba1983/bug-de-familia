@@ -12,7 +12,7 @@ Todo lo visible se puede convertir en una pieza para tu cuerpo, incluidos los en
 - **El material manda:** una silla de madera da una pieza con propiedades de madera. Cada material abre solo su grupo de propiedades.
 - **El objetivo manda:** el objetivo elegido abre su grupo de acciones posibles.
 - Catálogo total: 50 propiedades y 100 acciones. Cada tipo de objeto solo puede tener unas pocas.
-- Estadísticas aleatorias dentro de esos límites y nunca reveladas.
+- Estadísticas aleatorias dentro de esos límites y nunca reveladas. Sí se ve el nivel general de la pieza, de 1 a 5 (9-nov).
 - Las IA son el medio principal para presentar información sobre las piezas.
 
 ## Preguntas

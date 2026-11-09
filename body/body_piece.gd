@@ -22,6 +22,8 @@ var actions: Array = []
 var metallic: bool = true
 ## Qué aspecto tiene al llevarla puesta. El 0 es el de la hoja de diseño.
 var visual_variant: int = 0
+## Calidad de 1 a 5, según salió la conversión. Los valores concretos siguen ocultos.
+var level: int = 1
 
 
 func _init(new_kind: Kind, new_durability: float = MAX_DURABILITY) -> void:
@@ -39,6 +41,7 @@ func to_dict() -> Dictionary:
 		"actions": actions,
 		"metallic": metallic,
 		"visual_variant": visual_variant,
+		"level": level,
 	}
 
 
@@ -57,6 +60,7 @@ static func from_dict(data: Variant) -> BodyPiece:
 	piece.description = str(values.get("description", ""))
 	piece.metallic = bool(values.get("metallic", true))
 	piece.visual_variant = int(values.get("visual_variant", 0))
+	piece.level = int(values.get("level", 1))
 	if values.get("effects") is Dictionary:
 		piece.effects = values["effects"]
 	if values.get("actions") is Array:
@@ -68,6 +72,11 @@ static func from_dict(data: Variant) -> BodyPiece:
 func pick_visual_variant(source: String) -> void:
 	var count: int = VISUAL_VARIANTS[kind]
 	visual_variant = 1 + posmod(hash(source), count - 1)
+
+
+## Especial: la que trae alguna acción propia.
+func is_special() -> bool:
+	return not actions.is_empty()
 
 
 func has_action(action_id: String) -> bool:

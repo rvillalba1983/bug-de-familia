@@ -347,6 +347,7 @@ func _connect_enemies() -> void:
 func _build_interface() -> void:
 	super()
 	var layer: CanvasLayer = CanvasLayer.new()
+	layer.layer = 2
 	add_child(layer)
 	_rain_label = _add_label(layer, "BETA_RAIN", Vector2(760.0, 150.0), 26)
 	_rain_label.visible = false
@@ -361,6 +362,9 @@ func _build_interface() -> void:
 	spectres.team = ai.team
 	layer.add_child(spectres)
 	pause.paused_changed.connect(spectres.set_shown)
+	var fog: PauseFog = PauseFog.new()
+	add_child(fog)
+	pause.paused_changed.connect(fog.set_shown)
 	ai.route_hint = challenges.next_route
 	ai.treason_hint = _least_friendly_species
 	var controls: ControlsPanel = ControlsPanel.new()

@@ -17,6 +17,7 @@ static func forge(
 ) -> BodyPiece:
 	var piece: BodyPiece = BodyPiece.new(kind)
 	var power: float = roll_power(score, rng)
+	piece.level = level_of(power)
 	var material: Dictionary = catalog.materials[material_id]
 	var objective: Dictionary = catalog.objectives[objective_id]
 	piece.metallic = bool(material.get("metal", true))
@@ -33,6 +34,12 @@ static func forge(
 	piece.description = _build_description(catalog, chosen, piece.actions)
 	piece.pick_visual_variant(piece.label)
 	return piece
+
+
+## Reparte la potencia entre los niveles 1 a 5.
+static func level_of(power: float) -> int:
+	var ratio: float = (power - MIN_POWER) / (MAX_POWER - MIN_POWER)
+	return clampi(1 + int(ratio * 5.0), 1, 5)
 
 
 static func roll_power(score: float, rng: RandomNumberGenerator) -> float:

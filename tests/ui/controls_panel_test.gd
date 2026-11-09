@@ -37,3 +37,39 @@ func test_filas_completas() -> void:
 		assert_int(rows.size()).is_greater(5)
 		for row: Variant in rows:
 			assert_int((row as Array).size()).is_equal(2)
+
+
+func test_nivel_y_especial_se_guardan() -> void:
+	var piece: BodyPiece = BodyPiece.new(BodyPiece.Kind.ARM)
+	piece.level = 4
+	piece.actions = [{"id": "a009", "name": "x", "active": true}]
+	var back: BodyPiece = BodyPiece.from_dict(piece.to_dict())
+	assert_int(back.level).is_equal(4)
+	assert_bool(back.is_special()).is_true()
+	assert_bool(BodyPiece.new(BodyPiece.Kind.LEG).is_special()).is_false()
+
+
+func test_nivel_cubre_toda_la_potencia() -> void:
+	assert_int(PieceForge.level_of(PieceForge.MIN_POWER)).is_equal(1)
+	assert_int(PieceForge.level_of(PieceForge.MAX_POWER)).is_equal(5)
+
+
+func _click(card: PieceCard, button: MouseButton) -> void:
+	var event: InputEventMouseButton = InputEventMouseButton.new()
+	event.button_index = button
+	event.pressed = true
+	card._gui_input(event)
+
+
+func test_clic_pone_y_clic_derecho_descarta() -> void:
+	var card: PieceCard = auto_free(PieceCard.new())
+	card.piece = BodyPiece.new(BodyPiece.Kind.ARM)
+	var log_calls: Array[String] = []
+	card.equip_requested.connect(func() -> void: log_calls.append("poner"))
+	card.discard_requested.connect(func() -> void: log_calls.append("descartar"))
+	_click(card, MOUSE_BUTTON_LEFT)
+	_click(card, MOUSE_BUTTON_RIGHT)
+	assert_array(log_calls).is_equal(["poner", "descartar"] as Array[String])
+	card.is_worn = true
+	_click(card, MOUSE_BUTTON_LEFT)
+	assert_int(log_calls.size()).is_equal(2)

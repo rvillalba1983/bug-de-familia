@@ -46,7 +46,17 @@ func _act(zone: BetaZone, action: String) -> void:
 	var near: Vector2 = Vector2(1500.0, 900.0)
 	match action:
 		"piezas":
-			zone.player.body.equipped(ModularBody.Slot.values()[1] as ModularBody.Slot).durability = 18.0
+			var body: ModularBody = zone.player.body
+			body.equipped(ModularBody.Slot.values()[1] as ModularBody.Slot).durability = 18.0
+			var level: int = 1
+			for slot: int in ModularBody.Slot.values():
+				for spare: BodyPiece in body.spares(slot as ModularBody.Slot):
+					spare.level = (level % 5) + 1
+					spare.label = "Muestra"
+					spare.pick_visual_variant(str(level))
+					if level % 2 == 0:
+						spare.actions = [{"id": "a009", "name": "Impulso", "active": true}]
+					level += 1
 			zone.panel.open(BodyPanel.Mode.NORMAL)
 		"pausa":
 			zone.pause.set_paused(true)

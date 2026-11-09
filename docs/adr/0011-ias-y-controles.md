@@ -10,6 +10,9 @@ Estado: pendiente de aprobación del director.
 ## Valores provisionales (P-05)
 Coste de tokens 0,5 por esfuerzo. Una IA agotada vuelve con 24 tokens, unas 6 piezas descartadas sobre ella. Siestaware gasta el 10 %. Bonificaciones en las constantes de `AiPerks`. Sin ajustar jugando.
 
+## Pausa y piezas (9-nov)
+`ui/pause_fog.gd` oscurece y añade niebla por debajo de la interfaz, que pasa a la capa 2. `ui/ai_spectres.gd` dibuja bocas en butacas. `ui/piece_card.gd` muestra cada pieza. El nivel sale de la potencia de la conversión (`PieceForge.level_of`) y es especial la que trae alguna acción. Las piezas de serie y las de partidas anteriores son de nivel 1.
+
 ## Limitaciones
 - Narcisa 9 no tiene ventaja real: los disfraces aún no existen como acción.
 - Lumi crea señuelos solo como ruido; los seguidores curiosos visibles no están hechos.

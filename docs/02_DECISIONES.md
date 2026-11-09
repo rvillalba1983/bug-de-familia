@@ -140,7 +140,8 @@ Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barr
 - La música se sintetiza por código hasta las 100 melodías, sabiendo que serán más parecidas entre sí.
 - Controles: chapa con F1 y ventana tipo chat arriba a la izquierda.
 - La silueta del cuerpo se usa también al cambiar piezas.
-- En la pausa táctica aparecen todas las IAs como espectros que divagan. No gasta tokens.
+- En la pausa táctica el mundo se oscurece y se cubre de niebla, y todas las IAs aparecen como bocas exageradas en butacas enormes, divagando. No gasta tokens.
+- La vista de cambio de piezas va centrada, con el personaje casi a pantalla completa y las piezas dibujadas enteras. Cada pieza muestra su nivel (1 a 5, color del marco) y si es especial (estrella). Los valores concretos de sus estadísticas siguen sin mostrarse.
 
 ## Autonomía de Claude
 - Una fase por conversación: termina al fusionar en `main`, se anota el avance en `03_ESTADO.md` y se avisa al usuario de que hay que cambiar de conversación (8-nov).

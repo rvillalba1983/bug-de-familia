@@ -5,7 +5,7 @@ extends Node2D
 
 const DAY_COLOR: Color = Color.WHITE
 ## Provisional: lo bastante oscuro para ambientar sin perder de vista a los enemigos.
-const NIGHT_COLOR: Color = Color(0.42, 0.38, 0.72)
+const NIGHT_COLOR: Color = Color(0.64, 0.6, 0.88)
 const NIGHT_START: int = 21
 const NIGHT_END: int = 8
 const CHECK_SECONDS: float = 30.0
@@ -115,7 +115,7 @@ func _build_rain() -> GPUParticles2D:
 	process.gravity = Vector3.ZERO
 	process.initial_velocity_min = 1100.0
 	process.initial_velocity_max = 1500.0
-	process.color = Color(Palette.ACIDO, 0.75)
+	process.color = Color(Palette.ACIDO, 0.45)
 	process.set_particle_flag(ParticleProcessMaterial.PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY, true)
 	var streak: GradientTexture2D = _radial(32)
 	streak.width = 3
@@ -123,7 +123,7 @@ func _build_rain() -> GPUParticles2D:
 	var particles: GPUParticles2D = GPUParticles2D.new()
 	particles.process_material = process
 	particles.texture = streak
-	particles.amount = 700
+	particles.amount = 320
 	particles.lifetime = 1.1
 	particles.local_coords = true
 	particles.visibility_rect = Rect2(-1400.0, -200.0, 2800.0, 2000.0)

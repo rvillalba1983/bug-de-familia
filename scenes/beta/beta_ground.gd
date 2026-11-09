@@ -4,15 +4,9 @@ extends RefCounted
 ## Usa semilla propia para no tocar el generador de la partida.
 
 const SEED: int = 1983
-const FOREST: Color = Color("#2c5140")
-const ROAD: Color = Color("#34224f")
-const MUD: Color = Color("#5a3a32")
-const FOREST_SPOTS: Array[Color] = [Color("#1f3f3a"), Color("#3f6b4e"), Color("#274a55"), Color("#54304e")]
-const ROAD_SPOTS: Array[Color] = [Color("#2a1a40"), Color("#483060"), Color("#54304e")]
-const MUD_SPOTS: Array[Color] = [Color("#7a3f28"), Color("#3f2a2c"), Color("#6a2a20")]
-const FOREST_COUNT: int = 900
-const ROAD_COUNT: int = 420
-const MUD_COUNT: int = 160
+const TEXTURE_FOREST: String = "res://art/beta/suelo_bosque.png"
+const TEXTURE_CITY: String = "res://art/beta/suelo_ciudad.png"
+const TEXTURE_MUD: String = "res://art/beta/suelo_barro.png"
 const CRACK_COUNT: int = 150
 const CRATER_COUNT: int = 26
 const PUDDLE_COUNT: int = 16
@@ -24,14 +18,12 @@ static func paint(canvas: CanvasItem) -> void:
 	rng.seed = SEED
 	var city: Rect2 = BetaLayout.CITY
 	var strip: Rect2 = BetaLayout.NO_MANS_LAND
-	canvas.draw_rect(BetaLayout.FLOOR_RECT, FOREST)
-	_scatter(canvas, rng, BetaLayout.FLOOR_RECT, FOREST_SPOTS, FOREST_COUNT, 16.0, 70.0)
-	canvas.draw_rect(city, ROAD)
-	_scatter(canvas, rng, city, ROAD_SPOTS, ROAD_COUNT, 12.0, 46.0)
+	canvas.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
+	canvas.draw_texture_rect(load(TEXTURE_FOREST) as Texture2D, BetaLayout.FLOOR_RECT, true)
+	canvas.draw_texture_rect(load(TEXTURE_CITY) as Texture2D, city, true)
 	_street_lines(canvas, city, strip)
 	_cracks(canvas, rng, city)
-	canvas.draw_rect(strip, MUD)
-	_scatter(canvas, rng, strip, MUD_SPOTS, MUD_COUNT, 14.0, 52.0)
+	canvas.draw_texture_rect(load(TEXTURE_MUD) as Texture2D, strip, true)
 	_craters(canvas, rng, strip)
 	_puddles(canvas, rng, city)
 
@@ -43,19 +35,6 @@ static func _blob(rng: RandomNumberGenerator, center: Vector2, radius: float) ->
 		var reach: float = radius * rng.randf_range(0.7, 1.15)
 		points.append(center + Vector2(cos(angle) * reach, sin(angle) * reach * 0.62))
 	return points
-
-
-static func _scatter(
-	canvas: CanvasItem, rng: RandomNumberGenerator, area: Rect2,
-	colors: Array[Color], count: int, min_radius: float, max_radius: float
-) -> void:
-	for _index: int in range(count):
-		var center: Vector2 = Vector2(
-			rng.randf_range(area.position.x, area.end.x), rng.randf_range(area.position.y, area.end.y)
-		)
-		var color: Color = colors[rng.randi_range(0, colors.size() - 1)]
-		color.a = 0.6
-		canvas.draw_colored_polygon(_blob(rng, center, rng.randf_range(min_radius, max_radius)), color)
 
 
 static func _street_lines(canvas: CanvasItem, city: Rect2, strip: Rect2) -> void:

@@ -76,6 +76,11 @@ var body_color: Color = Color.TRANSPARENT
 ## Vistas sur, este y norte, en ese orden. El oeste refleja al este.
 ## Si está vacío se dibuja el círculo de color.
 var art_views: Array[Texture2D] = []
+## Carpeta de piezas con huesos; vacía si este personaje aún no las tiene. Solo vista sur.
+var rig_folder: String = ""
+var rig: EnemyRig
+
+var _was_alert: bool = false
 var _aim_point: Vector2 = Vector2.ZERO
 var _corpse_time: float = 0.0
 
@@ -97,6 +102,7 @@ func setup(points: Array[Vector2], ground: Node2D) -> void:
 
 func _physics_process(delta: float) -> void:
 	_hit_timer = maxf(_hit_timer - delta, 0.0)
+	_update_rig()
 	if state == State.DOWN:
 		_corpse_time -= delta
 		if _corpse_time <= 0.0:
@@ -146,6 +152,9 @@ func _draw_down() -> void:
 	if art_views.is_empty():
 		draw_circle(Vector2.ZERO, BODY_HEIGHT * 0.42, COLOR_DOWN)
 		return
+	if rig != null:
+		draw_circle(Vector2(0.0, 2.0), 20.0, COLOR_ART_SHADOW)
+		return
 	var art: Texture2D = art_views[VIEW_SOUTH]
 	draw_set_transform(Vector2(-ART_HEIGHT * 0.45, -14.0), PI * 0.5)
 	draw_texture_rect(art, Rect2(-ART_HEIGHT * 0.5, -ART_HEIGHT * 0.5, ART_HEIGHT, ART_HEIGHT), false, COLOR_FALLEN)
@@ -157,6 +166,9 @@ func _draw_art() -> void:
 	var view: int = VIEW_EAST
 	if absf(direction.y) > absf(direction.x):
 		view = VIEW_SOUTH if direction.y > 0.0 else VIEW_NORTH
+	if rig != null and rig.visible:
+		draw_circle(Vector2(0.0, 2.0), 20.0, COLOR_ART_SHADOW)
+		return
 	var art: Texture2D = art_views[view]
 	var size: Vector2 = Vector2(ART_HEIGHT * art.get_size().aspect(), ART_HEIGHT)
 	if view == VIEW_EAST and direction.x < 0.0:
@@ -173,6 +185,27 @@ func _draw_placeholder() -> void:
 	if state == State.ALERT:
 		color = COLOR_ALERT
 	draw_circle(Vector2(0.0, -BODY_HEIGHT * 0.5), BODY_HEIGHT * 0.42, color)
+
+
+## Elige animación según el estado. La vista sur usa huesos; las demás, la imagen entera.
+func _update_rig() -> void:
+	if rig_folder != "" and rig == null:
+		rig = EnemyRig.new()
+		add_child(rig)
+		rig.build(rig_folder, ART_HEIGHT, ART_FEET)
+	if rig == null:
+		return
+	var facing: Vector2 = Vector2.from_angle(detector.facing_angle)
+	var south: bool = absf(facing.y) > absf(facing.x) and facing.y > 0.0
+	rig.visible = south or state == State.DOWN
+	rig.modulate = COLOR_FALLEN if state == State.DOWN else (COLOR_ALERT.lightened(0.5) if state == State.ALERT else Color.WHITE)
+	if state == State.DOWN:
+		rig.show_animation(EnemyRig.FALL)
+	elif state == State.ALERT and not _was_alert:
+		rig.show_animation(EnemyRig.ALERT)
+	elif state != State.ALERT or not rig.player.is_playing():
+		rig.show_animation(EnemyRig.WALK if velocity.length() > 1.0 else EnemyRig.IDLE)
+	_was_alert = state == State.ALERT
 
 
 ## Convierte a este guardia en tirador. Llamar antes de setup.

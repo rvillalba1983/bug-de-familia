@@ -195,6 +195,8 @@ func _add_guard(
 	enemy.rng = rng
 	enemy.body_color = color
 	enemy.art_views = _load_views(_art_base(id, color))
+	if _art_base(id, color) == ART_JUBILADO:
+		enemy.rig_folder = ART_FOLDER + "rig/" + ART_JUBILADO
 	if is_ranged:
 		enemy.make_ranged(self)
 	enemy.setup(route, ground)

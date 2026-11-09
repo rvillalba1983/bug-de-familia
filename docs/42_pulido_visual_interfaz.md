@@ -2,6 +2,14 @@
 
 Va antes de la fase 8. Empieza cuando el arte de `main` se haya ejecutado en Godot y pasen las pruebas. Aprobada por el director el 9-nov.
 
+## Alcance decidido el 9-nov
+La 7b se limita a los cuatro puntos del primer minuto. El resto de las tablas pasa a la fase 9. Al terminarlos se fusiona y se sigue con la fase 8.
+
+## Avance
+- Hecho: esqueleto con `AnimationPlayer` (`entities/art/enemy_rig.gd`) y Jubilado en vista sur, cortado con `tools/art/rig_split.py` en `art/beta/rig/jubilado_hierro/`. Animaciones: quieto, andar, alerta y caer. Valores provisionales.
+- Falta en animación: vistas este y norte del Jubilado, y las 3 vistas de Mohócrata y de Don Ramón. El dron y las vistas sin esqueleto siguen con imagen fija.
+- Sin empezar: sensación de impacto, escena de convertir y silueta del cuerpo.
+
 ## Orden de trabajo
 Primero lo que se nota en el primer minuto de partida:
 1. Animación de enemigos.

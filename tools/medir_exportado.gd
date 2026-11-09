@@ -41,12 +41,29 @@ func _run() -> void:
 		last = now
 		physics.append(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS) * 1000.0)
 		process.append(Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0)
-	print("RESULTADO %s personajes=%d carga_ms=%.0f fotograma_media=%.2f fotograma_p99=%.2f fisica_media=%.2f proceso_medio=%.2f memoria_mb=%.0f" % [
+	var line: String = "RESULTADO %s personajes=%d carga_ms=%.0f fotograma_media=%.2f fotograma_p99=%.2f fisica_media=%.2f proceso_medio=%.2f memoria_mb=%.0f draw_calls=%.0f grafica=%s" % [
 		mode, zone.guards().size(), load_ms, _mean(frames), _p99(frames), _mean(physics), _mean(process),
 		Performance.get_monitor(Performance.MEMORY_STATIC) / 1048576.0,
-	])
+		Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),
+		RenderingServer.get_video_adapter_name(),
+	]
+	print(line)
+	_append_to_report(line)
 	SaveSystem.delete_all()
 	get_tree().quit()
+
+
+## En Windows no hay consola: el resultado queda en medicion.txt, junto al ejecutable.
+func _append_to_report(line: String) -> void:
+	var path: String = OS.get_executable_path().get_base_dir().path_join("medicion.txt")
+	var file: FileAccess = FileAccess.open(path, FileAccess.READ_WRITE)
+	if file == null:
+		file = FileAccess.open(path, FileAccess.WRITE)
+	if file == null:
+		push_error("%s: no se puede escribir" % path)
+		return
+	file.seek_end()
+	file.store_line(line)
 
 
 func _prepare(zone: BetaZone) -> void:

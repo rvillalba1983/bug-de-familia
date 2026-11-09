@@ -71,6 +71,8 @@ func _remove_part(zone: BetaZone, part: String) -> void:
 		"ambiente":
 			for node: Node in zone.find_children("*", "BetaAmbient", true, false):
 				(node as CanvasItem).visible = false
+		"protagonista":
+			zone.player.visible = false
 		"personajes":
 			for guard: Guard in zone.guards():
 				guard.visible = false

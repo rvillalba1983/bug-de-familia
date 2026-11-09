@@ -65,7 +65,7 @@ static func draw(
 	var view_name: String = view_for(facing)
 	var away: bool = VIEWS_FROM_BEHIND.has(view_name)
 	canvas.draw_set_transform_matrix(Transform2D.IDENTITY)
-	canvas.draw_circle(Vector2(0.0, 3.0), 22.0, SHADOW_COLOR)
+	CircleDot.draw(canvas, Vector2(0.0, 3.0), 22.0, SHADOW_COLOR)
 	if not away:
 		_draw_tail(canvas, facing, height_ratio, tail_color, tail_speaking)
 	var bob: float = -absf(sin(walk_phase)) * 1.5
@@ -209,11 +209,11 @@ static func _draw_damage(canvas: CanvasItem, pivot: Vector2, piece: BodyPiece, a
 		return
 	var spots: int = int(ceilf(damage * float(RUST_OFFSETS.size())))
 	for index: int in range(mini(spots, RUST_OFFSETS.size())):
-		canvas.draw_circle(pivot + RUST_OFFSETS[index], 3.0 + 3.0 * damage, Color(COLOR_RUST, 0.45 + 0.4 * damage))
+		CircleDot.draw(canvas, pivot + RUST_OFFSETS[index], 3.0 + 3.0 * damage, Color(COLOR_RUST, 0.45 + 0.4 * damage))
 	if acid and piece.metallic:
 		var bubble: float = fmod(float(Time.get_ticks_msec()) * 0.004, 1.0)
 		for offset: Vector2 in RUST_OFFSETS:
-			canvas.draw_circle(pivot + offset + Vector2(0.0, -8.0 * bubble), 3.5 * (1.0 - bubble), COLOR_ACID_BUBBLE)
+			CircleDot.draw(canvas, pivot + offset + Vector2(0.0, -8.0 * bubble), 3.5 * (1.0 - bubble), COLOR_ACID_BUBBLE)
 
 
 static func _shapes_for(
@@ -280,10 +280,10 @@ static func _draw_tail(
 	glow.a = 0.18 * pulse
 	canvas.draw_polyline(points, glow, TAIL_WIDTH * 3.4)
 	for index: int in range(TAIL_POINTS):
-		canvas.draw_circle(points[index], _tail_width(index, pulse) + 1.6, Palette.INK)
+		CircleDot.draw(canvas, points[index], _tail_width(index, pulse) + 1.6, Palette.INK)
 	for index: int in range(TAIL_POINTS):
 		var lit: bool = (index + int(clock * 3.0)) / 4 % 2 == 0
-		canvas.draw_circle(points[index], _tail_width(index, pulse), color if lit else TAIL_DARK)
+		CircleDot.draw(canvas, points[index], _tail_width(index, pulse), color if lit else TAIL_DARK)
 		if lit and index % 4 == 2:
 			var spark: float = _tail_width(index, pulse) * 0.7
 			canvas.draw_line(points[index] + Vector2.LEFT * spark, points[index] + Vector2.RIGHT * spark, Color.WHITE, 1.2)

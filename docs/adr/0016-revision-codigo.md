@@ -47,9 +47,21 @@ Medido con `tools/medir_exportado.tscn`, con 43 personajes, en juego exportado (
 
 La diferencia entra en el ruido, salvo la física con ventana (más baja en las 3 comparaciones). La separación y los datos no empeoran el rendimiento.
 
-Cambios: los bocadillos ocultos dejan de procesarse (46 en la zona), la oclusión de paredes solo se recalcula si el personaje se mueve o se agacha, y la zona visible se calcula una vez por tick.
+Cambios previos a medir en la gráfica real: los bocadillos ocultos dejan de procesarse (46 en la zona), la oclusión de paredes solo se recalcula si el personaje se mueve o se agacha, y la zona visible se calcula una vez por tick.
 
-El coste real está en el dibujo: unas 1120 llamadas, 600 del mundo y 340 de la interfaz. No se ha tocado sin medirlo en una gráfica real: un atlas de texturas sería un cambio grande para una ganancia sin confirmar.
+### Medido en el ordenador del director (Intel HD Graphics 520, Windows, exportado, 1920x1080)
+
+| Caso | `main` | Con círculos por textura y vista de batalla sin lo tapado |
+|---|---|---|
+| Ciudad | 84 ms | 29 ms |
+| Noche | 59 ms | 29 ms |
+| Batalla, vista de estrategia | 250 ms | 16 ms |
+
+Apagar partes en `main` mostró que filtro (3 ms), interfaz (4 ms) y resolución (4 ms) casi no cuentan, y que el coste estaba en cada figura suelta: ambiente 38 ms y resto de actores unos 30 ms.
+
+Cambios: `CircleDot` sustituye a `draw_circle` en ambiente, árboles, sombras, atrezo y vista de estrategia (textura compartida, en vez de un polígono por círculo). La vista de estrategia oculta el mundo y las capas que tapa mientras está abierta.
+
+Queda por bajar de 29 ms a los 16,6 de 60 imágenes por segundo. Tras la mejora, apagar personajes o paredes ahorra unos 2,5 ms cada uno; objetos, fachadas y conos, nada medible. Sin los actores son 16 ms: lo que falta apunta al protagonista, dibujado con polígonos en cada fotograma.
 
 ## Exportación
 `export_presets.cfg`: Linux y Windows finales, sin `addons`, `tests`, `tools` ni `docs`, más «Medicion Linux» con la herramienta de medir. Para medir: exportar ese preajuste y poner junto al ejecutable un `override.cfg` con `[application]` y `run/main_scene="res://tools/medir_exportado.tscn"`. La exportación de Windows no se ha ejecutado.

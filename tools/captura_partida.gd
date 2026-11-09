@@ -58,6 +58,23 @@ func _act(zone: BetaZone, action: String) -> void:
 						spare.actions = [{"id": "a009", "name": "Impulso", "active": true}]
 					level += 1
 			zone.panel.open(BodyPanel.Mode.NORMAL)
+		"objetivos":
+			var crate: Convertible = get_nodes_in_group(Convertible.GROUP).filter(func(n: Node) -> bool: return n.get_parent() is Interactable)[0]
+			zone.player.global_position = crate.global_position + Vector2(60.0, 0.0)
+			zone.conversion.begin_on(crate)
+		"seguidores":
+			var crowd: Decoy = Decoy.new()
+			crowd.followers = 4
+			crowd.setup(near + Vector2(120.0, 40.0), 30.0, zone.noise_bus)
+			zone.player.global_position = near
+			zone.actors.add_child(crowd)
+			var holo: Decoy = Decoy.new()
+			holo.setup(near + Vector2(-140.0, 60.0), 30.0, zone.noise_bus)
+			zone.actors.add_child(holo)
+			zone.player.start_disguise("any", 30.0, 0.25)
+			zone.ai.team.active = ["cupido", "sargento_bit", "lumi"]
+			for index: int in range(7):
+				zone.ai.chat.add_message("lumi", "Mensaje %d: ¡Chicos, se va a caer! ¡Like si muere!" % index)
 		"pausa":
 			zone.pause.set_paused(true)
 		"charla":

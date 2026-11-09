@@ -57,11 +57,13 @@ func close() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"map") and not event.is_echo():
-		if is_open:
-			director.close_view()
-		elif director.phase == BattleDirector.Phase.RUNNING:
+	if event.is_action_pressed(&"map") and not event.is_echo() and not is_open:
+		if director.phase == BattleDirector.Phase.RUNNING:
 			open()
+			get_viewport().set_input_as_handled()
+		return
+	if is_open and event.is_action_pressed(&"close_panel") and not event.is_echo():
+		director.close_view()
 		get_viewport().set_input_as_handled()
 		return
 	if not is_open:

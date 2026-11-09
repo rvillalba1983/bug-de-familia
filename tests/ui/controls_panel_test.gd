@@ -32,7 +32,7 @@ func test_cerrar_no_quita_una_pausa_tactica_previa() -> void:
 
 
 func test_filas_completas() -> void:
-	for section: String in ["compact", "full"]:
+	for section: String in ["compact"]:
 		var rows: Array = ControlsPanel.load_rows(section)
 		assert_int(rows.size()).is_greater(5)
 		for row: Variant in rows:

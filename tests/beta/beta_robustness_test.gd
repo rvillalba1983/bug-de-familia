@@ -214,3 +214,31 @@ func _open_random_dialogue(level: BetaZone, rng: RandomNumberGenerator) -> void:
 func _end_dialogue(level: BetaZone) -> void:
 	if not level.investigation.current_node.is_empty():
 		level.investigation._close()
+
+
+func test_cada_accion_del_catalogo_se_puede_ejecutar() -> void:
+	var player: Player = zone.player
+	player.global_position = zone.guards()[0].global_position + Vector2(30.0, 0.0)
+	for id: String in zone.catalog.actions:
+		var spec: Dictionary = zone.catalog.actions[id].get("do", {})
+		if not spec.is_empty():
+			zone.actions._perform_generic(spec)
+	await _frames()
+	assert_bool(player.body.is_dead).is_false()
+
+
+func test_don_ramon_suelda_una_sola_vez() -> void:
+	var before: int = zone.player.body.spare_count()
+	zone.investigation.set_flag("verdad_ramon")
+	zone.investigation.set_flag("verdad_ramon")
+	assert_int(zone.player.body.spare_count()).is_equal(before + 1)
+
+
+func test_aliado_unico_deja_huella_y_comentarios() -> void:
+	var at: Vector2 = zone.ramon.global_position
+	var before: int = zone.live_world.sim.truth.records.size()
+	zone.challenges.on_ramon_fell()
+	assert_bool(zone.investigation.flags.has(BetaChallenges.ID_RAMON_TRACE)).is_true()
+	assert_int(zone.live_world.sim.truth.records.size()).is_greater(before)
+	var trace: Interactable = zone.challenges._footprints[BetaChallenges.ID_RAMON_TRACE]
+	assert_vector(trace.global_position).is_equal(at)

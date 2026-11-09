@@ -97,7 +97,8 @@ func attack_damage(enemy: Guard) -> float:
 		damage += SLAP_BONUS_PER_ARM * float(body.arm_count())
 	if body.has_action("a008"):
 		damage += OLD_BLOW_BONUS
-	damage *= level.ai.perks.melee_factor()
+	damage *= level.ai.perks.melee_factor() * body.multiplier("melee")
+	damage *= 1.0 + body.total("melee_per_spare") * float(body.spare_count())
 	if not enemy.is_alert():
 		damage *= SILENT_SNEAK_FACTOR if body.has_action("a002") else SNEAK_FACTOR
 	return damage
@@ -109,6 +110,7 @@ func strike(enemy: Guard) -> bool:
 	if _attack_timer > 0.0 or body.arm_count() == 0:
 		return false
 	_attack_timer = attack_interval()
+	level.player.break_disguise()
 	var silent: bool = body.has_action("a002") and not enemy.is_alert()
 	enemy.take_damage(attack_damage(enemy))
 	if body.has_action("a001"):

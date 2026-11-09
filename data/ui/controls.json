@@ -2,26 +2,21 @@
  "compact": [
   ["WASD", "moverse"], ["Mayús", "correr, con ruido"], ["X", "agacharse"],
   ["E", "usar y hablar"], ["Q", "convertir"], ["C", "piezas"],
-  ["Espacio", "pausa táctica"], ["Clic dcho.", "ir o atacar"],
-  ["F", "lanzar chatarra"], ["1-6", "acciones"]
+  ["Espacio", "pausa táctica"], ["Clic dcho.", "ir, usar o atacar"],
+  ["F", "lanzar chatarra"], ["1-6", "acciones"], ["Esc", "salir de un panel"]
  ],
- "full": [
-  ["WASD o flechas", "Moverse"],
-  ["Clic derecho en el suelo", "Ir a un punto"],
-  ["Mayús (mantener)", "Correr, con ruido"],
-  ["/ del teclado numérico", "Alternar andar y correr"],
-  ["Bloq Num", "Avance automático"],
-  ["X", "Agacharse"],
-  ["Espacio", "Pausa táctica"],
-  ["Rueda del ratón", "Zoom"],
-  ["Clic izquierdo", "Seleccionar objetivo"],
-  ["Tab", "Cambiar de objetivo"],
-  ["Clic derecho en un enemigo", "Atacar cuerpo a cuerpo"],
-  ["F", "Lanzar chatarra hacia el ratón"],
-  ["1-6", "Acciones de piezas y respuestas"],
-  ["E", "Usar, examinar y conversar"],
-  ["Q", "Convertir lo marcado en morado"],
-  ["C", "Piezas del cuerpo"],
-  ["F1", "Abrir y cerrar esta chapa"]
- ]
+ "keyboard": [
+  [["Esc",1,"salir"],["",0.6,""],["F1",1,"ayuda"],["",8.4,""],["Bloq Num",1.6,"avance"]],
+  [["1",1,"acción"],["2",1,"acción"],["3",1,"acción"],["4",1,"acción"],["5",1,"acción"],["6",1,"acción"],["7",1,""],["8",1,""],["9",1,""],["0",1,""]],
+  [["Tab",1.5,"objetivo"],["Q",1,"convertir"],["W",1,"arriba"],["E",1,"usar"],["R",1,""],["T",1,""],["Y",1,""],["U",1,""],["I",1,""],["O",1,""],["P",1,""]],
+  [["Bloq Mayús",1.9,"andar/correr"],["A",1,"izquierda"],["S",1,"abajo"],["D",1,"derecha"],["F",1,"chatarra"],["G",1,""],["H",1,""],["J",1,""],["K",1,""],["L",1,""],["Ñ",1,""]],
+  [["Mayús",2.4,"correr"],["Z",1,""],["X",1,"agachar"],["C",1,"piezas"],["V",1,""],["B",1,""],["N",1,""],["M",1,"estrategia"]],
+  [["",3,""],["Espacio",6,"pausa táctica"]]
+ ],
+ "mouse": [
+  ["Clic izquierdo", "Seleccionar"],
+  ["Clic derecho", "Ir; usar o hablar; atacar. Para pegar a alguien tranquilo, selecciónalo antes"],
+  ["Rueda", "Zoom"]
+ ],
+ "notes": ["1-6: acciones de piezas y respuestas", "Mayús: correr mientras la mantienes", "Bloq Mayús: alternar andar y correr", "Esc: salir de cualquier panel"]
 }

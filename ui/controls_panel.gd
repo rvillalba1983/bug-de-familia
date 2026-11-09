@@ -1,6 +1,6 @@
 class_name ControlsPanel
 extends CanvasLayer
-## Chapa torcida con todos los controles. F1 la abre y la cierra, y pausa mientras se lee.
+## Chapa torcida con el teclado y el ratón dibujados. F1 la abre, Esc la cierra, y pausa mientras se lee.
 
 const DATA_PATH: String = "res://data/ui/controls.json"
 const PLATE: Rect2 = Rect2(230.0, 120.0, 1460.0, 840.0)
@@ -46,7 +46,10 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"help") and not event.is_echo():
+	if event.is_echo():
+		return
+	var wanted: StringName = &"close_panel" if is_open else &"help"
+	if event.is_action_pressed(wanted) and (is_open or not get_tree().paused):
 		toggle()
 		get_viewport().set_input_as_handled()
 
@@ -75,15 +78,12 @@ func _build_rows() -> void:
 	title.add_theme_font_size_override(&"font_size", 30)
 	title.add_theme_color_override(&"font_color", COLOR_EDGE)
 	_plate.add_child(title)
-	var grid: GridContainer = GridContainer.new()
-	grid.columns = 2
-	grid.position = Vector2(48.0, 96.0)
-	grid.add_theme_constant_override(&"h_separation", 44)
-	grid.add_theme_constant_override(&"v_separation", 8)
-	_plate.add_child(grid)
-	for row: Variant in load_rows("full"):
-		grid.add_child(_cell(str(row[0]), COLOR_KEY))
-		grid.add_child(_cell(str(row[1]), Color.WHITE))
+	var keyboard: KeyboardMap = KeyboardMap.new()
+	keyboard.position = Vector2(40.0, 92.0)
+	_plate.add_child(keyboard)
+	var mouse: MouseMap = MouseMap.new()
+	mouse.position = Vector2(OPTIONS_X, 400.0)
+	_plate.add_child(mouse)
 
 
 func _build_options() -> void:

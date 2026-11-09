@@ -10,6 +10,14 @@ const EXTRACT: String = "reto_sacar"
 const CROSS: String = "reto_cruzar"
 const FIND: String = "reto_encontrar"
 const ALL_CHALLENGES: Array[String] = [ENTER, EXTRACT, CROSS, FIND]
+const ID_RAMON_TRACE: String = "huella_ramon"
+const ID_CONTESTADOR_TRACE: String = "huella_contestador"
+const FOOTPRINT_IDS: Array[String] = [ID_RAMON_TRACE, ID_CONTESTADOR_TRACE]
+const SOLDER_SLOTS: Array[ModularBody.Slot] = [
+	ModularBody.Slot.ARM_MAIN_LEFT, ModularBody.Slot.ARM_MAIN_RIGHT,
+	ModularBody.Slot.ARM_EXTRA_LEFT, ModularBody.Slot.ARM_EXTRA_RIGHT, ModularBody.Slot.HEAD,
+]
+const SOLDER_SCORE: float = 0.8
 
 ## Valores provisionales, a ajustar al probar.
 const FIND_RANGE: float = 150.0
@@ -43,6 +51,7 @@ var hour_source: Callable = _system_hour
 var _group_index: Dictionary = {}
 var _offline_time: float = 0.0
 var _announced_complete: bool = false
+var _footprints: Dictionary = {}
 
 
 ## El primer reto sin hacer y hacia dónde queda, para Ma-Ma-Matriz.
@@ -85,6 +94,8 @@ func apply_flags() -> void:
 		case.flags["tiene_bobina"] = true
 	_hide_taken_items()
 	_apply_conflict()
+	_solder_piece()
+	_show_footprints()
 	for id: String in GROUPS:
 		_apply_group(id)
 
@@ -130,8 +141,59 @@ func break_generator() -> void:
 
 
 func on_ramon_fell() -> void:
+	if is_instance_valid(level.ramon):
+		leave_footprint(ID_RAMON_TRACE, level.ramon.global_position, "BETA_TRACE_RAMON", "Don Ramón")
 	level.investigation.set_flag("ramon_muerto")
 	_retire_ramon_item()
+
+
+## Un aliado único deja huella: un rastro que se guarda y un suceso del que se habla.
+func leave_footprint(id: String, at: Vector2, text_key: String, who: String) -> void:
+	var flags: Dictionary = level.investigation.flags
+	if flags.has(id):
+		return
+	flags[id] = {"x": at.x, "y": at.y, "text": text_key}
+	var sim: WorldSim = level.live_world.sim
+	var teller: NpcState = sim.random_alive(sim.rng)
+	if teller != null:
+		sim.events.report(sim, "muere_ramon" if id == ID_RAMON_TRACE else "muere_contestador", teller.id, "", at)
+	level.ai.say_custom(tr("BETA_AI_LOSS") % who)
+	_show_footprints()
+
+
+func _show_footprints() -> void:
+	for id: String in FOOTPRINT_IDS:
+		var entry: Variant = level.investigation.flags.get(id)
+		if entry is Dictionary and not _footprints.has(id):
+			var item: Interactable = Interactable.new()
+			item.setup(id, Interactable.Kind.EVIDENCE, Vector2(float(entry["x"]), float(entry["y"])))
+			item.custom_label = tr("BETA_TRACE_LABEL")
+			item.custom_color = FestivalDecor.COLOR_RUIN
+			item.reusable = true
+			item.activated.connect(_read_footprint)
+			level.actors.add_child(item)
+			_footprints[id] = item
+
+
+func _read_footprint(item: Interactable) -> void:
+	level.ai.bubble.say(tr(str(level.investigation.flags[item.item_id]["text"])), Color.WHITE, 6.0)
+
+
+## Don Ramón te suelda un repuesto al contarte la verdad, y solo una vez.
+func _solder_piece() -> void:
+	if not flag("verdad_ramon") or flag("ramon_soldado"):
+		return
+	level.investigation.flags["ramon_soldado"] = true
+	for slot: ModularBody.Slot in SOLDER_SLOTS:
+		if level.player.body.has_room(slot):
+			var piece: BodyPiece = PieceForge.forge(
+				level.catalog, "nanoacero", "defensa", ModularBody.kind_of(slot), SOLDER_SCORE, level.rng, "p047"
+			)
+			piece.label = tr("BETA_SOLDER_NAME") + piece.label
+			level.player.body.receive(slot, piece)
+			level.show_notice(tr("BETA_SOLDER_DONE"))
+			return
+	level.show_notice(tr("BETA_SOLDER_FULL"))
 
 
 func _system_hour() -> int:

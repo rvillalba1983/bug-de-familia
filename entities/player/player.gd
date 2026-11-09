@@ -21,6 +21,13 @@ const WORRY_NOISE_RADIUS: float = 120.0
 const WORRY_NOISE_INTERVAL: float = 3.0
 const SPIKES_STUN_TIME: float = 1.5
 const WAYPOINT_TOLERANCE: float = 6.0
+const HIDE_RANGE_FACTOR: float = 0.15
+const DISGUISE_RANGE_FACTOR: float = 0.25
+const TICK_NOISE_RADIUS: float = 200.0
+const TICK_NOISE_INTERVAL: float = 7.0
+const SLOW_FACTOR: float = 0.55
+const COLOR_DISGUISE: Color = Color(0.72, 1.0, 0.72)
+const COLOR_HIDDEN: Color = Color(1.0, 1.0, 1.0, 0.45)
 
 const WALK_ANIMATION_SPEED: float = 11.0
 const HIT_REFERENCE: float = 34.0
@@ -39,6 +46,13 @@ var noise_bus: NoiseBus
 var in_danger: bool = false
 var tail_color: Color = Color("#404050")
 var tail_speaking: bool = false
+## Bando al que engaña el disfraz puesto; "any" engaña a todos.
+var disguise_faction: String = ""
+var disguise_time: float = 0.0
+var disguise_factor: float = DISGUISE_RANGE_FACTOR
+var hide_time: float = 0.0
+var silent_time: float = 0.0
+var slow_time: float = 0.0
 
 var _path: PackedVector2Array = PackedVector2Array()
 var _path_index: int = 0
@@ -49,6 +63,8 @@ var _worry_timer: float = 0.0
 var _walk_phase: float = 0.0
 var _boost_time: float = 0.0
 var _bubble_cooldown: float = 0.0
+var _excuse_cooldown: float = 0.0
+var _tick_timer: float = TICK_NOISE_INTERVAL
 ## Deformación del dibujo al recibir un golpe.
 var _squash: Vector2 = Vector2.ONE
 
@@ -117,7 +133,7 @@ func is_running() -> bool:
 func current_speed() -> float:
 	var speed: float = WALK_SPEED
 	if is_crouching:
-		speed = CROUCH_SPEED
+		speed = CROUCH_SPEED * body.multiplier("crouch_speed")
 	elif is_running():
 		speed = RUN_SPEED
 	speed *= body.speed_factor() * body.multiplier("speed")
@@ -125,6 +141,10 @@ func current_speed() -> float:
 		speed *= BOOST_FACTOR
 	if in_danger and body.has_action("a015"):
 		speed *= PANIC_FACTOR
+	if in_danger:
+		speed *= body.multiplier("panic_speed")
+	if slow_time > 0.0:
+		speed *= SLOW_FACTOR
 	return speed
 
 
@@ -135,7 +155,49 @@ func stealth_factor() -> float:
 		factor *= still_stealth_factor
 	if velocity == Vector2.ZERO and body.has_action("a024"):
 		factor *= CAMOUFLAGE_RANGE_FACTOR
+	factor *= body.multiplier("sight")
+	if velocity == Vector2.ZERO:
+		factor *= body.multiplier("still_sight")
+		if hide_time > 0.0:
+			factor *= HIDE_RANGE_FACTOR
+	if body.is_night:
+		factor *= body.multiplier("dark_sight")
 	return factor
+
+
+## Lo mismo, según quién mire: disfraces y piezas que solo engañan a un bando.
+func stealth_factor_for(faction: String) -> float:
+	var factor: float = stealth_factor() * body.multiplier("sight_" + faction)
+	if disguise_time > 0.0 and (disguise_faction == "any" or disguise_faction == faction):
+		factor *= disguise_factor
+	return factor
+
+
+func start_disguise(faction: String, duration: float, factor: float) -> void:
+	disguise_faction = faction
+	disguise_time = duration
+	disguise_factor = factor
+	_refresh_tint()
+
+
+## Pegar a alguien delata cualquier disfraz.
+func break_disguise() -> void:
+	disguise_time = 0.0
+	_refresh_tint()
+
+
+func start_hide(duration: float) -> void:
+	hide_time = duration
+	_refresh_tint()
+
+
+func _refresh_tint() -> void:
+	if disguise_time > 0.0:
+		modulate = COLOR_DISGUISE
+	elif hide_time > 0.0:
+		modulate = COLOR_HIDDEN
+	else:
+		modulate = Color.WHITE
 
 
 func jam_radius() -> float:
@@ -150,12 +212,17 @@ func receive_hit(amount: float, rng: RandomNumberGenerator, attacker: Guard) -> 
 	if body.has_action("a044") and _bubble_cooldown <= 0.0:
 		_bubble_cooldown = BUBBLE_RECHARGE
 		return
+	if body.total("excuse") > 0.0 and _excuse_cooldown <= 0.0:
+		_excuse_cooldown = body.total("excuse")
+		return
 	if rng.randf() < body.total("dodge"):
 		return
 	body.damage_random(amount, rng)
 	react_to_hit(amount)
 	if body.has_action("a046") and attacker != null:
 		attacker.stun(SPIKES_STUN_TIME * body.multiplier("stun"))
+	elif body.total("thorns_stun") > 0.0 and attacker != null:
+		attacker.stun(body.total("thorns_stun") * body.multiplier("stun"))
 
 
 ## Efectos visuales de un golpe recibido; cuanto más daño, más fuertes.
@@ -183,6 +250,19 @@ func _tick_body(delta: float) -> void:
 	body.tick(delta)
 	_boost_time = maxf(_boost_time - delta, 0.0)
 	_bubble_cooldown = maxf(_bubble_cooldown - delta, 0.0)
+	_excuse_cooldown = maxf(_excuse_cooldown - delta, 0.0)
+	slow_time = maxf(slow_time - delta, 0.0)
+	silent_time = maxf(silent_time - delta, 0.0)
+	var was_covered: bool = disguise_time > 0.0 or hide_time > 0.0
+	disguise_time = maxf(disguise_time - delta, 0.0)
+	hide_time = maxf(hide_time - delta, 0.0)
+	if was_covered and disguise_time <= 0.0 and hide_time <= 0.0:
+		_refresh_tint()
+	if body.total("tick_noise") > 0.0 and noise_bus != null:
+		_tick_timer -= delta
+		if _tick_timer <= 0.0:
+			_tick_timer = TICK_NOISE_INTERVAL
+			noise_bus.emit_noise(global_position, TICK_NOISE_RADIUS)
 
 
 func _read_toggles() -> void:
@@ -202,7 +282,7 @@ func _after_move(moved: float, delta: float) -> void:
 		return
 	body.wear_legs(moved)
 	_noise_timer -= delta
-	var silent: bool = body.has_action("a023")
+	var silent: bool = body.has_action("a023") or silent_time > 0.0
 	if is_running() and not silent and _noise_timer <= 0.0 and noise_bus != null:
 		_noise_timer = RUN_NOISE_INTERVAL
 		noise_bus.emit_noise(global_position, RUN_NOISE_RADIUS * body.multiplier("run_noise"))
@@ -218,7 +298,7 @@ func _collect_pickups() -> void:
 		var item: Interactable = node as Interactable
 		if item.used or not item.is_pickup() or not body.can_stow_in(item.pickup_slots()):
 			continue
-		if global_position.distance_to(item.global_position) <= PICKUP_RADIUS:
+		if global_position.distance_to(item.global_position) <= PICKUP_RADIUS + body.total("pickup_radius"):
 			item.activate()
 
 

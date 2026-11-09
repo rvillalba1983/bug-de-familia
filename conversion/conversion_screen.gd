@@ -19,6 +19,10 @@ const PANIC_FRACTION: float = 0.45
 const PANIC_SHAKE: float = 9.0
 const VERDICT_SHAKE: float = 16.0
 const SHAKE_DECAY: float = 60.0
+const INVENTORY_X: float = 455.0
+const INVENTORY_Y: float = 24.0
+const INVENTORY_CELL: float = 200.0
+const INVENTORY_FONT: int = 19
 
 ## Segundos que muestra la cuenta atrás; Nihil.0 los alarga.
 var time_shown: float = TIME_LIMIT_SHOWN
@@ -67,6 +71,31 @@ func show_choices(title: String, entries: Array, with_timer: bool = false) -> vo
 	_add_options(entries.size())
 	for entry: Array in entries:
 		_add_button(entry[0] as String, entry[1] as Callable)
+
+
+## Tira superior con lo que llevas puesto y los repuestos de cada zona.
+func show_inventory(rows: Array) -> void:
+	var strip: GridContainer = GridContainer.new()
+	strip.columns = rows.size()
+	strip.position = Vector2(INVENTORY_X, INVENTORY_Y)
+	strip.add_theme_constant_override(&"h_separation", 10)
+	_shaker.add_child(strip)
+	for row: Variant in rows:
+		strip.add_child(_inventory_cell(row))
+
+
+func _inventory_cell(row: Dictionary) -> PanelContainer:
+	var spares: int = row["spares"]
+	var cell: PanelContainer = PanelContainer.new()
+	cell.custom_minimum_size = Vector2(INVENTORY_CELL, 0.0)
+	cell.add_theme_stylebox_override(&"panel", _flat(Palette.INK, Palette.ROSA if spares == 0 else Palette.BERENJENA, 3, 10.0))
+	var label: Label = Label.new()
+	label.text = "%s\n%s\nrepuestos %d/%d" % [row["name"], row["state"], spares, ModularBody.MAX_SPARES]
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.add_theme_font_size_override(&"font_size", GameSettings.font_size(INVENTORY_FONT))
+	cell.add_child(label)
+	return cell
 
 
 func show_message(title: String, body: String) -> void:

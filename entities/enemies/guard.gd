@@ -171,7 +171,7 @@ func _draw_down() -> void:
 		draw_circle(Vector2.ZERO, BODY_HEIGHT * 0.42, COLOR_DOWN)
 		return
 	if rig != null:
-		draw_circle(Vector2(0.0, 2.0), 20.0, COLOR_ART_SHADOW)
+		_draw_shadow()
 		return
 	var art: Texture2D = art_views[VIEW_SOUTH]
 	draw_set_transform(Vector2(-ART_HEIGHT * 0.45, -14.0), PI * 0.5)
@@ -179,9 +179,16 @@ func _draw_down() -> void:
 	draw_set_transform(Vector2.ZERO)
 
 
+## Sombra aplastada: un disco entero parecía un agujero bajo los pies.
+func _draw_shadow() -> void:
+	draw_set_transform(Vector2(0.0, 2.0), 0.0, Vector2(1.0, 0.38))
+	draw_circle(Vector2.ZERO, 22.0, COLOR_ART_SHADOW)
+	draw_set_transform(Vector2.ZERO)
+
+
 func _draw_art() -> void:
 	if rig != null:
-		draw_circle(Vector2(0.0, 2.0), 20.0, COLOR_ART_SHADOW)
+		_draw_shadow()
 		return
 	var direction: Vector2 = Vector2.from_angle(detector.facing_angle)
 	var view: int = _view_for(direction)
@@ -190,7 +197,7 @@ func _draw_art() -> void:
 	if view == VIEW_EAST and direction.x < 0.0:
 		size.x = -size.x
 	var tint: Color = COLOR_ALERT.lightened(0.5) if state == State.ALERT else Color.WHITE
-	draw_circle(Vector2(0.0, 2.0), 20.0, COLOR_ART_SHADOW)
+	_draw_shadow()
 	draw_texture_rect(art, Rect2(Vector2(-size.x * 0.5, -ART_HEIGHT * ART_FEET), size), false, tint)
 
 

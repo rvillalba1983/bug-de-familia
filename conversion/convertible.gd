@@ -10,11 +10,19 @@ const COLOR_HIGHLIGHT: Color = Color("#c060ff")
 var entity_id: String = ""
 var material_id: String = ""
 var highlighted: bool = false
+## Objetos únicos: su pieza trae siempre esta propiedad.
+var fixed_property: String = ""
 
 
 func setup(new_id: String, new_material: String) -> void:
 	entity_id = new_id
 	material_id = new_material
+
+
+## Lo que queda de una caja rota ya no es madera: son restos.
+func effective_material() -> String:
+	var source: Node = get_parent()
+	return "restos" if source is Interactable and (source as Interactable).is_rubble() else material_id
 
 
 func _ready() -> void:

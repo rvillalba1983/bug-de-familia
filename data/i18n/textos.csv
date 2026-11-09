@@ -93,3 +93,10 @@ LIVE_JOIN_FEST,Me apunto a la fiesta.
 LIVE_JOINED,"Pues trae algo, gorrón."
 LIVE_TODAY_FEST,"Hoy es %s. Lo pone en ninguna parte, pero todo el mundo actúa raro."
 LIVE_TRACE_LABEL,Restos de fiesta
+BETA_TRACE_LABEL,"Un hueco que antes era alguien"
+BETA_TRACE_RAMON,"Tornillos, una llave inglesa y una farola sin arreglar. Aquí acabó Don Ramón."
+BETA_TRACE_CONTESTADOR,"Cables sueltos y un pitido que ya no contesta. Aquí hubo una centralita con cosas que decir."
+BETA_AI_LOSS,"Se ha perdido %s. Para siempre. Enhorabuena, supongo."
+BETA_SOLDER_NAME,"Soldadura de Don Ramón · "
+BETA_SOLDER_DONE,"Don Ramón te suelda un repuesto, gruñendo."
+BETA_SOLDER_FULL,"Don Ramón iba a soldarte algo, pero no te cabe nada más."

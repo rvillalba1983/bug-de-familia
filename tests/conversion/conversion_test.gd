@@ -93,3 +93,22 @@ func test_effects_survive_saving() -> void:
 
 func _question() -> Dictionary:
 	return {"text": "x", "options": ["a", "b"], "answer": 0}
+
+
+func test_catalogo_completo_con_acciones_con_efecto() -> void:
+	assert_int(catalog.materials.size()).is_equal(9)
+	assert_int(catalog.objectives.size()).is_equal(14)
+	assert_int(catalog.properties.size()).is_equal(50)
+	assert_int(catalog.actions.size()).is_equal(104)
+	var legacy: Array = ["a003", "a006", "a009", "a054", "a055", "a056", "a062", "a101", "a102", "a103", "a104"]
+	for id: String in catalog.actions:
+		var action: Dictionary = catalog.actions[id]
+		if action["active"]:
+			assert_bool(action.has("do") or legacy.has(id)).override_failure_message("Sin efecto: " + id).is_true()
+
+
+func test_todos_los_materiales_forjan_con_cada_objetivo() -> void:
+	for material: String in catalog.materials:
+		for objective: String in catalog.objectives:
+			var piece: BodyPiece = PieceForge.forge(catalog, material, objective, BodyPiece.Kind.HEAD, 1.0, rng)
+			assert_bool(piece.actions.is_empty()).is_false()

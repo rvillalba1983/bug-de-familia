@@ -54,6 +54,10 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if current_node.is_empty():
 		return
+	if event.is_action_pressed(&"close_panel") and not event.is_echo() and answer_time_left <= 0.0:
+		_close()
+		get_viewport().set_input_as_handled()
+		return
 	for index: int in range(ActionSystem.MAX_KEYS):
 		if event.is_action_pressed(StringName("action_%d" % (index + 1))):
 			choose(index)

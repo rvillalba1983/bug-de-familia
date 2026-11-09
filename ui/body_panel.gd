@@ -39,11 +39,12 @@ func _init() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_action_pressed(&"character") or event.is_echo():
+	if event.is_echo():
 		return
-	if is_open:
+	if is_open and event.is_action_pressed(&"close_panel"):
 		close()
-	elif not get_tree().paused:
+		get_viewport().set_input_as_handled()
+	elif not is_open and event.is_action_pressed(&"character") and not get_tree().paused:
 		open(Mode.NORMAL)
 
 

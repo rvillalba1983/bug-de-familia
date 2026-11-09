@@ -13,6 +13,8 @@ const RAIN_TIME: float = 30.0
 const WARNING_TIME: float = 10.0
 const WEAR_PER_SECOND: float = 0.4
 
+const ACID_VISUAL_TIME: float = 0.4
+
 var player: Player
 var shelters: Array[Rect2] = []
 var raining: bool = false
@@ -46,9 +48,10 @@ func is_sheltered() -> bool:
 
 
 func wear(delta: float) -> void:
+	player.body.acid_time = ACID_VISUAL_TIME
 	for slot: int in ModularBody.Slot.values():
 		var piece: BodyPiece = player.body.equipped(slot as ModularBody.Slot)
-		if piece != null and piece.metallic:
+		if piece != null and piece.metallic and not piece.effects.has("acid_proof"):
 			player.body.wear_piece(slot as ModularBody.Slot, WEAR_PER_SECOND * delta)
 
 

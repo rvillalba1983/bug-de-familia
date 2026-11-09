@@ -31,3 +31,7 @@ func _draw() -> void:
 			[_origin, _points[index], _points[index + 1]]
 		)
 		draw_primitive(triangle, colors, PackedVector2Array())
+	if detector.meter > 0.0 and _points.size() > 1:
+		var edge: PackedVector2Array = _points.duplicate()
+		var suspicion: Color = COLOR_ALERT.lerp(Color("#ffd24a"), 1.0 - detector.meter)
+		draw_polyline(edge, Color(suspicion, 0.9), 2.0 + 4.0 * detector.meter)

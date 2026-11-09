@@ -148,6 +148,7 @@ const JUB_HOME: Rect2 = Rect2(1220.0, 640.0, 960.0, 440.0)
 const MOHO_HOME: Rect2 = Rect2(1220.0, 1560.0, 880.0, 480.0)
 const JUB_GATE: Vector2 = Vector2(1980.0, 560.0)
 const MOHO_GATE: Vector2 = Vector2(1980.0, 2070.0)
+const ANTENNAS: Array[Vector2] = [Vector2(1620.0, 1180.0), Vector2(900.0, 980.0), Vector2(2650.0, 1620.0)]
 const OPEN_SPOTS: Array[Vector2] = [
 	Vector2(1450.0, 900.0), Vector2(1800.0, 760.0), Vector2(2050.0, 1000.0),
 	Vector2(1450.0, 1750.0), Vector2(1800.0, 1950.0), Vector2(2000.0, 1650.0),

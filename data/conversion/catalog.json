@@ -5,6 +5,9 @@
    "metal": true,
    "properties": [
     "p001",
+    "p002",
+    "p003",
+    "p004",
     "p005"
    ]
   },
@@ -14,15 +17,64 @@
    "properties": [
     "p006",
     "p007",
-    "p009"
+    "p008",
+    "p009",
+    "p010"
+   ]
+  },
+  "gel_memoria": {
+   "name": "Gel de memoria",
+   "metal": false,
+   "properties": [
+    "p011",
+    "p012",
+    "p013",
+    "p014",
+    "p015"
+   ]
+  },
+  "fibra_fotonica": {
+   "name": "Fibra fotónica",
+   "metal": false,
+   "properties": [
+    "p016",
+    "p017",
+    "p018",
+    "p019",
+    "p020"
    ]
   },
   "aleacion_magnetica": {
    "name": "Aleación magnética",
    "metal": true,
    "properties": [
+    "p021",
     "p022",
+    "p023",
+    "p024",
     "p025"
+   ]
+  },
+  "bioceramica": {
+   "name": "Biocerámica alien",
+   "metal": false,
+   "properties": [
+    "p026",
+    "p027",
+    "p028",
+    "p029",
+    "p030"
+   ]
+  },
+  "antimateria": {
+   "name": "Polímero de antimateria inestable",
+   "metal": false,
+   "properties": [
+    "p031",
+    "p032",
+    "p033",
+    "p034",
+    "p035"
    ]
   },
   "madera_cuantica": {
@@ -31,7 +83,25 @@
    "properties": [
     "p036",
     "p037",
+    "p038",
+    "p039",
     "p040"
+   ]
+  },
+  "restos": {
+   "name": "Restos, razas y rarezas",
+   "metal": false,
+   "properties": [
+    "p041",
+    "p042",
+    "p043",
+    "p044",
+    "p045",
+    "p046",
+    "p047",
+    "p048",
+    "p049",
+    "p050"
    ]
   }
  },
@@ -42,44 +112,15 @@
     "a001",
     "a002",
     "a003",
+    "a004",
     "a005",
     "a006",
+    "a007",
     "a008"
-   ]
-  },
-  "velocidad": {
-   "name": "Velocidad",
-   "actions": [
-    "a009",
-    "a015"
-   ]
-  },
-  "sigilo": {
-   "name": "Sigilo",
-   "actions": [
-    "a023",
-    "a024"
-   ]
-  },
-  "defensa": {
-   "name": "Defensa",
-   "actions": [
-    "a044",
-    "a046"
-   ]
-  },
-  "hackeo": {
-   "name": "Hackeo",
-   "actions": [
-    "a054",
-    "a055",
-    "a056"
-   ]
-  },
-  "senuelo": {
-   "name": "Señuelo",
-   "actions": [
-    "a062"
+   ],
+   "slots": [
+    "arm",
+    "leg"
    ]
   },
   "distancia": {
@@ -89,6 +130,203 @@
     "a102",
     "a103",
     "a104"
+   ],
+   "slots": [
+    "arm"
+   ]
+  },
+  "velocidad": {
+   "name": "Velocidad",
+   "actions": [
+    "a009",
+    "a010",
+    "a011",
+    "a012",
+    "a013",
+    "a014",
+    "a015"
+   ],
+   "slots": [
+    "leg"
+   ]
+  },
+  "vision": {
+   "name": "Visión",
+   "actions": [
+    "a016",
+    "a017",
+    "a018",
+    "a019",
+    "a020",
+    "a021",
+    "a022"
+   ],
+   "slots": [
+    "head"
+   ]
+  },
+  "sigilo": {
+   "name": "Sigilo",
+   "actions": [
+    "a023",
+    "a024",
+    "a025",
+    "a026",
+    "a027",
+    "a028",
+    "a029",
+    "a030"
+   ],
+   "slots": [
+    "head",
+    "leg"
+   ]
+  },
+  "movilidad": {
+   "name": "Movilidad",
+   "actions": [
+    "a031",
+    "a032",
+    "a033",
+    "a034",
+    "a035",
+    "a036",
+    "a037",
+    "a038"
+   ],
+   "slots": [
+    "arm",
+    "leg"
+   ]
+  },
+  "defensa": {
+   "name": "Defensa",
+   "actions": [
+    "a039",
+    "a040",
+    "a041",
+    "a042",
+    "a043",
+    "a044",
+    "a045",
+    "a046"
+   ],
+   "slots": [
+    "head",
+    "arm"
+   ]
+  },
+  "sentidos": {
+   "name": "Sentidos",
+   "actions": [
+    "a047",
+    "a048",
+    "a049",
+    "a050",
+    "a051",
+    "a052",
+    "a053"
+   ],
+   "slots": [
+    "head"
+   ]
+  },
+  "hackeo": {
+   "name": "Hackeo",
+   "actions": [
+    "a054",
+    "a055",
+    "a056",
+    "a057",
+    "a058",
+    "a059",
+    "a060",
+    "a061"
+   ],
+   "slots": [
+    "head",
+    "arm"
+   ]
+  },
+  "senuelo": {
+   "name": "Señuelo",
+   "actions": [
+    "a062",
+    "a063",
+    "a064",
+    "a065",
+    "a066",
+    "a067",
+    "a068",
+    "a069"
+   ],
+   "slots": [
+    "arm"
+   ]
+  },
+  "disfraz": {
+   "name": "Disfraz",
+   "actions": [
+    "a070",
+    "a071",
+    "a072",
+    "a073",
+    "a074",
+    "a075",
+    "a076"
+   ],
+   "slots": [
+    "head"
+   ]
+  },
+  "comunicacion": {
+   "name": "Comunicación",
+   "actions": [
+    "a077",
+    "a078",
+    "a079",
+    "a080",
+    "a081",
+    "a082",
+    "a083",
+    "a084"
+   ],
+   "slots": [
+    "head"
+   ]
+  },
+  "ancla": {
+   "name": "Ancla",
+   "actions": [
+    "a085",
+    "a086",
+    "a087",
+    "a088",
+    "a089",
+    "a090",
+    "a091",
+    "a092"
+   ],
+   "slots": [
+    "leg"
+   ]
+  },
+  "caos": {
+   "name": "Caos",
+   "actions": [
+    "a093",
+    "a094",
+    "a095",
+    "a096",
+    "a097",
+    "a098",
+    "a099",
+    "a100"
+   ],
+   "slots": [
+    "head",
+    "arm",
+    "leg"
    ]
   }
  },
@@ -173,6 +411,334 @@
     "wear": 2.0
    },
    "desc": "Se gasta el doble de rápido."
+  },
+  "p002": {
+   "name": "Apego enfermizo",
+   "positive": true,
+   "effects": {
+    "clingy": 1
+   },
+   "desc": "Si se rompe, vuelve arrastrándose como repuesto muy gastado, una vez."
+  },
+  "p003": {
+   "name": "Hambre metálica",
+   "positive": true,
+   "effects": {
+    "self_repair": 0.35,
+    "wear": 1.15
+   },
+   "desc": "Se repara sola, pero se gasta algo antes."
+  },
+  "p004": {
+   "name": "Rencor estructural",
+   "positive": true,
+   "effects": {
+    "melee": 1.2
+   },
+   "desc": "Tus golpes hacen algo más de daño."
+  },
+  "p008": {
+   "name": "Incandescente",
+   "positive": true,
+   "effects": {
+    "stun": 1.25,
+    "dark_sight": 1.4
+   },
+   "desc": "Aturdes más tiempo, pero de noche te ven desde más lejos."
+  },
+  "p010": {
+   "name": "Metralla",
+   "positive": true,
+   "effects": {
+    "burst_stun": 3.0
+   },
+   "desc": "Al romperse, aturde a quien esté cerca."
+  },
+  "p011": {
+   "name": "Amortiguador",
+   "positive": true,
+   "effects": {
+    "damage_taken": 0.75
+   },
+   "desc": "Aguanta mejor los golpes."
+  },
+  "p012": {
+   "name": "Memoria muscular",
+   "positive": true,
+   "effects": {
+    "cooldown": 0.75
+   },
+   "desc": "Tus acciones se recargan antes."
+  },
+  "p013": {
+   "name": "Molde",
+   "positive": true,
+   "effects": {
+    "pickup_radius": 40
+   },
+   "desc": "Recoges repuestos desde más lejos."
+  },
+  "p014": {
+   "name": "Trauma",
+   "positive": true,
+   "effects": {
+    "damage_taken": 0.85
+   },
+   "desc": "Aguanta algo mejor los golpes."
+  },
+  "p015": {
+   "name": "Pegajoso",
+   "positive": true,
+   "effects": {
+    "thorns_stun": 0.8
+   },
+   "desc": "Quien te golpea se queda pegado un momento."
+  },
+  "p016": {
+   "name": "Doblaluz",
+   "positive": true,
+   "effects": {
+    "sight": 0.8
+   },
+   "desc": "Te ven desde menos lejos."
+  },
+  "p017": {
+   "name": "Sombra prestada",
+   "positive": true,
+   "effects": {
+    "dark_sight": 0.6
+   },
+   "desc": "De noche te ven desde mucho menos lejos."
+  },
+  "p018": {
+   "name": "Timidez óptica",
+   "positive": true,
+   "effects": {
+    "still_sight": 0.5
+   },
+   "desc": "Quieto, te ven desde mucho menos lejos."
+  },
+  "p019": {
+   "name": "Arcoíris involuntario",
+   "positive": false,
+   "effects": {
+    "run_noise": 1.3
+   },
+   "desc": "Correr te delata más."
+  },
+  "p020": {
+   "name": "Espejo",
+   "positive": true,
+   "effects": {
+    "jam_radius": 90
+   },
+   "desc": "Cámaras y drones muy cercanos no te ven."
+  },
+  "p021": {
+   "name": "Atraemetal",
+   "positive": true,
+   "effects": {
+    "pickup_radius": 90
+   },
+   "desc": "Atrae repuestos desde lejos."
+  },
+  "p023": {
+   "name": "Imán de disgustos",
+   "positive": false,
+   "effects": {
+    "tick_noise": 1
+   },
+   "desc": "Zumba de vez en cuando y atrae a quien esté cerca."
+  },
+  "p024": {
+   "name": "Polaridad caprichosa",
+   "positive": true,
+   "effects": {
+    "dodge": 0.05,
+    "pickup_radius": 40
+   },
+   "desc": "Alguna vez desvía golpes y atrae repuestos."
+  },
+  "p026": {
+   "name": "Dureza alienígena",
+   "positive": true,
+   "effects": {
+    "damage_taken": 0.6
+   },
+   "desc": "Muy resistente."
+  },
+  "p027": {
+   "name": "Podredumbre",
+   "positive": false,
+   "effects": {
+    "wear": 1.5
+   },
+   "desc": "Se deshace antes."
+  },
+  "p028": {
+   "name": "Esporas simpáticas",
+   "positive": true,
+   "effects": {
+    "sight_mohocrata": 0.7
+   },
+   "desc": "Los Mohócratas te ven desde menos lejos."
+  },
+  "p029": {
+   "name": "Latido",
+   "positive": false,
+   "effects": {
+    "tick_noise": 1
+   },
+   "desc": "Late y hace ruido de vez en cuando."
+  },
+  "p030": {
+   "name": "Sabor repugnante",
+   "positive": true,
+   "effects": {
+    "damage_taken": 0.95
+   },
+   "desc": "Sabe fatal. Los Grux aún no están aquí: solo aguanta un poco más."
+  },
+  "p031": {
+   "name": "Potencia absurda",
+   "positive": true,
+   "effects": {
+    "melee": 1.5,
+    "wear": 1.5
+   },
+   "desc": "Pegas mucho más, y se gasta antes."
+  },
+  "p032": {
+   "name": "Despedida ruidosa",
+   "positive": false,
+   "effects": {
+    "burst_stun": 2.0,
+    "burst_noise": 520
+   },
+   "desc": "Al romperse, explota: aturde y se oye lejos."
+  },
+  "p033": {
+   "name": "Mal pronóstico",
+   "positive": false,
+   "effects": {
+    "use_wear": 2.0
+   },
+   "desc": "Cada uso de una acción la gasta el doble."
+  },
+  "p034": {
+   "name": "Borrado",
+   "positive": true,
+   "effects": {
+    "stun": 1.3
+   },
+   "desc": "Tus aturdimientos duran más."
+  },
+  "p035": {
+   "name": "Tictac",
+   "positive": false,
+   "effects": {
+    "tick_noise": 1
+   },
+   "desc": "Su tictac alerta a los cercanos."
+  },
+  "p038": {
+   "name": "Estaba aquí antes",
+   "positive": true,
+   "effects": {
+    "dodge": 0.08
+   },
+   "desc": "A veces no estaba donde te pegaron."
+  },
+  "p039": {
+   "name": "Superposición",
+   "positive": true,
+   "effects": {
+    "dodge": 0.12,
+    "damage_taken": 1.2
+   },
+   "desc": "Esquiva a veces; si la aciertan, peor."
+  },
+  "p041": {
+   "name": "Plegable",
+   "positive": true,
+   "effects": {
+    "crouch_speed": 1.3
+   },
+   "desc": "Agachado vas más rápido."
+  },
+  "p042": {
+   "name": "Eco",
+   "positive": true,
+   "effects": {
+    "cooldown": 0.85
+   },
+   "desc": "Tus acciones se recargan algo antes."
+  },
+  "p043": {
+   "name": "Democrática",
+   "positive": true,
+   "effects": {
+    "melee": 1.3,
+    "cooldown": 1.2
+   },
+   "desc": "Pegas más, pero tarda en obedecer."
+  },
+  "p044": {
+   "name": "Hipotecada",
+   "positive": true,
+   "effects": {
+    "damage_taken": 0.7
+   },
+   "desc": "Dura mucho. Los Grux vendrán a cobrar, algún día."
+  },
+  "p045": {
+   "name": "Reparto garantizado",
+   "positive": true,
+   "effects": {
+    "clingy": 1
+   },
+   "desc": "Si la pierdes, vuelve tarde y abollada, una vez."
+  },
+  "p046": {
+   "name": "Jubilada",
+   "positive": false,
+   "effects": {
+    "night_off": 1.5
+   },
+   "desc": "A partir de las 21:00 reales se gasta más."
+  },
+  "p047": {
+   "name": "Gruñona",
+   "positive": true,
+   "effects": {
+    "damage_taken": 0.8,
+    "worry_noise": 1.0
+   },
+   "desc": "Aguanta más, y se queja en voz alta cuando está mal."
+  },
+  "p048": {
+   "name": "Bendita por el Compost",
+   "positive": true,
+   "effects": {
+    "melee_per_spare": 0.02
+   },
+   "desc": "Cuanta más chatarra lleves, más pegas."
+  },
+  "p049": {
+   "name": "Favorita de una IA",
+   "positive": true,
+   "effects": {
+    "token_save": 0.25
+   },
+   "desc": "Tus IAs gastan menos tokens."
+  },
+  "p050": {
+   "name": "Defecto de fábrica",
+   "positive": true,
+   "effects": {
+    "random": 1
+   },
+   "desc": "Efecto sorpresa: bueno o terrible."
   }
  },
  "actions": {
@@ -275,6 +841,779 @@
    "name": "Lanzamocos adhesivo",
    "active": true,
    "desc": "Tecla, apunta con el ratón: pega al enemigo 4 s sin hacerle daño."
+  },
+  "a004": {
+   "name": "Arrancapiezas",
+   "active": true,
+   "desc": "Tecla: aturde 2 s a un enemigo pegado a ti y le quitas un repuesto.",
+   "do": {
+    "k": "steal",
+    "t": 2
+   }
+  },
+  "a007": {
+   "name": "Mordisco tasador",
+   "active": true,
+   "desc": "Tecla: te marca durante 8 s los repuestos cercanos.",
+   "do": {
+    "k": "reveal",
+    "what": "pickups",
+    "t": 8
+   }
+  },
+  "a010": {
+   "name": "Carrera muda",
+   "active": true,
+   "desc": "Tecla: corres mucho y sin ruido durante 3 s.",
+   "do": {
+    "k": "boost",
+    "t": 3,
+    "silent": 1
+   }
+  },
+  "a011": {
+   "name": "Frenazo derribador",
+   "active": true,
+   "desc": "Tecla: aturde 3 s a quien tengas pegado.",
+   "do": {
+    "k": "stun",
+    "t": 3
+   }
+  },
+  "a012": {
+   "name": "Patinaje sobre líquidos",
+   "active": false,
+   "desc": "Vas un poco más rápido.",
+   "fx": {
+    "speed": 1.06
+   }
+  },
+  "a013": {
+   "name": "Tiempo prestado",
+   "active": true,
+   "desc": "Tecla: corres mucho 3 s y luego vas lento 3 s.",
+   "do": {
+    "k": "boost",
+    "t": 3,
+    "slow": 3
+   }
+  },
+  "a014": {
+   "name": "Huida cobarde",
+   "active": false,
+   "desc": "Más velocidad mientras haya pelea.",
+   "fx": {
+    "panic_speed": 1.2
+   }
+  },
+  "a016": {
+   "name": "Zoom lejano",
+   "active": true,
+   "desc": "Tecla: alejas la cámara 8 s.",
+   "do": {
+    "k": "zoom",
+    "t": 8
+   }
+  },
+  "a017": {
+   "name": "Ver a través de una pared fina",
+   "active": true,
+   "desc": "Tecla: marca 8 s a los enemigos cercanos.",
+   "do": {
+    "k": "reveal",
+    "what": "enemies",
+    "t": 8
+   }
+  },
+  "a018": {
+   "name": "Visión nocturna",
+   "active": true,
+   "desc": "Tecla: marca 8 s a los enemigos cercanos.",
+   "do": {
+    "k": "reveal",
+    "what": "enemies",
+    "t": 8
+   }
+  },
+  "a019": {
+   "name": "Ver rutas de patrulla",
+   "active": true,
+   "desc": "Tecla: marca 8 s a las patrullas cercanas.",
+   "do": {
+    "k": "reveal",
+    "what": "enemies",
+    "t": 8
+   }
+  },
+  "a020": {
+   "name": "Ver conos fuera de pantalla",
+   "active": true,
+   "desc": "Tecla: marca 8 s a los enemigos cercanos.",
+   "do": {
+    "k": "reveal",
+    "what": "enemies",
+    "t": 8
+   }
+  },
+  "a021": {
+   "name": "Ver piezas valiosas",
+   "active": true,
+   "desc": "Tecla: marca 8 s los repuestos cercanos.",
+   "do": {
+    "k": "reveal",
+    "what": "pickups",
+    "t": 8
+   }
+  },
+  "a022": {
+   "name": "Mirada acusadora",
+   "active": true,
+   "desc": "Tecla: pone nervioso a un enemigo cercano: se queda quieto 2 s.",
+   "do": {
+    "k": "stun",
+    "t": 2,
+    "reach": 260
+   }
+  },
+  "a025": {
+   "name": "Agacharse sin perder velocidad",
+   "active": false,
+   "desc": "Agachado vas mucho más rápido.",
+   "fx": {
+    "crouch_speed": 1.6
+   }
+  },
+  "a026": {
+   "name": "Tragarse el ruido",
+   "active": false,
+   "desc": "Correr hace menos ruido.",
+   "fx": {
+    "run_noise": 0.6
+   }
+  },
+  "a027": {
+   "name": "Fundirse con una pared",
+   "active": true,
+   "desc": "Tecla: casi invisible 5 s si no te mueves.",
+   "do": {
+    "k": "hide",
+    "t": 5
+   }
+  },
+  "a028": {
+   "name": "Hacerse el muerto",
+   "active": true,
+   "desc": "Tecla: casi invisible 6 s si no te mueves.",
+   "do": {
+    "k": "hide",
+    "t": 6
+   }
+  },
+  "a029": {
+   "name": "Convertirse en mueble",
+   "active": true,
+   "desc": "Tecla: casi invisible 8 s si no te mueves.",
+   "do": {
+    "k": "hide",
+    "t": 8
+   }
+  },
+  "a030": {
+   "name": "Olor a nada",
+   "active": false,
+   "desc": "Te ven desde algo menos lejos.",
+   "fx": {
+    "sight": 0.92
+   }
+  },
+  "a031": {
+   "name": "Salto",
+   "active": true,
+   "desc": "Tecla: saltas hacia el ratón, por encima de coberturas bajas.",
+   "do": {
+    "k": "blink",
+    "reach": 200
+   }
+  },
+  "a032": {
+   "name": "Escalar paredes",
+   "active": true,
+   "desc": "Tecla: saltas sobre coberturas bajas, hasta bien lejos.",
+   "do": {
+    "k": "blink",
+    "reach": 280
+   }
+  },
+  "a033": {
+   "name": "Rodar como bola",
+   "active": true,
+   "desc": "Tecla: ruedas muy rápido 2 s.",
+   "do": {
+    "k": "boost",
+    "t": 2
+   }
+  },
+  "a034": {
+   "name": "Colarse por rendijas",
+   "active": true,
+   "desc": "Tecla: te cuelas de un salto corto por encima de coberturas bajas.",
+   "do": {
+    "k": "blink",
+    "reach": 150
+   }
+  },
+  "a035": {
+   "name": "Andar por el techo",
+   "active": true,
+   "desc": "Tecla: casi invisible 4 s si no te mueves.",
+   "do": {
+    "k": "hide",
+    "t": 4
+   }
+  },
+  "a036": {
+   "name": "Doble salto flatulento",
+   "active": true,
+   "desc": "Tecla: gran salto hacia el ratón. Se oye.",
+   "do": {
+    "k": "blink",
+    "reach": 320,
+    "noise": 360
+   }
+  },
+  "a037": {
+   "name": "Teletransporte de un metro",
+   "active": true,
+   "desc": "Tecla: apareces un poco más allá, hacia el ratón.",
+   "do": {
+    "k": "blink",
+    "reach": 120
+   }
+  },
+  "a038": {
+   "name": "Caminar con las manos",
+   "active": false,
+   "desc": "Con una sola pierna vas más rápido.",
+   "fx": {
+    "one_leg": 1.5
+   }
+  },
+  "a039": {
+   "name": "Escudo frontal",
+   "active": false,
+   "desc": "Aguantas mejor los golpes.",
+   "fx": {
+    "damage_taken": 0.8
+   }
+  },
+  "a040": {
+   "name": "Resistencia al ácido",
+   "active": false,
+   "desc": "La lluvia ácida no te daña esta pieza.",
+   "fx": {
+    "acid_proof": 1
+   }
+  },
+  "a041": {
+   "name": "Resistencia al fuego",
+   "active": false,
+   "desc": "Aguantas un poco mejor los golpes.",
+   "fx": {
+    "damage_taken": 0.92
+   }
+  },
+  "a042": {
+   "name": "Devolver un golpe",
+   "active": false,
+   "desc": "Quien te golpea queda aturdido un momento.",
+   "fx": {
+    "thorns_stun": 1.0
+   }
+  },
+  "a043": {
+   "name": "Sacrificar pieza por la cabeza",
+   "active": false,
+   "desc": "La cabeza casi nunca recibe golpes.",
+   "fx": {
+    "head_guard": 1
+   }
+  },
+  "a045": {
+   "name": "Excusa física",
+   "active": false,
+   "desc": "Absorbe un golpe; se recarga en 30 s.",
+   "fx": {
+    "excuse": 30
+   }
+  },
+  "a047": {
+   "name": "Oído fino",
+   "active": true,
+   "desc": "Tecla: marca 8 s a los enemigos cercanos.",
+   "do": {
+    "k": "reveal",
+    "what": "enemies",
+    "t": 8
+   }
+  },
+  "a048": {
+   "name": "Olfato animal",
+   "active": true,
+   "desc": "Tecla: marca 8 s a los repuestos cercanos.",
+   "do": {
+    "k": "reveal",
+    "what": "pickups",
+    "t": 8
+   }
+  },
+  "a049": {
+   "name": "Ver calor",
+   "active": true,
+   "desc": "Tecla: marca 8 s a los enemigos cercanos.",
+   "do": {
+    "k": "reveal",
+    "what": "enemies",
+    "t": 8
+   }
+  },
+  "a050": {
+   "name": "Notar vibraciones",
+   "active": true,
+   "desc": "Tecla: marca 8 s a los enemigos cercanos.",
+   "do": {
+    "k": "reveal",
+    "what": "enemies",
+    "t": 8
+   }
+  },
+  "a051": {
+   "name": "Detectar mentiras por el sudor",
+   "active": true,
+   "desc": "Tecla: marca 8 s a quienes te miran mal.",
+   "do": {
+    "k": "reveal",
+    "what": "enemies",
+    "t": 8
+   }
+  },
+  "a052": {
+   "name": "Oler trampas",
+   "active": true,
+   "desc": "Tecla: marca 10 s las minas cercanas.",
+   "do": {
+    "k": "reveal",
+    "what": "mines",
+    "t": 10
+   }
+  },
+  "a053": {
+   "name": "Presentir peligros",
+   "active": true,
+   "desc": "Tecla: marca 10 s minas y enemigos.",
+   "do": {
+    "k": "reveal",
+    "what": "all",
+    "t": 10
+   }
+  },
+  "a057": {
+   "name": "Dron mascota",
+   "active": true,
+   "desc": "Tecla: deja fuera de juego un dron cercano 20 s.",
+   "do": {
+    "k": "drone",
+    "t": 20
+   }
+  },
+  "a058": {
+   "name": "Apagar luces",
+   "active": true,
+   "desc": "Tecla: ciega la cámara cercana 10 s.",
+   "do": {
+    "k": "camera",
+    "t": 10
+   }
+  },
+  "a059": {
+   "name": "Falsificar una alarma",
+   "active": true,
+   "desc": "Tecla: gran alarma donde apuntes con el ratón.",
+   "do": {
+    "k": "noise",
+    "r": 800
+   }
+  },
+  "a060": {
+   "name": "Cambiar el rumbo de una patrulla",
+   "active": true,
+   "desc": "Tecla: manda a un enemigo cercano adonde apuntes.",
+   "do": {
+    "k": "redirect"
+   }
+  },
+  "a061": {
+   "name": "Anuncios en un enemigo robot",
+   "active": true,
+   "desc": "Tecla: aturde 4 s a un Jubilado cercano.",
+   "do": {
+    "k": "stun",
+    "t": 4,
+    "reach": 320,
+    "faction": "jubilado"
+   }
+  },
+  "a063": {
+   "name": "Holograma de ti",
+   "active": true,
+   "desc": "Tecla: holograma donde apuntes: atrae miradas 6 s.",
+   "do": {
+    "k": "decoy",
+    "t": 6
+   }
+  },
+  "a064": {
+   "name": "Dejar un clon inútil",
+   "active": true,
+   "desc": "Tecla: clon donde apuntes: atrae miradas 10 s.",
+   "do": {
+    "k": "decoy",
+    "t": 10
+   }
+  },
+  "a065": {
+   "name": "Olor irresistible",
+   "active": true,
+   "desc": "Tecla: olor donde apuntes: atrae a quien pase.",
+   "do": {
+    "k": "noise",
+    "r": 520
+   }
+  },
+  "a066": {
+   "name": "Grabar y reproducir voces",
+   "active": true,
+   "desc": "Tecla: voces donde apuntes con el ratón.",
+   "do": {
+    "k": "noise",
+    "r": 460
+   }
+  },
+  "a067": {
+   "name": "Silbido de «¡aquí!»",
+   "active": true,
+   "desc": "Tecla: silbido donde apuntes con el ratón.",
+   "do": {
+    "k": "noise",
+    "r": 380
+   }
+  },
+  "a068": {
+   "name": "Paquete sin entregar",
+   "active": true,
+   "desc": "Tecla: paquete sospechoso donde apuntes, 8 s.",
+   "do": {
+    "k": "decoy",
+    "t": 8
+   }
+  },
+  "a069": {
+   "name": "Holograma de pelea falsa",
+   "active": true,
+   "desc": "Tecla: pelea falsa donde apuntes: se oye lejos.",
+   "do": {
+    "k": "noise",
+    "r": 700
+   }
+  },
+  "a070": {
+   "name": "Parecer de la raza enemiga",
+   "active": true,
+   "desc": "Tecla: 15 s pasas por Jubilado ante los Mohócratas.",
+   "do": {
+    "k": "disguise",
+    "faction": "mohocrata",
+    "t": 15
+   }
+  },
+  "a071": {
+   "name": "Parecer un jubilado averiado",
+   "active": true,
+   "desc": "Tecla: 15 s los Jubilados te ignoran casi siempre.",
+   "do": {
+    "k": "disguise",
+    "faction": "jubilado",
+    "t": 15
+   }
+  },
+  "a072": {
+   "name": "Sombrero de chatarra",
+   "active": true,
+   "desc": "Tecla: 20 s pasas por Mohócrata ante los Mohócratas.",
+   "do": {
+    "k": "disguise",
+    "faction": "mohocrata",
+    "t": 20
+   }
+  },
+  "a073": {
+   "name": "Uniforme de guardia",
+   "active": true,
+   "desc": "Tecla: 12 s nadie te mira mucho.",
+   "do": {
+    "k": "disguise",
+    "faction": "any",
+    "t": 12
+   }
+  },
+  "a074": {
+   "name": "Parecer un paquete",
+   "active": true,
+   "desc": "Tecla: 8 s nadie te mira si no te mueves.",
+   "do": {
+    "k": "hide",
+    "t": 8
+   }
+  },
+  "a075": {
+   "name": "Cara de saber lo que haces",
+   "active": true,
+   "desc": "Tecla: 10 s nadie te mira mucho.",
+   "do": {
+    "k": "disguise",
+    "faction": "any",
+    "t": 10
+   }
+  },
+  "a076": {
+   "name": "Copiar la voz de un jefe",
+   "active": true,
+   "desc": "Tecla: manda a un enemigo cercano adonde apuntes.",
+   "do": {
+    "k": "redirect"
+   }
+  },
+  "a077": {
+   "name": "Hablar con animales",
+   "active": true,
+   "desc": "Tecla: los bichos te chivan a los enemigos cercanos, 8 s.",
+   "do": {
+    "k": "reveal",
+    "what": "enemies",
+    "t": 8
+   }
+  },
+  "a078": {
+   "name": "Hablar con aliens",
+   "active": true,
+   "desc": "Tecla: calma a un Mohócrata cercano.",
+   "do": {
+    "k": "calm",
+    "reach": 320,
+    "faction": "mohocrata"
+   }
+  },
+  "a079": {
+   "name": "Traducir a los robots",
+   "active": true,
+   "desc": "Tecla: calma a un Jubilado cercano.",
+   "do": {
+    "k": "calm",
+    "reach": 320,
+    "faction": "jubilado"
+   }
+  },
+  "a080": {
+   "name": "Insultar en su idioma",
+   "active": true,
+   "desc": "Tecla: un enemigo cercano va adonde apuntes, furioso.",
+   "do": {
+    "k": "redirect"
+   }
+  },
+  "a081": {
+   "name": "Soborno automático",
+   "active": true,
+   "desc": "Tecla: calma a un enemigo cercano.",
+   "do": {
+    "k": "calm",
+    "reach": 300
+   }
+  },
+  "a082": {
+   "name": "Hacer creíble una mentira",
+   "active": true,
+   "desc": "Tecla: calma a un enemigo cercano.",
+   "do": {
+    "k": "calm",
+    "reach": 300
+   }
+  },
+  "a083": {
+   "name": "Lanzar un rumor",
+   "active": true,
+   "desc": "Tecla: las dos razas se llevan un poco peor.",
+   "do": {
+    "k": "relation",
+    "amount": -6
+   }
+  },
+  "a084": {
+   "name": "Calmar a un grupo",
+   "active": true,
+   "desc": "Tecla: calma a todos los cercanos.",
+   "do": {
+    "k": "calm_all",
+    "r": 360
+   }
+  },
+  "a085": {
+   "name": "Gancho",
+   "active": true,
+   "desc": "Tecla: te lanzas hacia el ratón, por encima de coberturas bajas.",
+   "do": {
+    "k": "blink",
+    "reach": 380
+   }
+  },
+  "a086": {
+   "name": "Pegarse a techos",
+   "active": true,
+   "desc": "Tecla: casi invisible 5 s si no te mueves.",
+   "do": {
+    "k": "hide",
+    "t": 5
+   }
+  },
+  "a087": {
+   "name": "Arrastrar objetos",
+   "active": true,
+   "desc": "Tecla: acerca un repuesto cercano.",
+   "do": {
+    "k": "pull",
+    "r": 420
+   }
+  },
+  "a088": {
+   "name": "Atar a un enemigo",
+   "active": true,
+   "desc": "Tecla: inmoviliza 8 s a un enemigo pegado a ti.",
+   "do": {
+    "k": "stun",
+    "t": 8
+   }
+  },
+  "a089": {
+   "name": "Colgarse sobre una patrulla",
+   "active": true,
+   "desc": "Tecla: casi invisible 6 s si no te mueves.",
+   "do": {
+    "k": "hide",
+    "t": 6
+   }
+  },
+  "a090": {
+   "name": "Palanca a distancia",
+   "active": true,
+   "desc": "Tecla: abre la puerta de la centralita desde lejos.",
+   "do": {
+    "k": "door",
+    "reach": 700
+   }
+  },
+  "a091": {
+   "name": "Robar objetos desde lejos",
+   "active": true,
+   "desc": "Tecla: acerca un repuesto lejano.",
+   "do": {
+    "k": "pull",
+    "r": 650
+   }
+  },
+  "a092": {
+   "name": "Anclarse contra empujones",
+   "active": false,
+   "desc": "Aguantas un poco mejor los golpes.",
+   "fx": {
+    "damage_taken": 0.9
+   }
+  },
+  "a093": {
+   "name": "Hacer que dos enemigos peleen",
+   "active": true,
+   "desc": "Tecla: dos enemigos cercanos se distraen entre ellos 4 s.",
+   "do": {
+    "k": "stun_all",
+    "t": 4,
+    "r": 300,
+    "limit": 2
+   }
+  },
+  "a094": {
+   "name": "Sembrar sospechas",
+   "active": true,
+   "desc": "Tecla: las dos razas se llevan peor.",
+   "do": {
+    "k": "relation",
+    "amount": -10
+   }
+  },
+  "a095": {
+   "name": "Baile incontrolable",
+   "active": true,
+   "desc": "Tecla: todos los cercanos bailan 4 s. Se oye.",
+   "do": {
+    "k": "stun_all",
+    "t": 4,
+    "r": 320,
+    "noise": 420
+   }
+  },
+  "a096": {
+   "name": "Convocar una votación",
+   "active": true,
+   "desc": "Tecla: los Mohócratas cercanos votan 6 s.",
+   "do": {
+    "k": "stun_all",
+    "t": 6,
+    "r": 380,
+    "faction": "mohocrata"
+   }
+  },
+  "a097": {
+   "name": "Declarar una deuda falsa",
+   "active": true,
+   "desc": "Tecla: manda a un enemigo cercano adonde apuntes.",
+   "do": {
+    "k": "redirect"
+   }
+  },
+  "a098": {
+   "name": "Hacer que todos corran",
+   "active": true,
+   "desc": "Tecla: todos oyen algo enorme donde apuntes.",
+   "do": {
+    "k": "noise",
+    "r": 900
+   }
+  },
+  "a099": {
+   "name": "Cambiar quién es el jefe",
+   "active": true,
+   "desc": "Tecla: todos los cercanos dudan 3 s.",
+   "do": {
+    "k": "stun_all",
+    "t": 3,
+    "r": 340
+   }
+  },
+  "a100": {
+   "name": "Botón rojo",
+   "active": true,
+   "desc": "Tecla: nadie sabe qué hace.",
+   "do": {
+    "k": "random"
+   }
   }
- }
+ },
+ "provisional": "Compatibilidades y efectos provisionales (P-02). El director los revisa jugando."
 }

@@ -46,7 +46,8 @@ func test_full_flow_stops_time_and_creates_piece() -> void:
 	await get_tree().process_frame
 	assert_bool(get_tree().paused).is_false()
 	assert_int(sandbox.player.body.spares(ARM).size()).is_equal(1)
-	assert_bool(sandbox.player.body.spares(ARM)[0].has_action("a062")).is_true()
+	var allowed: Array = sandbox.catalog.objectives["senuelo"]["actions"]
+	assert_array(allowed).contains([sandbox.player.body.spares(ARM)[0].actions[0]["id"]])
 	assert_bool(sandbox.items.has(Sandbox.ID_CRATE)).is_false()
 
 

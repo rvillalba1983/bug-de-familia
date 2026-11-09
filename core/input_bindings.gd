@@ -3,12 +3,12 @@ extends RefCounted
 ## Registra las acciones de entrada del juego. Ver docs/controles.md.
 
 const KEY_ACTIONS: Dictionary = {
-	&"move_up": [KEY_W, KEY_UP],
-	&"move_down": [KEY_S, KEY_DOWN],
-	&"move_left": [KEY_A, KEY_LEFT],
-	&"move_right": [KEY_D, KEY_RIGHT],
+	&"move_up": [KEY_W],
+	&"move_down": [KEY_S],
+	&"move_left": [KEY_A],
+	&"move_right": [KEY_D],
 	&"run": [KEY_SHIFT],
-	&"toggle_run": [KEY_KP_DIVIDE],
+	&"toggle_run": [KEY_CAPSLOCK],
 	&"autorun": [KEY_NUMLOCK],
 	&"tactical_pause": [KEY_SPACE],
 	&"target_next": [KEY_TAB],
@@ -17,6 +17,7 @@ const KEY_ACTIONS: Dictionary = {
 	&"character": [KEY_C],
 	&"convert": [KEY_Q],
 	&"help": [KEY_F1],
+	&"close_panel": [KEY_ESCAPE],
 	&"map": [KEY_M],
 	&"throw": [KEY_F],
 	&"action_1": [KEY_1],

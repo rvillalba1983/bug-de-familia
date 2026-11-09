@@ -6,6 +6,8 @@ signal piece_destroyed(slot: Slot)
 signal piece_discarded(piece: BodyPiece)
 signal piece_swapped(slot: Slot)
 signal changed
+## Una pieza acaba de romperse: trae sus efectos para las que explotan.
+signal piece_burst(effects: Dictionary)
 signal died
 
 enum Slot {
@@ -26,10 +28,16 @@ const ONE_LEG_SPEED_FACTOR: float = 0.5
 const LEG_WEAR_PER_100_PX: float = 100.0 / 1080.0
 ## La cabeza recibe golpes con mucha menos probabilidad que una extremidad.
 const HEAD_HIT_WEIGHT: int = 1
+## Con cuánta resistencia vuelve una pieza con apego.
+const CLINGY_DURABILITY: float = 25.0
 const LIMB_HIT_WEIGHT: int = 4
 
 var context: Context = Context.FREE
 var is_dead: bool = false
+## De noche real las piezas «Jubiladas» se gastan más. Lo fija la zona.
+var is_night: bool = false
+## Segundos que le quedan de burbujeo por lluvia ácida. Solo es visual.
+var acid_time: float = 0.0
 
 var _equipped: Dictionary = {}
 var _spares: Dictionary = {}
@@ -109,7 +117,8 @@ func damage(slot: Slot, amount: float) -> void:
 func wear_piece(slot: Slot, amount: float) -> void:
 	var piece: BodyPiece = equipped(slot)
 	if piece != null:
-		_reduce(slot, amount * float(piece.effects.get("wear", 1.0)))
+		var night: float = float(piece.effects.get("night_off", 1.0)) if is_night else 1.0
+		_reduce(slot, amount * float(piece.effects.get("wear", 1.0)) * night)
 
 
 ## Multiplica un efecto de todas las piezas puestas.
@@ -148,6 +157,7 @@ func active_actions() -> Array:
 
 
 func tick(delta: float) -> void:
+	acid_time = maxf(acid_time - delta, 0.0)
 	for piece: BodyPiece in _worn_pieces():
 		var repair: float = float(piece.effects.get("self_repair", 0.0))
 		if repair > 0.0:
@@ -188,6 +198,8 @@ func damage_random(amount: float, rng: RandomNumberGenerator) -> void:
 	for slot: int in Slot.values():
 		if equipped(slot as Slot) != null:
 			var weight: int = HEAD_HIT_WEIGHT if slot == Slot.HEAD else LIMB_HIT_WEIGHT
+			if slot == Slot.HEAD and total("head_guard") > 0.0 and equipped_count() > 1:
+				weight = 0
 			for count: int in range(weight):
 				candidates.append(slot)
 	if not candidates.is_empty():
@@ -223,11 +235,22 @@ func ensure_head() -> void:
 		changed.emit()
 
 
+func spare_count() -> int:
+	var count: int = 0
+	for slot: int in Slot.values():
+		count += spares(slot as Slot).size()
+	return count
+
+
+func equipped_count() -> int:
+	return _worn_pieces().size()
+
+
 func speed_factor() -> float:
 	var legs: int = leg_count()
 	if legs == 2:
 		return 1.0
-	return ONE_LEG_SPEED_FACTOR if legs == 1 else 0.0
+	return minf(ONE_LEG_SPEED_FACTOR * multiplier("one_leg"), 1.0) if legs == 1 else 0.0
 
 
 func to_dict() -> Dictionary:
@@ -289,7 +312,13 @@ func _reduce(slot: Slot, amount: float) -> void:
 
 
 func _destroy(slot: Slot) -> void:
+	var broken: BodyPiece = _equipped[slot]
 	_equipped[slot] = null
+	piece_burst.emit(broken.effects)
+	if broken.effects.has("clingy") and spares(slot).size() < MAX_SPARES:
+		broken.effects.erase("clingy")
+		broken.durability = CLINGY_DURABILITY
+		spares(slot).append(broken)
 	var no_legs: bool = equipped(Slot.LEG_LEFT) == null and equipped(Slot.LEG_RIGHT) == null
 	var no_head: bool = slot == Slot.HEAD and spares(Slot.HEAD).is_empty()
 	if no_head or no_legs:

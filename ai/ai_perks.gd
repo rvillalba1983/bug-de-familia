@@ -10,6 +10,8 @@ const SARGENTO_MELEE: float = 1.25
 const SIESTA_STEALTH: float = 0.75
 const HACK_FACTOR: float = 1.5
 const CUPIDO_STREAK: int = 3
+const NARCISA_TIME: float = 1.6
+const NARCISA_FACTOR: float = 0.1
 
 var team: AiTeam
 var streak: int = 0
@@ -46,6 +48,15 @@ func melee_factor() -> float:
 
 func hack_factor() -> float:
 	return HACK_FACTOR if team.can_speak("burocrata") else 1.0
+
+
+## Narcisa 9 se luce con los disfraces: duran más y engañan mejor.
+func disguise_time_factor() -> float:
+	return NARCISA_TIME if team.can_speak("narcisa") else 1.0
+
+
+func disguise_range_factor() -> float:
+	return NARCISA_FACTOR if team.can_speak("narcisa") else Player.DISGUISE_RANGE_FACTOR
 
 
 func still_stealth_factor() -> float:

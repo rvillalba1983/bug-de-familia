@@ -17,6 +17,8 @@ const HINT_INTERVAL: float = 55.0
 const DECOY_INTERVAL: float = 40.0
 const DECOY_DISTANCE: float = 340.0
 const DECOY_NOISE: float = 420.0
+const FOLLOWERS: int = 4
+const FOLLOWERS_TIME: float = 9.0
 const ARGUMENT_MUTE: float = 15.0
 const TAIL_IDLE: Color = Color("#404050")
 const MOTE_CHANCE: float = 0.3
@@ -303,9 +305,18 @@ func _try_decoy() -> void:
 			var away: Vector2 = guard.global_position.direction_to(level.player.global_position)
 			var spot: Vector2 = guard.global_position - away.orthogonal() * DECOY_DISTANCE
 			level.noise_bus.emit_noise(spot, DECOY_NOISE)
+			_spawn_followers(spot)
 			_decoy_time = DECOY_INTERVAL
 			_enqueue("lumi", "decoy")
 			return
+
+
+## Los seguidores curiosos de Lumi: se plantan a mirar y distraen a quien pase.
+func _spawn_followers(spot: Vector2) -> void:
+	var crowd: Decoy = Decoy.new()
+	crowd.followers = FOLLOWERS
+	crowd.setup(spot, FOLLOWERS_TIME, level.noise_bus)
+	level.actors.add_child(crowd)
 
 
 func _start_argument() -> void:
@@ -344,7 +355,8 @@ func _play_next() -> void:
 	voice.speak(float(info["pitch"]), id)
 	level.player.tail_color = color
 	level.player.tail_speaking = true
-	team.spend(id, level.rng)
+	if level.rng.randf() >= level.player.body.total("token_save"):
+		team.spend(id, level.rng)
 	if not team.active.has(id):
 		ai_fell_asleep.emit()
 

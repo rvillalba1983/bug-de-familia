@@ -405,6 +405,56 @@
     "una partida de petanca"
    ],
    "observe": ""
+  },
+  {
+   "category": "social",
+   "cast": "solo",
+   "weight": 0,
+   "cooldown": 0,
+   "importance": 90,
+   "things": [
+    "una tuerca",
+    "mala suerte",
+    "un descuido del Sobrante"
+   ],
+   "feel_all": {
+    "miedo": 25
+   },
+   "next": [
+    {
+     "event": "luto",
+     "chance": 1.0,
+     "delay": 15
+    }
+   ],
+   "observe": "Eso que se ha apagado no vuelve a encenderse. Apuntadlo en ningún sitio.",
+   "id": "muere_ramon",
+   "text": "Cayó Don Ramón en {w}, y dicen que por {x}"
+  },
+  {
+   "category": "social",
+   "cast": "solo",
+   "weight": 0,
+   "cooldown": 0,
+   "importance": 90,
+   "things": [
+    "una tuerca",
+    "mala suerte",
+    "un descuido del Sobrante"
+   ],
+   "feel_all": {
+    "miedo": 25
+   },
+   "next": [
+    {
+     "event": "luto",
+     "chance": 1.0,
+     "delay": 15
+    }
+   ],
+   "observe": "Eso que se ha apagado no vuelve a encenderse. Apuntadlo en ningún sitio.",
+   "id": "muere_contestador",
+   "text": "Se acabó El Contestador en {w}, y dicen que por {x}"
   }
  ]
 }

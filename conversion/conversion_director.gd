@@ -44,7 +44,9 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"convert") and not event.is_echo():
+	if event.is_action_pressed(&"close_panel") and not event.is_echo():
+		_on_close_key()
+	elif event.is_action_pressed(&"convert") and not event.is_echo():
 		if step == Step.IDLE and not get_tree().paused and not player.body.is_dead:
 			convert_nearest()
 	elif step == Step.QUESTION:
@@ -97,8 +99,10 @@ func begin_on(target: Convertible) -> void:
 	step = Step.OBJECTIVE
 	var entries: Array = []
 	for id: String in catalog.objectives:
-		entries.append([str(catalog.objectives[id]["name"]), choose_objective.bind(id)])
+		if not _free_slots(id).is_empty():
+			entries.append([str(catalog.objectives[id]["name"]), choose_objective.bind(id)])
 	screen.show_choices(tr("UI_CONVERT_OBJECTIVE"), entries)
+	screen.show_inventory(_inventory_rows())
 	_show_material_hint()
 
 
@@ -106,10 +110,10 @@ func choose_objective(id: String) -> void:
 	_objective_id = id
 	step = Step.SLOT
 	var entries: Array = []
-	for slot: int in ModularBody.Slot.values():
-		if player.body.has_room(slot as ModularBody.Slot):
-			entries.append([tr("SLOT_%d" % slot), choose_slot.bind(slot)])
+	for slot: int in _free_slots(id):
+		entries.append([tr("SLOT_%d" % slot), choose_slot.bind(slot)])
 	screen.show_choices(tr("UI_CONVERT_SLOT"), entries)
+	screen.show_inventory(_inventory_rows())
 
 
 func choose_slot(slot: int) -> void:
@@ -141,6 +145,20 @@ func confirm_result() -> void:
 	pause.end_modal()
 	converted.emit(_target.entity_id)
 	_target = null
+
+
+## Esc sale antes de las preguntas y acepta el resultado. Con el reloj en marcha no hay salida.
+func _on_close_key() -> void:
+	match step:
+		Step.OBJECTIVE, Step.SLOT:
+			step = Step.IDLE
+			screen.close()
+			pause.end_modal()
+			_target = null
+			get_viewport().set_input_as_handled()
+		Step.RESULT:
+			confirm_result()
+			get_viewport().set_input_as_handled()
 
 
 func _flash_hint(text: String) -> void:
@@ -175,6 +193,32 @@ func _set_highlighted(candidate: Convertible) -> void:
 	_highlighted = candidate
 	if candidate != null:
 		candidate.set_highlight(true)
+
+
+## Ranuras con sitio donde cabe este objetivo.
+func _free_slots(objective_id: String) -> Array[int]:
+	var kinds: Array = catalog.objectives[objective_id].get("slots", ["head", "arm", "leg"])
+	var result: Array[int] = []
+	for slot: int in ModularBody.Slot.values():
+		var kind: String = ["head", "arm", "leg"][ModularBody.kind_of(slot as ModularBody.Slot)]
+		if kinds.has(kind) and player.body.has_room(slot as ModularBody.Slot):
+			result.append(slot)
+	return result
+
+
+## Qué llevas y qué te queda en cada zona del cuerpo, para decidir sin cambiar de vista.
+func _inventory_rows() -> Array:
+	var rows: Array = []
+	for slot: int in ModularBody.Slot.values():
+		var piece: BodyPiece = player.body.equipped(slot as ModularBody.Slot)
+		var state: String = "ROTA"
+		if piece != null:
+			state = "básica" if piece.label.is_empty() else "nivel %d" % piece.level
+		rows.append({
+			"name": tr("SLOT_%d" % slot), "state": state,
+			"spares": player.body.spares(slot as ModularBody.Slot).size(),
+		})
+	return rows
 
 
 func _any_room() -> bool:
@@ -212,7 +256,7 @@ func _final_score() -> float:
 func _show_material_hint() -> void:
 	if not material_hinter.is_valid():
 		return
-	var ids: Array = catalog.materials[_target.material_id]["properties"]
+	var ids: Array = catalog.materials[_target.effective_material()]["properties"]
 	var remark: String = material_hinter.call(str(catalog.properties[ids[rng.randi_range(0, ids.size() - 1)]]["name"]))
 	if not remark.is_empty():
 		screen.add_remark(remark, -1)
@@ -234,7 +278,7 @@ func _next_question_or_result() -> void:
 		all_wrong.emit()
 	var kind: BodyPiece.Kind = ModularBody.kind_of(_slot)
 	var piece: BodyPiece = PieceForge.forge(
-		catalog, _target.material_id, _objective_id, kind, _final_score(), rng
+		catalog, _target.effective_material(), _objective_id, kind, _final_score(), rng, _target.fixed_property
 	)
 	player.body.receive(_slot, piece)
 	step = Step.RESULT

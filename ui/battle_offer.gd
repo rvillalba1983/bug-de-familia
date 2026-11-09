@@ -38,6 +38,10 @@ func close() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_open:
 		return
+	if event.is_action_pressed(&"close_panel") and not event.is_echo():
+		get_viewport().set_input_as_handled()
+		chosen.emit(OPTION_COUNT - 1)
+		return
 	for index: int in range(OPTION_COUNT):
 		if event.is_action_pressed(StringName("action_%d" % (index + 1))) and not event.is_echo():
 			get_viewport().set_input_as_handled()

@@ -14,6 +14,8 @@ var half_angle: float
 var low_cover_blocks: bool
 var facing_angle: float = 0.0
 var meter: float = 0.0
+## Bando de quien mira: los disfraces y algunas piezas dependen de él.
+var faction: String = ""
 
 var _fired: bool = false
 
@@ -39,7 +41,7 @@ func update(origin: Vector2, world: World2D, target: Player, delta: float) -> vo
 
 
 func can_see(origin: Vector2, world: World2D, target: Player) -> bool:
-	var reach: float = view_range * target.stealth_factor()
+	var reach: float = view_range * target.stealth_factor_for(faction)
 	if not low_cover_blocks and origin.distance_to(target.global_position) < target.jam_radius():
 		return false
 	if not in_cone(origin, facing_angle, half_angle, reach, target.global_position):

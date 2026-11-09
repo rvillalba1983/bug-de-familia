@@ -20,6 +20,7 @@ const COLOR_JUBILADO: Color = Color("#a0a8b8")
 const COLOR_MOHOCRATA: Color = Color("#8fbf60")
 const COLOR_RAMON: Color = Color("#e0a040")
 const CHAINS_IN_SUMMARY: int = 3
+const BURST_RADIUS: float = 170.0
 
 ## Las pruebas fijan aquí la hora para no depender del reloj real.
 static var forced_hour: int = -1
@@ -45,6 +46,7 @@ var _jubilados: Array[Guard] = []
 var _mohocratas: Array[Guard] = []
 var _depot: Array[Guard] = []
 var _rain_label: Label
+var _contestador_at: Vector2 = Vector2.ZERO
 
 
 func world_size() -> Vector2:
@@ -144,6 +146,11 @@ func _draw() -> void:
 	draw_texture_rect(PropArt.texture("mirador"), Rect2(goal - Vector2(110.0, 90.0), Vector2(220.0, 180.0)), false)
 
 
+func _physics_process(delta: float) -> void:
+	super(delta)
+	player.body.is_night = atmosphere.is_night()
+
+
 func _shows_help_labels() -> bool:
 	return false
 
@@ -188,6 +195,10 @@ func _build_enemies() -> void:
 	actors.add_child(security_camera)
 
 
+func _material_of(enemy: Guard) -> String:
+	return "bioceramica" if enemy.body_color == COLOR_MOHOCRATA else "nanoacero"
+
+
 func _add_guard(
 	id: String, route: Array[Vector2], color: Color, roster: Array, is_ranged: bool = false
 ) -> Guard:
@@ -201,6 +212,8 @@ func _add_guard(
 	if is_ranged:
 		enemy.make_ranged(self)
 	enemy.setup(route, ground)
+	if color != COLOR_RAMON:
+		enemy.detector.faction = "jubilado" if color == COLOR_JUBILADO else "mohocrata"
 	actors.add_child(enemy)
 	_enemy_ids[enemy] = id
 	roster.append(enemy)
@@ -279,11 +292,19 @@ func _add_mine(index: int) -> void:
 
 func _register_convertibles() -> void:
 	for enemy: Guard in guards():
-		_add_convertible(_enemy_ids[enemy], enemy, "nanoacero")
+		_add_convertible(_enemy_ids[enemy], enemy, _material_of(enemy))
 	_add_convertible("drone_1", drone, "aleacion_magnetica")
 	_add_convertible("camera_1", security_camera, "cristal_plasma")
 	_add_convertible(ID_CRATE, items[ID_CRATE], "madera_cuantica")
 	_add_convertible("crate_2", items["crate_2"], "madera_cuantica")
+	(entities[ID_RAMON] as Node).get_children().filter(func(n: Node) -> bool: return n is Convertible)[0].fixed_property = "p047"
+	for index: int in range(BetaLayout.ANTENNAS.size()):
+		var antenna: WorldProp = WorldProp.new()
+		antenna.setup("antena", BetaLayout.ANTENNAS[index], Vector2(70.0, 130.0))
+		actors.add_child(antenna)
+		_add_convertible("antena_%d" % index, antenna, "fibra_fotonica")
+	for id: String in mines:
+		_add_convertible(id, mines[id], "antimateria")
 
 
 func _build_investigation() -> void:
@@ -294,7 +315,9 @@ func _build_investigation() -> void:
 	investigation.level = self
 	investigation.case_path = CASE_PATH
 	add_child(investigation)
-	_add_convertible(ID_CONTESTADOR, investigation.npc_nodes[ID_CONTESTADOR], "aleacion_magnetica")
+	_add_convertible(ID_CONTESTADOR, investigation.npc_nodes[ID_CONTESTADOR], "gel_memoria")
+	_contestador_at = (entities[ID_CONTESTADOR] as Node2D).global_position
+	(entities[ID_CONTESTADOR] as Node).get_children().filter(func(n: Node) -> bool: return n is Convertible)[0].fixed_property = "p049"
 	challenges = BetaChallenges.new()
 	challenges.level = self
 	if forced_hour >= 0:
@@ -312,6 +335,9 @@ func _build_investigation() -> void:
 	atmosphere.player = player
 	atmosphere.hour_source = challenges.hour_source
 	add_child(atmosphere)
+	var ambient: BetaAmbient = BetaAmbient.new()
+	ambient.follow = player
+	actors.add_child(ambient)
 	live_world = LiveWorld.new()
 	live_world.level = self
 	add_child(live_world)
@@ -335,6 +361,7 @@ func _connect_systems() -> void:
 func _connect_body() -> void:
 	super()
 	protagonist.connect_body(player.body)
+	player.body.piece_burst.connect(_on_piece_burst)
 
 
 func _show_game_over() -> void:
@@ -419,9 +446,12 @@ func _on_enemy_fell(enemy: Guard) -> void:
 
 func _on_converted(entity_id: String) -> void:
 	super(entity_id)
+	mines.erase(entity_id)
 	live_world.on_citizen_gone(entity_id)
 	if entity_id == ID_RAMON:
 		challenges.on_ramon_fell()
+	if entity_id == ID_CONTESTADOR and _contestador_at != Vector2.ZERO:
+		challenges.leave_footprint(BetaChallenges.ID_CONTESTADOR_TRACE, _contestador_at, "BETA_TRACE_CONTESTADOR", "El Contestador")
 
 
 func _on_item_activated(item: Interactable) -> void:
@@ -445,6 +475,17 @@ func _on_item_activated(item: Interactable) -> void:
 func _on_mine_exploded(mine: PetanqueMine) -> void:
 	investigation.flags[mine.mine_id] = true
 	mines.erase(mine.mine_id)
+	entities.erase(mine.mine_id)
+
+
+## Metralla y explosiones de piezas al romperse.
+func _on_piece_burst(effects: Dictionary) -> void:
+	if effects.has("burst_noise"):
+		noise_bus.emit_noise(player.global_position, float(effects["burst_noise"]))
+	if effects.has("burst_stun"):
+		for enemy: Guard in guards():
+			if not enemy.is_down() and enemy.global_position.distance_to(player.global_position) <= BURST_RADIUS:
+				enemy.stun(float(effects["burst_stun"]))
 
 
 func _on_rain(is_raining: bool) -> void:
@@ -466,7 +507,7 @@ func add_citizen(id: String, species: String, at: Vector2, home: Rect2) -> Guard
 	route[1] = route[1].clamp(home.position, home.end)
 	var enemy: Guard = _add_guard(id, route, color, roster)
 	enemy.set_passive(true)
-	_add_convertible(id, enemy, "nanoacero")
+	_add_convertible(id, enemy, _material_of(enemy))
 	fight.track(enemy)
 	enemy.fell.connect(_on_enemy_fell)
 	enemy.corpse_expired.connect(_on_corpse_expired)
@@ -490,7 +531,7 @@ func _apply_save(data: Dictionary) -> bool:
 		live_world.start(data.get("world", {}))
 	if result:
 		for id: String in mines.keys():
-			if investigation.has_flag(id):
+			if investigation.has_flag(id) or converted_ids.has(id):
 				(mines[id] as PetanqueMine).queue_free()
 				mines.erase(id)
 	return result

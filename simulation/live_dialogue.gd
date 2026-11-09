@@ -22,6 +22,10 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if npc == null:
 		return
+	if event.is_action_pressed(&"close_panel") and not event.is_echo():
+		close()
+		get_viewport().set_input_as_handled()
+		return
 	for index: int in range(_options.size()):
 		if event.is_action_pressed(StringName("action_%d" % (index + 1))):
 			(_options[index][1] as Callable).call()

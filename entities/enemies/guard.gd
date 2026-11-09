@@ -47,6 +47,7 @@ const ART_HEIGHT: float = 96.0
 const VIEW_SOUTH: int = 0
 const VIEW_EAST: int = 1
 const VIEW_NORTH: int = 2
+const VIEW_SUFFIX: Array[String] = ["", "_e", "_n"]
 ## Altura de los pies dentro del dibujo, medida desde arriba.
 const ART_FEET: float = 0.93
 
@@ -76,9 +77,12 @@ var body_color: Color = Color.TRANSPARENT
 ## Vistas sur, este y norte, en ese orden. El oeste refleja al este.
 ## Si está vacío se dibuja el círculo de color.
 var art_views: Array[Texture2D] = []
-## Carpeta de piezas con huesos; vacía si este personaje aún no las tiene. Solo vista sur.
+## Carpeta base de piezas con huesos; vacía si este personaje no las tiene.
 var rig_folder: String = ""
+## Esqueleto de la vista actual. Hay uno por vista y se crean al necesitarlos.
 var rig: EnemyRig
+var _rigs: Array[EnemyRig] = [null, null, null]
+var _rig_view: int = VIEW_SOUTH
 
 var _was_alert: bool = false
 var _aim_point: Vector2 = Vector2.ZERO
@@ -162,13 +166,11 @@ func _draw_down() -> void:
 
 
 func _draw_art() -> void:
-	var direction: Vector2 = Vector2.from_angle(detector.facing_angle)
-	var view: int = VIEW_EAST
-	if absf(direction.y) > absf(direction.x):
-		view = VIEW_SOUTH if direction.y > 0.0 else VIEW_NORTH
-	if rig != null and rig.visible:
+	if rig != null:
 		draw_circle(Vector2(0.0, 2.0), 20.0, COLOR_ART_SHADOW)
 		return
+	var direction: Vector2 = Vector2.from_angle(detector.facing_angle)
+	var view: int = _view_for(direction)
 	var art: Texture2D = art_views[view]
 	var size: Vector2 = Vector2(ART_HEIGHT * art.get_size().aspect(), ART_HEIGHT)
 	if view == VIEW_EAST and direction.x < 0.0:
@@ -187,17 +189,21 @@ func _draw_placeholder() -> void:
 	draw_circle(Vector2(0.0, -BODY_HEIGHT * 0.5), BODY_HEIGHT * 0.42, color)
 
 
-## Elige animación según el estado. La vista sur usa huesos; las demás, la imagen entera.
+static func _view_for(direction: Vector2) -> int:
+	if absf(direction.y) > absf(direction.x):
+		return VIEW_SOUTH if direction.y > 0.0 else VIEW_NORTH
+	return VIEW_EAST
+
+
+## Elige vista y animación según el estado. Caído, conserva la vista en la que cayó.
 func _update_rig() -> void:
-	if rig_folder != "" and rig == null:
-		rig = EnemyRig.new()
-		add_child(rig)
-		rig.build(rig_folder, ART_HEIGHT, ART_FEET)
-	if rig == null:
+	if rig_folder == "":
 		return
 	var facing: Vector2 = Vector2.from_angle(detector.facing_angle)
-	var south: bool = absf(facing.y) > absf(facing.x) and facing.y > 0.0
-	rig.visible = south or state == State.DOWN
+	if state != State.DOWN or rig == null:
+		_show_view(_view_for(facing))
+	if _rig_view == VIEW_EAST:
+		rig.scale.x = absf(rig.scale.x) * (-1.0 if facing.x < 0.0 and state != State.DOWN else 1.0)
 	rig.modulate = COLOR_FALLEN if state == State.DOWN else (COLOR_ALERT.lightened(0.5) if state == State.ALERT else Color.WHITE)
 	if state == State.DOWN:
 		rig.show_animation(EnemyRig.FALL)
@@ -206,6 +212,23 @@ func _update_rig() -> void:
 	elif state != State.ALERT or not rig.player.is_playing():
 		rig.show_animation(EnemyRig.WALK if velocity.length() > 1.0 else EnemyRig.IDLE)
 	_was_alert = state == State.ALERT
+
+
+func _show_view(view: int) -> void:
+	if rig != null and view == _rig_view:
+		return
+	var previous: EnemyRig = rig
+	if _rigs[view] == null:
+		_rigs[view] = EnemyRig.new()
+		add_child(_rigs[view])
+		_rigs[view].build(rig_folder + VIEW_SUFFIX[view], ART_HEIGHT, ART_FEET)
+	rig = _rigs[view]
+	_rig_view = view
+	rig.visible = true
+	if previous != null:
+		rig.continue_from(previous)
+		previous.visible = false
+		previous.player.pause()
 
 
 ## Convierte a este guardia en tirador. Llamar antes de setup.

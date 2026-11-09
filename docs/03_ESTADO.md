@@ -10,7 +10,6 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | 9. Contenido y pulido | Sin empezar |
 
 ## Pendiente de respuesta del usuario (no bloquea)
-- Tono de las 16 preguntas de conversión.
 - Textos provisionales del caso y de las IAs.
 
 ## Tras la fase 6
@@ -21,7 +20,11 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 - Valores provisionales de la beta: `docs/adr/0006-zona-beta.md`.
 - Las rutas de sigilo con enemigos activos no tienen prueba automática: las ha probado el usuario en partida.
 - Sin hacer: viaje entre puntos de guardado, consecuencias al salir de la zona, la pieza que suelda Don Ramón y huella visible al morir un aliado único. Lo decidido está en `02_DECISIONES.md`.
-- El siguiente pendiente más útil es P-09 (preguntas, motes y comentarios).
+
+## Tras P-09 (lotes 1 y 2)
+- 76 preguntas de conversión, motes y comentarios del protagonista integrados. Valores provisionales: `docs/adr/0007-motes-y-comentarios.md`.
+- Los comentarios solo salen en la zona beta y nadie los ha probado aún en partida.
+- Esperan a su sistema: comentarios de Cupido_Beta enamorada y del viaje rápido, motes de las 14 IAs no jugables y las 12 preguntas reservadas de las otras cuatro razas (`docs/borradores/P-09_lote_2.md`).
 
 ## Preparar el entorno en una conversación nueva
 1. Clonar `rvillalba1983/bug-de-familia`. Si la copia es superficial, usar `git fetch origin main` y `FETCH_HEAD`.

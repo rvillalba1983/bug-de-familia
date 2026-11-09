@@ -1,6 +1,6 @@
 # P-02: propuesta de compatibilidades del catálogo
 
-Estado: **propuesta de Claude, pendiente de revisión del director**. No está implementada. Hoy el juego usa 4 de los 9 grupos de materiales y 7 de los 14 objetivos.
+Estado: **implementada en `cierre-beta`, todo provisional, pendiente de revisión jugando**. Los efectos concretos están en `data/conversion/catalog.json` y `adr/0014-cierre-beta.md`.
 
 ## Qué material da cada cosa del mundo
 Cada objeto abre solo el grupo de propiedades de su material.

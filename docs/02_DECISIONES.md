@@ -143,6 +143,13 @@ Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barr
 - En la pausa táctica el mundo se oscurece y se cubre de niebla, y todas las IAs aparecen como bocas exageradas en butacas enormes, divagando. No gasta tokens.
 - La vista de cambio de piezas va centrada, con el personaje casi a pantalla completa y las piezas dibujadas enteras. Cada pieza muestra su nivel (1 a 5, color del marco) y si es especial (estrella). Los valores concretos de sus estadísticas siguen sin mostrarse.
 
+## Cierre de la beta (9-nov)
+- Población: 18 por especie al empezar, objetivo 20 y máximo 26. Provisional.
+- Controles: ver `controles.md`. Esc sale de cualquier panel; C, F1 y M solo abren.
+- El chat de las IAs enseña solo sus últimos 4 mensajes, sin scroll ni historial.
+- Al convertir se ve qué llevas y cuántos repuestos quedan en cada zona.
+- Las consecuencias al salir de la zona siguen en la etapa post-beta: no hay por dónde salir.
+
 ## Autonomía de Claude
 - Una fase por conversación: termina al fusionar en `main`, se anota el avance en `03_ESTADO.md` y se avisa al usuario de que hay que cambiar de conversación (8-nov).
 **Decide solo y documenta:** módulos, algoritmos, datos, herramientas locales, orden técnico de tareas, parámetros provisionales, refactorizaciones, optimizaciones medidas y decisiones artísticas menores.

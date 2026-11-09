@@ -2,32 +2,30 @@
 
 Basados en los de World of Warcraft, adaptados a una cámara de ángulo fijo. Aprobados el 8-nov.
 
-| Acción | Control | Estado |
-|---|---|---|
-| Moverse en 8 direcciones de pantalla | WASD o flechas | Hecho |
-| Ir a un punto | Clic derecho en el suelo | Hecho |
-| Seleccionar objetivo | Clic izquierdo | Hecho |
-| Cambiar de objetivo | Tab | Hecho |
-| Correr, con ruido | Mantener Mayús | Hecho |
-| Alternar andar y correr | `/` del teclado numérico | Hecho |
-| Avance automático | Bloq Num | Hecho |
-| Pausa táctica | Espacio | Hecho |
-| Zoom | Rueda del ratón | Hecho |
-| Agacharse | X | Hecho |
-| Atacar cuerpo a cuerpo | Clic derecho sobre el enemigo | Hecho |
-| Lanzar chatarra | F, hacia el ratón | Hecho |
-| Disparar un arma a distancia | Su tecla (1-6), apuntando con el ratón | Hecho |
-| Interactuar, examinar y conversar | E | Hecho |
-| Elegir respuesta al conversar | Teclas 1 a 6 o clic | Hecho |
-| Convertir lo más cercano (marcado en morado) | Q | Hecho |
-| Recoger repuestos | Pasar por encima | Hecho |
-| Acciones de las piezas y respuestas | Teclas 1 a 6 | Hecho |
-| Piezas del cuerpo | C | Hecho |
-| Ver todos los controles | F1 (la misma tecla cierra) | Hecho |
-| Inventario | B | Fase 3 |
-| Vista de estrategia durante una batalla (1, 2 y 3: x1, x2 y x4) | M (la misma tecla cierra) | Hecho |
-| Mapa | M | Fases posteriores |
-| Menú | Esc | Fases posteriores |
+| Acción | Control |
+|---|---|
+| Moverse en 8 direcciones | WASD |
+| Ir a un punto; usar o hablar; atacar | Clic derecho, según lo que haya debajo |
+| Atacar a alguien tranquilo | Seleccionarlo con clic izquierdo y clic derecho |
+| Seleccionar objetivo | Clic izquierdo |
+| Cambiar de objetivo | Tab |
+| Correr, con ruido | Mantener Mayús |
+| Alternar andar y correr | Bloq Mayús |
+| Avance automático | Bloq Num |
+| Pausa táctica | Espacio |
+| Zoom | Rueda del ratón |
+| Agacharse | X |
+| Lanzar chatarra | F, hacia el ratón |
+| Acciones de piezas y respuestas | 1 a 6 |
+| Interactuar, examinar y conversar | E |
+| Convertir lo marcado en morado | Q |
+| Recoger repuestos | Pasar por encima |
+| Abrir piezas | C |
+| Abrir la ayuda con teclado y ratón dibujados | F1 |
+| Vista de estrategia durante una batalla | M |
+| **Salir de cualquier panel** (también empieza la pelea tras la pausa previa) | Esc |
+
+Regla del director (9-nov): cada tecla hace una sola acción y cada acción se hace con una sola tecla. Excepciones aprobadas: 1-6 para acciones y respuestas, y E convive con el clic derecho.
 
 ## Diferencias con WoW
 - La cámara no orbita, así que arrastrar con el ratón no la gira y A/D desplazan en lugar de girar.

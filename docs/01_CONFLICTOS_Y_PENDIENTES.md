@@ -17,6 +17,7 @@ Los 13 conflictos entre documentos quedaron resueltos el 8 de noviembre: ver `02
 | P-28 | **Pedido por el director para después de la beta (9-nov).** Efectos de texto en el chat de las IAs con `RichTextEffect`: cada IA escribe según su personalidad (la tartamuda con letras que tiemblan y se repiten, la enamorada con letras que laten, la enfadada con texto que vibra, la que se queda sin tokens con caracteres corruptos) | Interfaz y humor | Post-beta |
 | P-29 | **Pedido por el director para después de la beta (9-nov).** Sonido con posición (`AudioStreamPlayer2D`) y efectos de audio. Oír de dónde viene un guardia y si está tras una pared, como información de sigilo; timbre propio de cada IA (radio rota, eco, distorsión) sin generar más voces. Requiere añadir sonidos a los personajes, como los pasos | Audio y sigilo | Post-beta |
 | P-30 | **Pedido por el director para después de la beta (9-nov).** Repartir el cálculo del mundo vivo entre núcleos con `WorkerThreadPool`, para evitar tirones con los tres niveles de simulación del mundo completo. Hacerlo solo cuando haga falta: complica el código y puede meter fallos difíciles de reproducir | Rendimiento y mundo | Post-beta |
+| P-31 | **Pedido por el director para después de la beta (9-nov).** La vista de estrategia debe enseñar la ciudad con sus edificios; hoy solo se ve suelo | Interfaz y arte | Post-beta |
 
 ## Resueltos en la revisión de código
 P-24: ver `adr/0016-revision-codigo.md`.

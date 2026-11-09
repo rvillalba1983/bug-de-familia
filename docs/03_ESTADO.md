@@ -13,7 +13,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | Arreglos tras probar la beta | Fusionada en `main` el 9-nov con aprobación del director. 266 pruebas pasan. Ver `adr/0015-arreglos-beta.md` |
 | Revisión de código, pruebas y rendimiento (P-24) | Fusionada en `main` el 9-nov con aprobación del director. 293 pruebas pasan. Ver `adr/0016-revision-codigo.md` |
 | Optimización en gráfica integrada | Fusionada en `main` el 9-nov con aprobación del director. 308 pruebas pasan. Ver `adr/0017-optimizacion-integrada.md` |
-| Pruebas finales de la beta y dudas | Siguiente fase: pruebas, resolver dudas de la post-beta y próximos pasos |
+| Pruebas finales de la beta y dudas | Fusionada en `main` el 9-nov con aprobación del director. 311 pruebas pasan. Las pruebas del director en Windows siguen pendientes: hará lista de lo raro durante la semana |
 | Post-beta. Mundo completo | Tras la fase de pruebas finales: otras cuatro razas, 13 progenitores, zonas nuevas, tres niveles de simulación y viaje entre puntos de guardado |
 
 ## Pendiente de respuesta del usuario (no bloquea)
@@ -72,6 +72,14 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 - Sin probar en Windows por Claude. Sin confirmar por el director: provocar peleas, autocolocación de piezas y plugins de estilo IRCap en el chat.
 - El director vio personajes desaparecer al hablar mal de la otra raza; no se ha reproducido. Queda por vigilar.
 - Provisionales: retroceso de 80 unidades, tres frases para provocar batalla, y tamaño de personajes al 50 %.
+
+## Tras las pruebas finales de la beta
+- Grupos engañados (respuestas «chatarra al norte» y «sombreros en el sur»): antes se esfumaban; ahora se van andando y desaparecen al llegar. Salida y velocidad provisionales.
+- Investigado: tras un rumor, casi toda una raza puede irse andando a contárselo a la otra. Es P-14 exagerado: el director decide si se limita.
+- De noche, los Jubilados apagados no se defienden en una batalla (8 caídos sin devolver un golpe en la prueba): decisión pendiente.
+- Ejecutado aquí con capturas: provocar por malmeter, autocolocación, aviso al recoger, retroceso y chat. Sin confirmar por el director, igual que OpenGL directo y el `.exe` en Windows. Sin probar en partida: batalla por recado insultante.
+- Herramientas: `tools/seguir_personajes.gd`, `tools/probar_pendientes.gd` y `tools/probar_desvio.gd`.
+- Preguntas abiertas de la post-beta: P-23, P-25 a P-31, mapa, orden de razas, guardar batallas, rendimiento objetivo y textos provisionales.
 
 ## Preparar el entorno en una conversación nueva
 1. Clonar `rvillalba1983/bug-de-familia`. Si la copia es superficial, usar `git fetch origin main` y `FETCH_HEAD`.

@@ -103,6 +103,8 @@ const MINES: Array[Vector2] = [
 	Vector2(2900.0, 1320.0), Vector2(3150.0, 1260.0), Vector2(3150.0, 1380.0),
 ]
 
+## Los primeros de SHELTERS son toldos al aire libre; el resto, interiores.
+const OUTDOOR_SHELTERS: int = 4
 const SHELTERS: Array[Rect2] = [
 	Rect2(620.0, 1000.0, 160.0, 120.0), Rect2(620.0, 1600.0, 160.0, 120.0),
 	Rect2(1600.0, 820.0, 180.0, 100.0), Rect2(1600.0, 1560.0, 180.0, 100.0),

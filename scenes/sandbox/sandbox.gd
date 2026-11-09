@@ -431,15 +431,17 @@ func _build_interface() -> void:
 	_notice_label = _add_label(layer, "UI_SAVED", Vector2(420.0, 110.0), 26)
 	_notice_label.visible = false
 	_notice_label.process_mode = Node.PROCESS_MODE_ALWAYS
-	_add_label(layer, "UI_SANDBOX_HELP", Vector2(24.0, 1040.0), 20)
-	_add_label(layer, _objective_key(), Vector2(24.0, 16.0), 22)
+	if _shows_help_labels():
+		_add_label(layer, "UI_SANDBOX_HELP", Vector2(24.0, 1040.0), 20)
+		_add_label(layer, _objective_key(), Vector2(24.0, 16.0), 22)
 	var hud: BodyHud = BodyHud.new()
 	hud.body = player.body
 	layer.add_child(hud)
 	action_bar = ActionBar.new()
 	layer.add_child(action_bar)
 	action_bar.body = player.body
-	_add_label(layer, "UI_SANDBOX_HELP2", Vector2(1560.0, 1040.0), 20)
+	if _shows_help_labels():
+		_add_label(layer, "UI_SANDBOX_HELP2", Vector2(1560.0, 1040.0), 20)
 	var conversion_hint: Label = _add_label(layer, "UI_CONVERT_NONE", Vector2(620.0, 70.0), 24)
 	conversion_hint.visible = false
 	var screen: ConversionScreen = ConversionScreen.new()
@@ -491,6 +493,10 @@ func _connect_enemies() -> void:
 		security_camera.alarm_raised.connect(enemy.investigate)
 		enemy.fell.connect(_on_enemy_fell)
 		enemy.corpse_expired.connect(_on_corpse_expired)
+
+
+func _shows_help_labels() -> bool:
+	return true
 
 
 func _objective_key() -> String:

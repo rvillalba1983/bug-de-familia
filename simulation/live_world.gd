@@ -4,7 +4,6 @@ extends Node
 
 const DIRECT_INTERVAL: float = 1.0
 const HEAR_RANGE: float = 620.0
-const LABEL_RANGE: float = 170.0
 const BUBBLE_TIME: float = 3.2
 const WANDER_CHANCE: float = 0.08
 const SEE_RANGE: float = 700.0
@@ -142,7 +141,6 @@ func _show_citizen(npc: NpcState) -> void:
 	item.setup(npc.id, Interactable.Kind.NPC, Vector2.ZERO)
 	item.custom_label = npc.name
 	item.body_hidden = true
-	item.show_label = false
 	item.reusable = true
 	item.activated.connect(level._on_item_activated)
 	guard.add_child(item)
@@ -163,28 +161,18 @@ func _forget_citizen(id: String) -> void:
 
 func _direct_all() -> void:
 	_sync_positions()
-	var feet: Vector2 = level.player.global_position
 	var festival: bool = _festival_running()
 	for id: String in citizens:
 		if not is_instance_valid(citizens[id]) or not (sim.npcs[id] as NpcState).alive:
 			continue
 		var npc: NpcState = sim.npcs[id]
 		var guard: Guard = citizens[id]
-		_update_label(id, npc.pos.distance_to(feet))
 		if guard.state in [Guard.State.PATROL, Guard.State.WAIT, Guard.State.LOOK_AROUND]:
 			_direct(npc, guard, Motivation.choose(sim, npc, festival))
 
 
 func _festival_running() -> bool:
 	return sim.festivals.is_running() and not sim.festivals.ruined
-
-
-func _update_label(id: String, distance: float) -> void:
-	var item: Interactable = _talk_items[id]
-	var near: bool = distance <= LABEL_RANGE
-	if item.show_label != near:
-		item.show_label = near
-		item.queue_redraw()
 
 
 func _direct(npc: NpcState, guard: Guard, activity: String) -> void:

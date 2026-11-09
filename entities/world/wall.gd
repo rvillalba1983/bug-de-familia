@@ -68,9 +68,6 @@ func _draw() -> void:
 		_draw_blocks(rng)
 	else:
 		_draw_block(Rect2(0.0, 0.0, footprint.size.x, 0.0), 0.0, _kind_colors(), rng)
-	if not label_key.is_empty():
-		var label_y: float = -front_height - footprint.size.y - MAX_EXTRA_HEIGHT - 6.0
-		WorldLabel.draw_on(self, tr(label_key), Vector2(footprint.size.x * 0.5, label_y))
 
 
 ## Trocea una muralla larga en edificios distintos, cada uno con su altura y color.

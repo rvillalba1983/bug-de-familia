@@ -16,8 +16,6 @@ const ART_RAMON: String = "don_ramon"
 const ART_FACADE_CENTRAL: String = "res://art/beta/fachada_centralita.svg"
 const ART_FACADE_DEPOT: String = "res://art/beta/fachada_deposito.svg"
 const ART_REEL: String = "res://art/beta/bobina.svg"
-const COLOR_SHELTER: Color = Color(0.2, 0.5, 0.8, 0.22)
-const COLOR_GOAL_MARK: Color = Color(0.3, 1.0, 0.5, 0.25)
 const COLOR_JUBILADO: Color = Color("#a0a8b8")
 const COLOR_MOHOCRATA: Color = Color("#8fbf60")
 const COLOR_RAMON: Color = Color("#e0a040")
@@ -137,15 +135,14 @@ func _ready() -> void:
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, world_size()), COLOR_BACKGROUND)
 	BetaGround.paint(self)
-	draw_rect(BetaLayout.CROSSING_GOAL, COLOR_GOAL_MARK)
-	for shelter: Rect2 in BetaLayout.SHELTERS:
-		draw_rect(shelter, COLOR_SHELTER)
-	WorldLabel.draw_on(self, tr("BETA_PLACE_LOOKOUT"), BetaLayout.CROSSING_GOAL.get_center())
-	WorldLabel.draw_on(self, tr("BETA_PLACE_NORTH"), Vector2(1250.0, 590.0))
-	WorldLabel.draw_on(self, tr("BETA_PLACE_SOUTH"), Vector2(1700.0, 1540.0))
-	WorldLabel.draw_on(self, tr("BETA_PLACE_STRIP"), Vector2(1250.0, 1250.0))
-	WorldLabel.draw_on(self, tr("BETA_PLACE_CENTRAL"), Vector2(2550.0, 700.0))
-	WorldLabel.draw_on(self, tr("BETA_PLACE_DEPOT"), Vector2(2500.0, 1720.0))
+	for index: int in range(BetaLayout.OUTDOOR_SHELTERS):
+		draw_texture_rect(PropArt.texture("toldo"), BetaLayout.SHELTERS[index], false)
+	var goal: Vector2 = BetaLayout.CROSSING_GOAL.get_center()
+	draw_texture_rect(PropArt.texture("mirador"), Rect2(goal - Vector2(110.0, 90.0), Vector2(220.0, 180.0)), false)
+
+
+func _shows_help_labels() -> bool:
+	return false
 
 
 func _objective_key() -> String:
@@ -352,6 +349,17 @@ func _build_interface() -> void:
 	add_child(layer)
 	_rain_label = _add_label(layer, "BETA_RAIN", Vector2(760.0, 150.0), 26)
 	_rain_label.visible = false
+	var irc: IrcChat = IrcChat.new()
+	irc.team = ai.team
+	ramon_item().body_hidden = true
+	layer.add_child(irc)
+	irc.set_topic(tr(_objective_key()))
+	irc.add_system(tr("UI_SANDBOX_HELP"))
+	irc.add_system(tr("UI_SANDBOX_HELP2"))
+	ai.chat = irc
+	var hint: KeyHint = KeyHint.new()
+	hint.player = player
+	actors.add_child(hint)
 
 
 func _id_of(enemy: Guard) -> String:

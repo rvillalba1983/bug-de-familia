@@ -5,14 +5,13 @@ extends Node2D
 signal entered
 
 const RADIUS: float = 50.0
-const COLOR_RING: Color = Color("#6fd0ff")
+const ART: Array = ["guardado", 110.0, 65.0]
 
 var _inside: bool = true
 
 
 func _draw() -> void:
-	draw_arc(Vector2.ZERO, RADIUS, 0.0, TAU, 32, COLOR_RING, 2.0)
-	WorldLabel.draw_on(self, tr("ITEM_SAVE_POINT"), Vector2(0.0, RADIUS + 20.0))
+	PropArt.draw_entry(self, ART)
 
 
 func track(character_position: Vector2) -> void:

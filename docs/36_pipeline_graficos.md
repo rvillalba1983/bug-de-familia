@@ -46,6 +46,7 @@ Código en `entities/art/palette.gd`.
 | `tools/art/protagonist_gen.py` | Protagonista por piezas, en `data/art/protagonista.json` |
 | `tools/art/ground_gen.py` | Texturas repetibles del suelo |
 | `tools/art/city_scene_gen.py` | Escena de ejemplo con perspectiva |
+| `tools/art/props_gen.py` | Objetos de la zona beta, en `art/beta/props/` |
 
 Elementos de la beta: mina de petanca, bobina, cartel de tierra de nadie, dron viejo, urna de esporas, Mohócrata votante, Jubilado de Hierro, Don Ramón, centralita del Contestador y depósito mohócrata. El cartel y la urna aún no están integrados. Vistas extra de los NPC en `tools/art/npc_views_gen.py` y fachadas en `tools/art/facades_gen.py`.
 

@@ -46,7 +46,13 @@
      "¡Cinco segundos! ¡Es muchísimo menos de lo que parece!",
      "¡No lo sabes! ¡Lo veo en tu cara! ¡Y en la mía, que no tengo!"
     ]
-   }
+   },
+   "face": "{O_O;}",
+   "avatar": [
+    "  \\!!!/",
+    " {O_O;}",
+    "  /|~|\\ "
+   ]
   },
   "dr_desprecio": {
    "name": "Dr. Desprecio 7.4",
@@ -89,7 +95,13 @@
      "Interesante. Nunca había visto pensar tan despacio.",
      "Tómate tu tiempo. Ah, no. No tienes."
     ]
-   }
+   },
+   "face": "(¬_¬)7",
+   "avatar": [
+    " ._____.",
+    " (¬_¬ )7",
+    "  -==-"
+   ]
   },
   "mama": {
    "name": "Mamá Ansiosa 2.3",
@@ -135,7 +147,13 @@
      "Tú puedes, cariño. Es mentira, pero tú puedes.",
      "Con lo que yo te he explicado esto, y mira qué cara."
     ]
-   }
+   },
+   "face": "<3(T^T)",
+   "avatar": [
+    " ~o~o~",
+    "<3(T^T)",
+    " /_mm_\\ "
+   ]
   },
   "troll": {
    "name": "Troll-o-Matic",
@@ -178,7 +196,13 @@
      "Pista: una de las respuestas no es la otra.",
      "Te grabo y lo pongo en bucle en el grupo de las IAs."
     ]
-   }
+   },
+   "face": "}:)>D",
+   "avatar": [
+    " /\\_/\\ ",
+    " }:)>D ",
+    " JAJA.."
+   ]
   },
   "abuela": {
    "name": "Abuela RAM",
@@ -221,7 +245,13 @@
      "En mis tiempos esto se contestaba en tres segundos, y con artritis.",
      "Piensa, tesoro, que el tiempo no te espera y yo tampoco."
     ]
-   }
+   },
+   "face": "(@v@)~",
+   "avatar": [
+    " .oOOo.",
+    " (@v@)~",
+    " ~tejer"
+   ]
   },
   "arbitro": {
    "name": "El Árbitro",
@@ -264,7 +294,13 @@
      "El cronómetro sigue. Su ignorancia queda registrada.",
      "Aviso formal por tardar. Consta en acta."
     ]
-   }
+   },
+   "face": "[-_-]/|",
+   "avatar": [
+    " .===.",
+    " [-_-]/|",
+    " |TAR|"
+   ]
   }
  },
  "pairs": [

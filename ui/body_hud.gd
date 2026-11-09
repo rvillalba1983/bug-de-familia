@@ -3,9 +3,9 @@ extends Control
 ## El cuerpo es la interfaz: la silueta del protagonista muestra el desgaste de cada pieza.
 ## Valores provisionales, a ajustar al probar.
 
-const FEET: Vector2 = Vector2(1812.0, 1018.0)
+const FEET: Vector2 = Vector2(124.0, 696.0)
 const ART_SIZE: float = 0.17
-const PLATE: Rect2 = Rect2(1702.0, 808.0, 220.0, 226.0)
+const PLATE: Rect2 = Rect2(14.0, 486.0, 220.0, 226.0)
 const PLATE_COLOR: Color = Color(0.106, 0.055, 0.165, 0.62)
 const HIT_DROP: float = 0.02
 const HIT_TIME: float = 0.3

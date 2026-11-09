@@ -24,7 +24,7 @@ func _ready() -> void:
 func _draw() -> void:
 	if highlighted:
 		draw_arc(Vector2(0.0, -20.0), RADIUS, 0.0, TAU, 32, COLOR_HIGHLIGHT, 3.0)
-		WorldLabel.draw_on(self, tr("UI_CONVERT_PROMPT"), Vector2(0.0, RADIUS))
+		KeyHint.draw_key(self, Vector2(RADIUS + 10.0, -20.0), "Q")
 
 
 func set_highlight(active: bool) -> void:

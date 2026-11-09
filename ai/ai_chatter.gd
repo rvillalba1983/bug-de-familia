@@ -27,6 +27,8 @@ var team: AiTeam = AiTeam.new()
 var nicknames: Nicknames = Nicknames.new()
 var bubble: SpeechBubble
 var voice: BlablaVoice
+## Canal IRC donde hablan las IAs; sin él, usan el bocadillo.
+var chat: IrcChat
 
 var _queue: Array = []
 var _idle_time: float = 0.0
@@ -34,6 +36,7 @@ var _argument_time: float = ARGUMENT_INTERVAL
 var _alarm_time: float = FALSE_ALARM_INTERVAL
 var _danger_cooldown: float = 0.0
 var _low_warned: bool = false
+var _line_time: float = 0.0
 
 
 func _ready() -> void:
@@ -238,7 +241,8 @@ func _start_argument() -> void:
 
 
 func _play_next() -> void:
-	if bubble.is_busy():
+	_line_time -= get_physics_process_delta_time()
+	if bubble.is_busy() or _line_time > 0.0:
 		return
 	if _queue.is_empty():
 		level.player.tail_speaking = false
@@ -253,7 +257,11 @@ func _play_next() -> void:
 	var info: Dictionary = team.ais[id]
 	var color: Color = Color(info["color"] as String)
 	var duration: float = 1.6 + float((entry["text"] as String).length()) * 0.045
-	bubble.say("%s: %s" % [info["name"], entry["text"]], color, duration)
+	if chat != null:
+		chat.add_message(id, entry["text"])
+		_line_time = duration
+	else:
+		bubble.say("%s: %s" % [info["name"], entry["text"]], color, duration)
 	voice.speak(float(info["pitch"]))
 	level.player.tail_color = color
 	level.player.tail_speaking = true

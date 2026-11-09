@@ -33,4 +33,3 @@ func _draw() -> void:
 		draw_colored_polygon(
 			PackedVector2Array([Vector2(x - 13.0, y), Vector2(x + 13.0, y), Vector2(x, y + 30.0)]), color
 		)
-	WorldLabel.draw_on(self, title, Vector2(0.0, -POLE_HEIGHT - 16.0))

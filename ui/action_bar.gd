@@ -10,7 +10,7 @@ var body: ModularBody:
 
 
 func _ready() -> void:
-	position = Vector2(24.0, 1000.0)
+	position = Vector2(700.0, 1000.0)
 	add_theme_font_size_override(&"font_size", 20)
 
 

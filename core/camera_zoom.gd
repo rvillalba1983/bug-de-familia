@@ -2,8 +2,9 @@ class_name CameraZoom
 extends Camera2D
 ## Cámara de ángulo fijo con zoom por rueda. Funciona también en pausa.
 
-const MIN_ZOOM: float = 1.0
-const MAX_ZOOM: float = 2.5
+const MIN_ZOOM: float = 1.5
+const START_ZOOM: float = 1.75
+const MAX_ZOOM: float = 2.6
 const ZOOM_STEP: float = 0.1
 const SHAKE_DECAY: float = 60.0
 
@@ -12,6 +13,7 @@ var _shake: float = 0.0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	zoom = Vector2(START_ZOOM, START_ZOOM)
 
 
 func _process(delta: float) -> void:

@@ -33,10 +33,6 @@ func _draw() -> void:
 	draw_texture_rect(texture, art_rect, false)
 	if door_wall != null and door_wall.is_open:
 		draw_rect(door_hole, Palette.INK)
-	for wall: Wall in labeled_walls:
-		if not wall.is_open:
-			var spot: Vector2 = wall.footprint.get_center() - global_position
-			WorldLabel.draw_on(self, tr(wall.label_key), spot + Vector2.UP * 60.0)
 
 
 static func distance_to_rect(point: Vector2, area: Rect2) -> float:

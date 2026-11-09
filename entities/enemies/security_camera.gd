@@ -4,6 +4,8 @@ extends Node2D
 
 signal alarm_raised(position: Vector2)
 
+const ART: Array = ["camara", 60.0, 55.0]
+
 ## Valores provisionales, a ajustar al probar.
 const VIEW_RANGE: float = 380.0
 const VIEW_HALF_ANGLE: float = 18.0
@@ -53,4 +55,4 @@ func _physics_process(delta: float) -> void:
 
 
 func _draw() -> void:
-	draw_rect(Rect2(-12.0, -60.0, 24.0, 24.0), COLOR_BODY)
+	PropArt.draw_entry(self, ART)

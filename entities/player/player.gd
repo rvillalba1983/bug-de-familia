@@ -217,6 +217,12 @@ func _collect_pickups() -> void:
 
 
 func _interact_nearest() -> void:
+	var best: Interactable = nearest_interactable()
+	if best != null:
+		best.activate()
+
+
+func nearest_interactable() -> Interactable:
 	var best: Interactable = null
 	var best_distance: float = Interactable.RANGE
 	for node: Node in get_tree().get_nodes_in_group(Interactable.GROUP):
@@ -225,8 +231,7 @@ func _interact_nearest() -> void:
 		if not item.used and not item.is_pickup() and distance <= best_distance:
 			best = item
 			best_distance = distance
-	if best != null:
-		best.activate()
+	return best
 
 
 func _resolve_direction() -> Vector2:

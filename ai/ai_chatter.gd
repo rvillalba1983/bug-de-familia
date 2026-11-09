@@ -341,7 +341,7 @@ func _play_next() -> void:
 		_line_time = duration
 	else:
 		bubble.say("%s: %s" % [info["name"], entry["text"]], color, duration)
-	voice.speak(float(info["pitch"]))
+	voice.speak(float(info["pitch"]), id)
 	level.player.tail_color = color
 	level.player.tail_speaking = true
 	team.spend(id, level.rng)

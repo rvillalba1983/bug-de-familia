@@ -48,6 +48,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _build() -> void:
 	var data: Dictionary = _director.data
 	_root = Control.new()
+	_root.theme = UiStyle.make_theme()
 	_root.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(_root)
 	var dim: ColorRect = ColorRect.new()

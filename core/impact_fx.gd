@@ -17,7 +17,7 @@ static func new_flash_material() -> ShaderMaterial:
 
 
 static func flash(item: CanvasItem) -> void:
-	if not item.material is ShaderMaterial:
+	if GameSettings.reduce_motion or not item.material is ShaderMaterial:
 		return
 	item.material.set_shader_parameter(&"flash", 1.0)
 	var tween: Tween = item.create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
@@ -33,13 +33,13 @@ static func squash(node: Node, property: String, amount: Vector2) -> void:
 
 static func shake(viewport: Viewport, strength: float) -> void:
 	var camera: CameraZoom = viewport.get_camera_2d() as CameraZoom
-	if camera != null:
+	if camera != null and not GameSettings.reduce_motion:
 		camera.shake(strength)
 
 
 ## Casi detiene el tiempo un instante. Solo lo devuelve si nadie lo ha cambiado entretanto.
 static func hit_stop(tree: SceneTree, seconds: float) -> void:
-	if tree.paused or Engine.time_scale <= STOP_SCALE:
+	if GameSettings.reduce_motion or tree.paused or Engine.time_scale <= STOP_SCALE:
 		return
 	var previous: float = Engine.time_scale
 	Engine.time_scale = STOP_SCALE

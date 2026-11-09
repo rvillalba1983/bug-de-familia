@@ -63,6 +63,7 @@ var _notice_time: float = 0.0
 
 
 func _ready() -> void:
+	AudioMixer.apply_settings()
 	InputBindings.install()
 	_build_world()
 	_build_interface()

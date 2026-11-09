@@ -21,6 +21,9 @@ Preparar metadatos por pista: zona, estado, intensidad, duración, capas, transi
 - Todo el audio se incluye localmente y se reproduce sin red.
 - No sintetizar voz mediante IA online durante la partida.
 
+## Estado en la fase 9
+100 melodías y 40 perfiles de voz con 3 tomas cada uno, generados por `tools/audio/gen_audio.py`. Son síntesis, no grabaciones: los perfiles imitan cadencias inventadas y **no son acentos humanos reales**. Ver `adr/0013-audio-y-rendimiento.md`.
+
 ## 8. Validación de audio
 
 Comprobar:

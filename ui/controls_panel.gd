@@ -3,7 +3,8 @@ extends CanvasLayer
 ## Chapa torcida con todos los controles. F1 la abre y la cierra, y pausa mientras se lee.
 
 const DATA_PATH: String = "res://data/ui/controls.json"
-const PLATE: Rect2 = Rect2(440.0, 120.0, 1040.0, 840.0)
+const PLATE: Rect2 = Rect2(230.0, 120.0, 1460.0, 840.0)
+const OPTIONS_X: float = 980.0
 const TILT: float = -0.012
 const COLOR_DIM: Color = Color(0.0, 0.0, 0.0, 0.6)
 const COLOR_PLATE: Color = Color("#2b2f38")
@@ -11,10 +12,13 @@ const COLOR_EDGE: Color = Color("#ff9a3c")
 const COLOR_RIVET: Color = Color("#8a93a3")
 const COLOR_KEY: Color = Color("#ffcf40")
 
+signal filter_changed
+
 var pause: TacticalPause
 var is_open: bool = false
 
 var _plate: Control
+var _options: VBoxContainer
 
 
 func _init() -> void:
@@ -38,6 +42,7 @@ func _ready() -> void:
 	_plate.draw.connect(_draw_plate)
 	add_child(_plate)
 	_build_rows()
+	_build_options()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -79,6 +84,67 @@ func _build_rows() -> void:
 	for row: Variant in load_rows("full"):
 		grid.add_child(_cell(str(row[0]), COLOR_KEY))
 		grid.add_child(_cell(str(row[1]), Color.WHITE))
+
+
+func _build_options() -> void:
+	GameSettings.ensure_loaded()
+	_options = VBoxContainer.new()
+	_options.position = Vector2(OPTIONS_X, 96.0)
+	_options.custom_minimum_size = Vector2(430.0, 0.0)
+	_options.theme = UiStyle.make_theme()
+	_options.add_theme_constant_override(&"separation", 12)
+	_plate.add_child(_options)
+	_refresh_options()
+
+
+func _refresh_options() -> void:
+	for child: Node in _options.get_children():
+		child.queue_free()
+	_add_option("Texto: %d %%" % roundi(GameSettings.text_scale * 100.0), _cycle_text)
+	_add_option("Reducir temblores y destellos: %s" % ("sí" if GameSettings.reduce_motion else "no"), _toggle_motion)
+	_add_option("Alto contraste: %s" % ("sí" if GameSettings.high_contrast else "no"), _toggle_contrast)
+	_add_option("Música: %d %%" % roundi(GameSettings.music_volume * 100.0), _cycle_music)
+	_add_option("Voces: %d %%" % roundi(GameSettings.voice_volume * 100.0), _cycle_voice)
+
+
+func _add_option(text: String, action: Callable) -> void:
+	var button: Button = Button.new()
+	button.text = text
+	button.add_theme_font_size_override(&"font_size", 22)
+	button.pressed.connect(action)
+	_options.add_child(button)
+
+
+func _changed() -> void:
+	GameSettings.save()
+	AudioMixer.apply_settings()
+	filter_changed.emit()
+	_refresh_options()
+
+
+func _cycle_text() -> void:
+	GameSettings.text_scale = GameSettings.cycle(GameSettings.TEXT_SCALES, GameSettings.text_scale)
+	_changed()
+
+
+func _toggle_motion() -> void:
+	GameSettings.reduce_motion = not GameSettings.reduce_motion
+	_changed()
+
+
+func _toggle_contrast() -> void:
+	GameSettings.high_contrast = not GameSettings.high_contrast
+	_changed()
+
+
+func _cycle_music() -> void:
+	GameSettings.music_volume = GameSettings.cycle(GameSettings.VOLUMES, GameSettings.music_volume)
+	_changed()
+
+
+func _cycle_voice() -> void:
+	GameSettings.voice_volume = GameSettings.cycle(GameSettings.VOLUMES, GameSettings.voice_volume)
+	_changed()
 
 
 func _cell(text: String, color: Color) -> Label:

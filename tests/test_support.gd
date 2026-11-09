@@ -7,6 +7,7 @@ const SAVE_PATH: String = "user://prueba_partida.json"
 
 static func reset_session() -> void:
 	BattleDirector.auto_start = false
+	GameSettings.reset()
 	SaveSystem.path = SAVE_PATH
 	SaveSystem.delete_all()
 	Sandbox.session_started = true

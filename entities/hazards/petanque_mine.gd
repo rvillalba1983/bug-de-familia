@@ -55,3 +55,7 @@ func detonate(hits_player: bool) -> void:
 func _on_noise(origin: Vector2, _radius: float) -> void:
 	if origin.distance_to(global_position) <= NOISE_TRIGGER_RADIUS:
 		detonate.call_deferred(false)
+
+
+func _ready() -> void:
+	add_to_group(&"mina")

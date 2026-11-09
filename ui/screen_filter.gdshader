@@ -1,8 +1,10 @@
 shader_type canvas_item;
-// Pausa táctica: mundo sin color, oscuro y con niebla moviéndose.
+// Acabado común (grano, viñeta, brillo de neones) y niebla de la pausa táctica.
 
 uniform sampler2D screen_texture : hint_screen_texture, filter_linear;
 uniform float strength : hint_range(0.0, 1.0) = 0.0;
+uniform float grain = 0.035;
+uniform float contrast = 1.0;
 uniform vec3 fog_color : source_color = vec3(0.28, 0.2, 0.46);
 
 float hash(vec2 p) {
@@ -38,5 +40,11 @@ void fragment() {
 	vec3 fogged = mix(dull, fog_color, smoothstep(0.3, 0.8, fog) * 0.5);
 	float vignette = smoothstep(0.35, 0.95, distance(UV, vec2(0.5)));
 	fogged *= 1.0 - 0.55 * vignette;
-	COLOR = vec4(mix(scene, fogged, strength), 1.0);
+	float peak = max(scene.r, max(scene.g, scene.b));
+	float chroma = peak - min(scene.r, min(scene.g, scene.b));
+	vec3 finished = scene + scene * smoothstep(0.55, 0.9, chroma) * 0.18;
+	finished = (finished - 0.5) * contrast + 0.5;
+	finished *= 1.0 - 0.28 * vignette;
+	finished += (hash(UV + fract(TIME)) - 0.5) * grain;
+	COLOR = vec4(mix(finished, fogged, strength), 1.0);
 }

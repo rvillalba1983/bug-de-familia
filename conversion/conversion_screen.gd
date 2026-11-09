@@ -98,7 +98,7 @@ func add_remark(text: String, disabled_option: int) -> void:
 	var label: Label = Label.new()
 	label.text = text
 	label.add_theme_color_override(&"font_color", Palette.OBRA)
-	label.add_theme_font_size_override(&"font_size", REMARK_FONT_SIZE)
+	label.add_theme_font_size_override(&"font_size", GameSettings.font_size(REMARK_FONT_SIZE))
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_box.add_child(label)
@@ -116,7 +116,7 @@ func show_taunt(speaker: String, text: String, color: Color) -> void:
 	label.custom_minimum_size = Vector2(TAUNT_WIDTH, 0.0)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.add_theme_color_override(&"font_color", Palette.INK)
-	label.add_theme_font_size_override(&"font_size", TAUNT_FONT_SIZE)
+	label.add_theme_font_size_override(&"font_size", GameSettings.font_size(TAUNT_FONT_SIZE))
 	_taunt.add_child(label)
 	_shaker.add_child(_taunt)
 	_taunt.position = Vector2((VIEW_SIZE.x - TAUNT_WIDTH) * 0.5, TAUNT_TOP)
@@ -138,7 +138,8 @@ func set_time_fraction(fraction: float) -> void:
 	_count.text = ("%.1f" % (left * time_shown)).replace(".", ",")
 	_count.add_theme_color_override(&"font_color", color)
 	_count.scale = Vector2.ONE * (1.0 + 0.3 * danger * absf(sin(left * 40.0)))
-	_shake = maxf(_shake, PANIC_SHAKE * danger)
+	if not GameSettings.reduce_motion:
+		_shake = maxf(_shake, PANIC_SHAKE * danger)
 
 
 func close() -> void:

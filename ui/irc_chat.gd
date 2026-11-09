@@ -16,6 +16,13 @@ const COLOR_TOPIC: Color = Color("#1a1a40")
 const COLOR_DARK: Color = Color("#808080")
 const COLOR_SYSTEM: String = "#00c000"
 const COLOR_TIME: String = "#808080"
+const TEXT_EFFECTS: Dictionary = {
+	"panico": "[shake rate=24 level=7]%s[/shake]",
+	"sargento_bit": "[shake rate=12 level=4]%s[/shake]",
+	"cupido": "[wave amp=18 freq=3]%s[/wave]",
+	"lumi": "[rainbow freq=0.3 sat=0.7]%s[/rainbow]",
+	"siestaware": "[fade start=0 length=60]%s[/fade]",
+}
 const CHANNEL_TITLE: String = "IRCabeza - [#familia] [+nt]"
 
 var team: AiTeam
@@ -87,8 +94,15 @@ func add_message(id: String, text: String) -> void:
 	var info: Dictionary = team.ais[id]
 	var color: String = info["color"]
 	_append("[color=%s]%s <%s>[/color] %s" % [
-		color, _safe(str(info["face"])), _safe(str(info["name"])), _safe(text)
+		color, _safe(str(info["face"])), _safe(str(info["name"])), _styled(id, _safe(text))
 	])
+
+
+## Cada IA escribe a su manera; sin movimiento si el jugador lo ha pedido.
+func _styled(id: String, text: String) -> String:
+	if GameSettings.reduce_motion or not TEXT_EFFECTS.has(id):
+		return text
+	return (TEXT_EFFECTS[id] as String) % text
 
 
 func lines() -> Array[String]:
@@ -110,7 +124,7 @@ func _rich(area: Rect2) -> RichTextLabel:
 	view.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	view.scroll_active = false
 	view.add_theme_font_override(&"normal_font", _mono)
-	view.add_theme_font_size_override(&"normal_font_size", FONT_SIZE)
+	view.add_theme_font_size_override(&"normal_font_size", GameSettings.font_size(FONT_SIZE))
 	add_child(view)
 	return view
 

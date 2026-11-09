@@ -73,3 +73,28 @@ func test_clic_pone_y_clic_derecho_descarta() -> void:
 	card.is_worn = true
 	_click(card, MOUSE_BUTTON_LEFT)
 	assert_int(log_calls.size()).is_equal(2)
+
+
+func test_opciones_se_guardan_y_quitan_temblores() -> void:
+	GameSettings.path = "user://opciones_prueba.cfg"
+	GameSettings.reset()
+	GameSettings.reduce_motion = true
+	GameSettings.text_scale = 1.5
+	GameSettings.save()
+	GameSettings.reset()
+	GameSettings._loaded = false
+	GameSettings.ensure_loaded()
+	assert_bool(GameSettings.reduce_motion).is_true()
+	assert_int(GameSettings.font_size(20)).is_equal(30)
+	DirAccess.remove_absolute(GameSettings.path)
+	GameSettings.path = GameSettings.PATH
+	GameSettings.reset()
+
+
+func test_volumen_cero_silencia_el_bus() -> void:
+	GameSettings.reset()
+	GameSettings.music_volume = 0.0
+	AudioMixer.apply_settings()
+	var bus: int = AudioServer.get_bus_index(AudioMixer.BUS_MUSIC)
+	assert_float(AudioServer.get_bus_volume_db(bus)).is_equal(AudioMixer.SILENT_DB)
+	GameSettings.reset()

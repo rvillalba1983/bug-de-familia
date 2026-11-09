@@ -30,6 +30,8 @@ var rain: AcidRain
 var atmosphere: BetaAtmosphere
 var live_world: LiveWorld
 var battles: BattleDirector
+var music: MusicDirector
+var screen_filter: ScreenFilter
 var cracked_wall: Wall
 var ramon: Guard
 var strip_jubilado: Guard
@@ -313,6 +315,9 @@ func _build_investigation() -> void:
 	live_world = LiveWorld.new()
 	live_world.level = self
 	add_child(live_world)
+	music = MusicDirector.new()
+	music.level = self
+	add_child(music)
 	battles = BattleDirector.new()
 	battles.level = self
 	add_child(battles)
@@ -366,14 +371,22 @@ func _build_interface() -> void:
 	spectres.team = ai.team
 	layer.add_child(spectres)
 	pause.paused_changed.connect(spectres.set_shown)
-	var fog: PauseFog = PauseFog.new()
-	add_child(fog)
-	pause.paused_changed.connect(fog.set_shown)
+	screen_filter = ScreenFilter.new()
+	add_child(screen_filter)
+	pause.paused_changed.connect(screen_filter.set_shown)
+	var markers: PauseMarkers = PauseMarkers.new()
+	markers.level = self
+	layer.add_child(markers)
+	pause.paused_changed.connect(markers.set_shown)
+	var edges: ThreatEdges = ThreatEdges.new()
+	edges.level = self
+	layer.add_child(edges)
 	conversion.converted.connect(battles.on_converted)
 	ai.route_hint = challenges.next_route
 	ai.treason_hint = _least_friendly_species
 	var controls: ControlsPanel = ControlsPanel.new()
 	controls.pause = pause
+	controls.filter_changed.connect(func() -> void: screen_filter.apply_settings())
 	add_child(controls)
 	var hint: KeyHint = KeyHint.new()
 	hint.player = player

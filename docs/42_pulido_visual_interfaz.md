@@ -8,6 +8,11 @@ La 7b se limita a los cuatro puntos del primer minuto. El resto de las tablas pa
 ## Avance
 Hechos en la rama `fase-7b-resto`, pendientes de aprobación en partida (`adr/0009-pulido-primer-minuto.md`): esqueleto de las 3 vistas de Jubilado, Mohócrata y Don Ramón, sensación de impacto, escena de convertir y silueta del cuerpo. El dron sigue con imagen fija.
 
+## Fase 9 (9-nov)
+Hecho: grano, viñeta y brillo en los neones, neones que parpadean, flecha de detección fuera de vista, aviso de ruido en los bordes, pausa táctica clara con lo que amenaza marcado, botones con tema común, efectos de texto por IA y opciones básicas.
+
+Sin hacer: óxido y metal disuelto en las piezas, charcos con ondas, copas de árbol a otra velocidad, cables y plantas que se mecen, moscas, humo, cono que cambia según la sospecha y tipografía gamberra, que necesitaría una fuente con licencia.
+
 ## Orden de trabajo
 Primero lo que se nota en el primer minuto de partida:
 1. Animación de enemigos.

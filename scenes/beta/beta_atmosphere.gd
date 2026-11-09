@@ -15,6 +15,7 @@ const LAMPS: Array[Vector2] = [
 	Vector2(1700.0, 1320.0), Vector2(2450.0, 1320.0),
 ]
 const RAIN_AHEAD: float = 700.0
+const FLICKER_LOW: float = 0.35
 
 var hour_source: Callable = func() -> int: return Time.get_time_dict_from_system().hour
 var player: Player
@@ -23,6 +24,7 @@ var _tint: CanvasModulate
 var _lamps: Array[PointLight2D] = []
 var _rain: GPUParticles2D
 var _check_left: float = 0.0
+var _neon_time: float = 0.0
 
 
 func _ready() -> void:
@@ -48,8 +50,18 @@ func _process(delta: float) -> void:
 	if _check_left <= 0.0:
 		_check_left = CHECK_SECONDS
 		_apply_hour()
+	_flicker_neons(delta)
 	if is_instance_valid(player):
 		_rain.global_position = player.global_position + Vector2(80.0, -RAIN_AHEAD)
+
+
+## Las farolas chisporrotean de vez en cuando.
+func _flicker_neons(delta: float) -> void:
+	_neon_time += delta
+	for index: int in range(_lamps.size()):
+		var beat: float = sin(_neon_time * (3.0 + float(index) * 0.7) + float(index))
+		var dip: bool = beat > 0.97 and not GameSettings.reduce_motion
+		_lamps[index].energy = FLICKER_LOW if dip else 1.0
 
 
 func set_raining(value: bool) -> void:

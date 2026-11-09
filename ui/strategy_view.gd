@@ -12,7 +12,11 @@ const DIRT_STEP: float = 160.0
 const COLOR_GROUND: Color = Color("#a8875a")
 const COLOR_DIRT: Color = Color("#957548")
 const COLOR_INK: Color = Color("#1a1024")
+const COLOR_TONGUE: Color = Color("#e0405a")
+const MOOD_TIME: float = 1.3
 const COLORS: Dictionary = {"jubilado": Color("#a0c8ff"), "mohocrata": Color("#a0f060")}
+
+enum Mood { ANGRY, DISGUST, SCREAM, SMUG, PANIC }
 
 var director: BattleDirector
 var is_open: bool = false
@@ -147,7 +151,10 @@ func _draw_fallen(species: String) -> void:
 	for id: String in director.sides[species]:
 		var guard: Variant = director.level.live_world.citizens.get(id)
 		if is_instance_valid(guard) and (guard as Guard).is_down():
-			_draw_body(_to_view((guard as Guard).global_position), species, _time, 0.0, 1.0, true, false)
+			var spot: Vector2 = _to_view((guard as Guard).global_position)
+			var style: int = absi((guard as Guard).get_instance_id()) % 628
+			_draw_body(spot, species, _time * 3.0, 0.0, 1.0, true, false, style)
+			_draw_soul(spot, float(style) * 0.01)
 
 
 func _draw_fighter(guard: Guard, species: String) -> void:
@@ -162,7 +169,7 @@ func _draw_fighter(guard: Guard, species: String) -> void:
 	_canvas.draw_set_transform(spot, 0.0, Vector2.ONE)
 	_canvas.draw_circle(Vector2(0.0, 6.0), 26.0 * _zoom, Color(0.0, 0.0, 0.0, 0.3))
 	_canvas.draw_set_transform(Vector2.ZERO)
-	_draw_body(spot - Vector2(0.0, hop), species, beat, tilt, squash, false, near)
+	_draw_body(spot - Vector2(0.0, hop), species, beat, tilt, squash, false, near, _mood_of(phase, near))
 	if near and sin(beat * 0.5) > 0.93:
 		_draw_bonk(spot - Vector2(0.0, 92.0 * _zoom), phase)
 
@@ -184,7 +191,7 @@ func _draw_bonk(at: Vector2, phase: float) -> void:
 
 
 ## Muñequitos propios de cada raza, cabezones y patosos.
-func _draw_body(at: Vector2, species: String, beat: float, tilt: float, squash: float, down: bool, flailing: bool) -> void:
+func _draw_body(at: Vector2, species: String, beat: float, tilt: float, squash: float, down: bool, flailing: bool, mood: int) -> void:
 	var scale_size: Vector2 = Vector2(_zoom * (2.0 - squash), _zoom * squash)
 	_canvas.draw_set_transform(at, PI * 0.5 if down else tilt, scale_size)
 	var swing: float = sin(beat) * 12.0
@@ -201,7 +208,10 @@ func _draw_body(at: Vector2, species: String, beat: float, tilt: float, squash: 
 		_draw_jubilado()
 	else:
 		_draw_mohocrata()
-	_draw_eyes(down, beat)
+	if down:
+		_draw_death(mood, beat)
+	else:
+		_draw_face(mood, beat)
 	_canvas.draw_set_transform(Vector2.ZERO)
 
 
@@ -223,13 +233,92 @@ func _draw_mohocrata() -> void:
 	_canvas.draw_rect(Rect2(-14.0, -92.0, 28.0, 14.0), Color("#8a5a30"))
 
 
-func _draw_eyes(down: bool, beat: float) -> void:
-	var height: float = -30.0
+func _mood_of(phase: float, near: bool) -> int:
+	var turn: int = int(_time / MOOD_TIME + phase * 3.0)
+	if near:
+		return [Mood.ANGRY, Mood.SCREAM, Mood.ANGRY, Mood.DISGUST][turn % 4]
+	return [Mood.DISGUST, Mood.SMUG, Mood.PANIC, Mood.ANGRY][turn % 4]
+
+
+func _draw_face(mood: int, beat: float) -> void:
+	_draw_eye_pair(0.4 if mood == Mood.PANIC else 1.0, beat, mood == Mood.SMUG, mood == Mood.DISGUST)
+	match mood:
+		Mood.ANGRY:
+			_brows(0.55)
+			_canvas.draw_arc(Vector2(0.0, -6.0), 11.0, PI * 1.15, PI * 1.85, 10, COLOR_INK, 4.0)
+		Mood.DISGUST:
+			_brows(-0.2)
+			_canvas.draw_polyline(_wavy(-12.0, 12.0, -15.0), COLOR_INK, 4.0)
+			_canvas.draw_circle(Vector2(5.0, -9.0), 6.0, COLOR_TONGUE)
+		Mood.SCREAM:
+			_brows(-0.5)
+			_canvas.draw_circle(Vector2(0.0, -11.0), 8.0 + 2.0 * absf(sin(beat)), COLOR_INK)
+		Mood.SMUG:
+			_canvas.draw_arc(Vector2(3.0, -22.0), 13.0, PI * 0.15, PI * 0.7, 8, COLOR_INK, 4.0)
+		Mood.PANIC:
+			_brows(-0.45)
+			_canvas.draw_polyline(_wavy(-11.0, 11.0, -13.0), COLOR_INK, 3.0)
+
+
+func _brows(slant: float) -> void:
+	for side: float in [-1.0, 1.0]:
+		var center: Vector2 = Vector2(side * 11.0, -43.0)
+		var offset: Vector2 = Vector2(9.0, side * slant * 7.0)
+		_canvas.draw_line(center - offset, center + offset, COLOR_INK, 5.0)
+
+
+func _wavy(from_x: float, to_x: float, y: float) -> PackedVector2Array:
+	var points: PackedVector2Array = PackedVector2Array()
+	for step: int in range(9):
+		var t: float = float(step) / 8.0
+		points.append(Vector2(lerpf(from_x, to_x, t), y + sin(t * TAU * 1.5) * 3.0))
+	return points
+
+
+func _draw_eye_pair(pupil: float, beat: float, half_lid: bool, squint: bool) -> void:
 	for side: float in [-11.0, 11.0]:
-		var eye: Vector2 = Vector2(side, height)
-		if down:
-			_canvas.draw_line(eye + Vector2(-6, -6), eye + Vector2(6, 6), COLOR_INK, 4.0)
-			_canvas.draw_line(eye + Vector2(-6, 6), eye + Vector2(6, -6), COLOR_INK, 4.0)
+		var eye: Vector2 = Vector2(side, -30.0)
+		if squint and side > 0.0:
+			_canvas.draw_line(eye + Vector2(-8, 0), eye + Vector2(8, -3), COLOR_INK, 5.0)
 			continue
 		_canvas.draw_circle(eye, 10.0, Color.WHITE)
-		_canvas.draw_circle(eye + Vector2(sin(beat * 0.7) * 3.0, cos(beat * 0.9) * 2.0), 4.5, COLOR_INK)
+		_canvas.draw_circle(eye + Vector2(sin(beat * 0.7) * 3.0, cos(beat * 0.9) * 2.0), 5.0 * pupil, COLOR_INK)
+		if half_lid:
+			_canvas.draw_rect(Rect2(eye + Vector2(-10, -10), Vector2(20, 10)), Color("#8a90a8"))
+
+
+## Cada caído muere a su manera.
+func _draw_death(style: int, beat: float) -> void:
+	match style % 4:
+		0:
+			_x_eyes()
+			_canvas.draw_circle(Vector2(6.0, -9.0), 7.0, COLOR_TONGUE)
+		1:
+			for side: float in [-11.0, 11.0]:
+				_canvas.draw_arc(Vector2(side, -30.0), 9.0, beat, beat + TAU * 1.4, 20, COLOR_INK, 3.0)
+			_canvas.draw_polyline(_wavy(-11.0, 11.0, -12.0), COLOR_INK, 3.0)
+		2:
+			_x_eyes()
+			_canvas.draw_circle(Vector2(0.0, -10.0), 9.0, COLOR_INK)
+		3:
+			_canvas.draw_circle(Vector2(-11.0, -30.0), 10.0, Color.WHITE)
+			_canvas.draw_circle(Vector2(-11.0, -30.0), 3.0, COLOR_INK)
+			_canvas.draw_line(Vector2(3.0, -30.0), Vector2(19.0, -30.0), COLOR_INK, 4.0)
+			_canvas.draw_arc(Vector2(0.0, -2.0), 10.0, PI * 1.2, PI * 1.8, 8, COLOR_INK, 3.0)
+
+
+func _x_eyes() -> void:
+	for side: float in [-11.0, 11.0]:
+		var eye: Vector2 = Vector2(side, -30.0)
+		_canvas.draw_line(eye + Vector2(-7, -7), eye + Vector2(7, 7), COLOR_INK, 4.0)
+		_canvas.draw_line(eye + Vector2(-7, 7), eye + Vector2(7, -7), COLOR_INK, 4.0)
+
+
+## Un alma diminuta sube del caído y se va quejando.
+func _draw_soul(at: Vector2, phase: float) -> void:
+	var rise: float = fmod(_time * 26.0 + phase * 40.0, 120.0)
+	var soul: Vector2 = at + Vector2(sin(rise * 0.09) * 12.0, -50.0 - rise) * _zoom
+	var alpha: float = 0.75 * (1.0 - rise / 120.0)
+	_canvas.draw_circle(soul, 11.0 * _zoom, Color(1.0, 1.0, 1.0, alpha))
+	_canvas.draw_circle(soul + Vector2(-3.5, -2.0) * _zoom, 1.6 * _zoom, Color(0.1, 0.1, 0.2, alpha))
+	_canvas.draw_circle(soul + Vector2(3.5, -2.0) * _zoom, 1.6 * _zoom, Color(0.1, 0.1, 0.2, alpha))

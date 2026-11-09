@@ -101,6 +101,7 @@ func _rebuild() -> void:
 	_silhouette.plate = Rect2()
 	add_child(_silhouette)
 	_root = Control.new()
+	_root.theme = UiStyle.make_theme()
 	add_child(_root)
 	_build_header()
 	for index: int in range(COLUMNS.size()):

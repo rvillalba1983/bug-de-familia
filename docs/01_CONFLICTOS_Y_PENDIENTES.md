@@ -10,6 +10,7 @@ Los 13 conflictos entre documentos quedaron resueltos el 8 de noviembre: ver `02
 | P-02 | **Por hacer: Claude propone, el director revisa.** Compatibilidades del catálogo completo (`12b_catalogo_conversion.md`) | Resto de la conversión | Fase 9 |
 | P-05 | **Por hacer: Claude.** Ajuste de tokens y enfados, y las 14 IAs restantes (hay 6 jugables) | Sistema de IAs | Fase 9 |
 | P-09 | **En curso: Claude escribe, el director critica.** Lotes 1 y 2 aprobados e integrados: 76 preguntas, motes y comentarios del protagonista (`docs/adr/0007-motes-y-comentarios.md`). Pueden añadirse más lotes; quedan 12 preguntas reservadas para las otras cuatro razas | Humor y conversión | Fase 4 |
+| P-19 | **Por hacer: Claude propone, el director elige.** Cómo mostrar los controles: en el chat de las IAs no le terminan de gustar | Interfaz | Fase 9 |
 
 ## Resueltos en la fase 7
 P-01 (mapa y progenitores de la beta) y P-08 (retos y soluciones): ver `41_beta.md` y `02_DECISIONES.md`. P-04, P-10, P-11, P-13, P-14, P-15, P-16, P-17 y P-18: ver `02_DECISIONES.md`.

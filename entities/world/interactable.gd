@@ -6,6 +6,7 @@ signal activated(item: Interactable)
 
 const GROUP: StringName = &"interactable"
 const RANGE: float = 100.0
+const ART_ICON_HEIGHT: float = 56.0
 const RUBBLE_ART: Array = ["caja_rota", 80.0, 40.0]
 
 enum Kind { CRATE, TERMINAL, PICKUP_LEG, PICKUP_ARM, NPC, EVIDENCE }
@@ -63,6 +64,13 @@ func _draw() -> void:
 ## Una caja rota deja restos, que se siguen pudiendo convertir.
 func is_rubble() -> bool:
 	return used and kind == Kind.CRATE
+
+
+## Altura del dibujo, para colocar encima el aviso de la tecla.
+func art_height() -> float:
+	if body_hidden:
+		return Guard.ART_HEIGHT
+	return float(PropArt.entry_for(item_id, kind)[2]) if art == null else ART_ICON_HEIGHT
 
 
 ## Ranuras donde puede guardarse este objeto; vacío si no se recoge.

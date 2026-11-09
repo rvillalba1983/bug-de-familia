@@ -3,7 +3,7 @@ extends Node2D
 ## Tecla pequeña sobre lo que se puede usar ahora mismo. Solo el aviso, sin descripciones.
 
 const SIZE: float = 26.0
-const HEIGHT: float = 104.0
+const GAP: float = 22.0
 
 var player: Player
 
@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 		queue_redraw()
 	if is_instance_valid(_target):
 		visible = true
-		global_position = _target.global_position + Vector2(0.0, -HEIGHT)
+		global_position = _target.global_position + Vector2(0.0, -_target.art_height() - GAP)
 	else:
 		visible = false
 

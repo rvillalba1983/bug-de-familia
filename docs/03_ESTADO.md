@@ -7,8 +7,9 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | 0 a 7 | Fusionadas en `main` y probadas por el usuario |
 | Arte | Estilo de la beta fusionado en `main`, ejecutado en Godot 4.7.2 el 9-nov: 187 pruebas pasan y el director aprobó capturas y vídeo reales. Ver `adr/0008-estilo-visual-beta.md` |
 | 7b. Pulido visual e interfaz | Fusionada en `main` y aprobada por el director el 9-nov, con los cuatro puntos del primer minuto (animación de enemigos, impacto, convertir y silueta). 203 pruebas pasan. Ver `adr/0009-pulido-primer-minuto.md`. El resto de la lista pasa a la fase 9, incluidas las opciones de reducir temblores y destellos |
-| 8. Mundo vivo | Siguiente. Sus preguntas de diseño están cerradas en `02_DECISIONES.md` |
-| 9. Contenido y pulido | Sin empezar |
+| 8. Mundo vivo (zona beta) | Fusionada en `main` el 9-nov y aprobada por el director. 229 pruebas pasan. Ver `adr/0010-mundo-vivo-beta.md` |
+| 9. Contenido y pulido | Siguiente |
+| Post-beta. Mundo completo | Sin empezar: zonas nuevas, tres niveles de simulación y viaje entre puntos de guardado |
 
 ## Pendiente de respuesta del usuario (no bloquea)
 - Textos provisionales del caso y de las IAs.
@@ -31,6 +32,13 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 - Tiempos, temblor, zancada, deformación y colores de desgaste son provisionales. Los 12 textos de burla de las IAs están pendientes de la crítica del director (P-09).
 - Rendimiento sin medir en una gráfica real: las pruebas dibujan por software.
 - Sin revisar: cuadrado gris a los pies de Don Ramón.
+
+## Tras la fase 8
+- Toda la población, los sucesos, las misiones y los textos de `data/world/` son provisionales. El director puede tachar festividades.
+- Sin medir en una gráfica real. Sin probar a mano en partida: terminar una misión y reventar una fiesta.
+- Los personajes con nombre siguen con diálogos escritos, fuera del motor social.
+- P-19: proponer opciones para mostrar los controles, que ahora salen en el chat de las IAs.
+- Capturas de partida real con `tools/captura_partida.gd` (variables CAPTURAS, SALIDA, FECHA, ACCION y SUCESO).
 
 ## Preparar el entorno en una conversación nueva
 1. Clonar `rvillalba1983/bug-de-familia`. Si la copia es superficial, usar `git fetch origin main` y `FETCH_HEAD`.

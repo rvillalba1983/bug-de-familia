@@ -1,6 +1,6 @@
 # ADR 0010: mundo vivo dentro de la zona beta (fase 8)
 
-Estado: pendiente de aprobación del director en partida.
+Estado: aprobado por el director el 9-nov.
 
 ## Alcance
 Por decisión del director (9-nov), las zonas nuevas, los tres niveles de simulación y el viaje entre puntos de guardado pasan a una etapa post-beta. La fase 8 se hace en la zona beta.
@@ -39,3 +39,4 @@ Sin medir: gráfica real.
 - Silueta de piezas encima del chat. Bocadillos de dibujos animados en `ai/speech_bubble.gd`.
 - Objetos dibujados en `art/beta/props/`, generados por `tools/art/props_gen.py`. Origen: Claude, sin servicios externos.
 - Sin textos descriptivos en el mundo. Solo queda la tecla (E o Q) sobre lo que se puede usar ahora.
+- Personajes un 20 % más pequeños a petición del director (`ART_HEIGHT` 77), con las mismas colisiones.

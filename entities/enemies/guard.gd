@@ -199,6 +199,11 @@ func set_passive(value: bool) -> void:
 		_view.visible = not value and state != State.STUNNED
 
 
+## Solo se puede convertir a quien está inmovilizado o derrotado.
+func can_be_converted() -> bool:
+	return state == State.DOWN or state == State.STUNNED
+
+
 func is_down() -> bool:
 	return state == State.DOWN
 

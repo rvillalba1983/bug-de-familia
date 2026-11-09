@@ -10,6 +10,9 @@ static func build(zone: BetaZone) -> void:
 	zone.rain_label = LevelHud.make_label(layer, "BETA_RAIN", Vector2(760.0, 150.0), 26)
 	zone.rain_label.visible = false
 	_build_chat(zone, layer)
+	for child: Node in zone.player.get_children():
+		if child is CameraZoom:
+			(child as CameraZoom).screen_shift = IrcChat.AREA.end.x * 0.5
 	layer.add_child(ControlsWindow.new())
 	_build_pause_view(zone, layer)
 	var edges: ThreatEdges = ThreatEdges.new()

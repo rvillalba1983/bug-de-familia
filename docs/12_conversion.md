@@ -1,6 +1,6 @@
 # Conversión
 
-Todo lo visible se puede convertir en una pieza para tu cuerpo, incluidos los enemigos. **La conversión nunca falla; tu conocimiento decide su calidad.** Puede hacerse en cualquier lugar y el objeto convertido desaparece del mapa.
+Todo lo visible se puede convertir en una pieza para tu cuerpo, incluidos los personajes inmovilizados o derrotados. **La conversión nunca falla; tu conocimiento decide su calidad.** Puede hacerse en cualquier lugar y el objeto convertido desaparece del mapa.
 
 ## Flujo
 1. Eliges un objeto o enemigo visible.

@@ -23,7 +23,7 @@ Basados en los de World of Warcraft, adaptados a una cámara de ángulo fijo. Ap
 | Abrir piezas | C |
 | Abrir la ayuda con teclado y ratón dibujados | F1 |
 | Vista de estrategia durante una batalla | M |
-| **Salir de cualquier panel** (también empieza la pelea tras la pausa previa) | Esc |
+| **Salir de cualquier panel y de la pausa táctica** (también empieza la pelea tras la pausa previa) | Esc |
 
 Regla del director (9-nov): cada tecla hace una sola acción y cada acción se hace con una sola tecla. Excepciones aprobadas: 1-6 para acciones y respuestas, y E convive con el clic derecho.
 

@@ -8,6 +8,8 @@ const MAX_ZOOM: float = 2.6
 const ZOOM_STEP: float = 0.1
 const SHAKE_DECAY: float = 60.0
 
+## Píxeles de pantalla que se desplaza el centro: el protagonista queda en el hueco libre.
+var screen_shift: float = 0.0
 var _shake: float = 0.0
 
 
@@ -17,10 +19,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if _shake <= 0.0:
-		return
 	_shake = maxf(_shake - SHAKE_DECAY * delta, 0.0)
-	offset = Vector2.ZERO if _shake <= 0.0 else Vector2.from_angle(randf() * TAU) * _shake
+	var centre: Vector2 = Vector2(-screen_shift / zoom.x, 0.0)
+	offset = centre if _shake <= 0.0 else centre + Vector2.from_angle(randf() * TAU) * _shake
 
 
 ## Temblor de cámara. No usa la semilla de la partida: es solo visual.

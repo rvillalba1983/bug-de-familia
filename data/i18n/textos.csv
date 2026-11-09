@@ -103,3 +103,5 @@ BETA_AI_LOSS,"Se ha perdido %s. Para siempre. Enhorabuena, supongo."
 BETA_SOLDER_NAME,"Soldadura de Don Ramón · "
 BETA_SOLDER_DONE,"Don Ramón te suelda un repuesto, gruñendo."
 BETA_SOLDER_FULL,"Don Ramón iba a soldarte algo, pero no te cabe nada más."
+UI_PICKED_ARM,Repuesto de brazo recogido
+UI_PICKED_LEG,Repuesto de pierna recogido

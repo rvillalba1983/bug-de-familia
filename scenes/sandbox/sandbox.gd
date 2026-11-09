@@ -511,6 +511,8 @@ func _complete_challenge() -> void:
 
 
 func _add_pickup(slots: Array[ModularBody.Slot]) -> void:
+	var key: String = "UI_PICKED_LEG" if slots.has(ModularBody.Slot.LEG_LEFT) else "UI_PICKED_ARM"
+	hud.show_short_notice(tr(key))
 	for slot: ModularBody.Slot in slots:
 		var found: BodyPiece = BodyPiece.new(ModularBody.kind_of(slot))
 		found.pick_visual_variant("hallada_%d_%d" % [slot, player.body.spares(slot).size()])

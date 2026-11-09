@@ -17,6 +17,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed(&"tactical_pause") and not event.is_echo():
 		set_paused(not get_tree().paused)
+	elif get_tree().paused and event.is_action_pressed(&"close_panel") and not event.is_echo():
+		set_paused(false)
+		get_viewport().set_input_as_handled()
 
 
 func set_paused(value: bool) -> void:

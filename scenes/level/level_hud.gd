@@ -4,6 +4,7 @@ extends CanvasLayer
 
 const SAVED_NOTICE_TIME: float = 2.5
 const NOTICE_TIME: float = 7.0
+const SHORT_NOTICE_TIME: float = 2.0
 
 var pause_label: Label
 var done_label: Label
@@ -68,6 +69,11 @@ func set_body(body: ModularBody) -> void:
 func show_saved() -> void:
 	_saved_time = SAVED_NOTICE_TIME
 	saved_label.visible = true
+
+
+func show_short_notice(text: String) -> void:
+	show_notice(text)
+	_notice_time = SHORT_NOTICE_TIME
 
 
 func show_notice(text: String) -> void:

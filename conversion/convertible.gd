@@ -25,6 +25,11 @@ func effective_material() -> String:
 	return "restos" if source is Interactable and (source as Interactable).is_rubble() else material_id
 
 
+func can_be_converted() -> bool:
+	var source: Guard = get_parent() as Guard
+	return source == null or source.can_be_converted()
+
+
 func _ready() -> void:
 	add_to_group(GROUP)
 

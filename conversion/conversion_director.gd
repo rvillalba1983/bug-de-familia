@@ -173,7 +173,7 @@ func _nearest_in_range() -> Convertible:
 	for node: Node in get_tree().get_nodes_in_group(Convertible.GROUP):
 		var candidate: Convertible = node as Convertible
 		var distance: float = player.global_position.distance_to(candidate.global_position)
-		if distance <= best_distance:
+		if distance <= best_distance and candidate.can_be_converted():
 			best = candidate
 			best_distance = distance
 	return best

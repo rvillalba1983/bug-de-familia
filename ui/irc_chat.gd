@@ -7,7 +7,7 @@ extends Control
 const AREA: Rect2 = Rect2(14.0, 592.0, 480.0, 474.0)
 const NICKS_WIDTH: float = 160.0
 const TITLE_HEIGHT: float = 24.0
-const TOPIC_HEIGHT: float = 22.0
+const TOPIC_HEIGHT: float = 58.0
 const VISIBLE_MESSAGES: int = 4
 const TOOLBAR_HEIGHT: float = 22.0
 const STATUS_HEIGHT: float = 22.0
@@ -63,7 +63,7 @@ func _ready() -> void:
 	topic_view = Label.new()
 	topic_view.position = AREA.position + Vector2(8.0, TITLE_HEIGHT + TOOLBAR_HEIGHT + 2.0)
 	topic_view.size = Vector2(AREA.size.x - 16.0, TOPIC_HEIGHT)
-	topic_view.clip_text = true
+	topic_view.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	topic_view.add_theme_font_override(&"font", _mono)
 	topic_view.add_theme_font_size_override(&"font_size", 13)
 	add_child(topic_view)

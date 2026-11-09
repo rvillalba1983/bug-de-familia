@@ -18,11 +18,11 @@ func _record(sim: WorldSim) -> Dictionary:
 
 func test_generates_population_without_duplicates() -> void:
 	var sim: WorldSim = _sim()
-	assert_int(sim.npc_ids.size()).is_equal(16)
+	assert_int(sim.npc_ids.size()).is_equal(36)
 	var unique: Dictionary = {}
 	for id: String in sim.npc_ids:
 		unique[id] = true
-	assert_int(unique.size()).is_equal(16)
+	assert_int(unique.size()).is_equal(36)
 
 
 func test_same_seed_same_world() -> void:
@@ -91,7 +91,7 @@ func test_citizens_appear_in_the_zone_and_can_be_talked_to() -> void:
 	var zone: BetaZone = runner.scene()
 	await await_millis(100)
 	var world: LiveWorld = zone.live_world
-	assert_int(world.citizens.size()).is_equal(16)
+	assert_int(world.citizens.size()).is_equal(36)
 	var id: String = world.sim.npc_ids[0]
 	world.dialogue.open(world.sim.npcs[id])
 	assert_int(world.dialogue.options().size()).is_greater(2)

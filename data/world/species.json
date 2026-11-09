@@ -1,6 +1,6 @@
 {
   "jubilado": {
-    "rival": "mohocrata", "start": 8, "target": 10, "max": 14,
+    "rival": "mohocrata", "start": 18, "target": 20, "max": 26,
     "roles": ["petanquista", "vigilante", "archivero", "mecanico"],
     "names": ["Paco", "Encarna", "Fermín", "Remedios", "Sisebuto", "Angustias", "Evaristo", "Pura", "Nicanor", "Benita"],
     "surnames": ["Tuerca", "Junta", "Biela", "Carburador", "Remache", "Chirrido", "Fusible", "Manivela"],
@@ -19,7 +19,7 @@
     ]
   },
   "mohocrata": {
-    "rival": "jubilado", "start": 8, "target": 10, "max": 14,
+    "rival": "jubilado", "start": 18, "target": 20, "max": 26,
     "roles": ["votante", "recolector", "escrutador", "reciclador"],
     "names": ["Hongoberto", "Espora", "Micelio", "Colmenilla", "Níscalo", "Boletina", "Trufo", "Amanita", "Champi", "Yesquero"],
     "surnames": ["Húmedo", "de la Mayoría", "Abstención", "Enmienda", "Quorum", "Sombrío", "Moción", "Recuento"],

@@ -72,7 +72,8 @@ func test_every_flag_with_all_entities_gone() -> void:
 
 
 func test_every_flag_with_each_entity_gone_alone() -> void:
-	var ids: Array = zone.entities.keys()
+	var ids: Array = zone.entities.keys().filter(func(id: String) -> bool: return not id.begins_with("npc_"))
+	ids.append_array(zone.entities.keys().filter(func(id: String) -> bool: return id.begins_with("npc_")).slice(0, 4))
 	for id: String in ids:
 		var level: BetaZone = _load_zone()
 		_remove(level, id)

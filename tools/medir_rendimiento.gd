@@ -37,8 +37,8 @@ func _run() -> void:
 		process.append(Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0)
 	physics.sort()
 	process.sort()
-	print("RESULTADO %s personajes=%d fisica_media=%.2f fisica_p99=%.2f proceso_medio=%.2f proceso_p99=%.2f" % [
-		mode, zone.guards().size(), _mean(physics), physics[int(SAMPLES * 0.99)],
+	print("RESULTADO %s personajes=%d rawfps=%.1f fisica_media=%.2f fisica_p99=%.2f proceso_medio=%.2f proceso_p99=%.2f" % [
+		mode, zone.guards().size(), Performance.get_monitor(Performance.TIME_FPS), _mean(physics), physics[int(SAMPLES * 0.99)],
 		_mean(process), process[int(SAMPLES * 0.99)],
 	])
 	SaveSystem.delete_all()

@@ -20,6 +20,7 @@ Los 13 conflictos entre documentos quedaron resueltos el 8 de noviembre: ver `02
 | P-31 | **Pedido por el director para después de la beta (9-nov).** La vista de estrategia debe enseñar la ciudad con sus edificios; hoy solo se ve suelo | Interfaz y arte | Post-beta |
 | P-32 | **Pedido por el director para después de la beta (9-nov).** Las misiones de la zona solo aparecen en la lista del chat si se ha recibido información de ellas, hablando con alguien o por las IAs, y se quitan al completarlas. Hoy la lista del tema del canal sale completa desde el principio. A aclarar: las misiones emergentes están decididas sin lista ni marcadores (P-11), así que esto se aplica a los retos de la zona salvo que el director diga otra cosa | Interfaz y misiones | Post-beta |
 | P-33 | **Pedido por el director para después de la beta (9-nov).** El chat hace algo muy visible cada vez que una IA escribe. Qué efecto, por definir; respetar la opción de reducir destellos y temblores | Interfaz | Post-beta |
+| P-34 | **Pedido por el director para después de la beta (9-nov).** Los NPC se ponen tristes unos segundos junto a sus muertos, con frases de pena, y se alegran cuando ganan una pelea o nace alguien | Mundo vivo, animación y textos | Post-beta |
 
 ## Resueltos en la revisión de código
 P-24: ver `adr/0016-revision-codigo.md`.

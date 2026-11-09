@@ -102,14 +102,12 @@ Sus ciudades se construyeron alrededor de cámaras de resonancia, túneles acús
 
 - **Tenor del Abismo:** explorador de regiones sin sonido.
 - **La Soprano de las Mil Voces:** capaz de reproducir voces de otras especies.
-- **Don Reberverencio:** héroe de la Gran Emisión.
+- **Don Reverberencio:** héroe de la Gran Emisión.
 - **El Niño del Último Suspiro:** leyenda relacionada con la supervivencia durante el Apocalipsis del Silencio.
 
 ### Farándula y cultura popular
 
 - **DJ Reverberón:** estrella de la música electrónica acústica.
-- **La Pantoja del Ruido:** cantante de gran popularidad.
-- **Eco Iglesias:** baladista de voz interminable.
 - **Ruperto Decibelio:** presentador de televisión.
 - **Los Últimos del Karaoke:** grupo musical famoso por sus conciertos interminables.
 
@@ -173,8 +171,6 @@ Son expertos recicladores de robots, maquinaria y materiales orgánicos.
 
 ### Farándula y cultura popular
 
-- **Moco Chanel:** diseñadora de sombreros de chatarra.
-- **El Fary del Micelio:** cantante popular.
 - **Seta Barroca:** estrella de televisión.
 - **DJ Esporadic:** músico de baile.
 - **Los Hongos del Ritmo:** grupo musical.
@@ -254,8 +250,6 @@ Su economía se basa en complejos sistemas de deuda y garantías.
 
 ### Farándula y cultura popular
 
-- **La Pantoja de los Dientes:** cantante de enorme éxito.
-- **Ricky Martinillo:** estrella musical.
 - **Don Chanchullo:** presentador de televisión.
 - **Mordisquito Deluxe:** celebridad y empresario.
 - **Los Intereses Variables:** grupo musical.
@@ -333,10 +327,6 @@ La obligación de entregar un paquete puede mantenerse durante generaciones.
 
 ### Farándula y cultura popular
 
-- **Perro Sánchez:** político y personaje televisivo.
-- **Lassie del Espacio:** estrella de cine.
-- **Rocío Guau:** cantante.
-- **El Fari de las Croquetas:** músico popular.
 - **DJ Chucho:** estrella de la música electrónica.
 - **Los Caniches del Apocalipsis:** grupo de rock.
 
@@ -415,13 +405,8 @@ Su cultura gira alrededor del mantenimiento, la memoria y el derecho al descanso
 
 ### Farándula y cultura popular
 
-- **Manolo Escobar 3000:** cantante de copla mecánica.
-- **Rafaela Carrá-Volt:** estrella de televisión.
-- **Julio Iglesias.exe:** cantante romántico.
-- **La Paca del Firmware:** humorista.
 - **Los Tornillos Sueltos:** grupo musical.
 - **DJ Mantenimiento:** músico electrónico.
-- **El Chiquito de la Soldadura:** cómico y presentador.
 
 ### Acontecimientos históricos
 
@@ -474,6 +459,8 @@ Las seis especies desarrollaron sus civilizaciones de forma independiente, pero 
 
 Sus conflictos, acuerdos comerciales y dependencias tecnológicas provocaron una cadena de acontecimientos que desembocó en el colapso de los sistemas.
 
+**Mohócratas y Grux llegaron a este planeta después del colapso.** Plegados y Ecos ya estaban aquí, y la Manada y los Jubilados nacieron en él. Todas las especies se conocían fuera de este planeta: lo que Mohócratas y Grux hicieron antes del colapso lo hicieron desde fuera.
+
 ### Auge de las civilizaciones
 
 - Cada especie alcanzó un nivel elevado de desarrollo.
@@ -487,7 +474,7 @@ Sus conflictos, acuerdos comerciales y dependencias tecnológicas provocaron una
 ### Guerra de las Esquinas
 
 - La tecnología de compresión espacial de los Plegados provocó un conflicto por el control de las instalaciones.
-- Los Grux financiaron experimentos y operaciones militares.
+- Los Grux, desde fuera de este planeta, financiaron experimentos y operaciones militares.
 - Los Ecos transmitieron instrucciones.
 - Los Jubilados mantuvieron los sistemas.
 - El conflicto terminó afectando a regiones enteras.
@@ -500,7 +487,7 @@ Sus conflictos, acuerdos comerciales y dependencias tecnológicas provocaron una
 
 ### Crisis de las Esporas
 
-- La red biológica de los Mohócratas quedó fragmentada.
+- La red biológica de los Mohócratas, entonces fuera de este planeta, quedó fragmentada.
 - Parte de la memoria colectiva se perdió o quedó aislada.
 
 ### Gran Desviación
@@ -508,7 +495,7 @@ Sus conflictos, acuerdos comerciales y dependencias tecnológicas provocaron una
 - Los sistemas de navegación de la Manada comenzaron a fallar.
 - Miles de repartidores siguieron rutas falsas.
 
-### Guerra de las Actualizaciones
+### Guerra de Actualizaciones
 
 - Los fabricantes y las facciones de Jubilados intentaron recuperar o controlar los sistemas robóticos.
 - Las actualizaciones defectuosas agravaron los problemas existentes.
@@ -518,11 +505,11 @@ Sus conflictos, acuerdos comerciales y dependencias tecnológicas provocaron una
 - Las distintas crisis terminaron conectándose.
 - Las infraestructuras dejaron de funcionar de forma coordinada.
 - Las ciudades se aislaron, las comunicaciones se degradaron y muchas regiones quedaron incomunicadas.
-- Las seis especies sobrevivieron como pudieron.
+- Las especies que vivían en este planeta sobrevivieron como pudieron.
 
 ### Supervivencia y nuevo mundo
 
-- Tras el colapso, las especies se reorganizaron en asentamientos, facciones y pequeñas comunidades.
+- Tras el colapso llegaron Mohócratas y Grux, y las especies se reorganizaron en asentamientos, facciones y pequeñas comunidades.
 - Muchas tecnologías antiguas siguen funcionando de forma parcial.
 - Algunas instalaciones parecen actuar por su cuenta.
 - Hay máquinas que reciben órdenes, rutas que continúan activas, señales que se repiten y archivos que contienen información que nadie recuerda haber escrito.

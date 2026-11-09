@@ -11,7 +11,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | 9. Contenido y pulido | Fusionada en `main` el 9-nov y aprobada por el director. 255 pruebas pasan. Ver `adr/0011-ias-y-controles.md`, `adr/0012-batallas.md` y `adr/0013-audio-y-rendimiento.md` |
 | Cierre de la beta | Fusionada en `main` el 9-nov con aprobación del director. 261 pruebas pasan. Ver `adr/0014-cierre-beta.md` |
 | Arreglos tras probar la beta | Fusionada en `main` el 9-nov con aprobación del director. 266 pruebas pasan. Ver `adr/0015-arreglos-beta.md` |
-| Revisión de código y pruebas (P-24) | Siguiente fase |
+| Revisión de código y pruebas (P-24) | En la rama `revision-codigo`, pendiente de aprobación. Ver `adr/0016-revision-codigo.md` |
 | Post-beta. Mundo completo | Después, tras revisar la beta: otras cuatro razas, 13 progenitores, zonas nuevas, tres niveles de simulación y viaje entre puntos de guardado |
 
 ## Pendiente de respuesta del usuario (no bloquea)
@@ -59,10 +59,15 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 - La pelea contra grupos no la ha probado el director a mano. Radio de reacción (250) y hueco alrededor del jugador (34), provisionales.
 - Clics reales de pelea con `tools/probar_pelea.gd`.
 
+## Tras la revisión de código (P-24)
+- Razas, zona, progenitores, armas, animaciones y muertes viven en datos: ver `adr/0016-revision-codigo.md`.
+- Medir el juego exportado con `tools/medir_exportado.tscn`. Sin medir en una gráfica real.
+- Al ejecutar dos Godot a la vez, usar un `XDG_DATA_HOME` distinto: comparten `user://`.
+
 ## Preparar el entorno en una conversación nueva
 1. Clonar `rvillalba1983/bug-de-familia`. Si la copia es superficial, usar `git fetch origin main` y `FETCH_HEAD`.
 2. Descargar `Godot_v4.7.2-stable_linux.x86_64.zip` de `github.com/godotengine/godot-builds/releases/download/4.7.2-stable/`.
-3. Importar: `godot --headless --import`.
+3. Importar: `godot --headless --import`. Plantillas de exportación: `Godot_v4.7.2-stable_export_templates.tpz`, en `~/.local/share/godot/export_templates/4.7.2.stable/`.
 4. Probar siempre con `timeout` y `</dev/null`, porque un error de script abre un `debug>` que se queda colgado:
    `timeout 300 godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode -a res://tests -c 2>&1 </dev/null`
 5. Capturas: `LIBGL_ALWAYS_SOFTWARE=1 xvfb-run -a -s "-screen 0 1920x1080x24" godot --rendering-driver opengl3 --path . -s script.gd`

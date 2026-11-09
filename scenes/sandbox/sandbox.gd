@@ -53,6 +53,8 @@ var investigation: InvestigationDirector
 var resumed: bool = false
 
 var hud: LevelHud
+var _occlusion_feet: Vector2 = Vector2.INF
+var _occlusion_height: float = -1.0
 var orders: PointerOrders
 
 
@@ -68,8 +70,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var feet: Vector2 = player.global_position
-	for wall: Wall in walls:
-		wall.update_occlusion(feet, player.current_height())
+	_update_wall_occlusion(feet, player.current_height())
 	player.in_danger = fight.phase != FightDirector.Phase.CALM
 	if fight.phase == FightDirector.Phase.CALM and not player.body.is_dead:
 		for point: SavePoint in save_points:
@@ -89,6 +90,16 @@ func _draw() -> void:
 	draw_rect(SandboxLayout.GOAL, COLOR_GOAL)
 	var goal_top: Vector2 = SandboxLayout.GOAL.get_center() - Vector2(0.0, 8.0)
 	WorldLabel.draw_on(self, tr("ITEM_GOAL"), goal_top)
+
+
+## Solo cambia si el personaje se mueve o se agacha.
+func _update_wall_occlusion(feet: Vector2, height: float) -> void:
+	if feet == _occlusion_feet and height == _occlusion_height:
+		return
+	_occlusion_feet = feet
+	_occlusion_height = height
+	for wall: Wall in walls:
+		wall.update_occlusion(feet, height)
 
 
 ## Para pruebas de sistemas que no necesitan enemigos.

@@ -46,6 +46,9 @@ var _repath: float = 0.0
 ## Hueco alrededor del jugador en una pelea, para que un grupo no se apile en un punto.
 var _fight_spot: Vector2 = Vector2.ZERO
 static var _next_fight_angle: float = 0.0
+## Zona visible de la cámara, calculada una vez por tick para todos los guardias.
+static var _visible_frame: int = -1
+static var _visible_rect: Rect2 = Rect2()
 var _view: VisionConeView
 var health: float = MAX_HEALTH
 ## Un guardia pasivo no vigila ni acude a ruidos; solo responde si le atacan.
@@ -114,8 +117,10 @@ func _physics_process(delta: float) -> void:
 
 ## Fuera de pantalla no se anima ni se calcula el dibujo del cono. Las reglas siguen igual.
 func _near_screen() -> bool:
-	var view: Rect2 = get_canvas_transform().affine_inverse() * get_viewport_rect()
-	return view.grow(detector.view_range + SCREEN_MARGIN).has_point(global_position)
+	if Engine.get_physics_frames() != _visible_frame:
+		_visible_frame = Engine.get_physics_frames()
+		_visible_rect = get_canvas_transform().affine_inverse() * get_viewport_rect()
+	return _visible_rect.grow(detector.view_range + SCREEN_MARGIN).has_point(global_position)
 
 
 func _draw() -> void:

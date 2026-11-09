@@ -37,6 +37,7 @@ func say(new_text: String, color: Color, duration: float) -> void:
 	_time_left = duration
 	_pop = 0.0
 	visible = true
+	set_process(true)
 	queue_redraw()
 
 
@@ -54,6 +55,9 @@ func _process(delta: float) -> void:
 		_time_left -= delta
 		if _time_left <= 0.0:
 			visible = false
+	if not visible:
+		set_process(false)
+		return
 	_pop = minf(_pop + delta / POP_TIME, 1.0)
 	var eased: float = 1.0 + 2.7 * pow(_pop - 1.0, 3.0) + 1.7 * pow(_pop - 1.0, 2.0)
 	var zoom: float = get_canvas_transform().get_scale().x

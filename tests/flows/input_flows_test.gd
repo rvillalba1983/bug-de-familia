@@ -175,3 +175,12 @@ func test_death_leaves_only_new_game_and_space_does_not_resume() -> void:
 	assert_int(zone.overlay.options.size()).is_equal(1)
 	await _press(&"tactical_pause")
 	assert_bool(get_tree().paused).is_true()
+
+
+func test_a_hidden_bubble_stops_processing_and_wakes_when_it_talks() -> void:
+	var bubble: SpeechBubble = zone.investigation.bubbles.values()[0]
+	await await_idle_frame()
+	assert_bool(bubble.is_processing()).is_false()
+	bubble.say("Hola", Color.WHITE, 5.0)
+	assert_bool(bubble.is_processing()).is_true()
+	assert_bool(bubble.visible).is_true()

@@ -134,6 +134,8 @@ Reglas de producto en `02_DECISIONES.md`. El SaveSystem usa escritura atómica, 
 - Versionado de datos y migraciones.
 - No ejecutar código arbitrario procedente de archivos de contenido.
 
+Catálogos de contenido en `core/data/` y zonas en `data/zones/`: ver `adr/0016-revision-codigo.md`.
+
 ## 13. Rendimiento
 
 No fijar límites definitivos sin medición. Claude debe crear escenarios de prueba reproducibles que incluyan:

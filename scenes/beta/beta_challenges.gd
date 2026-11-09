@@ -216,6 +216,9 @@ func _apply_conflict() -> void:
 		enemy.set_passive(safe_passage)
 	if flag("guerra") and not level.moved_to_war:
 		level.moved_to_war = true
+		if not flag("batalla_guerra") and level.live_world.started:
+			level.investigation.flags["batalla_guerra"] = true
+			level.battles.begin()
 		for enemy: Guard in level.depot_guards():
 			enemy.set_patrol(BetaLayout.BRAWL_PATROL)
 		for enemy: Guard in strip:

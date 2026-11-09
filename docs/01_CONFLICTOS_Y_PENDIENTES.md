@@ -11,6 +11,7 @@ Los 13 conflictos entre documentos quedaron resueltos el 8 de noviembre: ver `02
 | P-05 | **Por hacer: Claude.** Ajuste de tokens y enfados, y las 14 IAs restantes (hay 6 jugables) | Sistema de IAs | Fase 9 |
 | P-09 | **En curso: Claude escribe, el director critica.** Lotes 1 y 2 aprobados e integrados: 76 preguntas, motes y comentarios del protagonista (`docs/adr/0007-motes-y-comentarios.md`). Pueden añadirse más lotes; quedan 12 preguntas reservadas para las otras cuatro razas | Humor y conversión | Fase 4 |
 | P-20 | **Por revisar tras la fase 9, con aprobación del director.** Acciones lo más fluidas posible y con los mínimos clics: clic derecho contextual, ir y usar con un clic, confirmar la pausa previa a una pelea con una tecla, misma tecla para abrir y cerrar paneles | Controles | Post-fase 9 |
+| P-21 | **Por hacer en una fase posterior.** Que el chat de las IAs se parezca más a IRcap | Interfaz | Post-fase 9 |
 
 ## Resueltos en la fase 9
 P-19: chapa con F1 y ventana de controles arriba a la izquierda (`adr/0011-ias-y-controles.md`).

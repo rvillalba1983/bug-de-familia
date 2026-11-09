@@ -17,6 +17,7 @@ const KEY_ACTIONS: Dictionary = {
 	&"character": [KEY_C],
 	&"convert": [KEY_Q],
 	&"help": [KEY_F1],
+	&"map": [KEY_M],
 	&"throw": [KEY_F],
 	&"action_1": [KEY_1],
 	&"action_2": [KEY_2],

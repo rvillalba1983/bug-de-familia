@@ -25,6 +25,7 @@ Basados en los de World of Warcraft, adaptados a una cámara de ángulo fijo. Ap
 | Piezas del cuerpo | C | Hecho |
 | Ver todos los controles | F1 (la misma tecla cierra) | Hecho |
 | Inventario | B | Fase 3 |
+| Vista de estrategia durante una batalla (1, 2 y 3: x1, x2 y x4) | M (la misma tecla cierra) | Hecho |
 | Mapa | M | Fases posteriores |
 | Menú | Esc | Fases posteriores |
 

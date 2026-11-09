@@ -272,6 +272,16 @@ func take_damage(amount: float) -> void:
 		_on_detected(target.global_position)
 
 
+## Golpe de otro combatiente en una batalla: no alerta contra el jugador ni agita la pantalla.
+func take_battle_hit(amount: float) -> void:
+	if state == State.DOWN:
+		return
+	health = maxf(health - amount, 0.0)
+	if health <= 0.0:
+		quiet_impacts = true
+		_fall()
+
+
 ## Muere por un suceso del mundo, sin efectos de pantalla.
 func die_quietly() -> void:
 	if state == State.DOWN:

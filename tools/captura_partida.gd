@@ -72,6 +72,18 @@ func _act(zone: BetaZone, action: String) -> void:
 			await create_timer(1.6, true, false, true).timeout
 			zone.conversion.choose_objective(zone.catalog.objectives.keys()[0])
 			zone.conversion.choose_slot(ModularBody.Slot.values()[1])
+		"oferta":
+			zone.battles.begin()
+		"batalla":
+			zone.battles.begin()
+			await create_timer(0.3, true, false, true).timeout
+			zone.battles.choose(2)
+			zone.battles.set_speed(4.0 if OS.has_environment("X4") else 1.0)
+		"unirse":
+			zone.player.global_position = Vector2(2000.0, 1300.0)
+			zone.battles.begin()
+			await create_timer(0.3, true, false, true).timeout
+			zone.battles.choose(3)
 		"controles":
 			zone.get_children().filter(func(n: Node) -> bool: return n is ControlsPanel)[0].toggle()
 		"nacimiento":

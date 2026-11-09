@@ -29,6 +29,7 @@ var protagonist: ProtagonistVoice
 var rain: AcidRain
 var atmosphere: BetaAtmosphere
 var live_world: LiveWorld
+var battles: BattleDirector
 var cracked_wall: Wall
 var ramon: Guard
 var strip_jubilado: Guard
@@ -312,6 +313,9 @@ func _build_investigation() -> void:
 	live_world = LiveWorld.new()
 	live_world.level = self
 	add_child(live_world)
+	battles = BattleDirector.new()
+	battles.level = self
+	add_child(battles)
 
 
 func _connect_systems() -> void:
@@ -365,6 +369,7 @@ func _build_interface() -> void:
 	var fog: PauseFog = PauseFog.new()
 	add_child(fog)
 	pause.paused_changed.connect(fog.set_shown)
+	conversion.converted.connect(battles.on_converted)
 	ai.route_hint = challenges.next_route
 	ai.treason_hint = _least_friendly_species
 	var controls: ControlsPanel = ControlsPanel.new()
@@ -382,6 +387,10 @@ func _least_friendly_species() -> String:
 	if rng.randf() < 0.35:
 		worst = not worst
 	return "Jubilados" if worst else "Mohócratas"
+
+
+func id_of_guard(enemy: Guard) -> String:
+	return _enemy_ids[enemy]
 
 
 func _id_of(enemy: Guard) -> String:

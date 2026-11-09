@@ -22,6 +22,8 @@ var sim: WorldSim = WorldSim.new()
 var dialogue: LiveDialogue
 var citizens: Dictionary = {}
 var started: bool = false
+## El golpe que cae ahora viene de una batalla, no del jugador.
+var battle_casualty: bool = false
 
 var _talk_items: Dictionary = {}
 var _bubbles: Dictionary = {}
@@ -121,7 +123,13 @@ func on_citizen_gone(id: String) -> void:
 	if is_instance_valid(citizens.get(id)):
 		npc.pos = (citizens[id] as Guard).global_position
 	sim.kill(id)
+	if battle_casualty:
+		return
 	sim.events.report(sim, "el_sobrante_mata", WorldSim.PLAYER_ID, id, npc.pos)
+
+
+func say_from(npc: NpcState, text: String) -> void:
+	_speak(npc, text)
 
 
 func home_of(species: String) -> Rect2:
@@ -167,6 +175,8 @@ func _direct_all() -> void:
 			continue
 		var npc: NpcState = sim.npcs[id]
 		var guard: Guard = citizens[id]
+		if level.battles.is_fighter(id):
+			continue
 		if guard.state in [Guard.State.PATROL, Guard.State.WAIT, Guard.State.LOOK_AROUND]:
 			_direct(npc, guard, Motivation.choose(sim, npc, festival))
 

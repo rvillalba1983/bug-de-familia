@@ -1,0 +1,26 @@
+{
+ "names": {"jubilado": "Jubilados de Hierro", "mohocrata": "Mohócratas"},
+ "roles": ["cebo", "carne de cañón", "escudo con patas", "distracción cara", "voluntario forzoso"],
+ "orders": {
+  "jubilado": [
+   "¡Tú, el de los brazos! ¡Al {dir}, de {rol}! En mis tiempos lo hacíamos con menos piezas.",
+   "¡Vete por el {dir}! Yo te cubro desde aquí, que me duele la rodilla.",
+   "Te nombro {rol}. Es un honor. No preguntes por el anterior."
+  ],
+  "mohocrata": [
+   "Votado por mayoría: tú al {dir}, de {rol}.",
+   "La colonia te asigna el puesto de {rol}. Abstenciones: una, la tuya.",
+   "¡Al {dir}! Lo hemos votado tres veces, ya no hay marcha atrás."
+  ]
+ },
+ "witness": {
+  "jubilado": "¡Lo he visto! ¡Estás convirtiendo a mi compañero de petanca! ¡No se me olvida!",
+  "mohocrata": "Queda en acta de la colonia: has reciclado a uno de los nuestros."
+ },
+ "offer_title": "¡Ha estallado una batalla!",
+ "offer_join": "Unirte a los %s",
+ "offer_watch": "Mirarla desde lejos (vista de estrategia)",
+ "offer_leave": "Pasar del tema",
+ "won": "Han ganado los %s. Mañana dirán que fue idea suya.",
+ "draw": "Tablas: se han ido todos a casa fingiendo que ganaron."
+}

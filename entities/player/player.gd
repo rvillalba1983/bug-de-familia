@@ -30,6 +30,8 @@ const HIT_SQUASH: Vector2 = Vector2(1.22, 0.78)
 
 ## Lo fija Siestaware cuando está activa.
 var still_stealth_factor: float = 1.0
+## En la vista de estrategia el personaje se queda quieto.
+var controls_locked: bool = false
 var facing: Vector2 = Vector2.DOWN
 var is_crouching: bool = false
 var body: ModularBody = ModularBody.new()
@@ -240,6 +242,8 @@ func nearest_interactable() -> Interactable:
 
 func _resolve_direction() -> Vector2:
 	var input: Vector2 = Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
+	if controls_locked:
+		input = Vector2.ZERO
 	if input != Vector2.ZERO:
 		_autorun = false
 		_path = PackedVector2Array()

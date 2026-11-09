@@ -390,6 +390,21 @@
     "ira": 40
    },
    "observe": "Enhorabuena: acabas de arruinar una fiesta. Te quedan otras treinta y cinco."
+  },
+  {
+   "id": "batalla_faccion",
+   "category": "social",
+   "cast": "notice",
+   "weight": 0,
+   "cooldown": 0,
+   "importance": 70,
+   "text": "{a} sobrevivió a la batalla de {w}, por {x}",
+   "things": [
+    "la chatarra",
+    "un mal voto",
+    "una partida de petanca"
+   ],
+   "observe": ""
   }
  ]
 }

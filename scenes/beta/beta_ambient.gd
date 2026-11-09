@@ -15,6 +15,7 @@ const CABLES: Array[Array] = [
 const PLANTS: Array[Vector2] = [Vector2(1180.0, 1000.0), Vector2(1120.0, 1560.0), Vector2(2260.0, 1100.0), Vector2(860.0, 1240.0), Vector2(2780.0, 1500.0)]
 const CANOPIES: Array[Vector2] = [Vector2(220.0, 420.0), Vector2(440.0, 1100.0), Vector2(260.0, 1900.0), Vector2(640.0, 2300.0), Vector2(3480.0, 500.0), Vector2(3600.0, 2100.0), Vector2(860.0, 280.0)]
 const CANOPY_PARALLAX: float = 0.09
+const CANOPY_CLEAR: float = 170.0
 const COLOR_WATER: Color = Color(0.3, 0.8, 0.9, 0.55)
 const COLOR_FLY: Color = Color("#1b0e2a")
 const COLOR_SMOKE: Color = Color(0.75, 0.72, 0.85, 0.26)
@@ -66,7 +67,7 @@ func _draw() -> void:
 	for index: int in range(CANOPIES.size()):
 		var top: Vector2 = CANOPIES[index] - drift
 		if top.distance_to(feet) < NEAR * 1.3:
-			_canopy(top, index, clock)
+			_canopy(top, index, clock, _canopy_alpha(top, feet))
 
 
 func _puddle(at: Vector2, clock: float) -> void:
@@ -110,8 +111,13 @@ func _plant(at: Vector2, clock: float) -> void:
 		draw_line(at, tip, COLOR_PLANT, 3.0)
 
 
-func _canopy(at: Vector2, index: int, clock: float) -> void:
+## Nunca tapa al protagonista: al acercarse, la copa se vuelve casi transparente.
+func _canopy_alpha(top: Vector2, feet: Vector2) -> float:
+	return lerpf(0.08, COLOR_CANOPY.a, clampf((top.distance_to(feet) - CANOPY_CLEAR) / CANOPY_CLEAR, 0.0, 1.0))
+
+
+func _canopy(at: Vector2, index: int, clock: float, alpha: float) -> void:
 	var wobble: float = sin(clock * 0.6 + float(index)) * 5.0
 	for blob: int in range(5):
 		var angle: float = TAU * float(blob) / 5.0 + float(index)
-		draw_circle(at + Vector2.from_angle(angle) * (54.0 + wobble), 62.0, COLOR_CANOPY)
+		draw_circle(at + Vector2.from_angle(angle) * (54.0 + wobble), 62.0, Color(COLOR_CANOPY, alpha))

@@ -75,6 +75,10 @@ func _act(zone: BetaZone, action: String) -> void:
 			zone.ai.team.active = ["cupido", "sargento_bit", "lumi"]
 			for index: int in range(7):
 				zone.ai.chat.add_message("lumi", "Mensaje %d: ¡Chicos, se va a caer! ¡Like si muere!" % index)
+		"calma":
+			zone.set_enemies_active(false)
+			zone.player.body.equipped(ModularBody.Slot.values()[1] as ModularBody.Slot).durability = 15.0
+			zone.player.body.equipped(ModularBody.Slot.values()[5] as ModularBody.Slot).durability = 30.0
 		"pausa":
 			zone.pause.set_paused(true)
 		"charla":

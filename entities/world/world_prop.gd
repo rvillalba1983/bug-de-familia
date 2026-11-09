@@ -13,5 +13,7 @@ func setup(art: String, at: Vector2, size: Vector2) -> void:
 
 
 func _draw() -> void:
-	draw_circle(Vector2(0.0, 2.0), 16.0, Color(0.0, 0.0, 0.0, 0.3))
+	draw_set_transform(Vector2(0.0, 2.0), 0.0, Vector2(1.0, 0.38))
+	draw_circle(Vector2.ZERO, 22.0, Color(0.0, 0.0, 0.0, 0.3))
+	draw_set_transform(Vector2.ZERO)
 	draw_texture_rect(_texture, Rect2(Vector2(-_size.x * 0.5, -_size.y), _size), false)

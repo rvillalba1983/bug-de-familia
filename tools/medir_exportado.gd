@@ -1,12 +1,22 @@
 extends Node
 ## Mide la zona beta real en el juego exportado o en el editor. Se arranca como escena principal
-## (ver docs/adr/0016). CASO: ciudad, noche, pausa o batalla. EXTRA añade personajes.
-## QUITAR apaga una parte para ver lo que cuesta: filtro, mundo, actores, interfaz, ambiente o 720p.
+## (ver docs/adr/0016 y docs/adr/0017). CASO: ciudad, noche, caminando, pelea, pausa o batalla.
+## EXTRA añade personajes. RONDA etiqueta la pasada y CAPTURA guarda una imagen al terminar.
+## QUITAR apaga una parte para ver lo que cuesta: filtro, mundo, actores, interfaz, ambiente,
+## particulas, protagonista, personajes, paredes, objetos, fachadas, conos o 720p.
 
 const SETTLE: float = 3.0
 const SAMPLES: int = 150
 const SPOT: Vector2 = Vector2(1500.0, 620.0)
 const ZONE_PATH: String = "res://scenes/beta/beta_zone.tscn"
+const WALK_ROUTE: PackedVector2Array = [Vector2(1300.0, 1320.0), Vector2(2800.0, 1320.0)]
+const FIGHTERS: int = 6
+const FIGHT_RING: float = 70.0
+
+var _walked: float = 0.0
+var _last_position: Vector2 = SPOT
+var _fighters: Array[Guard] = []
+var _panel_opened: bool = false
 
 
 func _ready() -> void:
@@ -32,26 +42,32 @@ func _run() -> void:
 	await _start_case(zone, mode)
 	var removed: String = OS.get_environment("QUITAR")
 	_remove_part(zone, removed)
-	await get_tree().create_timer(SETTLE, true, false, true).timeout
+	await _settle(zone, mode)
+	_walked = 0.0
 	var frames: Array[float] = []
 	var physics: Array[float] = []
 	var process: Array[float] = []
 	var last: int = Time.get_ticks_usec()
 	for _index: int in range(SAMPLES):
 		await get_tree().process_frame
+		_keep_case_running(zone, mode)
 		var now: int = Time.get_ticks_usec()
 		frames.append((now - last) / 1000.0)
 		last = now
 		physics.append(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS) * 1000.0)
 		process.append(Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0)
-	var line: String = "RESULTADO %s quitar=%s ventana=%s personajes=%d carga_ms=%.0f fotograma_media=%.2f fotograma_p99=%.2f fisica_media=%.2f proceso_medio=%.2f memoria_mb=%.0f draw_calls=%.0f grafica=%s" % [
-		mode, removed, get_window().size, zone.guards().size(), load_ms, _mean(frames), _p99(frames), _mean(physics), _mean(process),
+	var line: String = "RESULTADO %s quitar=%s ronda=%s ventana=%s personajes=%d carga_ms=%.0f fotograma_media=%.2f fotograma_mediana=%.2f fotograma_p99=%.2f fisica_media=%.2f proceso_medio=%.2f memoria_mb=%.0f draw_calls=%.0f recorrido_px=%.0f en_alerta=%d panel_interrumpe=%s driver=%s lista_angle=%d api=%s grafica=%s" % [
+		mode, removed, OS.get_environment("RONDA"), get_window().size, zone.guards().size(), load_ms,
+		_mean(frames), _median(frames), _p99(frames), _mean(physics), _mean(process),
 		Performance.get_monitor(Performance.MEMORY_STATIC) / 1048576.0,
 		Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),
-		RenderingServer.get_video_adapter_name(),
+		_walked, _alert_count(), _panel_opened, RenderingServer.get_current_rendering_driver_name(),
+		(ProjectSettings.get_setting("rendering/gl_compatibility/force_angle_on_devices") as Array).size(),
+		RenderingServer.get_video_adapter_api_version(), RenderingServer.get_video_adapter_name(),
 	]
 	print(line)
 	_append_to_report(line)
+	_save_capture()
 	SaveSystem.delete_all()
 	get_tree().quit()
 
@@ -70,6 +86,9 @@ func _remove_part(zone: BetaZone, part: String) -> void:
 					(child as CanvasLayer).visible = false
 		"ambiente":
 			for node: Node in zone.find_children("*", "BetaAmbient", true, false):
+				(node as CanvasItem).visible = false
+		"particulas":
+			for node: Node in zone.atmosphere.find_children("*", "GPUParticles2D", true, false):
 				(node as CanvasItem).visible = false
 		"protagonista":
 			zone.player.visible = false
@@ -121,10 +140,97 @@ func _prepare(zone: BetaZone) -> void:
 func _start_case(zone: BetaZone, mode: String) -> void:
 	if mode == "pausa":
 		zone.pause.set_paused(true)
+	elif mode == "caminando":
+		zone.player.global_position = WALK_ROUTE[0]
+		_last_position = WALK_ROUTE[0]
+		zone.player.process_mode = Node.PROCESS_MODE_INHERIT
+	elif mode == "pelea":
+		await _start_fight(zone)
 	elif mode == "batalla":
 		zone.battles.begin()
 		await get_tree().create_timer(0.3, true, false, true).timeout
 		zone.battles.choose(2)
+
+
+## Espera a que el caso se asiente, manteniéndolo en marcha.
+func _settle(zone: BetaZone, mode: String) -> void:
+	var finish: int = Time.get_ticks_msec() + int(SETTLE * 1000.0)
+	while Time.get_ticks_msec() < finish:
+		await get_tree().process_frame
+		_keep_case_running(zone, mode)
+
+
+func _keep_case_running(zone: BetaZone, mode: String) -> void:
+	if mode == "caminando":
+		_keep_walking(zone)
+	elif mode == "pelea":
+		_keep_fighting(zone)
+	_walked += zone.player.global_position.distance_to(_last_position)
+	_last_position = zone.player.global_position
+
+
+func _keep_walking(zone: BetaZone) -> void:
+	var player: Player = zone.player
+	_heal(player)
+	if player.has_path():
+		return
+	var at_end: bool = player.global_position.distance_to(WALK_ROUTE[1]) < FIGHT_RING
+	var target: Vector2 = WALK_ROUTE[0] if at_end else WALK_ROUTE[1]
+	player.set_path(zone.nav.find_path(player.global_position, target))
+
+
+## Pelea real con varios habitantes alrededor. Nadie muere, para que dure toda la medición.
+func _start_fight(zone: BetaZone) -> void:
+	zone.player.process_mode = Node.PROCESS_MODE_INHERIT
+	var people: Array = zone.live_world.citizens.values()
+	for index: int in range(mini(FIGHTERS, people.size())):
+		var person: Guard = people[index]
+		var angle: float = TAU * float(index) / float(FIGHTERS)
+		person.global_position = SPOT + Vector2.from_angle(angle) * FIGHT_RING
+		person.set_passive(false)
+		_fighters.append(person)
+	_heal(zone.player)
+	await get_tree().physics_frame
+	_fighters[0].take_damage(1.0)
+	await get_tree().process_frame
+	zone.panel.close()
+	zone.fight.confirm_pre_fight()
+	zone.combat.engage(_fighters[0])
+
+
+func _keep_fighting(zone: BetaZone) -> void:
+	_heal(zone.player)
+	if zone.panel.is_open:
+		_panel_opened = true
+		zone.panel.close()
+	for person: Guard in _fighters:
+		person.health = Guard.MAX_HEALTH
+		if not person.is_alert():
+			person.join_fight()
+	if zone.combat.target == null:
+		zone.combat.engage(_fighters[0])
+
+
+## El sobrante evita que varios golpes en un mismo fotograma lento rompan una pieza.
+func _heal(player: Player) -> void:
+	for slot: int in ModularBody.Slot.values():
+		var piece: BodyPiece = player.body.equipped(slot as ModularBody.Slot)
+		if piece != null:
+			piece.durability = BodyPiece.MAX_DURABILITY * 10.0
+
+
+func _alert_count() -> int:
+	var count: int = 0
+	for person: Guard in _fighters:
+		if person.is_alert():
+			count += 1
+	return count
+
+
+func _save_capture() -> void:
+	var path: String = OS.get_environment("CAPTURA")
+	if path != "":
+		get_viewport().get_texture().get_image().save_png(path)
 
 
 func _mean(values: Array[float]) -> float:
@@ -132,6 +238,12 @@ func _mean(values: Array[float]) -> float:
 	for value: float in values:
 		total += value
 	return total / float(values.size())
+
+
+func _median(values: Array[float]) -> float:
+	var sorted: Array[float] = values.duplicate()
+	sorted.sort()
+	return sorted[values.size() / 2]
 
 
 func _p99(values: Array[float]) -> float:

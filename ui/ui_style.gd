@@ -5,10 +5,13 @@ extends RefCounted
 const COLOR_PLATE: Color = Color("#2b2f38")
 const COLOR_HOVER: Color = Color("#3d4250")
 const COLOR_EDGE: Color = Color("#ff9a3c")
+## Tipografía gamberra: Bangers, licencia SIL OFL (art/fuentes/OFL.txt).
+const FONT_LOUD: Font = preload("res://art/fuentes/Bangers-Regular.ttf")
 
 
 static func make_theme() -> Theme:
 	var theme: Theme = Theme.new()
+	theme.default_font = FONT_LOUD
 	theme.set_stylebox(&"normal", &"Button", _box(COLOR_PLATE, COLOR_EDGE))
 	theme.set_stylebox(&"hover", &"Button", _box(COLOR_HOVER, Color.WHITE))
 	theme.set_stylebox(&"pressed", &"Button", _box(COLOR_EDGE, Color.WHITE))

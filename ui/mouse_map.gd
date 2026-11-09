@@ -13,7 +13,7 @@ const FONT_SIZE: int = 20
 
 
 func _draw() -> void:
-	var font: Font = ThemeDB.fallback_font
+	var font: Font = UiStyle.FONT_LOUD
 	var points: PackedVector2Array = PackedVector2Array()
 	var center: Vector2 = BODY.get_center()
 	for index: int in range(40):

@@ -75,6 +75,7 @@ func _build_rows() -> void:
 	var title: Label = Label.new()
 	title.text = "CONTROLES (o cómo no morir por pulsar lo que no es)"
 	title.position = Vector2(48.0, 30.0)
+	title.add_theme_font_override(&"font", UiStyle.FONT_LOUD)
 	title.add_theme_font_size_override(&"font_size", 30)
 	title.add_theme_color_override(&"font_color", COLOR_EDGE)
 	_plate.add_child(title)

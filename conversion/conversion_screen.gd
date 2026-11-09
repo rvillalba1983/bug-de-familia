@@ -266,6 +266,7 @@ func _screen_theme() -> Theme:
 	if _theme != null:
 		return _theme
 	_theme = Theme.new()
+	_theme.default_font = UiStyle.FONT_LOUD
 	_theme.set_font_size(&"font_size", &"Label", 24)
 	_theme.set_font_size(&"font_size", &"Button", 24)
 	_theme.set_color(&"font_color", &"Label", Palette.HUESO)

@@ -15,7 +15,7 @@ const NOTES_SIZE: int = 21
 
 
 func _draw() -> void:
-	var font: Font = ThemeDB.fallback_font
+	var font: Font = UiStyle.FONT_LOUD
 	var y: float = 0.0
 	var rows: Array = ControlsPanel.load_rows("keyboard")
 	for row: Variant in rows:

@@ -14,7 +14,7 @@ Hecho: grano, viñeta y brillo en los neones, neones que parpadean, flecha de de
 Sin hacer: óxido y metal disuelto en las piezas, charcos con ondas, copas de árbol a otra velocidad, cables y plantas que se mecen, moscas, humo, cono que cambia según la sospecha y tipografía gamberra, que necesitaría una fuente con licencia.
 
 ## Cierre de la beta (9-nov)
-Hecho: óxido según desgaste y burbujeo con lluvia ácida, charcos con ondas, copas de árbol a otra velocidad, cables y plantas que se mecen, moscas, humo y borde del cono según la sospecha. La tipografía gamberra (Bangers, licencia SIL OFL) espera el visto bueno del director.
+Hecho: óxido según desgaste y burbujeo con lluvia ácida, charcos con ondas, copas de árbol a otra velocidad, cables y plantas que se mecen, moscas, humo y borde del cono según la sospecha. Tipografía gamberra: Bangers, aprobada por el director el 9-nov, en títulos, carteles y paneles.
 
 ## Orden de trabajo
 Primero lo que se nota en el primer minuto de partida:

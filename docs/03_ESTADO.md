@@ -9,7 +9,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | 7b. Pulido visual e interfaz | Fusionada en `main` y aprobada por el director el 9-nov, con los cuatro puntos del primer minuto (animación de enemigos, impacto, convertir y silueta). 203 pruebas pasan. Ver `adr/0009-pulido-primer-minuto.md`. El resto de la lista pasa a la fase 9, incluidas las opciones de reducir temblores y destellos |
 | 8. Mundo vivo (zona beta) | Fusionada en `main` el 9-nov y aprobada por el director. 229 pruebas pasan. Ver `adr/0010-mundo-vivo-beta.md` |
 | 9. Contenido y pulido | Fusionada en `main` el 9-nov y aprobada por el director. 255 pruebas pasan. Ver `adr/0011-ias-y-controles.md`, `adr/0012-batallas.md` y `adr/0013-audio-y-rendimiento.md` |
-| Cierre de la beta | En la rama `cierre-beta`, pendiente de aprobación. Ver `adr/0014-cierre-beta.md` |
+| Cierre de la beta | Fusionada en `main` el 9-nov con aprobación del director. 261 pruebas pasan. Ver `adr/0014-cierre-beta.md` |
 | Revisión de código y pruebas (P-24) | Siguiente fase |
 | Post-beta. Mundo completo | Después, tras revisar la beta: otras cuatro razas, 13 progenitores, zonas nuevas, tres niveles de simulación y viaje entre puntos de guardado |
 
@@ -44,10 +44,14 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 
 ## Tras la fase 9
 - 20 IAs, batallas, vista de estrategia, 100 melodías y 40 perfiles de voz sintéticos. Las voces no son acentos reales. Valores y textos provisionales.
-- Revisión de la beta pendiente: P-02 (compatibilidades, a revisar por el director), P-20 (fluidez y pocos clics), P-21 (chat más tipo IRcap) y P-22 (al menos 40 personajes en la zona).
-- Sin hacer del pulido: lista en `42_pulido_visual_interfaz.md`. Narcisa 9 sin ventaja real, porque no hay disfraces; el señuelo de Lumi es solo ruido.
 - Sin medir en una gráfica real. Una batalla en curso no se guarda.
 - Pruebas de rendimiento con `tools/medir_rendimiento.gd` (variables CASO y EXTRA). Audio con `tools/audio/gen_audio.py`.
+
+## Tras el cierre de la beta
+- P-02 implementado y provisional, a revisar jugando. Población, catálogo y textos son provisionales.
+- El director no ha jugado aún la beta entera con estos cambios. Sin medir en una gráfica real.
+- Recorridos reales con `tools/recorrido_beta.gd` (variables RUTA, SEMILLA y FECHA).
+- Siguiente fase: P-24, revisión de código y más pruebas funcionales. Ideas post-beta: P-23, P-25, P-26 y P-27.
 
 ## Preparar el entorno en una conversación nueva
 1. Clonar `rvillalba1983/bug-de-familia`. Si la copia es superficial, usar `git fetch origin main` y `FETCH_HEAD`.

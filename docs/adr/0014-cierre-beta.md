@@ -36,5 +36,7 @@ Con Narcisa activa los disfraces duran un 60 % más y engañan mejor. Lumi deja 
 ## Recursos
 `art/beta/props/antena.svg`: escrito a mano por Claude, 9-nov, sin herramientas externas.
 
+`art/fuentes/Bangers-Regular.ttf`: The Bangers Project Authors, SIL Open Font License 1.1 (`art/fuentes/OFL.txt`), de github.com/google/fonts.
+
 ## Recorrido real
 `tools/recorrido_beta.gd` juega con enemigos activos, sin teletransporte ni pegar a nadie (variables RUTA, SEMILLA y FECHA).

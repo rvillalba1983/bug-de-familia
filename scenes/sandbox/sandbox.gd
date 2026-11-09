@@ -515,6 +515,7 @@ func _add_label(layer: CanvasLayer, key: String, at: Vector2, font_size: int) ->
 	var label: Label = Label.new()
 	label.text = tr(key)
 	label.position = at
+	label.add_theme_font_override(&"font", UiStyle.FONT_LOUD)
 	label.add_theme_font_size_override(&"font_size", font_size)
 	layer.add_child(label)
 	return label

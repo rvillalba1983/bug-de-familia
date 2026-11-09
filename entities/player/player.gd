@@ -42,6 +42,7 @@ var controls_locked: bool = false
 var facing: Vector2 = Vector2.DOWN
 var is_crouching: bool = false
 var body: ModularBody = ModularBody.new()
+var knockback: Knockback = Knockback.new()
 var noise_bus: NoiseBus
 var in_danger: bool = false
 var tail_color: Color = Color("#404050")
@@ -85,6 +86,11 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		return
 	_tick_body(delta)
+	if knockback.is_active():
+		velocity = knockback.tick(delta)
+		move_and_slide()
+		queue_redraw()
+		return
 	_read_toggles()
 	var direction: Vector2 = _resolve_direction()
 	velocity = direction * current_speed()
@@ -218,6 +224,8 @@ func receive_hit(amount: float, rng: RandomNumberGenerator, attacker: Guard) -> 
 		return
 	body.damage_random(amount, rng)
 	react_to_hit(amount)
+	if attacker != null:
+		knockback.start(global_position - attacker.global_position)
 	if body.has_action("a046") and attacker != null:
 		attacker.stun(SPIKES_STUN_TIME * body.multiplier("stun"))
 	elif body.total("thorns_stun") > 0.0 and attacker != null:

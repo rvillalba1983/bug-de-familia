@@ -53,6 +53,7 @@ var _view: VisionConeView
 var health: float = MAX_HEALTH
 ## Un guardia pasivo no vigila ni acude a ruidos; solo responde si le atacan.
 var passive: bool = false
+var knockback: Knockback = Knockback.new()
 var visual: GuardVisual
 var attack: GuardAttack
 var impacts: GuardImpacts
@@ -92,6 +93,12 @@ func _physics_process(delta: float) -> void:
 		_corpse_time -= delta
 		if _corpse_time <= 0.0:
 			corpse_expired.emit(self)
+		return
+	if knockback.is_active():
+		velocity = knockback.tick(delta)
+		move_and_slide()
+		if seen:
+			queue_redraw()
 		return
 	if state == State.STUNNED:
 		_tick_stun(delta)
@@ -142,8 +149,15 @@ func take_damage(amount: float) -> void:
 	impacts.on_hit()
 	if health <= 0.0:
 		_fall()
-	elif state != State.ALERT and state != State.STUNNED:
-		_on_detected(target.global_position)
+	else:
+		_push_away_from_target()
+		if state != State.ALERT and state != State.STUNNED:
+			_on_detected(target.global_position)
+
+
+func _push_away_from_target() -> void:
+	if is_instance_valid(target):
+		knockback.start(global_position - target.global_position)
 
 
 ## Se une a una pelea que ya ha empezado cerca.

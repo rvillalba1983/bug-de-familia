@@ -155,6 +155,7 @@ Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barr
 - Cola del protagonista quieta. Su color sigue indicando qué IA habla.
 - Efectos en movimiento reducidos: charcos, cables, plantas y copas quietos, sin moscas ni humo, y menos lluvia y esporas.
 - Límite opcional de 30 imágenes por segundo en las opciones, apagado por defecto.
+- Al recibir daño, protagonista y enemigos retroceden 4,5 metros (80 unidades, provisional), sin atravesar paredes. No se aplica en las batallas de la vista de estrategia.
 
 ## Autonomía de Claude
 - Una fase por conversación: termina al fusionar en `main`, se anota el avance en `03_ESTADO.md` y se avisa al usuario de que hay que cambiar de conversación (8-nov).

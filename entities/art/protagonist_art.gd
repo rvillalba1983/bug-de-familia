@@ -46,7 +46,8 @@ static func draw(
 	body: ModularBody,
 	tail_color: Color,
 	tail_speaking: bool,
-	walk_phase: float
+	walk_phase: float,
+	squash: Vector2 = Vector2.ONE
 ) -> void:
 	_ensure_loaded()
 	var view_name: String = view_for(facing)
@@ -57,7 +58,7 @@ static func draw(
 		_draw_tail(canvas, facing, height_ratio, tail_color, tail_speaking)
 	var bob: float = -absf(sin(walk_phase)) * 1.5
 	var base: Transform2D = Transform2D(
-		0.0, Vector2(ART_SCALE, ART_SCALE * height_ratio), 0.0, Vector2(0.0, bob)
+		0.0, Vector2(ART_SCALE * squash.x, ART_SCALE * height_ratio * squash.y), 0.0, Vector2(0.0, bob)
 	)
 	var view: Dictionary = _views[view_name]
 	for part_name: String in view["order"]:

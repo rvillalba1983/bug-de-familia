@@ -48,6 +48,15 @@ const VIEW_SOUTH: int = 0
 const VIEW_EAST: int = 1
 const VIEW_NORTH: int = 2
 const VIEW_SUFFIX: Array[String] = ["", "_e", "_n"]
+## Efectos de impacto, provisionales.
+const HIT_SHAKE: float = 5.0
+const HIT_STOP: float = 0.04
+const HIT_SQUASH: Vector2 = Vector2(0.82, 1.14)
+const FALL_SHAKE: float = 9.0
+const FALL_STOP: float = 0.08
+const LAND_DELAY: float = 0.45
+const LAND_SHAKE: float = 6.0
+const LAND_SQUASH: Vector2 = Vector2(1.2, 0.72)
 ## Altura de los pies dentro del dibujo, medida desde arriba.
 const ART_FEET: float = 0.93
 
@@ -83,6 +92,8 @@ var rig_folder: String = ""
 var rig: EnemyRig
 var _rigs: Array[EnemyRig] = [null, null, null]
 var _rig_view: int = VIEW_SOUTH
+## Padre de los esqueletos, en los pies: deforma y destella a todos a la vez.
+var _rig_root: Node2D
 
 var _was_alert: bool = false
 var _aim_point: Vector2 = Vector2.ZERO
@@ -214,13 +225,22 @@ func _update_rig() -> void:
 	_was_alert = state == State.ALERT
 
 
+func _ensure_rig_root() -> Node2D:
+	if _rig_root == null:
+		_rig_root = Node2D.new()
+		_rig_root.name = "esqueletos"
+		_rig_root.material = ImpactFx.new_flash_material()
+		add_child(_rig_root)
+	return _rig_root
+
+
 func _show_view(view: int) -> void:
 	if rig != null and view == _rig_view:
 		return
 	var previous: EnemyRig = rig
 	if _rigs[view] == null:
 		_rigs[view] = EnemyRig.new()
-		add_child(_rigs[view])
+		_ensure_rig_root().add_child(_rigs[view])
 		_rigs[view].build(rig_folder + VIEW_SUFFIX[view], ART_HEIGHT, ART_FEET)
 	rig = _rigs[view]
 	_rig_view = view
@@ -242,6 +262,7 @@ func take_damage(amount: float) -> void:
 	if state == State.DOWN:
 		return
 	health = maxf(health - amount, 0.0)
+	_react_to_hit()
 	if health <= 0.0:
 		_fall()
 	elif state != State.ALERT and state != State.STUNNED:
@@ -404,7 +425,37 @@ func _fire() -> void:
 		target.receive_hit(SHOT_DAMAGE, rng, self)
 
 
+func _react_to_hit() -> void:
+	if not is_inside_tree():
+		return
+	ImpactFx.shake(get_viewport(), HIT_SHAKE)
+	ImpactFx.hit_stop(get_tree(), HIT_STOP)
+	if _rig_root == null:
+		return
+	ImpactFx.flash(_rig_root)
+	ImpactFx.squash(_rig_root, "scale", HIT_SQUASH)
+
+
+func _react_to_fall() -> void:
+	if not is_inside_tree():
+		return
+	ImpactFx.shake(get_viewport(), FALL_SHAKE)
+	ImpactFx.hit_stop(get_tree(), FALL_STOP)
+	if _rig_root == null:
+		return
+	var tween: Tween = create_tween()
+	tween.tween_interval(LAND_DELAY)
+	tween.tween_callback(_react_to_landing)
+
+
+## El golpe contra el suelo al terminar de caer.
+func _react_to_landing() -> void:
+	ImpactFx.shake(get_viewport(), LAND_SHAKE)
+	ImpactFx.squash(_rig_root, "scale", LAND_SQUASH)
+
+
 func _fall() -> void:
+	_react_to_fall()
 	var was_alert: bool = state == State.ALERT
 	state = State.DOWN
 	_windup_left = 0.0

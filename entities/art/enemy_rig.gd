@@ -23,6 +23,7 @@ var _folder: String = ""
 ## Monta el esqueleto de una vista. height y feet colocan los pies como en la imagen sin animar.
 func build(folder: String, height: float, feet: float) -> void:
 	_data = EnemyRigData.VIEWS[folder.get_file()]
+	use_parent_material = true
 	_folder = folder
 	var canvas: Vector2 = _data["canvas"]
 	var hips: Vector2 = _data["hips"]
@@ -76,6 +77,7 @@ func _bone(bone_name: String, parent: Node2D, at: Vector2) -> Node2D:
 	var bone: Node2D = Node2D.new()
 	bone.name = bone_name
 	bone.position = at
+	bone.use_parent_material = true
 	parent.add_child(bone)
 	return bone
 
@@ -96,6 +98,7 @@ func _sprite(part: String, parent: Node2D, joint: Vector2) -> void:
 	sprite.centered = false
 	sprite.scale = Vector2.ONE * (_data["canvas"] as Vector2).x / float(sprite.texture.get_width())
 	sprite.position = -joint
+	sprite.use_parent_material = true
 	parent.add_child(sprite)
 
 

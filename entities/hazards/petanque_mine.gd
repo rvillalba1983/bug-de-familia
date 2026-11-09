@@ -43,6 +43,7 @@ func detonate(hits_player: bool) -> void:
 	_exploded = true
 	if hits_player:
 		level.player.body.damage_random(DAMAGE, level.rng)
+		level.player.react_to_hit(DAMAGE)
 	for enemy: Guard in level.guards():
 		if enemy.global_position.distance_to(global_position) <= STUN_RADIUS:
 			enemy.stun(STUN_TIME)

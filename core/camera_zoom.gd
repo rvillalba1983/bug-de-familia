@@ -5,10 +5,25 @@ extends Camera2D
 const MIN_ZOOM: float = 1.0
 const MAX_ZOOM: float = 2.5
 const ZOOM_STEP: float = 0.1
+const SHAKE_DECAY: float = 60.0
+
+var _shake: float = 0.0
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
+func _process(delta: float) -> void:
+	if _shake <= 0.0:
+		return
+	_shake = maxf(_shake - SHAKE_DECAY * delta, 0.0)
+	offset = Vector2.ZERO if _shake <= 0.0 else Vector2.from_angle(randf() * TAU) * _shake
+
+
+## Temblor de cámara. No usa la semilla de la partida: es solo visual.
+func shake(strength: float) -> void:
+	_shake = maxf(_shake, strength)
 
 
 func _unhandled_input(event: InputEvent) -> void:

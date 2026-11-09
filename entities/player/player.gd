@@ -23,6 +23,10 @@ const SPIKES_STUN_TIME: float = 1.5
 const WAYPOINT_TOLERANCE: float = 6.0
 
 const WALK_ANIMATION_SPEED: float = 11.0
+const HIT_REFERENCE: float = 34.0
+const HIT_SHAKE: float = 14.0
+const HIT_STOP: float = 0.07
+const HIT_SQUASH: Vector2 = Vector2(1.22, 0.78)
 
 var facing: Vector2 = Vector2.DOWN
 var is_crouching: bool = false
@@ -41,6 +45,8 @@ var _worry_timer: float = 0.0
 var _walk_phase: float = 0.0
 var _boost_time: float = 0.0
 var _bubble_cooldown: float = 0.0
+## Deformación del dibujo al recibir un golpe.
+var _squash: Vector2 = Vector2.ONE
 
 
 func _ready() -> void:
@@ -52,6 +58,7 @@ func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	collision_layer = PhysicsLayers.PLAYER
 	collision_mask = PhysicsLayers.WALLS | PhysicsLayers.LOW_COVER
+	material = ImpactFx.new_flash_material()
 
 
 func _physics_process(delta: float) -> void:
@@ -75,7 +82,7 @@ func _physics_process(delta: float) -> void:
 
 func _draw() -> void:
 	var height_ratio: float = current_height() / BODY_HEIGHT
-	ProtagonistArt.draw(self, facing, height_ratio, body, tail_color, tail_speaking, _walk_phase)
+	ProtagonistArt.draw(self, facing, height_ratio, body, tail_color, tail_speaking, _walk_phase, _squash)
 
 
 func set_path(path: PackedVector2Array) -> void:
@@ -140,8 +147,21 @@ func receive_hit(amount: float, rng: RandomNumberGenerator, attacker: Guard) -> 
 	if rng.randf() < body.total("dodge"):
 		return
 	body.damage_random(amount, rng)
+	react_to_hit(amount)
 	if body.has_action("a046") and attacker != null:
 		attacker.stun(SPIKES_STUN_TIME * body.multiplier("stun"))
+
+
+## Efectos visuales de un golpe recibido; cuanto más daño, más fuertes.
+func react_to_hit(amount: float) -> void:
+	if not is_inside_tree():
+		return
+	var strength: float = clampf(amount / HIT_REFERENCE, 0.6, 1.6)
+	ImpactFx.flash(self)
+	ImpactFx.squash(self, "_squash", Vector2.ONE.lerp(HIT_SQUASH, strength))
+	ImpactFx.shake(get_viewport(), HIT_SHAKE * strength)
+	ImpactFx.hit_stop(get_tree(), HIT_STOP)
+	queue_redraw()
 
 
 func is_autorunning() -> bool:

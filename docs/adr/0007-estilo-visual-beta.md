@@ -5,6 +5,7 @@ Estado: en prueba, pendiente de validar en partida.
 ## Decisión
 - Paleta «Cuñado Radiactivo» en `entities/art/palette.gd`.
 - Suelo, paredes, árboles, luces, noche, esporas y lluvia se dibujan con Godot.
+- El suelo usa texturas repetibles horneadas con `tools/art/ground_gen.py`, y las murallas largas se trocean en edificios de altura y color distintos.
 - Jubilados, Mohócratas, Don Ramón, minas, dron y bobina usan SVG de `art/beta/`.
 - El protagonista se dibuja con polígonos de Godot por piezas, datos en `data/art/protagonista.json`. Sustituye al marcador provisional y se prueba frente al acabado pintado de la hoja, que sigue siendo la referencia final.
 

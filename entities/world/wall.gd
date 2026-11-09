@@ -14,6 +14,15 @@ const PATCH_SPACING: float = 40.0
 const HAZARD_WIDTH: float = 14.0
 const WINDOW_SPACING: float = 70.0
 const WINDOW_SIZE: Vector2 = Vector2(26.0, 22.0)
+const MIN_BLOCK_WIDTH: float = 110.0
+const MAX_BLOCK_WIDTH: float = 240.0
+const MAX_EXTRA_HEIGHT: float = 30.0
+const BLOCK_SCHEMES: Array[Array] = [
+	[Color("#7a5ea6"), Color("#3a1a5c"), Color("#75668f")],
+	[Color("#5f90c6"), Color("#26325c"), Color("#6a7fa8")],
+	[Color("#d36b36"), Color("#592420"), Color("#8a6f60")],
+	[Color("#b86a9e"), Color("#452050"), Color("#7f6a88")],
+]
 const TREE_FOOTPRINT: Vector2 = Vector2(44.0, 44.0)
 const TREE_VISUAL_MARGIN: Vector2 = Vector2(40.0, 120.0)
 const COLOR_SHADOW: Color = Color(0.0, 0.0, 0.0, 0.35)
@@ -52,23 +61,56 @@ func _draw() -> void:
 	if is_tree():
 		_draw_tree()
 		return
-	var width: float = footprint.size.x
-	var top_height: float = footprint.size.y
-	var front: Rect2 = Rect2(0.0, -front_height, width, front_height)
-	var top: Rect2 = Rect2(0.0, -front_height - top_height, width, top_height)
-	var colors: Array[Color] = _kind_colors()
-	draw_rect(Rect2(0.0, 0.0, width, SHADOW_HEIGHT), COLOR_SHADOW)
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	rng.seed = hash(footprint.position)
+	draw_rect(Rect2(0.0, 0.0, footprint.size.x, SHADOW_HEIGHT), COLOR_SHADOW)
+	if kind == Kind.SOLID and footprint.size.x >= MIN_BLOCK_WIDTH:
+		_draw_blocks(rng)
+	else:
+		_draw_block(Rect2(0.0, 0.0, footprint.size.x, 0.0), 0.0, _kind_colors(), rng)
+	if not label_key.is_empty():
+		var label_y: float = -front_height - footprint.size.y - MAX_EXTRA_HEIGHT - 6.0
+		WorldLabel.draw_on(self, tr(label_key), Vector2(footprint.size.x * 0.5, label_y))
+
+
+## Trocea una muralla larga en edificios distintos, cada uno con su altura y color.
+func _draw_blocks(rng: RandomNumberGenerator) -> void:
+	var x: float = 0.0
+	while x < footprint.size.x:
+		var block: float = minf(rng.randf_range(MIN_BLOCK_WIDTH, MAX_BLOCK_WIDTH), footprint.size.x - x)
+		if footprint.size.x - x - block < MIN_BLOCK_WIDTH:
+			block = footprint.size.x - x
+		var scheme: Array = BLOCK_SCHEMES[rng.randi_range(0, BLOCK_SCHEMES.size() - 1)]
+		_draw_block(Rect2(x, 0.0, block, 0.0), rng.randf_range(0.0, MAX_EXTRA_HEIGHT), scheme, rng)
+		x += block
+
+
+func _draw_block(slot: Rect2, extra: float, colors: Array, rng: RandomNumberGenerator) -> void:
+	var height: float = front_height + extra
+	var depth: float = footprint.size.y
+	var front: Rect2 = Rect2(slot.position.x, -height, slot.size.x, height)
+	var top: Rect2 = Rect2(slot.position.x, -height - depth, slot.size.x, depth)
 	_gradient(front, colors[0], colors[1])
 	draw_rect(top, colors[2])
 	draw_rect(top.grow(-5.0), colors[2].darkened(0.28))
-	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-	rng.seed = hash(footprint.position)
 	_draw_face_details(front, rng)
+	if kind == Kind.SOLID and slot.size.x >= MIN_BLOCK_WIDTH:
+		_draw_roof_details(top, rng)
 	draw_rect(front, Palette.INK, false, OUTLINE)
 	draw_rect(top, Palette.INK, false, OUTLINE)
-	draw_line(Vector2(0.0, -front_height), Vector2(width, -front_height), RIM_COLOR, 2.0)
-	if not label_key.is_empty():
-		WorldLabel.draw_on(self, tr(label_key), Vector2(width * 0.5, -front_height - top_height - 6.0))
+	draw_line(front.position, Vector2(front.end.x, front.position.y), RIM_COLOR, 2.0)
+
+
+func _draw_roof_details(top: Rect2, rng: RandomNumberGenerator) -> void:
+	var box: Rect2 = Rect2(
+		Vector2(rng.randf_range(top.position.x + 10.0, top.end.x - 34.0), top.position.y + 8.0),
+		Vector2(24.0, maxf(top.size.y - 18.0, 6.0))
+	)
+	draw_rect(box, Palette.HIERRO)
+	draw_rect(box, Palette.INK, false, 2.0)
+	if rng.randf() < 0.35:
+		var sign_rect: Rect2 = Rect2(top.position.x + 8.0, top.end.y - 7.0, 46.0, 7.0)
+		draw_rect(sign_rect, Palette.NEONES[rng.randi_range(0, 3)])
 
 
 ## Los árboles del escenario son paredes cuadradas de este tamaño.
@@ -159,7 +201,7 @@ func set_open(value: bool) -> void:
 func visual_rect() -> Rect2:
 	if is_tree():
 		return footprint.grow_individual(TREE_VISUAL_MARGIN.x, TREE_VISUAL_MARGIN.y, TREE_VISUAL_MARGIN.x, 0.0)
-	return footprint.grow_side(SIDE_TOP, front_height)
+	return footprint.grow_side(SIDE_TOP, front_height + (MAX_EXTRA_HEIGHT if kind == Kind.SOLID else 0.0))
 
 
 ## Atenúa la pared si tapa a alguien que está detrás de ella.

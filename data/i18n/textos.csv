@@ -7,6 +7,7 @@ UI_BODY_TITLE,Piezas del cuerpo
 UI_BODY_PRE_FIGHT,Va a empezar una pelea: elige tus piezas
 UI_BODY_REPLACE,Has perdido una pieza: elige recambio
 UI_BODY_CLOSE,Cerrar
+UI_BODY_WORN,Puesta
 UI_BODY_START_FIGHT,Empezar (Esc)
 UI_BODY_EMPTY,vacío
 UI_BODY_EQUIP,Poner

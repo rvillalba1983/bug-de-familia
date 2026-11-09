@@ -16,6 +16,7 @@ const TITLES: Dictionary = {
 ## Provisional: la silueta ocupa casi toda la pantalla, con las piezas a los lados.
 const SILHOUETTE_FEET: Vector2 = Vector2(960.0, 1060.0)
 const SILHOUETTE_SIZE: float = 0.88
+const WORN_GAP: float = 14.0
 const COLUMN_X: Array[float] = [20.0, 1410.0]
 const ROW_Y: Array[float] = [70.0, 300.0, 530.0, 760.0]
 const COLUMNS: Array = [
@@ -116,7 +117,7 @@ func _build_header() -> void:
 	title.add_theme_font_size_override(&"font_size", 26)
 	_root.add_child(title)
 	var legend: Label = Label.new()
-	legend.text = "Marco = nivel  ·  Estrella = especial\nClic: poner  ·  Clic derecho: descartar"
+	legend.text = "Amarillo = puesta  ·  Marco = nivel  ·  Estrella = especial\nClic: poner  ·  Clic derecho: descartar"
 	legend.position = Vector2(COLUMN_X[1], ROW_Y[0] + 28.0)
 	legend.add_theme_font_size_override(&"font_size", 18)
 	_root.add_child(legend)
@@ -157,6 +158,9 @@ func _build_slot(slot: ModularBody.Slot, at: Vector2) -> void:
 	var worn: BodyPiece = body.equipped(slot)
 	if worn != null:
 		row.add_child(_card(worn, slot, true, -1))
+		var gap: Control = Control.new()
+		gap.custom_minimum_size = Vector2(WORN_GAP, 0.0)
+		row.add_child(gap)
 	var spares: Array[BodyPiece] = body.spares(slot)
 	for index: int in range(spares.size()):
 		row.add_child(_card(spares[index], slot, false, index))

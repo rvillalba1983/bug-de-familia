@@ -12,11 +12,20 @@ const LEVEL_COLORS: Array[Color] = [
 ]
 const COLOR_BACK: Color = Color("#1b1228")
 const COLOR_STAR: Color = Color("#ffe14a")
+## La pieza puesta lleva halo, fondo claro y pestaña propios: el marco sigue siendo el nivel.
+const COLOR_WORN: Color = Color("#fff04a")
+const COLOR_WORN_BACK: Color = Color("#55496e")
+const COLOR_HOVER: Color = Color.WHITE
+const WORN_HALO: float = 6.0
+const WORN_TAB: Rect2 = Rect2(-6.0, 128.0, 104.0, 32.0)
+const SPARE_DIM: Color = Color(0.72, 0.72, 0.76)
 
 var piece: BodyPiece
 var slot: ModularBody.Slot
 var is_worn: bool = false
 var can_equip: bool = true
+
+var _hovered: bool = false
 
 
 func _ready() -> void:
@@ -24,6 +33,10 @@ func _ready() -> void:
 	size = SIZE
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	tooltip_text = "%s\n%s" % [piece.label, piece.description]
+	if not is_worn:
+		modulate = SPARE_DIM
+		mouse_entered.connect(_set_hovered.bind(true))
+		mouse_exited.connect(_set_hovered.bind(false))
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -36,6 +49,12 @@ func _gui_input(event: InputEvent) -> void:
 		discard_requested.emit()
 
 
+func _set_hovered(value: bool) -> void:
+	_hovered = value
+	modulate = Color.WHITE if value else SPARE_DIM
+	queue_redraw()
+
+
 static func level_color(level: int) -> Color:
 	return LEVEL_COLORS[clampi(level, 1, LEVEL_COLORS.size()) - 1]
 
@@ -43,9 +62,11 @@ static func level_color(level: int) -> Color:
 func _draw() -> void:
 	var frame: Color = level_color(piece.level)
 	var area: Rect2 = Rect2(Vector2.ZERO, SIZE)
-	draw_rect(area, COLOR_BACK)
+	if is_worn:
+		draw_rect(area.grow(WORN_HALO), COLOR_WORN)
+	draw_rect(area, COLOR_WORN_BACK if is_worn else COLOR_BACK)
 	ProtagonistArt.draw_piece(self, Rect2(8.0, 8.0, SIZE.x - 16.0, SIZE.y - 40.0), slot, piece)
-	draw_rect(area, frame, false, 8.0 if is_worn else 4.0)
+	draw_rect(area, frame, false, 4.0)
 	var font: Font = ThemeDB.fallback_font
 	draw_string(font, Vector2(9.0, SIZE.y - 18.0), "Nv %d" % piece.level, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, frame)
 	if piece.is_special():
@@ -55,6 +76,17 @@ func _draw() -> void:
 	draw_rect(Rect2(8.0, SIZE.y - 12.0, (SIZE.x - 16.0) * ratio, 6.0), ProtagonistArt.wear_color(ratio))
 	if not is_worn and not can_equip:
 		draw_rect(area, Color(0.0, 0.0, 0.0, 0.55))
+	if is_worn:
+		_draw_worn_tab()
+	elif _hovered:
+		draw_rect(area.grow(3.0), COLOR_HOVER, false, 3.0)
+
+
+func _draw_worn_tab() -> void:
+	draw_rect(WORN_TAB, COLOR_WORN)
+	var font: Font = get_theme_default_font()
+	var baseline: Vector2 = WORN_TAB.position + Vector2(0.0, 25.0)
+	draw_string(font, baseline, tr("UI_BODY_WORN"), HORIZONTAL_ALIGNMENT_CENTER, WORN_TAB.size.x, 24, Color.BLACK)
 
 
 func _draw_star(center: Vector2, radius: float) -> void:

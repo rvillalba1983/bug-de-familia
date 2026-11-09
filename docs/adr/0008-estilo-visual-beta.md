@@ -1,6 +1,6 @@
 # ADR 0008: estilo visual de la beta con Godot y SVG
 
-Estado: aprobado el estilo por el director (9-nov). Pendiente de ejecutar en Godot y validar en partida.
+Estado: aprobado por el director el 9-nov, tras ejecutarlo en Godot 4.7.2 y ver capturas y vídeo reales.
 
 ## Decisión
 - Paleta «Cuñado Radiactivo» en `entities/art/palette.gd`.
@@ -30,3 +30,6 @@ Generados por Claude: SVG escritos a mano por script, y protagonista calcado de 
 
 ## Vídeo de muestra
 El vídeo de 17 segundos enseñado al director es una simulación fuera de Godot, no una grabación del juego.
+
+## Texturas en `_draw`
+Las llamadas de dibujo no retienen la textura: cargada con `load` dentro de `_draw` se libera y sale blanca. Se usa `preload` en constantes; `tests/art/draw_textures_test.gd` lo vigila.

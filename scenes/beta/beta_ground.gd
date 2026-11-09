@@ -4,9 +4,11 @@ extends RefCounted
 ## Usa semilla propia para no tocar el generador de la partida.
 
 const SEED: int = 1983
-const TEXTURE_FOREST: String = "res://art/beta/suelo_bosque.png"
-const TEXTURE_CITY: String = "res://art/beta/suelo_ciudad.png"
-const TEXTURE_MUD: String = "res://art/beta/suelo_barro.png"
+## Con preload porque el dibujo no retiene la textura: cargada dentro de _draw se libera
+## al acabar la función y el suelo sale blanco.
+const TEXTURE_FOREST: Texture2D = preload("res://art/beta/suelo_bosque.png")
+const TEXTURE_CITY: Texture2D = preload("res://art/beta/suelo_ciudad.png")
+const TEXTURE_MUD: Texture2D = preload("res://art/beta/suelo_barro.png")
 const CRACK_COUNT: int = 150
 const CRATER_COUNT: int = 26
 const PUDDLE_COUNT: int = 16
@@ -19,11 +21,11 @@ static func paint(canvas: CanvasItem) -> void:
 	var city: Rect2 = BetaLayout.CITY
 	var strip: Rect2 = BetaLayout.NO_MANS_LAND
 	canvas.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
-	canvas.draw_texture_rect(load(TEXTURE_FOREST) as Texture2D, BetaLayout.FLOOR_RECT, true)
-	canvas.draw_texture_rect(load(TEXTURE_CITY) as Texture2D, city, true)
+	canvas.draw_texture_rect(TEXTURE_FOREST, BetaLayout.FLOOR_RECT, true)
+	canvas.draw_texture_rect(TEXTURE_CITY, city, true)
 	_street_lines(canvas, city, strip)
 	_cracks(canvas, rng, city)
-	canvas.draw_texture_rect(load(TEXTURE_MUD) as Texture2D, strip, true)
+	canvas.draw_texture_rect(TEXTURE_MUD, strip, true)
 	_craters(canvas, rng, strip)
 	_puddles(canvas, rng, city)
 

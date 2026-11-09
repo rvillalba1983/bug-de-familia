@@ -9,9 +9,9 @@ const SPEED: float = 130.0
 const VIEW_RANGE: float = 200.0
 const VIEW_HALF_ANGLE: float = 40.0
 const FLY_HEIGHT: float = 70.0
-const ART_SOUTH: String = "res://art/beta/dron_viejo.svg"
-const ART_EAST: String = "res://art/beta/dron_viejo_e.svg"
-const ART_NORTH: String = "res://art/beta/dron_viejo_n.svg"
+const ART_SOUTH: Texture2D = preload("res://art/beta/dron_viejo.svg")
+const ART_EAST: Texture2D = preload("res://art/beta/dron_viejo_e.svg")
+const ART_NORTH: Texture2D = preload("res://art/beta/dron_viejo_n.svg")
 const ART_SIZE: float = 64.0
 
 var detector: Detector = Detector.new(VIEW_RANGE, VIEW_HALF_ANGLE, false)
@@ -60,12 +60,12 @@ func _physics_process(delta: float) -> void:
 func _draw() -> void:
 	var corner: Vector2 = Vector2(-ART_SIZE * 0.5, -FLY_HEIGHT - ART_SIZE * 0.5)
 	var direction: Vector2 = Vector2.from_angle(detector.facing_angle)
-	var path: String = ART_EAST
+	var art: Texture2D = ART_EAST
 	var size: Vector2 = Vector2(ART_SIZE, ART_SIZE)
 	if absf(direction.y) > absf(direction.x):
-		path = ART_SOUTH if direction.y > 0.0 else ART_NORTH
+		art = ART_SOUTH if direction.y > 0.0 else ART_NORTH
 	elif direction.x < 0.0:
 		corner.x = ART_SIZE * 0.5
 		size.x = -ART_SIZE
-	draw_texture_rect(load(path) as Texture2D, Rect2(corner, size), false)
+	draw_texture_rect(art, Rect2(corner, size), false)
 	draw_line(Vector2.ZERO, Vector2(0.0, -FLY_HEIGHT), Color(1.0, 1.0, 1.0, 0.2), 1.0)

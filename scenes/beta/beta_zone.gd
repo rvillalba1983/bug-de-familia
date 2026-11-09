@@ -354,9 +354,11 @@ func _build_interface() -> void:
 	ramon_item().body_hidden = true
 	layer.add_child(irc)
 	irc.set_topic(tr(_objective_key()))
-	irc.add_system(tr("UI_SANDBOX_HELP"))
-	irc.add_system(tr("UI_SANDBOX_HELP2"))
 	ai.chat = irc
+	layer.add_child(ControlsWindow.new())
+	var controls: ControlsPanel = ControlsPanel.new()
+	controls.pause = pause
+	add_child(controls)
 	var hint: KeyHint = KeyHint.new()
 	hint.player = player
 	actors.add_child(hint)

@@ -1,0 +1,27 @@
+{
+ "compact": [
+  ["WASD", "moverse"], ["Mayús", "correr, con ruido"], ["X", "agacharse"],
+  ["E", "usar y hablar"], ["Q", "convertir"], ["C", "piezas"],
+  ["Espacio", "pausa táctica"], ["Clic dcho.", "ir o atacar"],
+  ["F", "lanzar chatarra"], ["1-6", "acciones"]
+ ],
+ "full": [
+  ["WASD o flechas", "Moverse"],
+  ["Clic derecho en el suelo", "Ir a un punto"],
+  ["Mayús (mantener)", "Correr, con ruido"],
+  ["/ del teclado numérico", "Alternar andar y correr"],
+  ["Bloq Num", "Avance automático"],
+  ["X", "Agacharse"],
+  ["Espacio", "Pausa táctica"],
+  ["Rueda del ratón", "Zoom"],
+  ["Clic izquierdo", "Seleccionar objetivo"],
+  ["Tab", "Cambiar de objetivo"],
+  ["Clic derecho en un enemigo", "Atacar cuerpo a cuerpo"],
+  ["F", "Lanzar chatarra hacia el ratón"],
+  ["1-6", "Acciones de piezas y respuestas"],
+  ["E", "Usar, examinar y conversar"],
+  ["Q", "Convertir lo marcado en morado"],
+  ["C", "Piezas del cuerpo"],
+  ["F1", "Abrir y cerrar esta chapa"]
+ ]
+}

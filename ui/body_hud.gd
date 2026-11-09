@@ -13,6 +13,9 @@ const LOW_RATIO: float = 0.25
 const LOW_PULSE_SPEED: float = 8.0
 
 var body: ModularBody
+var feet: Vector2 = FEET
+var art_size: float = ART_SIZE
+var plate: Rect2 = PLATE
 
 var _ratios: Dictionary = {}
 var _hits: Dictionary = {}
@@ -36,9 +39,9 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
-	draw_rect(PLATE, PLATE_COLOR)
+	draw_rect(plate, PLATE_COLOR)
 	var pulse: float = 0.5 + 0.5 * sin(Time.get_ticks_msec() * 0.001 * LOW_PULSE_SPEED)
-	ProtagonistArt.draw_silhouette(self, FEET, ART_SIZE, body, _hits, pulse)
+	ProtagonistArt.draw_silhouette(self, feet, art_size, body, _hits, pulse)
 
 
 ## Parte de un golpe: se marca la pieza que ha perdido vida de repente.

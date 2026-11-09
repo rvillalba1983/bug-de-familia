@@ -13,6 +13,11 @@ const TITLES: Dictionary = {
 	Mode.REPLACE: "UI_BODY_REPLACE",
 }
 
+## Provisional: la misma silueta del juego, en grande junto a la lista.
+const SILHOUETTE_FEET: Vector2 = Vector2(265.0, 800.0)
+const SILHOUETTE_SIZE: float = 0.44
+const SILHOUETTE_PLATE: Rect2 = Rect2(30.0, 270.0, 470.0, 560.0)
+
 var body: ModularBody
 var pause: TacticalPause
 var is_open: bool = false
@@ -20,6 +25,7 @@ var mode: Mode = Mode.NORMAL
 
 var _root: VBoxContainer
 var _backdrop: ColorRect
+var _silhouette: BodyHud
 
 
 func _init() -> void:
@@ -73,6 +79,8 @@ func _clear() -> void:
 		_root = null
 		_backdrop.queue_free()
 		_backdrop = null
+		_silhouette.queue_free()
+		_silhouette = null
 
 
 func _rebuild() -> void:
@@ -81,6 +89,12 @@ func _rebuild() -> void:
 	_backdrop.color = Color(0.05, 0.05, 0.08, 0.88)
 	_backdrop.size = Vector2(1920.0, 1080.0)
 	add_child(_backdrop)
+	_silhouette = BodyHud.new()
+	_silhouette.body = body
+	_silhouette.feet = SILHOUETTE_FEET
+	_silhouette.art_size = SILHOUETTE_SIZE
+	_silhouette.plate = SILHOUETTE_PLATE
+	add_child(_silhouette)
 	_root = VBoxContainer.new()
 	_root.position = Vector2(520.0, 150.0)
 	_root.custom_minimum_size = Vector2(880.0, 0.0)

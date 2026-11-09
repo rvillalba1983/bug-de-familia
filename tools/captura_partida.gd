@@ -45,6 +45,11 @@ func _act(zone: BetaZone, action: String) -> void:
 	var sim: WorldSim = world.sim
 	var near: Vector2 = Vector2(1500.0, 900.0)
 	match action:
+		"piezas":
+			zone.player.body.equipped(ModularBody.Slot.values()[1] as ModularBody.Slot).durability = 18.0
+			zone.panel.open(BodyPanel.Mode.NORMAL)
+		"controles":
+			zone.get_children().filter(func(n: Node) -> bool: return n is ControlsPanel)[0].toggle()
 		"nacimiento":
 			zone.player.global_position = near
 			var npc: NpcState = sim.spawn("jubilado", near + Vector2(120.0, 40.0), "nacido")

@@ -470,5 +470,319 @@
    "Falso"
   ],
   "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Cómo se apellida el Jubilado desaparecido?",
+  "options": [
+   "Cojinete",
+   "Bisagra",
+   "Rulemán",
+   "Tornillo"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Quién jura que Manolo acabó de abono?",
+  "options": [
+   "Seta Remedios",
+   "Paca Bisagra",
+   "Eusebio Rulemán",
+   "El propio Manolo"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué manía tenía Manolo?",
+  "options": [
+   "Robar sombreros",
+   "Votar a escondidas",
+   "Mirar el atardecer",
+   "Dimitir"
+  ],
+  "answer": 2
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué te grita una cuadrilla mohócrata?",
+  "options": [
+   "«¡Manos arriba!»",
+   "«¡Vaya rodillas!»",
+   "«Buenas tardes»",
+   "«¿Votas o cotizas?»"
+  ],
+  "answer": 3
+ },
+ {
+  "type": "choice",
+  "text": "Según los Jubilados, ¿qué necesita permiso?",
+  "options": [
+   "Tener rodillas",
+   "Ser joven",
+   "Respirar",
+   "Mirarles"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "La bobina es correo. ¿Qué se ruega?",
+  "options": [
+   "No votar",
+   "No compostar",
+   "No escuchar",
+   "Propina"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Cuántos mensajes antiguos guarda El Contestador?",
+  "options": [
+   "Uno",
+   "Ninguno para ti",
+   "Tres",
+   "Doce de tu madre"
+  ],
+  "answer": 2
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué responde Don Ramón si preguntas con educación?",
+  "options": [
+   "«Hijo mío»",
+   "«Pase usted»",
+   "«Vote»",
+   "«Ticket cerrado. Circule»"
+  ],
+  "answer": 3
+ },
+ {
+  "type": "choice",
+  "text": "¿Cómo suelda Don Ramón?",
+  "options": [
+   "Con más fe que estaño",
+   "De maravilla",
+   "Por votación",
+   "Con certificado"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "Tras el bosque del norte, ¿por dónde baja Don Ramón?",
+  "options": [
+   "Por el este",
+   "Por el oeste",
+   "No baja",
+   "Por la chimenea"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué vuela el muro agrietado de la centralita?",
+  "options": [
+   "Un voto",
+   "Un insulto bien dicho",
+   "Una mina de petanca",
+   "Soplar"
+  ],
+  "answer": 2
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué cuota piden los Mohócratas por cruzar?",
+  "options": [
+   "Un diente",
+   "Tu voto",
+   "Una disculpa",
+   "Un repuesto"
+  ],
+  "answer": 3
+ },
+ {
+  "type": "choice",
+  "text": "Según Paca, ¿qué no saben hacer las minas?",
+  "options": [
+   "Leer",
+   "Perdonar",
+   "Votar",
+   "Esperar"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué tecla te deja pensar, si es que piensas?",
+  "options": [
+   "X",
+   "Espacio",
+   "Tab",
+   "Alt+F4"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Cuánto dura una pierna andando sin parar?",
+  "options": [
+   "Una hora",
+   "Toda la vida",
+   "Unos 10 minutos",
+   "Hasta que te vean"
+  ],
+  "answer": 2
+ },
+ {
+  "type": "choice",
+  "text": "¿Dónde caen sobre todo los golpes?",
+  "options": [
+   "En la cabeza",
+   "En la autoestima",
+   "En la cola",
+   "En las extremidades"
+  ],
+  "answer": 3
+ },
+ {
+  "type": "choice",
+  "text": "¿Cómo se recogen los repuestos?",
+  "options": [
+   "Pasando por encima",
+   "Pulsando E",
+   "Rogando",
+   "Votando"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué son Mamá Ansiosa y Dr. Desprecio?",
+  "options": [
+   "Hermanos",
+   "Pareja tóxica",
+   "Socios",
+   "Un error tuyo"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué son Abuela RAM y Chef Silicio?",
+  "options": [
+   "Novios",
+   "Primos",
+   "Divorciados",
+   "Ingredientes"
+  ],
+  "answer": 2
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué exige Burócrata 404 para cada directo?",
+  "options": [
+   "Un like",
+   "Silencio",
+   "Tu brazo",
+   "Un formulario"
+  ],
+  "answer": 3
+ },
+ {
+  "type": "choice",
+  "text": "Elige la única palabra que no te describe.",
+  "options": [
+   "Genio",
+   "Residuo",
+   "Sobrante",
+   "Desecho"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Cuántas preguntas te hace cada conversión?",
+  "options": [
+   "Una",
+   "Dos",
+   "Tres",
+   "Demasiadas para ti"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "Las minas saben leer.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "Don Ramón suelda de maravilla.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "El Contestador solo reproduce mensajes grabados.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "truefalse",
+  "text": "Tus piezas tienen estadísticas que nunca verás.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "truefalse",
+  "text": "El juego lleva un diario por ti.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "Si mueres, puedes cargar la partida.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "Las IAs resuelven las investigaciones por ti.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "Siestaware tiene tokens casi infinitos.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 0
  }
 ]

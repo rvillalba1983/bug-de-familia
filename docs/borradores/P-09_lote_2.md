@@ -1,6 +1,6 @@
 # P-09 · Lote 2 de textos
 
-Borrador para que el director marque lo que no le haga gracia, por ejemplo «fuera P37, M90 y C31». Sigue la numeración del lote 1. No está integrado en el juego.
+Aprobado íntegro por el director el 9-nov-2026. Las preguntas P31 a P60 están integradas en `data/conversion/questions.json`; las reservadas (P61 a P72), los motes y los comentarios, pendientes de integrar.
 
 La respuesta correcta va en **negrita**.
 

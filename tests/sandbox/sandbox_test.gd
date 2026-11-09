@@ -124,12 +124,12 @@ func test_goal_completes_challenge() -> void:
 
 func test_save_point_shows_saved_notice() -> void:
 	var sandbox: Sandbox = _quiet_scene()
-	assert_bool(sandbox._saved_label.visible).is_false()
+	assert_bool(sandbox.hud.saved_label.visible).is_false()
 	await await_physics(4)
 	sandbox.player.global_position = SandboxLayout.SAVE_POINTS[1]
 	await await_physics(4)
 	await await_physics(4)
-	assert_bool(sandbox._saved_label.visible).is_true()
+	assert_bool(sandbox.hud.saved_label.visible).is_true()
 
 
 func test_all_world_labels_are_translated() -> void:

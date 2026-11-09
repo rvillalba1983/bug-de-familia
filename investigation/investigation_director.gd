@@ -332,6 +332,6 @@ func _spawn(entry: Dictionary, kind: Interactable.Kind, color: Color) -> Interac
 	item.custom_label = entry["name"]
 	item.custom_color = color
 	item.reusable = true
-	item.activated.connect(level._on_item_activated)
+	item.activated.connect(level.on_item_activated)
 	level.actors.add_child(item)
 	return item

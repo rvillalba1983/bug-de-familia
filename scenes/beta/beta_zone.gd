@@ -15,8 +15,6 @@ const ART_FOLDER: String = "res://art/beta/"
 const ART_JUBILADO: String = "jubilado_hierro"
 const ART_MOHOCRATA: String = "mohocrata"
 const ART_RAMON: String = "don_ramon"
-const ART_FACADE_CENTRAL: String = "res://art/beta/fachada_centralita.svg"
-const ART_FACADE_DEPOT: String = "res://art/beta/fachada_deposito.svg"
 const ART_REEL: String = "res://art/beta/bobina.svg"
 const COLOR_JUBILADO: Color = Color("#a0a8b8")
 const COLOR_MOHOCRATA: Color = Color("#8fbf60")
@@ -35,6 +33,7 @@ var live_world: LiveWorld
 var battles: BattleDirector
 var music: MusicDirector
 var screen_filter: ScreenFilter
+var rain_label: Label
 var cracked_wall: Wall
 var ramon: Guard
 var strip_jubilado: Guard
@@ -47,7 +46,6 @@ var _enemy_ids: Dictionary = {}
 var _jubilados: Array[Guard] = []
 var _mohocratas: Array[Guard] = []
 var _depot: Array[Guard] = []
-var _rain_label: Label
 var _contestador_at: Vector2 = Vector2.ZERO
 
 
@@ -126,7 +124,7 @@ func set_enemies_active(active: bool) -> void:
 
 
 func open_central_door() -> void:
-	_open_door()
+	open_door()
 
 
 func open_cracked_wall() -> void:
@@ -157,7 +155,7 @@ func _shows_help_labels() -> bool:
 	return false
 
 
-func _objective_key() -> String:
+func objective_key() -> String:
 	return "BETA_OBJECTIVE"
 
 
@@ -198,7 +196,7 @@ func _build_enemies() -> void:
 
 
 func _material_of(enemy: Guard) -> String:
-	return "bioceramica" if enemy.body_color == COLOR_MOHOCRATA else "nanoacero"
+	return "bioceramica" if enemy.visual.body_color == COLOR_MOHOCRATA else "nanoacero"
 
 
 func _add_guard(
@@ -208,9 +206,9 @@ func _add_guard(
 	enemy.target = player
 	enemy.nav = nav
 	enemy.rng = rng
-	enemy.body_color = color
-	enemy.art_views = _load_views(_art_base(id, color))
-	enemy.rig_folder = ART_FOLDER + "rig/" + _art_base(id, color)
+	enemy.visual.body_color = color
+	enemy.visual.art_views = _load_views(_art_base(id, color))
+	enemy.visual.rig_folder = ART_FOLDER + "rig/" + _art_base(id, color)
 	if is_ranged:
 		enemy.make_ranged(self)
 	enemy.setup(route, ground)
@@ -234,7 +232,7 @@ func _build_items() -> void:
 	_add_item(ID_PICKUP_ARM, Interactable.Kind.PICKUP_ARM, BetaLayout.PICKUP_ARM)
 	for index: int in range(BetaLayout.MINES.size()):
 		_add_mine(index)
-	_build_facades()
+	BetaFacades.build(self)
 
 
 func _art_base(id: String, color: Color) -> String:
@@ -248,33 +246,6 @@ func _load_views(base: String) -> Array[Texture2D]:
 	for suffix: String in ["", "_e", "_n"]:
 		views.append(load(ART_FOLDER + base + suffix + ".svg") as Texture2D)
 	return views
-
-
-func _add_facade(
-	path: String, base_y: float, art_rect: Rect2, interior: Rect2, labeled: Array[Wall]
-) -> BuildingFacade:
-	var facade: BuildingFacade = BuildingFacade.new()
-	facade.texture = load(path) as Texture2D
-	facade.position = Vector2(art_rect.position.x, base_y + 1.0)
-	facade.art_rect = Rect2(Vector2(0.0, art_rect.position.y - facade.position.y), art_rect.size)
-	facade.interior = interior
-	facade.player = player
-	facade.labeled_walls = labeled
-	actors.add_child(facade)
-	return facade
-
-
-func _build_facades() -> void:
-	var central: BuildingFacade = _add_facade(
-		ART_FACADE_CENTRAL, BetaLayout.CENTRAL_DOOR.end.y, BetaLayout.CENTRAL_FACADE,
-		BetaLayout.CENTRAL_INSIDE, [door, cracked_wall]
-	)
-	central.door_wall = door
-	central.door_hole = Rect2(
-		BetaLayout.CENTRAL_DOOR.position.x - central.position.x, -BetaLayout.FACADE_DOOR_HEIGHT - 8.0,
-		BetaLayout.CENTRAL_DOOR.size.x, BetaLayout.FACADE_DOOR_HEIGHT
-	)
-	_add_facade(ART_FACADE_DEPOT, BetaLayout.DEPOT.end.y + 40.0, BetaLayout.DEPOT_FACADE, BetaLayout.DEPOT, [])
 
 
 func _add_named(id: String, at: Vector2, label_key: String, is_reusable: bool) -> void:
@@ -373,57 +344,13 @@ func _show_game_over() -> void:
 		overlay.add_line(chain)
 
 
-func _connect_enemies() -> void:
-	for enemy: Guard in guards():
-		noise_bus.noise_emitted.connect(enemy.hear)
-		drone.alarm_raised.connect(enemy.investigate)
-		security_camera.alarm_raised.connect(enemy.investigate)
-		enemy.fell.connect(_on_enemy_fell)
-		enemy.corpse_expired.connect(_on_corpse_expired)
-
-
 func _build_interface() -> void:
 	super()
-	var layer: CanvasLayer = CanvasLayer.new()
-	layer.layer = 2
-	add_child(layer)
-	_rain_label = _add_label(layer, "BETA_RAIN", Vector2(760.0, 150.0), 26)
-	_rain_label.visible = false
-	var irc: IrcChat = IrcChat.new()
-	irc.team = ai.team
-	ramon_item().body_hidden = true
-	layer.add_child(irc)
-	irc.set_topic(tr(_objective_key()))
-	ai.chat = irc
-	layer.add_child(ControlsWindow.new())
-	var spectres: AiSpectres = AiSpectres.new()
-	spectres.team = ai.team
-	layer.add_child(spectres)
-	pause.paused_changed.connect(spectres.set_shown)
-	screen_filter = ScreenFilter.new()
-	add_child(screen_filter)
-	pause.paused_changed.connect(screen_filter.set_shown)
-	var markers: PauseMarkers = PauseMarkers.new()
-	markers.level = self
-	layer.add_child(markers)
-	pause.paused_changed.connect(markers.set_shown)
-	var edges: ThreatEdges = ThreatEdges.new()
-	edges.level = self
-	layer.add_child(edges)
-	conversion.converted.connect(battles.on_converted)
-	ai.route_hint = challenges.next_route
-	ai.treason_hint = _least_friendly_species
-	var controls: ControlsPanel = ControlsPanel.new()
-	controls.pause = pause
-	controls.filter_changed.connect(func() -> void: screen_filter.apply_settings())
-	add_child(controls)
-	var hint: KeyHint = KeyHint.new()
-	hint.player = player
-	actors.add_child(hint)
+	BetaInterface.build(self)
 
 
 ## El bando que peor te ve; Conspi-Ranoia acierta solo a veces.
-func _least_friendly_species() -> String:
+func least_friendly_species() -> String:
 	var standing: Dictionary = live_world.sim.player_standing
 	var worst: bool = float(standing.get("jubilado", 0.0)) < float(standing.get("mohocrata", 0.0))
 	if rng.randf() < 0.35:
@@ -456,7 +383,7 @@ func _on_converted(entity_id: String) -> void:
 		challenges.leave_footprint(BetaChallenges.ID_CONTESTADOR_TRACE, _contestador_at, "BETA_TRACE_CONTESTADOR", "El Contestador")
 
 
-func _on_item_activated(item: Interactable) -> void:
+func on_item_activated(item: Interactable) -> void:
 	if live_world.handles_item(item):
 		return
 	match item.item_id:
@@ -491,7 +418,7 @@ func _on_piece_burst(effects: Dictionary) -> void:
 
 
 func _on_rain(is_raining: bool) -> void:
-	_rain_label.visible = is_raining
+	rain_label.visible = is_raining
 	atmosphere.set_raining(is_raining)
 
 

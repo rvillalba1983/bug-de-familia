@@ -69,7 +69,7 @@ func is_rubble() -> bool:
 ## Altura del dibujo, para colocar encima el aviso de la tecla.
 func art_height() -> float:
 	if body_hidden:
-		return Guard.ART_HEIGHT
+		return GuardVisual.ART_HEIGHT
 	return float(PropArt.entry_for(item_id, kind)[2]) if art == null else ART_ICON_HEIGHT
 
 

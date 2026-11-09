@@ -85,15 +85,15 @@ func _set_filter(on: bool) -> void:
 
 func _set_anim(on: bool) -> void:
 	for guard: Guard in zone.guards():
-		if guard.rig != null:
-			for child: Node in guard.rig.get_parent().get_children():
+		if guard.visual.rig != null:
+			for child: Node in guard.visual.rig.get_parent().get_children():
 				(child as EnemyRig).player.active = on
 
 
 func _set_chars_drawn(on: bool) -> void:
 	for guard: Guard in zone.guards():
-		if guard.rig != null:
-			guard.rig.get_parent().visible = on
+		if guard.visual.rig != null:
+			guard.visual.rig.get_parent().visible = on
 
 
 func _set_ambient(on: bool) -> void:

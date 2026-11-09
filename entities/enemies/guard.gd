@@ -41,29 +41,6 @@ const SHOT_WINDUP: float = 0.7
 const SHOT_COOLDOWN: float = 1.8
 const SHOT_DAMAGE: float = 20.0
 const AIM_TOLERANCE: float = 44.0
-const COLOR_BODY: Color = Color("#3f7fd0")
-const COLOR_SHOOTER: Color = Color("#3fb0a0")
-const COLOR_DOWN: Color = Color("#505868")
-const COLOR_WINDUP: Color = Color(1.0, 0.2, 0.15, 0.85)
-const COLOR_ALERT: Color = Color("#e04040")
-const COLOR_FALLEN: Color = Color(0.5, 0.5, 0.6)
-const COLOR_ART_SHADOW: Color = Color(0.0, 0.0, 0.0, 0.4)
-const ART_HEIGHT: float = 77.0
-const VIEW_SOUTH: int = 0
-const VIEW_EAST: int = 1
-const VIEW_NORTH: int = 2
-const VIEW_SUFFIX: Array[String] = ["", "_e", "_n"]
-## Efectos de impacto, provisionales.
-const HIT_SHAKE: float = 5.0
-const HIT_STOP: float = 0.04
-const HIT_SQUASH: Vector2 = Vector2(0.82, 1.14)
-const FALL_SHAKE: float = 9.0
-const FALL_STOP: float = 0.08
-const LAND_DELAY: float = 0.45
-const LAND_SHAKE: float = 6.0
-const LAND_SQUASH: Vector2 = Vector2(1.2, 0.72)
-## Altura de los pies dentro del dibujo, medida desde arriba.
-const ART_FEET: float = 0.93
 
 var state: State = State.PATROL
 var detector: Detector = Detector.new(VIEW_RANGE, VIEW_HALF_ANGLE, true)
@@ -79,36 +56,23 @@ var _path_index: int = 0
 var _last_known: Vector2 = Vector2.ZERO
 var _lost_time: float = 0.0
 var _repath: float = 0.0
-var _hit_timer: float = 0.0
 ## Hueco alrededor del jugador en una pelea, para que un grupo no se apile en un punto.
 var _fight_spot: Vector2 = Vector2.ZERO
 static var _next_fight_angle: float = 0.0
 var _view: VisionConeView
 var health: float = MAX_HEALTH
-var ranged: bool = false
-var tracer_host: Sandbox
-var _windup_left: float = 0.0
 ## Un guardia pasivo no vigila ni acude a ruidos; solo responde si le atacan.
 var passive: bool = false
-var body_color: Color = Color.TRANSPARENT
-## Vistas sur, este y norte, en ese orden. El oeste refleja al este.
-## Si está vacío se dibuja el círculo de color.
-var art_views: Array[Texture2D] = []
-## Carpeta base de piezas con huesos; vacía si este personaje no las tiene.
-var rig_folder: String = ""
-## Esqueleto de la vista actual. Hay uno por vista y se crean al necesitarlos.
-var rig: EnemyRig
-var _rigs: Array[EnemyRig] = [null, null, null]
-var _rig_view: int = VIEW_SOUTH
-## Padre de los esqueletos, en los pies: deforma y destella a todos a la vez.
-var _rig_root: Node2D
-
-## Lo que le pasa a un habitante por su cuenta no sacude la pantalla del jugador.
-var quiet_impacts: bool = false
-
-var _was_alert: bool = false
-var _aim_point: Vector2 = Vector2.ZERO
+var visual: GuardVisual
+var attack: GuardAttack
+var impacts: GuardImpacts
 var _corpse_time: float = 0.0
+
+
+func _init() -> void:
+	visual = GuardVisual.new(self)
+	attack = GuardAttack.new(self)
+	impacts = GuardImpacts.new(self)
 
 
 func setup(points: Array[Vector2], ground: Node2D) -> void:
@@ -127,12 +91,12 @@ func setup(points: Array[Vector2], ground: Node2D) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	_hit_timer = maxf(_hit_timer - delta, 0.0)
+	attack.tick(delta)
 	var seen: bool = _near_screen()
-	if rig != null:
-		rig.player.active = seen
-	if seen or rig == null:
-		_update_rig()
+	if visual.rig != null:
+		visual.rig.player.active = seen
+	if seen or visual.rig == null:
+		visual.update_rig()
 	if state == State.DOWN:
 		_corpse_time -= delta
 		if _corpse_time <= 0.0:
@@ -167,124 +131,12 @@ func _near_screen() -> bool:
 
 
 func _draw() -> void:
-	if state == State.DOWN:
-		_draw_down()
-		return
-	if not art_views.is_empty():
-		_draw_art()
-	else:
-		_draw_placeholder()
-	if _windup_left > 0.0:
-		if ranged:
-			draw_line(Vector2(0.0, -30.0), _aim_point - global_position, COLOR_WINDUP, 2.0)
-		else:
-			draw_arc(Vector2(0.0, -30.0), HIT_RANGE, 0.0, TAU, 32, COLOR_WINDUP, 3.0)
-	if health < MAX_HEALTH:
-		var bar: Rect2 = Rect2(-24.0, -BODY_HEIGHT - 16.0, 48.0, 6.0)
-		draw_rect(bar, Color(0.0, 0.0, 0.0, 0.6))
-		bar.size.x *= health / MAX_HEALTH
-		draw_rect(bar, COLOR_ALERT)
-
-
-func _draw_down() -> void:
-	if art_views.is_empty():
-		draw_circle(Vector2.ZERO, BODY_HEIGHT * 0.42, COLOR_DOWN)
-		return
-	if rig != null:
-		_draw_shadow()
-		return
-	var art: Texture2D = art_views[VIEW_SOUTH]
-	draw_set_transform(Vector2(-ART_HEIGHT * 0.45, -14.0), PI * 0.5)
-	draw_texture_rect(art, Rect2(-ART_HEIGHT * 0.5, -ART_HEIGHT * 0.5, ART_HEIGHT, ART_HEIGHT), false, COLOR_FALLEN)
-	draw_set_transform(Vector2.ZERO)
-
-
-## Sombra aplastada: un disco entero parecía un agujero bajo los pies.
-func _draw_shadow() -> void:
-	draw_set_transform(Vector2(0.0, 2.0), 0.0, Vector2(1.0, 0.38))
-	draw_circle(Vector2.ZERO, 22.0, COLOR_ART_SHADOW)
-	draw_set_transform(Vector2.ZERO)
-
-
-func _draw_art() -> void:
-	if rig != null:
-		_draw_shadow()
-		return
-	var direction: Vector2 = Vector2.from_angle(detector.facing_angle)
-	var view: int = _view_for(direction)
-	var art: Texture2D = art_views[view]
-	var size: Vector2 = Vector2(ART_HEIGHT * art.get_size().aspect(), ART_HEIGHT)
-	if view == VIEW_EAST and direction.x < 0.0:
-		size.x = -size.x
-	var tint: Color = COLOR_ALERT.lightened(0.5) if state == State.ALERT else Color.WHITE
-	_draw_shadow()
-	draw_texture_rect(art, Rect2(Vector2(-size.x * 0.5, -ART_HEIGHT * ART_FEET), size), false, tint)
-
-
-func _draw_placeholder() -> void:
-	var color: Color = COLOR_SHOOTER if ranged else COLOR_BODY
-	if body_color.a > 0.0:
-		color = body_color
-	if state == State.ALERT:
-		color = COLOR_ALERT
-	draw_circle(Vector2(0.0, -BODY_HEIGHT * 0.5), BODY_HEIGHT * 0.42, color)
-
-
-static func _view_for(direction: Vector2) -> int:
-	if absf(direction.y) > absf(direction.x):
-		return VIEW_SOUTH if direction.y > 0.0 else VIEW_NORTH
-	return VIEW_EAST
-
-
-## Elige vista y animación según el estado. Caído, conserva la vista en la que cayó.
-func _update_rig() -> void:
-	if rig_folder == "":
-		return
-	var facing: Vector2 = Vector2.from_angle(detector.facing_angle)
-	if state != State.DOWN or rig == null:
-		_show_view(_view_for(facing))
-	if _rig_view == VIEW_EAST:
-		rig.scale.x = absf(rig.scale.x) * (-1.0 if facing.x < 0.0 and state != State.DOWN else 1.0)
-	rig.modulate = COLOR_FALLEN if state == State.DOWN else (COLOR_ALERT.lightened(0.5) if state == State.ALERT else Color.WHITE)
-	if state == State.DOWN:
-		rig.show_animation(EnemyRig.FALL)
-	elif state == State.ALERT and not _was_alert:
-		rig.show_animation(EnemyRig.ALERT)
-	elif state != State.ALERT or not rig.player.is_playing():
-		rig.show_animation(EnemyRig.WALK if velocity.length() > 1.0 else EnemyRig.IDLE)
-	_was_alert = state == State.ALERT
-
-
-func _ensure_rig_root() -> Node2D:
-	if _rig_root == null:
-		_rig_root = Node2D.new()
-		_rig_root.name = "esqueletos"
-		_rig_root.material = ImpactFx.new_flash_material()
-		add_child(_rig_root)
-	return _rig_root
-
-
-func _show_view(view: int) -> void:
-	if rig != null and view == _rig_view:
-		return
-	var previous: EnemyRig = rig
-	if _rigs[view] == null:
-		_rigs[view] = EnemyRig.new()
-		_ensure_rig_root().add_child(_rigs[view])
-		_rigs[view].build(rig_folder + VIEW_SUFFIX[view], ART_HEIGHT, ART_FEET)
-	rig = _rigs[view]
-	_rig_view = view
-	rig.visible = true
-	if previous != null:
-		rig.continue_from(previous)
-		previous.visible = false
-		previous.player.pause()
+	visual.draw()
 
 
 ## Convierte a este guardia en tirador. Llamar antes de setup.
 func make_ranged(host: Sandbox) -> void:
-	ranged = true
-	tracer_host = host
+	attack.make_ranged(host)
 	detector = Detector.new(SHOOTER_VIEW_RANGE, SHOOTER_HALF_ANGLE, true)
 
 
@@ -293,7 +145,7 @@ func take_damage(amount: float) -> void:
 		return
 	health = maxf(health - amount, 0.0)
 	attacked.emit()
-	_react_to_hit()
+	impacts.on_hit()
 	if health <= 0.0:
 		_fall()
 	elif state != State.ALERT and state != State.STUNNED:
@@ -312,7 +164,7 @@ func take_battle_hit(amount: float) -> void:
 		return
 	health = maxf(health - amount, 0.0)
 	if health <= 0.0:
-		quiet_impacts = true
+		impacts.quiet = true
 		_fall()
 
 
@@ -320,7 +172,7 @@ func take_battle_hit(amount: float) -> void:
 func die_quietly() -> void:
 	if state == State.DOWN:
 		return
-	quiet_impacts = true
+	impacts.quiet = true
 	health = 0.0
 	_fall()
 
@@ -367,7 +219,7 @@ func investigate(point: Vector2) -> void:
 func stun(duration: float) -> void:
 	if state == State.DOWN:
 		return
-	_windup_left = 0.0
+	attack.cancel()
 	var was_alert: bool = state == State.ALERT
 	state = State.STUNNED
 	_timer = duration
@@ -433,90 +285,29 @@ func _tick_alert(delta: float) -> void:
 		alert_ended.emit()
 		investigate(point)
 		return
-	if _handle_windup(delta):
+	if attack.handle_windup(delta):
 		return
 	var distance: float = global_position.distance_to(target.global_position)
-	if ranged and sees and distance <= SHOOT_RANGE:
-		velocity = Vector2.ZERO
-		detector.facing_angle = global_position.angle_to_point(target.global_position)
-		if _hit_timer <= 0.0:
-			_windup_left = SHOT_WINDUP
-			_aim_point = target.global_position
+	if attack.try_aim(sees, distance):
 		return
 	_repath -= delta
 	if _repath <= 0.0:
 		_repath = REPATH_TIME
-		_set_path_to(_last_known + (Vector2.ZERO if ranged else _fight_spot))
+		_set_path_to(_last_known + (Vector2.ZERO if attack.is_ranged() else _fight_spot))
+	chase_step()
+	attack.try_melee(distance)
+
+
+## Un paso más de la persecución en curso.
+func chase_step() -> void:
 	_follow_path(CHASE_SPEED, Callable())
-	if not ranged and distance <= HIT_RANGE and _hit_timer <= 0.0 and _windup_left <= 0.0:
-		_windup_left = MELEE_WINDUP
-
-
-## Golpe o disparo anunciados: quien se aparta a tiempo los evita.
-func _handle_windup(delta: float) -> bool:
-	if _windup_left <= 0.0:
-		return false
-	_windup_left -= delta
-	if not ranged:
-		_follow_path(CHASE_SPEED, Callable())
-	if _windup_left > 0.0:
-		return ranged
-	if ranged:
-		_fire()
-	else:
-		_hit_timer = HIT_COOLDOWN
-		if global_position.distance_to(target.global_position) <= HIT_RANGE + MELEE_GRACE:
-			target.receive_hit(HIT_DAMAGE, rng, self)
-	return ranged
-
-
-func _fire() -> void:
-	_hit_timer = SHOT_COOLDOWN
-	var mask: int = PhysicsLayers.WALLS
-	if target.is_crouching:
-		mask |= PhysicsLayers.LOW_COVER
-	var end: Vector2 = Detector.ray_end(global_position, _aim_point, get_world_2d(), mask)
-	if tracer_host != null:
-		tracer_host.spawn_tracer(global_position, end, COLOR_WINDUP)
-	var near_aim: bool = target.global_position.distance_to(_aim_point) <= AIM_TOLERANCE
-	if end == _aim_point and near_aim:
-		target.receive_hit(SHOT_DAMAGE, rng, self)
-
-
-func _react_to_hit() -> void:
-	if not is_inside_tree():
-		return
-	ImpactFx.shake(get_viewport(), HIT_SHAKE)
-	ImpactFx.hit_stop(get_tree(), HIT_STOP)
-	if _rig_root == null:
-		return
-	ImpactFx.flash(_rig_root)
-	ImpactFx.squash(_rig_root, "scale", HIT_SQUASH)
-
-
-func _react_to_fall() -> void:
-	if not is_inside_tree() or quiet_impacts:
-		return
-	ImpactFx.shake(get_viewport(), FALL_SHAKE)
-	ImpactFx.hit_stop(get_tree(), FALL_STOP)
-	if _rig_root == null:
-		return
-	var tween: Tween = create_tween()
-	tween.tween_interval(LAND_DELAY)
-	tween.tween_callback(_react_to_landing)
-
-
-## El golpe contra el suelo al terminar de caer.
-func _react_to_landing() -> void:
-	ImpactFx.shake(get_viewport(), LAND_SHAKE)
-	ImpactFx.squash(_rig_root, "scale", LAND_SQUASH)
 
 
 func _fall() -> void:
-	_react_to_fall()
+	impacts.on_fall()
 	var was_alert: bool = state == State.ALERT
 	state = State.DOWN
-	_windup_left = 0.0
+	attack.cancel()
 	_corpse_time = CORPSE_TIME
 	velocity = Vector2.ZERO
 	_view.visible = false

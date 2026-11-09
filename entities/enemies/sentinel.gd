@@ -9,7 +9,7 @@ static func add_cone(owner_node: Node2D, ground: Node2D, detector: Detector) -> 
 	ground.add_child(view)
 	var selectable: Selectable = Selectable.new()
 	if owner_node is Guard:
-		selectable.reach_up = Guard.ART_HEIGHT
+		selectable.reach_up = GuardVisual.ART_HEIGHT
 		selectable.hint_key = "UI_HINT_ATTACK"
 	owner_node.add_child(selectable)
 	return view

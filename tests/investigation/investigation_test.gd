@@ -101,8 +101,8 @@ func test_staying_out_lets_conflict_break() -> void:
 	director.zone_entered = true
 	director.advance_neglect(InvestigationDirector.NEGLECT_LIMIT + 1.0)
 	assert_bool(director.has_flag("guerra")).is_true()
-	assert_bool(sandbox._notice_label.visible).is_true()
-	assert_str(sandbox._notice_label.text).contains("guerra")
+	assert_bool(sandbox.hud.notice_label.visible).is_true()
+	assert_str(sandbox.hud.notice_label.text).contains("guerra")
 
 
 func test_consequences_persist_after_reload() -> void:

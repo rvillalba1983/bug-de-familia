@@ -5,9 +5,6 @@ extends Node2D
 const COLOR_BACKGROUND: Color = Color("#1d1b26")
 const COLOR_FLOOR: Color = Color("#3b4a3a")
 const COLOR_GOAL: Color = Color(0.3, 1.0, 0.5, 0.35)
-const SAVED_NOTICE_TIME: float = 2.5
-const NOTICE_TIME: float = 7.0
-const USE_CLICK_RADIUS: float = 56.0
 const ID_CRATE: String = "crate_1"
 const ID_TERMINAL: String = "terminal_1"
 const ID_PICKUP_LEG: String = "pickup_leg_1"
@@ -55,13 +52,8 @@ var investigation: InvestigationDirector
 ## Si la sesión ha continuado una partida ya empezada.
 var resumed: bool = false
 
-var _pause_label: Label
-var _done_label: Label
-var _saved_label: Label
-var _saved_time: float = 0.0
-var _notice_label: Label
-var _notice_time: float = 0.0
-var _pending_use: Interactable
+var hud: LevelHud
+var _orders: PointerOrders
 
 
 func _ready() -> void:
@@ -83,32 +75,12 @@ func _physics_process(_delta: float) -> void:
 		for point: SavePoint in save_points:
 			point.track(feet)
 	_check_goal(feet)
-	_track_pending_use(feet)
-
-
-func _process(delta: float) -> void:
-	if _saved_time > 0.0:
-		_saved_time -= delta
-		_saved_label.visible = _saved_time > 0.0
-	if _notice_time > 0.0:
-		_notice_time -= delta
-		_notice_label.visible = _notice_time > 0.0
+	_orders.track(feet)
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"move_to"):
-		var point: Vector2 = get_global_mouse_position()
-		_pending_use = null
-		var enemy: Guard = _enemy_at(point)
-		if enemy != null and (not enemy.passive or enemy.is_alert() or _is_selected(enemy)):
-			combat.engage(enemy)
-			return
-		combat.disengage()
-		var item: Interactable = _usable_at(point)
-		if item != null:
-			_go_and_use(item)
-			return
-		player.set_path(nav.find_path(player.global_position, point))
+		_orders.order_at(get_global_mouse_position())
 
 
 func _draw() -> void:
@@ -117,48 +89,6 @@ func _draw() -> void:
 	draw_rect(SandboxLayout.GOAL, COLOR_GOAL)
 	var goal_top: Vector2 = SandboxLayout.GOAL.get_center() - Vector2(0.0, 8.0)
 	WorldLabel.draw_on(self, tr("ITEM_GOAL"), goal_top)
-
-
-## Lo que hay bajo el puntero y se puede usar: objeto, persona o rastro.
-func _usable_at(point: Vector2) -> Interactable:
-	var best: Interactable = null
-	var best_distance: float = USE_CLICK_RADIUS
-	for node: Node in get_tree().get_nodes_in_group(Interactable.GROUP):
-		var item: Interactable = node as Interactable
-		if item.used or item.is_pickup():
-			continue
-		var center: Vector2 = item.global_position - Vector2(0.0, item.art_height() * 0.5)
-		var distance: float = minf(item.global_position.distance_to(point), center.distance_to(point))
-		if distance <= best_distance:
-			best = item
-			best_distance = distance
-	return best
-
-
-func _go_and_use(item: Interactable) -> void:
-	_pending_use = item
-	if player.global_position.distance_to(item.global_position) > Interactable.RANGE:
-		player.set_path(nav.find_path(player.global_position, item.global_position))
-
-
-## Al llegar, se usa solo. Si te mueves con el teclado, la orden se cancela.
-func _track_pending_use(feet: Vector2) -> void:
-	if _pending_use == null:
-		return
-	if not is_instance_valid(_pending_use) or _pending_use.used:
-		_pending_use = null
-	elif feet.distance_to(_pending_use.global_position) <= Interactable.RANGE:
-		var item: Interactable = _pending_use
-		_pending_use = null
-		player.set_path(PackedVector2Array())
-		item.activate()
-	elif not player.has_path():
-		_pending_use = null
-
-
-func _is_selected(enemy: Guard) -> bool:
-	var current: Selectable = selection.current
-	return current != null and current.get_parent() == enemy
 
 
 ## Para pruebas de sistemas que no necesitan enemigos.
@@ -214,56 +144,24 @@ func save_point_positions() -> Array[Vector2]:
 
 
 func snapshot() -> Dictionary:
-	var used: Array = []
-	for id: String in items:
-		if (items[id] as Interactable).used:
-			used.append(id)
-	return {
-		"dead": player.body.is_dead,
-		"seed": rng.seed,
-		"body": player.body.to_dict(),
-		"player": {"x": player.global_position.x, "y": player.global_position.y},
-		"used": used,
-		"converted": converted_ids,
-		"fallen": fallen_ids,
-		"door_open": door.is_open,
-		"ai": ai.team.to_dict(),
-		"case": investigation.to_dict(),
-		"challenge_done": challenge_done,
-	}
+	return LevelSaveState.capture(self)
 
 
 ## Aviso breve de algo importante que ha pasado en el mundo.
 func show_notice(text: String) -> void:
-	_notice_label.text = text
-	_notice_label.visible = true
-	_notice_time = NOTICE_TIME
+	hud.show_notice(text)
 
 
 func autosave() -> void:
 	if not player.body.is_dead and SaveSystem.write(snapshot()):
-		_saved_time = SAVED_NOTICE_TIME
-		_saved_label.visible = true
+		hud.show_saved()
 
 
 func start_new_game() -> void:
 	var fresh_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	fresh_rng.randomize()
 	var seed_value: int = fresh_rng.seed if forced_seed < 0 else forced_seed
-	var data: Dictionary = {
-		"dead": false,
-		"seed": seed_value,
-		"body": default_body().to_dict(),
-		"player": {"x": start_point().x, "y": start_point().y},
-		"used": [],
-		"converted": [],
-		"fallen": [],
-		"door_open": false,
-		"ai": {},
-		"case": {},
-		"challenge_done": false,
-			"world": {},
-	}
+	var data: Dictionary = LevelSaveState.fresh(start_point(), seed_value, default_body())
 	SaveSystem.write(data)
 	session_started = true
 	get_tree().paused = false
@@ -286,6 +184,7 @@ static func default_body() -> ModularBody:
 
 
 func _build_world() -> void:
+	_orders = PointerOrders.new(self)
 	ground = Node2D.new()
 	add_child(ground)
 	actors = Node2D.new()
@@ -348,7 +247,7 @@ func _register_convertibles() -> void:
 	_add_convertible(ID_TERMINAL, items[ID_TERMINAL], "gel_memoria")
 
 
-func _remove_entity(id: String) -> void:
+func remove_entity(id: String) -> void:
 	if not entities.has(id):
 		return
 	var node: Variant = entities[id]
@@ -385,24 +284,7 @@ func _build_walls() -> void:
 
 
 func _build_boundaries() -> void:
-	var area: Rect2 = floor_rect()
-	var t: float = 64.0
-	var sides: Array[Rect2] = [
-		Rect2(area.position.x - t, area.position.y - t, area.size.x + t * 2.0, t),
-		Rect2(area.position.x - t, area.end.y, area.size.x + t * 2.0, t),
-		Rect2(area.position.x - t, area.position.y, t, area.size.y),
-		Rect2(area.end.x, area.position.y, t, area.size.y),
-	]
-	for side: Rect2 in sides:
-		var body: StaticBody2D = StaticBody2D.new()
-		body.collision_layer = PhysicsLayers.WALLS
-		var shape: RectangleShape2D = RectangleShape2D.new()
-		shape.size = side.size
-		var collider: CollisionShape2D = CollisionShape2D.new()
-		collider.shape = shape
-		collider.position = side.get_center()
-		body.add_child(collider)
-		add_child(body)
+	LevelBounds.build(self, floor_rect())
 
 
 func _build_player() -> void:
@@ -450,7 +332,7 @@ func _build_enemies() -> void:
 func _add_item(id: String, kind: Interactable.Kind, at: Vector2) -> void:
 	var item: Interactable = Interactable.new()
 	item.setup(id, kind, at)
-	item.activated.connect(_on_item_activated)
+	item.activated.connect(on_item_activated)
 	actors.add_child(item)
 	items[id] = item
 
@@ -472,31 +354,11 @@ func _build_save_points() -> void:
 
 
 func _build_interface() -> void:
-	var layer: CanvasLayer = CanvasLayer.new()
-	layer.layer = 2
-	add_child(layer)
-	_pause_label = _add_label(layer, "UI_PAUSE", Vector2(860.0, 24.0), 32)
-	_pause_label.visible = false
-	_done_label = _add_label(layer, "UI_CHALLENGE_DONE", Vector2(820.0, 70.0), 32)
-	_done_label.visible = false
-	_saved_label = _add_label(layer, "UI_SAVED", Vector2(860.0, 980.0), 26)
-	_saved_label.visible = false
-	_notice_label = _add_label(layer, "UI_SAVED", Vector2(420.0, 110.0), 26)
-	_notice_label.visible = false
-	_notice_label.process_mode = Node.PROCESS_MODE_ALWAYS
-	if _shows_help_labels():
-		_add_label(layer, "UI_SANDBOX_HELP", Vector2(24.0, 1040.0), 20)
-		_add_label(layer, _objective_key(), Vector2(24.0, 16.0), 22)
-	var hud: BodyHud = BodyHud.new()
-	hud.body = player.body
-	layer.add_child(hud)
-	action_bar = ActionBar.new()
-	layer.add_child(action_bar)
-	action_bar.body = player.body
-	if _shows_help_labels():
-		_add_label(layer, "UI_SANDBOX_HELP2", Vector2(1560.0, 1040.0), 20)
-	var conversion_hint: Label = _add_label(layer, "UI_CONVERT_NONE", Vector2(620.0, 70.0), 24)
-	conversion_hint.visible = false
+	hud = LevelHud.new()
+	hud.layer = 2
+	add_child(hud)
+	hud.build(player.body, _shows_help_labels(), objective_key())
+	action_bar = hud.action_bar
 	var screen: ConversionScreen = ConversionScreen.new()
 	add_child(screen)
 	conversion = ConversionDirector.new()
@@ -504,21 +366,11 @@ func _build_interface() -> void:
 	conversion.player = player
 	conversion.rng = rng
 	conversion.screen = screen
-	conversion.hint = conversion_hint
+	conversion.hint = hud.conversion_hint
 	panel = BodyPanel.new()
 	panel.body = player.body
 	panel.pause = pause
 	add_child(panel)
-
-
-func _add_label(layer: CanvasLayer, key: String, at: Vector2, font_size: int) -> Label:
-	var label: Label = Label.new()
-	label.text = tr(key)
-	label.position = at
-	label.add_theme_font_override(&"font", UiStyle.FONT_LOUD)
-	label.add_theme_font_size_override(&"font_size", font_size)
-	layer.add_child(label)
-	return label
 
 
 func _connect_systems() -> void:
@@ -538,7 +390,7 @@ func _connect_systems() -> void:
 	conversion.taunter = ai.question_taunt
 	panel.discarded.connect(ai.on_piece_discarded)
 	fight.pre_fight_started.connect(ai.say.bind("fight"))
-	actions.door_hacked.connect(_open_door)
+	actions.door_hacked.connect(open_door)
 	_connect_body()
 
 
@@ -555,7 +407,7 @@ func _shows_help_labels() -> bool:
 	return true
 
 
-func _objective_key() -> String:
+func objective_key() -> String:
 	return "UI_OBJECTIVE"
 
 
@@ -594,58 +446,22 @@ func _start_session() -> void:
 
 func _begin_fresh() -> void:
 	rng.seed = randi() if forced_seed < 0 else forced_seed
-	_replace_body(default_body())
+	replace_body(default_body())
 	ai.restore({})
 	investigation.restore({})
 	SaveSystem.write(snapshot())
 
 
 func _apply_save(data: Dictionary) -> bool:
-	var loaded_body: ModularBody = ModularBody.from_dict(data["body"])
-	if data["dead"]:
-		return true
-	if loaded_body == null:
-		return false
-	_replace_body(loaded_body)
-	rng.seed = int(data.get("seed", 0))
-	var at: Dictionary = data.get("player", {})
-	player.global_position = Vector2(
-		float(at.get("x", start_point().x)),
-		float(at.get("y", start_point().y))
-	)
-	for id: Variant in data.get("used", []):
-		if items.has(id):
-			(items[id] as Interactable).mark_used()
-			if id == ID_TERMINAL:
-				_open_door()
-	for id: Variant in data.get("converted", []):
-		converted_ids.append(id)
-		_remove_entity(str(id))
-	for id: Variant in data.get("fallen", []):
-		fallen_ids.append(id)
-		_remove_entity(str(id))
-	if data.get("door_open", false):
-		_open_door()
-	ai.restore(data.get("ai", {}))
-	investigation.restore(data.get("case", {}))
-	if data.get("challenge_done", false):
-		challenge_done = true
-		_done_label.visible = true
-	return true
+	return LevelSaveState.restore(self, data)
 
 
-func _replace_body(new_body: ModularBody) -> void:
+func replace_body(new_body: ModularBody) -> void:
 	player.body = new_body
 	fight.body = new_body
 	panel.body = new_body
-	action_bar.body = new_body
 	_connect_body()
-	var hud_parent: Node = _pause_label.get_parent()
-	for child: Node in hud_parent.get_children():
-		if child is BodyHud:
-			(child as BodyHud).body = new_body
-			new_body.changed.connect((child as BodyHud).queue_redraw)
-			(child as BodyHud).queue_redraw()
+	hud.set_body(new_body)
 
 
 func _show_start_menu() -> void:
@@ -672,14 +488,14 @@ func _continue_game() -> void:
 	pause.end_modal()
 
 
-func _open_door() -> void:
+func open_door() -> void:
 	door.set_open(true)
 	nav.clear_rect(door_rects()[0], Player.RADIUS, _all_blockers())
 
 
 func _complete_challenge() -> void:
 	challenge_done = true
-	_done_label.visible = true
+	hud.done_label.visible = true
 	autosave()
 
 
@@ -691,7 +507,7 @@ func _add_pickup(slots: Array[ModularBody.Slot]) -> void:
 			return
 
 
-func _on_item_activated(item: Interactable) -> void:
+func on_item_activated(item: Interactable) -> void:
 	match item.kind:
 		Interactable.Kind.NPC:
 			investigation.open_dialogue(item.item_id)
@@ -700,25 +516,16 @@ func _on_item_activated(item: Interactable) -> void:
 		Interactable.Kind.CRATE:
 			noise_bus.emit_noise(item.global_position, SandboxLayout.CRATE_NOISE_RADIUS)
 		Interactable.Kind.TERMINAL:
-			_open_door()
+			open_door()
 		Interactable.Kind.PICKUP_LEG, Interactable.Kind.PICKUP_ARM:
 			_add_pickup(item.pickup_slots())
 
 
 func _on_converted(entity_id: String) -> void:
 	converted_ids.append(entity_id)
-	_remove_entity(entity_id)
+	remove_entity(entity_id)
 	if fight.phase == FightDirector.Phase.CALM:
 		autosave()
-
-
-## Usa el mismo criterio que la selección: clic izquierdo y derecho eligen a la misma persona.
-func _enemy_at(point: Vector2) -> Guard:
-	var picked: Selectable = selection.pick(point)
-	if picked == null or not picked.get_parent() is Guard:
-		return null
-	var enemy: Guard = picked.get_parent()
-	return null if enemy.is_down() else enemy
 
 
 func _id_of(enemy: Guard) -> String:
@@ -731,11 +538,11 @@ func _on_enemy_fell(enemy: Guard) -> void:
 
 
 func _on_corpse_expired(enemy: Guard) -> void:
-	_remove_entity(_id_of(enemy))
+	remove_entity(_id_of(enemy))
 
 
 func _on_paused_changed(is_paused: bool) -> void:
-	_pause_label.visible = is_paused
+	hud.pause_label.visible = is_paused
 
 
 func _on_pre_fight_started() -> void:

@@ -154,8 +154,8 @@ func test_wall_blocks_shot() -> void:
 	shooter.global_position = Vector2(wall.get_center().x, wall.position.y - 60.0)
 	await _frames(3)
 	var before: float = _total(sandbox.player.body)
-	shooter._aim_point = sandbox.player.global_position
-	shooter._fire()
+	shooter.attack.aim_point = sandbox.player.global_position
+	shooter.attack.fire()
 	assert_float(_total(sandbox.player.body)).is_equal(before)
 
 
@@ -168,12 +168,12 @@ func test_low_cover_blocks_shot_only_crouching() -> void:
 	await _frames(3)
 	var before: float = _total(sandbox.player.body)
 	sandbox.player.set_crouching(true)
-	shooter._aim_point = sandbox.player.global_position
-	shooter._fire()
+	shooter.attack.aim_point = sandbox.player.global_position
+	shooter.attack.fire()
 	assert_float(_total(sandbox.player.body)).is_equal(before)
 	sandbox.player.set_crouching(false)
-	shooter._hit_timer = 0.0
-	shooter._fire()
+	shooter.attack.hit_timer = 0.0
+	shooter.attack.fire()
 	assert_float(_total(sandbox.player.body)).is_less(before)
 
 
@@ -182,10 +182,10 @@ func test_moving_away_dodges_shot() -> void:
 	var shooter: Guard = sandbox.shooter
 	_place(sandbox, shooter, Vector2(200.0, 0.0))
 	await _frames(3)
-	shooter._aim_point = sandbox.player.global_position
+	shooter.attack.aim_point = sandbox.player.global_position
 	sandbox.player.global_position += Vector2(0.0, 120.0)
 	var before: float = _total(sandbox.player.body)
-	shooter._fire()
+	shooter.attack.fire()
 	assert_float(_total(sandbox.player.body)).is_equal(before)
 
 

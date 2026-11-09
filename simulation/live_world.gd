@@ -150,7 +150,7 @@ func _show_citizen(npc: NpcState) -> void:
 	item.custom_label = npc.name
 	item.body_hidden = true
 	item.reusable = true
-	item.activated.connect(level._on_item_activated)
+	item.activated.connect(level.on_item_activated)
 	guard.add_child(item)
 	_talk_items[npc.id] = item
 	var bubble: SpeechBubble = SpeechBubble.new()
@@ -291,7 +291,7 @@ func _build_festival_view(added: Array) -> void:
 		item.custom_label = tr("LIVE_TRACE_LABEL")
 		item.custom_color = FestivalDecor.COLOR_RUIN
 		item.reusable = true
-		item.activated.connect(level._on_item_activated)
+		item.activated.connect(level.on_item_activated)
 		level.actors.add_child(item)
 	if not added.is_empty():
 		level.ai.say_custom("%s: %s" % [added[-1]["name"], added[-1]["text"]])
@@ -353,7 +353,7 @@ func _show_mission_item(mission: Dictionary) -> void:
 	item.setup(id, Interactable.Kind.EVIDENCE, Vector2(float(mission["x"]), float(mission["y"])))
 	item.custom_label = sim.missions.templates["pertenencia"]["item"]
 	item.custom_color = FestivalDecor.COLOR_LOST
-	item.activated.connect(level._on_item_activated)
+	item.activated.connect(level.on_item_activated)
 	level.actors.add_child(item)
 	_mission_items[id] = item
 

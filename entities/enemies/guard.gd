@@ -95,6 +95,9 @@ var _rig_view: int = VIEW_SOUTH
 ## Padre de los esqueletos, en los pies: deforma y destella a todos a la vez.
 var _rig_root: Node2D
 
+## Lo que le pasa a un habitante por su cuenta no sacude la pantalla del jugador.
+var quiet_impacts: bool = false
+
 var _was_alert: bool = false
 var _aim_point: Vector2 = Vector2.ZERO
 var _corpse_time: float = 0.0
@@ -269,6 +272,15 @@ func take_damage(amount: float) -> void:
 		_on_detected(target.global_position)
 
 
+## Muere por un suceso del mundo, sin efectos de pantalla.
+func die_quietly() -> void:
+	if state == State.DOWN:
+		return
+	quiet_impacts = true
+	health = 0.0
+	_fall()
+
+
 ## Sustituye la ronda, por ejemplo cuando un conflicto mueve a los bandos.
 func set_patrol(points: Array[Vector2]) -> void:
 	_patrol = points
@@ -437,7 +449,7 @@ func _react_to_hit() -> void:
 
 
 func _react_to_fall() -> void:
-	if not is_inside_tree():
+	if not is_inside_tree() or quiet_impacts:
 		return
 	ImpactFx.shake(get_viewport(), FALL_SHAKE)
 	ImpactFx.hit_stop(get_tree(), FALL_STOP)

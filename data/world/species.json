@@ -1,0 +1,40 @@
+{
+  "jubilado": {
+    "rival": "mohocrata", "start": 8, "target": 10, "max": 14,
+    "roles": ["petanquista", "vigilante", "archivero", "mecanico"],
+    "names": ["Paco", "Encarna", "Fermín", "Remedios", "Sisebuto", "Angustias", "Evaristo", "Pura", "Nicanor", "Benita"],
+    "surnames": ["Tuerca", "Junta", "Biela", "Carburador", "Remache", "Chirrido", "Fusible", "Manivela"],
+    "opener": ["En mis tiempos esto no pasaba, pero", "Te lo digo yo, que tengo garantía caducada:", "Me lo creas o no,"],
+    "nothing": ["No sé nada y encima me duele la rodilla.", "Aquí no pasa nada desde 1987."],
+    "greet": ["¿Qué miras, chatarra con patas?", "Si vienes a vender algo, ya tengo de todo roto."],
+    "angry": ["¡Viejo lo será tu padre! Que son varios, por cierto.", "Vete antes de que me acuerde de cómo se pega."],
+    "praised": ["Hombre, un joven con modales. Sospechoso.", "Eso díselo a mi rodilla."],
+    "weird": ["*baila un pasodoble sin música*", "*saluda con solemnidad a una farola*"],
+    "lore": [
+      {"text": "Nos apagamos a las nueve de la noche. Disciplina.", "true": true},
+      {"text": "Las escaleras las inventó alguien que nos odiaba.", "true": true},
+      {"text": "Antes del colapso yo era presidente de algo. O tostadora.", "true": false},
+      {"text": "Los humanos se fueron de vacaciones y ya vuelven.", "true": false},
+      {"text": "Las setas votan hasta si respirar. Lo he visto.", "true": true}
+    ]
+  },
+  "mohocrata": {
+    "rival": "jubilado", "start": 8, "target": 10, "max": 14,
+    "roles": ["votante", "recolector", "escrutador", "reciclador"],
+    "names": ["Hongoberto", "Espora", "Micelio", "Colmenilla", "Níscalo", "Boletina", "Trufo", "Amanita", "Champi", "Yesquero"],
+    "surnames": ["Húmedo", "de la Mayoría", "Abstención", "Enmienda", "Quorum", "Sombrío", "Moción", "Recuento"],
+    "opener": ["Consta en acta que", "Por mayoría simple te comunico que", "Sin que sirva de precedente:"],
+    "nothing": ["Se ha votado no saber nada.", "Sobre eso aún no hay quorum."],
+    "greet": ["¿Vienes a votar o a oxidarte?", "Tu presencia queda pendiente de aprobación."],
+    "angry": ["Moción de insulto aprobada: vete.", "Votamos guerra contigo. Tres veces, como manda."],
+    "praised": ["Se admite el elogio a trámite.", "Qué bien hablas para estar tan seco."],
+    "weird": ["*somete a votación a sus propios pies*", "*se abstiene de moverse, con gran dignidad*"],
+    "lore": [
+      {"text": "Votamos tres veces antes de atacar. Es lo correcto.", "true": true},
+      {"text": "La luz es un abuso de poder.", "true": true},
+      {"text": "Un buen saco de fertilizante cambia cualquier voto.", "true": true},
+      {"text": "Los robots viejos no sienten nada al reciclarlos.", "true": false},
+      {"text": "Llegamos aquí antes que nadie. Consta en acta.", "true": false}
+    ]
+  }
+}

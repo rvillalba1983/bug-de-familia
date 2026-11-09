@@ -34,6 +34,9 @@ var custom_color: Color = Color.TRANSPARENT
 var reusable: bool = false
 ## Si existe, se dibuja en lugar del cuadro de color.
 var art: Texture2D
+## Para personajes que ya se dibujan solos: sin cuadro, y el nombre solo de cerca.
+var body_hidden: bool = false
+var show_label: bool = true
 
 
 func setup(new_id: String, new_kind: Kind, at: Vector2) -> void:
@@ -44,6 +47,10 @@ func setup(new_id: String, new_kind: Kind, at: Vector2) -> void:
 
 
 func _draw() -> void:
+	if body_hidden:
+		if show_label:
+			WorldLabel.draw_on(self, custom_label, Vector2(0.0, -112.0))
+		return
 	if is_rubble():
 		_draw_rubble()
 		return

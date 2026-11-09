@@ -359,15 +359,19 @@ func _on_enemy_fell(enemy: Guard) -> void:
 	super(enemy)
 	if enemy == ramon:
 		challenges.on_ramon_fell()
+	live_world.on_citizen_gone(_id_of(enemy))
 
 
 func _on_converted(entity_id: String) -> void:
 	super(entity_id)
+	live_world.on_citizen_gone(entity_id)
 	if entity_id == ID_RAMON:
 		challenges.on_ramon_fell()
 
 
 func _on_item_activated(item: Interactable) -> void:
+	if live_world.handles_item(item):
+		return
 	match item.item_id:
 		ID_MINE:
 			challenges.take_mine()
@@ -397,6 +401,21 @@ func snapshot() -> Dictionary:
 	var data: Dictionary = super()
 	data["world"] = live_world.to_dict()
 	return data
+
+
+## Pone en escena a un habitante del mundo vivo. Admite nacimientos en plena partida.
+func add_citizen(id: String, species: String, at: Vector2, home: Rect2) -> Guard:
+	var color: Color = COLOR_JUBILADO if species == "jubilado" else COLOR_MOHOCRATA
+	var roster: Array = _jubilados if species == "jubilado" else _mohocratas
+	var route: Array[Vector2] = [at, at + Vector2(90.0, 0.0)]
+	route[1] = route[1].clamp(home.position, home.end)
+	var enemy: Guard = _add_guard(id, route, color, roster)
+	enemy.set_passive(true)
+	_add_convertible(id, enemy, "nanoacero")
+	fight.track(enemy)
+	enemy.fell.connect(_on_enemy_fell)
+	enemy.corpse_expired.connect(_on_corpse_expired)
+	return enemy
 
 
 func _begin_fresh() -> void:

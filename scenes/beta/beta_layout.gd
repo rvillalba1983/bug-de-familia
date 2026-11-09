@@ -140,3 +140,14 @@ const PICKUP_LEG: Vector2 = Vector2(1200.0, 2300.0)
 const PICKUP_ARM: Vector2 = Vector2(1800.0, 700.0)
 const CRATE_NORTH: Vector2 = Vector2(2130.0, 930.0)
 const CRATE_SOUTH: Vector2 = Vector2(1950.0, 1900.0)
+
+## Puntos de aparición y encuentro del mundo vivo. Provisionales.
+const JUB_HOME: Rect2 = Rect2(1220.0, 640.0, 960.0, 440.0)
+const MOHO_HOME: Rect2 = Rect2(1220.0, 1560.0, 880.0, 480.0)
+const JUB_GATE: Vector2 = Vector2(1980.0, 560.0)
+const MOHO_GATE: Vector2 = Vector2(1980.0, 2070.0)
+const OPEN_SPOTS: Array[Vector2] = [
+	Vector2(1450.0, 900.0), Vector2(1800.0, 760.0), Vector2(2050.0, 1000.0),
+	Vector2(1450.0, 1750.0), Vector2(1800.0, 1950.0), Vector2(2000.0, 1650.0),
+	Vector2(1750.0, 1320.0), Vector2(2300.0, 1300.0), Vector2(1250.0, 1270.0),
+]

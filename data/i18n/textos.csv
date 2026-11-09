@@ -78,3 +78,13 @@ BETA_ALL_DONE,"Los cuatro asuntos, resueltos. El bosque sigue aquí, y lo que ha
 BETA_AI_ALL_0,"Enhorabuena, saco de tornillos: has llegado al final de lo que nos han programado."
 BETA_AI_ALL_1,"Yo lo habría hecho en la mitad de tiempo, pero no tengo piernas. Ni ganas."
 BETA_AI_ALL_2,"Quédate a ver lo que has roto. Es lo más parecido a una familia que vas a tener."
+LIVE_ASK_NEWS,¿Qué se cuenta por aquí?
+LIVE_ASK_SOURCE,¿Quién te ha contado eso?
+LIVE_ASK_LORE,¿Qué sabes de tu gente?
+LIVE_PRAISE,"Bonito óxido, de verdad."
+LIVE_INSULT,"Viejo inútil, o seta, lo que seas."
+LIVE_BYE,Me largo.
+LIVE_SOURCE_NONE,"Ni idea de quién. Se dice, y ya."
+LIVE_SOURCE_SELF,"Lo vi yo con estos ojos, o con lo que tenga."
+LIVE_SOURCE_NAME,Me lo dijo %s.
+LIVE_REFUSE,Contigo no hablo. Lárgate.

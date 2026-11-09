@@ -37,6 +37,7 @@ func test_destroyed_piece_in_fight_pauses_and_allows_replacement() -> void:
 	sandbox.guard.alert_started.emit()
 	sandbox.panel.close()
 	var body: ModularBody = sandbox.player.body
+	body.add_spare(ModularBody.Slot.LEG_LEFT, BodyPiece.new(BodyPiece.Kind.LEG))
 	body.damage(ModularBody.Slot.LEG_LEFT, BodyPiece.MAX_DURABILITY)
 	assert_bool(sandbox.panel.is_open).is_true()
 	assert_int(sandbox.panel.mode).is_equal(BodyPanel.Mode.REPLACE)
@@ -62,6 +63,7 @@ func test_death_is_saved_and_cannot_continue() -> void:
 func test_one_leg_cannot_run_and_moves_at_half_speed() -> void:
 	var sandbox: Sandbox = _scene()
 	var player: Player = sandbox.player
+	player.body.spares(ModularBody.Slot.LEG_LEFT).clear()
 	player.body.damage(ModularBody.Slot.LEG_LEFT, BodyPiece.MAX_DURABILITY)
 	sandbox.panel.close()
 	Input.action_press(&"run")
@@ -105,3 +107,27 @@ func test_start_menu_appears_when_opening_existing_game() -> void:
 	var reopened: Sandbox = second.scene()
 	assert_object(reopened.overlay).is_not_null()
 	assert_int(reopened.overlay.options.size()).is_equal(2)
+
+
+func test_con_un_solo_repuesto_se_pone_sin_abrir_nada() -> void:
+	var sandbox: Sandbox = _scene()
+	sandbox.guard.alert_started.emit()
+	sandbox.panel.close()
+	var body: ModularBody = sandbox.player.body
+	assert_int(body.spares(ModularBody.Slot.LEG_LEFT).size()).is_equal(1)
+	body.damage(ModularBody.Slot.LEG_LEFT, BodyPiece.MAX_DURABILITY)
+	assert_bool(sandbox.panel.is_open).is_false()
+	assert_object(body.equipped(ModularBody.Slot.LEG_LEFT)).is_not_null()
+	assert_int(body.spares(ModularBody.Slot.LEG_LEFT).size()).is_equal(0)
+
+
+func test_sin_repuestos_no_se_abre_nada() -> void:
+	var sandbox: Sandbox = _scene()
+	sandbox.guard.alert_started.emit()
+	sandbox.panel.close()
+	var body: ModularBody = sandbox.player.body
+	body.discard_spare(ModularBody.Slot.ARM_EXTRA_LEFT, 0) if not body.spares(ModularBody.Slot.ARM_EXTRA_LEFT).is_empty() else null
+	body.damage(ModularBody.Slot.ARM_EXTRA_LEFT, BodyPiece.MAX_DURABILITY)
+	assert_bool(sandbox.panel.is_open).is_false()
+	assert_object(body.equipped(ModularBody.Slot.ARM_EXTRA_LEFT)).is_null()
+

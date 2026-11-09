@@ -105,6 +105,7 @@ func test_flags_from_a_loaded_game_stay_silent() -> void:
 
 func test_losing_one_leg_has_its_own_comment() -> void:
 	_ready_to_speak()
+	zone.player.body.spares(ModularBody.Slot.LEG_LEFT).clear()
 	zone.player.body.damage(ModularBody.Slot.LEG_LEFT, 9999.0)
 	assert_array(_voice().lines["one_leg"]).contains(_protagonist_lines()[0]["text"])
 
@@ -129,6 +130,8 @@ func test_every_trigger_has_written_lines() -> void:
 
 
 func test_game_over_shows_a_last_line() -> void:
+	for slot: ModularBody.Slot in [ModularBody.Slot.HEAD, ModularBody.Slot.LEG_LEFT, ModularBody.Slot.LEG_RIGHT]:
+		zone.player.body.spares(slot).clear()
 	zone.player.body.damage(ModularBody.Slot.HEAD, 9999.0)
 	zone.player.body.damage(ModularBody.Slot.LEG_LEFT, 9999.0)
 	zone.player.body.damage(ModularBody.Slot.LEG_RIGHT, 9999.0)

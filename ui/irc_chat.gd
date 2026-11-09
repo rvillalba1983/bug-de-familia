@@ -9,7 +9,15 @@ const NICKS_WIDTH: float = 160.0
 const TITLE_HEIGHT: float = 24.0
 const TOPIC_HEIGHT: float = 58.0
 const VISIBLE_MESSAGES: int = 4
-const TOOLBAR_HEIGHT: float = 22.0
+const TOOLBAR_HEIGHT: float = 44.0
+const TABS_HEIGHT: float = 21.0
+const TABS: Array[String] = ["Status", "#familia", "#cuerpo", "#controles"]
+const ACTIVE_TAB: int = 1
+const TAB_WIDTH: float = 96.0
+const TOOL_ICONS: Array[String] = ["!", "#", "@", "?", "*", "~"]
+const NICK_FONT_SIZE: int = 12
+const COLOR_SLEEPING: String = "#808080"
+const COLOR_LIGHT: Color = Color("#f0f0f0")
 const STATUS_HEIGHT: float = 22.0
 const TOOLBAR_COLORS: Array[Color] = [
 	Color("#ff4040"), Color("#ffd400"), Color("#40d040"), Color("#40d0ff"), Color("#c060ff"), Color("#ff60b0"),
@@ -60,6 +68,7 @@ func _ready() -> void:
 	nick_view = _rich(Rect2(
 		Vector2(body.end.x - NICKS_WIDTH, body.position.y), Vector2(NICKS_WIDTH, body.size.y)
 	))
+	nick_view.add_theme_font_size_override(&"normal_font_size", NICK_FONT_SIZE)
 	topic_view = Label.new()
 	topic_view.position = AREA.position + Vector2(8.0, TITLE_HEIGHT + TOOLBAR_HEIGHT + 2.0)
 	topic_view.size = Vector2(AREA.size.x - 16.0, TOPIC_HEIGHT)
@@ -93,17 +102,38 @@ func _draw() -> void:
 		_mono, title.position + Vector2(6.0, 15.0), CHANNEL_TITLE,
 		HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color.WHITE
 	)
-	for index: int in range(TOOLBAR_COLORS.size()):
-		var button: Rect2 = Rect2(
-			AREA.position + Vector2(6.0 + float(index) * 22.0, TITLE_HEIGHT + 2.0), Vector2(18.0, 17.0)
-		)
-		draw_rect(button, TOOLBAR_COLORS[index])
-		draw_rect(button, COLOR_DARK, false, 1.0)
+	_draw_tabs()
+	_draw_tools()
 	var topic: Rect2 = Rect2(
 		AREA.position + Vector2(3.0, TITLE_HEIGHT + TOOLBAR_HEIGHT), Vector2(AREA.size.x - 6.0, TOPIC_HEIGHT)
 	)
 	draw_rect(topic, COLOR_TOPIC)
 	draw_rect(_body_rect(), COLOR_BACK)
+
+
+func _draw_tabs() -> void:
+	for index: int in range(TABS.size()):
+		var tab: Rect2 = Rect2(
+			AREA.position + Vector2(5.0 + float(index) * (TAB_WIDTH + 2.0), TITLE_HEIGHT), Vector2(TAB_WIDTH, TABS_HEIGHT - 2.0)
+		)
+		var active: bool = index == ACTIVE_TAB
+		draw_rect(tab, COLOR_LIGHT if active else COLOR_FRAME)
+		draw_rect(tab, COLOR_DARK, false, 1.0)
+		draw_string(_mono, tab.position + Vector2(6.0, 14.0), TABS[index], HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color.BLACK)
+
+
+## Botones con relieve, como los de los scripts de IRC. Son decorativos.
+func _draw_tools() -> void:
+	for index: int in range(TOOLBAR_COLORS.size()):
+		var button: Rect2 = Rect2(
+			AREA.position + Vector2(6.0 + float(index) * 23.0, TITLE_HEIGHT + TABS_HEIGHT + 1.0), Vector2(20.0, 19.0)
+		)
+		draw_rect(button, TOOLBAR_COLORS[index])
+		draw_line(button.position, Vector2(button.end.x, button.position.y), COLOR_LIGHT, 2.0)
+		draw_line(button.position, Vector2(button.position.x, button.end.y), COLOR_LIGHT, 2.0)
+		draw_line(Vector2(button.position.x, button.end.y), button.end, COLOR_DARK, 2.0)
+		draw_line(Vector2(button.end.x, button.position.y), button.end, COLOR_DARK, 2.0)
+		draw_string(_mono, button.position + Vector2(5.0, 15.0), TOOL_ICONS[index], HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color.BLACK)
 
 
 func set_topic(text: String) -> void:
@@ -170,15 +200,20 @@ func _update_users() -> void:
 	if team.active != _last_active:
 		_announce_changes()
 		_last_active = team.active.duplicate()
+	nick_view.text = "\n".join(user_rows())
+	queue_redraw()
+
+
+## Activas con @, dormidas con +. Las perdidas ya no están en el canal.
+func user_rows() -> PackedStringArray:
 	var rows: PackedStringArray = PackedStringArray()
 	for id: String in team.active:
 		var info: Dictionary = team.ais[id]
-		rows.append("[color=%s]@%s" % [info["color"], _safe(str(info["name"]))])
-		for row: Variant in info["avatar"]:
-			rows.append(_safe(str(row)))
-		rows.append("[/color]")
-	nick_view.text = "\n".join(rows)
-	queue_redraw()
+		rows.append("[color=%s]@%s[/color]" % [info["color"], _safe(str(info["name"]))])
+	for id: String in team.ais:
+		if not team.active.has(id) and not team.lost.has(id):
+			rows.append("[color=%s]+%s[/color]" % [COLOR_SLEEPING, _safe(str(team.ais[id]["name"]))])
+	return rows
 
 
 func _announce_changes() -> void:

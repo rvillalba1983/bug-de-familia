@@ -43,7 +43,7 @@ func build(body: ModularBody, shows_help: bool, objective_key: String) -> void:
 	pause_label = _hidden_label("UI_PAUSE", Vector2(860.0, 24.0), 32)
 	done_label = _hidden_label("UI_CHALLENGE_DONE", Vector2(820.0, 70.0), 32)
 	saved_label = _hidden_label("UI_SAVED", Vector2(860.0, 980.0), 26)
-	notice_label = _hidden_label("UI_SAVED", Vector2(420.0, 110.0), 26)
+	notice_label = _hidden_label("UI_SAVED", Vector2(530.0, 110.0), 26)
 	notice_label.process_mode = Node.PROCESS_MODE_ALWAYS
 	if shows_help:
 		make_label(self, "UI_SANDBOX_HELP", Vector2(24.0, 1040.0), 20)

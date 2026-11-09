@@ -156,7 +156,8 @@ Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barr
 - Efectos en movimiento reducidos: charcos, cables, plantas y copas quietos, sin moscas ni humo, y menos lluvia y esporas.
 - Límite opcional de 30 imágenes por segundo en las opciones, apagado por defecto.
 - Solo se puede convertir a un personaje inmovilizado o derrotado. Las cosas, drones, cámaras y minas, como siempre.
-- Llevar un recado insultante entre razas distintas hace estallar la batalla entre los dos bandos.
+- Llevar un recado insultante entre razas distintas hace estallar la batalla entre los dos bandos. También, malmeter de la otra raza tres veces en conversación (provisional).
+- En pelea, si la zona rota solo tiene un repuesto se pone solo, y sin repuestos no se abre nada. Solo hay que elegir con dos o más.
 - Al recibir daño, protagonista y enemigos retroceden 4,5 metros (80 unidades, provisional), sin atravesar paredes. No se aplica en las batallas de la vista de estrategia.
 
 ## Autonomía de Claude

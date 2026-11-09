@@ -17,6 +17,8 @@ const FEST_LINE_CHANCE: float = 0.05
 const ID_TRACE: String = "rastro_"
 const ID_LOST: String = "perdido_"
 
+## Veces que el jugador ha malmetido entre razas desde la última batalla provocada.
+var provocations: int = 0
 var level: BetaZone
 var sim: WorldSim = WorldSim.new()
 var dialogue: LiveDialogue
@@ -334,7 +336,7 @@ func _do_mission(id: int, action: String) -> void:
 	if was["state"] == "cerrada":
 		_remove_mission_item(ID_LOST + str(id))
 	if action == "bronca" and _is_between_species(was):
-		_provoke_battle(text)
+		provoke_battle(text)
 		return
 	dialogue.reply(text)
 
@@ -346,7 +348,7 @@ func _is_between_species(mission: Dictionary) -> bool:
 
 
 ## Malmeter entre razas acaba a golpes: estalla la batalla entre los dos bandos.
-func _provoke_battle(text: String) -> void:
+func provoke_battle(text: String) -> void:
 	var speaker: NpcState = dialogue.npc
 	dialogue.close()
 	say_from(speaker, text)

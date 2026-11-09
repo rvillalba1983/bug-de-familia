@@ -26,6 +26,9 @@ const KEY_ACTIONS: Dictionary = {
 	&"action_4": [KEY_4],
 	&"action_5": [KEY_5],
 	&"action_6": [KEY_6],
+	&"action_7": [KEY_7],
+	&"action_8": [KEY_8],
+	&"action_9": [KEY_9],
 }
 const MOUSE_ACTIONS: Dictionary = {
 	&"select": MOUSE_BUTTON_LEFT,

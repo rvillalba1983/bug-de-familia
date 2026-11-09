@@ -105,3 +105,8 @@ BETA_SOLDER_DONE,"Don Ramón te suelda un repuesto, gruñendo."
 BETA_SOLDER_FULL,"Don Ramón iba a soldarte algo, pero no te cabe nada más."
 UI_PICKED_ARM,Repuesto de brazo recogido
 UI_PICKED_LEG,Repuesto de pierna recogido
+UI_AUTO_PIECE,Repuesto puesto
+LIVE_BADMOUTH,"Los %s van diciendo que sois unos inútiles."
+LIVE_BADMOUTH_1,¿Eso dicen? Pues que lo repitan aquí.
+LIVE_BADMOUTH_2,Como me lo digas otra vez voy yo mismo.
+LIVE_BADMOUTH_BOOM,¡Se acabó! ¡A por ellos!

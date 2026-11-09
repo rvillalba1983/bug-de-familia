@@ -5,6 +5,9 @@ extends Node
 const REFUSE_STANDING: float = -12.0
 const INSULT_STANDING: float = -4.0
 const PRAISE_STANDING: float = 1.0
+const BADMOUTH_ANGER: float = 15.0
+const BADMOUTH_RELATION: float = -6.0
+const PROVOCATIONS_NEEDED: int = 3
 
 var world: LiveWorld
 var npc: NpcState
@@ -73,6 +76,7 @@ func _refresh() -> void:
 		entries.append([tr("LIVE_ASK_SOURCE"), _ask_source])
 	entries.append([tr("LIVE_ASK_LORE"), _ask_lore])
 	entries.append_array(world.extra_options(npc))
+	entries.append([tr("LIVE_BADMOUTH") % SpeciesCatalog.plural(SpeciesCatalog.rival(npc.species)), _badmouth])
 	entries.append([tr("LIVE_PRAISE"), _praise])
 	entries.append([tr("LIVE_HIT"), _hit] if _insulted else [tr("LIVE_INSULT"), _insult])
 	entries.append([tr("LIVE_BYE"), close])
@@ -145,6 +149,18 @@ func _hit() -> void:
 	var guard: Guard = world.citizens[npc.id]
 	close()
 	world.level.attack_citizen(guard)
+
+
+## Malmeter de la otra raza: a la tercera vez estalla la batalla.
+func _badmouth() -> void:
+	npc.feel("ira", BADMOUTH_ANGER)
+	world.sim.change_species_relation(BADMOUTH_RELATION)
+	world.provocations += 1
+	if world.provocations >= PROVOCATIONS_NEEDED:
+		world.provocations = 0
+		world.provoke_battle(tr("LIVE_BADMOUTH_BOOM"))
+		return
+	reply(tr("LIVE_BADMOUTH_%d" % world.provocations))
 
 
 func _insult() -> void:

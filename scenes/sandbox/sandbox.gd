@@ -567,7 +567,14 @@ func _on_panel_closed(mode: BodyPanel.Mode) -> void:
 		fight.confirm_pre_fight()
 
 
-func _on_piece_destroyed(_slot: ModularBody.Slot) -> void:
+## Solo se pregunta si hay de verdad algo que elegir.
+func _on_piece_destroyed(slot: ModularBody.Slot) -> void:
+	var spares: int = player.body.spares(slot).size()
+	if spares == 0:
+		return
+	if spares == 1 and player.body.swap(slot, 0):
+		hud.show_short_notice(tr("UI_AUTO_PIECE"))
+		return
 	panel.open(BodyPanel.Mode.REPLACE)
 
 

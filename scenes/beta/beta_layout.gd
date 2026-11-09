@@ -19,6 +19,11 @@ const CROSSING_GOAL: Rect2 = Rect2(3350.0, 1190.0, 350.0, 260.0)
 const CENTRAL_INSIDE: Rect2 = Rect2(2340.0, 660.0, 420.0, 340.0)
 const DEPOT: Rect2 = Rect2(2200.0, 1650.0, 600.0, 330.0)
 
+## Zona de dibujo de las fachadas. La del depósito sobresale por el sombrero de la seta.
+const CENTRAL_FACADE: Rect2 = Rect2(2300.0, 600.0, 500.0, 480.0)
+const DEPOT_FACADE: Rect2 = Rect2(2200.0, 1524.0, 640.0, 533.0)
+const FACADE_DOOR_HEIGHT: float = 180.0
+
 const CENTRAL_DOOR: Rect2 = Rect2(2520.0, 1000.0, 100.0, 40.0)
 const CRACKED_WALL: Rect2 = Rect2(2300.0, 780.0, 40.0, 100.0)
 

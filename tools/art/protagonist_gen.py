@@ -7,7 +7,7 @@ INK='#120a1e'; FUR='#d9541a'; FUR_L='#f07a25'; FUR_D='#8f2f14'; SKIN='#e9a768'; 
 LILAC='#8c8fe0'; LILAC_L='#b9bdf5'; LILAC_D='#4c4a9c'; CYAN='#21d4ff'; NAVY='#1f1740'; NAVY_L='#35285f'
 PURP='#4a2478'; PURP_L='#7a45b5'; MAG='#c21f7a'; MAG_D='#6d1650'; GOLD='#f0b52e'; GOLD_D='#94601a'
 CREAM='#f4d9b0'; PINK='#e8a0b0'; OLIVE='#79803a'; OLIVE_D='#4a4d24'; RUST='#b4501f'; BROWN='#5d4a38'; WHITE='#f5f2ff'
-ORIGIN=(905.0,1118.0)
+ORIGIN=(960.0,1118.0)
 
 def cr(pts,n=6):
     out=[];k=len(pts)
@@ -184,6 +184,198 @@ P['head_back']=dict(pivot=(960,380),shapes=[
  S(ell((1052,300),14,14),CYAN,3),
 ])
 
+
+# VISTAS DE PERFIL Y COMPLEMENTOS
+P['head_e']=dict(pivot=(960,380),shapes=[
+ S([(900,60),(850,20),(860,86),(790,50),(815,120),(740,120),(800,170),(760,225),(830,260),(850,340),(930,392),(1010,380),(1015,120)],FUR,7,False,(FUR_L,FUR_D)),
+ S([(868,190),(815,178),(830,262),(880,290)],SKIN,6,False,(SKIN,SKIN_D)),S([(858,206),(830,198),(842,250),(870,270)],MAG_D,0),
+ S([(940,180),(1040,190),(1075,250),(1140,300),(1150,345),(1110,385),(1020,392),(950,380),(925,300)],SKIN,6,True,(SKIN,SKIN_D)),
+ S([(1040,282),(1140,298),(1152,346),(1110,386),(1030,392),(1010,340)],'#f0bd86',4,True),
+ S(ell((1018,256),28,22,6),INK,0),S(ell((1022,258),19,14,6),WHITE,0),S(ell((1030,259),9,11),INK,0),
+ S([(965,212),(1050,222),(1078,252),(1050,250),(975,238)],INK,0),
+ S(ell((1140,318),8,7),INK,0),L([(1062,360),(1110,352),(1146,358)],INK,6),
+ S([(890,90),(965,92),(990,160),(925,150)],FUR_L,0),
+])
+P['head_w']=dict(pivot=(960,380),shapes=[
+ S([(905,80),(895,6),(940,30),(960,90)],NAVY,5,False,(CYAN,NAVY)),
+ S([(868,185),(822,160),(830,262),(880,290)],LILAC_L,6),S([(858,204),(838,190),(844,248),(870,270)],MAG_D,0),
+ S([(850,120),(900,70),(1000,72),(1060,130),(1075,240),(1150,300),(1152,350),(1110,392),(1010,395),(925,390),(850,330),(838,220)],LILAC,7,True,(LILAC_L,LILAC_D)),
+ L([(890,90),(960,160),(1062,175)],NAVY,5),L([(960,160),(925,260)],NAVY,4),L([(925,260),(925,388)],NAVY,4),
+ S([(1030,290),(1145,300),(1152,350),(1110,392),(1030,394)],LILAC_D,4,False,(LILAC,LILAC_D)),
+ S(ell((1018,250),78,74),CYAN,0,alpha=.2),S(ell((1018,250),46,42),NAVY,4),S(ell((1018,250),34,31),'#0b6a9c',0),S(ell((1018,250),25,23),CYAN,0),S(ell((1018,250),11,10),WHITE,0),
+ S(ell((1140,322),7,6),INK,0),L([(1060,362),(1110,356),(1146,360)],INK,6),
+ S([(965,205),(1060,196),(1078,216),(980,230)],LILAC_L,0),
+])
+P['torso_side']=dict(pivot=(960,640),shapes=[
+ S([(880,395),(1045,400),(1062,470),(1040,590),(880,590),(860,500)],NAVY,7,False,(NAVY_L,NAVY)),
+ L([(905,450),(980,470)],GOLD_D,4),L([(930,510),(1000,540)],BUTA,5),
+ S([(875,578),(1045,575),(1050,632),(875,640)],'#2c2340',6),S([(980,572),(1050,570),(1054,640),(982,642)],GOLD,6,False,(GOLD,GOLD_D)),S([(998,588),(1036,586),(1038,624),(1000,626)],'#2c2340',0),
+ S([(868,630),(1040,632),(1030,780),(990,870),(955,830),(925,890),(890,840),(860,885),(842,780)],OLIVE,6,False,(OLIVE,OLIVE_D)),
+ S([(848,780),(1032,780),(990,870),(955,830),(925,890),(890,840),(860,885)],RUST,0,False,(RUST,FUR_D)),
+])
+# El lado mono es el derecho del personaje: en la vista N queda a la derecha de la pantalla.
+CX=960.0
+def xf(shapes,f):
+    out=[]
+    for s in shapes:
+        c=dict(s);c['q']=[f(a,b) for a,b in s['q']];out.append(c)
+    return out
+def warp(km,kr,dx,cx=990.0):
+    return lambda x,y:(cx+dx+(x-cx)*(km if x<cx else kr),y)
+def mirror(x,y): return (2*CX-x,y)
+def affine(piv,sx=1.0,sy=1.0,rot=0.0,dx=0.0,dy=0.0):
+    r=math.radians(rot);c,sn=math.cos(r),math.sin(r)
+    def f(x,y):
+        a=(x-piv[0])*sx;b=(y-piv[1])*sy
+        return (piv[0]+a*c-b*sn+dx,piv[1]+a*sn+b*c+dy)
+    return f
+# Complementos: formas alrededor de un ancla, en coordenadas de la hoja.
+def spike(a,b,c,fill,o=4): return S([a,b,c],fill,o)
+def head_addon(name,c):
+    x,y=c
+    if name=='horns': return [spike((x-58,y+8),(x-74,y-74),(x-26,y-8),PURP_L),spike((x+6,y-6),(x+24,y-104),(x+50,y+2),PURP_L)]
+    if name=='crest': return [spike((x+dx-20,y+6-abs(dx)*.08),(x+dx,y-74+abs(dx)*.18),(x+dx+20,y+6-abs(dx)*.08),GOLD) for dx in(-54,-18,18,54)]
+    if name=='circlet': return [S([(x-84,y+24),(x+84,y+24),(x+78,y+50),(x-78,y+50)],GOLD,5,False,(GOLD,GOLD_D)),S(ell((x,y+37),12,10),CYAN,3)]
+    if name=='antenna': return [L([(x+18,y+6),(x+40,y-86)],INK,9),L([(x+18,y+6),(x+40,y-86)],HIER_C,4),S(ell((x+42,y-96),16,16),MAG,4)]
+    if name=='mohawk': return [spike((x+dx-24,y+8),(x+dx*1.25,y-98),(x+dx+24,y+8),CYAN) for dx in(-62,-22,22,62)]
+    if name=='dome': return [S(ell((x+6,y+18),78,48),PURP_L,5,alpha=.85),S(ell((x-14,y+2),22,12),WHITE,0,alpha=.7)]
+    return []
+HIER_C='#8894b5'
+def arm_addon(name,c,d):
+    x,y=c;dx,dy=d;nx,ny=-dy,dx;P_=lambda a,b:(x+dx*a+nx*b,y+dy*a+ny*b)
+    if name=='spikes': return [spike(P_(t-16,14),P_(t,62),P_(t+16,14),CREAM) for t in(-36,0,36)]
+    if name=='blade': return [S([P_(-34,12),P_(120,28),P_(142,60),P_(-30,42)],HUES_C,5,False,(WHITE,LILAC_D))]
+    if name=='ring': return [S([P_(-14,-46),P_(14,-46),P_(14,46),P_(-14,46)],GOLD,5,False,(GOLD,GOLD_D)),S(ell(P_(0,0),11,11),CYAN,3)]
+    if name=='cannon': return [S([P_(-30,20),P_(62,20),P_(62,68),P_(-30,68)],GOLD_D,5,False,(GOLD,GOLD_D)),S(ell(P_(66,44),17,22),INK,3),S(ell(P_(66,44),9,12),MAG,0)]
+    if name=='flame': return [spike(P_(t-18,18),P_(t*1.2,78+t*.3),P_(t+18,18),BUTA) for t in(-42,-6,30)]
+    if name=='plate': return [S([P_(-44,-34),P_(44,-34),P_(52,34),P_(-52,34)],WHITE,5,False,(WHITE,LILAC)),L([P_(-30,0),P_(30,0)],MAG,6)]
+    return []
+HUES_C='#f6e7c8'
+def leg_addon(name,knee,shoe):
+    kx,ky=knee;sx,sy=shoe
+    if name=='kneepad': return [S(ell((kx,ky),40,44),GOLD,5),S(ell((kx,ky),17,20),MAG,0)]
+    if name=='wheel': return [S(ell((sx,sy),56,56),INK,5),S(ell((sx,sy),34,34),HIER_C,3),S(ell((sx,sy),12,12),GOLD,0)]
+    if name=='spikes': return [spike((kx-52+i*30,ky+20),(kx-40+i*30,ky+84),(kx-24+i*30,ky+20),CREAM) for i in range(3)]
+    if name=='tubes': return [L([(kx-34,ky-70),(kx+36,ky+64)],INK,16),L([(kx-34,ky-70),(kx+36,ky+64)],CYAN,7)]
+    if name=='plates': return [S([(kx-46,ky-48),(kx+46,ky-40),(kx+40,ky+52),(kx-42,ky+46)],LILAC_L,5),L([(kx-30,ky),(kx+30,ky)],NAVY,6)]
+    return []
+ARM_ANCHOR={'arm_extra_left':((590,285),(-.8,.5)),'arm_extra_right':((1325,445),(.55,.83)),'arm_main_left':((625,545),(-.65,.75)),'arm_main_right':((1185,555),(.7,.7))}
+LEG_ANCHOR={'leg_left':((790,850),(690,1085)),'leg_right':((1092,835),(1115,1060))}
+ARM_ADDONS=['spikes','blade','ring','cannon','flame','plate']
+LEG_ADDONS=['kneepad','wheel','spikes','tubes','plates']
+HEAD_ADDONS=['horns','crest','circlet','antenna','mohawk','dome']
+CROWN={'head':(1000,86),'head_back':(1000,86),'head_e':(930,96),'head_w':(960,76)}
+
+def with_addons(name,anchor_fn,names):
+    return {n:anchor_fn(n) for n in names}
+def src(name):
+    base=P[name];add={}
+    if name in ARM_ANCHOR:
+        c,d=ARM_ANCHOR[name];add={n:arm_addon(n,c,d) for n in ARM_ADDONS}
+    elif name in LEG_ANCHOR:
+        k,sh=LEG_ANCHOR[name];add={n:leg_addon(n,k,sh) for n in LEG_ADDONS}
+    elif name in CROWN:
+        add={n:head_addon(n,CROWN[name]) for n in HEAD_ADDONS}
+    return dict(pivot=base['pivot'],shapes=base['shapes'],addons=add)
+def apply(part,f):
+    return dict(pivot=f(*part['pivot']),shapes=xf(part['shapes'],f),addons={k:xf(v,f) for k,v in part['addons'].items()})
+def chain(*fs):
+    def g(x,y):
+        for f in fs: x,y=f(x,y)
+        return (x,y)
+    return g
+ARMS=['arm_extra_left','arm_extra_right','arm_main_left','arm_main_right']
+SWAP={'arm_extra_left':'arm_extra_right','arm_extra_right':'arm_extra_left','arm_main_left':'arm_main_right','arm_main_right':'arm_main_left','leg_left':'leg_right','leg_right':'leg_left'}
+FRONT=['arm_extra_left','arm_extra_right','leg_left','leg_right','torso','arm_main_left','arm_main_right','scarf','head']
+BACK=['leg_left','leg_right','arm_main_left','arm_main_right','torso','scarf','head','arm_extra_left','arm_extra_right']
+def base_view(head,hw,torso,tw,legs_in=0.0,scale_far=1.0):
+    v={}
+    v['head']=apply(src(head),hw);v['scarf']=apply(src('scarf'),tw);v['torso']=apply(src(torso),tw)
+    for a in ARMS: v[a]=apply(src(a),tw)
+    v['leg_left']=apply(src('leg_left'),affine((0,0),dx=legs_in));v['leg_right']=apply(src('leg_right'),affine((0,0),dx=-legs_in))
+    return v
+def mirrored(v):
+    out={}
+    for k,p in v.items():
+        out[SWAP.get(k,k)]=apply(p,mirror)
+    return out
+def side_view():
+    SH=(960,430);HIP=(960,640);v={}
+    def mount(name,to,sx,rot=0.0):
+        s=src(name);px,py=s['pivot'];return apply(s,chain(affine((px,py),sx=sx,sy=sx,rot=rot),affine((0,0),dx=to[0]-px,dy=to[1]-py)))
+    v['head']=None;v['scarf']=apply(src('scarf'),chain(affine((960,380),sx=.72,sy=1.0)))
+    v['torso']=src('torso_side')
+    v['arm_extra_right']=mount('arm_extra_right',(930,420),.74,18);v['arm_main_right']=mount('arm_main_right',(965,470),.86,28)
+    v['arm_extra_left']=mount('arm_extra_left',(985,410),.6,-40);v['arm_main_left']=mount('arm_main_left',(1000,460),.66,-30)
+    v['leg_right']=mount('leg_right',(925,640),.92);v['leg_left']=mount('leg_right',(1010,640),.82)
+    v['leg_left']['addons']=apply(src('leg_left'),affine((0,0)))['addons'] and mount('leg_right',(1010,640),.82)['addons']
+    return v
+SIDE_ORDER=['arm_extra_left','arm_main_left','leg_left','leg_right','torso','scarf','arm_extra_right','arm_main_right','head']
+def views():
+    idn=lambda x,y:(x,y);V={}
+    V['S']=(base_view('head',idn,'torso',idn,34.0),FRONT)
+    V['SE']=(base_view('head',warp(1.14,.76,30),'torso',warp(1.1,.84,16,960),0.0),FRONT)
+    sw=mirrored(base_view('head',idn,'torso',warp(1.1,.84,16,960),0.0));sw['head']=apply(src('head'),warp(.76,1.14,-30))
+    V['SW']=(sw,FRONT)
+    e=side_view();e['head']=src('head_e');V['E']=(e,SIDE_ORDER)
+    w=mirrored(side_view_filled('head_e'));w['head']=apply(src('head_w'),mirror);V['W']=(w,[SWAP.get(k,k) for k in SIDE_ORDER])
+    N=base_view('head_back',mirror,'torso_back',idn,34.0);V['N']=(N,BACK)
+    NE=base_view('head_back',chain(mirror,warp(1.1,.8,22,930)),'torso_back',warp(.84,1.1,14,960),0.0);V['NE']=(NE,BACK)
+    NW=mirrored(base_view('head_back',idn,'torso_back',warp(.84,1.1,14,960),0.0));NW['head']=apply(src('head_back'),chain(mirror,warp(.8,1.1,-22,930)));V['NW']=(NW,BACK)
+    return V
+def side_view_filled(h):
+    v=side_view();v['head']=src(h);return v
+
+OBRA_C='#ffd400'
+def M(pairs): return dict(pairs)
+HEADS=[({},''),
+ ({LILAC:GOLD,LILAC_L:'#ffd978',LILAC_D:GOLD_D,CYAN:'#2a2a3a','#0b6a9c':INK,FUR:'#c9561a',FUR_L:'#ff9a3a'},''),
+ ({LILAC:'#9aa2d8'},'circlet'),
+ ({LILAC:'#c9c5b0',LILAC_L:'#efe9cf',LILAC_D:'#6f6a58',CYAN:'#ffd97a','#0b6a9c':GOLD_D},'crest'),
+ ({LILAC:'#6d3f9e',LILAC_L:'#a074d0',LILAC_D:'#3a1f68',CYAN:WHITE},'horns'),
+ ({CYAN:'#58f0ff'},'mohawk'),
+ ({LILAC:'#3a3a78',LILAC_L:'#6868b8',LILAC_D:'#1f1f4a'},'antenna'),
+ ({LILAC:'#5c3a86',LILAC_L:'#8a60b8',LILAC_D:'#2f1f50',CYAN:'#ff2b3a','#0b6a9c':'#7a1020'},'dome'),
+ ({LILAC:'#2a8a8a',LILAC_L:'#62c4b8',LILAC_D:'#134a54',CYAN:OBRA_C,'#0b6a9c':GOLD_D},'circlet'),
+ ({FUR:'#b33a18',LILAC:'#7aa0f0',LILAC_L:'#b4ccff'},'')]
+
+def pal(main,light,dark,metal,acc=GOLD,tip=CREAM):
+    return {PURP:main,PURP_L:light,NAVY:dark,NAVY_L:mixh(dark,light,.35),LILAC:metal,LILAC_L:mixh(metal,'#ffffff',.45),WHITE:mixh(metal,'#ffffff',.7),GOLD:acc,GOLD_D:mixh(acc,'#000000',.4),CREAM:tip,RUST:mixh(main,'#a8482a',.5),FUR_D:mixh(main,'#000000',.4),FUR:mixh(main,'#ff6a00',.5)}
+def mixh(a,b,t):
+    ca,cb=rgb(a),rgb(b);return hexc([ca[i]+(cb[i]-ca[i])*t for i in range(3)])
+A1=[({},''),
+ (pal('#6a2ba8','#a06ae0','#241247','#e8e2f8',GOLD),'plate'),
+ (pal('#2a2a6a','#6a6ae0','#10102e','#e0e8ff','#ffd400','#f0d8b0'),'ring'),
+ (pal('#a01f3a','#e04860','#3a0f22','#e8e2f8','#ffd400'),'spikes'),
+ (pal('#3a3a6a','#7a7ac0','#12122e','#f0f0ff','#d8c8ff','#ffffff'),'blade'),
+ (pal('#0a7fc2','#37d0ff','#072a50','#b0f0ff','#00e5ff','#d8ffff'),'cannon'),
+ (pal('#2a2a3a','#5a5a78','#0f0f1a','#c8c8d8','#00e5ff','#a0ffff'),'flame'),
+ (pal('#8a8a2a','#d8d860','#2a2a10','#f0f0c0','#ffd400'),'ring'),
+ (pal('#0a4a9a','#2a8ae0','#071a3a','#a0d8ff','#00e5ff','#d0f0ff'),'plate'),
+ (pal('#5a3a1a','#b08050','#20140a','#f0dcc0','#ff6a00'),'spikes'),
+ (pal('#0a8aa8','#40d8f0','#04303f','#d0f8ff','#00e5ff','#ffffff'),'blade'),
+ (pal('#7a1f5a','#c0509a','#2a0f2a','#f0d0e8','#ffd400'),'cannon'),
+ (pal('#1a1a2a','#4a4a60','#0a0a14','#d0d0e0','#ffffff'),'plate'),
+ (pal('#a85a10','#f0a030','#3a1a08','#ffe0a0','#ffd400'),'flame'),
+ (pal('#4a2a9a','#8a60e0','#1a0f40','#c0b0ff','#c6ff00'),'ring'),
+ (pal('#6a7a1a','#b0c840','#20280a','#e8f0b0','#c6ff00'),'spikes'),
+ (pal('#c0c0d0','#ffffff','#3a3a4a','#ffffff','#ff1f8f','#ffffff'),'blade'),
+ (pal('#b01a1a','#ff5030','#3a0a0a','#ffd0a0','#ff6a00'),'flame'),
+ (pal('#1a7a7a','#40d0c0','#072a30','#c0fff0','#ffd400'),'cannon'),
+ (pal('#8a6a1a','#e0c050','#2a200a','#fff0b0','#ff6a00'),'plate')]
+def lp(pants,light,skirt,shoe,sole,acc=GOLD):
+    return {NAVY:pants,NAVY_L:light,PURP:pants,PURP_L:light,OLIVE:skirt,OLIVE_D:mixh(skirt,'#000000',.4),CREAM:sole,PINK:mixh(sole,'#ff80a0',.3),GOLD:acc,BROWN:mixh(skirt,'#3a2a1a',.5),RUST:mixh(skirt,'#a8482a',.6)}
+L1=[({},''),
+ (lp('#3a2a5a','#7a60a0','#a09070','#3a2a5a','#f0e0c0'),'kneepad'),
+ (lp('#c8b890','#f0e6c8','#7a6a50','#3a3050','#ffffff'),'plates'),
+ (lp('#a04a18','#f08030','#5a2a10','#2a2030','#f0e0c0','#ff6a00'),'tubes'),
+ (lp('#7a6a1a','#c8b840','#4a4410','#1a1420','#e0d090','#ffd400'),'wheel'),
+ (lp('#4a2a7a','#a050d0','#ff1f8f','#2a1a40','#70e0ff','#00e5ff'),'tubes'),
+ (lp('#b8905a','#ecc890','#7a5a30','#3a2a20','#f0d8a0'),'kneepad'),
+ (lp('#5a3a2a','#a87050','#3a2a1a','#2a2030','#c8a880','#ff6a00'),'spikes'),
+ (lp('#2a4a8a','#5a90e0','#1a2a50','#10182e','#a0c8ff','#00e5ff'),'wheel'),
+ (lp('#3a3a4a','#8088a0','#5a2a2a','#1a1a24','#e0e0e0','#ff6a00'),'plates')]
+
 def seg_cross(a,b,c,d):
     def o(p,q,r): return (q[0]-p[0])*(r[1]-p[1])-(q[1]-p[1])*(r[0]-p[0])
     return o(a,b,c)*o(a,b,d)<0 and o(c,d,a)*o(c,d,b)<0
@@ -194,28 +386,29 @@ def simple(q):
             if i==0 and j==n-1: continue
             if seg_cross(q[i],q[(i+1)%n],q[j],q[(j+1)%n]): return False
     return True
-
+BAD=[]
+def bake_shapes(shapes,where):
+    ox,oy=ORIGIN;out=[]
+    for i,s in enumerate(shapes):
+        pts=[]
+        for x,y in s['q']:
+            pt=[round(x-ox,1),round(y-oy,1)]
+            if not pts or pts[-1]!=pt: pts.append(pt)
+        if 'line' in s:
+            out.append(dict(line=pts,c=s['line'],w=s['w']));continue
+        if len(pts)>2 and pts[0]==pts[-1]: pts.pop()
+        if not simple(pts): BAD.append((where,i))
+        e=dict(p=pts,o=s['o'])
+        if s['grad']: e['g']=list(s['grad'])
+        else: e['c']=s['fill']
+        if s['alpha']!=1.0: e['a']=s['alpha']
+        out.append(e)
+    return out
 def bake():
-    ox,oy=ORIGIN;res={};bad=[]
-    for name,part in P.items():
-        shapes=[]
-        for idx,s in enumerate(part['shapes']):
-            pts=[]
-            for x,y in s['q']:
-                pt=[round(x-ox,1),round(y-oy,1)]
-                if not pts or pts[-1]!=pt: pts.append(pt)
-            if 'line' in s:
-                shapes.append(dict(line=pts,c=s['line'],w=s['w']));continue
-            if len(pts)>2 and pts[0]==pts[-1]: pts.pop()
-            if not simple(pts): bad.append((name,idx))
-            if s['grad']:
-                ys=[p[1] for p in pts];y0,y1=min(ys),max(ys);c0,c1=rgb(s['grad'][0]),rgb(s['grad'][1])
-                cols=[hexc([c0[i]+(c1[i]-c0[i])*((p[1]-y0)/max(1,y1-y0)) for i in range(3)]) for p in pts]
-                shapes.append(dict(p=pts,cs=cols,o=s['o']))
-            else:
-                shapes.append(dict(p=pts,c=s['fill'],o=s['o']))
-        res[name]=dict(pivot=[part['pivot'][0]-ox,part['pivot'][1]-oy],shapes=shapes)
-    if bad: print('AUTOINTERSECCION',bad)
-    return res
+    ox,oy=ORIGIN;res={}
+    for vn,(parts,order) in views().items():
+        res[vn]=dict(order=order,parts={k:dict(pivot=[round(p['pivot'][0]-ox,1),round(p['pivot'][1]-oy,1)],shapes=bake_shapes(p['shapes'],f'{vn}/{k}'),addons={a:bake_shapes(v,f'{vn}/{k}/{a}') for a,v in p['addons'].items()}) for k,p in parts.items()})
+    if BAD: print('AUTOINTERSECCION',BAD[:30],len(BAD))
+    return dict(views=res,variants=dict(head=[dict(map=m,addon=a) for m,a in HEADS],arm=[dict(map=m,addon=a) for m,a in A1],leg=[dict(map=m,addon=a) for m,a in L1]))
 if __name__=='__main__':
     json.dump(bake(),open(sys.argv[1],'w'),separators=(',',':'),ensure_ascii=False)

@@ -227,7 +227,9 @@ static func default_body() -> ModularBody:
 		ModularBody.Slot.ARM_MAIN_LEFT,
 		ModularBody.Slot.ARM_MAIN_RIGHT,
 	]:
-		body.add_spare(slot, BodyPiece.new(ModularBody.kind_of(slot)))
+		var spare: BodyPiece = BodyPiece.new(ModularBody.kind_of(slot))
+		spare.pick_visual_variant("repuesto_%d" % slot)
+		body.add_spare(slot, spare)
 	return body
 
 
@@ -619,7 +621,9 @@ func _complete_challenge() -> void:
 
 func _add_pickup(slots: Array[ModularBody.Slot]) -> void:
 	for slot: ModularBody.Slot in slots:
-		if player.body.add_spare(slot, BodyPiece.new(ModularBody.kind_of(slot))):
+		var found: BodyPiece = BodyPiece.new(ModularBody.kind_of(slot))
+		found.pick_visual_variant("hallada_%d_%d" % [slot, player.body.spares(slot).size()])
+		if player.body.add_spare(slot, found):
 			return
 
 

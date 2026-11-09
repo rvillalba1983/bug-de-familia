@@ -44,6 +44,9 @@ const COLOR_ALERT: Color = Color("#e04040")
 const COLOR_FALLEN: Color = Color(0.5, 0.5, 0.6)
 const COLOR_ART_SHADOW: Color = Color(0.0, 0.0, 0.0, 0.4)
 const ART_HEIGHT: float = 96.0
+const VIEW_SOUTH: int = 0
+const VIEW_EAST: int = 1
+const VIEW_NORTH: int = 2
 ## Altura de los pies dentro del dibujo, medida desde arriba.
 const ART_FEET: float = 0.93
 
@@ -70,8 +73,9 @@ var _windup_left: float = 0.0
 ## Un guardia pasivo no vigila ni acude a ruidos; solo responde si le atacan.
 var passive: bool = false
 var body_color: Color = Color.TRANSPARENT
-## Si existe, se dibuja este arte en lugar del círculo de color.
-var art: Texture2D
+## Vistas sur, este y norte, en ese orden. El oeste refleja al este.
+## Si está vacío se dibuja el círculo de color.
+var art_views: Array[Texture2D] = []
 var _aim_point: Vector2 = Vector2.ZERO
 var _corpse_time: float = 0.0
 
@@ -122,7 +126,7 @@ func _draw() -> void:
 	if state == State.DOWN:
 		_draw_down()
 		return
-	if art != null:
+	if not art_views.is_empty():
 		_draw_art()
 	else:
 		_draw_placeholder()
@@ -139,17 +143,23 @@ func _draw() -> void:
 
 
 func _draw_down() -> void:
-	if art == null:
+	if art_views.is_empty():
 		draw_circle(Vector2.ZERO, BODY_HEIGHT * 0.42, COLOR_DOWN)
 		return
+	var art: Texture2D = art_views[VIEW_SOUTH]
 	draw_set_transform(Vector2(-ART_HEIGHT * 0.45, -14.0), PI * 0.5)
 	draw_texture_rect(art, Rect2(-ART_HEIGHT * 0.5, -ART_HEIGHT * 0.5, ART_HEIGHT, ART_HEIGHT), false, COLOR_FALLEN)
 	draw_set_transform(Vector2.ZERO)
 
 
 func _draw_art() -> void:
+	var direction: Vector2 = Vector2.from_angle(detector.facing_angle)
+	var view: int = VIEW_EAST
+	if absf(direction.y) > absf(direction.x):
+		view = VIEW_SOUTH if direction.y > 0.0 else VIEW_NORTH
+	var art: Texture2D = art_views[view]
 	var size: Vector2 = Vector2(ART_HEIGHT * art.get_size().aspect(), ART_HEIGHT)
-	if cos(detector.facing_angle) < 0.0:
+	if view == VIEW_EAST and direction.x < 0.0:
 		size.x = -size.x
 	var tint: Color = COLOR_ALERT.lightened(0.5) if state == State.ALERT else Color.WHITE
 	draw_circle(Vector2(0.0, 2.0), 20.0, COLOR_ART_SHADOW)

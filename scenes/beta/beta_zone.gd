@@ -9,9 +9,12 @@ const ID_REEL: String = "bobina"
 const ID_GENERATOR: String = "generador"
 const ID_RAMON: String = "ramon"
 const ID_CONTESTADOR: String = "contestador"
-const ART_JUBILADO: String = "res://art/beta/jubilado_hierro.svg"
-const ART_MOHOCRATA: String = "res://art/beta/mohocrata.svg"
-const ART_RAMON: String = "res://art/beta/don_ramon.svg"
+const ART_FOLDER: String = "res://art/beta/"
+const ART_JUBILADO: String = "jubilado_hierro"
+const ART_MOHOCRATA: String = "mohocrata"
+const ART_RAMON: String = "don_ramon"
+const ART_FACADE_CENTRAL: String = "res://art/beta/fachada_centralita.svg"
+const ART_FACADE_DEPOT: String = "res://art/beta/fachada_deposito.svg"
 const ART_REEL: String = "res://art/beta/bobina.svg"
 const COLOR_SHELTER: Color = Color(0.2, 0.5, 0.8, 0.22)
 const COLOR_GOAL_MARK: Color = Color(0.3, 1.0, 0.5, 0.25)
@@ -191,7 +194,7 @@ func _add_guard(
 	enemy.nav = nav
 	enemy.rng = rng
 	enemy.body_color = color
-	enemy.art = load(_art_path(id, color)) as Texture2D
+	enemy.art_views = _load_views(_art_base(id, color))
 	if is_ranged:
 		enemy.make_ranged(self)
 	enemy.setup(route, ground)
@@ -213,12 +216,47 @@ func _build_items() -> void:
 	_add_item(ID_PICKUP_ARM, Interactable.Kind.PICKUP_ARM, BetaLayout.PICKUP_ARM)
 	for index: int in range(BetaLayout.MINES.size()):
 		_add_mine(index)
+	_build_facades()
 
 
-func _art_path(id: String, color: Color) -> String:
+func _art_base(id: String, color: Color) -> String:
 	if id == ID_RAMON:
 		return ART_RAMON
 	return ART_JUBILADO if color == COLOR_JUBILADO else ART_MOHOCRATA
+
+
+func _load_views(base: String) -> Array[Texture2D]:
+	var views: Array[Texture2D] = []
+	for suffix: String in ["", "_e", "_n"]:
+		views.append(load(ART_FOLDER + base + suffix + ".svg") as Texture2D)
+	return views
+
+
+func _add_facade(
+	path: String, base_y: float, art_rect: Rect2, interior: Rect2, labeled: Array[Wall]
+) -> BuildingFacade:
+	var facade: BuildingFacade = BuildingFacade.new()
+	facade.texture = load(path) as Texture2D
+	facade.position = Vector2(art_rect.position.x, base_y + 1.0)
+	facade.art_rect = Rect2(Vector2(0.0, art_rect.position.y - facade.position.y), art_rect.size)
+	facade.interior = interior
+	facade.player = player
+	facade.labeled_walls = labeled
+	actors.add_child(facade)
+	return facade
+
+
+func _build_facades() -> void:
+	var central: BuildingFacade = _add_facade(
+		ART_FACADE_CENTRAL, BetaLayout.CENTRAL_DOOR.end.y, BetaLayout.CENTRAL_FACADE,
+		BetaLayout.CENTRAL_INSIDE, [door, cracked_wall]
+	)
+	central.door_wall = door
+	central.door_hole = Rect2(
+		BetaLayout.CENTRAL_DOOR.position.x - central.position.x, -BetaLayout.FACADE_DOOR_HEIGHT - 8.0,
+		BetaLayout.CENTRAL_DOOR.size.x, BetaLayout.FACADE_DOOR_HEIGHT
+	)
+	_add_facade(ART_FACADE_DEPOT, BetaLayout.DEPOT.end.y + 40.0, BetaLayout.DEPOT_FACADE, BetaLayout.DEPOT, [])
 
 
 func _add_named(id: String, at: Vector2, label_key: String, is_reusable: bool) -> void:

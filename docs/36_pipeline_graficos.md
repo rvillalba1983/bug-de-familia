@@ -47,7 +47,7 @@ Código en `entities/art/palette.gd`.
 | `tools/art/ground_gen.py` | Texturas repetibles del suelo |
 | `tools/art/city_scene_gen.py` | Escena de ejemplo con perspectiva |
 
-Elementos de la beta: mina de petanca, bobina, cartel de tierra de nadie, dron viejo, urna de esporas, Mohócrata votante, Jubilado de Hierro, Don Ramón, centralita del Contestador y depósito mohócrata. El cartel, la urna y las dos fachadas aún no están integrados.
+Elementos de la beta: mina de petanca, bobina, cartel de tierra de nadie, dron viejo, urna de esporas, Mohócrata votante, Jubilado de Hierro, Don Ramón, centralita del Contestador y depósito mohócrata. El cartel y la urna aún no están integrados. Vistas extra de los NPC en `tools/art/npc_views_gen.py` y fachadas en `tools/art/facades_gen.py`.
 
 ## Estilo
 Cartoon grotesco de acabado pintado: anatomías extrañas, formas asimétricas, ojos, bocas y extremidades exagerados, colores saturados y poco naturales, mezcla de atractivo y desagradable, y humor visual. Estética adulta. Cada especie con identidad propia.

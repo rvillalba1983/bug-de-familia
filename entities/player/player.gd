@@ -78,7 +78,6 @@ func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	collision_layer = PhysicsLayers.PLAYER
 	collision_mask = PhysicsLayers.WALLS | PhysicsLayers.LOW_COVER
-	material = ImpactFx.new_flash_material()
 
 
 func _physics_process(delta: float) -> void:

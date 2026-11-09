@@ -120,7 +120,12 @@ func _draw_down() -> void:
 ## Sombra aplastada: un disco entero parecía un agujero bajo los pies.
 func _draw_shadow() -> void:
 	_guard.draw_set_transform(Vector2(0.0, 2.0), 0.0, Vector2(1.0, 0.38))
-	CircleDot.draw(_guard, Vector2.ZERO, 22.0, COLOR_ART_SHADOW)
+	if PieceAtlas.has_entry(PieceAtlas.SHADOW):
+		var side: Vector2 = Vector2(22.0, 22.0)
+		var area: Rect2 = Rect2(-side, side * 2.0)
+		_guard.draw_texture_rect_region(PieceAtlas.texture(), area, PieceAtlas.region(PieceAtlas.SHADOW), COLOR_ART_SHADOW)
+	else:
+		CircleDot.draw(_guard, Vector2.ZERO, 22.0, COLOR_ART_SHADOW)
 	_guard.draw_set_transform(Vector2.ZERO)
 
 
@@ -154,7 +159,6 @@ func _ensure_rig_root() -> Node2D:
 	if rig_root == null:
 		rig_root = Node2D.new()
 		rig_root.name = "esqueletos"
-		rig_root.material = ImpactFx.new_flash_material()
 		_guard.add_child(rig_root)
 	return rig_root
 

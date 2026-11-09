@@ -17,11 +17,23 @@ static func new_flash_material() -> ShaderMaterial:
 
 
 static func flash(item: CanvasItem) -> void:
-	if GameSettings.reduce_motion or not item.material is ShaderMaterial:
+	if GameSettings.reduce_motion:
 		return
-	item.material.set_shader_parameter(&"flash", 1.0)
+	if item.material == null:
+		item.material = new_flash_material()
+	var flash_material: ShaderMaterial = item.material as ShaderMaterial
+	if flash_material == null:
+		return
+	flash_material.set_shader_parameter(&"flash", 1.0)
 	var tween: Tween = item.create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	tween.tween_property(item.material, FLASH_PARAMETER, 0.0, FLASH_TIME)
+	tween.tween_property(flash_material, FLASH_PARAMETER, 0.0, FLASH_TIME)
+	tween.tween_callback(_release_flash.bind(item, flash_material))
+
+
+## Con material propio no se agrupa con los demás, así que solo lo tiene mientras destella.
+static func _release_flash(item: CanvasItem, flash_material: ShaderMaterial) -> void:
+	if item.material == flash_material and float(flash_material.get_shader_parameter(&"flash")) <= 0.0:
+		item.material = null
 
 
 ## Deforma una propiedad de escala y la devuelve a su sitio con rebote.

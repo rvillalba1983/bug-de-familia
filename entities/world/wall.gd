@@ -38,6 +38,7 @@ var is_open: bool = false
 var label_key: String = ""
 
 var _collider: CollisionShape2D
+var _mesh: ArrayMesh
 
 
 func setup(new_footprint: Rect2, new_front_height: float, new_kind: Kind = Kind.SOLID) -> void:
@@ -61,53 +62,62 @@ func _draw() -> void:
 	if is_tree():
 		_draw_tree()
 		return
+	if _mesh == null:
+		_mesh = _build_mesh()
+	draw_mesh(_mesh, null)
+
+
+## Toda la pared en una malla, hecha una vez: su aspecto solo depende de la huella.
+func _build_mesh() -> ArrayMesh:
+	var batch: PolyBatch = PolyBatch.new()
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.seed = hash(footprint.position)
-	draw_rect(Rect2(0.0, 0.0, footprint.size.x, SHADOW_HEIGHT), COLOR_SHADOW)
+	batch.add_rect(Rect2(0.0, 0.0, footprint.size.x, SHADOW_HEIGHT), COLOR_SHADOW)
 	if kind == Kind.SOLID and footprint.size.x >= MIN_BLOCK_WIDTH:
-		_draw_blocks(rng)
+		_add_blocks(batch, rng)
 	else:
-		_draw_block(Rect2(0.0, 0.0, footprint.size.x, 0.0), 0.0, _kind_colors(), rng)
+		_add_block(batch, Rect2(0.0, 0.0, footprint.size.x, 0.0), 0.0, _kind_colors(), rng)
+	return batch.build()
 
 
 ## Trocea una muralla larga en edificios distintos, cada uno con su altura y color.
-func _draw_blocks(rng: RandomNumberGenerator) -> void:
+func _add_blocks(batch: PolyBatch, rng: RandomNumberGenerator) -> void:
 	var x: float = 0.0
 	while x < footprint.size.x:
 		var block: float = minf(rng.randf_range(MIN_BLOCK_WIDTH, MAX_BLOCK_WIDTH), footprint.size.x - x)
 		if footprint.size.x - x - block < MIN_BLOCK_WIDTH:
 			block = footprint.size.x - x
 		var scheme: Array = BLOCK_SCHEMES[rng.randi_range(0, BLOCK_SCHEMES.size() - 1)]
-		_draw_block(Rect2(x, 0.0, block, 0.0), rng.randf_range(0.0, MAX_EXTRA_HEIGHT), scheme, rng)
+		_add_block(batch, Rect2(x, 0.0, block, 0.0), rng.randf_range(0.0, MAX_EXTRA_HEIGHT), scheme, rng)
 		x += block
 
 
-func _draw_block(slot: Rect2, extra: float, colors: Array, rng: RandomNumberGenerator) -> void:
+func _add_block(batch: PolyBatch, slot: Rect2, extra: float, colors: Array, rng: RandomNumberGenerator) -> void:
 	var height: float = front_height + extra
 	var depth: float = footprint.size.y
 	var front: Rect2 = Rect2(slot.position.x, -height, slot.size.x, height)
 	var top: Rect2 = Rect2(slot.position.x, -height - depth, slot.size.x, depth)
-	_gradient(front, colors[0], colors[1])
-	draw_rect(top, colors[2])
-	draw_rect(top.grow(-5.0), colors[2].darkened(0.28))
-	_draw_face_details(front, rng)
+	batch.add_gradient(front, colors[0], colors[1])
+	batch.add_rect(top, colors[2])
+	batch.add_rect(top.grow(-5.0), colors[2].darkened(0.28))
+	_add_face_details(batch, front, rng)
 	if kind == Kind.SOLID and slot.size.x >= MIN_BLOCK_WIDTH:
-		_draw_roof_details(top, rng)
-	draw_rect(front, Palette.INK, false, OUTLINE)
-	draw_rect(top, Palette.INK, false, OUTLINE)
-	draw_line(front.position, Vector2(front.end.x, front.position.y), RIM_COLOR, 2.0)
+		_add_roof_details(batch, top, rng)
+	batch.add_rect_outline(front, Palette.INK, OUTLINE)
+	batch.add_rect_outline(top, Palette.INK, OUTLINE)
+	batch.add_line(front.position, Vector2(front.end.x, front.position.y), RIM_COLOR, 2.0)
 
 
-func _draw_roof_details(top: Rect2, rng: RandomNumberGenerator) -> void:
+func _add_roof_details(batch: PolyBatch, top: Rect2, rng: RandomNumberGenerator) -> void:
 	var box: Rect2 = Rect2(
 		Vector2(rng.randf_range(top.position.x + 10.0, top.end.x - 34.0), top.position.y + 8.0),
 		Vector2(24.0, maxf(top.size.y - 18.0, 6.0))
 	)
-	draw_rect(box, Palette.HIERRO)
-	draw_rect(box, Palette.INK, false, 2.0)
+	batch.add_rect(box, Palette.HIERRO)
+	batch.add_rect_outline(box, Palette.INK, 2.0)
 	if rng.randf() < 0.35:
 		var sign_rect: Rect2 = Rect2(top.position.x + 8.0, top.end.y - 7.0, 46.0, 7.0)
-		draw_rect(sign_rect, Palette.NEONES[rng.randi_range(0, 3)])
+		batch.add_rect(sign_rect, Palette.NEONES[rng.randi_range(0, 3)])
 
 
 ## Los árboles del escenario son paredes cuadradas de este tamaño.
@@ -124,16 +134,7 @@ func _kind_colors() -> Array[Color]:
 	return [COLOR_FRONT_LIGHT, Palette.MORA, COLOR_ROOF]
 
 
-func _gradient(area: Rect2, upper: Color, lower: Color) -> void:
-	draw_polygon(
-		PackedVector2Array([
-			area.position, Vector2(area.end.x, area.position.y), area.end, Vector2(area.position.x, area.end.y),
-		]),
-		PackedColorArray([upper, upper, lower, lower])
-	)
-
-
-func _draw_face_details(front: Rect2, rng: RandomNumberGenerator) -> void:
+func _add_face_details(batch: PolyBatch, front: Rect2, rng: RandomNumberGenerator) -> void:
 	for _index: int in range(int(front.size.x / PATCH_SPACING)):
 		var patch: Vector2 = Vector2(rng.randf_range(8.0, 34.0), rng.randf_range(4.0, 12.0))
 		var corner: Vector2 = front.position + Vector2(
@@ -142,29 +143,29 @@ func _draw_face_details(front: Rect2, rng: RandomNumberGenerator) -> void:
 		)
 		var color: Color = Palette.OXIDO if rng.randf() < 0.4 else Palette.INK
 		color.a = 0.35
-		draw_rect(Rect2(corner, patch), color)
+		batch.add_rect(Rect2(corner, patch), color)
 	if kind == Kind.DOOR:
-		_draw_hazard_stripes(front)
+		_add_hazard_stripes(batch, front)
 	elif kind == Kind.SOLID and front.size.x >= WINDOW_SPACING:
-		_draw_windows(front, rng)
+		_add_windows(batch, front, rng)
 
 
-func _draw_hazard_stripes(front: Rect2) -> void:
+func _add_hazard_stripes(batch: PolyBatch, front: Rect2) -> void:
 	var x: float = front.position.x
 	while x < front.end.x:
 		var stripe: float = minf(HAZARD_WIDTH, front.end.x - x)
-		draw_rect(Rect2(x, front.position.y + 8.0, stripe, front.size.y - 16.0), Palette.INK)
+		batch.add_rect(Rect2(x, front.position.y + 8.0, stripe, front.size.y - 16.0), Palette.INK)
 		x += HAZARD_WIDTH * 2.0
 
 
-func _draw_windows(front: Rect2, rng: RandomNumberGenerator) -> void:
+func _add_windows(batch: PolyBatch, front: Rect2, rng: RandomNumberGenerator) -> void:
 	var x: float = front.position.x + WINDOW_SPACING * 0.3
 	while x + WINDOW_SIZE.x < front.end.x:
 		var window: Rect2 = Rect2(Vector2(x, front.position.y + 10.0), WINDOW_SIZE)
 		var lit: bool = rng.randf() < 0.4
-		draw_rect(window, Palette.NEONES[rng.randi_range(0, 3)] if lit else COLOR_DARK_WINDOW)
-		draw_rect(window, Palette.INK, false, 2.0)
-		draw_line(window.get_center() + Vector2.UP * 10.0, window.get_center() + Vector2.DOWN * 10.0, Palette.INK, 1.5)
+		batch.add_rect(window, Palette.NEONES[rng.randi_range(0, 3)] if lit else COLOR_DARK_WINDOW)
+		batch.add_rect_outline(window, Palette.INK, 2.0)
+		batch.add_line(window.get_center() + Vector2.UP * 10.0, window.get_center() + Vector2.DOWN * 10.0, Palette.INK, 1.5)
 		x += WINDOW_SPACING
 
 

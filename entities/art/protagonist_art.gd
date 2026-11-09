@@ -49,6 +49,8 @@ const VARIANT_GROUPS: Dictionary = {
 static var _views: Dictionary = {}
 static var _variants: Dictionary = {}
 static var _baked: Dictionary = {}
+static var _meshes: Dictionary = {}
+static var _silhouette_meshes: Dictionary = {}
 
 
 static func draw(
@@ -87,10 +89,14 @@ static func draw_silhouette(
 ) -> void:
 	_ensure_loaded()
 	var view: Dictionary = _views[SILHOUETTE_VIEW]
-	var transform: Transform2D = Transform2D(0.0, Vector2(size, size), 0.0, feet)
-	canvas.draw_set_transform_matrix(transform)
+	var batch: PolyBatch = PolyBatch.new()
 	for part_name: String in view["order"]:
-		_draw_silhouette_part(canvas, part_name, body, hits, pulse)
+		_add_silhouette_part(batch, part_name, body, hits, pulse)
+	# El dibujo no retiene la malla: si se suelta, desaparece.
+	var mesh: ArrayMesh = batch.build()
+	_silhouette_meshes[canvas.get_instance_id()] = mesh
+	canvas.draw_set_transform_matrix(Transform2D(0.0, Vector2(size, size), 0.0, feet))
+	canvas.draw_mesh(mesh, null)
 	canvas.draw_set_transform_matrix(Transform2D.IDENTITY)
 
 
@@ -124,8 +130,8 @@ static func wear_color(ratio: float) -> Color:
 	return Palette.ROSA.lerp(Palette.OBRA, ratio * 2.0)
 
 
-static func _draw_silhouette_part(
-	canvas: CanvasItem, part_name: String, body: ModularBody, hits: Dictionary, pulse: float
+static func _add_silhouette_part(
+	batch: PolyBatch, part_name: String, body: ModularBody, hits: Dictionary, pulse: float
 ) -> void:
 	var base: Color = SILHOUETTE_NEUTRAL
 	var missing: bool = false
@@ -142,26 +148,26 @@ static func _draw_silhouette_part(
 			if hits.has(slot):
 				base = Color.WHITE
 	for shape: Dictionary in _shapes_for(SILHOUETTE_VIEW, part_name, "", 0, false):
-		_draw_silhouette_shape(canvas, shape, base, missing)
+		_add_silhouette_shape(batch, shape, base, missing)
 
 
-static func _draw_silhouette_shape(canvas: CanvasItem, shape: Dictionary, base: Color, missing: bool) -> void:
+static func _add_silhouette_shape(batch: PolyBatch, shape: Dictionary, base: Color, missing: bool) -> void:
 	if shape.has("line"):
 		if not missing:
-			canvas.draw_polyline(shape["line"] as PackedVector2Array, _shaded(base, shape["color"] as Color), shape["width"] as float)
+			batch.add_polyline(shape["line"] as PackedVector2Array, _shaded(base, shape["color"] as Color), shape["width"] as float)
 		return
 	var outline_only: bool = missing
 	if outline_only:
-		canvas.draw_polyline(shape["outline"] as PackedVector2Array, SILHOUETTE_HOLLOW, SILHOUETTE_HOLLOW_WIDTH)
+		batch.add_polyline(shape["outline"] as PackedVector2Array, SILHOUETTE_HOLLOW, SILHOUETTE_HOLLOW_WIDTH)
 		return
 	var source: PackedColorArray = shape["colors"]
 	var colors: PackedColorArray = PackedColorArray()
 	for color: Color in source:
 		colors.append(_shaded(base, color))
-	canvas.draw_polygon(shape["points"] as PackedVector2Array, colors)
+	batch.add_polygon(shape["points"] as PackedVector2Array, colors)
 	var width: float = shape["width"]
 	if width > 0.0:
-		canvas.draw_polyline(shape["outline"] as PackedVector2Array, Palette.INK, width)
+		batch.add_polyline(shape["outline"] as PackedVector2Array, Palette.INK, width)
 
 
 ## Conserva las luces y sombras del dibujo, pero con el color de estado.
@@ -193,11 +199,9 @@ static func _draw_part(
 	var part: Dictionary = _views[view_name]["parts"][part_name]
 	var pivot: Vector2 = _vector(part["pivot"] as Array)
 	var rotation: Transform2D = Transform2D(_swing(part_name, walk_phase), Vector2.ZERO)
-	canvas.draw_set_transform_matrix(
-		base * Transform2D(0.0, pivot) * rotation * Transform2D(0.0, -pivot)
-	)
-	for shape: Dictionary in _shapes_for(view_name, part_name, group, variant, worn):
-		_draw_shape(canvas, shape)
+	var placed: Transform2D = base * Transform2D(0.0, pivot) * rotation * Transform2D(0.0, -pivot)
+	canvas.draw_set_transform_matrix(placed)
+	canvas.draw_mesh(_mesh_for(view_name, part_name, group, variant, worn), null)
 	if PART_SLOTS.has(part_name):
 		_draw_damage(canvas, pivot, body.equipped(PART_SLOTS[part_name] as ModularBody.Slot), body.acid_time > 0.0)
 
@@ -237,6 +241,29 @@ static func _shapes_for(
 		result.append(_bake_shape(shape, color_map, worn))
 	_baked[key] = result
 	return result
+
+
+## Toda la pieza en una malla: una llamada de dibujo en vez de una por polígono y contorno.
+static func _mesh_for(view_name: String, part_name: String, group: String, variant: int, worn: bool) -> ArrayMesh:
+	var key: String = "%s/%s/%d/%s" % [view_name, part_name, variant, worn]
+	if _meshes.has(key):
+		return _meshes[key]
+	var batch: PolyBatch = PolyBatch.new()
+	for shape: Dictionary in _shapes_for(view_name, part_name, group, variant, worn):
+		_add_shape(batch, shape)
+	var mesh: ArrayMesh = batch.build()
+	_meshes[key] = mesh
+	return mesh
+
+
+static func _add_shape(batch: PolyBatch, shape: Dictionary) -> void:
+	if shape.has("line"):
+		batch.add_polyline(shape["line"] as PackedVector2Array, shape["color"] as Color, shape["width"] as float)
+		return
+	batch.add_polygon(shape["points"] as PackedVector2Array, shape["colors"] as PackedColorArray)
+	var width: float = shape["width"]
+	if width > 0.0:
+		batch.add_polyline(shape["outline"] as PackedVector2Array, Palette.INK, width)
 
 
 static func _swing(part_name: String, walk_phase: float) -> float:

@@ -96,11 +96,20 @@ func _limb(part: String, parent: Node2D, parent_joint: Vector2) -> void:
 func _sprite(part: String, parent: Node2D, joint: Vector2) -> void:
 	var sprite: Sprite2D = Sprite2D.new()
 	sprite.name = "imagen_" + part
-	sprite.texture = load(_folder.path_join(part + ".svg")) as Texture2D
 	sprite.centered = false
-	sprite.scale = Vector2.ONE * (_data["canvas"] as Vector2).x / float(sprite.texture.get_width())
-	sprite.position = -joint
 	sprite.use_parent_material = true
+	var key: String = _folder.get_file() + "/" + part
+	var canvas_width: float = (_data["canvas"] as Vector2).x
+	if PieceAtlas.has_entry(key):
+		sprite.texture = PieceAtlas.texture()
+		sprite.region_enabled = true
+		sprite.region_rect = PieceAtlas.region(key)
+		sprite.scale = Vector2.ONE * canvas_width / PieceAtlas.full_width(key)
+		sprite.position = -joint + PieceAtlas.trim_offset(key) * sprite.scale
+	else:
+		sprite.texture = load(_folder.path_join(part + ".svg")) as Texture2D
+		sprite.scale = Vector2.ONE * canvas_width / float(sprite.texture.get_width())
+		sprite.position = -joint
 	parent.add_child(sprite)
 
 

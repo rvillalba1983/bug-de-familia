@@ -1,4 +1,4 @@
-# ADR 0007: estilo visual de la beta con Godot y SVG
+# ADR 0008: estilo visual de la beta con Godot y SVG
 
 Estado: aprobado el estilo por el director (9-nov). Pendiente de ejecutar en Godot y validar en partida.
 

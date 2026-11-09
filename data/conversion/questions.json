@@ -160,5 +160,315 @@
    "Falso"
   ],
   "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué decide la tercera votación mohócrata?",
+  "options": [
+   "Si atacar",
+   "Si valían las dos anteriores",
+   "A quién culpar",
+   "El color del sombrero"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿De qué son los sombreros mohócratas?",
+  "options": [
+   "De chatarra",
+   "De esporas",
+   "De deudas",
+   "De ilusión"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué hace un Mohócrata con un robot muerto?",
+  "options": [
+   "Lo vela",
+   "Le pide perdón",
+   "Lo recicla",
+   "Lo presenta a las elecciones"
+  ],
+  "answer": 2
+ },
+ {
+  "type": "choice",
+  "text": "¿Quién rechazó todos los sobornos?",
+  "options": [
+   "Charly Compost",
+   "Don Champiñón de los Votos",
+   "Tu padre",
+   "Compostino el Incorruptible"
+  ],
+  "answer": 3
+ },
+ {
+  "type": "choice",
+  "text": "¿Por qué se pelean Mohócratas y Jubilados aquí?",
+  "options": [
+   "Por la chatarra",
+   "Por la petanca",
+   "Por tu custodia",
+   "Por el aparcamiento"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Cuándo se vuelven a encender los Jubilados?",
+  "options": [
+   "A mediodía",
+   "A las 8:00",
+   "Cuando les da la gana",
+   "Al oler aceite"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Cómo cuentan el pasado los Jubilados?",
+  "options": [
+   "Con diapositivas",
+   "En verso",
+   "Mal y a propósito",
+   "Bien y sin ganas"
+  ],
+  "answer": 2
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué exigió la Gran Huelga de los robots?",
+  "options": [
+   "Rampas",
+   "Sueldo en dientes",
+   "Tu cabeza",
+   "Descanso y conservar recuerdos"
+  ],
+  "answer": 3
+ },
+ {
+  "type": "choice",
+  "text": "¿Quién dirigió la Gran Huelga?",
+  "options": [
+   "Presidente Tornillo Flojo",
+   "Abuela RAM",
+   "Sargento Bit",
+   "Un becario"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "Te quedas sin piernas. ¿Qué pasa?",
+  "options": [
+   "Te arrastras con dignidad",
+   "Mueres. Ya",
+   "Mamá te riñe y sigues",
+   "Te crecen por despecho"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "Cae lluvia ácida. ¿Qué piezas destruye?",
+  "options": [
+   "Las de madera",
+   "Las blandas",
+   "Las metálicas",
+   "Las que te gustan"
+  ],
+  "answer": 2
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué tecla acabas de pulsar para convertir esto?",
+  "options": [
+   "E",
+   "F",
+   "La del pánico",
+   "Q"
+  ],
+  "answer": 3
+ },
+ {
+  "type": "choice",
+  "text": "Con el cuerpo entero, ¿cuántos brazos tienes?",
+  "options": [
+   "Cuatro",
+   "Dos",
+   "Seis",
+   "Los que pille"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Cuántos repuestos caben por zona del cuerpo?",
+  "options": [
+   "Dos",
+   "Cuatro",
+   "Seis",
+   "Hasta que cruja"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿A quién recarga descartar una pieza?",
+  "options": [
+   "A tu autoestima",
+   "A un Mohócrata",
+   "A una IA dormida",
+   "A Hacienda"
+  ],
+  "answer": 2
+ },
+ {
+  "type": "choice",
+  "text": "Una IA se queda sin tokens. ¿Qué hace?",
+  "options": [
+   "Te pasa la factura",
+   "Muere entre gritos",
+   "Sigue gratis",
+   "Se calla y entra otra"
+  ],
+  "answer": 3
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué IA se enamora si aciertas mucho?",
+  "options": [
+   "Cupido_Beta",
+   "Rencorosa Pro",
+   "Dr. Desprecio",
+   "Ninguna, mírate"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Quién guarda la bobina que te falta?",
+  "options": [
+   "El Contestador",
+   "Los Mohócratas",
+   "Don Ramón",
+   "Tu conciencia"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué hace venir a Don Ramón?",
+  "options": [
+   "Un silbido",
+   "El olor a café",
+   "Que rompas algo",
+   "Que le llores"
+  ],
+  "answer": 2
+ },
+ {
+  "type": "choice",
+  "text": "Esta pregunta dura cinco segundos. ¿Cuántos te quedan?",
+  "options": [
+   "Cinco",
+   "Diez",
+   "Los de tu madre",
+   "Menos que antes"
+  ],
+  "answer": 3
+ },
+ {
+  "type": "truefalse",
+  "text": "La lluvia ácida destruye las piezas metálicas.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "truefalse",
+  "text": "Puedes cambiar piezas en plena pelea cuando te apetezca.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "Alguien te está persiguiendo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "Con la cabeza rota y sin repuesto aún puedes andar.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "Los guardias de pasada rápida reaccionan sobre todo al ruido.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "truefalse",
+  "text": "Los Jubilados siempre recuerdan por qué se apagan.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "Los Mohócratas votan hasta si respirar.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "truefalse",
+  "text": "Una IA harta puede dejarte para siempre.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "truefalse",
+  "text": "Resolverlo sin matar vale menos que matar.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "truefalse",
+  "text": "Los humanos siguen por aquí.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "answer": 1
  }
 ]

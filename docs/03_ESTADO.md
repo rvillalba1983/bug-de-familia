@@ -12,8 +12,9 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | Cierre de la beta | Fusionada en `main` el 9-nov con aprobación del director. 261 pruebas pasan. Ver `adr/0014-cierre-beta.md` |
 | Arreglos tras probar la beta | Fusionada en `main` el 9-nov con aprobación del director. 266 pruebas pasan. Ver `adr/0015-arreglos-beta.md` |
 | Revisión de código, pruebas y rendimiento (P-24) | Fusionada en `main` el 9-nov con aprobación del director. 293 pruebas pasan. Ver `adr/0016-revision-codigo.md` |
-| Optimización en gráfica integrada | En la rama `optimizacion-integrada`, pendiente de medir en la gráfica del director y de su aprobación. Ver `adr/0017-optimizacion-integrada.md` |
-| Post-beta. Mundo completo | Siguiente fase, tras revisar la beta: otras cuatro razas, 13 progenitores, zonas nuevas, tres niveles de simulación y viaje entre puntos de guardado |
+| Optimización en gráfica integrada | Fusionada en `main` el 9-nov con aprobación del director. 308 pruebas pasan. Ver `adr/0017-optimizacion-integrada.md` |
+| Pruebas finales de la beta y dudas | Siguiente fase: pruebas, resolver dudas de la post-beta y próximos pasos |
+| Post-beta. Mundo completo | Tras la fase de pruebas finales: otras cuatro razas, 13 progenitores, zonas nuevas, tres niveles de simulación y viaje entre puntos de guardado |
 
 ## Pendiente de respuesta del usuario (no bloquea)
 - Textos provisionales del caso y de las IAs.
@@ -65,6 +66,12 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 - Medido en la gráfica del director (Intel HD 520): ciudad de 84 a unos 30 ms, batalla de 250 a 16-28 ms. Para 60 imágenes por segundo aún faltan protagonista en textura, paredes en bloques y atlas de personajes.
 - Medir el juego exportado con `tools/medir_exportado.tscn` y el preajuste «Medicion Windows».
 - Al ejecutar dos Godot a la vez, usar un `XDG_DATA_HOME` distinto: comparten `user://`.
+
+## Tras la optimización en gráfica integrada
+- En la Intel HD 520 del director, con OpenGL directo: ciudad 7 ms, caminando 19, pelea 11 y pausa 16 (medido antes de los últimos ajustes). La física al caminar, unos 21 ms por paso, es el siguiente cuello de botella.
+- Sin probar en Windows por Claude. Sin confirmar por el director: provocar peleas, autocolocación de piezas y plugins de estilo IRCap en el chat.
+- El director vio personajes desaparecer al hablar mal de la otra raza; no se ha reproducido. Queda por vigilar.
+- Provisionales: retroceso de 80 unidades, tres frases para provocar batalla, y tamaño de personajes al 50 %.
 
 ## Preparar el entorno en una conversación nueva
 1. Clonar `rvillalba1983/bug-de-familia`. Si la copia es superficial, usar `git fetch origin main` y `FETCH_HEAD`.

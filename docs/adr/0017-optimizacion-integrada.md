@@ -1,6 +1,6 @@
 # ADR 0017: optimización en gráfica integrada
 
-Estado: pendiente de medir en la Intel HD 520 del director y de su aprobación.
+Estado: aprobado por el director el 9-nov.
 
 ## Problema
 El juego va lento en una Intel HD 520 a 1920x1080. La causa medida en P-24 son las muchas figuras sueltas por fotograma.

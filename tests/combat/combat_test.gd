@@ -92,6 +92,7 @@ func test_fewer_arms_slow_attacks_and_none_cannot_attack() -> void:
 		ModularBody.Slot.ARM_MAIN_LEFT,
 		ModularBody.Slot.ARM_MAIN_RIGHT,
 	]:
+		body.spares(slot).clear()
 		body.damage(slot, BodyPiece.MAX_DURABILITY)
 		sandbox.panel.close()
 	_alert(sandbox.guard)

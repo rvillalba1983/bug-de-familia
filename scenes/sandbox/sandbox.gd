@@ -211,6 +211,7 @@ func start_new_game() -> void:
 		"ai": {},
 		"case": {},
 		"challenge_done": false,
+			"world": {},
 	}
 	SaveSystem.write(data)
 	session_started = true

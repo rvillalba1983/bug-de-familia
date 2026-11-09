@@ -29,6 +29,7 @@ var challenges: BetaChallenges
 var protagonist: ProtagonistVoice
 var rain: AcidRain
 var atmosphere: BetaAtmosphere
+var live_world: LiveWorld
 var cracked_wall: Wall
 var ramon: Guard
 var strip_jubilado: Guard
@@ -310,6 +311,9 @@ func _build_investigation() -> void:
 	atmosphere.player = player
 	atmosphere.hour_source = challenges.hour_source
 	add_child(atmosphere)
+	live_world = LiveWorld.new()
+	live_world.level = self
+	add_child(live_world)
 
 
 func _connect_systems() -> void:
@@ -389,8 +393,22 @@ func _on_rain(is_raining: bool) -> void:
 	atmosphere.set_raining(is_raining)
 
 
+func snapshot() -> Dictionary:
+	var data: Dictionary = super()
+	data["world"] = live_world.to_dict()
+	return data
+
+
+func _begin_fresh() -> void:
+	super()
+	live_world.start({})
+	SaveSystem.write(snapshot())
+
+
 func _apply_save(data: Dictionary) -> bool:
 	var result: bool = super(data)
+	if result and not data["dead"]:
+		live_world.start(data.get("world", {}))
 	if result:
 		for id: String in mines.keys():
 			if investigation.has_flag(id):

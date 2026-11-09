@@ -4,7 +4,7 @@ extends RefCounted
 
 enum Status { NONE, OK, CORRUPT }
 
-const SCHEMA_VERSION: int = 1
+const SCHEMA_VERSION: int = 2
 const DEFAULT_PATH: String = "user://partida.json"
 
 static var path: String = DEFAULT_PATH
@@ -31,6 +31,7 @@ static func read() -> Dictionary:
 	if not FileAccess.file_exists(path):
 		return {"status": Status.NONE, "data": {}}
 	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	parsed = _migrated(parsed)
 	if not is_valid(parsed):
 		return {"status": Status.CORRUPT, "data": {}}
 	return {"status": Status.OK, "data": parsed}
@@ -43,6 +44,15 @@ static func is_valid(parsed: Variant) -> bool:
 	if int(values.get("version", -1)) != SCHEMA_VERSION:
 		return false
 	return values.get("dead") is bool and values.has("body")
+
+
+## Las partidas anteriores a la fase 8 no tienen mundo vivo: se genera al cargarlas.
+static func _migrated(parsed: Variant) -> Variant:
+	if parsed is Dictionary and int((parsed as Dictionary).get("version", -1)) == 1:
+		var values: Dictionary = parsed
+		values["world"] = {}
+		values["version"] = SCHEMA_VERSION
+	return parsed
 
 
 ## La muerte se graba de inmediato y sin vuelta atrás.

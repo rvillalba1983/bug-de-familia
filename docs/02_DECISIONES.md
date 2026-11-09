@@ -131,6 +131,10 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 ## Lo que no se puede inventar
 Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barra de salud, diario, personajes protegidos, multijugador, conexión online, vehículos, recetas cerradas de conversión.
 
+## Fase 8 (9-nov)
+- Las zonas nuevas, los tres niveles de simulación y el viaje entre puntos de guardado se aplazan a una etapa post-beta. La fase 8 se hace dentro de la zona beta, sin cambiar lo decidido para el juego completo.
+- Claude escribe las 36 festividades (`data/world/festivals.json`) y el director tacha las que no le gusten.
+
 ## Autonomía de Claude
 - Una fase por conversación: termina al fusionar en `main`, se anota el avance en `03_ESTADO.md` y se avisa al usuario de que hay que cambiar de conversación (8-nov).
 **Decide solo y documenta:** módulos, algoritmos, datos, herramientas locales, orden técnico de tareas, parámetros provisionales, refactorizaciones, optimizaciones medidas y decisiones artísticas menores.

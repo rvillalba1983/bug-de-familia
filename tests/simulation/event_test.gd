@@ -60,3 +60,11 @@ func test_world_runs_the_same_with_the_same_seed() -> void:
 	a.tick(900.0)
 	b.tick(900.0)
 	assert_int(a.truth.digest()).is_equal(b.truth.digest())
+
+
+func test_place_names_contract_in_spanish() -> void:
+	var sim: WorldSim = _sim()
+	var belief: Dictionary = {"a": "Paco", "b": "Encarna", "x": "sin avisar", "where": "el barrio sur"}
+	assert_str(sim.events.text_for("llegada", belief)).is_equal("Paco ha llegado al barrio sur, sin avisar")
+	belief["x"] = "el sombrero"
+	assert_str(sim.events.fragment_text(belief)).is_equal("Me ha llegado algo del sombrero, por el barrio sur. No sé más.")

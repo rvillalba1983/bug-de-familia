@@ -31,8 +31,8 @@ var beliefs: Dictionary = {}
 var lore: Array = []
 
 
-func feel(emotion: String, amount: float) -> void:
-	emotions[emotion] = clampf(float(emotions.get(emotion, 0.0)) + amount, 0.0, MAX_VALUE)
+func feel(key: String, amount: float) -> void:
+	emotions[key] = clampf(float(emotions.get(key, 0.0)) + amount, 0.0, MAX_VALUE)
 
 
 func emotion(key: String) -> float:

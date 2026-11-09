@@ -7,6 +7,7 @@ const HEAR_RANGE: float = 620.0
 const LABEL_RANGE: float = 170.0
 const BUBBLE_TIME: float = 3.2
 const WANDER_CHANCE: float = 0.08
+const SEE_RANGE: float = 700.0
 
 var level: BetaZone
 var sim: WorldSim = WorldSim.new()
@@ -36,6 +37,7 @@ func start(data: Dictionary) -> void:
 	sim.npc_died.connect(_on_npc_died)
 	sim.rumor_told.connect(_on_rumor_told)
 	sim.event_happened.connect(_on_event_happened)
+	sim.event_staged.connect(_on_event_staged)
 	started = true
 
 
@@ -74,8 +76,13 @@ func extra_options(_npc: NpcState) -> Array:
 
 ## Un habitante ha caído o se ha convertido por lo que sea.
 func on_citizen_gone(id: String) -> void:
-	if sim.npcs.has(id):
-		sim.kill(id)
+	if not sim.npcs.has(id) or not (sim.npcs[id] as NpcState).alive:
+		return
+	var npc: NpcState = sim.npcs[id]
+	if is_instance_valid(citizens.get(id)):
+		npc.pos = (citizens[id] as Guard).global_position
+	sim.kill(id)
+	sim.events.report(sim, "el_sobrante_mata", WorldSim.PLAYER_ID, id, npc.pos)
 
 
 func home_of(species: String) -> Rect2:
@@ -189,5 +196,20 @@ func _on_rumor_told(teller: String, hearer: String, event_id: int) -> void:
 	_speak(sim.npcs[teller], sim.rumors.phrase(sim, said))
 
 
-func _on_event_happened(_record: Dictionary) -> void:
-	pass
+func _on_event_staged(entry: Dictionary) -> void:
+	var place: Vector2 = Vector2(float(entry["x"]), float(entry["y"]))
+	for id: String in entry["actors"]:
+		var guard: Variant = citizens.get(id)
+		if is_instance_valid(guard) and not (guard as Guard).is_alert():
+			(guard as Guard).investigate(place)
+
+
+## Las IAs dicen lo que ven, sin explicar la causa. Si nadie mira, se descubrirá después.
+func _on_event_happened(record: Dictionary) -> void:
+	var at: Vector2 = Vector2(float(record["px"]), float(record["py"]))
+	var observe: String = sim.events.catalog[record["type"]]["observe"]
+	var seen: bool = level.player.global_position.distance_to(at) <= SEE_RANGE
+	if seen and not observe.is_empty():
+		level.ai.say_custom(observe)
+	if sim.npcs.has(record["actors"][0]):
+		_speak(sim.npcs[record["actors"][0]], sim.events.text_for(record["type"], record))

@@ -5,6 +5,7 @@ extends RefCounted
 signal npc_added(npc: NpcState)
 signal npc_died(npc: NpcState)
 signal event_happened(record: Dictionary)
+signal event_staged(entry: Dictionary)
 signal rumor_told(teller: String, hearer: String, event_id: int)
 
 const SPECIES_PATH: String = "res://data/world/species.json"
@@ -27,6 +28,8 @@ var next_npc: int = 1
 var group_beliefs: Dictionary = {}
 ## Cada sociedad recuerda lo que le hizo el protagonista. No hay reputación universal.
 var player_standing: Dictionary = {}
+## Tensión entre Mohócratas y Jubilados. Empieza tensa por la chatarra (P-10) y cambia en cada partida.
+var species_relation: float = -30.0
 ## Segundos jugados. Con el juego cerrado no avanza.
 var elapsed: float = 0.0
 var last_seen_day: int = -1
@@ -54,6 +57,7 @@ func start(seed_value: int, data: Dictionary) -> void:
 	next_npc = int(data["next_npc"])
 	group_beliefs = data["group_beliefs"]
 	player_standing = data["player_standing"]
+	species_relation = float(data["species_relation"])
 	truth.restore(data["truth"])
 	events.restore(data["events"])
 	for entry: Dictionary in data["npcs"]:
@@ -63,10 +67,10 @@ func start(seed_value: int, data: Dictionary) -> void:
 
 
 func tick(delta: float) -> void:
-	elapsed += delta
 	_accumulated += delta
 	while _accumulated >= STEP:
 		_accumulated -= STEP
+		elapsed += STEP
 		_step()
 
 
@@ -134,6 +138,10 @@ func change_standing(species: String, amount: float) -> void:
 	player_standing[species] = float(player_standing.get(species, 0.0)) + amount
 
 
+func change_species_relation(amount: float) -> void:
+	species_relation = clampf(species_relation + amount, -100.0, 100.0)
+
+
 func to_dict() -> Dictionary:
 	var list: Array = []
 	for id: String in npc_ids:
@@ -141,7 +149,7 @@ func to_dict() -> Dictionary:
 	return {
 		"seed": rng.seed, "rng_state": str(rng.state), "elapsed": elapsed,
 		"last_seen_day": last_seen_day, "next_npc": next_npc, "group_beliefs": group_beliefs,
-		"player_standing": player_standing,
+		"player_standing": player_standing, "species_relation": species_relation,
 		"truth": truth.to_list(), "events": events.to_dict(), "npcs": list,
 	}
 

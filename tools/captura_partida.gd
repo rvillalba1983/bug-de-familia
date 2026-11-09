@@ -17,6 +17,9 @@ func _run() -> void:
 	change_scene_to_file("res://scenes/beta/beta_zone.tscn")
 	await create_timer(1.5).timeout
 	var zone: BetaZone = current_scene as BetaZone
+	if OS.has_environment("SUCESO"):
+		var sim: WorldSim = zone.live_world.sim
+		sim.events.stage(sim, OS.get_environment("SUCESO"), -1, 1)
 	for shot: String in OS.get_environment("CAPTURAS").split(" ", false):
 		var part: PackedStringArray = shot.split(",")
 		zone.player.global_position = Vector2(part[0].to_float(), part[1].to_float())

@@ -11,7 +11,7 @@ func _sim() -> WorldSim:
 
 func _record(sim: WorldSim) -> Dictionary:
 	return sim.truth.add({
-		"type": "prueba", "actors": [], "cause": -1, "time": sim.elapsed, "importance": 40.0,
+		"type": "trueque", "actors": [], "cause": -1, "time": sim.elapsed, "importance": 40.0,
 		"a": "Paco", "b": "Espora", "x": "un tornillo", "where": "el bosque",
 	})
 

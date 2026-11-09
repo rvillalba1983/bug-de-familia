@@ -53,7 +53,7 @@ var investigation: InvestigationDirector
 var resumed: bool = false
 
 var hud: LevelHud
-var _orders: PointerOrders
+var orders: PointerOrders
 
 
 func _ready() -> void:
@@ -75,12 +75,12 @@ func _physics_process(_delta: float) -> void:
 		for point: SavePoint in save_points:
 			point.track(feet)
 	_check_goal(feet)
-	_orders.track(feet)
+	orders.track(feet)
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"move_to"):
-		_orders.order_at(get_global_mouse_position())
+		orders.order_at(get_global_mouse_position())
 
 
 func _draw() -> void:
@@ -184,7 +184,7 @@ static func default_body() -> ModularBody:
 
 
 func _build_world() -> void:
-	_orders = PointerOrders.new(self)
+	orders = PointerOrders.new(self)
 	ground = Node2D.new()
 	add_child(ground)
 	actors = Node2D.new()

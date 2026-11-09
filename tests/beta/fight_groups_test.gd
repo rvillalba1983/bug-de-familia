@@ -51,7 +51,7 @@ func test_both_buttons_pick_the_same_person_in_a_group() -> void:
 		var point: Vector2 = (people[index] as Guard).global_position - Vector2(0.0, 35.0)
 		zone.selection.select_at(point)
 		assert_object(zone.selection.current).is_same(_selectable(people[index]))
-		assert_object(zone._enemy_at(point)).is_same(people[index])
+		assert_object(zone.orders.enemy_at(point)).is_same(people[index])
 
 
 func test_insulting_turns_into_hitting() -> void:

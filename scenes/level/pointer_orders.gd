@@ -15,7 +15,7 @@ func _init(owner_level: Sandbox) -> void:
 
 func order_at(point: Vector2) -> void:
 	_pending_use = null
-	var enemy: Guard = _enemy_at(point)
+	var enemy: Guard = enemy_at(point)
 	if enemy != null and (not enemy.passive or enemy.is_alert() or _is_selected(enemy)):
 		level.combat.engage(enemy)
 		return
@@ -71,7 +71,7 @@ func _is_selected(enemy: Guard) -> bool:
 
 
 ## Usa el mismo criterio que la selección: clic izquierdo y derecho eligen a la misma persona.
-func _enemy_at(point: Vector2) -> Guard:
+func enemy_at(point: Vector2) -> Guard:
 	var picked: Selectable = level.selection.pick(point)
 	if picked == null or not picked.get_parent() is Guard:
 		return null

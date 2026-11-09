@@ -23,7 +23,7 @@ Paquete unificado creado el 8 de noviembre de 2026. Cada tema vive en un solo si
 | Encuentros, misiones y beta | `18`, `41`, `16` |
 | Zonas y mundo | `15`, `34`, `30` |
 | Simulación y personajes | `21`, `31`, `32`, `33` |
-| Gráficos y animación | `36`, `11` |
+| Gráficos y animación | `36`, `11`, `42` |
 | Audio | `37` |
 | Textos, lore y preguntas | `10`, `16`, `50`, `51` |
 
@@ -43,6 +43,7 @@ Paquete unificado creado el 8 de noviembre de 2026. Cada tema vive en un solo si
 | `19_dialogo_interfaz.md` | Conversación e interfaz |
 | `21_autonomia_memoria_muerte.md` | Vida de los personajes |
 | `41_beta.md` | Alcance de la beta |
+| `42_pulido_visual_interfaz.md` | Fase de pulido visual e interfaz |
 | `50_lore.md` | Historia de las seis especies |
 | `51_situaciones.md` | Situaciones que genera el mundo |
 

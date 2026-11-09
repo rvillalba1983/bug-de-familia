@@ -13,6 +13,7 @@ Objetivo inmediato: una beta jugable que demuestre que el sigilo y la investigac
 | 6. Combate | Tiempo real con coberturas, armas, daño por extremidad | Peligroso, legible y evitable | — |
 | 7. **Beta** | Zona de bosque, 4 retos, 2 progenitores, encuentros, peligros | Se completa de varias formas sin matar | P-01, P-08, P-10 |
 | Arte | En paralelo desde la fase 2: arte con Godot y SVG, protagonista por piezas y zona de bosque | Se ve bien en el juego y se aprueba | — |
+| 7b. Pulido visual e interfaz | Animación, impacto, acabado de pantalla, shaders, escena de convertir, silueta del cuerpo y resto de `42_pulido_visual_interfaz.md` | Aprobado en partida por el director, sin empeorar el rendimiento | Arte verificado en Godot |
 | 8. Mundo vivo | Varias zonas, tres niveles de simulación, acontecimientos, misiones emergentes, festividades y motor social completo | Sin duplicados ni estados incoherentes | P-11, P-13, P-14 |
 | 9. Contenido y pulido | Resto de razas, IAs y progenitores; batallas y vista de estrategia; música y voces; rendimiento | Medido, estable y documentado | — |
 

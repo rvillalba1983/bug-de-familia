@@ -6,7 +6,8 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 |---|---|
 | 0 a 7 | Fusionadas en `main` y probadas por el usuario |
 | Arte | Estilo de la beta fusionado en `main` por decisión del usuario el 9-nov, **sin ejecutar en Godot ni pasar las pruebas**. Lo primero es abrirlo, pasar las pruebas y corregir lo que falle. Ver `adr/0008-estilo-visual-beta.md` |
-| 8. Mundo vivo | Siguiente. Sus preguntas de diseño están cerradas en `02_DECISIONES.md` |
+| 7b. Pulido visual e interfaz | Siguiente, tras verificar el arte. Ver `42_pulido_visual_interfaz.md` |
+| 8. Mundo vivo | Después de la 7b. Sus preguntas de diseño están cerradas en `02_DECISIONES.md` |
 | 9. Contenido y pulido | Sin empezar |
 
 ## Pendiente de respuesta del usuario (no bloquea)

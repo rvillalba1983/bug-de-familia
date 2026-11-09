@@ -2,6 +2,8 @@ class_name BetaZone
 extends Sandbox
 ## Zona de la beta: bosque, ciudad perdida, dos bandos y cuatro retos.
 
+## Provisional: distancia a la que un grupo se mete en la pelea de los suyos.
+const GROUP_REACT_RADIUS: float = 250.0
 const CASE_PATH: String = "res://data/investigation/case_beta.json"
 const ID_MINE: String = "mina_suelta"
 const ID_CRACK: String = "muro_agrietado"
@@ -511,7 +513,26 @@ func add_citizen(id: String, species: String, at: Vector2, home: Rect2) -> Guard
 	fight.track(enemy)
 	enemy.fell.connect(_on_enemy_fell)
 	enemy.corpse_expired.connect(_on_corpse_expired)
+	enemy.attacked.connect(_on_citizen_attacked.bind(enemy, species))
 	return enemy
+
+
+## Viene de la conversación: selecciona a la persona y empieza a pegarle.
+func attack_citizen(enemy: Guard) -> void:
+	selection.select_exactly(enemy)
+	combat.engage(enemy)
+
+
+## Quienes están cerca y son de su especie se unen a la pelea.
+func _on_citizen_attacked(victim: Guard, species: String) -> void:
+	for id: String in live_world.citizens:
+		var other: Guard = live_world.citizens[id]
+		if other == victim or not is_instance_valid(other):
+			continue
+		if (live_world.sim.npcs[id] as NpcState).species != species or battles.is_fighter(id):
+			continue
+		if other.global_position.distance_to(victim.global_position) <= GROUP_REACT_RADIUS:
+			other.join_fight()
 
 
 ## Premio de una misión: una pieza de repuesto.

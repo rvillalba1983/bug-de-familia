@@ -100,7 +100,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var point: Vector2 = get_global_mouse_position()
 		_pending_use = null
 		var enemy: Guard = _enemy_at(point)
-		if enemy != null and (not enemy.passive or _is_selected(enemy)):
+		if enemy != null and (not enemy.passive or enemy.is_alert() or _is_selected(enemy)):
 			combat.engage(enemy)
 			return
 		combat.disengage()
@@ -712,15 +712,13 @@ func _on_converted(entity_id: String) -> void:
 		autosave()
 
 
+## Usa el mismo criterio que la selección: clic izquierdo y derecho eligen a la misma persona.
 func _enemy_at(point: Vector2) -> Guard:
-	for enemy: Guard in guards():
-		if not enemy.is_down() and enemy.global_position.distance_to(point) <= Selectable.RADIUS * 1.5:
-			return enemy
-		if not enemy.is_down():
-			var body_center: Vector2 = enemy.global_position - Vector2(0.0, Guard.BODY_HEIGHT * 0.5)
-			if body_center.distance_to(point) <= Selectable.RADIUS * 1.5:
-				return enemy
-	return null
+	var picked: Selectable = selection.pick(point)
+	if picked == null or not picked.get_parent() is Guard:
+		return null
+	var enemy: Guard = picked.get_parent()
+	return null if enemy.is_down() else enemy
 
 
 func _id_of(enemy: Guard) -> String:

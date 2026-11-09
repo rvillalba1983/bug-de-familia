@@ -11,6 +11,7 @@ var npc: NpcState
 var bar: ConversationBar
 
 var _options: Array = []
+var _insulted: bool = false
 
 
 func _ready() -> void:
@@ -38,10 +39,11 @@ func is_open() -> bool:
 
 func open(target: NpcState) -> void:
 	npc = target
+	_insulted = false
 	world.level.pause.begin_modal()
 	if float(world.sim.player_standing.get(npc.species, 0.0)) <= REFUSE_STANDING:
 		_say(tr("LIVE_REFUSE"))
-		_set_options([[tr("LIVE_BYE"), close]])
+		_set_options([[tr("LIVE_HIT"), _hit], [tr("LIVE_BYE"), close]])
 		return
 	_say(_random_line("greet"))
 	_refresh()
@@ -72,7 +74,7 @@ func _refresh() -> void:
 	entries.append([tr("LIVE_ASK_LORE"), _ask_lore])
 	entries.append_array(world.extra_options(npc))
 	entries.append([tr("LIVE_PRAISE"), _praise])
-	entries.append([tr("LIVE_INSULT"), _insult])
+	entries.append([tr("LIVE_HIT"), _hit] if _insulted else [tr("LIVE_INSULT"), _insult])
 	entries.append([tr("LIVE_BYE"), close])
 	_set_options(entries)
 
@@ -138,7 +140,15 @@ func _praise() -> void:
 	reply(_random_line("praised"))
 
 
+## Cierra la charla y va a por él. El resto lo decide el combate de siempre.
+func _hit() -> void:
+	var guard: Guard = world.citizens[npc.id]
+	close()
+	world.level.attack_citizen(guard)
+
+
 func _insult() -> void:
+	_insulted = true
 	npc.feel("ira", 35.0)
 	npc.relate(WorldSim.PLAYER_ID, "afecto", -20.0)
 	world.sim.change_standing(npc.species, INSULT_STANDING)

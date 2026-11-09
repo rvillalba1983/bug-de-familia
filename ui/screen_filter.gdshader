@@ -33,18 +33,22 @@ float fbm(vec2 p) {
 
 void fragment() {
 	vec3 scene = texture(screen_texture, SCREEN_UV).rgb;
-	float grey = dot(scene, vec3(0.299, 0.587, 0.114));
-	vec3 dull = mix(scene, vec3(grey), 0.88) * 0.52;
-	vec2 p = UV * vec2(5.0, 3.0);
-	float fog = fbm(p + vec2(TIME * 0.09, TIME * 0.04) + fbm(p - TIME * 0.05));
-	vec3 fogged = mix(dull, fog_color, smoothstep(0.3, 0.8, fog) * 0.5);
 	float vignette = smoothstep(0.35, 0.95, distance(UV, vec2(0.5)));
-	fogged *= 1.0 - 0.55 * vignette;
 	float peak = max(scene.r, max(scene.g, scene.b));
 	float chroma = peak - min(scene.r, min(scene.g, scene.b));
 	vec3 finished = scene + scene * smoothstep(0.55, 0.9, chroma) * 0.18;
 	finished = (finished - 0.5) * contrast + 0.5;
 	finished *= 1.0 - 0.28 * vignette;
 	finished += (hash(UV + fract(TIME)) - 0.5) * grain;
-	COLOR = vec4(mix(finished, fogged, strength), 1.0);
+	// La niebla es lo más caro y solo se ve en la pausa táctica.
+	if (strength > 0.001) {
+		float grey = dot(scene, vec3(0.299, 0.587, 0.114));
+		vec3 dull = mix(scene, vec3(grey), 0.88) * 0.52;
+		vec2 p = UV * vec2(5.0, 3.0);
+		float fog = fbm(p + vec2(TIME * 0.09, TIME * 0.04) + fbm(p - TIME * 0.05));
+		vec3 fogged = mix(dull, fog_color, smoothstep(0.3, 0.8, fog) * 0.5);
+		fogged *= 1.0 - 0.55 * vignette;
+		finished = mix(finished, fogged, strength);
+	}
+	COLOR = vec4(finished, 1.0);
 }

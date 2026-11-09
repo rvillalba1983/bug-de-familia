@@ -2,6 +2,7 @@ class_name Guard
 extends CharacterBody2D
 ## Guardia con patrulla, investigación de ruidos y persecución.
 
+signal attacked
 signal alert_started
 signal alert_ended
 signal fell(guard: Guard)
@@ -23,6 +24,10 @@ const HIT_RANGE: float = 46.0
 const HIT_COOLDOWN: float = 1.2
 const HIT_DAMAGE: float = 34.0
 const RADIUS: float = 18.0
+const SCREEN_MARGIN: float = 120.0
+## Provisionales. Quedan dentro de HIT_RANGE, y el ángulo reparte bien a cualquier número.
+const FIGHT_SPREAD: float = 34.0
+const FIGHT_ANGLE_STEP: float = 2.4
 const BODY_HEIGHT: float = 60.0
 const WAYPOINT_TOLERANCE: float = 6.0
 const MELEE_WINDUP: float = 0.4
@@ -75,6 +80,9 @@ var _last_known: Vector2 = Vector2.ZERO
 var _lost_time: float = 0.0
 var _repath: float = 0.0
 var _hit_timer: float = 0.0
+## Hueco alrededor del jugador en una pelea, para que un grupo no se apile en un punto.
+var _fight_spot: Vector2 = Vector2.ZERO
+static var _next_fight_angle: float = 0.0
 var _view: VisionConeView
 var health: float = MAX_HEALTH
 var ranged: bool = false
@@ -120,7 +128,11 @@ func setup(points: Array[Vector2], ground: Node2D) -> void:
 
 func _physics_process(delta: float) -> void:
 	_hit_timer = maxf(_hit_timer - delta, 0.0)
-	_update_rig()
+	var seen: bool = _near_screen()
+	if rig != null:
+		rig.player.active = seen
+	if seen or rig == null:
+		_update_rig()
 	if state == State.DOWN:
 		_corpse_time -= delta
 		if _corpse_time <= 0.0:
@@ -142,8 +154,16 @@ func _physics_process(delta: float) -> void:
 			_tick_look(delta)
 		State.ALERT:
 			_tick_alert(delta)
-	_view.refresh(global_position, get_world_2d())
-	queue_redraw()
+	if seen:
+		if _view.visible:
+			_view.refresh(global_position, get_world_2d())
+		queue_redraw()
+
+
+## Fuera de pantalla no se anima ni se calcula el dibujo del cono. Las reglas siguen igual.
+func _near_screen() -> bool:
+	var view: Rect2 = get_canvas_transform().affine_inverse() * get_viewport_rect()
+	return view.grow(detector.view_range + SCREEN_MARGIN).has_point(global_position)
 
 
 func _draw() -> void:
@@ -272,10 +292,17 @@ func take_damage(amount: float) -> void:
 	if state == State.DOWN:
 		return
 	health = maxf(health - amount, 0.0)
+	attacked.emit()
 	_react_to_hit()
 	if health <= 0.0:
 		_fall()
 	elif state != State.ALERT and state != State.STUNNED:
+		_on_detected(target.global_position)
+
+
+## Se une a una pelea que ya ha empezado cerca.
+func join_fight() -> void:
+	if state != State.ALERT and state != State.STUNNED and state != State.DOWN:
 		_on_detected(target.global_position)
 
 
@@ -364,6 +391,8 @@ func _on_detected(at: Vector2) -> void:
 	_lost_time = 0.0
 	_repath = 0.0
 	state = State.ALERT
+	_fight_spot = Vector2.from_angle(_next_fight_angle) * FIGHT_SPREAD
+	_next_fight_angle += FIGHT_ANGLE_STEP
 	alert_started.emit()
 
 
@@ -417,7 +446,7 @@ func _tick_alert(delta: float) -> void:
 	_repath -= delta
 	if _repath <= 0.0:
 		_repath = REPATH_TIME
-		_set_path_to(_last_known)
+		_set_path_to(_last_known + (Vector2.ZERO if ranged else _fight_spot))
 	_follow_path(CHASE_SPEED, Callable())
 	if not ranged and distance <= HIT_RANGE and _hit_timer <= 0.0 and _windup_left <= 0.0:
 		_windup_left = MELEE_WINDUP

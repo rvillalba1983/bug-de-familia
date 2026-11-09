@@ -7,7 +7,7 @@ Basados en los de World of Warcraft, adaptados a una cámara de ángulo fijo. Ap
 | Moverse en 8 direcciones | WASD |
 | Ir a un punto; usar o hablar; atacar | Clic derecho, según lo que haya debajo |
 | Atacar a alguien tranquilo | Seleccionarlo con clic izquierdo y clic derecho |
-| Seleccionar objetivo | Clic izquierdo |
+| Seleccionar objetivo | Clic izquierdo sobre cualquier parte del cuerpo |
 | Cambiar de objetivo | Tab |
 | Correr, con ruido | Mantener Mayús |
 | Alternar andar y correr | Bloq Mayús |

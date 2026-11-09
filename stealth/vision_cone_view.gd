@@ -6,6 +6,9 @@ const RAY_COUNT: int = 16
 const COLOR_CALM: Color = Color(0.5, 0.9, 0.5, 0.22)
 const COLOR_ALERT: Color = Color(1.0, 0.25, 0.2, 0.42)
 
+## Solo para tools/medir_por_partes.gd.
+static var measuring_off: bool = false
+
 var detector: Detector
 
 var _origin: Vector2 = Vector2.ZERO
@@ -13,6 +16,10 @@ var _points: PackedVector2Array = PackedVector2Array()
 
 
 func refresh(origin: Vector2, world: World2D) -> void:
+	if measuring_off:
+		_points.clear()
+		queue_redraw()
+		return
 	_origin = origin
 	_points.clear()
 	for index: int in range(RAY_COUNT + 1):

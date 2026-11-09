@@ -5,6 +5,7 @@ extends Node2D
 signal selection_changed(target: Selectable)
 
 const GROUP: StringName = &"selectable"
+const TIE_MARGIN: float = 6.0
 
 var current: Selectable = null
 
@@ -21,12 +22,36 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func select_at(point: Vector2) -> void:
+	_set_current(pick(point))
+
+
+## Quien está bajo el puntero: el más cercano, y a igualdad el ya seleccionado.
+func pick(point: Vector2) -> Selectable:
+	if current != null and current.contains_point(point) and is_closest_body(current, point):
+		return current
+	var best: Selectable = null
+	var best_distance: float = INF
 	for node: Node in get_tree().get_nodes_in_group(GROUP):
 		var target: Selectable = node as Selectable
-		if target != null and target.contains_point(point):
-			_set_current(target)
+		if target != null and target.contains_point(point) and target.click_distance(point) < best_distance:
+			best = target
+			best_distance = target.click_distance(point)
+	return best
+
+
+func is_closest_body(target: Selectable, point: Vector2) -> bool:
+	for node: Node in get_tree().get_nodes_in_group(GROUP):
+		var other: Selectable = node as Selectable
+		if other != null and other.click_distance(point) + TIE_MARGIN < target.click_distance(point):
+			return false
+	return true
+
+
+func select_exactly(owner_node: Node2D) -> void:
+	for child: Node in owner_node.get_children():
+		if child is Selectable:
+			_set_current(child as Selectable)
 			return
-	_set_current(null)
 
 
 func cycle_next() -> void:

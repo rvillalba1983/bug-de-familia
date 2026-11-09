@@ -144,7 +144,7 @@ func test_save_and_reload_scene_keeps_same_people() -> void:
 	await await_millis(100)
 	var world: LiveWorld = zone.live_world
 	var victim: String = world.sim.npc_ids[2]
-	(world.citizens[victim] as Guard).take_damage(999.0)
+	(world.citizens[victim] as Guard).die_quietly()
 	zone.autosave()
 	var ids: Array = world.sim.npc_ids.duplicate()
 	var runner2: GdUnitSceneRunner = scene_runner("res://scenes/beta/beta_zone.tscn")

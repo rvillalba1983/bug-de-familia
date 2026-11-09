@@ -17,6 +17,10 @@ func _run() -> void:
 	change_scene_to_file("res://scenes/beta/beta_zone.tscn")
 	await create_timer(1.5).timeout
 	var zone: BetaZone = current_scene as BetaZone
+	if OS.has_environment("NOCHE"):
+		for node: Node in zone.find_children("*", "BetaAtmosphere", true, false):
+			(node as BetaAtmosphere).hour_source = func() -> int: return 23
+			(node as BetaAtmosphere)._apply_hour()
 	await _act(zone, OS.get_environment("ACCION"))
 	if OS.has_environment("SUCESO"):
 		var sim: WorldSim = zone.live_world.sim
@@ -119,6 +123,25 @@ func _act(zone: BetaZone, action: String) -> void:
 			sim.events.report(sim, "sombrero_perdido", teller.id, "", near + Vector2(250.0, 60.0))
 			world.dialogue.open(teller)
 			world.dialogue.choose(3)
+		"seleccion", "pegarle", "grupo":
+			zone.set_enemies_active(false)
+			var spot: Vector2 = zone.player.global_position
+			var folks: Array = sim.alive_of("jubilado").slice(0, 3).map(func(n: NpcState) -> Guard: return world.citizens[n.id])
+			for index: int in range(3):
+				var person: Guard = folks[index]
+				person.process_mode = Node.PROCESS_MODE_INHERIT
+				person.global_position = spot + Vector2(150.0 + float(index) * 46.0, 20.0)
+			await process_frame
+			if action == "seleccion":
+				zone.selection.select_exactly(folks[1])
+			elif action == "pegarle":
+				var talker: NpcState = sim.alive_of("jubilado")[0]
+				world.dialogue.open(talker)
+				world.dialogue.choose(world.dialogue.options().map(func(o: Array) -> String: return o[0]).find(tr("LIVE_INSULT")))
+			else:
+				(folks[0] as Guard).take_damage(10.0)
+				await create_timer(0.3, true, false, true).timeout
+				zone.panel.close()
 		"rastro":
 			var added: Array = sim.festivals.collect_traces(sim, WorldCalendar.today() - 10)
 			world._build_festival_view(added)

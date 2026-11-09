@@ -99,4 +99,7 @@ func test_citizens_appear_in_the_zone_and_can_be_talked_to() -> void:
 	var guard: Guard = world.citizens[id]
 	guard.take_damage(999.0)
 	assert_bool((world.sim.npcs[id] as NpcState).alive).is_false()
+	# Sus vecinos se unen a la pelea y sale la pausa previa: no debe pasar a la siguiente prueba.
+	get_tree().paused = false
+	Engine.time_scale = 1.0
 	BetaZone.forced_hour = -1

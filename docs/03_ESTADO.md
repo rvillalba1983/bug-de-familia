@@ -10,6 +10,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | 8. Mundo vivo (zona beta) | Fusionada en `main` el 9-nov y aprobada por el director. 229 pruebas pasan. Ver `adr/0010-mundo-vivo-beta.md` |
 | 9. Contenido y pulido | Fusionada en `main` el 9-nov y aprobada por el director. 255 pruebas pasan. Ver `adr/0011-ias-y-controles.md`, `adr/0012-batallas.md` y `adr/0013-audio-y-rendimiento.md` |
 | Cierre de la beta | Fusionada en `main` el 9-nov con aprobación del director. 261 pruebas pasan. Ver `adr/0014-cierre-beta.md` |
+| Arreglos tras probar la beta | Fusionada en `main` el 9-nov con aprobación del director. 266 pruebas pasan. Ver `adr/0015-arreglos-beta.md` |
 | Revisión de código y pruebas (P-24) | Siguiente fase |
 | Post-beta. Mundo completo | Después, tras revisar la beta: otras cuatro razas, 13 progenitores, zonas nuevas, tres niveles de simulación y viaje entre puntos de guardado |
 
@@ -52,6 +53,11 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 - El director no ha jugado aún la beta entera con estos cambios. Sin medir en una gráfica real.
 - Recorridos reales con `tools/recorrido_beta.gd` (variables RUTA, SEMILLA y FECHA).
 - Siguiente fase: P-24, revisión de código y más pruebas funcionales. Ideas post-beta: P-23, P-25, P-26 y P-27.
+
+## Tras los arreglos de la beta
+- Rendimiento medido solo con gráfica por software: falta confirmarlo en el ordenador del director. Medir con `tools/medir_por_partes.gd` (variables NOCHE, EXTRA y CAPAS).
+- La pelea contra grupos no la ha probado el director a mano. Radio de reacción (250) y hueco alrededor del jugador (34), provisionales.
+- Clics reales de pelea con `tools/probar_pelea.gd`.
 
 ## Preparar el entorno en una conversación nueva
 1. Clonar `rvillalba1983/bug-de-familia`. Si la copia es superficial, usar `git fetch origin main` y `FETCH_HEAD`.

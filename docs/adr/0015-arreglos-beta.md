@@ -1,6 +1,6 @@
 # ADR 0015: arreglos tras probar la beta
 
-Estado: pendiente de aprobación del director.
+Estado: aprobado por el director el 9-nov.
 
 ## Vista de piezas
 La pieza puesta lleva halo amarillo, fondo más claro y pestaña «PUESTA», separada de los repuestos, que se atenúan. El marco sigue indicando el nivel. Los repuestos se iluminan al pasar el ratón.

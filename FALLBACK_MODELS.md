@@ -19,12 +19,12 @@ Cada modelo de Go tiene tres ventanas: 5 horas (20 % del límite mensual), seman
 |---|---|---|
 | Por defecto (`build`, `plan`, `general`) | `opencode/big-pickle` (gratis) | `opencode-go/kimi-k2.7-code`, `opencode/iceman-free`, `opencode/glm-5.3-flash-free` |
 | `explore` (integrado) | `opencode/big-pickle` (gratis) | `opencode-go/gpt-6-luna` |
-| `arquitecto` | `opencode-go/glm-5.2` | `opencode/big-pickle`, `opencode-go/kimi-k2.7-code`, `opencode/glm-5.3-flash-free` |
-| `ingeniero-godot` | `opencode-go/kimi-k2.7-code` | `opencode/big-pickle`, `opencode-go/glm-5.2`, `opencode/glm-5.3-flash-free` |
+| `arquitecto` | `opencode-go/glm-5.3` | `opencode/big-pickle`, `opencode-go/kimi-k2.7-code`, `opencode/glm-5.3-flash-free` |
+| `ingeniero-godot` | `opencode-go/kimi-k2.7-code` | `opencode/big-pickle`, `opencode-go/glm-5.3`, `opencode/glm-5.3-flash-free` |
 | `gameplay` | `opencode-go/qwen3.7-plus` | `opencode/big-pickle`, `opencode-go/minimax-m3`, `opencode/glm-5.3-flash-free` |
 | `qa` | `opencode/deepseek-v4.1-flash-free` (gratis) | `opencode-go/deepseek-v4.1-flash` (¡franja punta!), `opencode/big-pickle`, `opencode/beam-free` |
 | `documentacion` | `opencode/glm-5.3-flash-free` (gratis) | `opencode-go/glm-5.3-flash`, `opencode/big-pickle`, `opencode-go/gpt-6-luna` |
-| `datos` | `opencode-go/glm-5.2` | `opencode/big-pickle`, `opencode-go/minimax-m3`, `opencode/glm-5.3-flash-free` |
+| `datos` | `opencode-go/minimax-m3` | `opencode/big-pickle`, `opencode-go/glm-5.3`, `opencode/glm-5.3-flash-free` |
 | `arte` | `opencode-go/qwen3.8-flash` | `opencode-go/qwen3.7-plus`, `opencode/big-pickle`, `opencode/glm-5.3-flash-free` |
 | `audio` | `opencode-go/glm-5.3-flash` | `opencode/glm-5.3-flash-free`, `opencode/big-pickle`, `opencode/beam-free` |
 | `medidor` | `opencode-go/glm-5.3-flash` | `opencode/glm-5.3-flash-free`, `opencode-go/gpt-6-luna`, `opencode/beam-free` |
@@ -38,15 +38,17 @@ Precio por millón de tokens y límite mensual de uso incluido en el plan Go (10
 | Modelo | Entrada | Salida | Límite mensual | Uso |
 |---|---|---|---|---|
 | `kimi-k2.7-code` | 0,95 $ | 4,00 $ | 60 $ | Código GDScript |
-| `glm-5.2` | 1,40 $ | 4,40 $ | 60 $ | Arquitectura y datos |
+| `glm-5.3` | 1,40 $ | 4,40 $ | 15 $ | Arquitectura |
 | `qwen3.7-plus` | 0,40 $ | 1,60 $ | 60 $ | Gameplay y balance |
 | `qwen3.8-flash` | 0,15 $ | 0,47 $ | 30 $ | Arte (multimodal) |
 | `glm-5.3-flash` | 0,15 $ | 0,50 $ | 60 $ | Audio y medidor |
 | `gpt-6-luna` | 0,10 $ | 0,50 $ | 15 $ | Respaldo barato |
-| `minimax-m3` | 0,30 $ | 1,20 $ | 60 $ | Respaldo general |
+| `minimax-m3` | 0,30 $ | 1,20 $ | 60 $ | Datos (JSON) |
 | `deepseek-v4.1-flash` | 0,15–0,30 $ | 0,60–1,20 $ | 100 $ | Respaldo de qa |
 
-Premium del catálogo (Kimi K3, Grok 4.7, Gemini 4 Argon, Claude Haiku): solo 15 $ de límite mensual. No se asignan a ningún agente; si una tarea puntual los necesita, se eligen a mano en esa conversación.
+Premium del catálogo (Kimi K3.1 Pro, Grok 4.7, Gemini 4 Argon, Claude Haiku): solo 15 $ de límite mensual. No se asignan a ningún agente; si una tarea puntual los necesita, se eligen a mano en esa conversación.
+
+La cuenta sirve 24 de los 32 modelos publicados en la documentación de Go (comprobado al activarla el 10-nov). Entre los ausentes: `glm-5.2`, `gpt-5.6-luna`, `kimi-k3`, `longcat-2.0` e `hy3`. Por eso arquitecto usa `glm-5.3` y datos `minimax-m3`. Validado con peticiones reales: `glm-5.3` en Go y `glm-5.3-flash-free` en la consola.
 
 ## Franja punta: solo DeepSeek en Go
 

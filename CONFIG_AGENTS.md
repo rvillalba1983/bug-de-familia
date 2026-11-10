@@ -8,12 +8,12 @@
 
 | Agente | Dominio | Puede tocar | Modelo |
 |---|---|---|---|
-| `arquitecto` | Arquitectura, ADR, coherencia entre sistemas | Todo, con confirmación | Go `glm-5.2` |
+| `arquitecto` | Arquitectura, ADR, coherencia entre sistemas | Todo, con confirmación | Go `glm-5.3` |
 | `ingeniero-godot` | GDScript y escenas de Godot 4.7.2 | `*.gd`, `*.tscn`, con confirmación | Go `kimi-k2.7-code` |
 | `gameplay` | Mecánicas, simulación, balance, especies | `*.gd`, `*.tscn`, con confirmación | Go `qwen3.7-plus` |
 | `qa` | Auditoría y diseño de pruebas | Solo lectura | Gratis `deepseek-v4.1-flash-free` |
 | `documentacion` | Documentación, lore, continuidad | `*.md`, `*.json`, con confirmación | Gratis `glm-5.3-flash-free` |
-| `datos` | Contenido del mundo en JSON (`data/`) | `*.json`, con confirmación | Go `glm-5.2` |
+| `datos` | Contenido del mundo en JSON (`data/`) | `*.json`, con confirmación | Go `minimax-m3` |
 | `arte` | Atlas, estilo visual y capturas | `art/**`, `data/art/**`, con confirmación | Go `qwen3.8-flash` |
 | `audio` | Melodías y voces con `gen_audio.py` | `audio/**`, `data/audio/**`, con confirmación | Go `glm-5.3-flash` |
 | `medidor` | Medir rendimiento en la gráfica real | Solo lectura | Go `glm-5.3-flash` |
@@ -43,3 +43,4 @@ Reglas comunes a todos: `git push` siempre pide confirmación, los parámetros p
 - `opencode run` desde la raíz del proyecto debe mostrar `big-pickle` en la cabecera de la respuesta.
 - `/models` debe listar los modelos de `opencode` (gratuitos) y de `opencode-go` (suscripción).
 - Un subagente se prueba pidiéndole algo de su dominio en una conversación.
+- Validado el 10-nov con peticiones reales: `arquitecto` (Go `glm-5.3`) y `documentacion` (consola `glm-5.3-flash-free`) respondieron correctamente.

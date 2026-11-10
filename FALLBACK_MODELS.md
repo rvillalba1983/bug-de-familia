@@ -15,16 +15,18 @@ La cuenta de OpenRouter y su cadena `openrouter/auto` global (`~/.config/opencod
 
 Cada modelo de Go tiene tres ventanas: 5 horas (20 % del límite mensual), semanal (50 %) y mensual (100 %). Superada una ventana, ese modelo se bloquea hasta que se renueve: hay que cambiar de modelo a mano. Los gratuitos no tienen franja punta; el único precio variable es DeepSeek en Go (ver abajo).
 
+**Todos los agentes tienen su principal y tres alternativos**, en este orden. La fuente única de verdad es `tools/modelos_agentes.json`; `tools/cambiar_modelo.py --validar` comprueba que esta guía, `opencode.jsonc` y el `system` de cada agente no se han desincronizado. OpenCode V2 no encadena modelos: al agotarse uno, la petición en curso falla y no se reintenta sola.
+
 | Agente | Modelo principal | Alternativos, en orden |
 |---|---|---|
 | Por defecto (`build`, `plan`, `general`) | `opencode/big-pickle` (gratis) | `opencode-go/kimi-k2.7-code`, `opencode/iceman-free`, `opencode/glm-5.3-flash-free` |
-| `explore` (integrado) | `opencode/big-pickle` (gratis) | `opencode-go/gpt-6-luna` |
+| `explore` (integrado) | `opencode/big-pickle` (gratis) | `opencode-go/gpt-6-luna`, `opencode/beam-free`, `opencode/glm-5.3-flash-free` |
 | `arquitecto` | `opencode-go/glm-5.3` | `opencode/big-pickle`, `opencode-go/kimi-k2.7-code`, `opencode/glm-5.3-flash-free` |
 | `ingeniero-godot` | `opencode-go/kimi-k2.7-code` | `opencode/big-pickle`, `opencode-go/glm-5.3`, `opencode/glm-5.3-flash-free` |
 | `gameplay` | `opencode-go/qwen3.7-plus` | `opencode/big-pickle`, `opencode-go/minimax-m3`, `opencode/glm-5.3-flash-free` |
 | `qa` | `opencode/deepseek-v4.1-flash-free` (gratis) | `opencode-go/deepseek-v4.1-flash` (¡franja punta!), `opencode/big-pickle`, `opencode/beam-free` |
 | `documentacion` | `opencode/glm-5.3-flash-free` (gratis) | `opencode-go/glm-5.3-flash`, `opencode/big-pickle`, `opencode-go/gpt-6-luna` |
-| `datos` | `opencode-go/minimax-m3` | `opencode/big-pickle`, `opencode-go/glm-5.3`, `opencode/glm-5.3-flash-free` |
+| `datos` | `opencode-go/minimax-m3` | `opencode/big-pickle`, `opencode-go/glm-5.3-flash`, `opencode/glm-5.3-flash-free` |
 | `arte` | `opencode-go/qwen3.8-flash` | `opencode-go/qwen3.7-plus`, `opencode/big-pickle`, `opencode/glm-5.3-flash-free` |
 | `audio` | `opencode-go/glm-5.3-flash` | `opencode/glm-5.3-flash-free`, `opencode/big-pickle`, `opencode/beam-free` |
 | `medidor` | `opencode-go/glm-5.3-flash` | `opencode/glm-5.3-flash-free`, `opencode-go/gpt-6-luna`, `opencode/beam-free` |
@@ -72,11 +74,12 @@ Todos son «por tiempo limitado». Cuando OpenCode los retire, los agentes que l
 
 Cuando un modelo falla por límite de Go, por retirada del periodo gratuito (429/402/404) o por decisión del director:
 
-1. Identificar el modelo que falló con el error literal.
-2. Buscar el agente en la tabla de asignación y elegir el siguiente alternativo disponible. Antes de tocar un modelo de pago distinto del asignado, probar los gratuitos que queden.
-3. Cambiar el `model` del agente en `opencode.jsonc`.
-4. Documentar el cambio en un ADR de `docs/adr/` (qué falló, qué se eligió, fecha y motivo) y actualizar este archivo y `CONFIG_AGENTS.md`.
-5. Informar al director.
+1. Identificar el modelo que falló con el error literal. Ejemplo real del 10-nov: el subagente `qa` devolvió `Free usage limit reached. Free models work in OpenCode; subscribe to OpenCode Go to keep going` y la tarea murió en vez de seguir con su alternativo.
+2. Elegir el siguiente modelo de la cadena en `tools/modelos_agentes.json`. Antes de tocar un modelo de pago distinto del asignado, probar los gratuitos que queden.
+3. Ejecutar `python tools/cambiar_modelo.py --rotar <agente>` (o `--usar <agente> <modelo>`). El script edita solo la línea `model` de `opencode.jsonc`; la configuración se recarga sola. Con `--estado` se ve la cadena completa y con `--validar` se comprueba la sincronización.
+4. **Relanzar la tarea**: la petición que falló no se reintenta con el modelo nuevo (documentación V2 de Models). No sirve con cambiar la config a mitad de sesión.
+5. Documentar el cambio en un ADR de `docs/adr/` (qué falló, qué se eligió, fecha y motivo) y actualizar este archivo y `CONFIG_AGENTS.md`. Con `--restaurar <agente>` se vuelve al principal cuando se renueve la ventana.
+6. Informar al director.
 
 Ver el uso consumido en la consola de OpenCode (opencode.ai/console): cada modelo muestra su saldo de las ventanas de 5 horas, semana y mes.
 

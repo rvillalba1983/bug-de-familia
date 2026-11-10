@@ -1,6 +1,11 @@
 extends GdUnitTestSuite
 
 
+func before_test() -> void:
+	InputBindings.install()
+	get_tree().paused = false
+
+
 func test_esc_sale_de_la_pausa_tactica() -> void:
 	var pause: TacticalPause = auto_free(TacticalPause.new())
 	add_child(pause)

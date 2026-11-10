@@ -20,6 +20,7 @@ RAIZ = Path(__file__).resolve().parent.parent
 PASOS = [
 	("Datos", ["tools/validar_datos.py"]),
 	("Normas de formato", ["tools/formatear.py", "--comprobar", "--resumen"]),
+	("Modelos de los agentes", ["tools/cambiar_modelo.py", "--validar"]),
 ]
 
 

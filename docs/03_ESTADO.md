@@ -86,7 +86,10 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 - Entorno local gratuito en `opencode_projects`: Godot 4.7.2, Python 3.12.10, ffmpeg, Inkscape 1.4.4 y plantillas de exportación; todos en el PATH de usuario. Audacity ya estaba instalado.
 - Scripts deterministas: `tools/verificar.py` (entrada única), `tools/validar_datos.py` (46 comprobaciones), `tools/formatear.py`, `tools/comparar_medicion.py`. Estado hoy: 0 errores en datos y en 255 archivos de texto; 64 avisos de líneas largas, deuda anterior.
 - Al crear el formateador se corrigieron 12 archivos que incumplían la norma de línea final (9 JSON de `data/` y 3 pruebas). No se debilitó ninguna comprobación.
-- GitHub Actions: `pruebas.yml` (verificaciones deterministas + 311 pruebas gdUnit4, con `timeout` y `</dev/null`) y `exportar.yml` (`.exe` y `.pck` como artefactos). Sin ejecutar todavía en Actions: es la validación pendiente.
+- GitHub Actions: `pruebas.yml` (verificaciones deterministas + 311 pruebas gdUnit4, con `timeout` y `</dev/null`) y `exportar.yml` (`.exe` y `.pck` como artefactos). Ambos YAML validados con parser real.
+- **Primer run de `pruebas.yml` en Linux: 311/311 ejecutadas, 3 fallos**, mientras que en Windows la suite local dio 311/311 y 0 fallos (22 min 28 s). Causa: estado global (`get_tree().paused` e `InputMap`) que las suites no aíslan y gdUnit4 ordena distinto en Linux. Se corrigió con `before_test()` en `tests/ui/ajustes_prueba_test.gd`, `tests/ui/controls_panel_test.gd` y `tests/flows/beta_routes_test.gd`, sin tocar ningún `assert`. Pendiente de confirmar con un segundo run.
+- Exportación local verificada: `godot --headless --export-release "Windows"` genera `bug_de_familia.exe` (109 MB) y `.pck` (20 MB) en `build/`. El workflow de exportación corre al fusionar en `main`.
+- Capturas y vídeo reales de la zona beta generados con `tools/captura_partida.gd` sobre la Intel HD 520 (26 PNG + MP4). Sirven para validar que el entorno puede producirlas.
 - Estudiado y descartado: servidores MCP (coste de contexto y dependencias), LSP (sin servidor para GDScript), plugins de marketplace de terceros, y el generador de imágenes de OpenCode (de pago, sin fondos). Ver `adr/0019-herramientas-ci-y-mcp.md`.
 - Plantillas de mohócrata: SVG por código con la paleta y el rig actual, no integradas aún en el juego (ejemplo para el director).
 

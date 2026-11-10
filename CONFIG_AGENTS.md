@@ -22,6 +22,8 @@
 
 Reglas comunes a todos: `git push` siempre pide confirmación, los parámetros provisionales se marcan como tales y nadie desactiva pruebas para conseguir verde.
 
+**Tres modelos por agente:** cada agente tiene un principal y tres alternativos en `tools/modelos_agentes.json` (fuente única de verdad). Si un modelo agota su ventana o se retira un gratuito, se rota con `python tools/cambiar_modelo.py --rotar <agente>` y se **relanza la tarea**: OpenCode V2 no reintenta la petición fallida con el modelo nuevo. `--estado`, `--validar` y `--restaurar` completan el mecanismo. Precios, franjas y procedimiento en `FALLBACK_MODELS.md`. Decisión en `adr/0020-tres-modelos-por-agente.md`.
+
 ## Reparto de dominios entre agentes parecidos
 
 - **ingeniero-godot** frente a **gameplay**: el ingeniero implementa; gameplay diseña y propone. Si una discusión es «¿cómo debe sentirse esto?», es gameplay; si es «¿cómo se escribe esto en Godot?», es el ingeniero.

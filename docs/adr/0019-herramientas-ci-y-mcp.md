@@ -123,13 +123,21 @@ cuesta nada.
 
 - `python` debe estar en el PATH para el formatter y los scripts; en este clon
   está en `C:\Users\usuario\opencode_projects\python\`. En CI se usa `python3`.
-- Las pruebas de CI no se han ejecutado todavía en GitHub: los workflows están
-  en la rama sin fusionar. La suite local de 311 pruebas está en curso.
+- Ejecutado ya: la suite local de 311 pruebas pasa al completo en Windows
+  (22 min 28 s, 0 fallos). El primer run de `pruebas.yml` en Linux ejecutó
+  311/311 con **3 fallos** de estado global entre suites; se corrigieron con
+  `before_test()` en tres ficheros de pruebas, sin debilitar ningún `assert`.
+  Queda un segundo run que lo confirme antes de fusionar.
 - 64 avisos de líneas largas siguen pendientes; son deuda anterior y no
   bloquean. No se reescribieron para no mezclar cambios de formato con lógica.
-- Los workflows no se han validado con un parseador YAML automático en este
-  entorno (sin Node ni Python con PyYAML): se revisaron a mano. La primera
-  ejecución en Actions será la validación real.
+- Ambos workflows se validaron con un parser YAML real (PyYAML instalado solo
+  en el entorno de desarrollo, no en el repo) y GitHub registró `pruebas.yml`
+  al ejecutarlo. `exportar.yml` solo se registra al estar en `main`: su primera
+  ejecución será tras la fusión. La exportación local equivalente ya se probó
+  (`bug_de_familia.exe` de 109 MB y `.pck` de 20 MB).
+- Generadas capturas y vídeo reales de la zona beta con `tools/captura_partida.gd`
+  sobre la gráfica del director (26 PNG + MP4), para acreditar que el entorno
+  puede producirlas. No se integran en el juego.
 - Las herramientas locales no forman parte del juego exportado: los presets
   excluyen `addons/`, `tests/`, `tools/` y `docs/`.
 

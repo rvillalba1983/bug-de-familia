@@ -20,6 +20,11 @@ func _start(route_seed: int = 7) -> void:
 	Engine.time_scale = SPEED
 
 
+func before_test() -> void:
+	InputBindings.install()
+	get_tree().paused = false
+
+
 func after_test() -> void:
 	Engine.time_scale = 1.0
 	BetaZone.forced_hour = -1

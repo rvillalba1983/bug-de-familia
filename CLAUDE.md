@@ -35,6 +35,7 @@ Comprobaciones deterministas antes de commitear: `tools/verificar.py`. En OpenCo
 - Franja punta: solo el DeepSeek de Go (respaldo de qa), de lunes a viernes en 02:00-05:00 y 07:00-11:00, hora española de invierno.
 - `.opencode/_disabled/model-fallback` sigue desactivado a propósito (hook inexistente en V2). No lo reactives.
 - Comprobación rápida: `opencode run` debe mostrar `big-pickle` en la cabecera. Si falla por cuota o retirada (429/402/404), pega el error literal y aplica `FALLBACK_MODELS.md`.
+- **Tres modelos por agente:** la fuente única es `tools/modelos_agentes.json`. Si un modelo agota su límite, ejecuta `python tools/cambiar_modelo.py --rotar <agente>` y **relanza la tarea**: V2 no reintenta la petición fallida con el modelo nuevo. `--validar` comprueba la sincronización. Decisión: `docs/adr/0020-tres-modelos-por-agente.md`.
 
 ## Una fase por conversación
 - Cada fase del plan se hace en una conversación propia, que termina al fusionar esa fase en `main`.

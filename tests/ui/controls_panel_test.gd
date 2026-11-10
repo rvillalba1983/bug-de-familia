@@ -1,6 +1,11 @@
 extends GdUnitTestSuite
 
 
+func before_test() -> void:
+	InputBindings.install()
+	get_tree().paused = false
+
+
 func _panel() -> ControlsPanel:
 	var pause: TacticalPause = auto_free(TacticalPause.new())
 	add_child(pause)

@@ -66,6 +66,7 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 - El plugin `.opencode/_disabled/model-fallback` está desactivado a propósito: usaba un hook inexistente en V2 y no puede cambiar de proveedor. No lo reactives.
 - La cadena `openrouter/auto` global (`~/.config/opencode/opencode.json`) sigue existiendo para otros proyectos; este repo no la usa.
 - Comprobación rápida: `opencode run` debe mostrar `big-pickle` en la cabecera de la respuesta. Si falla por cuota o retirada (429/402/404), pega el error literal y aplica `FALLBACK_MODELS.md`.
+- **Tres modelos por agente:** la fuente única es `tools/modelos_agentes.json`. Si un modelo agota su límite, ejecuta `python tools/cambiar_modelo.py --rotar <agente>` y **relanza la tarea**: V2 no reintenta la petición fallida con el modelo nuevo. `--validar` comprueba la sincronización. Decisión: `docs/adr/0020-tres-modelos-por-agente.md`.
 
 ## Este clon (Windows)
 

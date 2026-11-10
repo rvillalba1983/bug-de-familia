@@ -25,7 +25,7 @@ Decisiones del director del 10-nov. Faltan por implementar, salvo la de IRCap, y
 |---|---|---|---|
 | P-14 | **Decidido el 10-nov.** Límite duro al reparto de un rumor: tope de personajes que cruzan el mapa por un rumor, por zona y tiempo; el resto se entera con retraso. Complementa la decisión de la fase 7; los valores serán provisionales | Reparto de rumores | Post-beta |
 | P-23 | **Decidido el 10-nov.** Catálogos de objetos graciosos convertibles propuestos por OpenCode en lotes; el director tacha o aprueba, igual que en P-09 | Implementar en la post-beta | Post-beta |
-| P-25 | **Decidido el 10-nov.** Animación por arma y acción con fotogramas dibujados y optimizados para Godot, dentro del atlas SVG→PNG del pipeline actual (`36_pipeline_graficos.md`). Las plantillas de piezas las genera OpenCode | Implementar en la post-beta | Post-beta |
+| P-25 | **Decidido el 10-nov y validado por el director el 10-nov.** Animación por arma y acción con fotogramas dibujados y optimizados para Godot, dentro del atlas SVG→PNG del pipeline actual (`36_pipeline_graficos.md`). El director vio las seis plantillas de mohócrata (2 variantes × frente/perfil/espalda) y **aprobó esa forma de hacer plantillas**: SVG por código con la paleta «Cuñado Radiactivo» y el rig actual, sin generador de imágenes de pago | Implementar en la post-beta | Post-beta |
 | P-27 | **Decidido el 10-nov.** Son «muertes bestiales» exageradas, gamberras y chocantes (no «muertes de bestias»). Catálogo por lotes, revisado y aprobado por el director, como en P-09 | Implementar en la post-beta | Post-beta |
 | P-34 | **Decidido el 10-nov.** El duelo (pena y alegría junto a los muertos) dura unos 20 segundos reales, suficiente para verlo al pasar cerca | Implementar en la post-beta | Post-beta |
 | P-35 | **Decidido el 10-nov.** Al agotarse las repeticiones de una pregunta, la pregunta desaparece; si se insiste por otra vía, enfado (y pelea si sigue) | Implementar en la post-beta | Post-beta |
@@ -34,6 +34,9 @@ Decisiones del director del 10-nov. Faltan por implementar, salvo la de IRCap, y
 | — | **Decidido el 10-nov.** Viaje rápido: además de los puntos pisados, se puede viajar a puntos oídos por rumores. Durante la carga de la zona nueva se muestran las IAs «fantasma», como en la pausa táctica (P-26). Queda por definir si el tiempo del mundo avanza durante el viaje | Definir el tiempo del mundo | Post-beta |
 | — | **Decidido el 10-nov.** Tamaño de personajes: NPCs de tamaño variable entre el 30 % y el 80 %, para simular adultos y niños. Sustituye el 50 % uniforme actual (provisional) | Implementar, revisar jugando | Post-beta |
 | — | **Decidido el 10-nov.** Orden de la post-beta: primero infraestructura (gestor multi-zona, tres niveles de simulación, viaje entre puntos de guardado) y luego contenido. El mapa del mundo del director es prerrequisito | Fijar la fase tras las pruebas finales | Post-beta |
+| — | **Decidido el 10-nov.** El mapa del mundo se hará **como el actual de la beta** (mismo sistema, no uno nuevo). Quedan por definir en una fase posterior, en otra conversación: **qué zonas, cuántas y de qué tamaño**. No se define en esta sesión | Definir zonas, número y tamaño | Fase posterior a esta sesión |
+| — | **Confirmado por el director el 10-nov.** Copilot Free: el director cree haber dado ya todo el acceso posible en la configuración de GitHub. Sin verificación adicional desde el repositorio | Comprobarlo al usarlo, si hace falta | No bloquea |
+| — | **Decidido el 10-nov.** Tres modelos por agente (principal + 3 alternativos) con rotación determinista. Ver `adr/0020-tres-modelos-por-agente.md` | Relanzar la tarea tras rotar | Ya aplicado |
 
 ## Resueltos en la revisión de código
 P-24: ver `adr/0016-revision-codigo.md`.

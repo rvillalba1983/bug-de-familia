@@ -1,0 +1,105 @@
+{
+  "_nota": "Fuente unica de verdad de los modelos de los agentes. Un principal y TRES alternativos por agente, en orden de preferencia. tools/cambiar_modelo.py valida y rota; FALLBACK_MODELS.md documenta precios y franjas. No editar a mano sin actualizar los tres sitios.",
+  "_actualizado": "10-nov-2026",
+  "agentes": {
+    "por_defecto": {
+      "config_en": "raiz de opencode.jsonc (model)",
+      "cadena": [
+        "opencode/big-pickle",
+        "opencode-go/kimi-k2.7-code",
+        "opencode/iceman-free",
+        "opencode/glm-5.3-flash-free"
+      ]
+    },
+    "explore": {
+      "config_en": "agents.explore.model",
+      "cadena": [
+        "opencode/big-pickle",
+        "opencode-go/gpt-6-luna",
+        "opencode/beam-free",
+        "opencode/glm-5.3-flash-free"
+      ]
+    },
+    "arquitecto": {
+      "config_en": "agents.arquitecto.model",
+      "cadena": [
+        "opencode-go/glm-5.3",
+        "opencode/big-pickle",
+        "opencode-go/kimi-k2.7-code",
+        "opencode/glm-5.3-flash-free"
+      ]
+    },
+    "ingeniero-godot": {
+      "config_en": "agents.ingeniero-godot.model",
+      "cadena": [
+        "opencode-go/kimi-k2.7-code",
+        "opencode/big-pickle",
+        "opencode-go/glm-5.3",
+        "opencode/glm-5.3-flash-free"
+      ]
+    },
+    "gameplay": {
+      "config_en": "agents.gameplay.model",
+      "cadena": [
+        "opencode-go/qwen3.7-plus",
+        "opencode/big-pickle",
+        "opencode-go/minimax-m3",
+        "opencode/glm-5.3-flash-free"
+      ]
+    },
+    "qa": {
+      "config_en": "agents.qa.model",
+      "cadena": [
+        "opencode/deepseek-v4.1-flash-free",
+        "opencode-go/deepseek-v4.1-flash",
+        "opencode/big-pickle",
+        "opencode/beam-free"
+      ]
+    },
+    "documentacion": {
+      "config_en": "agents.documentacion.model",
+      "cadena": [
+        "opencode/glm-5.3-flash-free",
+        "opencode-go/glm-5.3-flash",
+        "opencode/big-pickle",
+        "opencode-go/gpt-6-luna"
+      ]
+    },
+    "datos": {
+      "config_en": "agents.datos.model",
+      "cadena": [
+        "opencode-go/minimax-m3",
+        "opencode/big-pickle",
+        "opencode-go/glm-5.3-flash",
+        "opencode/glm-5.3-flash-free"
+      ]
+    },
+    "arte": {
+      "config_en": "agents.arte.model",
+      "cadena": [
+        "opencode-go/qwen3.8-flash",
+        "opencode-go/qwen3.7-plus",
+        "opencode/big-pickle",
+        "opencode/glm-5.3-flash-free"
+      ]
+    },
+    "audio": {
+      "config_en": "agents.audio.model",
+      "cadena": [
+        "opencode-go/glm-5.3-flash",
+        "opencode/glm-5.3-flash-free",
+        "opencode/big-pickle",
+        "opencode/beam-free"
+      ]
+    },
+    "medidor": {
+      "config_en": "agents.medidor.model",
+      "cadena": [
+        "opencode-go/glm-5.3-flash",
+        "opencode/glm-5.3-flash-free",
+        "opencode-go/gpt-6-luna",
+        "opencode/beam-free"
+      ]
+    }
+  }
+}

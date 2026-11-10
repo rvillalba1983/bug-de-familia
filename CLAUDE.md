@@ -25,6 +25,11 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 - No subas código ni recursos a servicios externos sin autorización.
 - Registra origen y herramienta de cada recurso generado.
 
+## Modelo
+- Todos los `model` de `opencode.jsonc` son `openrouter/auto`: una cadena de tres modelos gratuitos definida en `~/.config/opencode/opencode.json`. No la cambies por modelos de otro proveedor.
+- `.opencode/_disabled/model-fallback` está desactivado a propósito (hook inexistente en V2 y sin cambio de proveedor posible). No lo reactives.
+- Comprobación rápida: `opencode run` debe mostrar `auto` en la cabecera. Si falla por cuota (429/402), pega el error y espera; no cambies de modelo a mano.
+
 ## Una fase por conversación
 - Cada fase del plan se hace en una conversación propia, que termina al fusionar esa fase en `main`.
 - Al empezar, lee también `docs/03_ESTADO.md`: indica por dónde vamos y cómo preparar el entorno.

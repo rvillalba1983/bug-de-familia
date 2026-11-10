@@ -2,6 +2,8 @@ class_name RumorEngine
 extends RefCounted
 ## Testigos, transmisión y deformación de lo ocurrido. Rumores de 4 minutos (P-14).
 
+var _told_counts: Dictionary = {}
+
 ## Duración decidida por el director; el resto de valores son provisionales.
 const WINDOW: float = 7.0
 const TALK_RANGE: float = 130.0
@@ -13,6 +15,8 @@ const COLLECTIVE_SHARE: float = 0.5
 const FORGET_STEP: float = 1.0
 const LASTING_IMPORTANCE: float = 70.0
 const MAX_VERSIONS: int = 3
+## Límite duro provisional al reparto de un rumor (P-14): tope de personajes que lo propagan por evento.
+const MAX_TELLERS_PER_EVENT: int = 6
 const BELIEF_LIFETIME: float = 1800.0
 const LASTING_BELIEF: float = 30.0
 
@@ -63,8 +67,11 @@ func step(sim: WorldSim) -> void:
 			if hearer.pos.distance_to(teller.pos) > TALK_RANGE:
 				continue
 			if not hearer.beliefs.has(str(news)):
+				if int(_told_counts.get(news, 0)) >= MAX_TELLERS_PER_EVENT:
+					break
 				if sim.rng.randf() < TELL_CHANCE * teller.trait_value("sociabilidad") / 50.0:
 					tell(sim, teller, hearer, news)
+					_told_counts[news] = int(_told_counts.get(news, 0)) + 1
 				break
 			_compare_versions(teller, hearer, news)
 

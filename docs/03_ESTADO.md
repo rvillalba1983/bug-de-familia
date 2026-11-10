@@ -15,7 +15,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | Optimización en gráfica integrada | Fusionada en `main` el 9-nov con aprobación del director. 308 pruebas pasan. Ver `adr/0017-optimizacion-integrada.md` |
 | Pruebas finales de la beta y dudas | Fusionada en `main` el 9-nov con aprobación del director. 311 pruebas pasan. Las pruebas del director en Windows siguen pendientes: hará lista de lo raro durante la semana |
 | Configuración de OpenCode, herramientas y CI | **Fusionada en `main` el 10-nov con aprobación del director.** Equipo de 10 agentes con tres modelos cada uno, entorno local gratuito, scripts deterministas, formatter propio y GitHub Actions (pruebas + exportación). 311 pruebas en verde en Windows y en el CI de Linux. Ver `adr/0018-agentes-y-modelos.md`, `adr/0019-herramientas-ci-y-mcp.md` y `adr/0020-tres-modelos-por-agente.md`. Queda P-39 (fallo intermitente preexistente) para la post-beta |
-| Post-beta. Mundo completo | Tras la fase de pruebas finales: otras cuatro razas, 13 progenitores, zonas nuevas, tres niveles de simulación y viaje entre puntos de guardado. Requiere el mapa del mundo del director; su definición se hará en otra conversación |
+| Post-beta (mejoras gráficas/UI/audio/sim) | Fusionada en `main` el 10-nov (provisional). Implementado: P-36 (maximizado), P-38 (centrado conversión), P-26 (fantasmas en conversión), P-33 (destello en chat), P-14 (límite rumores), P-23/P-27/P-09 (lotes propuestos). Pendiente: P-25, P-28, P-29 (timbres), P-31, P-39. Ver borradores/P-23_P-27_P-09_lotes.md |
 
 ## Pendiente de respuesta del usuario (no bloquea)
 - Textos provisionales del caso y de las IAs.
@@ -118,6 +118,9 @@ Trabajo de la fase acordada para P-1, P-2, P-3, P-4, P-5, P-6, P-10 y P-15 (P-16
 - **P-1/P-39:** en `tools/beta_walker.gd` y `tests/flows/beta_routes_test.gd` se fijó/aisló estado y se añadió diagnóstico; además, durante las rutas se desactivan sucesos aleatorios del mundo (`EventSystem.timer` alto y colas vacías) para evitar muertes ajenas al recorrido por no determinismo de cadencia (posible causa de la intermitencia en Linux, run `42858970637`), sin relajar aserciones. Se corrigió el parseo de la prueba y se preserva `WorldCalendar.forced_local_unix` cuando un caso lo fuerza (fiesta). **Ejecutado en Windows:** `res://tests/flows/beta_routes_test.gd` con estabilización aplicada: rutas sigilo, palabra y fuerza (la intermitente en CI) y los casos de misión/fiesta/otra semilla pasaron en la ejecución final (6/6) tras corregir el manejo del día forzado. **No ejecutado:** confirmación determinista en Linux (10-20 repeticiones) ni identificación/reproducción del caído original si reaparece; P-39 sigue abierto para cierre definitivo.
 
 **Pruebas ejecutadas (Windows, Godot 4.7.2 headless):** `tests/simulation/rumor_test.gd` 7/7, `tests/investigation` 9/9, `tests/simulation` 27/27, `tests/beta/group_diversion_test.gd` 2/2, `tests/beta/beta_robustness_test.gd` 11/11, `tests/beta/beta_zone_test.gd` 31/31, `tests/beta/music_test.gd` 5/5, `tests/beta/fight_groups_test.gd` 5/5, `tests/beta/battle_test.gd` 6/6, `tests/flows/input_flows_test.gd` 13/13, `tests/flows/beta_routes_test.gd` 6/6 (ejecución final, con estabilización y corrección de día forzado). `python tools/verificar.py`: OK. **No ejecutado:** suite completa en esta sesión tras todos los cambios, medición en gráfica real, ni validación manual en partida.
+
+## P-40 (fusionado en `main`)
+- Grupos desviados al hablar con ellos ahora siguen la ruta de `NavGrid` (sin atravesar edificios): `scenes/beta/beta_challenges.gd`. Prueba: `tests/beta/group_diversion_test.gd` 2/2. Otros movimientos ordenados (habitantes/guardias) ya usaban `nav` y no se vieron afectados.
 
 ## Preparar el entorno en una conversación nueva
 

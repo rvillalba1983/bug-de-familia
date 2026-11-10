@@ -7,10 +7,10 @@ extends CanvasLayer
 const BACKDROP_SHADER: Shader = preload("res://conversion/conversion_backdrop.gdshader")
 const VIEW_SIZE: Vector2 = Vector2(1920.0, 1080.0)
 const PANEL_HALF_WIDTH: float = 540.0
-const PANEL_MARGIN: float = 34.0
+const PANEL_MARGIN: float = 180.0
 const FADE_TIME: float = 0.18
 const TAUNT_WIDTH: float = 1080.0
-const TAUNT_TOP: float = 60.0
+const TAUNT_TOP: float = 240.0
 const TAUNT_FONT_SIZE: int = 38
 const REMARK_FONT_SIZE: int = 30
 const TWO_COLUMNS_FROM: int = 5
@@ -39,6 +39,8 @@ var _taunt: PanelContainer
 var _panel_style: StyleBoxFlat
 var _shake: float = 0.0
 var _theme: Theme
+var _spectres_team: AiTeam = null
+var _spectres: AiSpectres = null
 
 
 func _init() -> void:
@@ -172,6 +174,8 @@ func set_time_fraction(fraction: float) -> void:
 
 
 func close() -> void:
+	if _spectres != null:
+		_spectres.set_shown(false)
 	visible = false
 	_clear()
 	if _backdrop != null:
@@ -192,6 +196,9 @@ func _ensure_backdrop() -> void:
 	add_child(_backdrop)
 	move_child(_backdrop, 0)
 
+
+func set_spectres_team(team: AiTeam) -> void:
+	_spectres_team = team
 
 func _reset(title: String) -> void:
 	_clear()
@@ -224,6 +231,12 @@ func _reset(title: String) -> void:
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	heading.add_theme_font_size_override(&"font_size", 30)
 	header.add_child(heading)
+	if _spectres_team != null:
+		if _spectres == null:
+			_spectres = AiSpectres.new()
+			_spectres.team = _spectres_team
+			add_child(_spectres)
+		_spectres.set_shown(true)
 
 
 func _add_timer() -> void:

@@ -52,6 +52,7 @@ var _mono: SystemFont
 var _last_active: Array = []
 var _refresh: float = 0.0
 var _lines: Array[String] = []
+var _flash: float = 0.0
 
 
 func _ready() -> void:
@@ -91,6 +92,7 @@ func _process(delta: float) -> void:
 	if _refresh <= 0.0 and team != null:
 		_refresh = REFRESH
 		_update_users()
+	_flash = maxf(_flash - delta * 2.0, 0.0)
 
 
 func _draw() -> void:
@@ -109,6 +111,9 @@ func _draw() -> void:
 	)
 	draw_rect(topic, COLOR_TOPIC)
 	draw_rect(_body_rect(), COLOR_BACK)
+	if _flash > 0.0:
+		var overlay: Color = Color(1.0, 1.0, 1.0, _flash * 0.35)
+		draw_rect(_body_rect(), overlay)
 
 
 func _draw_tabs() -> void:
@@ -151,6 +156,8 @@ func add_message(id: String, text: String) -> void:
 	_append("%s [color=%s]%s [lb]@%s][/color] %s" % [
 		DECOR, color, _safe(str(info["face"])), _safe(str(info["name"])), _styled(id, _safe(text))
 	])
+	if not GameSettings.reduce_motion:
+		_flash = 0.6
 
 
 ## Cada IA escribe a su manera; sin movimiento si el jugador lo ha pedido.

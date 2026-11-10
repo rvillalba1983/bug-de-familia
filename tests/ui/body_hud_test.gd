@@ -46,4 +46,3 @@ func test_el_lateral_tiene_un_solo_ancho() -> void:
 
 func test_la_informacion_cubre_todas_las_zonas() -> void:
 	assert_int(BodyHud.ROWS.size()).is_equal(ModularBody.Slot.size())
-

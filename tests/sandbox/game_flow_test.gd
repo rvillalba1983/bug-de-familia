@@ -130,4 +130,3 @@ func test_sin_repuestos_no_se_abre_nada() -> void:
 	body.damage(ModularBody.Slot.ARM_EXTRA_LEFT, BodyPiece.MAX_DURABILITY)
 	assert_bool(sandbox.panel.is_open).is_false()
 	assert_object(body.equipped(ModularBody.Slot.ARM_EXTRA_LEFT)).is_null()
-

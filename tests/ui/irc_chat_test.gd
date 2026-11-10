@@ -28,4 +28,3 @@ func test_la_lista_marca_activas_y_quita_perdidas() -> void:
 	assert_int(rows.size()).is_equal(ids.size() - 1)
 	assert_str(rows[0]).contains("@")
 	assert_str(rows[1]).contains("+")
-

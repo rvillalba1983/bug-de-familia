@@ -14,7 +14,8 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | Revisión de código, pruebas y rendimiento (P-24) | Fusionada en `main` el 9-nov con aprobación del director. 293 pruebas pasan. Ver `adr/0016-revision-codigo.md` |
 | Optimización en gráfica integrada | Fusionada en `main` el 9-nov con aprobación del director. 308 pruebas pasan. Ver `adr/0017-optimizacion-integrada.md` |
 | Pruebas finales de la beta y dudas | Fusionada en `main` el 9-nov con aprobación del director. 311 pruebas pasan. Las pruebas del director en Windows siguen pendientes: hará lista de lo raro durante la semana |
-| Post-beta. Mundo completo | Tras la fase de pruebas finales: otras cuatro razas, 13 progenitores, zonas nuevas, tres niveles de simulación y viaje entre puntos de guardado |
+| Configuración de OpenCode, herramientas y CI | **Fusionada en `main` el 10-nov con aprobación del director.** Equipo de 10 agentes con tres modelos cada uno, entorno local gratuito, scripts deterministas, formatter propio y GitHub Actions (pruebas + exportación). 311 pruebas en verde en Windows y en el CI de Linux. Ver `adr/0018-agentes-y-modelos.md`, `adr/0019-herramientas-ci-y-mcp.md` y `adr/0020-tres-modelos-por-agente.md`. Queda P-39 (fallo intermitente preexistente) para la post-beta |
+| Post-beta. Mundo completo | Tras la fase de pruebas finales: otras cuatro razas, 13 progenitores, zonas nuevas, tres niveles de simulación y viaje entre puntos de guardado. Requiere el mapa del mundo del director; su definición se hará en otra conversación |
 
 ## Pendiente de respuesta del usuario (no bloquea)
 - Textos provisionales del caso y de las IAs.
@@ -81,7 +82,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 - Herramientas: `tools/seguir_personajes.gd`, `tools/probar_pendientes.gd` y `tools/probar_desvio.gd`.
 - Preguntas abiertas de la post-beta: P-23, P-25 a P-31, mapa, orden de razas, guardar batallas, rendimiento objetivo y textos provisionales.
 
-## Herramientas y CI (rama de configuración, pendiente de fusión)
+## Herramientas y CI (fusionado en `main` el 10-nov)
 
 - Entorno local gratuito en `opencode_projects`: Godot 4.7.2, Python 3.12.10, ffmpeg, Inkscape 1.4.4 y plantillas de exportación; todos en el PATH de usuario. Audacity ya estaba instalado.
 - Scripts deterministas: `tools/verificar.py` (entrada única), `tools/validar_datos.py` (46 comprobaciones), `tools/formatear.py`, `tools/comparar_medicion.py`. Estado hoy: 0 errores en datos y en 255 archivos de texto; 64 avisos de líneas largas, deuda anterior.

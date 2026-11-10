@@ -1,6 +1,6 @@
 # ADR 0018: equipo de agentes y modelos con OpenCode Go
 
-Estado: aprobado por el director el 10-nov. La cuenta y la suscripción Go están activas y validadas con peticiones reales. Pendiente de fusión en `main`.
+Estado: aprobado por el director el 10-nov y fusionado en `main` el 10-nov. La cuenta y la suscripción Go están activas y validadas con peticiones reales. La rotación de modelos se completó en `adr/0020-tres-modelos-por-agente.md`.
 
 ## Problema
 

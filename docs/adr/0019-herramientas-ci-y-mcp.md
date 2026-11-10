@@ -1,7 +1,7 @@
 # ADR 0019: herramientas locales, CI y estudio de MCP, formatters y LSP
 
-Estado: aplicación aprobada como decisión técnica el 10-nov. En la rama
-`feature/configuracion-opencode-agentes`, pendiente de fusión en `main`.
+Estado: aplicación aprobada como decisión técnica el 10-nov y fusionada en
+`main` el 10-nov con aprobación del director.
 
 ## Problema
 

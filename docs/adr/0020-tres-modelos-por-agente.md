@@ -1,7 +1,7 @@
 # ADR 0020: tres modelos por agente y rotación determinista
 
-Estado: decidido por el director el 10-nov y aplicado en la rama
-`feature/configuracion-opencode-agentes`, pendiente de fusión en `main`.
+Estado: decidido por el director el 10-nov, aplicado y fusionado en `main`
+el 10-nov con aprobación del director.
 
 ## Problema
 

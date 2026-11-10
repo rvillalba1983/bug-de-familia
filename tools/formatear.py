@@ -28,8 +28,7 @@ EXTENSIONES = {
 	".tscn", ".tres", ".md", ".txt", ".gdshader", ".sh",
 }
 EXCLUIR = {
-	".git", ".godot", "addons", "art", "audio", "build", "export",
-	"reports", ".opencode",
+	".git", ".godot", "addons", "art", "audio", "build", "export", "reports",
 }
 AVISAR_ESPACIOS = {
 	".gd", ".py", ".json", ".jsonc", ".yml", ".yaml", ".csv", ".cfg",
@@ -92,7 +91,9 @@ def recorrer() -> list[Path]:
 	"""Archivos de texto del repo, sin depender de git (no esta en este PATH)."""
 	archivos: list[Path] = []
 	for directorio, subdirs, nombres in os.walk(RAIZ):
-		subdirs[:] = [d for d in subdirs if d not in EXCLUIR and not d.startswith(".")]
+		# .github se revisa: los workflows tambien deben cumplir las normas.
+		subdirs[:] = [d for d in subdirs
+					  if d not in EXCLUIR and (not d.startswith(".") or d == ".github")]
 		for nombre in nombres:
 			ruta = Path(directorio) / nombre
 			if ruta.suffix.lower() in EXTENSIONES:

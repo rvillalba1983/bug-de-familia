@@ -126,8 +126,22 @@ cuesta nada.
 - Ejecutado ya: la suite local de 311 pruebas pasa al completo en Windows
   (22 min 28 s, 0 fallos). El primer run de `pruebas.yml` en Linux ejecutó
   311/311 con **3 fallos** de estado global entre suites; se corrigieron con
-  `before_test()` en tres ficheros de pruebas, sin debilitar ningún `assert`.
-  Queda un segundo run que lo confirme antes de fusionar.
+  `before_test()` en tres ficheros de pruebas, sin debilitar ningún `assert`
+  (24/24 en esas tres suites, verificado en local).
+- El segundo run parecía rojo pero la API de GitHub lo da como **`cancelled`**,
+  no `failure`: fue cancelado a los 7 min 12 s por un push nuestro, porque el
+  workflow tiene `cancel-in-progress: true`. No había ni un `FAILED` ni
+  `Overall Summary`; el `cat pruebas.log` nunca llegó a ejecutarse. Se comprobó
+  contra la API (`run_started_at`, `updated_at`, `head_sha` de los runs) con
+  un subagente de solo lectura. Quedan sin verificar en Linux los 3 arreglos y
+  el tiempo real de la suite corregida: hace falta un run completo.
+- Ajustes aplicados en `pruebas.yml` tras ese diagnóstico: `paths-ignore` para
+  commits que solo tocan documentación, `pull_request` limitado a
+  `opened/reopened/ready_for_review` para no duplicar cada push con un run de
+  PR, `timeout -k 30 1200` y `timeout-minutes: 30` para que el límite del job
+  no enmascare el código 124 del timeout, y una nota de procedimiento: **no
+  empujar mientras el run de verificación esté en curso**. Con la PR abierta
+  cada push costaba ~16 min (dos runs); estos cambios lo dejan en ~8 min.
 - 64 avisos de líneas largas siguen pendientes; son deuda anterior y no
   bloquean. No se reescribieron para no mezclar cambios de formato con lógica.
 - Ambos workflows se validaron con un parser YAML real (PyYAML instalado solo

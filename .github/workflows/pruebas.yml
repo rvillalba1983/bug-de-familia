@@ -3,8 +3,14 @@ name: Pruebas
 on:
   push:
     branches: ['**']
+    # Un commit que solo toca documentacion no valida codigo: ahorra ~8 min/run.
+    paths-ignore: ['docs/**', '*.md']
   pull_request:
+    # El push ya cubre cada commit de la rama; evitar el run duplicado por synchronize.
+    types: [opened, reopened, ready_for_review]
 
+# No empujar mientras el run de verificacion este en curso: con
+# cancel-in-progress, un push nuevo cancela la validacion anterior (10-nov).
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -12,7 +18,8 @@ concurrency:
 jobs:
   pruebas:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # Importar (5) + pruebas (20) + margen: el job no debe tapar el codigo 124.
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
@@ -49,15 +56,16 @@ jobs:
         id: pruebas
         run: |
           set +e
-          timeout 900 godot --headless -s -d \
+          # -k 30 mata el proceso si ignora TERM; 1200 s de margen para la suite completa.
+          timeout -k 30 1200 godot --headless -s -d \
             res://addons/gdUnit4/bin/GdUnitCmdTool.gd \
             --ignoreHeadlessMode -a res://tests -c \
             </dev/null > pruebas.log 2>&1
           EXIT_CODE=$?
           set -e
           cat pruebas.log
-          if [ "$EXIT_CODE" -eq 124 ]; then
-            echo "::error::Las pruebas excedieron el tiempo límite de 900 segundos (posible prompt debug>)"
+          if [ "$EXIT_CODE" -eq 124 ] || [ "$EXIT_CODE" -eq 137 ]; then
+            echo "::error::Las pruebas excedieron el tiempo límite de 1200 segundos (posible prompt debug>)"
             exit 1
           fi
           if [ "$EXIT_CODE" -ne 0 ]; then

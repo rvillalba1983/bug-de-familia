@@ -11,13 +11,29 @@ var walker: BetaWalker
 
 
 func _start(route_seed: int = 7) -> void:
+	var forced_day: int = WorldCalendar.forced_local_unix
 	TestSupport.reset_session()
 	Sandbox.forced_seed = route_seed
 	BetaZone.forced_hour = 12
+	WorldCalendar.forced_local_unix = forced_day
+	BattleDirector.auto_start = true
+	Engine.time_scale = SPEED
+	get_tree().paused = false
 	zone = scene_runner(PATH).scene()
 	await await_millis(300)
+	_stabilize_for_routes()
 	walker = BetaWalker.new(get_tree(), zone)
-	Engine.time_scale = SPEED
+
+
+## Las rutas no dependen de sucesos aleatorios del mundo; se desactivan para evitar
+## muertes ajenas al recorrido (P-39, intermitencia por cadencia en Linux).
+func _stabilize_for_routes() -> void:
+	if zone.live_world == null or zone.live_world.sim == null:
+		return
+	var events: EventSystem = zone.live_world.sim.events
+	events.timer = 1e9
+	events.staged.clear()
+	events.pending.clear()
 
 
 func before_test() -> void:
@@ -33,11 +49,29 @@ func after_test() -> void:
 	get_tree().paused = false
 
 
+func _dump_route() -> void:
+	print("=== WALKER LOG (%d) ===" % walker.log_lines.size())
+	for line: String in walker.log_lines:
+		print(line)
+	print("=== FALLEN ===")
+	print(zone.fallen_ids)
+	print("player_dead=%s challenges=%s" % [str(zone.player.body.is_dead), str(walker.completed_challenges())])
+
+
 func _assert_all_challenges_without_killing() -> void:
-	assert_array(walker.completed_challenges()).contains_exactly_in_any_order(BetaChallenges.ALL_CHALLENGES)
+	var no_llega: bool = walker.log_lines.any(
+		func(l: String) -> bool: return l.begins_with("NO LLEGA")
+	)
+	var ok: bool = walker.completed_challenges().size() == BetaChallenges.ALL_CHALLENGES.size() \
+		and not zone.player.body.is_dead and zone.fallen_ids.is_empty() and not no_llega
+	if not ok:
+		_dump_route()
+	assert_array(walker.completed_challenges()).contains_exactly_in_any_order(
+		BetaChallenges.ALL_CHALLENGES
+	)
 	assert_bool(zone.player.body.is_dead).is_false()
 	assert_int(zone.fallen_ids.size()).is_equal(0)
-	assert_bool(walker.log_lines.any(func(l: String) -> bool: return l.begins_with("NO LLEGA"))).is_false()
+	assert_bool(no_llega).is_false()
 
 
 func test_ruta_sigilo_completa_los_cuatro_retos(timeout: int = ROUTE_TIMEOUT) -> void:
@@ -77,5 +111,10 @@ func test_reventar_una_fiesta_con_ruido_la_arruina(timeout: int = ROUTE_TIMEOUT)
 func test_otra_semilla_tambien_se_completa_por_sigilo(timeout: int = ROUTE_TIMEOUT) -> void:
 	await _start(21)
 	await walker.run("sigilo")
-	assert_array(walker.completed_challenges()).contains_exactly_in_any_order(BetaChallenges.ALL_CHALLENGES)
+	if walker.completed_challenges().size() != BetaChallenges.ALL_CHALLENGES.size() \
+			or zone.player.body.is_dead:
+		_dump_route()
+	assert_array(walker.completed_challenges()).contains_exactly_in_any_order(
+		BetaChallenges.ALL_CHALLENGES
+	)
 	assert_bool(zone.player.body.is_dead).is_false()

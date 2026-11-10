@@ -23,6 +23,8 @@ var art_views: Array[Texture2D] = []
 ## Carpeta base de piezas con huesos; vacía si este personaje no las tiene.
 var rig_folder: String = ""
 var body_color: Color = Color.TRANSPARENT
+## Escala visual individual (solo habitantes); no altera colisiones ni alcances.
+var individual_scale: float = 1.0
 ## Esqueleto de la vista actual. Hay uno por vista y se crean al necesitarlos.
 var rig: EnemyRig
 ## Padre de los esqueletos, en los pies: deforma y destella a todos a la vez.
@@ -97,7 +99,7 @@ func _draw_windup() -> void:
 func _draw_health() -> void:
 	if _guard.health >= Guard.MAX_HEALTH:
 		return
-	var bar: Rect2 = Rect2(-24.0, -Guard.BODY_HEIGHT * CharacterScale.value - 16.0, 48.0, 6.0)
+	var bar: Rect2 = Rect2(-24.0, -Guard.BODY_HEIGHT * CharacterScale.value * individual_scale - 16.0, 48.0, 6.0)
 	_guard.draw_rect(bar, Color(0.0, 0.0, 0.0, 0.6))
 	bar.size.x *= _guard.health / Guard.MAX_HEALTH
 	_guard.draw_rect(bar, COLOR_ALERT)
@@ -154,12 +156,12 @@ func _draw_placeholder() -> void:
 		color = body_color
 	if _guard.state == Guard.State.ALERT:
 		color = COLOR_ALERT
-	var body_height: float = Guard.BODY_HEIGHT * CharacterScale.value
+	var body_height: float = Guard.BODY_HEIGHT * CharacterScale.value * individual_scale
 	CircleDot.draw(_guard, Vector2(0.0, -body_height * 0.5), body_height * 0.42, color)
 
 
 func _art_height() -> float:
-	return ART_HEIGHT * CharacterScale.value
+	return ART_HEIGHT * CharacterScale.value * individual_scale
 
 
 func _ensure_rig_root() -> Node2D:

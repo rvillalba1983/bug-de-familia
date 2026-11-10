@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Genera por código la música y las voces de Bug de Familia. Sin servicios externos ni muestras.
+"""Genera por código la música, las voces y los efectos de Bug de Familia. Sin servicios externos ni muestras.
 
-Uso: python3 tools/audio/gen_audio.py [carpeta_del_proyecto]
+Uso: python3 tools/audio/gen_audio.py [carpeta_del_proyecto] [--solo-sfx]
 Necesita numpy, scipy y ffmpeg con libvorbis. La semilla de cada pista es su número.
 """
 import json
@@ -14,7 +14,10 @@ import numpy as np
 from scipy.signal import butter, lfilter
 
 SR = 22050
-ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
+_ARGS = [a for a in sys.argv[1:] if a.startswith("--")]
+_PATHS = [a for a in sys.argv[1:] if not a.startswith("--")]
+ROOT = _PATHS[0] if _PATHS else "."
+SFX_ONLY = "--solo-sfx" in _ARGS
 SCALES = {
     "frigio_dom": [0, 1, 4, 5, 7, 8, 10],
     "dorico": [0, 2, 3, 5, 7, 9, 10],
@@ -261,7 +264,51 @@ def hash_text(text):
     return sum((i + 1) * ord(c) for i, c in enumerate(text))
 
 
+def _sfx_step(seed, duration, low, high, gain):
+    rng = np.random.default_rng(seed)
+    n = int(duration * SR)
+    t = np.arange(n) / SR
+    noise = rng.normal(0, 1, n)
+    thump = np.sin(2 * np.pi * rng.uniform(low, high) * t) * np.exp(-t * rng.uniform(35, 55))
+    body = lowpass(noise, rng.uniform(500, 1200)) * np.exp(-t * rng.uniform(22, 38))
+    click = (noise - lowpass(noise, 2500)) * np.exp(-t * rng.uniform(70, 120)) * 0.25
+    audio = thump * 0.7 + body * 0.35 + click
+    audio = audio / max(float(np.max(np.abs(audio))), 1e-6) * gain
+    path = os.path.join(ROOT, "audio/sfx", "paso_%02d.ogg" % seed)
+    write(audio, path, "3")
+    return dict(file="res://audio/sfx/paso_%02d.ogg" % seed, kind="step", duration=round(duration, 3))
+
+
+def build_sfx():
+    os.makedirs(os.path.join(ROOT, "audio/sfx"), exist_ok=True)
+    entries = []
+    for i in range(1, 7):
+        duration = 0.16 + (i % 3) * 0.03
+        low = 55.0 + i * 7.0
+        high = 110.0 + i * 11.0
+        entries.append(_sfx_step(i, duration, low, high, 0.55))
+    return entries
+
+
+def _load_library():
+    path = os.path.join(ROOT, "data/audio/library.json")
+    if os.path.isfile(path):
+        with open(path, "r", encoding="utf8") as src:
+            return json.load(src)
+    return dict(origin="tools/audio/gen_audio.py, Claude, sin servicios externos", tracks=[], voices=[], takes=3)
+
+
 def main():
+    sfx = build_sfx()
+    if SFX_ONLY:
+        data = _load_library()
+        data["sfx"] = sfx
+        data["origin"] = "tools/audio/gen_audio.py, Claude, sin servicios externos"
+        with open(os.path.join(ROOT, "data/audio/library.json"), "w", encoding="utf8", newline="\n") as out:
+            json.dump(data, out, ensure_ascii=False, indent=1)
+            out.write("\n")
+        print("sfx", len(sfx))
+        return
     rng = np.random.default_rng(2026)
     entries = []
     n = 0
@@ -283,11 +330,11 @@ def main():
                 tracks=[dict(file="res://audio/music/" + e["file"], state=e["state"], zone=e["zone"],
                              any_zone=e["any_zone"], intensity=e["intensity"], bpm=e["bpm"], scale=e["scale"],
                              duration=round(e["duration"], 2), layers=e["layers"], crossfade=e["crossfade"]) for e in entries],
-                voices=[p["id"] for p in profiles], takes=3)
-    with open(os.path.join(ROOT, "data/audio/library.json"), "w", encoding="utf8") as out:
+                voices=[p["id"] for p in profiles], takes=3, sfx=sfx)
+    with open(os.path.join(ROOT, "data/audio/library.json"), "w", encoding="utf8", newline="\n") as out:
         json.dump(data, out, ensure_ascii=False, indent=1)
         out.write("\n")
-    print("pistas", len(entries), "pico máx", max(peaks), "voces", len(voice_peaks), "pico", max(voice_peaks))
+    print("pistas", len(entries), "pico máx", max(peaks), "voces", len(voice_peaks), "pico", max(voice_peaks), "sfx", len(sfx))
 
 
 if __name__ == "__main__":

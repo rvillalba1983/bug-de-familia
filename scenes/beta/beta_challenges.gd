@@ -37,8 +37,20 @@ const OFFLINE_STUN: float = 5.0
 const POWER_OFF_HOUR: int = 21
 const POWER_ON_HOUR: int = 8
 static var groups: Dictionary = {
-	"cuadrilla_moho": {"prefix": "moho", "route": BetaLayout.moho_group_route, "exit": BetaLayout.moho_group_exit},
-	"patrulla_jub": {"prefix": "jub", "route": BetaLayout.jub_group_route, "exit": BetaLayout.jub_group_exit},
+	"cuadrilla_moho": {
+		"prefix": "moho",
+		"route": BetaLayout.moho_group_route,
+		"exit": BetaLayout.moho_group_exit,
+		# Zona indicada al desviarlos: chatarra sin vigilar, al norte.
+		"indicated": BetaLayout.jub_home.get_center(),
+	},
+	"patrulla_jub": {
+		"prefix": "jub",
+		"route": BetaLayout.jub_group_route,
+		"exit": BetaLayout.jub_group_exit,
+		# Zona indicada al desviarlos: sombreros en el sur.
+		"indicated": BetaLayout.moho_home.get_center(),
+	},
 }
 
 const ROUTE_GOALS: Dictionary = {
@@ -301,10 +313,25 @@ func _apply_conflict() -> void:
 
 func _apply_power_off() -> void:
 	if not is_power_off_hour():
+		_restore_jubilados_day()
 		return
+	var home: Vector2 = BetaLayout.jub_home.get_center()
 	for enemy: Guard in level.guards_of("jubilado"):
-		if not enemy.is_alert():
-			enemy.stun(OFFLINE_STUN)
+		enemy.no_attack = true
+		if enemy.is_alert():
+			enemy.flee_to(home)
+		elif not enemy.passive and enemy.state in [Guard.State.PATROL, Guard.State.WAIT, Guard.State.LOOK_AROUND]:
+			enemy.set_passive(true)
+			enemy.investigate(home)
+
+
+func _restore_jubilados_day() -> void:
+	for enemy: Guard in level.guards_of("jubilado"):
+		if not enemy.no_attack:
+			continue
+		enemy.no_attack = false
+		enemy.set_passive(false)
+	_apply_conflict()
 
 
 func _apply_group(id: String) -> void:
@@ -346,11 +373,19 @@ func _move_groups(delta: float) -> void:
 
 ## Se va andando hasta donde le han dicho; al llegar deja de estar en la zona.
 func _walk_away(id: String, node: Interactable, delta: float) -> void:
-	var goal: Vector2 = groups[id]["exit"]
+	var goal: Vector2 = _leave_goal(id)
 	node.position = node.position.move_toward(goal, GROUP_LEAVE_SPEED * delta)
 	if node.position.is_equal_approx(goal):
 		node.visible = false
 		_leaving.erase(id)
+
+
+## Los grupos engañados van a la zona que se les indicó, no al borde del mapa.
+func _leave_goal(id: String) -> Vector2:
+	var prefix: String = groups[id]["prefix"]
+	if flag(prefix + "_desviada"):
+		return groups[id]["indicated"]
+	return groups[id]["exit"]
 
 
 func _check_encounters() -> void:

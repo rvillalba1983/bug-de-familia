@@ -496,6 +496,23 @@ func attack_citizen(enemy: Guard) -> void:
 	combat.engage(enemy)
 
 
+## Ataca al interlocutor de un diálogo de investigación, si tiene cuerpo en escena.
+func attack_dialogue_speaker(speaker: String) -> void:
+	if speaker == ID_RAMON and is_instance_valid(ramon) and not ramon.is_down():
+		attack_citizen(ramon)
+		return
+	for enemy: Guard in guards():
+		if not is_instance_valid(enemy) or enemy.is_down():
+			continue
+		if _enemy_ids.get(enemy, "") == speaker:
+			attack_citizen(enemy)
+			return
+	if live_world != null and live_world.citizens.has(speaker):
+		var citizen: Guard = live_world.citizens[speaker]
+		if is_instance_valid(citizen) and not citizen.is_down():
+			attack_citizen(citizen)
+
+
 ## Quienes están cerca y son de su especie se unen a la pelea.
 func _on_citizen_attacked(victim: Guard, species: String) -> void:
 	for id: String in live_world.citizens:

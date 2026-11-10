@@ -68,6 +68,7 @@ var _excuse_cooldown: float = 0.0
 var _tick_timer: float = TICK_NOISE_INTERVAL
 ## Deformación del dibujo al recibir un golpe.
 var _squash: Vector2 = Vector2.ONE
+var _footsteps: AudioStreamPlayer2D
 
 
 func _ready() -> void:
@@ -79,6 +80,8 @@ func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	collision_layer = PhysicsLayers.PLAYER
 	collision_mask = PhysicsLayers.WALLS | PhysicsLayers.LOW_COVER
+	_footsteps = load("res://audio/footstep_audio.gd").new()
+	add_child(_footsteps)
 
 
 func _physics_process(delta: float) -> void:
@@ -286,6 +289,8 @@ func _read_toggles() -> void:
 func _after_move(moved: float, delta: float) -> void:
 	if moved <= 0.0:
 		_noise_timer = 0.0
+		if _footsteps != null:
+			_footsteps.tick(delta, 0.0, false, false)
 		return
 	body.wear_legs(moved)
 	_noise_timer -= delta
@@ -297,6 +302,8 @@ func _after_move(moved: float, delta: float) -> void:
 	if body.has_worried_piece() and _worry_timer <= 0.0 and noise_bus != null:
 		_worry_timer = WORRY_NOISE_INTERVAL
 		noise_bus.emit_noise(global_position, WORRY_NOISE_RADIUS)
+	if _footsteps != null:
+		_footsteps.tick(delta, velocity.length(), is_running(), is_crouching)
 
 
 ## Los repuestos se recogen al pasar por encima, si queda sitio para ellos.

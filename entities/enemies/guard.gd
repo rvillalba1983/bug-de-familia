@@ -53,12 +53,15 @@ var _view: VisionConeView
 var health: float = MAX_HEALTH
 ## Un guardia pasivo no vigila ni acude a ruidos; solo responde si le atacan.
 var passive: bool = false
+## Si es cierto, huye y no devuelve golpes (usado de noche para los Jubilados).
+var no_attack: bool = false
 var knockback: Knockback = Knockback.new()
 var visual: GuardVisual
 var attack: GuardAttack
 var impacts: GuardImpacts
 var death: Dictionary = DeathCatalog.entry(DeathCatalog.DEFAULT_ID)
 var _corpse_time: float = 0.0
+var _footsteps: AudioStreamPlayer2D
 
 
 func _init() -> void:
@@ -80,6 +83,8 @@ func setup(points: Array[Vector2], ground: Node2D) -> void:
 	add_child(collider)
 	_view = Sentinel.add_cone(self, ground, detector)
 	detector.detected.connect(_on_detected)
+	_footsteps = load("res://audio/footstep_audio.gd").new()
+	add_child(_footsteps)
 
 
 func _physics_process(delta: float) -> void:
@@ -91,17 +96,23 @@ func _physics_process(delta: float) -> void:
 		visual.update_rig()
 	if state == State.DOWN:
 		_corpse_time -= delta
+		if _footsteps != null:
+			_footsteps.tick(delta, 0.0, false, false)
 		if _corpse_time <= 0.0:
 			corpse_expired.emit(self)
 		return
 	if knockback.is_active():
 		velocity = knockback.tick(delta)
 		move_and_slide()
+		if _footsteps != null:
+			_footsteps.tick(delta, 0.0, false, false)
 		if seen:
 			queue_redraw()
 		return
 	if state == State.STUNNED:
 		_tick_stun(delta)
+		if _footsteps != null:
+			_footsteps.tick(delta, 0.0, false, false)
 		return
 	if not passive:
 		detector.update(global_position, get_world_2d(), target, delta)
@@ -116,6 +127,9 @@ func _physics_process(delta: float) -> void:
 			_tick_look(delta)
 		State.ALERT:
 			_tick_alert(delta)
+	if _footsteps != null:
+		var running: bool = state == State.ALERT or (state == State.INVESTIGATE and velocity.length() > PATROL_SPEED + 1.0)
+		_footsteps.tick(delta, velocity.length(), running, false)
 	if seen:
 		if _view.visible:
 			_view.refresh(global_position, get_world_2d())
@@ -152,7 +166,11 @@ func take_damage(amount: float) -> void:
 	else:
 		_push_away_from_target()
 		if state != State.ALERT and state != State.STUNNED:
-			_on_detected(target.global_position)
+			if no_attack:
+				if is_instance_valid(target):
+					flee_to(global_position + (global_position - target.global_position).normalized() * 260.0)
+			else:
+				_on_detected(target.global_position)
 
 
 func _push_away_from_target() -> void:
@@ -285,6 +303,11 @@ func _tick_look(delta: float) -> void:
 
 
 func _tick_alert(delta: float) -> void:
+	if no_attack:
+		if _lost_time >= LOSE_TIME or not detector.can_see(global_position, get_world_2d(), target):
+			_lost_time = LOSE_TIME
+		_flee_step(delta)
+		return
 	var sees: bool = detector.can_see(global_position, get_world_2d(), target)
 	if sees:
 		_last_known = target.global_position
@@ -309,6 +332,25 @@ func _tick_alert(delta: float) -> void:
 		_set_path_to(_last_known + (Vector2.ZERO if attack.is_ranged() else _fight_spot))
 	chase_step()
 	attack.try_melee(distance)
+
+
+## Huye hacia un punto sin devolver golpes.
+func flee_to(point: Vector2) -> void:
+	if state == State.DOWN or state == State.STUNNED:
+		return
+	attack.cancel()
+	var was_alert: bool = state == State.ALERT
+	state = State.INVESTIGATE
+	_set_path_to(point)
+	detector.reset()
+	_view.visible = false
+	if was_alert:
+		alert_ended.emit()
+
+
+func _flee_step(_delta: float) -> void:
+	attack.cancel()
+	_follow_path(CHASE_SPEED, _on_investigate_done)
 
 
 ## Un paso más de la persecución en curso.

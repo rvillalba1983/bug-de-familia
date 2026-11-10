@@ -21,10 +21,10 @@ func after_test() -> void:
 	get_tree().paused = false
 
 
-func test_diverted_group_walks_to_its_exit_and_then_leaves() -> void:
+func test_diverted_group_walks_to_indicated_zone_and_then_leaves() -> void:
 	for id: String in IDS:
 		var item: Interactable = zone.investigation.npc_nodes[id]
-		var goal: Vector2 = BetaChallenges.groups[id]["exit"]
+		var goal: Vector2 = BetaChallenges.groups[id]["indicated"]
 		var start: Vector2 = item.position
 		zone.investigation.set_flag(IDS[id])
 		assert_bool(item.visible).is_true()

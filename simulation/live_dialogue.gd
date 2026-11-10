@@ -15,6 +15,8 @@ var bar: ConversationBar
 
 var _options: Array = []
 var _insulted: bool = false
+var _option_uses: Dictionary = {}
+var _option_limits: Dictionary = {}
 
 
 func _ready() -> void:
@@ -48,7 +50,7 @@ func open(target: NpcState) -> void:
 		_say(tr("LIVE_REFUSE"))
 		_set_options([[tr("LIVE_HIT"), _hit], [tr("LIVE_BYE"), close]])
 		return
-	_say(_random_line("greet"))
+	_say(_random_line(npc, "greet"))
 	_refresh()
 
 
@@ -58,6 +60,43 @@ func options() -> Array:
 
 func choose(index: int) -> void:
 	(_options[index][1] as Callable).call()
+
+
+func _option_key(label: String) -> String:
+	return "%s|%s" % [npc.id, label]
+
+
+func _option_exhausted(label: String) -> bool:
+	var key: String = _option_key(label)
+	if not _option_limits.has(key):
+		return false
+	return int(_option_uses.get(key, 0)) >= int(_option_limits[key])
+
+
+func _register_option_use(label: String) -> bool:
+	var key: String = _option_key(label)
+	if not _option_limits.has(key):
+		_option_limits[key] = world.sim.rng.randi_range(2, 5)
+	var uses: int = int(_option_uses.get(key, 0)) + 1
+	_option_uses[key] = uses
+	return uses >= int(_option_limits[key])
+
+
+func _wrap_option(label: String, action: Callable) -> Array:
+	return [label, func() -> void:
+		if _register_option_use(label):
+			_exhaust_option()
+			return
+		action.call()
+	]
+
+
+func _exhaust_option() -> void:
+	## Al agotar las repeticiones salta enfado y pelea de inmediato.
+	if world.citizens.has(npc.id):
+		_hit()
+	else:
+		close()
 
 
 func close() -> void:
@@ -84,8 +123,14 @@ func _refresh() -> void:
 
 
 func _set_options(entries: Array) -> void:
-	_options = entries
-	bar.show_options(entries)
+	var filtered: Array = []
+	for entry: Array in entries:
+		var label: String = str(entry[0])
+		if _option_exhausted(label):
+			continue
+		filtered.append(_wrap_option(label, entry[1] as Callable))
+	_options = filtered
+	bar.show_options(filtered)
 
 
 func _say(text: String) -> void:
@@ -98,9 +143,12 @@ func reply(text: String) -> void:
 	_refresh()
 
 
-func _random_line(key: String) -> String:
-	var lines: Array = world.sim.species_data[npc.species][key]
-	return lines[absi((npc.id + key + str(npc.memories.size())).hash()) % lines.size()]
+func _random_line(who: NpcState, key: String) -> String:
+	var info: Dictionary = world.sim.species_data.get(who.species, {})
+	var lines: Array = info.get(key, info.get("angry", ["..."]))
+	if lines.is_empty():
+		return "..."
+	return lines[absi((who.id + key + str(who.memories.size())).hash()) % lines.size()]
 
 
 func _latest_belief() -> int:
@@ -113,10 +161,10 @@ func _latest_belief() -> int:
 func _ask_news() -> void:
 	var id: int = _latest_belief()
 	if id < 0:
-		reply(_random_line("nothing"))
+		reply(_random_line(npc, "nothing"))
 		return
 	var text: String = world.sim.rumors.phrase(world.sim, npc.beliefs[str(id)])
-	reply("%s %s" % [_random_line("opener"), text])
+	reply("%s %s" % [_random_line(npc, "opener"), text])
 
 
 func _ask_source() -> void:
@@ -131,7 +179,7 @@ func _ask_source() -> void:
 
 func _ask_lore() -> void:
 	if npc.lore.is_empty():
-		reply(_random_line("nothing"))
+		reply(_random_line(npc, "nothing"))
 		return
 	var facts: Array = world.sim.species_data[npc.species]["lore"]
 	reply(facts[int(npc.lore[0])]["text"])
@@ -141,7 +189,7 @@ func _praise() -> void:
 	npc.feel("alegria", 20.0)
 	npc.relate(WorldSim.PLAYER_ID, "afecto", 10.0)
 	world.sim.change_standing(npc.species, PRAISE_STANDING)
-	reply(_random_line("praised"))
+	reply(_random_line(npc, "praised"))
 
 
 ## Cierra la charla y va a por él. El resto lo decide el combate de siempre.
@@ -168,4 +216,4 @@ func _insult() -> void:
 	npc.feel("ira", 35.0)
 	npc.relate(WorldSim.PLAYER_ID, "afecto", -20.0)
 	world.sim.change_standing(npc.species, INSULT_STANDING)
-	reply(_random_line("angry"))
+	reply(_random_line(npc, "angry"))

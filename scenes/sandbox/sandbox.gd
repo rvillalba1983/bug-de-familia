@@ -534,6 +534,11 @@ func on_item_activated(item: Interactable) -> void:
 			_add_pickup(item.pickup_slots())
 
 
+## Ataca al interlocutor de un diálogo de investigación, si tiene cuerpo en escena.
+func attack_dialogue_speaker(_speaker: String) -> void:
+	pass
+
+
 func _on_converted(entity_id: String) -> void:
 	converted_ids.append(entity_id)
 	remove_entity(entity_id)

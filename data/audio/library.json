@@ -1244,5 +1244,37 @@
   "perfil_39",
   "perfil_40"
  ],
- "takes": 3
+ "takes": 3,
+ "sfx": [
+  {
+   "file": "res://audio/sfx/paso_01.ogg",
+   "kind": "step",
+   "duration": 0.19
+  },
+  {
+   "file": "res://audio/sfx/paso_02.ogg",
+   "kind": "step",
+   "duration": 0.22
+  },
+  {
+   "file": "res://audio/sfx/paso_03.ogg",
+   "kind": "step",
+   "duration": 0.16
+  },
+  {
+   "file": "res://audio/sfx/paso_04.ogg",
+   "kind": "step",
+   "duration": 0.19
+  },
+  {
+   "file": "res://audio/sfx/paso_05.ogg",
+   "kind": "step",
+   "duration": 0.22
+  },
+  {
+   "file": "res://audio/sfx/paso_06.ogg",
+   "kind": "step",
+   "duration": 0.16
+  }
+ ]
 }

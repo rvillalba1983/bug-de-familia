@@ -11,6 +11,13 @@ const EMOTIONS: Array[String] = [
 ]
 const MAX_VALUE: float = 100.0
 
+const CHILD_DURATION: float = 300.0
+const ADULT_SCALE_MIN: float = 0.55
+const ADULT_SCALE_MAX: float = 0.8
+const CHILD_SCALE_MIN: float = 0.3
+const CHILD_SCALE_MAX: float = 0.5
+const ADULT_CHANCE: float = 0.8
+
 var id: String = ""
 var species: String = ""
 var name: String = ""
@@ -29,6 +36,13 @@ var memories: Array = []
 ## event_id (texto) -> creencia. Nunca se confunde con la verdad objetiva.
 var beliefs: Dictionary = {}
 var lore: Array = []
+## Escala visual del habitante (30 %-80 %). Solo visual.
+var visual_scale: float = 0.7
+var adult_scale: float = 0.7
+var child_grows_at: float = -1.0
+## Duelo junto a los muertos: permanece en el lugar hasta este instante simulado.
+var mourn_until: float = 0.0
+var mourn_at: Vector2 = Vector2.ZERO
 
 
 func feel(key: String, amount: float) -> void:
@@ -65,12 +79,22 @@ func remember(event_id: int, importance: float, time: float, summary: String) ->
 	})
 
 
+func is_child(now: float) -> bool:
+	return child_grows_at > 0.0 and now < child_grows_at
+
+
+func current_visual_scale(now: float) -> float:
+	return visual_scale if is_child(now) else adult_scale
+
+
 func to_dict() -> Dictionary:
 	return {
 		"id": id, "species": species, "name": name, "role": role, "group": group,
 		"origin": origin, "born": born, "alive": alive, "x": pos.x, "y": pos.y,
 		"activity": activity, "personality": personality, "emotions": emotions,
 		"relations": relations, "memories": memories, "beliefs": beliefs, "lore": lore,
+		"visual_scale": visual_scale, "adult_scale": adult_scale, "child_grows_at": child_grows_at,
+		"mourn_until": mourn_until, "mourn_x": mourn_at.x, "mourn_y": mourn_at.y,
 	}
 
 
@@ -92,4 +116,9 @@ static func from_dict(data: Dictionary) -> NpcState:
 	npc.memories = data["memories"]
 	npc.beliefs = data["beliefs"]
 	npc.lore = data["lore"]
+	npc.adult_scale = float(data.get("adult_scale", 0.7))
+	npc.visual_scale = float(data.get("visual_scale", npc.adult_scale))
+	npc.child_grows_at = float(data.get("child_grows_at", -1.0))
+	npc.mourn_until = float(data.get("mourn_until", 0.0))
+	npc.mourn_at = Vector2(float(data.get("mourn_x", 0.0)), float(data.get("mourn_y", 0.0)))
 	return npc

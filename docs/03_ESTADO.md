@@ -27,7 +27,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 ## Tras la fase 7
 - Valores provisionales de la beta: `docs/adr/0006-zona-beta.md`.
 - Las rutas de sigilo con enemigos activos tienen prueba automática en `tests/flows/beta_routes_test.gd`; el usuario además las ha probado en partida.
-- Sin hacer: viaje entre puntos de guardado, consecuencias al salir de la zona, la pieza que suelda Don Ramón y huella visible al morir un aliado único. Lo decidido está en `02_DECISIONES.md`.
+- Sin hacer: viaje entre puntos de guardado y consecuencias al salir de la zona. La pieza que suelda Don Ramón y la huella visible al morir un aliado único ya están implementadas (`scenes/beta/beta_challenges.gd`, `tests/beta/beta_robustness_test.gd`). Lo decidido está en `02_DECISIONES.md`.
 
 ## Tras P-09 (lotes 1 y 2)
 - 76 preguntas de conversión, motes y comentarios del protagonista integrados. Valores provisionales: `docs/adr/0007-motes-y-comentarios.md`.
@@ -102,6 +102,22 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 - Instalado el 10-nov: Playwright 1.65.0 con Chromium 158 (lo usa `tools/art/ground_gen.py`), Krita 5.3.4.1 y Audacity 4.0.2. Inventario y licencias en `DEPENDENCIAS.md`.
 - Pendiente de probar en una sesión nueva. Antes hay que reiniciar la aplicación de OpenCode: el PATH nuevo solo llega a los procesos que arrancan después.
 - Cuota: el 10-nov, `big-pickle` (modelo por defecto) respondió «Free usage limit reached». Si vuelve a pasar, aplica `FALLBACK_MODELS.md` y `adr/0020-tres-modelos-por-agente.md`.
+
+## Post-beta (en curso en `main`, sin fusionar)
+
+Trabajo de la fase acordada para P-1, P-2, P-3, P-4, P-5, P-6, P-10 y P-15 (P-16 descartado). Todo provisional y pendiente de revisión/validación manual en partida; sin commit, fusión ni push.
+
+- **P-10:** ventana de propagación de rumores reducida a 7 s en `simulation/rumor_engine.gd`. Prueba actualizada: `res://tests/simulation/rumor_test.gd` (7/7) ejecutada en Windows (Godot 4.7.2 headless).
+- **P-2:** los grupos engañados van a la zona indicada en el diálogo (`indicated`, centro del hogar contrario) sin salirse del mapa. Prueba: `res://tests/beta/group_diversion_test.gd` (2/2) ejecutada.
+- **P-3:** de noche los Jubilados huyen/se esconden en su hogar sin devolver golpes y no atacan (`no_attack`, pasivos/investigando al hogar). Se ajustó `res://tests/beta/beta_zone_test.gd::test_power_off_at_night_is_only_an_advantage` al comportamiento decidido; suite `res://tests/beta/beta_zone_test.gd` (31/31) ejecutada. Pendiente validación manual.
+- **P-4:** límite aleatorio y determinista (2-5, por `rng.randi_range`) de repeticiones por opción de conversación en PNJ/habitantes (`investigation/investigation_director.gd`, `simulation/live_dialogue.gd`); al agotarse la opción se oculta y provoca enfado/pelea inmediata. Conteos en memoria, no persistidos en guardado. Pruebas ejecutadas: `res://tests/investigation` (9/9) y `res://tests/simulation` (27/27). Pendiente afinar alcance/reaperturas y validación manual.
+- **P-5:** duelo ~20 s reales junto a los muertos (`NpcState.mourn_until/mourn_at`, `LiveWorld` dirige al lugar y muestra reacción). Pendiente comprobar visibilidad al pasar cerca en partida y añadir/ajustar pruebas específicas si hace falta.
+- **P-6:** habitantes con tamaño visual variable (30 %-80 %), mayoría adultos al nacer (~80 %) y niños que crecen a adulto a los 5 min reales (300 s de `sim.elapsed`, cambio único fijo). Aplica a nacimientos/recién llegados por el mismo camino de creación; solo visual (sin alterar colisiones, detección ni alcances). Pendiente revisión visual/rigs y pruebas específicas.
+- **P-15/P-29 (parcial):** sonidos de pasos generados con `tools/audio/gen_audio.py --solo-sfx` (`audio/sfx/paso_01..06.ogg`), registrados en `data/audio/library.json`; reproducción posicional integrada (`audio/footstep_audio.gd`) en jugador y guardias. Sin voces nuevas. Pendiente validación manual de posicionalidad, volumen, bus y cobertura.
+- **P-30:** analizado; no se aplica `WorkerThreadPool`. La simulación lógica avanza por pasos (`WorldSim` recorre habitantes, rumores, sucesos, misiones y festividades) sobre una población pequeña en la beta, sin medición en gráfica real que justifique paralelizar; repartirla complicaría el código y puede introducir fallos difíciles de reproducir. Pendiente medir en gráfica real si aparece necesidad.
+- **P-1/P-39:** en `tools/beta_walker.gd` y `tests/flows/beta_routes_test.gd` se fijó/aisló estado y se añadió diagnóstico; además, durante las rutas se desactivan sucesos aleatorios del mundo (`EventSystem.timer` alto y colas vacías) para evitar muertes ajenas al recorrido por no determinismo de cadencia (posible causa de la intermitencia en Linux, run `42858970637`), sin relajar aserciones. Se corrigió el parseo de la prueba y se preserva `WorldCalendar.forced_local_unix` cuando un caso lo fuerza (fiesta). **Ejecutado en Windows:** `res://tests/flows/beta_routes_test.gd` con estabilización aplicada: rutas sigilo, palabra y fuerza (la intermitente en CI) y los casos de misión/fiesta/otra semilla pasaron en la ejecución final (6/6) tras corregir el manejo del día forzado. **No ejecutado:** confirmación determinista en Linux (10-20 repeticiones) ni identificación/reproducción del caído original si reaparece; P-39 sigue abierto para cierre definitivo.
+
+**Pruebas ejecutadas (Windows, Godot 4.7.2 headless):** `tests/simulation/rumor_test.gd` 7/7, `tests/investigation` 9/9, `tests/simulation` 27/27, `tests/beta/group_diversion_test.gd` 2/2, `tests/beta/beta_robustness_test.gd` 11/11, `tests/beta/beta_zone_test.gd` 31/31, `tests/beta/music_test.gd` 5/5, `tests/beta/fight_groups_test.gd` 5/5, `tests/beta/battle_test.gd` 6/6, `tests/flows/input_flows_test.gd` 13/13, `tests/flows/beta_routes_test.gd` 6/6 (ejecución final, con estabilización y corrección de día forzado). `python tools/verificar.py`: OK. **No ejecutado:** suite completa en esta sesión tras todos los cambios, medición en gráfica real, ni validación manual en partida.
 
 ## Preparar el entorno en una conversación nueva
 

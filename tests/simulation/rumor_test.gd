@@ -53,7 +53,7 @@ func test_cross_species_gets_only_fragment() -> void:
 	assert_bool(sim.rumors.tell(sim, a, b, 0)["fragment"]).is_true()
 
 
-func test_spreads_by_contact_only_within_four_minutes() -> void:
+func test_spreads_by_contact_only_within_seven_seconds() -> void:
 	var sim: WorldSim = _sim()
 	var near: Array[NpcState] = sim.alive_of("jubilado")
 	for npc: NpcState in near:
@@ -63,12 +63,12 @@ func test_spreads_by_contact_only_within_four_minutes() -> void:
 	for npc: NpcState in sim.alive_of("mohocrata"):
 		npc.pos = Vector2(5000, 5000)
 	sim.rumors.witness(sim, _record(sim), near[0])
-	sim.tick(30.0)
+	sim.tick(3.0)
 	assert_bool(near[1].beliefs.has("0")).is_true()
 	assert_bool(far.beliefs.has("0")).is_false()
 	far.pos = Vector2.ZERO
 	sim.elapsed += RumorEngine.WINDOW
-	sim.tick(30.0)
+	sim.tick(3.0)
 	assert_bool(far.beliefs.has("0")).is_false()
 
 

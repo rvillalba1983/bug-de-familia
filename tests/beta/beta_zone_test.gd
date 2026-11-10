@@ -278,7 +278,10 @@ func test_power_off_at_night_is_only_an_advantage() -> void:
 	zone.challenges.hour_source = func() -> int: return 22
 	assert_bool(zone.challenges.is_power_off_hour()).is_true()
 	await await_millis(2300)
-	assert_int(zone.guards_of("jubilado")[0].state).is_equal(Guard.State.STUNNED)
+	var jubilado: Guard = zone.guards_of("jubilado")[0]
+	assert_bool(jubilado.no_attack).is_true()
+	assert_bool(jubilado.is_alert()).is_false()
+	assert_bool(jubilado.passive or jubilado.state == Guard.State.INVESTIGATE).is_true()
 	assert_int(zone.strip_mohocrata.state).is_not_equal(Guard.State.STUNNED)
 
 

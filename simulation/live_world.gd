@@ -149,6 +149,7 @@ func _sync_positions() -> void:
 
 func _show_citizen(npc: NpcState) -> void:
 	var guard: Guard = level.add_citizen(npc.id, npc.species, npc.pos, home_of(npc.species))
+	guard.visual.individual_scale = npc.current_visual_scale(sim.elapsed)
 	citizens[npc.id] = guard
 	var item: Interactable = Interactable.new()
 	item.setup(npc.id, Interactable.Kind.NPC, Vector2.ZERO)
@@ -180,17 +181,56 @@ func _direct_all() -> void:
 			continue
 		var npc: NpcState = sim.npcs[id]
 		var guard: Guard = citizens[id]
+		_update_growth(npc, guard)
 		if level.battles.is_fighter(id):
 			continue
 		if guard.state in [Guard.State.PATROL, Guard.State.WAIT, Guard.State.LOOK_AROUND]:
 			_direct(npc, guard, Motivation.choose(sim, npc, festival))
 
 
+func _update_growth(npc: NpcState, guard: Guard) -> void:
+	var scale: float = npc.current_visual_scale(sim.elapsed)
+	if is_equal_approx(guard.visual.individual_scale, scale):
+		return
+	guard.visual.individual_scale = scale
+	if guard.visual.rig_root != null:
+		guard.visual.rig_root.queue_free()
+		guard.visual.rig_root = null
+	guard.visual.rig = null
+	guard.visual._rigs = [null, null, null]
+	guard.queue_redraw()
+
+
 func _festival_running() -> bool:
 	return sim.festivals.is_running() and not sim.festivals.ruined
 
 
+const MOURN_TIME: float = 20.0
+const MOURN_REACH: float = 48.0
+
+
+func _start_mourning(record: Dictionary, at: Vector2) -> void:
+	for id: Variant in record.get("actors", []):
+		var sid: String = str(id)
+		if not sim.npcs.has(sid):
+			continue
+		var npc: NpcState = sim.npcs[sid]
+		npc.mourn_until = sim.elapsed + MOURN_TIME
+		npc.mourn_at = at
+		if is_instance_valid(citizens.get(sid)):
+			(citizens[sid] as Guard).investigate(at)
+
+
 func _direct(npc: NpcState, guard: Guard, activity: String) -> void:
+	if npc.mourn_until > sim.elapsed:
+		npc.activity = "duelo"
+		if npc.pos.distance_to(npc.mourn_at) > MOURN_REACH:
+			guard.investigate(npc.mourn_at)
+		elif guard.state in [Guard.State.PATROL, Guard.State.WAIT]:
+			guard.velocity = Vector2.ZERO
+		if sim.rng.randf() < 0.02:
+			_speak(npc, _random_line(npc, "sad"))
+		return
 	npc.activity = activity
 	match activity:
 		"cotillear":
@@ -256,6 +296,14 @@ func _speak(npc: NpcState, text: String) -> void:
 		(_bubbles[npc.id] as SpeechBubble).say(text, Color.BLACK, BUBBLE_TIME)
 
 
+func _random_line(npc: NpcState, key: String) -> String:
+	var info: Dictionary = sim.species_data.get(npc.species, {})
+	var lines: Array = info.get(key, info.get("angry", ["..."]))
+	if lines.is_empty():
+		return "..."
+	return lines[absi((npc.id + key + str(npc.memories.size())).hash()) % lines.size()]
+
+
 func _on_npc_died(npc: NpcState) -> void:
 	var guard: Variant = citizens.get(npc.id)
 	if is_instance_valid(guard):
@@ -284,6 +332,8 @@ func _on_event_happened(record: Dictionary) -> void:
 		level.ai.say_custom(observe)
 	if sim.npcs.has(record["actors"][0]):
 		_speak(sim.npcs[record["actors"][0]], sim.events.text_for(record["type"], record))
+	if record["type"] == "luto":
+		_start_mourning(record, at)
 
 
 func _build_festival_view(added: Array) -> void:

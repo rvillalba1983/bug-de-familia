@@ -52,7 +52,7 @@ func handle_windup(delta: float) -> bool:
 
 ## Si tiene a tiro al objetivo, se planta y apunta. Devuelve si se ha plantado.
 func try_aim(sees: bool, distance: float) -> bool:
-	if not _ranged or not sees or distance > float(weapon["range"]):
+	if _guard.no_attack or not _ranged or not sees or distance > float(weapon["range"]):
 		return false
 	var target: Player = _guard.target
 	_guard.velocity = Vector2.ZERO
@@ -64,6 +64,8 @@ func try_aim(sees: bool, distance: float) -> bool:
 
 
 func try_melee(distance: float) -> void:
+	if _guard.no_attack:
+		return
 	if not _ranged and distance <= float(weapon["range"]) and hit_timer <= 0.0 and windup_left <= 0.0:
 		windup_left = float(weapon["windup"])
 

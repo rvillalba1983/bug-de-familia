@@ -176,7 +176,9 @@ func _wait(seconds: float) -> void:
 
 ## Atiende lo que interrumpe: panel previo a la pelea, encuentros y ofertas de batalla.
 func _tick(seconds: float) -> void:
-	await tree.create_timer(seconds, true, false, true).timeout
+	var frames: int = maxi(1, int(ceil(seconds * 60.0)))
+	for _frame: int in range(frames):
+		await tree.physics_frame
 	if zone.panel.is_open:
 		zone.panel.close()
 	if not _case().current_node.is_empty() and _case().answer_time_left > 0.0:

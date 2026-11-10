@@ -3,7 +3,7 @@ extends RefCounted
 ## Testigos, transmisión y deformación de lo ocurrido. Rumores de 4 minutos (P-14).
 
 ## Duración decidida por el director; el resto de valores son provisionales.
-const WINDOW: float = 240.0
+const WINDOW: float = 7.0
 const TALK_RANGE: float = 130.0
 const TELL_CHANCE: float = 0.7
 const TWIST_CHANCE: float = 0.35

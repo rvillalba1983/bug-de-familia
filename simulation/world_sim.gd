@@ -118,6 +118,7 @@ func spawn(species: String, at: Vector2, origin: String) -> NpcState:
 	npc.origin = origin
 	npc.born = elapsed
 	npc.pos = at
+	_assign_visual_scale(npc)
 	for key: String in NpcState.TRAITS:
 		npc.personality[key] = clampf(50.0 + rng.randfn(0.0, TRAIT_SPREAD), 0.0, 100.0)
 	for key: String in NpcState.EMOTIONS:
@@ -131,6 +132,17 @@ func spawn(species: String, at: Vector2, origin: String) -> NpcState:
 	npc_ids.append(npc.id)
 	npc_added.emit(npc)
 	return npc
+
+
+## Tamaño visual provisional: más adultos, niños crecen a los 5 minutos.
+func _assign_visual_scale(npc: NpcState) -> void:
+	npc.adult_scale = rng.randf_range(NpcState.ADULT_SCALE_MIN, NpcState.ADULT_SCALE_MAX)
+	if rng.randf() < NpcState.ADULT_CHANCE:
+		npc.visual_scale = npc.adult_scale
+		npc.child_grows_at = -1.0
+	else:
+		npc.visual_scale = rng.randf_range(NpcState.CHILD_SCALE_MIN, NpcState.CHILD_SCALE_MAX)
+		npc.child_grows_at = elapsed + NpcState.CHILD_DURATION
 
 
 func kill(npc_id: String) -> void:

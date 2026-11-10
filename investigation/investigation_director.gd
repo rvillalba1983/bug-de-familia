@@ -31,6 +31,10 @@ var bar: ConversationBar
 var bubbles: Dictionary = {}
 var npc_nodes: Dictionary = {}
 
+## Repeticiones por opción de diálogo: al agotarlas desaparece y salta la pelea.
+var _option_uses: Dictionary = {}
+var _option_limits: Dictionary = {}
+
 var _ambient_index: int = 0
 var _line_index: int = 0
 var _line_time: float = 0.0
@@ -129,10 +133,25 @@ func open_dialogue(npc_id: String) -> void:
 
 func available_options(node_id: String) -> Array:
 	var result: Array = []
-	for option: Dictionary in case_data["dialogue"][node_id]["options"]:
+	var options: Array = case_data["dialogue"][node_id]["options"]
+	for index: int in range(options.size()):
+		var option: Dictionary = options[index]
+		if _option_exhausted(node_id, index):
+			continue
 		if _meets(option):
 			result.append(option)
 	return result
+
+
+func _option_key(node_id: String, index: int) -> String:
+	return "%s|%d" % [node_id, index]
+
+
+func _option_exhausted(node_id: String, index: int) -> bool:
+	var key: String = _option_key(node_id, index)
+	if not _option_limits.has(key):
+		return false
+	return int(_option_uses.get(key, 0)) >= int(_option_limits[key])
 
 
 func choose(index: int) -> void:
@@ -142,6 +161,10 @@ func choose(index: int) -> void:
 	if index < 0 or index >= options.size():
 		return
 	var option: Dictionary = options[index]
+	var original: int = _original_option_index(current_node, option)
+	if original >= 0 and _register_option_use(current_node, original):
+		_provoke_dialogue_fight()
+		return
 	if option.get("cost_piece", false):
 		_pay_one_spare()
 	for flag: String in option["sets"]:
@@ -153,6 +176,37 @@ func choose(index: int) -> void:
 		_close()
 	else:
 		_show_node(next_node)
+
+
+func _original_option_index(node_id: String, option: Dictionary) -> int:
+	var options: Array = case_data["dialogue"][node_id]["options"]
+	for index: int in range(options.size()):
+		if options[index] == option:
+			return index
+	return -1
+
+
+func _register_option_use(node_id: String, index: int) -> bool:
+	var key: String = _option_key(node_id, index)
+	if not _option_limits.has(key):
+		_option_limits[key] = level.rng.randi_range(2, 5)
+	var uses: int = int(_option_uses.get(key, 0)) + 1
+	_option_uses[key] = uses
+	return uses >= int(_option_limits[key])
+
+
+func _provoke_dialogue_fight() -> void:
+	var speaker: String = case_data["dialogue"][current_node]["speaker"]
+	_close()
+	_attack_speaker(speaker)
+
+
+func _attack_speaker(speaker: String) -> void:
+	if level.has_method("attack_dialogue_speaker"):
+		level.call("attack_dialogue_speaker", speaker)
+		return
+	if level.live_world != null and level.live_world.citizens.has(speaker):
+		level.attack_citizen(level.live_world.citizens[speaker])
 
 
 func tick_ambient(delta: float) -> void:

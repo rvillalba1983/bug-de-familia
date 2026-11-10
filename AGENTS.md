@@ -15,6 +15,7 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 - Un error de script en headless abre un prompt `debug>` y deja la ejecución colgada: usa un timeout y redirige stdin (`timeout 300 ... </dev/null` en bash).
 - Preparación completa del entorno (binario, plantillas de exportación, capturas): `docs/03_ESTADO.md`, sección «Preparar el entorno».
 - Comprobaciones deterministas antes de commitear: `python tools/verificar.py` (datos, normas de formato y medición si existe `medicion.txt`). En OpenCode, comando `/verificar`. Ver `docs/adr/0019-herramientas-ci-y-mcp.md`.
+- Herramientas, rutas, comandos y limitaciones: `HERRAMIENTAS.md`. OpenCode lo carga al empezar cada sesión (`instructions` en `opencode.jsonc`).
 
 ## Estructura
 
@@ -58,7 +59,7 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 
 ## Modelo y agentes
 
-- `opencode.jsonc` define el equipo (ver `CONFIG_AGENTS.md`): ocho agentes del proyecto, `explore` y el modelo por defecto para `build`, `plan` y `general`. Precios, límites y alternativos: `FALLBACK_MODELS.md`. Decisión: `docs/adr/0018-agentes-y-modelos.md`.
+- `opencode.jsonc` define el equipo (ver `CONFIG_AGENTS.md`): nueve agentes del proyecto, `explore` y el modelo por defecto para `build`, `plan` y `general`. Precios, límites y alternativos: `FALLBACK_MODELS.md`. Decisión: `docs/adr/0018-agentes-y-modelos.md`.
 - Dos fuentes: gratuitos de la consola de OpenCode (`opencode/big-pickle` es el modelo por defecto) y suscripción OpenCode Go de 10 $/mes (`opencode-go/<modelo>`). Donde hay gemela gratuita, se usa la gratis.
 - Go no tiene cadena automática: si un modelo agota su ventana de 5 horas o se retira un gratuito, se cambia a mano siguiendo `FALLBACK_MODELS.md` y se documenta en un ADR.
 - Franja punta: solo DeepSeek en Go cuesta el doble de lunes a viernes en 02:00-05:00 y 07:00-11:00 (hora española de invierno). El resto cuesta igual a cualquier hora. El principal de qa es gratuito y no tiene franja.
@@ -71,7 +72,7 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 ## Este clon (Windows)
 
 - Los comandos de `docs/03_ESTADO.md` asumen Linux (`timeout`, `</dev/null`, `xvfb-run`): adáptalos a PowerShell.
-- En PowerShell no hay `git` ni `godot` en el PATH (nov-2026); Godot 4.7.2 win64 está sin extraer en `~/Downloads/Godot_v4.7.2-stable_win64.exe.zip`.
+- Las herramientas están en `opencode_projects` y en el PATH del usuario (Godot 4.7.2, Python, ffmpeg, Inkscape, Git, GitHub CLI). Una sesión de OpenCode solo las ve si arrancó después del cambio de PATH. Rutas, versiones y comandos: `HERRAMIENTAS.md`.
 - Medir rendimiento en la gráfica real del director: exportar con el preset «Medicion Windows» y ejecutar `tools/medir_windows/MEDIR.bat` (unos 20 minutos, genera `medicion.txt`).
 - `CLAUDE.md` guarda las instrucciones equivalentes para Claude Code: mantén ambos archivos sincronizados si cambias las reglas.
 

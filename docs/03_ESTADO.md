@@ -96,7 +96,17 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 - Estudiado y descartado: servidores MCP (coste de contexto y dependencias), LSP (sin servidor para GDScript), plugins de marketplace de terceros, y el generador de imágenes de OpenCode (de pago, sin fondos). Ver `adr/0019-herramientas-ci-y-mcp.md`.
 - Plantillas de mohócrata: SVG por código con la paleta y el rig actual, no integradas aún en el juego (ejemplo para el director).
 
+## Herramientas de sesión (fusionado en `main` el 10-nov)
+
+- `HERRAMIENTAS.md` reúne rutas, versiones, comandos y limitaciones. OpenCode lo carga al empezar cada sesión (`instructions` en `opencode.jsonc`). Decisión: `adr/0021-herramientas-al-iniciar-sesion.md`.
+- Instalado el 10-nov: Playwright 1.65.0 con Chromium 158 (lo usa `tools/art/ground_gen.py`), Krita 5.3.4.1 y Audacity 4.0.2. Inventario y licencias en `DEPENDENCIAS.md`.
+- Pendiente de probar en una sesión nueva. Antes hay que reiniciar la aplicación de OpenCode: el PATH nuevo solo llega a los procesos que arrancan después.
+- Cuota: el 10-nov, `big-pickle` (modelo por defecto) respondió «Free usage limit reached». Si vuelve a pasar, aplica `FALLBACK_MODELS.md` y `adr/0020-tres-modelos-por-agente.md`.
+
 ## Preparar el entorno en una conversación nueva
+
+En Windows, rutas y comandos: `HERRAMIENTAS.md`. Los pasos siguientes son de Linux.
+
 1. Clonar `rvillalba1983/bug-de-familia`. Si la copia es superficial, usar `git fetch origin main` y `FETCH_HEAD`.
 2. Descargar `Godot_v4.7.2-stable_linux.x86_64.zip` de `github.com/godotengine/godot-builds/releases/download/4.7.2-stable/`.
 3. Importar: `godot --headless --import`. Plantillas de exportación: `Godot_v4.7.2-stable_export_templates.tpz`, en `~/.local/share/godot/export_templates/4.7.2.stable/`.

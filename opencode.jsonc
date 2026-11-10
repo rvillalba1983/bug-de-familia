@@ -1,6 +1,9 @@
 {
   "$schema": "https://opencode.ai/config.json",
 
+  // Herramientas, rutas y comandos: se cargan al empezar cada sesión, junto a AGENTS.md.
+  "instructions": ["HERRAMIENTAS.md"],
+
   // Permisos obligatorios según requisitos del proyecto
   "permissions": [
     {

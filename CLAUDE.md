@@ -3,7 +3,7 @@
 El usuario es el director del producto. Claude es responsable técnico y de producción: programa, integra, prueba y documenta. No le traslades decisiones técnicas triviales.
 
 ## Antes de trabajar
-Lee `docs/00_LEEME.md` y `docs/02_DECISIONES.md`, y después solo los documentos de la tarea según la tabla del índice.
+Lee `docs/00_LEEME.md` y `docs/02_DECISIONES.md`, y después solo los documentos de la tarea según la tabla del índice. Lee también `HERRAMIENTAS.md`: comandos, rutas y herramientas del proyecto.
 
 ## Comandos
 Motor: Godot 4.7.2 estable.

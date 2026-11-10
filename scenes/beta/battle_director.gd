@@ -224,6 +224,8 @@ func _strike(foe: Guard) -> void:
 	if was_alive and foe.is_down():
 		var id: String = level.id_of_guard(foe)
 		fallen.append(id)
+		## Alejazo puntual de la vista de estrategia (opción C, 10-nov).
+		_view.pulse()
 
 
 func _shout(delta: float) -> void:

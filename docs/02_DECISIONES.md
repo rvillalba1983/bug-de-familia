@@ -166,6 +166,14 @@ Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barr
 - **Hora real:** se acepta como gracia del juego que quien juegue siempre a la misma hora no vea parte del mundo. No se añade forma de saltar el tiempo.
 - **Pruebas finales de la beta:** incluyen observar a una o dos personas ajenas jugando sin explicarles nada.
 
+## Fusiones (10-nov)
+- **Siempre por rama y Pull Request**: nunca una fusión directa en local. `merge --ff-only` queda solo para el caso excepcional autorizado. La fusión la aprueba el director tras el CI verde; `git push` y la apertura del PR se confirman con él en el momento (no se sube código a servicios externos sin autorización). Ver `adr/0023-exe-en-cada-fusion.md`.
+- Cada vez que se vaya a fusionar una fase en `main` se genera también el `.exe` de Windows en `build/` (preset «Windows»), se actualiza `03_ESTADO.md` y se avisa del cambio de conversación. Es local: `build/` no va a git. Con PR, el `.exe` y el estado se preparan **antes de pedir la fusión**.
+
+## Vista de estrategia (10-nov)
+- **Decidido por el director (opción C):** el zoom da un **alejazo puntual y muy rápido** al abrir la vista y al caer un luchador. Solo en la vista de estrategia, no en la cámara del mundo. `ZOOM_MIN` baja de 0,7 a **0,6** (aprobado por el director) para que entre la ciudad y se vean los edificios de P-31. Respeta `GameSettings.reduce_motion`: con la opción activa no hay alejazo. Ver `adr/0025-alejazo-vista-estrategia.md`.
+- Corregida la ayuda de la vista: decía «M: salir» y contradecía la regla «Esc sale de cualquier panel; C, F1 y M solo abren». Ahora dice «Esc: salir»; se aclara en `controles.md`.
+
 ## Autonomía de Claude
 - Una fase por conversación: termina al fusionar en `main`, se anota el avance en `03_ESTADO.md` y se avisa al usuario de que hay que cambiar de conversación (8-nov).
 **Decide solo y documenta:** módulos, algoritmos, datos, herramientas locales, orden técnico de tareas, parámetros provisionales, refactorizaciones, optimizaciones medidas y decisiones artísticas menores.

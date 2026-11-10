@@ -25,6 +25,8 @@ Basados en los de World of Warcraft, adaptados a una cámara de ángulo fijo. Ap
 | Vista de estrategia durante una batalla | M |
 | **Salir de cualquier panel y de la pausa táctica** (también empieza la pelea tras la pausa previa) | Esc |
 
+Al estallar una batalla, la opción «solo mirar» abre la vista de estrategia directamente; M solo sirve para abrirla si te has unido a un bando. Para salir de la vista, Esc.
+
 Regla del director (9-nov): cada tecla hace una sola acción y cada acción se hace con una sola tecla. Excepciones aprobadas: 1-6 para acciones y respuestas, y E convive con el clic derecho.
 
 ## Diferencias con WoW

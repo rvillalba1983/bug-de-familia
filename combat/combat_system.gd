@@ -83,6 +83,7 @@ func strike(enemy: Guard) -> bool:
 	if _attack_timer > 0.0 or body.arm_count() == 0:
 		return false
 	_attack_timer = attack_interval()
+	_mark_action("ataque")
 	level.player.break_disguise()
 	var silent: bool = body.has_action("a002") and not enemy.is_alert()
 	enemy.take_damage(attack_damage(enemy))
@@ -100,6 +101,7 @@ func throw_at(point: Vector2) -> bool:
 		return false
 	_throw_timer = THROW_COOLDOWN
 	_shoot(WeaponCatalog.thrown(), point)
+	_mark_action("ataque")
 	return true
 
 
@@ -108,7 +110,14 @@ func fire_weapon(id: String, point: Vector2) -> bool:
 	if not WeaponCatalog.has_player_weapon(id):
 		return false
 	_shoot(WeaponCatalog.player(id), point)
+	_mark_action("ataque")
 	return true
+
+
+## Marca la acción cosmética del protagonista (P-25). Provisional.
+func _mark_action(accion: String) -> void:
+	if level != null and level.player != null:
+		level.player.set_action(accion)
 
 
 func _shoot(weapon: Dictionary, point: Vector2) -> void:

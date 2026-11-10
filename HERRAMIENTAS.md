@@ -37,6 +37,7 @@ Paquetes de Python: `& "<python.exe>" -m pip install <paquete>`. Instalados el 1
 - `python tools/formatear.py --comprobar --resumen`: solo comprueba. `python tools/formatear.py <archivo>` corrige UTF-8 sin BOM, LF y línea final; es el formatter de OpenCode.
 - `python tools/comparar_medicion.py medicion.txt`: regresiones frente a `tools/medir_windows/referencia.txt`.
 - `python tools/cambiar_modelo.py --estado | --validar | --rotar <agente> | --usar <agente> <modelo> | --restaurar <agente>`. Si un modelo agota su límite: `--rotar` y **relanzar la tarea** (ADR 0020).
+- `godot --headless --path . -s tools/verificar_apis_godot.gd`: comprueba contra el motor instalado las APIs de `CharFXTransform`, `RichTextLabel` e `Image` que usa el código. No sustituye a las pruebas, pero evita inventar APIs. Añadido el 10-nov (P-28/P-25).
 
 ## 4. Godot: importar y pruebas
 
@@ -56,7 +57,8 @@ cmd /c "C:\Users\usuario\opencode_projects\godot\Godot_v4.7.2-stable_win64_conso
 
 ## 5. Exportar y medir
 
-- Exportar Windows: preset «Windows» de `export_presets.cfg`, con `--headless --export-release "Windows" build/bug_de_familia.exe`. Sale a `build/`, que no va a git. Hecho el 10-nov; no se ha repetido hoy.
+- Exportar Windows: preset «Windows» de `export_presets.cfg`. En PowerShell, con `cmd /c` y `< NUL`, el preset va **sin comillas internas** (con `"Windows"` se pierden y Godot recibe `.`, error `Invalid export preset name`): `cmd /c "C:\Users\usuario\opencode_projects\godot\Godot_v4.7.2-stable_win64_console.exe --headless --export-release Windows build/bug_de_familia.exe < NUL"`. Sale a `build/`, que no va a git. Verificado el 10-nov (`.exe` de 109 MB y `.pck` de 20,9 MB).
+- **Regla del director (10-nov):** en cada fusión a `main` se genera también el `.exe` con este comando, antes de actualizar `docs/03_ESTADO.md` y avisar del cambio de conversación. Ver `adr/0023-exe-en-cada-fusion.md`.
 - Medición en la gráfica del director: preset «Medicion Windows» y zip. El director ejecuta `MEDIR.bat` (unos 20 min) y envía `medicion.txt`. Lo copias a la raíz y ejecutas `verificar.py`. Solo el director puede medir su gráfica.
 - Medición por software: `tools/medir_rendimiento.gd` (CASO, EXTRA), `tools/medir_por_partes.gd` (NOCHE, EXTRA, CAPAS) y `tools/medir_exportado.gd` (CASO). Sirven para comparar, no para fijar cifras de la gráfica real.
 - Al dar una cifra, di si es medida por software, en gráfica real o no medida.
@@ -81,8 +83,8 @@ Necesitan ventana y gráfica, así que no llevan `--headless`. Se lanzan con `--
 
 ## 8. Git y GitHub
 
-- Una rama por fase. Fusión a `main` con `--ff-only`, solo con aprobación del director. Las ramas remotas las borra el director.
-- `git push` pide confirmación (permiso en `opencode.jsonc`). No subas código ni recursos a servicios externos sin autorización.
+- Una rama por fase y **siempre Pull Request** a `main` (decisión del director del 10-nov); nada de fusión directa en local; `merge --ff-only` solo en el caso excepcional autorizado. Procedimiento: rama → commit → push de la rama → PR → CI verde → aprobación del director → fusión. **Antes de pedir la fusión del PR** se genera el `.exe` en `build/` (preset «Windows», §5) y se actualiza `03_ESTADO.md`. Las ramas remotas las borra el director.
+- `git push` pide confirmación (permiso en `opencode.jsonc`). Crear el PR implica subir la rama a GitHub: se confirma con el director en el momento, porque no se sube código ni recursos a servicios externos sin autorización. Un push nuevo cancela la verificación en curso: no empujes mientras corre el CI.
 - CI en `.github/workflows/`:
   - `pruebas.yml`: en cada push, salvo cambios solo en `docs/` o `*.md`, y al abrir o reabrir un PR. Ejecuta `verificar.py` y todas las pruebas GdUnit en Linux, con tope de 30 min.
   - `exportar.yml`: en push a `main` y a mano. Exporta Windows y sube el artefacto `bug-de-familia-windows`.
@@ -113,6 +115,6 @@ Resumen. El texto completo está en `AGENTS.md` y `docs/35_normas_codigo.md`.
 
 - Si `python`, `godot` u `opencode` no responden, es el PATH heredado: ver sección 1.
 - Si `python` no está en el PATH de la sesión, el formatter de OpenCode falla y sigue. Ejecuta `python tools/formatear.py --comprobar` a mano.
-- Sin ejecutar: exportación, `ground_gen.py`, `gen_audio.py`, `validar_datos.py --actualizar` y `cambiar_modelo.py --rotar`. Todos escriben archivos.
+- Sin ejecutar: `ground_gen.py`, `gen_audio.py` y `validar_datos.py --actualizar`: todos escriben archivos. La exportación sí se ejecutó el 10-nov (§5) y `cambiar_modelo.py --rotar explore` se ejecutó el 10-nov (ADR 0022).
 - En `C:\Program Files\Audacity` queda solo el desinstalador de la versión 3. La válida es `Audacity 4`.
 - El 10-nov, `opencode run` con `big-pickle` respondió: «Free usage limit reached. Connect a provider or subscribe to OpenCode Go to keep going, or switch models.». Si vuelve a pasar, aplica `FALLBACK_MODELS.md` y el ADR 0020.

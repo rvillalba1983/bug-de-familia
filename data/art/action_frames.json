@@ -1,0 +1,8 @@
+{
+  "_origen": "Fotogramas dibujados por codigo en tools/art/piece_atlas_gen.gd (Godot 4.7.2), con la paleta Cunado Radiactivo. Provisional, P-25.",
+  "acciones": {
+    "idle": {"fps": 2.0, "frames": ["accion_idle_0", "accion_idle_1"]},
+    "ataque": {"fps": 10.0, "frames": ["accion_ataque_0", "accion_ataque_1", "accion_ataque_2"]},
+    "recarga": {"fps": 4.0, "frames": ["accion_recarga_0", "accion_recarga_1"]}
+  }
+}

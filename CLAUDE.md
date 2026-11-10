@@ -39,8 +39,9 @@ Comprobaciones deterministas antes de commitear: `tools/verificar.py`. En OpenCo
 
 ## Una fase por conversación
 - Cada fase del plan se hace en una conversación propia, que termina al fusionar esa fase en `main`.
+- Cada fase va en su **rama** y se cierra con un **Pull Request** a `main` (decisión del 10-nov): nada de fusiones directas en local. Ver `adr/0023-exe-en-cada-fusion.md`.
 - Al empezar, lee también `docs/03_ESTADO.md`: indica por dónde vamos y cómo preparar el entorno.
-- Al fusionar en `main`: actualiza `docs/03_ESTADO.md` y comunica al usuario que hay que cambiar de conversación.
+- Al fusionar en `main`: genera el `.exe` en `build/` (preset «Windows»), actualiza `docs/03_ESTADO.md` y comunica al usuario que hay que cambiar de conversación. Ver `adr/0023-exe-en-cada-fusion.md`.
 
 ## Al cerrar una tarea
 Informa de: qué se ha hecho, archivos afectados, pruebas y resultados, validación manual necesaria, limitaciones y decisiones que requieren aprobación.

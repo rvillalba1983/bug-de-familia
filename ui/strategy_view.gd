@@ -1,18 +1,26 @@
 class_name StrategyView
 extends CanvasLayer
-## Solo la pelea, ampliada, con muñequitos patosos dando saltos. M abre y cierra; 1, 2 y 3 dan x1, x2 y x4.
+## Solo la pelea, ampliada, con muñequitos patosos dando saltos.
+## M abre y Esc cierra; 1, 2 y 3 dan x1, x2 y x4.
 
 const SPEEDS: Array[float] = [1.0, 2.0, 4.0]
 const VIEW: Vector2 = Vector2(1920.0, 1080.0)
 const FRAME_MARGIN: Vector2 = Vector2(520.0, 420.0)
-const ZOOM_MIN: float = 0.7
+## Ampliado el 10-nov por decisión del director (opción C): 0,6 permite ver la ciudad.
+const ZOOM_MIN: float = 0.6
 const ZOOM_MAX: float = 1.9
 const CAMERA_SPEED: float = 2.5
+## Alejazo puntual al abrir y al caer alguien; se consume en ~0,4 s de tiempo real.
+const PULSE_DECAY: float = 2.5
 const DIRT_STEP: float = 160.0
 const COLOR_GROUND: Color = Color("#a8875a")
 const COLOR_DIRT: Color = Color("#957548")
 const COLOR_INK: Color = Color("#1a1024")
 const COLOR_TONGUE: Color = Color("#e0405a")
+const COLOR_EDIFICIO: Color = Color("#5a4a3a")
+const COLOR_EDIFICIO_BORDE: Color = Color("#2a1a10")
+## Esc sale de cualquier panel; M solo abre (02_DECISIONES.md, cierre de la beta).
+const HELP_FORMAT: String = "x%d   ·   1: x1   2: x2   3: x4   ·   Esc: salir"
 const MOOD_TIME: float = 1.3
 
 enum Mood { ANGRY, DISGUST, SCREAM, SMUG, PANIC }
@@ -23,6 +31,8 @@ var is_open: bool = false
 var _canvas: Control
 var _focus: Vector2 = Vector2.ZERO
 var _zoom: float = 1.0
+var _base_zoom: float = 1.0
+var _pulse: float = 0.0
 var _time: float = 0.0
 var _covered: Array[CanvasLayer] = []
 
@@ -45,6 +55,7 @@ func open() -> void:
 	is_open = true
 	visible = true
 	_hide_what_is_covered()
+	pulse()
 	_update_camera(0.0, true)
 	director.level.player.controls_locked = true
 
@@ -54,6 +65,7 @@ func close() -> void:
 		return
 	is_open = false
 	visible = false
+	_pulse = 0.0
 	_show_what_was_covered()
 	director.level.player.controls_locked = false
 
@@ -103,6 +115,8 @@ func _process(delta: float) -> void:
 		director.close_view()
 		return
 	_time += delta * director.speed
+	## El pulso va en tiempo real: a x4 no debe marear cuatro veces mas rapido.
+	tick_pulse(delta / maxf(Engine.time_scale, 0.001))
 	_update_camera(delta, false)
 	_canvas.queue_redraw()
 
@@ -110,6 +124,7 @@ func _process(delta: float) -> void:
 func _draw_map() -> void:
 	_canvas.draw_rect(Rect2(Vector2.ZERO, VIEW), COLOR_GROUND)
 	_draw_dirt()
+	_draw_buildings()
 	for species: String in director.species:
 		_draw_fallen(species)
 	var fighters: Array = []
@@ -123,6 +138,31 @@ func _draw_map() -> void:
 	_draw_labels()
 
 
+## Alejazo instantáneo y vuelta rápida; con reduce_motion no hay pulso (opción C).
+func pulse() -> void:
+	if GameSettings.reduce_motion:
+		return
+	_pulse = 1.0
+
+
+func tick_pulse(delta_real: float) -> void:
+	_pulse = maxf(_pulse - PULSE_DECAY * delta_real, 0.0)
+
+
+func pulse_level() -> float:
+	return _pulse
+
+
+## Zoom efectivo: el base se interpola hacia ZOOM_MIN mientras dura el pulso.
+static func zoom_with_pulse(base: float, strength: float) -> float:
+	return lerpf(base, ZOOM_MIN, clampf(strength, 0.0, 1.0))
+
+
+## Texto de ayuda, extraído para poder probarlo (P-31).
+static func help_text(speed: float) -> String:
+	return HELP_FORMAT % roundi(speed)
+
+
 func _draw_labels() -> void:
 	var font: Font = ThemeDB.fallback_font
 	var line: float = 44.0
@@ -131,9 +171,32 @@ func _draw_labels() -> void:
 		_canvas.draw_string_outline(font, Vector2(1590.0, line), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, 6, Color.BLACK)
 		_canvas.draw_string(font, Vector2(1590.0, line), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, SpeciesCatalog.map_color(species))
 		line += 36.0
-	var help: String = "x%d   ·   1: x1   2: x2   3: x4   ·   M: salir" % roundi(director.speed)
+	var help: String = StrategyView.help_text(director.speed)
 	_canvas.draw_string_outline(font, Vector2(24.0, 44.0), help, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, 6, Color.BLACK)
 	_canvas.draw_string(font, Vector2(24.0, 44.0), help, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, Color.WHITE)
+
+
+## Siluetas provisionales de edificios (P-31): rectángulos reales de la zona.
+## Pocos y dibujados antes de los luchadores: no tapan texto ni alteran la cámara.
+func building_rects() -> Array[Rect2]:
+	return [
+		BetaLayout.central_facade,
+		BetaLayout.depot_facade,
+		BetaLayout.jub_home,
+		BetaLayout.moho_home,
+	]
+
+
+func _draw_buildings() -> void:
+	for rect: Rect2 in building_rects():
+		var a: Vector2 = _to_view(rect.position)
+		var b: Vector2 = _to_view(rect.position + rect.size)
+		var caja: Rect2 = Rect2(a, b - a)
+		_canvas.draw_rect(caja, COLOR_EDIFICIO)
+		_canvas.draw_rect(caja, COLOR_EDIFICIO_BORDE, false, 2.0)
+	var ciudad: Vector2 = _to_view(BetaLayout.city.position)
+	var fin: Vector2 = _to_view(BetaLayout.city.position + BetaLayout.city.size)
+	_canvas.draw_rect(Rect2(ciudad, fin - ciudad), COLOR_EDIFICIO_BORDE, false, 2.0)
 
 
 func _to_view(point: Vector2) -> Vector2:
@@ -154,7 +217,8 @@ func _update_camera(delta: float, snap: bool) -> void:
 	var zoom: float = clampf(minf(VIEW.x / need.x, VIEW.y / need.y), ZOOM_MIN, ZOOM_MAX)
 	var blend: float = 1.0 if snap else clampf(delta * CAMERA_SPEED, 0.0, 1.0)
 	_focus = _focus.lerp(box.get_center(), blend)
-	_zoom = lerpf(_zoom, zoom, blend)
+	_base_zoom = lerpf(_base_zoom, zoom, blend)
+	_zoom = StrategyView.zoom_with_pulse(_base_zoom, _pulse)
 
 
 func _draw_dirt() -> void:

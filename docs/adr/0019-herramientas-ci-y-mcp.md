@@ -142,6 +142,16 @@ cuesta nada.
   no enmascare el código 124 del timeout, y una nota de procedimiento: **no
   empujar mientras el run de verificación esté en curso**. Con la PR abierta
   cada push costaba ~16 min (dos runs); estos cambios lo dejan en ~8 min.
+- **Run completo del HEAD final (`3aed01f`): verde**, 311/311 con 0 fallos en
+  7 min 46 s. Confirma los arreglos de estado global en Linux.
+- El CI ha destapado además un **fallo intermitente preexistente**: sobre el
+  mismo SHA, el run de `push` pasó 311/311 y el de PR falló en
+  `test_ruta_fuerza_completa_los_cuatro_retos` (`fallen_ids` vale 1). Ya
+  aparecía en el primer run, antes de los arreglos, con código de juego
+  idéntico a `main`: no lo introduce esta rama. Registrado como **P-39** en
+  `01_CONFLICTOS_Y_PENDIENTES.md` con el diagnóstico del arnés de tiempo y la
+  corrección propuesta, sin relajar ninguna aserción. No se marca como flaky
+  ni se desactiva.
 - 64 avisos de líneas largas siguen pendientes; son deuda anterior y no
   bloquean. No se reescribieron para no mezclar cambios de formato con lógica.
 - Ambos workflows se validaron con un parser YAML real (PyYAML instalado solo

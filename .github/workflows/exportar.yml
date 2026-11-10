@@ -1,0 +1,78 @@
+name: Exportar
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  exportar-windows:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache Godot y plantillas de exportación
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: |
+            /tmp/godot
+            ~/.local/share/godot/export_templates/4.7.2.stable
+          key: godot-4.7.2-stable-linux-templates-${{ runner.os }}-v1
+
+      - name: Descargar Godot 4.7.2
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p /tmp/godot
+          curl -L -o /tmp/godot/godot.zip \
+            https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          unzip -o /tmp/godot/godot.zip -d /tmp/godot
+          mv /tmp/godot/Godot_v4.7.2-stable_linux.x86_64 /tmp/godot/godot
+          chmod +x /tmp/godot/godot
+
+      - name: Descargar e instalar plantillas de exportación
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p /tmp/godot-templates/extract
+          curl -L -o /tmp/godot-templates/templates.tpz \
+            https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_export_templates.tpz
+          mkdir -p ~/.local/share/godot/export_templates/4.7.2.stable
+          unzip -o /tmp/godot-templates/templates.tpz -d /tmp/godot-templates/extract
+          # Godot usa el directorio que contiene version.txt como raíz de contenido.
+          VERSION_TXT=$(find /tmp/godot-templates/extract -name version.txt -print -quit)
+          if [ -z "$VERSION_TXT" ]; then
+            echo "::error::No se encontró version.txt en las plantillas descargadas"
+            exit 1
+          fi
+          CONTENTS_DIR=$(dirname "$VERSION_TXT")
+          echo "Raíz de plantillas detectada: $CONTENTS_DIR"
+          find "$CONTENTS_DIR" -mindepth 1 -maxdepth 1 -not -name '__MACOSX' \
+            -exec cp -r {} ~/.local/share/godot/export_templates/4.7.2.stable/ \;
+
+      - name: Añadir Godot al PATH
+        run: echo "/tmp/godot" >> "$GITHUB_PATH"
+
+      - name: Importar proyecto
+        run: godot --headless --import
+        timeout-minutes: 5
+
+      - name: Exportar Windows
+        run: |
+          mkdir -p build
+          godot --headless --export-release "Windows" build/bug_de_familia.exe
+
+      - name: Subir artefactos
+        uses: actions/upload-artifact@v4
+        with:
+          name: bug-de-familia-windows
+          path: |
+            build/*.exe
+            build/*.pck
+          if-no-files-found: error

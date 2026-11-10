@@ -1,0 +1,41 @@
+{
+  "ai_faces": 20,
+  "atlas_piezas": 48,
+  "case_01": {
+    "ambient": 6,
+    "dialogue": 13,
+    "evidence": 4,
+    "npcs": 4
+  },
+  "case_beta": {
+    "ambient": 6,
+    "dialogue": 32,
+    "evidence": 8,
+    "npcs": 9
+  },
+  "comments_grupos": 41,
+  "conversion_actions": 104,
+  "conversion_materials": 9,
+  "conversion_objectives": 14,
+  "conversion_properties": 50,
+  "deaths": 1,
+  "enemy_animations": 4,
+  "events": 21,
+  "festivals": 36,
+  "library_pistas": 100,
+  "library_voces": 40,
+  "missions": 3,
+  "nicknames_grupos": 22,
+  "nicknames_motes": 123,
+  "personalities_ais": 20,
+  "personalities_pairs": 14,
+  "progenitors": 2,
+  "protagonista_variantes": 3,
+  "protagonista_vistas": 8,
+  "questions": 76,
+  "species": 2,
+  "textos": 111,
+  "weapons_enemy": 2,
+  "weapons_player": 5,
+  "zones": 1
+}

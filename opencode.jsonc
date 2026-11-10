@@ -10,6 +10,30 @@
     }
   ],
 
+  // Formateador propio: los integrados de OpenCode no cubren GDScript (.gd).
+  // tools/formatear.py aplica UTF-8 sin BOM, LF y una única línea final
+  // (docs/35_normas_codigo.md) tras cada escritura o edición. Solo stdlib.
+  // Requiere `python` en el PATH; si no está, OpenCode registra el fallo y sigue.
+  "formatter": {
+    "normas-proyecto": {
+      "command": ["python", "tools/formatear.py", "$FILE"],
+      "extensions": [".gd", ".py", ".json", ".jsonc", ".yml", ".yaml", ".csv", ".cfg", ".tscn", ".tres", ".md", ".txt", ".gdshader", ".sh"]
+    }
+  },
+
+  // No vigilar directorios generados: menos ruido y menos contexto.
+  "watcher": {
+    "ignore": [".godot/**", "build/**", "export/**", "reports/**"]
+  },
+
+  // Atajo para las comprobaciones deterministas, sin consumo de modelo.
+  "commands": {
+    "verificar": {
+      "description": "Valida datos y normas de formato del repositorio",
+      "template": "Ejecuta `python tools/verificar.py` desde la raíz del repositorio e informa solo del resumen y de los errores, sin corregir nada."
+    }
+  },
+
   // Modelos: dos fuentes, la más barata primero.
   // - Gratuitos de la consola de OpenCode (opencode/<modelo>): big-pickle y las
   //   versiones free de deepseek y glm. Sin coste y sin franja punta, pero por

@@ -1,0 +1,9 @@
+# Referencia de fotogramas (ms) para comparar_medicion.py.
+# Hardware: Intel HD 520 del director (ver docs/adr/0017-optimizacion-integrada.md).
+# Marcas provisionales: contrastar cada cifra con la medición que la generó.
+# Columnas: <caso> <mediana_ms> <p99_ms> ; p99 '-' significa sin dato, sin límite.
+
+ciudad      7.20       -
+caminando  18.60       -
+pelea      11.20       -
+pausa      16.40       -

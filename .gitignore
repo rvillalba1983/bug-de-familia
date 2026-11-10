@@ -1,5 +1,6 @@
 .godot/
 *.import.tmp
 export/
+build/
 reports/
 *.tmp

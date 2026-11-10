@@ -1,0 +1,75 @@
+name: Pruebas
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verificaciones deterministas (datos y normas)
+        run: python3 tools/verificar.py
+
+      - name: Cache Godot
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: /tmp/godot
+          key: godot-4.7.2-stable-linux-${{ runner.os }}-v1
+
+      - name: Descargar Godot 4.7.2
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p /tmp/godot
+          curl -L -o /tmp/godot/godot.zip \
+            https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          unzip -o /tmp/godot/godot.zip -d /tmp/godot
+          mv /tmp/godot/Godot_v4.7.2-stable_linux.x86_64 /tmp/godot/godot
+          chmod +x /tmp/godot/godot
+
+      - name: Añadir Godot al PATH
+        run: echo "/tmp/godot" >> "$GITHUB_PATH"
+
+      - name: Importar proyecto
+        run: godot --headless --import
+        timeout-minutes: 5
+
+      - name: Ejecutar pruebas GdUnit4
+        id: pruebas
+        run: |
+          set +e
+          timeout 900 godot --headless -s -d \
+            res://addons/gdUnit4/bin/GdUnitCmdTool.gd \
+            --ignoreHeadlessMode -a res://tests -c \
+            </dev/null > pruebas.log 2>&1
+          EXIT_CODE=$?
+          set -e
+          cat pruebas.log
+          if [ "$EXIT_CODE" -eq 124 ]; then
+            echo "::error::Las pruebas excedieron el tiempo límite de 900 segundos (posible prompt debug>)"
+            exit 1
+          fi
+          if [ "$EXIT_CODE" -ne 0 ]; then
+            echo "::error::Las pruebas fallaron con código de salida $EXIT_CODE"
+          fi
+          exit "$EXIT_CODE"
+
+      - name: Resumen de pruebas
+        if: always()
+        run: |
+          if [ -f pruebas.log ]; then
+            echo "## Resultados de pruebas GdUnit4" >> "$GITHUB_STEP_SUMMARY"
+            sed 's/\x1b\[[0-9;]*m//g' pruebas.log | \
+              grep -E "^(Overall Summary:|Executed test suites:|Executed test cases :|Total execution time:)" >> "$GITHUB_STEP_SUMMARY" || true
+          fi

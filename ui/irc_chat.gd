@@ -33,12 +33,14 @@ const COLOR_DARK: Color = Color("#808080")
 const COLOR_TOOLBAR_SPARE: Color = Color("#ffd400")
 const COLOR_SYSTEM: String = "#00c000"
 const COLOR_TIME: String = "#808080"
+const COLOR_FLASH: Color = Color("#ffe14a")
 const TEXT_EFFECTS: Dictionary = {
 	"panico": "[shake rate=24 level=7]%s[/shake]",
-	"sargento_bit": "[shake rate=12 level=4]%s[/shake]",
-	"cupido": "[wave amp=18 freq=3]%s[/wave]",
+	"sargento_bit": "[enfadada]%s[/enfadada]",
+	"cupido": "[enamorada]%s[/enamorada]",
 	"lumi": "[rainbow freq=0.3 sat=0.7]%s[/rainbow]",
-	"siestaware": "[fade start=0 length=60]%s[/fade]",
+	"matriz": "[tartamuda]%s[/tartamuda]",
+	"siestaware": "[corrupto]%s[/corrupto]",
 }
 const CHANNEL_TITLE: String = "IRCabeza 3.1 - [#familia] [+nt]"
 
@@ -66,6 +68,12 @@ func _ready() -> void:
 		AREA.size - Vector2(8.0, top + STATUS_HEIGHT + 8.0)
 	)
 	log_view = _rich(Rect2(body.position, body.size - Vector2(NICKS_WIDTH + 4.0, 0.0)))
+	log_view.custom_effects = [
+		TartamudaEffect.new(),
+		EnamoradaEffect.new(),
+		EnfadadaEffect.new(),
+		CorruptoEffect.new(),
+	]
 	nick_view = _rich(Rect2(
 		Vector2(body.end.x - NICKS_WIDTH, body.position.y), Vector2(NICKS_WIDTH, body.size.y)
 	))
@@ -93,6 +101,8 @@ func _process(delta: float) -> void:
 		_refresh = REFRESH
 		_update_users()
 	_flash = maxf(_flash - delta * 2.0, 0.0)
+	if _flash > 0.0:
+		queue_redraw()
 
 
 func _draw() -> void:
@@ -112,8 +122,9 @@ func _draw() -> void:
 	draw_rect(topic, COLOR_TOPIC)
 	draw_rect(_body_rect(), COLOR_BACK)
 	if _flash > 0.0:
-		var overlay: Color = Color(1.0, 1.0, 1.0, _flash * 0.35)
-		draw_rect(_body_rect(), overlay)
+		var pintura: Dictionary = flash_paint()
+		draw_rect(_body_rect(), pintura["relleno"] as Color)
+		draw_rect(_body_rect(), pintura["borde"] as Color, false, float(pintura["grosor"]))
 
 
 func _draw_tabs() -> void:
@@ -157,14 +168,39 @@ func add_message(id: String, text: String) -> void:
 		DECOR, color, _safe(str(info["face"])), _safe(str(info["name"])), _styled(id, _safe(text))
 	])
 	if not GameSettings.reduce_motion:
-		_flash = 0.6
+		_flash = 1.0
 
 
 ## Cada IA escribe a su manera; sin movimiento si el jugador lo ha pedido.
 func _styled(id: String, text: String) -> String:
 	if GameSettings.reduce_motion or not TEXT_EFFECTS.has(id):
 		return text
-	return (TEXT_EFFECTS[id] as String) % text
+	return (TEXT_EFFECTS[id] as String) % _stutter(id, text)
+
+
+## La tartamuda repite la primera letra de algunas palabras (provisional).
+func _stutter(id: String, text: String) -> String:
+	if id != "matriz":
+		return text
+	var palabras: PackedStringArray = text.split(" ", false)
+	var out: PackedStringArray = PackedStringArray()
+	for index: int in range(palabras.size()):
+		var palabra: String = palabras[index]
+		if index % 2 == 0 and palabra.length() > 1:
+			palabra = palabra.substr(0, 1) + "-" + palabra.substr(0, 1) + "-" + palabra
+		out.append(palabra)
+	return " ".join(out)
+
+
+## El aviso es un marco, no un relleno blanco: el texto sigue legible (P-33).
+func flash_paint() -> Dictionary:
+	var borde: Color = COLOR_FLASH
+	borde.a = _flash
+	return {"relleno": Color.TRANSPARENT, "borde": borde, "grosor": 2.0 + 4.0 * _flash}
+
+
+func flash_level() -> float:
+	return _flash
 
 
 func lines() -> Array[String]:

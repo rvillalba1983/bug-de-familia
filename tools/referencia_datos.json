@@ -1,6 +1,7 @@
 {
+  "action_frames": 3,
   "ai_faces": 20,
-  "atlas_piezas": 48,
+  "atlas_piezas": 55,
   "case_01": {
     "ambient": 6,
     "dialogue": 13,

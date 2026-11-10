@@ -53,6 +53,7 @@ func trigger(index: int) -> bool:
 		return false
 	var weapon: Dictionary = WeaponCatalog.player(id) if WeaponCatalog.has_player_weapon(id) else {}
 	_cooldowns[id] = float(weapon.get("cooldown", COOLDOWN)) * body.multiplier("cooldown")
+	level.player.set_action("recarga")
 	body.wear_piece(
 		action["slot"] as ModularBody.Slot, float(weapon.get("wear", USE_WEAR)) * body.multiplier("use_wear")
 	)

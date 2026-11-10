@@ -10,6 +10,12 @@ const SHADOW_SIZE: int = 64
 const OUTPUT_IMAGE: String = "res://art/beta/atlas/piezas.png"
 const OUTPUT_INDEX: String = "res://data/art/atlas_piezas.json"
 const RIG_FOLDER: String = "res://art/beta/rig/"
+const ACTIONS_PATH: String = "res://data/art/action_frames.json"
+const FRAME_SIDE: int = 64
+const COLOR_INK: Color = Color("#1b0e2a")
+const COLOR_ARM: Color = Color("#8894b5")
+const COLOR_WEAPON: Color = Color("#00e5ff")
+const COLOR_ACCENT: Color = Color("#ffd400")
 
 
 func _initialize() -> void:
@@ -45,6 +51,7 @@ func _load_pieces() -> Array[Dictionary]:
 		parts.append("torso")
 		for part: String in parts:
 			pieces.append(_piece(RIG_FOLDER + view + "/" + part + ".svg", view + "/" + part))
+	pieces.append_array(_action_frames())
 	return pieces
 
 
@@ -56,6 +63,62 @@ func _piece(path: String, key: String) -> Dictionary:
 	source.resize(full, roundi(float(source.get_height()) * SCALE), Image.INTERPOLATE_LANCZOS)
 	var used: Rect2i = source.get_used_rect()
 	return {"key": key, "image": source.get_region(used), "trim_x": used.position.x, "trim_y": used.position.y, "full": full}
+
+
+## Fotogramas por acción dibujados por código con la paleta «Cuñado Radiactivo» (P-25).
+## Origen: este generador con Godot 4.7.2; no es un SVG externo. Provisional.
+func _action_frames() -> Array[Dictionary]:
+	var out: Array[Dictionary] = []
+	var source: Variant = JSON.parse_string(FileAccess.get_file_as_string(ACTIONS_PATH))
+	var acciones: Dictionary = (source as Dictionary).get("acciones", {})
+	for accion: String in acciones:
+		var claves: Array = acciones[accion]["frames"]
+		for index: int in range(claves.size()):
+			out.append(_action_frame(accion, index, claves.size(), str(claves[index])))
+	return out
+
+
+func _action_frame(accion: String, index: int, total: int, key: String) -> Dictionary:
+	var image: Image = Image.create(FRAME_SIDE, FRAME_SIDE, false, Image.FORMAT_RGBA8)
+	var fase: float = float(index) / float(maxi(total, 1))
+	var angulo: float = _angulo(accion, fase)
+	var hombro: Vector2 = Vector2(14.0, 50.0)
+	var mano: Vector2 = hombro + Vector2(cos(angulo), sin(angulo)) * 30.0
+	_linea(image, hombro, mano, COLOR_INK, 9.0)
+	_linea(image, hombro, mano, COLOR_ARM, 5.0)
+	var punta: Vector2 = mano + Vector2(cos(angulo), sin(angulo)) * 16.0
+	_linea(image, mano, punta, COLOR_INK, 8.0)
+	_linea(image, mano, punta, COLOR_WEAPON, 4.0)
+	_punto(image, punta, 4.0, COLOR_ACCENT)
+	return {"key": key, "image": image, "trim_x": 0, "trim_y": 0, "full": FRAME_SIDE}
+
+
+func _angulo(accion: String, fase: float) -> float:
+	match accion:
+		"ataque":
+			return lerpf(-1.2, -0.1, fase)
+		"recarga":
+			return lerpf(-0.2, -0.9, fase) + sin(fase * TAU) * 0.15
+		_:
+			return -0.65 + sin(fase * TAU) * 0.12
+
+
+func _linea(image: Image, from: Vector2, to: Vector2, color: Color, width: float) -> void:
+	var pasos: int = int(from.distance_to(to) * 2.0) + 1
+	for step: int in range(pasos + 1):
+		var at: Vector2 = from.lerp(to, float(step) / float(pasos))
+		_punto(image, at, width * 0.5, color)
+
+
+func _punto(image: Image, center: Vector2, radius: float, color: Color) -> void:
+	var x0: int = maxi(int(center.x - radius), 0)
+	var x1: int = mini(int(center.x + radius), FRAME_SIDE - 1)
+	var y0: int = maxi(int(center.y - radius), 0)
+	var y1: int = mini(int(center.y + radius), FRAME_SIDE - 1)
+	for y: int in range(y0, y1 + 1):
+		for x: int in range(x0, x1 + 1):
+			if Vector2(float(x), float(y)).distance_to(center) <= radius:
+				image.set_pixel(x, y, color)
 
 
 func _shadow() -> Dictionary:

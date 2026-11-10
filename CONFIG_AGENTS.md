@@ -17,7 +17,7 @@
 | `arte` | Atlas, estilo visual y capturas | `art/**`, `data/art/**`, con confirmación | Go `qwen3.8-flash` |
 | `audio` | Melodías y voces con `gen_audio.py` | `audio/**`, `data/audio/**`, con confirmación | Go `glm-5.3-flash` |
 | `medidor` | Medir rendimiento en la gráfica real | Solo lectura | Go `glm-5.3-flash` |
-| `explore` (integrado) | Búsqueda rápida por código y web | Solo lectura | Gratis `big-pickle` |
+| `explore` (integrado) | Búsqueda rápida por código y web | Solo lectura | Go `gpt-6-luna` (rotado el 10-nov; antes gratis `big-pickle`) |
 | Por defecto (`build`, `plan`, `general`) | Conversación principal, planes, investigación | Según permisos globales | Gratis `big-pickle` |
 
 Reglas comunes a todos: `git push` siempre pide confirmación, los parámetros provisionales se marcan como tales y nadie desactiva pruebas para conseguir verde.
@@ -42,7 +42,7 @@ Reglas comunes a todos: `git push` siempre pide confirmación, los parámetros p
 
 ## Verificación
 
-- `opencode run` desde la raíz del proyecto debe mostrar `big-pickle` en la cabecera de la respuesta.
+- `opencode run` desde la raíz del proyecto debe mostrar `big-pickle` en la cabecera de la respuesta (modelo por defecto). `explore` está rotado a `opencode-go/gpt-6-luna` (ADR 0022); `--estado` lo muestra como alternativo 1.
 - `/models` debe listar los modelos de `opencode` (gratuitos) y de `opencode-go` (suscripción).
 - Un subagente se prueba pidiéndole algo de su dominio en una conversación.
 - Validado el 10-nov con peticiones reales: `arquitecto` (Go `glm-5.3`) y `documentacion` (consola `glm-5.3-flash-free`) respondieron correctamente.

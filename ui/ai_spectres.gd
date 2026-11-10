@@ -2,6 +2,11 @@ class_name AiSpectres
 extends Control
 ## Durante la pausa táctica, las tres IAs activas son fantasmas de colores, con ojos y boca propios.
 ## Solo es ambiente: no gasta tokens y usa su propio azar para no tocar la semilla de la partida.
+## Punto de enganche de P-26 (post-beta): el futuro gestor multi-zona o la pantalla de
+## viaje rápido debe crear este nodo con `team` y llamar a `set_shown(true)` mientras el
+## juego esté parado, igual que `ConversionScreen._reset()`. Hoy solo se usa en la pausa
+## táctica y en la conversión; el viaje rápido aún no está implementado. Sigue abierta la
+## duda de si el tiempo del mundo avanza durante el viaje (decisión del director).
 
 const SPEAK_INTERVAL: float = 3.2
 const SPEAKERS: int = 3

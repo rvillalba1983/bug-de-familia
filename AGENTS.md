@@ -35,8 +35,8 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 ## Flujo de trabajo
 
 - El usuario es el director de producto: aprueba decisiones de diseño y fusiones. No le traslades decisiones técnicas triviales.
-- Una fase del plan (`docs/40_plan_desarrollo.md`) por conversación; termina al fusionarla en `main`. Al fusionar, actualiza `docs/03_ESTADO.md` y avisa al usuario de que hay que cambiar de conversación.
-- Git: una rama por fase; fusión a `main` con `--ff-only` y solo cuando el usuario lo aprueba. Las ramas remotas las borra el usuario.
+- Una fase del plan (`docs/40_plan_desarrollo.md`) por conversación; termina al fusionarla en `main`. Al fusionar, genera el `.exe` en `build/` (preset «Windows»), actualiza `docs/03_ESTADO.md` y avisa al usuario de que hay que cambiar de conversación. Decisión del director: `adr/0023-exe-en-cada-fusion.md`.
+- Git: una rama por fase y **siempre Pull Request** a `main` (decisión del director del 10-nov): nada de fusión directa en local; `merge --ff-only` solo en el caso excepcional autorizado. Commitear, pushear la rama y abrir el PR requieren confirmación del director, que además aprueba la fusión. Las ramas remotas las borra el usuario. Ver `adr/0023-exe-en-cada-fusion.md`.
 - Entregas pequeñas; siempre debe existir una versión ejecutable.
 - No inventes lo que falta: los parámetros provisionales se marcan como tales.
 - No afirmes que algo funciona sin ejecutarlo: distingue pruebas ejecutadas de no ejecutadas.

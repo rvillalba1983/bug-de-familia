@@ -33,6 +33,16 @@ Cada modelo de Go tiene tres ventanas: 5 horas (20 % del límite mensual), seman
 
 Criterio: los agentes con versión gemela gratuita (qa, documentacion) o de alto volumen (conversaciones principales, explore) van sobre el gratuito; los especializados sin gemela gratuita usan Go con Big Pickle de primer respaldo, para no gastar ventanas de otros modelos de Go.
 
+## Rotaciones vigentes (10-nov)
+
+| Agente | Modelo en config | Motivo | Volver |
+|---|---|---|---|
+| `explore` | `opencode-go/gpt-6-luna` (alternativo 1, de pago) | `Free usage limit reached` en `opencode/big-pickle`; el director pidió «rota a modelo de pago» | `python tools/cambiar_modelo.py --restaurar explore` |
+
+La cadena de `tools/modelos_agentes.json` no cambia: sigue siendo la fuente única y el
+principal de la cadena sigue siendo `big-pickle`. Validado con `--validar` (0 errores) y
+la tarea se relanzó con el modelo nuevo. Detalle completo en `adr/0022-rotacion-explore-a-go.md`.
+
 ## Catálogo Go usado
 
 Precio por millón de tokens y límite mensual de uso incluido en el plan Go (10 $/mes):

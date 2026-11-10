@@ -27,6 +27,8 @@ var body_color: Color = Color.TRANSPARENT
 var individual_scale: float = 1.0
 ## Esqueleto de la vista actual. Hay uno por vista y se crean al necesitarlos.
 var rig: EnemyRig
+## Fotograma de la acción actual para el atlas (P-25, provisional).
+var frames: ActionFrame = ActionFrame.new()
 ## Padre de los esqueletos, en los pies: deforma y destella a todos a la vez.
 var rig_root: Node2D
 
@@ -47,6 +49,7 @@ static func view_for(direction: Vector2) -> int:
 
 
 func draw() -> void:
+	_update_action_frame()
 	if _guard.state == Guard.State.DOWN:
 		_draw_down()
 		return
@@ -56,6 +59,7 @@ func draw() -> void:
 		_draw_placeholder()
 	_draw_windup()
 	_draw_health()
+	_draw_action_frame()
 
 
 ## Elige vista y animación según el estado. Caído, conserva la vista en la que cayó.
@@ -77,6 +81,32 @@ func update_rig() -> void:
 	elif state != Guard.State.ALERT or not rig.player.is_playing():
 		rig.show_animation(EnemyRig.WALK if _guard.velocity.length() > 1.0 else EnemyRig.IDLE)
 	_was_alert = state == Guard.State.ALERT
+
+
+## Acción según el estado del ataque (P-25). Provisional.
+static func action_for(windup_left: float, hit_timer: float) -> String:
+	if windup_left > 0.0:
+		return "ataque"
+	if hit_timer > 0.0:
+		return "recarga"
+	return ActionFrameCatalog.DEFAULT
+
+
+func _update_action_frame() -> void:
+	if _guard.attack == null:
+		return
+	frames.set_action(action_for(_guard.attack.windup_left, _guard.attack.hit_timer))
+
+
+func _draw_action_frame() -> void:
+	var key: String = frames.current_key()
+	if key.is_empty() or not PieceAtlas.has_entry(key):
+		return
+	var lado: float = 26.0 * CharacterScale.value
+	var caja: Rect2 = Rect2(10.0 * CharacterScale.value, -46.0 * CharacterScale.value, lado, lado)
+	_guard.draw_texture_rect_region(
+		PieceAtlas.texture(), caja, PieceAtlas.region(key), Color.WHITE, false
+	)
 
 
 func _rig_tint(state: Guard.State) -> Color:

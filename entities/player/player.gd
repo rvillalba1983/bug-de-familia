@@ -34,6 +34,8 @@ const HIT_REFERENCE: float = 34.0
 const HIT_SHAKE: float = 14.0
 const HIT_STOP: float = 0.07
 const HIT_SQUASH: Vector2 = Vector2(1.22, 0.78)
+## Segundos que se ve una acción antes de volver a idle (P-25, provisional).
+const ACTION_SHOW_TIME: float = 0.5
 
 ## Lo fija Siestaware cuando está activa.
 var still_stealth_factor: float = 1.0
@@ -47,6 +49,8 @@ var noise_bus: NoiseBus
 var in_danger: bool = false
 var tail_color: Color = Color("#404050")
 var tail_speaking: bool = false
+## Fotograma de la acción actual para el atlas (P-25, provisional).
+var action_frames: ActionFrame = ActionFrame.new()
 ## Bando al que engaña el disfraz puesto; "any" engaña a todos.
 var disguise_faction: String = ""
 var disguise_time: float = 0.0
@@ -69,6 +73,7 @@ var _tick_timer: float = TICK_NOISE_INTERVAL
 ## Deformación del dibujo al recibir un golpe.
 var _squash: Vector2 = Vector2.ONE
 var _footsteps: AudioStreamPlayer2D
+var _action_left: float = 0.0
 
 
 func _ready() -> void:
@@ -85,6 +90,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	tick_action(delta)
 	if body.is_dead:
 		velocity = Vector2.ZERO
 		return
@@ -110,7 +116,10 @@ func _physics_process(delta: float) -> void:
 
 func _draw() -> void:
 	var height_ratio: float = current_height() / BODY_HEIGHT
-	ProtagonistArt.draw(self, facing, height_ratio, body, tail_color, tail_speaking, _walk_phase, _squash)
+	ProtagonistArt.draw(
+		self, facing, height_ratio, body, tail_color, tail_speaking, _walk_phase,
+		_squash, action_frames.current_key()
+	)
 
 
 func set_path(path: PackedVector2Array) -> void:
@@ -126,6 +135,21 @@ func has_path() -> bool:
 func set_crouching(value: bool) -> void:
 	is_crouching = value
 	queue_redraw()
+
+
+## Acción cosmética para los fotogramas del atlas (P-25). Provisional.
+func set_action(next: String) -> void:
+	action_frames.set_action(next)
+	_action_left = ACTION_SHOW_TIME
+
+
+## Vuelve a idle al acabarse el tiempo de la acción.
+func tick_action(delta: float) -> void:
+	if _action_left <= 0.0:
+		return
+	_action_left = maxf(_action_left - delta, 0.0)
+	if _action_left <= 0.0:
+		action_frames.set_action(ActionFrameCatalog.DEFAULT)
 
 
 func current_height() -> float:

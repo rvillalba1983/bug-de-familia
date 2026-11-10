@@ -74,6 +74,51 @@ func test_vista_de_estrategia_cambia_velocidad_y_la_restaura() -> void:
 	assert_bool(zone.player.controls_locked).is_false()
 
 
+func test_m_abre_la_vista_y_esc_la_cierra() -> void:
+	InputBindings.install()
+	var battles: BattleDirector = _start()
+	battles.choose(0)
+	var vista: StrategyView = battles.strategy_view()
+	assert_bool(vista.is_open).is_false()
+	var tecla_m: InputEventKey = _tecla(KEY_M)
+	vista._unhandled_input(tecla_m)
+	assert_bool(vista.is_open).is_true()
+	# M solo abre: con la vista ya abierta no hace nada (decisión del 9-nov).
+	vista._unhandled_input(_tecla(KEY_M))
+	assert_bool(vista.is_open).is_true()
+	vista._unhandled_input(_tecla(KEY_ESCAPE))
+	assert_bool(vista.is_open).is_false()
+
+
+func test_al_elegir_solo_mirar_la_vista_ya_esta_abierta_y_m_no_hace_nada() -> void:
+	InputBindings.install()
+	var battles: BattleDirector = _start()
+	battles.choose(2)
+	var vista: StrategyView = battles.strategy_view()
+	assert_bool(vista.is_open).is_true()
+	vista._unhandled_input(_tecla(KEY_M))
+	assert_bool(vista.is_open).is_true()
+
+
+func _tecla(codigo: Key) -> InputEventKey:
+	var evento: InputEventKey = InputEventKey.new()
+	evento.physical_keycode = codigo
+	evento.pressed = true
+	return evento
+
+
+func test_al_caer_un_guardia_la_vista_recibe_un_alejazo() -> void:
+	var battles: BattleDirector = _start()
+	battles.choose(2)
+	var vista: StrategyView = battles.strategy_view()
+	vista.tick_pulse(1.0)
+	assert_float(vista.pulse_level()).is_equal(0.0)
+	var guard: Guard = battles.alive_in("mohocrata")[0]
+	guard.health = 1.0
+	battles._strike(guard)
+	assert_bool(vista.pulse_level() > 0.0).is_true()
+
+
 func test_convertir_un_caido_ante_testigos_se_recuerda() -> void:
 	var battles: BattleDirector = _start()
 	battles.choose(3)

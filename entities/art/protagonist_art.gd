@@ -61,7 +61,8 @@ static func draw(
 	tail_color: Color,
 	_tail_speaking: bool,
 	walk_phase: float,
-	squash: Vector2 = Vector2.ONE
+	squash: Vector2 = Vector2.ONE,
+	frame_key: String = ""
 ) -> void:
 	_ensure_loaded()
 	var view_name: String = view_for(facing)
@@ -82,6 +83,18 @@ static func draw(
 	canvas.draw_set_transform_matrix(Transform2D.IDENTITY)
 	if away:
 		_draw_tail(canvas, facing, height_ratio, tail_color)
+	_draw_action_frame(canvas, frame_key, size)
+
+
+## Fotograma de la acción actual, del atlas compartido (P-25). Una sola llamada de dibujo.
+static func _draw_action_frame(canvas: CanvasItem, key: String, size: float) -> void:
+	if key.is_empty() or not PieceAtlas.has_entry(key):
+		return
+	var lado: float = 26.0 * size
+	var caja: Rect2 = Rect2(10.0 * size, -46.0 * size, lado, lado)
+	canvas.draw_texture_rect_region(
+		PieceAtlas.texture(), caja, PieceAtlas.region(key), Color.WHITE, false
+	)
 
 
 ## Silueta de frente para la interfaz. Cada pieza se pinta según lo gastada que está;

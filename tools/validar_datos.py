@@ -837,6 +837,32 @@ def validar_arte(informe: Informe) -> dict[str, Any]:
         if clave not in piezas_rig and "/" in clave:
             informe.error(rel_at, "la pieza '%s' no corresponde a ningún rig" % clave)
 
+    # Fotogramas por acción (P-25): claves sin '/' para no confundirlas con piezas de rig.
+    fotogramas = cargar_json(DATA / "art" / "action_frames.json", informe)
+    rel_fr = "data/art/action_frames.json"
+    informe.cuenta(rel_fr)
+    acciones = fotogramas.get("acciones") if isinstance(fotogramas, dict) else None
+    if not isinstance(acciones, dict):
+        informe.error(rel_fr, "acciones: falta o no es un objeto")
+    else:
+        conteos["action_frames"] = len(acciones)
+        for accion, bloque in acciones.items():
+            if not isinstance(bloque, dict):
+                informe.error(rel_fr, "%s: no es un objeto" % accion)
+                continue
+            claves = bloque.get("frames")
+            if not isinstance(claves, list) or not claves:
+                informe.error(rel_fr, "%s.frames: falta o está vacío" % accion)
+                continue
+            fps = bloque.get("fps")
+            if not isinstance(fps, (int, float)) or fps <= 0:
+                informe.error(rel_fr, "%s.fps: debe ser un número positivo" % accion)
+            for clave in claves:
+                if "/" in str(clave):
+                    informe.error(rel_fr, "%s: '%s' no puede llevar '/'" % (accion, clave))
+                elif clave not in claves_atlas:
+                    informe.error(rel_fr, "%s: '%s' no está en el atlas" % (accion, clave))
+
     animaciones = cargar_json(DATA / "art" / "enemy_animations.json", informe)
     rel_en = "data/art/enemy_animations.json"
     informe.cuenta(rel_en)

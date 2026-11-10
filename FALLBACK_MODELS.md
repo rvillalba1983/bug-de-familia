@@ -83,5 +83,5 @@ Ver el uso consumido en la consola de OpenCode (opencode.ai/console): cada model
 ## Ajustes de la consola necesarios
 
 - **Suscripción Go**: imprescindible para los modelos `opencode-go/*`.
-- **Ajustes › Privacidad › Regiones › Global**: habilita `deepseek-v4.1-flash` y `deepseek-v4-pro` en Go (el respaldo de qa). Sin esto, solo funciona el gratuito. El servidor de DeepSeek es de retención cero.
+- **Ajustes › Privacidad › Regiones › Global**: habilita `deepseek-v4.1-flash` y `deepseek-v4-pro` en Go (el respaldo de qa). Activado por el director el 10-nov y validado con una petición real; el servidor de DeepSeek es de retención cero.
 - **Uso adicional (Extra Usage)**: opcional; si se activa, al agotar un límite de Go se sigue con el saldo prepago de la consola en vez de bloquearse. Por ahora desactivado: la intención es no pasar de los 10 $/mes.

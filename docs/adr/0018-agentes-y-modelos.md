@@ -43,7 +43,7 @@ Solo DeepSeek en Go cambia de precio: el doble de lunes a viernes entre las 02:0
 - El director decidió que big-pickle lleve las conversaciones principales: acepta ese uso de datos y la fragilidad del gratuito. Para tareas delicadas se cambia de modelo solo en esa conversación (`/models`), sin tocar la configuración.
 - La cuenta sirve 24 de los 32 modelos publicados en la documentación de Go (comprobado al activarla): entre los ausentes, `glm-5.2` y `gpt-5.6-luna`. Por eso arquitecto usa `glm-5.3` y datos `minimax-m3`.
 - Validado el 10-nov con peticiones reales: `arquitecto` sobre `opencode-go/glm-5.3` y `documentacion` sobre `opencode/glm-5.3-flash-free` respondieron correctamente; las conversaciones principales ya iban sobre `opencode/big-pickle`.
-- En la consola hay que habilitar Regiones › Global para el respaldo `deepseek-v4.1-flash` de Go.
+- En la consola hay que habilitar Regiones › Global para el respaldo `deepseek-v4.1-flash` de Go. Lo activó el director el 10-nov y quedó validado con una petición real.
 - La cadena `openrouter/auto` global deja de usarse en este repositorio (sigue existiendo para otros proyectos). El plugin `.opencode/_disabled/model-fallback` sigue desactivado.
 - Coste fijo: 10 $ al mes mientras dure la suscripción, sin prepago por token.
 

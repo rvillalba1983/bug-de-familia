@@ -4,6 +4,8 @@
 
 *Documento de lore histórico — Borrador v0.1*
 
+> **Estado de implementación:** este documento define las seis especies, pero el juego solo tiene la beta: 2 de 6 especies y 2 de 15 progenitores. Las otras especies, sus progenitores y sus zonas llegan en la post-beta (ver `03_ESTADO.md`).
+
 > **Prevalece sobre este documento (8-nov):** Mohócratas y Grux llegaron a este planeta después del colapso. Las otras dos razas alienígenas ya estaban, y todas se conocían fuera de él: su intervención en sucesos anteriores fue desde fuera.
 
 > Borrador narrativo v0.1. Vale esta historia larga; dos razas alienígenas llegaron a este planeta antes del colapso y dos después (P-18). Los humanos existieron y desaparecieron (8-nov).

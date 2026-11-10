@@ -59,5 +59,19 @@ Paquete unificado creado el 8 de noviembre de 2026. Cada tema vive en un solo si
 | `36_pipeline_graficos.md` | Producción gráfica |
 | `37_audio.md` | Música y voces |
 
+## Herramientas
+Los scripts de medición y captura viven en `tools/`. Para medir el rendimiento en la gráfica real del director con Windows: `tools/medir_windows/MEDIR.bat`. Capturas de partida: `tools/capture_helper.gd` y `tools/captura_partida.gd`. Qué herramienta se usa en cada fase: `03_ESTADO.md`.
+
+Comprobaciones deterministas, de más baratas a más caras (todas locales, sin servicios externos):
+
+| Comando | Qué comprueba |
+|---|---|
+| `python tools/verificar.py` | Punto de entrada único: datos + normas de formato + medición si existe `medicion.txt` |
+| `python tools/validar_datos.py` | 46 comprobaciones de `data/`; `--actualizar` y `--estricto` |
+| `python tools/formatear.py --comprobar` | UTF-8 sin BOM, LF y línea final de `docs/35_normas_codigo.md` |
+| `python tools/comparar_medicion.py medicion.txt` | Regresiones de rendimiento contra `tools/medir_windows/referencia.txt` |
+
+El comando `/verificar` de OpenCode lanza el primero. Los dos workflows de GitHub Actions (`.github/workflows/`) ejecutan las pruebas y exportan el `.exe`. Decisión completa: `adr/0019-herramientas-ci-y-mcp.md`.
+
 ## Referencias visuales
 `referencias/hoja_diseno_protagonista.png`.

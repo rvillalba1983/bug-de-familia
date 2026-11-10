@@ -25,7 +25,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 
 ## Tras la fase 7
 - Valores provisionales de la beta: `docs/adr/0006-zona-beta.md`.
-- Las rutas de sigilo con enemigos activos no tienen prueba automática: las ha probado el usuario en partida.
+- Las rutas de sigilo con enemigos activos tienen prueba automática en `tests/flows/beta_routes_test.gd`; el usuario además las ha probado en partida.
 - Sin hacer: viaje entre puntos de guardado, consecuencias al salir de la zona, la pieza que suelda Don Ramón y huella visible al morir un aliado único. Lo decidido está en `02_DECISIONES.md`.
 
 ## Tras P-09 (lotes 1 y 2)
@@ -40,7 +40,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 
 ## Tras la fase 8
 - Toda la población, los sucesos, las misiones y los textos de `data/world/` son provisionales. El director puede tachar festividades.
-- Sin medir en una gráfica real. Sin probar a mano en partida: terminar una misión y reventar una fiesta.
+- Sin medir en una gráfica real. Terminar una misión y reventar una fiesta tienen prueba automática en `tests/flows/beta_routes_test.gd`; falta probarlos a mano en partida.
 - Los personajes con nombre siguen con diálogos escritos, fuera del motor social.
 - P-19: proponer opciones para mostrar los controles, que ahora salen en el chat de las IAs.
 - Capturas de partida real con `tools/captura_partida.gd` (variables CAPTURAS, SALIDA, FECHA, ACCION y SUCESO).
@@ -69,7 +69,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 
 ## Tras la optimización en gráfica integrada
 - En la Intel HD 520 del director, con OpenGL directo: ciudad 7 ms, caminando 19, pelea 11 y pausa 16 (medido antes de los últimos ajustes). La física al caminar, unos 21 ms por paso, es el siguiente cuello de botella.
-- Sin probar en Windows por Claude. Sin confirmar por el director: provocar peleas, autocolocación de piezas y plugins de estilo IRCap en el chat.
+- Sin probar en Windows por Claude. Plugins de estilo IRCap confirmados por el director el 10-nov: los quiere, con fase de revisión estética después. Sin confirmar todavía: provocar peleas y autocolocación de piezas.
 - El director vio personajes desaparecer al hablar mal de la otra raza; no se ha reproducido. Queda por vigilar.
 - Provisionales: retroceso de 80 unidades, tres frases para provocar batalla, y tamaño de personajes al 50 %.
 
@@ -80,6 +80,15 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 - Ejecutado aquí con capturas: provocar por malmeter, autocolocación, aviso al recoger, retroceso y chat. Sin confirmar por el director, igual que OpenGL directo y el `.exe` en Windows. Sin probar en partida: batalla por recado insultante.
 - Herramientas: `tools/seguir_personajes.gd`, `tools/probar_pendientes.gd` y `tools/probar_desvio.gd`.
 - Preguntas abiertas de la post-beta: P-23, P-25 a P-31, mapa, orden de razas, guardar batallas, rendimiento objetivo y textos provisionales.
+
+## Herramientas y CI (rama de configuración, pendiente de fusión)
+
+- Entorno local gratuito en `opencode_projects`: Godot 4.7.2, Python 3.12.10, ffmpeg, Inkscape 1.4.4 y plantillas de exportación; todos en el PATH de usuario. Audacity ya estaba instalado.
+- Scripts deterministas: `tools/verificar.py` (entrada única), `tools/validar_datos.py` (46 comprobaciones), `tools/formatear.py`, `tools/comparar_medicion.py`. Estado hoy: 0 errores en datos y en 255 archivos de texto; 64 avisos de líneas largas, deuda anterior.
+- Al crear el formateador se corrigieron 12 archivos que incumplían la norma de línea final (9 JSON de `data/` y 3 pruebas). No se debilitó ninguna comprobación.
+- GitHub Actions: `pruebas.yml` (verificaciones deterministas + 311 pruebas gdUnit4, con `timeout` y `</dev/null`) y `exportar.yml` (`.exe` y `.pck` como artefactos). Sin ejecutar todavía en Actions: es la validación pendiente.
+- Estudiado y descartado: servidores MCP (coste de contexto y dependencias), LSP (sin servidor para GDScript), plugins de marketplace de terceros, y el generador de imágenes de OpenCode (de pago, sin fondos). Ver `adr/0019-herramientas-ci-y-mcp.md`.
+- Plantillas de mohócrata: SVG por código con la paleta y el rig actual, no integradas aún en el juego (ejemplo para el director).
 
 ## Preparar el entorno en una conversación nueva
 1. Clonar `rvillalba1983/bug-de-familia`. Si la copia es superficial, usar `git fetch origin main` y `FETCH_HEAD`.

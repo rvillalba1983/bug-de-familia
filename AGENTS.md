@@ -14,6 +14,7 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 - Una carpeta o suite concreta: mismo comando con `-a res://tests/ai` o `-a res://tests/ai/ai_perks_test.gd`. `-i <ruta>` excluye; `-c` desactiva fail-fast.
 - Un error de script en headless abre un prompt `debug>` y deja la ejecución colgada: usa un timeout y redirige stdin (`timeout 300 ... </dev/null` en bash).
 - Preparación completa del entorno (binario, plantillas de exportación, capturas): `docs/03_ESTADO.md`, sección «Preparar el entorno».
+- Comprobaciones deterministas antes de commitear: `python tools/verificar.py` (datos, normas de formato y medición si existe `medicion.txt`). En OpenCode, comando `/verificar`. Ver `docs/adr/0019-herramientas-ci-y-mcp.md`.
 
 ## Estructura
 
@@ -72,3 +73,10 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 - En PowerShell no hay `git` ni `godot` en el PATH (nov-2026); Godot 4.7.2 win64 está sin extraer en `~/Downloads/Godot_v4.7.2-stable_win64.exe.zip`.
 - Medir rendimiento en la gráfica real del director: exportar con el preset «Medicion Windows» y ejecutar `tools/medir_windows/MEDIR.bat` (unos 20 minutos, genera `medicion.txt`).
 - `CLAUDE.md` guarda las instrucciones equivalentes para Claude Code: mantén ambos archivos sincronizados si cambias las reglas.
+
+## Trabajar con OpenCode
+
+- Una fase del plan por conversación; la conversación termina al fusionar esa fase en `main`.
+- El trabajo de dominio se delega a subagentes especialistas (equipo en `opencode.jsonc`, ver `CONFIG_AGENTS.md`).
+- Las tareas deterministas van en scripts: solo se revisa la respuesta.
+- La conversación principal coordina y decide con el director.

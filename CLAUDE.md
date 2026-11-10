@@ -11,7 +11,10 @@ Motor: Godot 4.7.2 estable.
 ```
 godot --headless --import                          # importar el proyecto
 godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode -a res://tests -c   # pruebas
+python tools/verificar.py                     # datos + normas de formato (determinista, local)
 ```
+
+Comprobaciones deterministas antes de commitear: `tools/verificar.py`. En OpenCode, comando `/verificar`. Ver `docs/adr/0019-herramientas-ci-y-mcp.md`.
 
 ## Reglas
 - Respeta `docs/02_DECISIONES.md`. No restaures decisiones sustituidas.
@@ -40,3 +43,9 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 
 ## Al cerrar una tarea
 Informa de: qué se ha hecho, archivos afectados, pruebas y resultados, validación manual necesaria, limitaciones y decisiones que requieren aprobación.
+
+## Trabajar con OpenCode
+- Una fase del plan por conversación; la conversación termina al fusionar esa fase en `main`.
+- El trabajo de dominio se delega a subagentes especialistas (equipo en `opencode.jsonc`, ver `CONFIG_AGENTS.md`).
+- Las tareas deterministas van en scripts: solo se revisa la respuesta.
+- La conversación principal coordina y decide con el director.

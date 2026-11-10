@@ -26,9 +26,12 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 - Registra origen y herramienta de cada recurso generado.
 
 ## Modelo
-- Todos los `model` de `opencode.jsonc` son `openrouter/auto`: una cadena de tres modelos gratuitos definida en `~/.config/opencode/opencode.json`. No la cambies por modelos de otro proveedor.
-- `.opencode/_disabled/model-fallback` está desactivado a propósito (hook inexistente en V2 y sin cambio de proveedor posible). No lo reactives.
-- Comprobación rápida: `opencode run` debe mostrar `auto` en la cabecera. Si falla por cuota (429/402), pega el error y espera; no cambies de modelo a mano.
+- `opencode.jsonc` define el equipo: ver `CONFIG_AGENTS.md` (quién es quién) y `FALLBACK_MODELS.md` (precios, límites y alternativos). Decisión: `docs/adr/0018-agentes-y-modelos.md`.
+- El modelo por defecto es `opencode/big-pickle` (gratuito); los agentes especializados usan OpenCode Go (`opencode-go/<modelo>`) o su gemela gratuita cuando existe.
+- Go no encadena modelos: el fallback es a mano, siguiendo `FALLBACK_MODELS.md` y documentándolo en un ADR.
+- Franja punta: solo el DeepSeek de Go (respaldo de qa), de lunes a viernes en 02:00-05:00 y 07:00-11:00, hora española de invierno.
+- `.opencode/_disabled/model-fallback` sigue desactivado a propósito (hook inexistente en V2). No lo reactives.
+- Comprobación rápida: `opencode run` debe mostrar `big-pickle` en la cabecera. Si falla por cuota o retirada (429/402/404), pega el error literal y aplica `FALLBACK_MODELS.md`.
 
 ## Una fase por conversación
 - Cada fase del plan se hace en una conversación propia, que termina al fusionar esa fase en `main`.

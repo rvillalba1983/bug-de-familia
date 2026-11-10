@@ -55,14 +55,16 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 - Movimiento y física en `_physics_process()`; evita recorrer la población en cada fotograma.
 - No desactives warnings ni captures errores en silencio: los fallos deben ser visibles y señalar el archivo y el campo problemáticos.
 
-## Modelo y fallback
+## Modelo y agentes
 
-- Todos los `model` de `opencode.jsonc` (raíz y `agents.*`) son `openrouter/auto`. No los cambies por modelos de otro proveedor.
-- `openrouter/auto` es una cadena de tres modelos gratuitos definida en `~/.config/opencode/opencode.json` (`providers.openrouter.models.auto.body.models`). OpenRouter pasa al siguiente si el primero falla o agota cuota; el máximo que acepta es tres.
+- `opencode.jsonc` define el equipo (ver `CONFIG_AGENTS.md`): ocho agentes del proyecto, `explore` y el modelo por defecto para `build`, `plan` y `general`. Precios, límites y alternativos: `FALLBACK_MODELS.md`. Decisión: `docs/adr/0018-agentes-y-modelos.md`.
+- Dos fuentes: gratuitos de la consola de OpenCode (`opencode/big-pickle` es el modelo por defecto) y suscripción OpenCode Go de 10 $/mes (`opencode-go/<modelo>`). Donde hay gemela gratuita, se usa la gratis.
+- Go no tiene cadena automática: si un modelo agota su ventana de 5 horas o se retira un gratuito, se cambia a mano siguiendo `FALLBACK_MODELS.md` y se documenta en un ADR.
+- Franja punta: solo DeepSeek en Go cuesta el doble de lunes a viernes en 02:00-05:00 y 07:00-11:00 (hora española de invierno). El resto cuesta igual a cualquier hora. El principal de qa es gratuito y no tiene franja.
+- Los modelos gratuitos son por tiempo limitado y pueden usar los datos para mejorar el modelo (Big Pickle); DeepSeek y GLM flash free son de retención cero.
 - El plugin `.opencode/_disabled/model-fallback` está desactivado a propósito: usaba un hook inexistente en V2 y no puede cambiar de proveedor. No lo reactives.
-- Comprobación rápida: `opencode run` debe mostrar `auto` en la cabecera de la respuesta. Si muestra otro modelo, la configuración no se está aplicando.
-- Si una petición falla por cuota (429/402), pega el error literal y espera instrucciones; no cambies de modelo a mano ni inventes alternativas.
-- No subas `limit.output` del modelo `auto` sin comprobar el saldo de OpenRouter: por encima de unos 48k tokens de salida la petición se rechaza con 402.
+- La cadena `openrouter/auto` global (`~/.config/opencode/opencode.json`) sigue existiendo para otros proyectos; este repo no la usa.
+- Comprobación rápida: `opencode run` debe mostrar `big-pickle` en la cabecera de la respuesta. Si falla por cuota o retirada (429/402/404), pega el error literal y aplica `FALLBACK_MODELS.md`.
 
 ## Este clon (Windows)
 

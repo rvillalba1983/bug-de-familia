@@ -1,132 +1,85 @@
-# Guía de Fallback para Modelos de Agentes
+# Guía de modelos y fallback de los agentes
 
-## 📋 Propósito
+Última actualización: 10-nov-2026, junto a `adr/0018-agentes-y-modelos.md`.
 
-Este documento sirve como guía de referencia para cuando un modelo se queda sin fondos (insufficient account funds). Cada agente tiene una lista de modelos alternativos que se pueden usar.
+## Fuentes de modelos
 
-## 🔄 Procedimiento de Fallback
+| Fuente | Prefijo | Coste | Cuándo |
+|---|---|---|---|
+| Consola de OpenCode, gratuitos | `opencode/<modelo>` | 0 $ | Siempre que existan: son por tiempo limitado y pueden retirarse |
+| OpenCode Go (plan Go, 10 $/mes) | `opencode-go/<modelo>` | Incluido hasta el límite de cada modelo | Respaldo fijo cuando el gratuito no basta o se retira |
 
-Cuando un agente falla por falta de fondos:
+La cuenta de OpenRouter y su cadena `openrouter/auto` global (`~/.config/opencode/opencode.json`) siguen existiendo para otros proyectos; este repositorio ya no la usa.
 
-1. **Identificar el modelo que falló**
-2. **Consultar la lista de alternativas** en este documento
-3. **Cambiar el modelo** en `opencode.jsonc`
-4. **Documentar el cambio** en un ADR
-5. **Informar al director** del cambio
+## Asignación actual por agente
 
-## 📊 Tabla de Fallback por Agente
+Cada modelo de Go tiene tres ventanas: 5 horas (20 % del límite mensual), semanal (50 %) y mensual (100 %). Superada una ventana, ese modelo se bloquea hasta que se renueve: hay que cambiar de modelo a mano. Los gratuitos no tienen franja punta; el único precio variable es DeepSeek en Go (ver abajo).
 
-### 1. Arquitecto (opencode/glm-5.3-flash)
+| Agente | Modelo principal | Alternativos, en orden |
+|---|---|---|
+| Por defecto (`build`, `plan`, `general`) | `opencode/big-pickle` (gratis) | `opencode-go/kimi-k2.7-code`, `opencode/iceman-free`, `opencode/glm-5.3-flash-free` |
+| `explore` (integrado) | `opencode/big-pickle` (gratis) | `opencode-go/gpt-6-luna` |
+| `arquitecto` | `opencode-go/glm-5.2` | `opencode/big-pickle`, `opencode-go/kimi-k2.7-code`, `opencode/glm-5.3-flash-free` |
+| `ingeniero-godot` | `opencode-go/kimi-k2.7-code` | `opencode/big-pickle`, `opencode-go/glm-5.2`, `opencode/glm-5.3-flash-free` |
+| `gameplay` | `opencode-go/qwen3.7-plus` | `opencode/big-pickle`, `opencode-go/minimax-m3`, `opencode/glm-5.3-flash-free` |
+| `qa` | `opencode/deepseek-v4.1-flash-free` (gratis) | `opencode-go/deepseek-v4.1-flash` (¡franja punta!), `opencode/big-pickle`, `opencode/beam-free` |
+| `documentacion` | `opencode/glm-5.3-flash-free` (gratis) | `opencode-go/glm-5.3-flash`, `opencode/big-pickle`, `opencode-go/gpt-6-luna` |
+| `datos` | `opencode-go/glm-5.2` | `opencode/big-pickle`, `opencode-go/minimax-m3`, `opencode/glm-5.3-flash-free` |
+| `arte` | `opencode-go/qwen3.8-flash` | `opencode-go/qwen3.7-plus`, `opencode/big-pickle`, `opencode/glm-5.3-flash-free` |
+| `audio` | `opencode-go/glm-5.3-flash` | `opencode/glm-5.3-flash-free`, `opencode/big-pickle`, `opencode/beam-free` |
+| `medidor` | `opencode-go/glm-5.3-flash` | `opencode/glm-5.3-flash-free`, `opencode-go/gpt-6-luna`, `opencode/beam-free` |
 
-| Prioridad | Modelo | Proveedor | Costo | Notas |
-|-----------|--------|-----------|-------|-------|
-| 1 (actual) | `opencode/glm-5.3-flash` | OpenCode | Gratis | Modelo principal |
-| 2 | `opencode/claude-haiku-5-5` | OpenCode | Gratis | Backup rápido |
-| 3 | `opencode/beam-free` | OpenCode | Gratis | Backup alternativo |
-| 4 | `opencode/mimo-v2.6-flash-free` | OpenCode | Gratis | Backup alternativo |
-| 5 | `cloudflare-workers-ai/@cf/zai-org/glm-5.3` | Cloudflare | $1.4/$4.4 | Backup de pago |
+Criterio: los agentes con versión gemela gratuita (qa, documentacion) o de alto volumen (conversaciones principales, explore) van sobre el gratuito; los especializados sin gemela gratuita usan Go con Big Pickle de primer respaldo, para no gastar ventanas de otros modelos de Go.
 
-### 2. Ingeniero Godot (opencode/glm-5.3-flash)
+## Catálogo Go usado
 
-| Prioridad | Modelo | Proveedor | Costo | Notas |
-|-----------|--------|-----------|-------|-------|
-| 1 (actual) | `opencode/glm-5.3-flash` | OpenCode | Gratis | Modelo principal |
-| 2 | `opencode/claude-haiku-5-5` | OpenCode | Gratis | Backup rápido |
-| 3 | `opencode/beam-free` | OpenCode | Gratis | Backup alternativo |
-| 4 | `opencode/mimo-v2.6-flash-free` | OpenCode | Gratis | Backup alternativo |
-| 5 | `cloudflare-workers-ai/@cf/zai-org/glm-5.3` | Cloudflare | $1.4/$4.4 | Backup de pago |
+Precio por millón de tokens y límite mensual de uso incluido en el plan Go (10 $/mes):
 
-### 3. Gameplay (opencode/minimax-m3.1-flash-free)
+| Modelo | Entrada | Salida | Límite mensual | Uso |
+|---|---|---|---|---|
+| `kimi-k2.7-code` | 0,95 $ | 4,00 $ | 60 $ | Código GDScript |
+| `glm-5.2` | 1,40 $ | 4,40 $ | 60 $ | Arquitectura y datos |
+| `qwen3.7-plus` | 0,40 $ | 1,60 $ | 60 $ | Gameplay y balance |
+| `qwen3.8-flash` | 0,15 $ | 0,47 $ | 30 $ | Arte (multimodal) |
+| `glm-5.3-flash` | 0,15 $ | 0,50 $ | 60 $ | Audio y medidor |
+| `gpt-6-luna` | 0,10 $ | 0,50 $ | 15 $ | Respaldo barato |
+| `minimax-m3` | 0,30 $ | 1,20 $ | 60 $ | Respaldo general |
+| `deepseek-v4.1-flash` | 0,15–0,30 $ | 0,60–1,20 $ | 100 $ | Respaldo de qa |
 
-| Prioridad | Modelo | Proveedor | Costo | Notas |
-|-----------|--------|-----------|-------|-------|
-| 1 (actual) | `opencode/minimax-m3.1-flash-free` | OpenCode | Gratis | Modelo principal |
-| 2 | `opencode/claude-haiku-5-5` | OpenCode | Gratis | Backup rápido |
-| 3 | `opencode/beam-free` | OpenCode | Gratis | Backup alternativo |
-| 4 | `opencode/mimo-v2.6-flash-free` | OpenCode | Gratis | Backup alternativo |
-| 5 | `openrouter/minimax/minimax-m3.1-flash` | OpenRouter | Variable | Backup de pago |
+Premium del catálogo (Kimi K3, Grok 4.7, Gemini 4 Argon, Claude Haiku): solo 15 $ de límite mensual. No se asignan a ningún agente; si una tarea puntual los necesita, se eligen a mano en esa conversación.
 
-### 4. QA (opencode/claude-haiku-5-5)
+## Franja punta: solo DeepSeek en Go
 
-| Prioridad | Modelo | Proveedor | Costo | Notas |
-|-----------|--------|-----------|-------|-------|
-| 1 (actual) | `opencode/claude-haiku-5-5` | OpenCode | Gratis | Modelo principal (cambiado de deepseek) |
-| 2 | `opencode/beam-free` | OpenCode | Gratis | Backup rápido |
-| 3 | `opencode/mimo-v2.6-flash-free` | OpenCode | Gratis | Backup alternativo |
-| 4 | `opencode/gpt-5.4-mini` | OpenCode | Gratis | Backup alternativo |
-| 5 | `cloudflare-workers-ai/@cf/deepseek-ai/deepseek-v4.1-flash-1017` | Cloudflare | $0.3/$1.2 | Backup de pago |
+`opencode-go/deepseek-v4.1-flash` y `deepseek-v4-pro` cuestan el doble de lunes a viernes en 02:00-05:00 y 07:00-11:00, hora española de invierno (una hora más en verano; el horario de referencia es UTC). El resto de modelos cuesta igual a cualquier hora, y `opencode/deepseek-v4.1-flash-free` (el principal de qa) no tiene franja punta.
 
-### 5. Documentación (opencode/minimax-m3.1-flash-free)
+Plan: qa trabaja con el gratuito a cualquier hora. Si hay que caer al DeepSeek de Go, se hace fuera de la franja punta, o se usa otro alternativo.
 
-| Prioridad | Modelo | Proveedor | Costo | Notas |
-|-----------|--------|-----------|-------|-------|
-| 1 (actual) | `opencode/minimax-m3.1-flash-free` | OpenCode | Gratis | Modelo principal |
-| 2 | `opencode/claude-haiku-5-5` | OpenCode | Gratis | Backup rápido |
-| 3 | `opencode/beam-free` | OpenCode | Gratis | Backup alternativo |
-| 4 | `opencode/mimo-v2.6-flash-free` | OpenCode | Gratis | Backup alternativo |
-| 5 | `openrouter/minimax/minimax-m3.1-flash` | OpenRouter | Variable | Backup de pago |
+## Gratuitos de la consola usados
 
-## 🔧 Procedimiento de Cambio
+| Modelo | Privacidad | Nota |
+|---|---|---|
+| `opencode/big-pickle` | Durante el periodo gratuito, puede usar las conversaciones para mejorar el modelo | Modelo «sigiloso»; es el que atiende las conversaciones principales |
+| `opencode/glm-5.3-flash-free` | Retención cero, sin entrenamiento | Gemela gratuita de glm-5.3-flash |
+| `opencode/deepseek-v4.1-flash-free` | Retención cero, sin entrenamiento | Gemela gratuita de deepseek-v4.1-flash |
+| `opencode/beam-free` | Sin entrenamiento; retiene 30 días | Respaldo |
+| `opencode/iceman-free` | Retiene y usa los datos para mejorar el modelo | Respaldo |
 
-### Paso 1: Identificar el modelo que falló
-Revisa el error del agente para identificar qué modelo se quedó sin fondos.
+Todos son «por tiempo limitado». Cuando OpenCode los retire, los agentes que los usan como principal fallarán con error 404 y pasarán a su primer alternativo siguiendo el procedimiento de abajo.
 
-### Paso 2: Consultar la tabla de fallback
-Busca el agente en la tabla anterior y selecciona el siguiente modelo disponible.
+## Procedimiento de cambio (fallback)
 
-### Paso 3: Actualizar opencode.jsonc
-Edita el archivo `opencode.jsonc` y cambia el modelo del agente afectado.
+Cuando un modelo falla por límite de Go, por retirada del periodo gratuito (429/402/404) o por decisión del director:
 
-### Paso 4: Documentar el cambio
-Crea un ADR en `docs/adr/` documentando:
-- Qué modelo falló
-- Qué modelo se usó como alternativa
-- Fecha del cambio
-- Razón del cambio
+1. Identificar el modelo que falló con el error literal.
+2. Buscar el agente en la tabla de asignación y elegir el siguiente alternativo disponible. Antes de tocar un modelo de pago distinto del asignado, probar los gratuitos que queden.
+3. Cambiar el `model` del agente en `opencode.jsonc`.
+4. Documentar el cambio en un ADR de `docs/adr/` (qué falló, qué se eligió, fecha y motivo) y actualizar este archivo y `CONFIG_AGENTS.md`.
+5. Informar al director.
 
-### Paso 5: Informar al director
-Notifica al director del proyecto sobre el cambio realizado.
+Ver el uso consumido en la consola de OpenCode (opencode.ai/console): cada modelo muestra su saldo de las ventanas de 5 horas, semana y mes.
 
-## 📝 Ejemplo de ADR
+## Ajustes de la consola necesarios
 
-```markdown
-# ADR-0018: Cambio de modelo para agente QA
-
-## Estado
-Aprobado
-
-## Fecha
-2026-11-10
-
-## Contexto
-El modelo `opencode/deepseek-v4.1-flash` se quedó sin fondos.
-
-## Decisión
-Se cambió el modelo del agente QA a `opencode/claude-haiku-5-5`.
-
-## Consecuencias
-- El agente QA ahora usa un modelo diferente
-- Se mantiene la funcionalidad del agente
-- Se documenta el cambio para futuras referencias
-
-## Alternativas consideradas
-- `opencode/beam-free`
-- `opencode/mimo-v2.6-flash-free`
-- `cloudflare-workers-ai/@cf/deepseek-ai/deepseek-v4.1-flash-1017`
-```
-
-## ⚠️ Notas Importantes
-
-1. **No se mergea a main** sin aprobación del director
-2. **Documentar todos los cambios** en ADRs
-3. **Informar al director** de cada cambio
-4. **Probar el nuevo modelo** antes de continuar
-
-## 🔄 Actualización de la Tabla
-
-Esta tabla debe actualizarse cuando:
-- Se añadan nuevos modelos disponibles
-- Se cambien los modelos principales
-- Se descubran nuevos modelos gratuitos
-
-Última actualización: 2026-11-10
+- **Suscripción Go**: imprescindible para los modelos `opencode-go/*`.
+- **Ajustes › Privacidad › Regiones › Global**: habilita `deepseek-v4.1-flash` y `deepseek-v4-pro` en Go (el respaldo de qa). Sin esto, solo funciona el gratuito. El servidor de DeepSeek es de retención cero.
+- **Uso adicional (Extra Usage)**: opcional; si se activa, al agotar un límite de Go se sigue con el saldo prepago de la consola en vez de bloquearse. Por ahora desactivado: la intención es no pasar de los 10 $/mes.

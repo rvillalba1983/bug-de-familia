@@ -62,6 +62,9 @@ const ROUTE_GOALS: Dictionary = {
 var level: BetaZone
 ## Grupos que se están marchando tras ser engañados.
 var _leaving: Dictionary = {}
+## Ruta de NavGrid que sigue cada grupo desviado, para no atravesar edificios.
+var _leave_paths: Dictionary = {}
+var _leave_index: Dictionary = {}
 ## La primera aplicación viene de cargar: quien ya se fue no vuelve a irse andando.
 var _flags_applied: bool = false
 var hour_source: Callable = _system_hour
@@ -342,6 +345,9 @@ func _apply_group(id: String) -> void:
 		(node as Interactable).mark_used()
 		if _flags_applied:
 			_leaving[id] = true
+			var goal: Vector2 = _leave_goal(id)
+			_leave_paths[id] = level.nav.find_path((node as Node2D).position, goal)
+			_leave_index[id] = 0
 		else:
 			(node as Interactable).visible = false
 	if flag(prefix + "_bronca") and not flag(prefix + "_avisados"):
@@ -372,12 +378,35 @@ func _move_groups(delta: float) -> void:
 
 
 ## Se va andando hasta donde le han dicho; al llegar deja de estar en la zona.
+## Sigue la ruta de NavGrid para no atravesar edificios (P-40).
 func _walk_away(id: String, node: Interactable, delta: float) -> void:
 	var goal: Vector2 = _leave_goal(id)
-	node.position = node.position.move_toward(goal, GROUP_LEAVE_SPEED * delta)
-	if node.position.is_equal_approx(goal):
+	var path: PackedVector2Array = _leave_paths.get(id, PackedVector2Array())
+	if path.is_empty() and level.nav != null:
+		path = level.nav.find_path(node.position, goal)
+		_leave_paths[id] = path
+		_leave_index[id] = 0
+	var index: int = int(_leave_index.get(id, 0))
+	const TOL: float = 6.0
+	while index < path.size() and node.position.distance_to(path[index]) <= TOL:
+		index += 1
+	_leave_index[id] = index
+	if index >= path.size():
+		# Sin ruta utilizable: cae al movimiento directo para no quedarse parado.
+		if path.is_empty():
+			node.position = node.position.move_toward(goal, GROUP_LEAVE_SPEED * delta)
+			if node.position.is_equal_approx(goal):
+				node.visible = false
+				_leaving.erase(id)
+				_leave_paths.erase(id)
+				_leave_index.erase(id)
+			return
 		node.visible = false
 		_leaving.erase(id)
+		_leave_paths.erase(id)
+		_leave_index.erase(id)
+		return
+	node.position = node.position.move_toward(path[index], GROUP_LEAVE_SPEED * delta)
 
 
 ## Los grupos engañados van a la zona que se les indicó, no al borde del mapa.

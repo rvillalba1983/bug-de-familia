@@ -42,11 +42,11 @@
    "relation": 3,
    "text": "{a} le cambió {x} a {b} en {w}",
    "things": [
-    "un fusible",
+    "un fusible ya fundido",
     "un saco de abono",
     "una tuerca de oro falso"
    ],
-   "observe": "Dos enemigos intercambiando cosas. Algo saldrá mal."
+   "observe": "Dos enemigos intercambiando cosas. Acércate: seguro que lo mejoras, como siempre."
   },
   {
    "id": "robo_tornillo",
@@ -71,7 +71,7 @@
      "delay": 30
     }
    ],
-   "observe": "Alguien corre con algo que no es suyo.",
+   "observe": "Alguien corre con algo que no es suyo. Te suena. Es tu única habilidad, y ni esa te sale.",
    "mission": "recado"
   },
   {
@@ -163,7 +163,7 @@
      "delay": 30
     }
    ],
-   "observe": "Alguien llora junto a un cuerpo."
+   "observe": "Alguien llora junto a un cuerpo. Tú solo miras. En eso eres muy humano."
   },
   {
    "id": "venganza",
@@ -226,7 +226,7 @@
    "feel_all": {
     "alegria": 15
    },
-   "observe": "Eso que hace alguien ahí se llama bailar. Creo."
+   "observe": "Eso que hace alguien ahí se llama bailar. Tú no lo intentes: ya das bastante pena quieto."
   },
   {
    "id": "sombrero_perdido",
@@ -245,7 +245,7 @@
    "feel_a": {
     "ansiedad": 40
    },
-   "observe": "Hay algo tirado por ahí. Y alguien gritando."
+   "observe": "Hay algo tirado por ahí. Y alguien gritando. Tú estás en medio, que es tu hábitat."
   },
   {
    "id": "escape_esporas",
@@ -259,7 +259,7 @@
    "text": "Hubo un escape de {x} junto a {a} en {w}",
    "things": [
     "esporas",
-    "gas raro",
+    "gas con derecho a voto",
     "moho enfadado"
    ],
    "feel_all": {
@@ -279,8 +279,8 @@
    "text": "Cayó {x} sobre {a} en {w}",
    "things": [
     "una lluvia de sal",
-    "sal del cielo",
-    "un chaparrón de sal"
+    "sal gorda y rencorosa",
+    "sal con nombre y apellidos"
    ],
    "feel_all": {
     "miedo": 60,
@@ -307,7 +307,7 @@
    "things": [
     "nada",
     "aburrimiento",
-    "un mal día"
+    "deporte"
    ],
    "feel_all": {
     "miedo": 40,
@@ -338,7 +338,7 @@
    "feel_all": {
     "alegria": 15
    },
-   "observe": "Hay uno más que hace un rato. La gente es así."
+   "observe": "Hay uno más que hace un rato. La fábrica no aprende. Tú tampoco."
   },
   {
    "id": "llegada",
@@ -351,9 +351,9 @@
    "things": [
     "sin avisar",
     "con una maleta vacía",
-    "buscando a alguien"
+    "buscando a alguien que ya no existe"
    ],
-   "observe": "Alguien acaba de entrar por la puerta de la ciudad."
+   "observe": "Alguien acaba de entrar por la puerta de la ciudad. Con más propósito que tú, y eso ya es triste."
   },
   {
    "id": "oportunidad_perdida",
@@ -414,7 +414,7 @@
    "importance": 90,
    "things": [
     "una tuerca",
-    "mala suerte",
+    "mala suerte y peor mantenimiento",
     "un descuido del Sobrante"
    ],
    "feel_all": {
@@ -439,7 +439,7 @@
    "importance": 90,
    "things": [
     "una tuerca",
-    "mala suerte",
+    "mala suerte y peor mantenimiento",
     "un descuido del Sobrante"
    ],
    "feel_all": {

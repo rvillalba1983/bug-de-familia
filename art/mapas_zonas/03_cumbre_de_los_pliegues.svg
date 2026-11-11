@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="520" viewBox="0 0 680 520" font-family="sans-serif">
+  <rect width="680" height="520" fill="#1a2a3a"/>
+  
+  <rect x="20" y="40" width="640" height="440" fill="#0d1b2a" stroke="#2196f3" stroke-width="2"/>
+  <rect x="20" y="40" width="640" height="440" fill="#2196f3" opacity="0.1"/>
+  <!-- Forma L: bloqueado esquina inferior derecha -->
+  <rect x="500" y="340" width="160" height="140" fill="#0d1b2a"/>
+  <rect x="20" y="40" width="50" height="40" fill="#0d1b2a"/>
+  <rect x="600" y="40" width="60" height="60" fill="#0d1b2a"/>
+  <!-- Montañas -->
+  <polygon points="100,120 140,60 180,120" fill="#8894B5" stroke="#ffffff" stroke-width="1"/>
+  <polygon points="250,140 300,70 350,140" fill="#8894B5" stroke="#ffffff" stroke-width="1"/>
+  <polygon points="450,130 500,60 550,130" fill="#8894B5" stroke="#ffffff" stroke-width="1"/>
+  <polygon points="180,200 220,140 260,200" fill="#8894B5" stroke="#ffffff" stroke-width="1"/>
+  <polygon points="380,210 430,140 480,210" fill="#8894B5" stroke="#ffffff" stroke-width="1"/>
+  <!-- Ciudad plegada (edificios doblados) -->
+  <rect x="200" y="220" width="60" height="50" fill="#2196f3" stroke="#ffffff" stroke-width="1"/>
+  
+  <rect x="280" y="220" width="50" height="50" fill="#2196f3" stroke="#ffffff" stroke-width="1"/>
+  
+  <rect x="350" y="220" width="50" height="50" fill="#2196f3" stroke="#ffffff" stroke-width="1"/>
+  
+  <rect x="200" y="290" width="60" height="40" fill="#9c27b0" stroke="#ffffff" stroke-width="1"/>
+  
+  <rect x="280" y="290" width="50" height="40" fill="#ffc107" stroke="#ffffff" stroke-width="1"/>
+  
+  <!-- Corredores -->
+  <rect x="320" y="40" width="40" height="60" fill="#2196f3" opacity="0.6"/>
+  <rect x="0" y="230" width="40" height="30" fill="#2196f3" opacity="0.6"/>
+  <rect x="560" y="230" width="40" height="30" fill="#2196f3" opacity="0.6"/>
+  <rect x="320" y="300" width="40" height="40" fill="#2196f3" opacity="0.6"/>
+  <!-- Guardados -->
+  <circle cx="100" cy="100" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <circle cx="500" cy="100" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <circle cx="230" cy="240" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <circle cx="380" cy="310" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <!-- Etiquetas de bordes -->
+  
+  
+  
+  
+  
+</svg>

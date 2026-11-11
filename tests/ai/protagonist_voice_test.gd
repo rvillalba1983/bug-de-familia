@@ -39,7 +39,7 @@ func _ready_to_speak() -> void:
 
 func test_every_ai_and_progenitor_has_nicknames() -> void:
 	var owners: Dictionary = zone.ai.nicknames.by_owner
-	assert_int(owners.size()).is_equal(22)
+	assert_int(owners.size()).is_equal(35)
 	for id: String in zone.ai.team.ais:
 		assert_bool(owners.has(id)).is_true()
 

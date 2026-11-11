@@ -19,6 +19,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 
 ## Pendiente de respuesta del usuario (no bloquea)
 - Textos provisionales del caso y de las IAs.
+- ADR 0027 (infraestructura multi-zona) registrado el 11-nov: decisiones de arquitectura acordadas, pendiente de implementación en la fase de infraestructura post-beta. Ver `docs/adr/0027-multi-zona.md`.
 
 ## Tras la fase 6
 - Los valores de daño, alcance y recarga del combate son provisionales (`docs/adr/0005-combate.md`).

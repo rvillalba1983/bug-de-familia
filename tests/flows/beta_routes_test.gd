@@ -20,8 +20,11 @@ func _start(route_seed: int = 7) -> void:
 	Engine.time_scale = SPEED
 	get_tree().paused = false
 	zone = scene_runner(PATH).scene()
-	await await_millis(300)
 	_stabilize_for_routes()
+	# Espera determinista en fotogramas de física (P-39): evita que la cadencia
+	# de fotogramas altere los pasos de WorldSim y las llamadas al RNG.
+	for _i: int in range(54):
+		await get_tree().physics_frame
 	walker = BetaWalker.new(get_tree(), zone)
 
 

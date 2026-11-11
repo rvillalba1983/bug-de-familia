@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="520" viewBox="0 0 680 520" font-family="sans-serif">
+  <rect width="680" height="520" fill="#1a2a3a"/>
+  <rect x="20" y="40" width="640" height="440" fill="#0d1b2a" stroke="#f44336" stroke-width="2" stroke-dasharray="8,5"/>
+  <rect x="10" y="10" width="660" height="500" fill="#f44336" opacity="0.05"/>
+  <rect x="25" y="25" width="40" height="40" fill="#0d1b2a"/>
+  <rect x="135" y="25" width="40" height="40" fill="#0d1b2a"/>
+  <rect x="25" y="105" width="40" height="40" fill="#0d1b2a"/>
+  <rect x="135" y="105" width="40" height="40" fill="#0d1b2a"/>
+  <rect x="70" y="60" width="40" height="40" fill="#0d1b2a"/>
+  <!-- Instalación (ruinas antiguas) -->
+  <rect x="60" y="80" width="60" height="50" fill="#8894B5" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+  
+  <rect x="130" y="80" width="60" height="50" fill="#8894B5" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+  
+  <rect x="60" y="140" width="60" height="50" fill="#8894B5" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+  
+  <rect x="130" y="140" width="60" height="50" fill="#8894B5" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+  
+  <!-- Centro (el botón que no existe) -->
+  <circle cx="340" cy="260" r="40" fill="#f44336" opacity="0.3" stroke="#f44336" stroke-width="2" stroke-dasharray="6,4"/>
+  
+  
+  <!-- Peligros (trampas) -->
+  <circle cx="120" cy="300" r="8" fill="#f44336" opacity="0.6"/>
+  <circle cx="200" cy="320" r="8" fill="#f44336" opacity="0.6"/>
+  <circle cx="560" cy="300" r="8" fill="#f44336" opacity="0.6"/>
+  <circle cx="480" cy="320" r="8" fill="#f44336" opacity="0.6"/>
+  <!-- Corredores -->
+  <rect x="80" y="0" width="15" height="30" fill="#f44336" opacity="0.5"/>
+  <rect x="80" y="125" width="15" height="30" fill="#f44336" opacity="0.5"/>
+  <rect x="0" y="65" width="25" height="15" fill="#f44336" opacity="0.5"/>
+  <rect x="145" y="65" width="25" height="15" fill="#f44336" opacity="0.5"/>
+  <!-- Guardados -->
+  <circle cx="90" cy="110" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <circle cx="340" cy="260" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <!-- Etiquetas de bordes -->
+  
+  
+  
+  
+</svg>

@@ -1,7 +1,8 @@
 # ADR 0025: alejazo puntual en la vista de estrategia (P-31, opción C)
 
 Estado: decidido por el director el 10-nov-2026 e implementado de forma provisional.
-Pendiente de validación visual en partida y de medición en gráfica real.
+Ajustado el 11-nov-2026 a la crítica del director («el alejazo va muy rápido»): `PULSE_DECAY`
+pasa a 1,2. Pendiente de validación visual en partida y de medición en gráfica real.
 
 ## Contexto
 P-31 pedía enseñar edificios en la vista de estrategia «sin romper la cámara ni el
@@ -25,7 +26,7 @@ aceptando ampliar `ZOOM_MIN`.
 | Parámetro | Valor provisional |
 |---|---|
 | `ZOOM_MIN` | 0,6 (antes 0,7) |
-| `PULSE_DECAY` | 2,5 (el pulso se consume en ~0,4 s de tiempo real) |
+| `PULSE_DECAY` | 1,2 (ajustado el 11-nov a la crítica del director: el alejazo «va muy rápido»; el pulso se consume en ~0,8 s de tiempo real, frente a 0,4 s con el valor 2,5) |
 | Disparos | al abrir la vista (`open`) y al caer un luchador (`BattleDirector._strike`) |
 | Objetivo del alejazo | `ZOOM_MIN` (el zoom base se interpola hacia él mientras dura el pulso) |
 | `reduce_motion` | con la opción activa `pulse()` no hace nada: zoom fijo |
@@ -46,9 +47,9 @@ Implementación:
   el alejazo. Si el director quiere verlos siempre, haría falta añadir el minimapa fijo
   (opción A), que queda sin hacer.
 - Rendimiento: al alejar a 0,6, `_draw_dirt()` pasa de ~54 a ~345 puntos de suciedad
-  durante ~0,4 s. Es una estimación por número de llamadas; **sin medición en gráfica
-  real**. Las etiquetas siguen en coordenadas fijas y los muñequitos se encogen con el
-  zoom durante el pulso.
+  durante el pulso (ahora ~0,8 s con el nuevo `PULSE_DECAY`). Es una estimación por número
+  de llamadas; **sin medición en gráfica real**. Las etiquetas siguen en coordenadas
+  fijas y los muñequitos se encogen con el zoom durante el pulso.
 - Se corrige además el comentario de cabecera y la ayuda de la vista, que decían
   «M abre y cierra» / «M: salir» y contradecían `02_DECISIONES.md:148`.
 

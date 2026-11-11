@@ -32,6 +32,14 @@ func test_guard_detection_opens_pre_fight_pause() -> void:
 	assert_bool(sandbox.player.body.can_swap(ModularBody.Slot.ARM_MAIN_LEFT)).is_false()
 
 
+func test_fight_starts_engaging_the_guard_without_player_order() -> void:
+	var sandbox: Sandbox = _scene()
+	sandbox.guard.alert_started.emit()
+	sandbox.panel.close()
+	assert_int(sandbox.fight.phase).is_equal(FightDirector.Phase.FIGHTING)
+	assert_object(sandbox.combat.target).is_same(sandbox.guard)
+
+
 func test_destroyed_piece_in_fight_pauses_and_allows_replacement() -> void:
 	var sandbox: Sandbox = _scene()
 	sandbox.guard.alert_started.emit()

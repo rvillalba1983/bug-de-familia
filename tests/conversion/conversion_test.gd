@@ -78,6 +78,26 @@ func test_timeout_counts_as_wrong() -> void:
 	assert_bool(session.answer(-1, 0.0)).is_false()
 
 
+func test_con_movimiento_reducido_el_veredicto_no_tiembla() -> void:
+	var anterior: bool = GameSettings.reduce_motion
+	GameSettings.reduce_motion = true
+	var pantalla: ConversionScreen = auto_free(ConversionScreen.new())
+	pantalla._reset("prueba")
+	pantalla.show_verdict(false, "t", "c")
+	assert_float(pantalla._shake).is_equal(0.0)
+	GameSettings.reduce_motion = anterior
+
+
+func test_el_veredicto_tiembla_sin_reducir_movimiento() -> void:
+	var anterior: bool = GameSettings.reduce_motion
+	GameSettings.reduce_motion = false
+	var pantalla: ConversionScreen = auto_free(ConversionScreen.new())
+	pantalla._reset("prueba")
+	pantalla.show_verdict(false, "t", "c")
+	assert_float(pantalla._shake).is_greater(0.0)
+	GameSettings.reduce_motion = anterior
+
+
 func test_effects_survive_saving() -> void:
 	var piece: BodyPiece = PieceForge.forge(
 		catalog, "madera_cuantica", "hackeo", BodyPiece.Kind.ARM, 1.0, rng

@@ -10,8 +10,10 @@ const FRAME_MARGIN: Vector2 = Vector2(520.0, 420.0)
 const ZOOM_MIN: float = 0.6
 const ZOOM_MAX: float = 1.9
 const CAMERA_SPEED: float = 2.5
-## Alejazo puntual al abrir y al caer alguien; se consume en ~0,4 s de tiempo real.
-const PULSE_DECAY: float = 2.5
+## Alejazo puntual al abrir y al caer alguien; se consume en ~0,8 s de tiempo real.
+## Valor provisional, ajustado el 11-nov a la crítica del director: el alejazo «va muy
+## rápido», así que PULSE_DECAY sube de 2,5 a 1,2 (~0,83 s de decaimiento en vez de 0,4 s).
+const PULSE_DECAY: float = 1.2
 const DIRT_STEP: float = 160.0
 const COLOR_GROUND: Color = Color("#a8875a")
 const COLOR_DIRT: Color = Color("#957548")

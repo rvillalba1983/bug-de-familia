@@ -116,7 +116,7 @@ func show_verdict(correct: bool, title: String, body: String) -> void:
 	(_box.get_child(0).get_child(0) as Label).add_theme_color_override(
 		&"font_color", Palette.ACIDO if correct else Palette.ROSA
 	)
-	if not correct:
+	if not correct and not GameSettings.reduce_motion:
 		_shake = VERDICT_SHAKE
 
 

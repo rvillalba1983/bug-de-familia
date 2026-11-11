@@ -21,7 +21,7 @@ func after_test() -> void:
 	get_tree().paused = false
 
 
-func test_diverted_group_walks_to_indicated_zone_and_then_leaves() -> void:
+func test_diverted_group_walks_to_indicated_zone_and_stays_there() -> void:
 	for id: String in IDS:
 		var item: Interactable = zone.investigation.npc_nodes[id]
 		var goal: Vector2 = BetaChallenges.groups[id]["indicated"]
@@ -34,16 +34,21 @@ func test_diverted_group_walks_to_indicated_zone_and_then_leaves() -> void:
 		assert_float(item.position.distance_to(start)).is_greater(0.0)
 		assert_bool(item.visible).is_true()
 		var steps: int = 0
-		while item.visible and steps < 1000:
+		while item.position.distance_to(goal) > 1.0 and steps < 1000:
 			zone.challenges._move_groups(0.1)
 			steps += 1
-		assert_bool(item.visible).is_false()
+		assert_float(item.position.distance_to(goal)).is_less(2.0)
+		# No desaparece para siempre: se queda visible en el punto indicado.
+		assert_bool(item.visible).is_true()
 
 
-func test_group_diverted_in_a_loaded_game_is_already_gone() -> void:
+func test_group_diverted_in_a_loaded_game_settles_at_goal() -> void:
 	var item: Interactable = zone.investigation.npc_nodes["cuadrilla_moho"]
+	var goal: Vector2 = BetaChallenges.groups["cuadrilla_moho"]["indicated"]
 	zone.challenges._flags_applied = false
 	zone.investigation.flags["moho_desviada"] = true
 	zone.challenges.apply_flags()
-	assert_bool(item.visible).is_false()
+	# En partida cargada el grupo ya está en el punto indicado, visible.
+	assert_float(item.position.distance_to(goal)).is_less(2.0)
+	assert_bool(item.visible).is_true()
 	assert_bool(zone.challenges._leaving.is_empty()).is_true()

@@ -12,6 +12,7 @@ const END_DELAY: float = 3.0
 
 var phase: Phase = Phase.CALM
 var body: ModularBody
+var combat: CombatSystem
 
 var _guards: Array[Guard] = []
 var _calm_time: float = 0.0
@@ -28,6 +29,19 @@ func confirm_pre_fight() -> void:
 		phase = Phase.FIGHTING
 		body.context = ModularBody.Context.FIGHTING
 		_calm_time = 0.0
+		start_combat()
+
+
+## La pelea arranca sola: el protagonista se pone a pelear sin necesidad de que el
+## jugador le de la orden con el ratón (clic o conversación). Se acerca al oponente y el
+## propio CombatSystem se encarga de los golpes en rango.
+func start_combat() -> void:
+	if combat == null or combat.target != null:
+		return
+	for guard: Guard in _guards:
+		if is_instance_valid(guard) and not guard.passive and not guard.is_down():
+			combat.engage(guard)
+			return
 
 
 func _physics_process(delta: float) -> void:

@@ -224,6 +224,7 @@ func _build_world() -> void:
 	add_child(fight)
 	combat = CombatSystem.new()
 	combat.level = self
+	fight.combat = combat
 	add_child(combat)
 	_register_convertibles()
 	catalog = ConversionCatalog.load_default()

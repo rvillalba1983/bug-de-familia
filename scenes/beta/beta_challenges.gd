@@ -349,7 +349,9 @@ func _apply_group(id: String) -> void:
 			_leave_paths[id] = level.nav.find_path((node as Node2D).position, goal)
 			_leave_index[id] = 0
 		else:
-			(node as Interactable).visible = false
+			# Partida cargada: el grupo ya está en el punto indicado, visible.
+			(node as Interactable).position = _leave_goal(id)
+			(node as Interactable).visible = true
 	if flag(prefix + "_bronca") and not flag(prefix + "_avisados"):
 		level.investigation.flags[prefix + "_avisados"] = true
 		_alert_nearby()
@@ -396,12 +398,14 @@ func _walk_away(id: String, node: Interactable, delta: float) -> void:
 		if path.is_empty():
 			node.position = node.position.move_toward(goal, GROUP_LEAVE_SPEED * delta)
 			if node.position.is_equal_approx(goal):
-				node.visible = false
+				# Se queda en el punto indicado (visible, interactuable): no desaparece para siempre.
+				node.position = goal
 				_leaving.erase(id)
 				_leave_paths.erase(id)
 				_leave_index.erase(id)
 			return
-		node.visible = false
+		# Llegó al punto indicado: se queda allí (visible), no desaparece para siempre.
+		node.position = goal
 		_leaving.erase(id)
 		_leave_paths.erase(id)
 		_leave_index.erase(id)

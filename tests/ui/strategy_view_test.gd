@@ -48,7 +48,8 @@ func test_el_pulso_aleja_el_zoom_y_decae_en_tiempo_real() -> void:
 		StrategyView.ZOOM_MIN, 0.0001
 	)
 	vista.tick_pulse(0.2)
-	assert_float(vista.pulse_level()).is_equal_approx(0.5, 0.0001)
+	## Decaimiento lineal con el nuevo PULSE_DECAY provisional (ajustado el 11-nov).
+	assert_float(vista.pulse_level()).is_equal_approx(0.76, 0.0001)
 	assert_bool(vista.pulse_level() < 1.0).is_true()
 
 

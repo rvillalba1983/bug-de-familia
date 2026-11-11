@@ -60,6 +60,7 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 - 36 festividades fijas al año, tres por mes.
 - Tres niveles de simulación: completa cerca, simplificada en zonas próximas y estadística en zonas lejanas.
 - Misiones en dos capas: retos diseñados y misiones emergentes de acontecimientos (8-nov).
+- Retos de zona: la lista solo se llena cuando se detecta información (conversaciones, encuentros); no salen completas desde el principio (decidido el 11-nov, P-32).
 - Muerte individual permanente de NPC; las poblaciones se recuperan por reproducción.
 - Los humanos existieron y desaparecieron (8-nov).
 - Sin final fijo. Historias independientes conectadas por un misterio general.

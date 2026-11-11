@@ -35,8 +35,8 @@ Decisiones técnicas:
   compartida `PieceAtlas`. `frame_key` tiene valor por defecto `""` para no romper las
   llamadas existentes a `ProtagonistArt.draw`.
 - La selección de acción en el jugador es **cosmética y provisional** (0,5 s y vuelta a
-  `idle`); no cambia controles, combate ni conversión. P-37 (ataque automático) sigue
-  abierto y no se toca.
+  `idle`); no cambia controles, combate ni conversión. P-37 (ataque automático) se resolvió el 11-nov
+  con el auto-engage al arranque de la pelea; la selección de acción sigue siendo cosmÉtica y provisional.
 
 ## Origen y herramienta de los recursos generados
 Registro exigido por `AGENTS.md`:

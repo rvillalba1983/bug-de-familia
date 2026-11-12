@@ -2,7 +2,7 @@ extends GdUnitTestSuite
 ## Recorridos completos de la beta con enemigos activos, sin atajos de posición.
 
 const PATH: String = "res://scenes/beta/beta_zone.tscn"
-const SPEED: float = 3.0
+const SPEED: float = 5.0
 const ROUTE_TIMEOUT: int = 300000
 const FESTIVAL_DAY: int = 1794657600
 

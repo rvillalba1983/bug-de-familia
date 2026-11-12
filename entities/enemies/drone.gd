@@ -9,9 +9,9 @@ const SPEED: float = 130.0
 const VIEW_RANGE: float = 200.0
 const VIEW_HALF_ANGLE: float = 40.0
 const FLY_HEIGHT: float = 70.0
-const ART_SOUTH: Texture2D = preload("res://art/beta/dron_viejo.svg")
-const ART_EAST: Texture2D = preload("res://art/beta/dron_viejo_e.svg")
-const ART_NORTH: Texture2D = preload("res://art/beta/dron_viejo_n.svg")
+const ART_SOUTH: Texture2D = preload("res://art/shared/dron_viejo.svg")
+const ART_EAST: Texture2D = preload("res://art/shared/dron_viejo_e.svg")
+const ART_NORTH: Texture2D = preload("res://art/shared/dron_viejo_n.svg")
 const ART_SIZE: float = 64.0
 
 var detector: Detector = Detector.new(VIEW_RANGE, VIEW_HALF_ANGLE, false)

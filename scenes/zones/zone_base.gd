@@ -9,7 +9,7 @@ extends Sandbox
 
 signal transition_requested(to_zone: String)
 
-const ART_FOLDER: String = "res://art/beta/"
+const ART_FOLDER: String = "res://art/shared/"
 const FAST_TRAVEL_LABEL: String = "UI_FAST_TRAVEL"
 const FAST_TRAVEL_ITEM: String = "fast_travel_"
 ## Provisional: distancia a la que un grupo se mete en la pelea de los suyos.

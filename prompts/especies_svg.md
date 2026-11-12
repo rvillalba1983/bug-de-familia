@@ -44,7 +44,7 @@ Las especies con esqueleto son: **jubilado_hierro** (tiene piernas) y **mohocrat
 - **Roles:** petanquista, vigilante, archivero, mecánico.
 - **Aspecto:** robot viejo con torso redondeado de metal, cabeza esférica con un ojo/visor brillante naranja `#FF6A00` o cian `#00E5FF`, dos brazos mecánicos con manos pinza, dos piernas cortas y gruesas, pies redondos. Lleva accesorios: una mina de petanca (esfera morada `#3A1A5C` con puntos amarillos), un sombrero o casco abollado, cables sueltos, soldadura. Actitud encorvada, cansada. Superficie con remaches y costuras soldadas.
 - **Rasgos:** se apagan a las 21:00, odian las escaleras, nunca perdonan que les llamen "viejos". Recuerdan el mundo de antes y lo cuentan mal a propósito. Algunos conocieron a los progenitores.
-- **Referencia existente:** ya hay SVGs reales en `art/beta/jubilado_hierro*.svg` y rig. Mantener ese estilo.
+- **Referencia existente:** ya hay SVGs reales en `art/shared/jubilado_hierro*.svg` y rig. Mantener ese estilo.
 
 ### 2. Mohócratas (`mohocrata`, art `mohocrata`)
 
@@ -56,7 +56,7 @@ Las especies con esqueleto son: **jubilado_hierro** (tiene piernas) y **mohocrat
 - **Roles:** votante, recolector, escrutador, reciclador.
 - **Aspecto:** colonia fúngica antropomórfica: cuerpo bajo y ancho (sin piernas, flota/desliza), sombrero de hongo grande hecho de piezas de chatarra y metal oxidado, textura de esporas y agujeros, brazos delgados y nodosos, cara con ojos saltones y boca pequeña. Superficie orgánica con manchas y protuberancias. Sin piernas (flota).
 - **Rasgos:** democracia de esporas, votan todo incluso respirar, pacíficos hasta que votan guerra. Odian la luz. Sus votos se compran con fertilizante. Votan 3 veces antes de atacar.
-- **Referencia existente:** ya hay SVGs reales en `art/beta/mohocrata*.svg` y rig. Mantener ese estilo.
+- **Referencia existente:** ya hay SVGs reales en `art/shared/mohocrata*.svg` y rig. Mantener ese estilo.
 
 ### 3. Plegados (`plegado`, art `plegado`)
 
@@ -104,7 +104,7 @@ Las especies con esqueleto son: **jubilado_hierro** (tiene piernas) y **mohocrat
 
 ## Estilo visual de referencia
 
-Observa los SVGs existentes de jubilado_hierro y mohocrata en `art/beta/`. Características clave:
+Observa los SVGs existentes de jubilado_hierro y mohocrata en `art/shared/`. Características clave:
 - Contorno negro azulado `#1B0E2A` con grosor 7-8.
 - Sombra elíptica en la base.
 - Gradientes para volumen (radial con luz arriba-izquierda).
@@ -119,7 +119,7 @@ Para cada especie sin esqueleto (plegado, eco, grux, manada): 3 archivos SVG (su
 Para las especies con esqueleto (jubilado_hierro, mohocrata): los 3 archivos planos ya existen como referencia; si se regeneran, mantener las piezas de rig (torso, cabeza, brazos, piernas) con las mismas proporciones y puntos de articulación.
 
 Nombres de archivo exactos:
-- `art/beta/{art}.svg`, `art/beta/{art}_e.svg`, `art/beta/{art}_n.svg`
+- `art/shared/{art}.svg`, `art/shared/{art}_e.svg`, `art/shared/{art}_n.svg`
 donde `{art}` es: jubilado_hierro, mohocrata, plegado, eco, grux, manada.
 
 ## Notas importantes

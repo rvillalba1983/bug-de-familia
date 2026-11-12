@@ -114,7 +114,7 @@ con una prueba de concepto aislada y un ADR nuevo.
 El generador de imágenes de OpenCode (`gpt-image-2.5-sunburst`, único del
 catálogo) es **de pago** y falló con «Insufficient account funds». El director
 confirmó que no se quiere. Las plantillas de mohócrata se generan como **SVG por
-código**, con la paleta y los helpers de `tools/art/beta_assets_gen.py`,
+código**, con la paleta y los helpers de `tools/art/shared_assets_gen.py`,
 conservando tallo, raíces y boca del rig actual para que `rig_split.py`, las
 animaciones y el atlas sigan valiendo. Es la vía del pipeline existente y no
 cuesta nada.

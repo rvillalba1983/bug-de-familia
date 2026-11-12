@@ -1,5 +1,5 @@
 extends SceneTree
-## Genera art/beta/atlas/piezas.png y data/art/atlas_piezas.json con las piezas de art/beta/rig/.
+## Genera art/shared/atlas/piezas.png y data/art/atlas_piezas.json con las piezas de art/shared/rig/.
 ## Uso: godot --headless --path . -s tools/art/piece_atlas_gen.gd y después --import.
 
 const SIDE: int = 2048
@@ -7,9 +7,9 @@ const PADDING: int = 2
 ## Las piezas se ven a la mitad de su tamaño: más resolución solo daría dientes de sierra.
 const SCALE: float = 0.6
 const SHADOW_SIZE: int = 64
-const OUTPUT_IMAGE: String = "res://art/beta/atlas/piezas.png"
+const OUTPUT_IMAGE: String = "res://art/shared/atlas/piezas.png"
 const OUTPUT_INDEX: String = "res://data/art/atlas_piezas.json"
-const RIG_FOLDER: String = "res://art/beta/rig/"
+const RIG_FOLDER: String = "res://art/shared/rig/"
 const ACTIONS_PATH: String = "res://data/art/action_frames.json"
 const FRAME_SIDE: int = 64
 const COLOR_INK: Color = Color("#1b0e2a")

@@ -43,7 +43,7 @@ Registro exigido por `AGENTS.md`:
 
 | Recurso | Origen | Herramienta | Fecha |
 |---|---|---|---|
-| `art/beta/atlas/piezas.png` | SVG propios de `art/beta/rig/` + 7 fotogramas dibujados por código con `Palette` («Cuñado Radiactivo») | `tools/art/piece_atlas_gen.gd`, Godot 4.7.2 estable (consola) | 10-nov-2026 |
+| `art/shared/atlas/piezas.png` | SVG propios de `art/shared/rig/` + 7 fotogramas dibujados por código con `Palette` («Cuñado Radiactivo») | `tools/art/piece_atlas_gen.gd`, Godot 4.7.2 estable (consola) | 10-nov-2026 |
 | `data/art/atlas_piezas.json` | Índice del atlas anterior | `tools/art/piece_atlas_gen.gd`, Godot 4.7.2 | 10-nov-2026 |
 | `data/art/action_frames.json` | Catálogo escrito a mano, datos provisionales | Editor de texto | 10-nov-2026 |
 

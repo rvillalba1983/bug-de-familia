@@ -75,7 +75,7 @@ Necesitan ventana y gráfica, así que no llevan `--headless`. Se lanzan con `--
 
 ## 7. Arte y audio
 
-- Atlas de piezas: `--headless --path . -s tools/art/piece_atlas_gen.gd` y después `--import`. Repítelo si cambia un SVG de `art/beta/rig/`.
+- Atlas de piezas: `--headless --path . -s tools/art/piece_atlas_gen.gd` y después `--import`. Repítelo si cambia un SVG de `art/shared/rig/`.
 - `tools/art/ground_gen.py <carpeta>`: hornea `suelo_bosque`, `suelo_ciudad` y `suelo_barro` con Playwright y Chromium. Chromium arranca y renderiza (probado el 10-nov). El script no se ha ejecutado, para no regenerar texturas.
 - Otros generadores de `tools/art/` (`rig_split.py`, `protagonist_gen.py`, `props_gen.py`, `npc_views_gen.py`, `facades_gen.py`, `city_scene_gen.py`, `beta_assets_gen.py`): solo con encargo.
 - `python tools/audio/gen_audio.py [carpeta]`: sintetiza música y voces. Necesita numpy, scipy y ffmpeg con libvorbis (los tres comprobados). La semilla de cada pista es su número. Regenera la biblioteca: no lo lances sin encargo. Catálogo: `data/audio/library.json`.

@@ -54,11 +54,11 @@ uso. El director debe aprobar cualquier imagen nueva antes de integrarla en el j
 ## Generadores y recursos
 | Archivo | Contenido |
 |---|---|
-| `tools/art/beta_assets_gen.py` | Los 10 elementos de la beta, en `art/beta/fuentes/` |
+| `tools/art/shared_assets_gen.py` | Los 10 elementos de la beta, en `art/shared/fuentes/` |
 | `tools/art/protagonist_gen.py` | Protagonista por piezas, en `data/art/protagonista.json` |
 | `tools/art/ground_gen.py` | Texturas repetibles del suelo |
 | `tools/art/city_scene_gen.py` | Escena de ejemplo con perspectiva |
-| `tools/art/props_gen.py` | Objetos de la zona beta, en `art/beta/props/` |
+| `tools/art/props_gen.py` | Objetos de la zona beta, en `art/shared/props/` |
 
 Elementos de la beta: mina de petanca, bobina, cartel de tierra de nadie, dron viejo, urna de esporas, Mohócrata votante, Jubilado de Hierro, Don Ramón, centralita del Contestador y depósito mohócrata. El cartel y la urna aún no están integrados. Vistas extra de los NPC en `tools/art/npc_views_gen.py` y fachadas en `tools/art/facades_gen.py`.
 
@@ -97,7 +97,7 @@ Ordenación por coordenada Y, sombras simples, luces limitadas, CanvasModulate p
 Objetos con estados visuales (cerrado, abierto, activado, dañado, destruido, oculto, descubierto, recogido). TileMapLayer para terrenos repetitivos y escenas para edificios y estructuras, con piezas reutilizables. Bibliotecas de plantas, hongos y organismos.
 
 ## Rendimiento
-Texturas razonables, atlas, partículas y luces limitadas, nodos justos y carga controlada de zonas. Las piezas de personajes van en `art/beta/atlas/piezas.png` (generada con `tools/art/piece_atlas_gen.gd`: hay que volver a ejecutarla si cambia un SVG de `art/beta/rig/`). Las formas de color estáticas o repetidas se juntan en mallas con `PolyBatch`.
+Texturas razonables, atlas, partículas y luces limitadas, nodos justos y carga controlada de zonas. Las piezas de personajes van en `art/shared/atlas/piezas.png` (generada con `tools/art/piece_atlas_gen.gd`: hay que volver a ejecutarla si cambia un SVG de `art/shared/rig/`). Las formas de color estáticas o repetidas se juntan en mallas con `PolyBatch`.
 
 ## Herramienta interna
 Fábrica de recursos: importar y preparar imágenes, configurar esqueletos y anclajes, validar dimensiones, transparencias, nombres, escalas y orientaciones, y mantener una biblioteca central. Se construye cuando el flujo manual ya esté probado.

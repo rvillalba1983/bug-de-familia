@@ -1038,7 +1038,7 @@
       "gate": "moho_gate"
     }
   },
-  "id": "beta",
+  "id": "despliegue_cero",
   "items": [
     {
       "at": "mine_pickup",
@@ -1055,7 +1055,7 @@
       "type": "named"
     },
     {
-      "art": "res://art/beta/bobina.svg",
+      "art": "res://art/shared/bobina.svg",
       "at": "reel",
       "id": "bobina",
       "label": "BETA_ITEM_REEL",

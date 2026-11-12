@@ -2,18 +2,18 @@ class_name PropArt
 extends RefCounted
 ## Qué dibujo lleva cada objeto de la zona: [archivo, ancho, alto y, opcional, copias].
 
-const FOLDER: String = "res://art/beta/props/"
-const CHARACTER_ART: Array[String] = ["res://art/beta/jubilado_hierro.svg", "res://art/beta/mohocrata.svg"]
+const FOLDER: String = "res://art/shared/props/"
+const CHARACTER_ART: Array[String] = ["res://art/shared/jubilado_hierro.svg", "res://art/shared/mohocrata.svg"]
 const BY_ID: Dictionary = {
-	"paca": ["res://art/beta/jubilado_hierro.svg", 77.0, 77.0],
-	"eusebio": ["res://art/beta/jubilado_hierro.svg", 77.0, 77.0],
-	"seta": ["res://art/beta/mohocrata.svg", 77.0, 77.0],
-	"anselmo": ["res://art/beta/mohocrata.svg", 77.0, 77.0],
-	"cuadrilla_moho": ["res://art/beta/mohocrata.svg", 77.0, 77.0, 3],
-	"patrulla_jub": ["res://art/beta/jubilado_hierro.svg", 77.0, 77.0, 3],
+	"paca": ["res://art/shared/jubilado_hierro.svg", 77.0, 77.0],
+	"eusebio": ["res://art/shared/jubilado_hierro.svg", 77.0, 77.0],
+	"seta": ["res://art/shared/mohocrata.svg", 77.0, 77.0],
+	"anselmo": ["res://art/shared/mohocrata.svg", 77.0, 77.0],
+	"cuadrilla_moho": ["res://art/shared/mohocrata.svg", 77.0, 77.0, 3],
+	"patrulla_jub": ["res://art/shared/jubilado_hierro.svg", 77.0, 77.0, 3],
 	"panel": ["panel", 72.0, 96.0],
 	"contestador": ["contestador", 96.0, 112.0],
-	"mina_suelta": ["res://art/beta/mina_petanca.svg", 44.0, 44.0],
+	"mina_suelta": ["res://art/shared/mina_petanca.svg", 44.0, 44.0],
 	"muro_agrietado": ["grieta", 70.0, 70.0],
 	"generador": ["generador", 77.0, 77.0],
 	"e_sombrero": ["sombrero", 60.0, 46.0],

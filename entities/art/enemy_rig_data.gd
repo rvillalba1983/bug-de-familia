@@ -1,7 +1,7 @@
 class_name EnemyRigData
 extends RefCounted
 ## Articulaciones de cada vista, en las coordenadas del SVG original.
-## La clave es el nombre de la carpeta en art/beta/rig/. Valores provisionales.
+## La clave es el nombre de la carpeta en art/shared/rig/. Valores provisionales.
 
 const LEGS: StringName = &"piernas"
 const NO_LEGS: StringName = &"sin_piernas"

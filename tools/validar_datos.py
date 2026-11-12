@@ -349,12 +349,85 @@ def validar_mundo(informe: Informe) -> dict[str, Any]:
     return conteos
 
 
+def _es_numero(valor: Any) -> bool:
+    return isinstance(valor, (int, float)) and not isinstance(valor, bool)
+
+
+def _comprobar_rect(valor: Any, rel: str, campo: str, informe: Informe) -> list[float] | None:
+    if not isinstance(valor, list) or len(valor) != 4 or not all(_es_numero(v) for v in valor):
+        informe.error(rel, "%s: se esperaba [x, y, ancho, alto]" % campo)
+        return None
+    ancho = float(valor[2])
+    alto = float(valor[3])
+    if ancho <= 0.0 or alto <= 0.0:
+        informe.error(rel, "%s: ancho y alto deben ser positivos" % campo)
+        return None
+    return [float(v) for v in valor]
+
+
+def _dentro_de(valor: list[float], caja: list[float]) -> bool:
+    return (
+        valor[0] >= caja[0]
+        and valor[1] >= caja[1]
+        and valor[0] + valor[2] <= caja[0] + caja[2]
+        and valor[1] + valor[3] <= caja[1] + caja[3]
+    )
+
+
+def _lado_del_rect(rect: list[float], suelo: list[float]) -> str:
+    if rect[1] == suelo[1]:
+        return "north"
+    if rect[1] + rect[3] == suelo[1] + suelo[3]:
+        return "south"
+    if rect[0] == suelo[0]:
+        return "west"
+    if rect[0] + rect[2] == suelo[0] + suelo[2]:
+        return "east"
+    return ""
+
+
 def validar_zonas(informe: Informe) -> None:
-    """Zonas: reparto, rutas, objetos y convertibles contra la geometria."""
+    """Zonas: indice, grafo, reparto, rutas, objetos y convertibles."""
     directorio = DATA / "zones"
     if not directorio.is_dir():
         informe.error("data/zones", "no existe el directorio")
         return
+    indice = cargar_json(DATA / "world" / "zones.json", informe)
+    rel_indice = "data/world/zones.json"
+    informe.cuenta(rel_indice)
+    ids_indice: list[str] = []
+    if isinstance(indice, dict):
+        declaradas = indice.get("zones")
+        if not isinstance(declaradas, list):
+            informe.error(rel_indice, "zones: falta o no es una lista")
+        else:
+            for posicion, valor in enumerate(declaradas):
+                if not isinstance(valor, str) or not valor:
+                    informe.error(
+                        rel_indice, "zones[%d]: debe ser una cadena no vacia" % posicion
+                    )
+                elif valor in ids_indice:
+                    informe.error(rel_indice, "zones: id duplicado '%s'" % valor)
+                else:
+                    ids_indice.append(valor)
+    else:
+        informe.error(rel_indice, "raices: se esperaba un objeto")
+    archivos = sorted(ruta.stem for ruta in directorio.glob("*.json"))
+    if not ids_indice:
+        informe.error(rel_indice, "zones: no declara ninguna zona")
+    else:
+        if set(archivos) != set(ids_indice):
+            faltan = sorted(set(ids_indice) - set(archivos))
+            sobran = sorted(set(archivos) - set(ids_indice))
+            if faltan:
+                informe.error(rel_indice, "zonas del indice sin archivo: %s" % ", ".join(faltan))
+            if sobran:
+                informe.error(rel_indice, "zonas sin entrada en el indice: %s" % ", ".join(sobran))
+
+    especies = cargar_json(DATA / "world" / "species.json", informe)
+    ids_especie = set(especies.keys()) if isinstance(especies, dict) else set()
+    zonas_validas: dict[str, dict] = {}
+    grafo: dict[str, dict[str, str]] = {}
     for ruta in sorted(directorio.glob("*.json")):
         rel = ruta.relative_to(RAIZ).as_posix()
         zona = cargar_json(ruta, informe)
@@ -367,17 +440,105 @@ def validar_zonas(informe: Informe) -> None:
             informe.error(rel, "geometry: falta o no es un objeto")
             continue
         claves_geometria = set(geometria.keys())
+        zonas_validas[ruta.stem] = zona
 
-        especies = cargar_json(DATA / "world" / "species.json", informe)
-        ids_especie = set(especies.keys()) if isinstance(especies, dict) else set()
+        zona_id = zona.get("id")
+        if zona_id != ruta.stem:
+            informe.error(
+                rel, "id: '%s' no coincide con el nombre del archivo" % str(zona_id)
+            )
+        nombre = zona.get("name")
+        if not isinstance(nombre, str) or not nombre.strip():
+            informe.error(rel, "name: falta un nombre visible de la zona")
+
+        mundo = geometria.get("world_size")
+        if not isinstance(mundo, list) or len(mundo) != 2 or not all(_es_numero(v) for v in mundo):
+            informe.error(rel, "geometry.world_size: se esperaba [ancho, alto]")
+            mundo_box = None
+        else:
+            mundo_box = [0.0, 0.0, float(mundo[0]), float(mundo[1])]
+            if mundo[0] <= 0 or mundo[1] <= 0:
+                informe.error(rel, "geometry.world_size: ancho y alto deben ser positivos")
+        suelo = _comprobar_rect(
+            geometria.get("floor_rect"), rel, "geometry.floor_rect", informe
+        )
+        if suelo is not None and mundo_box is not None and not _dentro_de(suelo, mundo_box):
+            informe.error(rel, "geometry.floor_rect: se sale de world_size")
+        inicio = geometria.get("start")
+        if suelo is not None and isinstance(inicio, list) and len(inicio) == 2:
+            dentro = (
+                suelo[0] <= float(inicio[0]) <= suelo[0] + suelo[2]
+                and suelo[1] <= float(inicio[1]) <= suelo[1] + suelo[3]
+            )
+            if not dentro:
+                informe.error(rel, "geometry.start: queda fuera del suelo")
+        for seccion in ("save_points", "open_spots"):
+            if seccion not in geometria:
+                continue
+            if not isinstance(geometria[seccion], list):
+                informe.error(rel, "geometry.%s: se esperaba una lista" % seccion)
+                continue
+            for posicion_indice, posicion in enumerate(geometria[seccion]):
+                if not isinstance(posicion, list) or len(posicion) != 2:
+                    informe.error(
+                        rel, "geometry.%s[%d]: se esperaba [x, y]" % (seccion, posicion_indice)
+                    )
 
         zona_especies = zona.get("species")
         if not isinstance(zona_especies, list):
             informe.error(rel, "species: falta o no es una lista")
+            especies_declaradas: set[str] = set()
         else:
-            comprobar_lista_de_referencias(zona_especies, ids_especie, rel, "species", informe)
+            comprobar_lista_de_referencias(
+                zona_especies, ids_especie, rel, "species", informe
+            )
+            especies_declaradas = {str(v) for v in zona_especies}
+
+        planeadas = zona.get("planned_species", [])
+        if not isinstance(planeadas, list):
+            informe.error(rel, "planned_species: se esperaba una lista")
+        else:
+            for indice_especie, valor in enumerate(planeadas):
+                if not isinstance(valor, str) or not valor.strip():
+                    informe.error(
+                        rel,
+                        "planned_species[%d]: debe ser una cadena no vacia" % indice_especie,
+                    )
+                elif valor in especies_declaradas:
+                    informe.error(
+                        rel, "planned_species[%d]: '%s' ya esta en species" % (indice_especie, valor)
+                    )
+
+        poblacion = zona.get("population", {})
+        if not isinstance(poblacion, dict):
+            informe.error(rel, "population: se esperaba un objeto")
+            poblacion = {}
+        for especie_poblacion, limites in poblacion.items():
+            if especie_poblacion not in especies_declaradas:
+                informe.error(
+                    rel, "population.%s: no esta declarada en species" % especie_poblacion
+                )
+            if not isinstance(limites, dict):
+                informe.error(rel, "population.%s: se esperaba un objeto" % especie_poblacion)
+                continue
+            valores: dict[str, int] = {}
+            for clave in ("start", "target", "max"):
+                valor = limites.get(clave)
+                if not isinstance(valor, int) or isinstance(valor, bool) or valor < 0:
+                    informe.error(
+                        rel, "population.%s.%s: se esperaba un entero >= 0"
+                        % (especie_poblacion, clave)
+                    )
+                else:
+                    valores[clave] = valor
+            if len(valores) == 3 and not (valores["start"] <= valores["target"] <= valores["max"]):
+                informe.error(
+                    rel,
+                    "population.%s: se esperaba start <= target <= max" % especie_poblacion,
+                )
 
         homes = zona.get("homes")
+        casas = homes if isinstance(homes, dict) else {}
         if isinstance(homes, dict):
             for nombre, casa in homes.items():
                 if nombre not in ids_especie:
@@ -394,6 +555,61 @@ def validar_zonas(informe: Informe) -> None:
                             rel,
                             "homes.%s.%s: '%s' no existe en geometry" % (nombre, campo, valor),
                         )
+        for especie_poblacion in poblacion:
+            if especie_poblacion not in casas:
+                informe.error(
+                    rel,
+                    "homes.%s: falta el hogar de una especie con poblacion" % especie_poblacion,
+                )
+
+        bloques = geometria.get("shape_blocks", [])
+        if not isinstance(bloques, list):
+            informe.error(rel, "geometry.shape_blocks: se esperaba una lista")
+        else:
+            for indice_bloque, bloque in enumerate(bloques):
+                rect = _comprobar_rect(
+                    bloque, rel, "geometry.shape_blocks[%d]" % indice_bloque, informe
+                )
+                if rect is not None and mundo_box is not None and not _dentro_de(rect, mundo_box):
+                    informe.error(
+                        rel,
+                        "geometry.shape_blocks[%d]: se sale de world_size" % indice_bloque,
+                    )
+
+        corredores = geometria.get("corridors", [])
+        grafo[ruta.stem] = {}
+        if not isinstance(corredores, list):
+            informe.error(rel, "geometry.corridors: se esperaba una lista")
+        elif suelo is not None:
+            for indice_corredor, corredor in enumerate(corredores):
+                campo = "geometry.corridors[%d]" % indice_corredor
+                if not isinstance(corredor, dict):
+                    informe.error(rel, "%s: se esperaba un objeto" % campo)
+                    continue
+                destino = corredor.get("to")
+                if not isinstance(destino, str) or not destino:
+                    informe.error(rel, "%s.to: falta la zona de destino" % campo)
+                else:
+                    if destino == ruta.stem:
+                        informe.error(rel, "%s.to: una zona no puede apuntar a si misma" % campo)
+                    grafo[ruta.stem][destino] = str(corredor.get("edge", ""))
+                lado = corredor.get("edge")
+                if lado not in ("north", "south", "west", "east"):
+                    informe.error(rel, "%s.edge: debe ser north, south, west o east" % campo)
+                rect = _comprobar_rect(corredor.get("rect"), rel, "%s.rect" % campo, informe)
+                if rect is None:
+                    continue
+                if mundo_box is not None and not _dentro_de(rect, mundo_box):
+                    informe.error(rel, "%s.rect: se sale de world_size" % campo)
+                lado_real = _lado_del_rect(rect, suelo)
+                if not lado_real:
+                    informe.error(rel, "%s.rect: no llega a ningun borde del suelo" % campo)
+                elif lado != lado_real:
+                    informe.error(
+                        rel,
+                        "%s.edge: dice '%s' pero el rectangulo toca el borde %s"
+                        % (campo, str(lado), lado_real),
+                    )
 
         conversiones = cargar_json(DATA / "conversion" / "catalog.json", informe)
         materiales = set(conversiones.get("materials", {}).keys()) if isinstance(conversiones, dict) else set()
@@ -480,6 +696,27 @@ def validar_zonas(informe: Informe) -> None:
         material_mina = zona.get("mine_material")
         if material_mina is not None:
             comprobar_referencia(material_mina, materiales, rel, "mine_material", informe)
+
+    for zona_id, vecinas in grafo.items():
+        rel = "data/zones/%s.json" % zona_id
+        for destino, lado in vecinas.items():
+            if destino not in zonas_validas:
+                informe.error(rel, "geometry.corridors: la zona '%s' no existe" % destino)
+                continue
+            if zona_id not in grafo.get(destino, {}):
+                informe.error(
+                    rel,
+                    "geometry.corridors.%s: la conexion no es reciproca" % destino,
+                )
+                continue
+            lado_destino = grafo[destino][zona_id]
+            opuestos = {"north": "south", "south": "north", "west": "east", "east": "west"}
+            if opuestos.get(lado) != lado_destino:
+                informe.error(
+                    rel,
+                    "geometry.corridors.%s: lados incoherentes (%s y %s)"
+                    % (destino, lado, lado_destino),
+                )
 
 
 def validar_ia(informe: Informe) -> dict[str, Any]:

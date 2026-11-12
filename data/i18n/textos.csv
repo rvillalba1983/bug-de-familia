@@ -110,3 +110,10 @@ LIVE_BADMOUTH,"Los %s van diciendo que sois unos inútiles."
 LIVE_BADMOUTH_1,¿Eso dicen? Pues que lo repitan aquí.
 LIVE_BADMOUTH_2,Como me lo digas otra vez voy yo mismo.
 LIVE_BADMOUTH_BOOM,¡Se acabó! ¡A por ellos!
+ZONE_OBJECTIVE,"Explora la zona y encuentra sus accesos."
+UI_FAST_TRAVEL,Viaje rápido
+UI_FAST_TRAVEL_BACK,Volver
+UI_FAST_TRAVEL_EMPTY,Aún no conoces otro punto de guardado.
+UI_FAST_TRAVEL_BLOCKED,No se puede viajar ahora.
+UI_LOADING,Cruzando el mundo…
+UI_LOADING_HINT,Las IAs del destino te esperan al otro lado.

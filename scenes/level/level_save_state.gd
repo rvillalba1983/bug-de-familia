@@ -17,7 +17,7 @@ static func capture(level: Sandbox) -> Dictionary:
 		"used": used,
 		"converted": level.converted_ids,
 		"fallen": level.fallen_ids,
-		"door_open": level.door.is_open,
+		"door_open": level.door_open(),
 		"ai": level.ai.team.to_dict(),
 		"case": level.investigation.to_dict(),
 		"challenge_done": level.challenge_done,

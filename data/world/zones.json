@@ -1,0 +1,28 @@
+{
+  "zones": [
+    "el_enchufe",
+    "beta",
+    "cumbre",
+    "archivo",
+    "camara",
+    "canon",
+    "gran_mercado",
+    "lonja",
+    "taller",
+    "desguace",
+    "asamblea",
+    "atajo",
+    "colmena",
+    "ultima_ruta",
+    "poligono",
+    "camino",
+    "instalacion",
+    "antecamara",
+    "encrucijada",
+    "valle",
+    "sendero",
+    "paso",
+    "gran_cruce",
+    "cementerio"
+  ]
+}

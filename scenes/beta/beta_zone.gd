@@ -1,9 +1,7 @@
 class_name BetaZone
-extends Sandbox
+extends ZoneBase
 ## Zona de la beta: bosque, ciudad perdida, dos bandos y cuatro retos.
 
-## Provisional: distancia a la que un grupo se mete en la pelea de los suyos.
-const GROUP_REACT_RADIUS: float = 250.0
 const CASE_PATH: String = "res://data/investigation/case_beta.json"
 const ID_MINE: String = "mina_suelta"
 const ID_CRACK: String = "muro_agrietado"
@@ -11,7 +9,6 @@ const ID_REEL: String = "bobina"
 const ID_GENERATOR: String = "generador"
 const ID_RAMON: String = "ramon"
 const ID_CONTESTADOR: String = "contestador"
-const ART_FOLDER: String = "res://art/beta/"
 const CHAINS_IN_SUMMARY: int = 3
 const BURST_RADIUS: float = 170.0
 
@@ -22,8 +19,6 @@ var challenges: BetaChallenges
 var protagonist: ProtagonistVoice
 var rain: AcidRain
 var atmosphere: BetaAtmosphere
-var live_world: LiveWorld
-var battles: BattleDirector
 var music: MusicDirector
 var screen_filter: ScreenFilter
 var rain_label: Label
@@ -44,6 +39,14 @@ var _contestador_at: Vector2 = Vector2.ZERO
 
 func world_size() -> Vector2:
 	return BetaLayout.world_size
+
+
+func zone_definition() -> ZoneDefinition:
+	return BetaLayout.zone
+
+
+func open_spots() -> Array[Vector2]:
+	return BetaLayout.open_spots
 
 
 func floor_rect() -> Rect2:
@@ -532,14 +535,12 @@ func reward_piece() -> void:
 
 func _begin_fresh() -> void:
 	super()
-	live_world.start({})
-	SaveSystem.write(snapshot())
+	if not world_mode:
+		SaveSystem.write(snapshot())
 
 
 func _apply_save(data: Dictionary) -> bool:
 	var result: bool = super(data)
-	if result and not data["dead"]:
-		live_world.start(data.get("world", {}))
 	if result:
 		for id: String in mines.keys():
 			if investigation.has_flag(id) or converted_ids.has(id):

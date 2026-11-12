@@ -4,7 +4,7 @@ extends RefCounted
 
 enum Status { NONE, OK, CORRUPT }
 
-const SCHEMA_VERSION: int = 2
+const SCHEMA_VERSION: int = 3
 const DEFAULT_PATH: String = "user://partida.json"
 
 static var path: String = DEFAULT_PATH
@@ -47,12 +47,17 @@ static func is_valid(parsed: Variant) -> bool:
 
 
 ## Las partidas anteriores a la fase 8 no tienen mundo vivo: se genera al cargarlas.
+## Las de la versión 2 son de una sola zona: el gestor las trata como la beta.
 static func _migrated(parsed: Variant) -> Variant:
-	if parsed is Dictionary and int((parsed as Dictionary).get("version", -1)) == 1:
-		var values: Dictionary = parsed
+	if not parsed is Dictionary:
+		return parsed
+	var values: Dictionary = parsed
+	var version: int = int(values.get("version", -1))
+	if version == 1:
 		values["world"] = {}
+	if version == 1 or version == 2:
 		values["version"] = SCHEMA_VERSION
-	return parsed
+	return values
 
 
 ## La muerte se graba de inmediato y sin vuelta atrás.

@@ -42,6 +42,12 @@ var place_names: Array[String] = ["el barrio norte", "el barrio sur", "la tierra
 var spawn_areas: Dictionary = {}
 var open_spots: Array[Vector2] = []
 var gates: Dictionary = {}
+## Especies presentes en esta zona. Vacío: todas las del catálogo (beta).
+var active_species: Array[String] = []
+## Si la zona ha declarado sus especies, aunque la lista esté vacía.
+var species_declared: bool = false
+## Límites declarados por la zona: {especie: {start, target, max}}.
+var species_limits: Dictionary = {}
 
 var _accumulated: float = 0.0
 var _steps: int = 0
@@ -88,6 +94,24 @@ func alive_of(species: String) -> Array[NpcState]:
 		if npc.alive and npc.species == species:
 			result.append(npc)
 	return result
+
+
+## Especies que habitan la simulación. Sin lista declarada, todas las del catálogo.
+func species_ids() -> Array[String]:
+	if species_declared:
+		return active_species
+	var result: Array[String] = []
+	result.assign(species_data.keys())
+	return result
+
+
+## Límite de una especie. La zona puede sustituir los valores del catálogo.
+func limit_of(species: String, key: String) -> int:
+	var limits: Dictionary = species_limits.get(species, {})
+	if limits.has(key):
+		return int(limits[key])
+	var info: Dictionary = species_data.get(species, {})
+	return int(info.get(key, 0))
 
 
 func random_alive(source: RandomNumberGenerator) -> NpcState:
@@ -194,9 +218,9 @@ func to_dict() -> Dictionary:
 func _generate(seed_value: int) -> void:
 	rng.seed = hash("mundo_%d" % seed_value)
 	last_seen_day = WorldCalendar.today()
-	for species: String in species_data:
+	for species: String in species_ids():
 		var area: Rect2 = spawn_areas.get(species, Rect2(0.0, 0.0, 100.0, 100.0))
-		for index: int in range(int(species_data[species]["start"])):
+		for index: int in range(limit_of(species, "start")):
 			var at: Vector2 = Vector2(
 				rng.randf_range(area.position.x, area.end.x),
 				rng.randf_range(area.position.y, area.end.y)

@@ -21,6 +21,8 @@ const COLOR_EVIDENCE_NEAR: float = 1.0
 
 var level: Sandbox
 var case_path: String = CASE_PATH
+## Las zonas genéricas no montan caso: solo tienen mundo vivo.
+var enabled: bool = true
 var case_data: Dictionary = {}
 var flags: Dictionary = {}
 var neglect_time: float = 0.0
@@ -45,6 +47,8 @@ var _tension_warned: bool = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	if not enabled:
+		return
 	var data: Variant = JSON.parse_string(FileAccess.get_file_as_string(case_path))
 	if not data is Dictionary:
 		push_error("Datos ilegibles en %s" % case_path)
@@ -69,6 +73,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
+	if not enabled:
+		return
 	_tick_answer_limit(delta)
 	if get_tree().paused:
 		return
@@ -81,6 +87,8 @@ func _process(delta: float) -> void:
 
 func validate() -> Array[String]:
 	var problems: Array[String] = []
+	if not enabled:
+		return problems
 	var npc_ids: Array = case_data["npcs"].map(func(npc: Dictionary) -> String: return npc["id"])
 	var nodes: Dictionary = case_data["dialogue"]
 	for npc: Dictionary in case_data["npcs"]:

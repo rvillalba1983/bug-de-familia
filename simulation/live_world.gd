@@ -19,7 +19,7 @@ const ID_LOST: String = "perdido_"
 
 ## Veces que el jugador ha malmetido entre razas desde la última batalla provocada.
 var provocations: int = 0
-var level: BetaZone
+var level: ZoneBase
 var sim: WorldSim = WorldSim.new()
 var dialogue: LiveDialogue
 var citizens: Dictionary = {}
@@ -42,12 +42,15 @@ func _ready() -> void:
 
 
 func start(data: Dictionary) -> void:
-	var zone: ZoneDefinition = BetaLayout.zone
-	for species: String in zone.species():
-		var home: Dictionary = zone.data["homes"][species]
-		sim.spawn_areas[species] = zone.rect(str(home["area"]))
-		sim.gates[species] = zone.point(str(home["gate"]))
-	sim.open_spots = BetaLayout.open_spots
+	var zone: ZoneDefinition = level.zone_definition()
+	var active: Array[String] = zone.active_species()
+	for species: String in active:
+		sim.spawn_areas[species] = zone.home_area(species)
+		sim.gates[species] = zone.home_gate(species)
+	sim.active_species = active
+	sim.species_declared = true
+	sim.species_limits = zone.population()
+	sim.open_spots = level.open_spots()
 	sim.start(level.rng.seed, data)
 	var added_traces: Array = sim.festivals.collect_traces(sim, sim.last_seen_day)
 	sim.last_seen_day = WorldCalendar.today()
@@ -182,7 +185,7 @@ func _direct_all() -> void:
 		var npc: NpcState = sim.npcs[id]
 		var guard: Guard = citizens[id]
 		_update_growth(npc, guard)
-		if level.battles.is_fighter(id):
+		if level.battles != null and level.battles.is_fighter(id):
 			continue
 		if guard.state in [Guard.State.PATROL, Guard.State.WAIT, Guard.State.LOOK_AROUND]:
 			_direct(npc, guard, Motivation.choose(sim, npc, festival))
@@ -402,7 +405,8 @@ func provoke_battle(text: String) -> void:
 	var speaker: NpcState = dialogue.npc
 	dialogue.close()
 	say_from(speaker, text)
-	level.battles.begin()
+	if level.battles != null:
+		level.battles.begin()
 
 
 func _on_mission_changed(mission: Dictionary) -> void:

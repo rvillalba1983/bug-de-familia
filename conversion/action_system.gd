@@ -77,7 +77,9 @@ func _perform(id: String) -> bool:
 			player.start_boost(BOOST_TIME)
 			return true
 		"a054":
-			if level.door.is_open or not _near(level.door_rects()[0].get_center(), HACK_RANGE * level.ai.perks.hack_factor()):
+			if level.door_open() or level.door_rects().is_empty():
+				return false
+			if not _near(level.door_rects()[0].get_center(), HACK_RANGE * level.ai.perks.hack_factor()):
 				return false
 			door_hacked.emit()
 			level.ai.on_hacked()
@@ -167,7 +169,9 @@ func _perform_generic(spec: Dictionary) -> bool:
 				level.drone.confuse(time * level.ai.perks.hack_factor())
 				level.ai.on_hacked()
 		"door":
-			done = not level.door.is_open and _near(level.door_rects()[0].get_center(), reach)
+			done = not level.door_open() and not level.door_rects().is_empty()
+			if done:
+				done = _near(level.door_rects()[0].get_center(), reach)
 			if done:
 				door_hacked.emit()
 		"relation":

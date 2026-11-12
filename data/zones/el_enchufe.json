@@ -1,0 +1,206 @@
+{
+  "convertibles": [],
+  "geometry": {
+    "corridors": [
+      {
+        "edge": "north",
+        "rect": [
+          1880,
+          0,
+          240,
+          64
+        ],
+        "to": "cumbre"
+      },
+      {
+        "edge": "south",
+        "rect": [
+          1880,
+          3936,
+          240,
+          64
+        ],
+        "to": "taller"
+      },
+      {
+        "edge": "west",
+        "rect": [
+          0,
+          1880,
+          64,
+          240
+        ],
+        "to": "beta"
+      },
+      {
+        "edge": "east",
+        "rect": [
+          3936,
+          1253,
+          64,
+          240
+        ],
+        "to": "gran_mercado"
+      },
+      {
+        "edge": "east",
+        "rect": [
+          3936,
+          2506,
+          64,
+          240
+        ],
+        "to": "lonja"
+      }
+    ],
+    "floor_rect": [
+      0,
+      0,
+      4000,
+      4000
+    ],
+    "jub_gate": [
+      1600,
+      1800
+    ],
+    "jub_home": [
+      1300,
+      1300,
+      600,
+      500
+    ],
+    "moho_gate": [
+      2400,
+      2200
+    ],
+    "moho_home": [
+      2100,
+      2200,
+      600,
+      500
+    ],
+    "open_spots": [
+      [
+        2000,
+        2000
+      ],
+      [
+        1500,
+        1500
+      ],
+      [
+        2500,
+        1500
+      ],
+      [
+        1500,
+        2500
+      ],
+      [
+        2500,
+        2500
+      ]
+    ],
+    "save_points": [
+      [
+        2000,
+        800
+      ],
+      [
+        3200,
+        2000
+      ],
+      [
+        2000,
+        3200
+      ],
+      [
+        800,
+        2000
+      ]
+    ],
+    "shape_blocks": [
+      [
+        0,
+        0,
+        700,
+        700
+      ],
+      [
+        3300,
+        0,
+        700,
+        700
+      ],
+      [
+        0,
+        3300,
+        700,
+        700
+      ],
+      [
+        3300,
+        3300,
+        700,
+        700
+      ],
+      [
+        1100,
+        1000,
+        400,
+        400
+      ],
+      [
+        2500,
+        800,
+        400,
+        400
+      ],
+      [
+        1100,
+        2600,
+        400,
+        400
+      ]
+    ],
+    "start": [
+      2000,
+      2000
+    ],
+    "world_size": [
+      4000,
+      4000
+    ]
+  },
+  "homes": {
+    "jubilado": {
+      "area": "jub_home",
+      "gate": "jub_gate"
+    },
+    "mohocrata": {
+      "area": "moho_home",
+      "gate": "moho_gate"
+    }
+  },
+  "id": "el_enchufe",
+  "items": [],
+  "name": "El Enchufe",
+  "planned_species": [],
+  "population": {
+    "jubilado": {
+      "max": 14,
+      "start": 8,
+      "target": 10
+    },
+    "mohocrata": {
+      "max": 14,
+      "start": 8,
+      "target": 10
+    }
+  },
+  "props": [],
+  "species": [
+    "jubilado",
+    "mohocrata"
+  ]
+}

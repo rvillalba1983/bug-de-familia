@@ -10,12 +10,11 @@ const BIRTH_OFFSET: float = 50.0
 
 
 func step(sim: WorldSim) -> void:
-	for species: String in sim.species_data:
-		var info: Dictionary = sim.species_data[species]
+	for species: String in sim.species_ids():
 		var alive: Array[NpcState] = sim.alive_of(species)
-		if alive.size() >= int(info["max"]):
+		if alive.size() >= sim.limit_of(species, "max"):
 			continue
-		var below: bool = alive.size() < int(info["target"])
+		var below: bool = alive.size() < sim.limit_of(species, "target")
 		if alive.size() >= 2 and sim.rng.randf() < BIRTH_CHANCE * (1.0 if below else 0.3):
 			_birth(sim, species, alive)
 		elif below and sim.rng.randf() < ARRIVAL_CHANCE:

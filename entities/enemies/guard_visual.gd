@@ -64,7 +64,8 @@ func draw() -> void:
 
 ## Elige vista y animación según el estado. Caído, conserva la vista en la que cayó.
 func update_rig() -> void:
-	if rig_folder == "":
+	## Las especies sin esqueleto (solo vistas planas) no montan rig.
+	if rig_folder == "" or not EnemyRigData.VIEWS.has(rig_folder.get_file()):
 		return
 	var state: Guard.State = _guard.state
 	var facing: Vector2 = Vector2.from_angle(_guard.detector.facing_angle)

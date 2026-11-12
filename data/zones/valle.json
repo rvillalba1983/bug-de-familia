@@ -126,16 +126,77 @@
     "world_size": [
       4000,
       4000
+    ],
+    "eco_home": [
+      900,
+      2700,
+      400,
+      400
+    ],
+    "eco_gate": [
+      1100,
+      2900
+    ],
+    "grux_home": [
+      2700,
+      2700,
+      400,
+      400
+    ],
+    "grux_gate": [
+      2900,
+      2900
+    ],
+    "pleg_home": [
+      700,
+      100,
+      400,
+      400
+    ],
+    "pleg_gate": [
+      900,
+      300
     ]
   },
   "id": "valle",
   "items": [],
   "name": "Valle de las Esquinas",
-  "planned_species": [
-    "plegado",
-    "eco",
-    "grux"
-  ],
+  "planned_species": [],
   "props": [],
-  "species": []
+  "species": [
+    "eco",
+    "grux",
+    "plegado"
+  ],
+  "population": {
+    "eco": {
+      "start": 6,
+      "target": 8,
+      "max": 12
+    },
+    "grux": {
+      "start": 6,
+      "target": 8,
+      "max": 12
+    },
+    "plegado": {
+      "start": 6,
+      "target": 8,
+      "max": 12
+    }
+  },
+  "homes": {
+    "eco": {
+      "area": "eco_home",
+      "gate": "eco_gate"
+    },
+    "grux": {
+      "area": "grux_home",
+      "gate": "grux_gate"
+    },
+    "plegado": {
+      "area": "pleg_home",
+      "gate": "pleg_gate"
+    }
+  }
 }

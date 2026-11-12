@@ -124,15 +124,57 @@
     "world_size": [
       4000,
       4000
+    ],
+    "grux_home": [
+      900,
+      900,
+      400,
+      400
+    ],
+    "grux_gate": [
+      1100,
+      1100
+    ],
+    "manada_home": [
+      2700,
+      900,
+      400,
+      400
+    ],
+    "manada_gate": [
+      2900,
+      1100
     ]
   },
   "id": "ultima_ruta",
   "items": [],
   "name": "La Última Ruta",
-  "planned_species": [
-    "manada",
-    "grux"
-  ],
+  "planned_species": [],
   "props": [],
-  "species": []
+  "species": [
+    "grux",
+    "manada"
+  ],
+  "population": {
+    "grux": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    },
+    "manada": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    }
+  },
+  "homes": {
+    "grux": {
+      "area": "grux_home",
+      "gate": "grux_gate"
+    },
+    "manada": {
+      "area": "manada_home",
+      "gate": "manada_gate"
+    }
+  }
 }

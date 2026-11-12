@@ -38,5 +38,85 @@
       {"text": "Los robots viejos no sienten nada al reciclarlos.", "true": false},
       {"text": "Llegamos aquí antes que nadie. Consta en acta.", "true": false}
     ]
+  },
+  "plegado": {
+    "actor": {"color": "#c8b8e8", "map_color": "#d8c8ff", "art": "plegado", "material": "fibra_fotonica", "plural": "Plegados", "doll": "plegado", "deaths": ["caida"]},
+    "rival": "grux", "start": 12, "target": 14, "max": 18,
+    "roles": ["archivista", "plegador", "clasificador", "desplegador"],
+    "names": ["Doblez", "Pliegue", "Esquina", "Bisel", "Canto", "Filigrana", "Solapa", "Cartela", "Bajoplano", "Origami"],
+    "surnames": ["Primero", "de la Carpeta", "Sin Ficha", "Provisional", "del Expediente", "Sin Clasificar", "de la Esquina", "Doblado"],
+    "opener": ["Consta en ficha que", "Según el inventario,", "En este pliegue se dice:"],
+    "nothing": ["No hay nada que archivar aquí. Ya está archivado.", "Eso no figura en ningún índice."],
+    "greet": ["¿Vienes a que te clasifique o a que te doble?", "Estás fuera de catálogo, criatura."],
+    "angry": ["Te archivo como amenaza, categoría inmediata.", "Te pliego en siete partes, que es el protocolo."],
+    "praised": ["Acepto el elogio a trámite, sin ficha definitiva.", "Queda registrado tu cumplido."],
+    "weird": ["*se pliega y desaparece dentro de su propio bolsillo*", "*dobla una esquina del aire y la guarda*"],
+    "lore": [
+      {"text": "Todo lo que existe debe tener ficha. Hasta tu ficha tiene ficha.", "true": true},
+      {"text": "Nos mojamos y no podemos desplegarnos. Es humillante.", "true": true},
+      {"text": "Venimos a archivar el planeta. Fue un rescate, o un saqueo.", "true": true},
+      {"text": "Los Grux nos tasaron en cero dientes. Quedó como ofensa histórica.", "true": true},
+      {"text": "Las esquinas no existen hasta que alguien las archiva.", "true": false}
+    ]
+  },
+  "eco": {
+    "actor": {"color": "#8fdbd8", "map_color": "#8fffe8", "art": "eco", "material": "cristal_plasma", "plural": "Ecos", "doll": "eco", "deaths": ["caida"]},
+    "rival": "grux", "start": 10, "target": 12, "max": 16,
+    "roles": ["resonador", "repetidor", "oyente", "amplificador"],
+    "names": ["Reverb", "Delai", "Soniquete", "Retumbo", "Silbato", "Murmullo", "Chasquido", "Resaca", "Tintineo", "Vibración"],
+    "surnames": ["Segundo", "del Cañón", "Repetido", "Sin Origen", "a Distancia", "de Vurm", "Amortiguado", "Ecológico"],
+    "opener": ["(repitiendo tu última palabra)", "Se oye que", "Por última vez que lo digo:"],
+    "nothing": ["Nada, nada, nada...", "Sobre eso no hay sonido. Solo silencio."],
+    "greet": ["¿Hablas o solo haces ruido?", "Te oigo, y te repito: te oigo."],
+    "angry": ["¡GRITO! Y el grito vuelve.", "Me repito hasta que te vayas. Empiezo ya."],
+    "praised": ["El elogio me suena bien.", "Qué bonito dices eso. Lo repito."],
+    "weird": ["*repite tu última palabra tres veces*", "*canta un acorde hecho de sí mismo*"],
+    "lore": [
+      {"text": "Solo existimos mientras haya ruido. El silencio nos borra.", "true": true},
+      {"text": "Repetimos la última palabra que oímos. No es un tic, es dieta.", "true": true},
+      {"text": "Los Grux quieren cobrarnos el eco. Repetimos el recibo hasta que se rinden.", "true": true},
+      {"text": "Las radios humanas nos atrajeron hasta aquí.", "true": true},
+      {"text": "Somos inmortales mientras alguien grite nuestro nombre.", "true": false}
+    ]
+  },
+  "grux": {
+    "actor": {"color": "#d8985a", "map_color": "#ffb060", "art": "grux", "material": "restos", "plural": "Grux", "doll": "grux", "deaths": ["caida"]},
+    "rival": "plegado", "start": 14, "target": 16, "max": 20,
+    "roles": ["tasador", "cobrador", "tragaperras", "prestamista"],
+    "names": ["Tasa", "Mordisco", "Deudor", "Interés", "Garantía", "Bolsillo", "Recargo", "Embargo", "Vencido", "Fiador"],
+    "surnames": ["del Bolsillo", "Sin Aval", "al Contado", "en Dientes", "Vencido", "de la Muela", "Cobrador", "Usurero"],
+    "opener": ["Te taso por", "Según mi libreta,", "Firmaste sin leer:"],
+    "nothing": ["Nada que cobrar. De momento.", "Eso no vale ni un diente."],
+    "greet": ["¿Vienes a pagar o a que te empeñe?", "Muéstrame las piezas y te digo lo que no valen."],
+    "angry": ["Te cobro hasta el aire que respiras.", "Vas a pagar con lo que te sobre."],
+    "praised": ["El elogio te sale gratis. Aprovecha.", "Bien hablado. No lo anotaré como deuda."],
+    "weird": ["*se traga un objeto y lo vomita con un precio*", "*tasa una piedra a mordiscos*"],
+    "lore": [
+      {"text": "Pagan en dientes. La cabeza sale a cero, como en la lonja.", "true": true},
+      {"text": "Tragamos lo que robamos. El estómago es la caja fuerte.", "true": true},
+      {"text": "Llegamos después del colapso. Vinimos a cobrar.", "true": true},
+      {"text": "Si hueles azufre, vomitamos lo robado. Por eso no olemos azufre.", "true": true},
+      {"text": "Toda deuda es justa, sobre todo las que no recuerdas haber pedido.", "true": false}
+    ]
+  },
+  "manada": {
+    "actor": {"color": "#a8c860", "map_color": "#c0ff60", "art": "manada", "material": "gel_memoria", "plural": "Manada", "doll": "manada", "deaths": ["caida"]},
+    "rival": "grux", "start": 16, "target": 18, "max": 22,
+    "roles": ["repartidor", "recorredor", "cargador", "rastreador"],
+    "names": ["Ruta", "Paquete", "Giro", "Señal", "Norte", "Destino", "Etiqueta", "Bulto", "Recorrido", "Flecha"],
+    "surnames": ["a la Derecha", "Sin Entregar", "Devuelto", "del Reparto", "Extraviado", "en Tránsito", "Reexpedido", "Implantado"],
+    "opener": ["Según el reparto,", "Mi navegador dice que", "(oliendo un paquete vacío):"],
+    "nothing": ["No hay entrega para ti.", "Mi ruta no pasa por esa información."],
+    "greet": ["¿Eres el destinatario o el paquete?", "No puedo girar a la izquierda para mirarte."],
+    "angry": ["Te marco como no entregado.", "Voy a darte la vuelta, siempre a la derecha."],
+    "praised": ["El elogio se registra como entregado.", "Gracias. Continúo por la derecha."],
+    "weird": ["*solo gira a la derecha, dando vueltas*", "*entrega un paquete vacío a una farola*"],
+    "lore": [
+      {"text": "Solo giramos a la derecha. La izquierda no existe en la ruta.", "true": true},
+      {"text": "Seguimos entregando paquetes vacíos a direcciones que ya no existen.", "true": true},
+      {"text": "Nacimos aquí. Los navegadores nos los implantaron antes del fin.", "true": true},
+      {"text": "Obedecemos ladridos en binario. Cero, cero, uno, cero.", "true": true},
+      {"text": "Si cambias una señal, nos perdemos. No lo cambies.", "true": false}
+    ]
   }
 }

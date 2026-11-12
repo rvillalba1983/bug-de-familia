@@ -126,16 +126,57 @@
     "world_size": [
       4000,
       4000
+    ],
+    "jub_home": [
+      700,
+      100,
+      400,
+      400
+    ],
+    "jub_gate": [
+      900,
+      300
+    ],
+    "manada_home": [
+      1100,
+      100,
+      400,
+      400
+    ],
+    "manada_gate": [
+      1300,
+      300
     ]
   },
   "id": "poligono",
   "items": [],
   "name": "Polígono de Reparto",
-  "planned_species": [
-    "manada"
-  ],
+  "planned_species": [],
   "props": [],
   "species": [
-    "jubilado"
-  ]
+    "jubilado",
+    "manada"
+  ],
+  "population": {
+    "jubilado": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    },
+    "manada": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    }
+  },
+  "homes": {
+    "jubilado": {
+      "area": "jub_home",
+      "gate": "jub_gate"
+    },
+    "manada": {
+      "area": "manada_home",
+      "gate": "manada_gate"
+    }
+  }
 }

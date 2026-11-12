@@ -132,18 +132,97 @@
     "world_size": [
       4000,
       4000
+    ],
+    "eco_home": [
+      700,
+      100,
+      400,
+      400
+    ],
+    "eco_gate": [
+      900,
+      300
+    ],
+    "grux_home": [
+      1100,
+      100,
+      400,
+      400
+    ],
+    "grux_gate": [
+      1300,
+      300
+    ],
+    "jub_home": [
+      1500,
+      100,
+      400,
+      400
+    ],
+    "jub_gate": [
+      1700,
+      300
+    ],
+    "pleg_home": [
+      1900,
+      100,
+      400,
+      400
+    ],
+    "pleg_gate": [
+      2100,
+      300
     ]
   },
   "id": "gran_cruce",
   "items": [],
   "name": "El Gran Cruce",
-  "planned_species": [
-    "plegado",
-    "eco",
-    "grux"
-  ],
+  "planned_species": [],
   "props": [],
   "species": [
-    "jubilado"
-  ]
+    "eco",
+    "grux",
+    "jubilado",
+    "plegado"
+  ],
+  "population": {
+    "eco": {
+      "start": 5,
+      "target": 7,
+      "max": 10
+    },
+    "grux": {
+      "start": 5,
+      "target": 7,
+      "max": 10
+    },
+    "jubilado": {
+      "start": 5,
+      "target": 7,
+      "max": 10
+    },
+    "plegado": {
+      "start": 5,
+      "target": 7,
+      "max": 10
+    }
+  },
+  "homes": {
+    "eco": {
+      "area": "eco_home",
+      "gate": "eco_gate"
+    },
+    "grux": {
+      "area": "grux_home",
+      "gate": "grux_gate"
+    },
+    "jubilado": {
+      "area": "jub_home",
+      "gate": "jub_gate"
+    },
+    "plegado": {
+      "area": "pleg_home",
+      "gate": "pleg_gate"
+    }
+  }
 }

@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "crate_a",
+      "material": "madera_cuantica"
+    },
+    {
+      "id": "crate_b",
+      "material": "madera_cuantica"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -167,6 +176,82 @@
       2000,
       2000
     ],
+    "antennas": [
+      [
+        1600,
+        1100
+      ],
+      [
+        2400,
+        1100
+      ],
+      [
+        2000,
+        2900
+      ]
+    ],
+    "panels": [
+      [
+        2000,
+        1600
+      ],
+      [
+        1600,
+        2200
+      ]
+    ],
+    "crate_a": [
+      2000,
+      2400
+    ],
+    "crate_b": [
+      2200,
+      1200
+    ],
+    "pickup_leg": [
+      1200,
+      2000
+    ],
+    "pickup_arm": [
+      2800,
+      2000
+    ],
+    "operador_route": [
+      [
+        1500,
+        1600
+      ],
+      [
+        2500,
+        1600
+      ],
+      [
+        2500,
+        2500
+      ],
+      [
+        1500,
+        2500
+      ]
+    ],
+    "escrutador_route": [
+      [
+        1800,
+        1800
+      ],
+      [
+        2200,
+        1800
+      ],
+      [
+        2200,
+        2200
+      ],
+      [
+        1800,
+        2200
+      ]
+    ],
     "world_size": [
       4000,
       4000
@@ -183,7 +268,28 @@
     }
   },
   "id": "el_enchufe",
-  "items": [],
+  "items": [
+    {
+      "at": "crate_a",
+      "id": "crate_a",
+      "type": "crate"
+    },
+    {
+      "at": "crate_b",
+      "id": "crate_b",
+      "type": "crate"
+    },
+    {
+      "at": "pickup_leg",
+      "id": "pickup_leg_1",
+      "type": "leg"
+    },
+    {
+      "at": "pickup_arm",
+      "id": "pickup_arm_1",
+      "type": "arm"
+    }
+  ],
   "name": "El Enchufe",
   "planned_species": [],
   "population": {
@@ -198,9 +304,42 @@
       "target": 10
     }
   },
-  "props": [],
+  "props": [
+    {
+      "at": "antennas",
+      "id_prefix": "antena",
+      "material": "fibra_fotonica",
+      "prop": "antena",
+      "size": [
+        70,
+        130
+      ]
+    },
+    {
+      "at": "panels",
+      "id_prefix": "terminal",
+      "material": "gel_memoria",
+      "prop": "terminal",
+      "size": [
+        56,
+        84
+      ]
+    }
+  ],
   "species": [
     "jubilado",
     "mohocrata"
+  ],
+  "actors": [
+    {
+      "id": "operador",
+      "route": "operador_route",
+      "species": "jubilado"
+    },
+    {
+      "id": "escrutador",
+      "route": "escrutador_route",
+      "species": "mohocrata"
+    }
   ]
 }

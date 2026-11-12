@@ -293,10 +293,19 @@ func _draw_body(at: Vector2, species: String, beat: float, tilt: float, squash: 
 	_canvas.draw_line(Vector2(24.0, -30.0), Vector2(44.0, raised - arm), COLOR_INK, 6.0)
 	CircleDot.draw(_canvas, Vector2(-44.0, raised + arm), 7.0, Color("#ffd8b0"))
 	CircleDot.draw(_canvas, Vector2(44.0, raised - arm), 7.0, Color("#ffd8b0"))
-	if SpeciesCatalog.doll(species) == "jubilado":
-		_draw_jubilado()
-	else:
-		_draw_mohocrata()
+	match SpeciesCatalog.doll(species):
+		"jubilado":
+			_draw_jubilado()
+		"plegado":
+			_draw_plegado()
+		"eco":
+			_draw_eco()
+		"grux":
+			_draw_grux()
+		"manada":
+			_draw_manada()
+		_:
+			_draw_mohocrata()
 	if down:
 		_draw_death(mood, beat)
 	else:
@@ -320,6 +329,48 @@ func _draw_mohocrata() -> void:
 	CircleDot.draw(_canvas, Vector2(-16.0, -62.0), 6.0, Color("#ffe6f0"))
 	CircleDot.draw(_canvas, Vector2(15.0, -68.0), 5.0, Color("#ffe6f0"))
 	_canvas.draw_rect(Rect2(-14.0, -92.0, 28.0, 14.0), Color("#8a5a30"))
+
+
+func _draw_plegado() -> void:
+	# Hoja plegada: cuerpo anguloso con pliegue central.
+	_canvas.draw_rect(Rect2(-18.0, -30.0, 36.0, 30.0), COLOR_INK)
+	_canvas.draw_rect(Rect2(-14.0, -26.0, 28.0, 24.0), Color("#c8b8e8"))
+	CircleDot.draw(_canvas, Vector2(0.0, -46.0), 24.0, COLOR_INK)
+	CircleDot.draw(_canvas, Vector2(0.0, -46.0), 20.0, Color("#c8b8e8"))
+	_canvas.draw_line(Vector2(-14.0, -46.0), Vector2(14.0, -46.0), COLOR_INK, 3.0)
+
+
+func _draw_eco() -> void:
+	# Onda sonora: boca enorme y ondas a los lados.
+	CircleDot.draw(_canvas, Vector2(0.0, -42.0), 28.0, COLOR_INK)
+	CircleDot.draw(_canvas, Vector2(0.0, -42.0), 24.0, Color("#8fdbd8"))
+	CircleDot.draw(_canvas, Vector2(0.0, -26.0), 11.0, COLOR_INK)
+	CircleDot.draw(_canvas, Vector2(0.0, -26.0), 8.0, Color("#8a3a3a"))
+	_canvas.draw_arc(Vector2(0.0, -42.0), 38.0, -0.5, 0.5, 8, COLOR_INK, 3.0)
+	_canvas.draw_arc(Vector2(0.0, -42.0), 48.0, -0.6, 0.6, 8, COLOR_INK, 3.0)
+
+
+func _draw_grux() -> void:
+	# Matón de cuatro brazos con boca en el vientre.
+	_canvas.draw_rect(Rect2(-20.0, -32.0, 40.0, 32.0), COLOR_INK)
+	_canvas.draw_rect(Rect2(-16.0, -28.0, 32.0, 26.0), Color("#d8985a"))
+	CircleDot.draw(_canvas, Vector2(0.0, -10.0), 9.0, COLOR_INK)
+	CircleDot.draw(_canvas, Vector2(0.0, -10.0), 6.0, Color("#8a3a3a"))
+	for side: float in [-1.0, 1.0]:
+		_canvas.draw_line(Vector2(side * 10.0, -26.0), Vector2(side * 30.0, -16.0), COLOR_INK, 6.0)
+		_canvas.draw_line(Vector2(side * 10.0, -18.0), Vector2(side * 28.0, -6.0), COLOR_INK, 6.0)
+	CircleDot.draw(_canvas, Vector2(0.0, -50.0), 26.0, COLOR_INK)
+	CircleDot.draw(_canvas, Vector2(0.0, -50.0), 22.0, Color("#d8985a"))
+
+
+func _draw_manada() -> void:
+	# Animal de reparto con antena de navegador.
+	_canvas.draw_rect(Rect2(-22.0, -26.0, 44.0, 26.0), COLOR_INK)
+	_canvas.draw_rect(Rect2(-18.0, -22.0, 36.0, 20.0), Color("#a8c860"))
+	CircleDot.draw(_canvas, Vector2(0.0, -46.0), 24.0, COLOR_INK)
+	CircleDot.draw(_canvas, Vector2(0.0, -46.0), 20.0, Color("#a8c860"))
+	_canvas.draw_line(Vector2(0.0, -62.0), Vector2(0.0, -72.0), COLOR_INK, 3.0)
+	CircleDot.draw(_canvas, Vector2(0.0, -74.0), 5.0, Color("#00E5FF"))
 
 
 func _mood_of(phase: float, near: bool) -> int:

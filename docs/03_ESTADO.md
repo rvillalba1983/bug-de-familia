@@ -1,11 +1,11 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesión):**
-> - **Rama en curso:** fase/lore-y-parametros-zonas (PR #5 abierto).
-> - **Fase:** Post-beta — lore, parámetros de zonas, 15 progenitores, mapas e imágenes. **P-39 cerrado** (fix de pelea automática). Pendiente de CI verde y fusión.
-> - **Qué falta:** fusión del PR #5, .exe en build/, actualizar este archivo, cambio de conversación.
-> - **Qué no está probado:** CI Linux (en curso), validación manual en partida, medición en gráfica real.
-> - **Siguiente paso:** infraestructura multi-zona (ADR 0027). Ver prompt en la conversación.
+> - **Rama en curso:** main (PR #5 fusionado).
+> - **Fase:** Post-beta — lore, parámetros de zonas, 15 progenitores, mapas e imágenes. **P-39 cerrado** (fix de pelea automática). CI verde, fusión completada, .exe generado.
+> - **Qué falta:** cambio de conversación para la siguiente fase.
+> - **Qué no está probado:** validación manual en partida, medición en gráfica real, Linux (CI verde con el fix de P-39).
+> - **Siguiente paso:** infraestructura multi-zona (ADR 0027). Ver prompt en la conversación anterior.
 
 Se actualiza cada vez que una fase se fusiona en `main`.
 

@@ -16,11 +16,12 @@ var combat: CombatSystem
 
 var _guards: Array[Guard] = []
 var _calm_time: float = 0.0
+var _alerting_guard: Guard = null  # guardia que disparó la alerta (P-39: evitar bajas ajenas)
 
 
 func track(guard: Guard) -> void:
 	_guards.append(guard)
-	guard.alert_started.connect(_on_alert_started)
+	guard.alert_started.connect(func() -> void: _on_alert_started(guard))
 	guard.tree_exiting.connect(func() -> void: _guards.erase(guard))
 
 
@@ -38,6 +39,11 @@ func confirm_pre_fight() -> void:
 func start_combat() -> void:
 	if combat == null or combat.target != null:
 		return
+	# Enganchar primero al guardia que disparó la alerta (P-39: evita bajas
+	# ajenas por pelea automática). Si no es válido, el primero disponible.
+	if is_instance_valid(_alerting_guard) and not _alerting_guard.passive and not _alerting_guard.is_down():
+		combat.engage(_alerting_guard)
+		return
 	for guard: Guard in _guards:
 		if is_instance_valid(guard) and not guard.passive and not guard.is_down():
 			combat.engage(guard)
@@ -54,6 +60,7 @@ func _physics_process(delta: float) -> void:
 	if _calm_time >= END_DELAY:
 		phase = Phase.CALM
 		body.context = ModularBody.Context.FREE
+		_alerting_guard = null
 		fight_ended.emit()
 
 
@@ -64,8 +71,9 @@ func _any_alert() -> bool:
 	return false
 
 
-func _on_alert_started() -> void:
+func _on_alert_started(guard: Guard) -> void:
 	if phase == Phase.CALM:
+		_alerting_guard = guard
 		phase = Phase.PRE_FIGHT
 		body.context = ModularBody.Context.PRE_FIGHT
 		pre_fight_started.emit()

@@ -40,7 +40,7 @@ jobs:
           - grupo: 'combate'
             carpetas: '-a res://tests/combat -a res://tests/conversion -a res://tests/stealth'
           - grupo: 'simulacion'
-            carpetas: '-a res://tests/ai -a res://tests/investigation -a res://tests/simulation'
+            carpetas: '-a res://tests/ai -a res://tests/investigation -a res://tests/simulation -a res://tests/zones'
           - grupo: 'beta'
             carpetas: '-a res://tests/beta -a res://tests/flows -a res://tests/ui -a res://tests/art -a res://tests/data -a res://tests/sandbox'
 

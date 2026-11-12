@@ -18,6 +18,8 @@ const ID_CAMERA: String = "camera_1"
 static var session_started: bool = false
 ## Las pruebas fijan aquí la semilla para que sean reproducibles.
 static var forced_seed: int = -1
+## Guardado que el gestor multi-zona entrega a la escena que va a montar.
+static var pending_save: Dictionary = {}
 
 var player: Player
 var nav: NavGrid
@@ -51,6 +53,10 @@ var ai: AiChatter
 var investigation: InvestigationDirector
 ## Si la sesión ha continuado una partida ya empezada.
 var resumed: bool = false
+## Gestor multi-zona. Si existe, el guardado y el viaje los coordina él.
+var zone_manager: Node = null
+## Una zona montada por el gestor multi-zona no escribe el guardado por su cuenta.
+var world_mode: bool = false
 
 var hud: LevelHud
 var _occlusion_feet: Vector2 = Vector2.INF
@@ -164,8 +170,17 @@ func show_notice(text: String) -> void:
 
 
 func autosave() -> void:
-	if not player.body.is_dead and SaveSystem.write(snapshot()):
+	if player.body.is_dead:
+		return
+	if zone_manager != null and zone_manager.has_method("autosave"):
+		zone_manager.autosave()
+		return
+	if SaveSystem.write(snapshot()):
 		hud.show_saved()
+
+
+func door_open() -> bool:
+	return door != null and door.is_open
 
 
 func start_new_game() -> void:
@@ -437,7 +452,12 @@ func _connect_body() -> void:
 
 
 func _start_session() -> void:
-	var loaded: Dictionary = SaveSystem.read()
+	var loaded: Dictionary
+	if not pending_save.is_empty():
+		loaded = {"status": SaveSystem.Status.OK, "data": pending_save}
+		pending_save = {}
+	else:
+		loaded = SaveSystem.read()
 	if loaded["status"] == SaveSystem.Status.CORRUPT:
 		SaveSystem.set_aside_corrupt()
 	if loaded["status"] != SaveSystem.Status.OK:
@@ -462,7 +482,8 @@ func _begin_fresh() -> void:
 	replace_body(default_body())
 	ai.restore({})
 	investigation.restore({})
-	SaveSystem.write(snapshot())
+	if not world_mode:
+		SaveSystem.write(snapshot())
 
 
 func _apply_save(data: Dictionary) -> bool:
@@ -502,6 +523,8 @@ func _continue_game() -> void:
 
 
 func open_door() -> void:
+	if door == null:
+		return
 	door.set_open(true)
 	nav.clear_rect(door_rects()[0], Player.RADIUS, _all_blockers())
 

@@ -1,11 +1,11 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesión):**
-> - **Rama en curso:** main (PR #5 fusionado).
-> - **Fase:** Post-beta — lore, parámetros de zonas, 15 progenitores, mapas e imágenes. **P-39 cerrado** (fix de pelea automática). CI verde, fusión completada, .exe generado.
-> - **Qué falta:** cambio de conversación para la siguiente fase.
-> - **Qué no está probado:** validación manual en partida, medición en gráfica real, Linux (CI verde con el fix de P-39).
-> - **Siguiente paso:** infraestructura multi-zona (ADR 0027). Ver prompt en la conversación anterior.
+> - **Rama en curso:** `fase/multi-zona` (infraestructura multi-zona, ADR 0027) — implementación completa en local, .exe regenerado en `build/`.
+> - **Fase:** Infraestructura multi-zona — gestor, 3 niveles, viaje rápido, persistencia, escena genérica, 24 esqueletos JSON, 28 pruebas nuevas (zones). Total de pruebas: 363+ (anterior 335 + 28).
+> - **Qué falta:** confirmación del director para commit/push y PR a `main`; CI verde en Linux; validación manual en partida.
+> - **Qué no está probado:** validación manual en partida, medición en gráfica real, Linux (CI pendiente).
+> - **Siguiente paso:** confirmar con el director el commit y la apertura del PR.
 
 Se actualiza cada vez que una fase se fusiona en `main`.
 

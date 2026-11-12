@@ -20,9 +20,9 @@ func _quiet_scene() -> Sandbox:
 	return sandbox
 
 
-func test_main_scene_is_beta() -> void:
+func test_main_scene_is_world() -> void:
 	var main_scene: String = ProjectSettings.get_setting("application/run/main_scene")
-	assert_str(main_scene).is_equal("res://scenes/beta/beta_zone.tscn")
+	assert_str(main_scene).is_equal("res://scenes/world/world.tscn")
 
 
 func test_walls_stay_inside_floor() -> void:

@@ -1,0 +1,152 @@
+{
+  "convertibles": [],
+  "geometry": {
+    "corridors": [
+      {
+        "edge": "south",
+        "rect": [
+          1880,
+          3936,
+          240,
+          64
+        ],
+        "to": "asamblea"
+      },
+      {
+        "edge": "west",
+        "rect": [
+          0,
+          1880,
+          64,
+          240
+        ],
+        "to": "el_enchufe"
+      },
+      {
+        "edge": "east",
+        "rect": [
+          3936,
+          1880,
+          64,
+          240
+        ],
+        "to": "gran_mercado"
+      }
+    ],
+    "floor_rect": [
+      0,
+      0,
+      4000,
+      4000
+    ],
+    "jub_gate": [
+      1850,
+      2000
+    ],
+    "jub_home": [
+      1500,
+      1500,
+      700,
+      500
+    ],
+    "open_spots": [
+      [
+        2000,
+        2000
+      ],
+      [
+        1500,
+        1500
+      ],
+      [
+        2500,
+        1500
+      ],
+      [
+        1500,
+        2500
+      ],
+      [
+        2500,
+        2500
+      ]
+    ],
+    "save_points": [
+      [
+        2000,
+        800
+      ],
+      [
+        3200,
+        2000
+      ],
+      [
+        2000,
+        3200
+      ]
+    ],
+    "shape_blocks": [
+      [
+        0,
+        0,
+        700,
+        700
+      ],
+      [
+        3300,
+        0,
+        700,
+        700
+      ],
+      [
+        0,
+        3300,
+        700,
+        700
+      ],
+      [
+        3300,
+        3300,
+        700,
+        700
+      ],
+      [
+        900,
+        1500,
+        400,
+        900
+      ]
+    ],
+    "start": [
+      2000,
+      2000
+    ],
+    "world_size": [
+      4000,
+      4000
+    ]
+  },
+  "homes": {
+    "jubilado": {
+      "area": "jub_home",
+      "gate": "jub_gate"
+    }
+  },
+  "id": "lonja",
+  "items": [],
+  "name": "Lonja de los Dientes",
+  "planned_species": [
+    "grux"
+  ],
+  "population": {
+    "jubilado": {
+      "max": 14,
+      "start": 8,
+      "target": 10
+    }
+  },
+  "props": [],
+  "species": [
+    "jubilado"
+  ]
+}

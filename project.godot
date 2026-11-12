@@ -3,7 +3,7 @@ config_version=5
 [application]
 
 config/name="Bug de Familia"
-run/main_scene="res://scenes/beta/beta_zone.tscn"
+run/main_scene="res://scenes/world/world.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 

@@ -12,6 +12,113 @@
   "contestador": {
     "name": "El Contestador",
     "material": "gel_memoria",
-    "fixed_property": "p049"
+    "fixed_property": "p049",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "biela": {
+    "name": "Don Biela de la Rodilla",
+    "material": "nanoacero",
+    "fixed_property": "p004",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "pliegue_oculto": {
+    "name": "El Pliegue que No Existe",
+    "material": "fibra_fotonica",
+    "fixed_property": "p013",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "papel_cebolla": {
+    "name": "Don Papel Cebolla",
+    "material": "cristal_plasma",
+    "fixed_property": "p008",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "susurro": {
+    "name": "El Susurro",
+    "material": "cristal_plasma",
+    "fixed_property": "p009",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "frecuencia": {
+    "name": "Doña Frecuencia, la Soprano de los Recibos",
+    "material": "fibra_fotonica",
+    "fixed_property": "p019",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "boletina": {
+    "name": "Doña Boletina, cuyo Sombrero Vota en Contra",
+    "material": "bioceramica",
+    "fixed_property": "p028",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "yesquero": {
+    "name": "Don Yesquero, el Hongo Más Hongo",
+    "material": "bioceramica",
+    "fixed_property": "p026",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "fiador": {
+    "name": "Don Fiador, Tasador de Órganos",
+    "material": "aleacion_magnetica",
+    "fixed_property": "p021",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "garantia": {
+    "name": "Doña Garantía de Tres Segundos",
+    "material": "aleacion_magnetica",
+    "fixed_property": "p022",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "avalista": {
+    "name": "El Avalista, Prestamista de Brazos",
+    "material": "restos",
+    "fixed_property": "p044",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "cartero": {
+    "name": "El Cartero de los Muertos",
+    "material": "madera_cuantica",
+    "fixed_property": "p036",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "paquete": {
+    "name": "Don Paquete, Inspector de Paquetes Ajenos",
+    "material": "madera_cuantica",
+    "fixed_property": "p038",
+    "deaths": [
+      "caida"
+    ]
+  },
+  "ultimo_mono": {
+    "name": "El Último Mono, Robot con Peluca",
+    "material": "gel_memoria",
+    "fixed_property": "p050",
+    "deaths": [
+      "caida"
+    ]
   }
 }

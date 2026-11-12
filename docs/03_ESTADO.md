@@ -1,5 +1,12 @@
 # Estado del desarrollo
 
+> **TRASPASO (actualizar en cada sesión):**
+> - **Rama en curso:** fase/lore-y-parametros-zonas (PR #5 abierto).
+> - **Fase:** Post-beta — lore, parámetros de zonas, 15 progenitores, mapas e imágenes. **P-39 cerrado** (fix de pelea automática). Pendiente de CI verde y fusión.
+> - **Qué falta:** fusión del PR #5, .exe en build/, actualizar este archivo, cambio de conversación.
+> - **Qué no está probado:** CI Linux (en curso), validación manual en partida, medición en gráfica real.
+> - **Siguiente paso:** infraestructura multi-zona (ADR 0027). Ver prompt en la conversación.
+
 Se actualiza cada vez que una fase se fusiona en `main`.
 
 | Fase | Estado |
@@ -19,6 +26,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 
 ## Pendiente de respuesta del usuario (no bloquea)
 - Textos provisionales del caso y de las IAs.
+- ADR 0027 (infraestructura multi-zona) registrado el 11-nov: decisiones de arquitectura acordadas, pendiente de implementación en la fase de infraestructura post-beta. Ver `docs/adr/0027-multi-zona.md`.
 
 ## Tras la fase 6
 - Los valores de daño, alcance y recarga del combate son provisionales (`docs/adr/0005-combate.md`).
@@ -122,7 +130,7 @@ Trabajo de la fase acordada para P-1, P-2, P-3, P-4, P-5, P-6, P-10 y P-15 (P-16
 - **P-26 (opción 1a, aprobada por el director):** los fantasmas siguen solo en la pausa táctica y en la conversión. Se documenta el punto de enganche en `ui/ai_spectres.gd`: el futuro `ZoneLoader`/pantalla de viaje rápido creará el nodo con `AiTeam` y llamará a `set_shown(true)` mientras el juego esté parado. Queda **bloqueado** hasta que exista el gestor multi-zona (infraestructura post-beta, aún sin implementar). Duda abierta, sin resolver: si el tiempo del mundo avanza durante el viaje. No se ha creado ninguna pantalla de carga nueva.
 - **P-26 (diseño del viaje, decidido por el director el 11-nov):** las IAs activas del destino se muestran como fantasmas durante la carga; tiempo mínimo de carga de **5 segundos**; si la apertura tarda más, se respeta ese tiempo. Sigue bloqueado hasta el gestor multi-zona.
 - **P-37 (implementado el 11-nov):** al empezar la pelea el protagonista ataca solo. Al confirmar la pre-pausa (`FightDirector.confirm_pre_fight` arranca el combate con el nuevo `start_combat`) el combate se auto-engancha al guardia objetivo (`CombatSystem.engage`) sin orden del jugador (clic o conversación); el auto-ataque sale del propio `CombatSystem` (acercamiento + golpes en rango). Prueba nueva: `tests/sandbox/game_flow_test.gd::test_fight_starts_engaging_the_guard_without_player_order` (1/1). Suites `tests/sandbox` (28/28) y `tests/combat` (24/24) en verde. Pendiente: validación manual en partida y las dudas de diseño de P-37 (sustitución del ataque manual, alcance de armas, desactivación en opciones, sigilo).
-- **P-37 (patrullas, implementado el 11-nov):** las patrullas desviadas ya no desaparecen para siempre. Al llegar al punto indicado se quedan allí (visibles e interactuables); en partida cargada se colocan directamente en ese punto. Pruebas: `tests/beta/group_diversion_test.gd` (2/2).\n- **P-1/P-39:** en `tools/beta_walker.gd` y `tests/flows/beta_routes_test.gd` se fijó/aisló estado y se añadió diagnóstico; además, durante las rutas se desactivan sucesos aleatorios del mundo (`EventSystem.timer` alto y colas vacías) para evitar muertes ajenas al recorrido por no determinismo de cadencia (posible causa de la intermitencia en Linux, run `42858970637`), sin relajar aserciones. Se corrigió el parseo de la prueba y se preserva `WorldCalendar.forced_local_unix` cuando un caso lo fuerza (fiesta). **Ejecutado en Windows:** `res://tests/flows/beta_routes_test.gd` con estabilización aplicada: rutas sigilo, palabra y fuerza (la intermitente en CI) y los casos de misión/fiesta/otra semilla pasaron en la ejecución final (6/6) tras corregir el manejo del día forzado. **No ejecutado:** confirmación determinista en Linux (10-20 repeticiones) ni identificación/reproducción del caído original si reaparece; P-39 sigue abierto para cierre definitivo.
+- **P-37 (patrullas, implementado el 11-nov):** las patrullas desviadas ya no desaparecen para siempre. Al llegar al punto indicado se quedan allí (visibles e interactuables); en partida cargada se colocan directamente en ese punto. Pruebas: `tests/beta/group_diversion_test.gd` (2/2).\n- **P-39 (cerrado el 12-nov):** la causa real no era un suceso aleatorio de eventos.json, sino la pelea automática (P-37): `start_combat()` enganchaba al primer guardia disponible (siempre `jub_barrio`) aunque el guardia que alertara fuera otro, y arrancaba pelea incluso con el jugador agachado (sigilo). Fix: `start_combat()` engancha al guardia que disparó la alerta, y no arranca si el jugador va agachado (`FightDirector.player.is_crouching`). Además, la espera en `_start()` se hizo determinista (54 fotogramas de física en lugar de 300 ms reales) y se fijó el día del calendario. `beta_routes_test.gd`: 6/6, 0 fallos (Windows). Pendiente confirmación en Linux (CI). Ver `stealth/fight_director.gd`, `scenes/sandbox/sandbox.gd`.
 
 **Pruebas ejecutadas (Windows, Godot 4.7.2 headless):** `tests/simulation/rumor_test.gd` 7/7, `tests/investigation` 9/9, `tests/simulation` 27/27, `tests/beta/group_diversion_test.gd` 2/2, `tests/beta/beta_robustness_test.gd` 11/11, `tests/beta/beta_zone_test.gd` 31/31, `tests/beta/music_test.gd` 5/5, `tests/beta/fight_groups_test.gd` 5/5, `tests/beta/battle_test.gd` 6/6, `tests/flows/input_flows_test.gd` 13/13, `tests/flows/beta_routes_test.gd` 6/6 (ejecución final, con estabilización y corrección de día forzado). `python tools/verificar.py`: OK. **No ejecutado:** suite completa en esta sesión tras todos los cambios, medición en gráfica real, ni validación manual en partida.
 

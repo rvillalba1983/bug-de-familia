@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1080" viewBox="0 0 1000 1080" font-family="sans-serif">
+  <rect width="1000" height="1080" fill="#0d1b2a"/>
+
+  <text x="500" y="22" font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">Mapa del mundo — zonas cuadradas · forma por zonas bloqueadas · caminos sinuosos · posiciones no alineadas</text>
+
+  <g font-size="8" font-weight="bold" fill="#ffffff" text-anchor="middle"
+     stroke="#000000" stroke-width="2.5" paint-order="stroke">
+
+    <!-- Zona 1: El Enchufe (5 conexiones en posiciones variadas) -->
+    <g transform="translate(30,40)">
+      <rect width="180" height="160" fill="#1a2a3a" stroke="#00bcd4" stroke-width="2"/>
+      <rect x="25" y="25" width="130" height="110" fill="#00bcd4" opacity="0.5"/>
+      <rect x="0" y="0" width="40" height="35" fill="#0d1b2a"/>
+      <rect x="140" y="0" width="40" height="35" fill="#0d1b2a"/>
+      <rect x="0" y="125" width="40" height="35" fill="#0d1b2a"/>
+      <rect x="140" y="125" width="40" height="35" fill="#0d1b2a"/>
+      <rect x="50" y="50" width="30" height="30" fill="#0d1b2a"/>
+      <rect x="100" y="90" width="25" height="25" fill="#0d1b2a"/>
+      <!-- caminos sinuosos a bordes en posiciones variadas -->
+      <path d="M60,30 Q75,15 90,0" stroke="#00bcd4" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M140,70 Q160,60 180,55" stroke="#00bcd4" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M130,120 Q150,135 160,160" stroke="#00bcd4" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M50,130 Q30,145 20,160" stroke="#00bcd4" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M20,80 Q5,70 0,60" stroke="#00bcd4" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="80">El Enchufe</text>
+      <text x="90" y="12" font-size="6" fill="#00e5ff" stroke="none">↑ cumbre</text>
+      <text x="162" y="58" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">gran_mercado →</text>
+      <text x="162" y="108" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">lonja →</text>
+      <text x="18" y="155" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">← beta</text>
+      <text x="80" y="155" font-size="6" fill="#00e5ff" stroke="none">↓ taller</text>
+    </g>
+
+    <!-- Zona 2: Bosque (4 conexiones, posiciones distintas) -->
+    <g transform="translate(230,30)">
+      <rect width="180" height="160" fill="#1a2a3a" stroke="#4caf50" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="120" fill="#4caf50" opacity="0.5"/>
+      <rect x="0" y="0" width="45" height="40" fill="#0d1b2a"/>
+      <rect x="135" y="0" width="45" height="30" fill="#0d1b2a"/>
+      <rect x="0" y="120" width="40" height="40" fill="#0d1b2a"/>
+      <rect x="140" y="130" width="40" height="30" fill="#0d1b2a"/>
+      <rect x="55" y="55" width="30" height="25" fill="#0d1b2a"/>
+      <rect x="105" y="90" width="25" height="25" fill="#0d1b2a"/>
+      <path d="M90,20 Q70,5 50,0" stroke="#4caf50" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M150,60 Q170,50 180,40" stroke="#4caf50" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M140,120 Q160,135 170,160" stroke="#4caf50" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M40,130 Q20,145 10,160" stroke="#4caf50" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="80">Bosque de las</text>
+      <text x="90" y="93">Ciudades Perdidas</text>
+      <text x="50" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ cumbre</text>
+      <text x="172" y="42" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">asamblea →</text>
+      <text x="172" y="108" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">ultima_ruta →</text>
+      <text x="10" y="155" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">← enchufe</text>
+      <text x="100" y="155" font-size="6" fill="#00e5ff" stroke="none">↓ desguace</text>
+    </g>
+
+    <!-- Zona 3: Cumbre (4 conexiones) -->
+    <g transform="translate(430,25)">
+      <rect width="180" height="160" fill="#1a2a3a" stroke="#2196f3" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="120" fill="#2196f3" opacity="0.5"/>
+      <rect x="0" y="0" width="35" height="30" fill="#0d1b2a"/>
+      <rect x="145" y="0" width="35" height="45" fill="#0d1b2a"/>
+      <rect x="120" y="100" width="60" height="60" fill="#0d1b2a"/>
+      <path d="M90,20 Q60,5 30,0" stroke="#2196f3" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M150,70 Q170,60 180,45" stroke="#2196f3" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M140,120 Q160,140 170,160" stroke="#2196f3" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M50,130 Q30,145 20,160" stroke="#2196f3" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="80">Cumbre de</text>
+      <text x="90" y="93">los Pliegues</text>
+      <text x="30" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ (borde)</text>
+      <text x="172" y="48" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">valle →</text>
+      <text x="172" y="108" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">archivo →</text>
+      <text x="20" y="155" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">← enchufe</text>
+    </g>
+
+    <!-- Zona 4: Archivo (3 conexiones) -->
+    <g transform="translate(630,35)">
+      <rect width="180" height="160" fill="#1a2a3a" stroke="#2196f3" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="120" fill="#2196f3" opacity="0.5"/>
+      <rect x="0" y="0" width="45" height="35" fill="#0d1b2a"/>
+      <rect x="135" y="0" width="45" height="35" fill="#0d1b2a"/>
+      <rect x="0" y="125" width="35" height="35" fill="#0d1b2a"/>
+      <rect x="145" y="125" width="35" height="35" fill="#0d1b2a"/>
+      <rect x="55" y="50" width="45" height="30" fill="#0d1b2a"/>
+      <path d="M90,20 Q60,5 25,0" stroke="#2196f3" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M160,70 Q175,80 180,95" stroke="#2196f3" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M90,140 Q60,155 25,160" stroke="#2196f3" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="80">Archivo de</text>
+      <text x="90" y="93">las Esquinas</text>
+      <text x="25" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ cumbre</text>
+      <text x="182" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">cámara →</text>
+      <text x="25" y="155" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">← sendero</text>
+    </g>
+
+    <!-- Zona 5: Sendero (2 conexiones) -->
+    <g transform="translate(830,40)">
+      <rect width="140" height="160" fill="#1a2a3a" stroke="#2196f3" stroke-width="2"/>
+      <rect x="15" y="40" width="110" height="80" fill="#2196f3" opacity="0.5"/>
+      <rect x="0" y="0" width="25" height="35" fill="#0d1b2a"/>
+      <rect x="115" y="0" width="25" height="35" fill="#0d1b2a"/>
+      <rect x="0" y="125" width="25" height="35" fill="#0d1b2a"/>
+      <rect x="115" y="125" width="25" height="35" fill="#0d1b2a"/>
+      <rect x="40" y="30" width="20" height="15" fill="#0d1b2a"/>
+      <rect x="85" y="100" width="20" height="15" fill="#0d1b2a"/>
+      <path d="M70,40 Q50,20 30,0" stroke="#2196f3" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M70,120 Q50,140 30,160" stroke="#2196f3" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="70" y="85">Sendero del</text>
+      <text x="70" y="98">Pliegue</text>
+      <text x="30" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ archivo</text>
+      <text x="30" y="155" font-size="6" fill="#00e5ff" stroke="none">↓ (borde)</text>
+    </g>
+
+    <!-- Zona 6: Cámara (3 conexiones) -->
+    <g transform="translate(30,220)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#9c27b0" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#9c27b0" opacity="0.5"/>
+      <rect x="0" y="0" width="30" height="45" fill="#0d1b2a"/>
+      <rect x="0" y="105" width="30" height="45" fill="#0d1b2a"/>
+      <rect x="150" y="0" width="30" height="35" fill="#0d1b2a"/>
+      <rect x="150" y="115" width="30" height="35" fill="#0d1b2a"/>
+      <rect x="50" y="60" width="55" height="20" fill="#0d1b2a"/>
+      <path d="M90,20 Q60,5 20,0" stroke="#9c27b0" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M160,70 Q175,80 180,95" stroke="#9c27b0" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M90,130 Q60,145 20,150" stroke="#9c27b0" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75">Cámara de</text>
+      <text x="90" y="88">Resonancia</text>
+      <text x="20" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ archivo</text>
+      <text x="182" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">canon →</text>
+      <text x="20" y="145" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">← (borde)</text>
+    </g>
+
+    <!-- Zona 7: Cañón (2 conexiones) -->
+    <g transform="translate(230,220)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#9c27b0" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#9c27b0" opacity="0.5"/>
+      <rect x="0" y="0" width="35" height="35" fill="#0d1b2a"/>
+      <rect x="145" y="0" width="35" height="25" fill="#0d1b2a"/>
+      <rect x="0" y="115" width="40" height="35" fill="#0d1b2a"/>
+      <rect x="140" y="125" width="40" height="25" fill="#0d1b2a"/>
+      <rect x="40" y="40" width="30" height="20" fill="#0d1b2a"/>
+      <rect x="105" y="80" width="25" height="20" fill="#0d1b2a"/>
+      <path d="M80,20 Q50,5 20,0" stroke="#9c27b0" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M80,130 Q50,145 20,150" stroke="#9c27b0" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75">Cañón del Eco</text>
+      <text x="20" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ cámara</text>
+      <text x="20" y="145" font-size="6" fill="#00e5ff" stroke="none">↓ instalación</text>
+    </g>
+
+    <!-- Zona 8: Gran Mercado (4 conexiones) -->
+    <g transform="translate(430,200)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#ffc107" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#ffc107" opacity="0.5"/>
+      <rect x="15" y="15" width="30" height="30" fill="#0d1b2a"/>
+      <rect x="135" y="15" width="30" height="30" fill="#0d1b2a"/>
+      <rect x="15" y="105" width="30" height="30" fill="#0d1b2a"/>
+      <rect x="135" y="105" width="30" height="30" fill="#0d1b2a"/>
+      <rect x="65" y="55" width="30" height="30" fill="#0d1b2a"/>
+      <path d="M90,20 Q60,5 20,0" stroke="#ffc107" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M160,70 Q175,80 180,100" stroke="#ffc107" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M90,130 Q60,145 20,150" stroke="#ffc107" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M160,80 Q175,60 180,40" stroke="#ffc107" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75">Gran Mercado</text>
+      <text x="20" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ enchufe</text>
+      <text x="182" y="103" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">camino →</text>
+      <text x="20" y="145" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">← lonja</text>
+      <text x="182" y="43" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">colmena →</text>
+    </g>
+
+    <!-- Zona 9: Lonja (3 conexiones) -->
+    <g transform="translate(630,200)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#ffc107" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#ffc107" opacity="0.5"/>
+      <rect x="12" y="12" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="44" y="12" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="76" y="12" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="108" y="12" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="140" y="12" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="12" y="44" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="76" y="44" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="140" y="44" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="12" y="76" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="44" y="76" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="140" y="76" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="12" y="108" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="44" y="108" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="76" y="108" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="108" y="108" width="22" height="22" fill="#0d1b2a"/>
+      <rect x="140" y="108" width="22" height="22" fill="#0d1b2a"/>
+      <path d="M80,20 Q50,5 15,0" stroke="#ffc107" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M160,70 Q175,80 180,95" stroke="#ffc107" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M80,130 Q50,145 15,150" stroke="#ffc107" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75">Lonja de los Dientes</text>
+      <text x="15" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ gran_mercado</text>
+      <text x="182" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">asamblea →</text>
+      <text x="15" y="145" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">← (borde)</text>
+    </g>
+
+    <!-- Zona 10: Talleres (3 conexiones) -->
+    <g transform="translate(830,200)">
+      <rect width="140" height="150" fill="#1a2a3a" stroke="#9e9e9e" stroke-width="2"/>
+      <rect x="15" y="20" width="110" height="110" fill="#9e9e9e" opacity="0.5"/>
+      <rect x="110" y="90" width="30" height="60" fill="#0d1b2a"/>
+      <rect x="0" y="0" width="25" height="20" fill="#0d1b2a"/>
+      <path d="M70,20 Q40,5 10,0" stroke="#9e9e9e" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M125,70 Q135,80 140,95" stroke="#9e9e9e" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M70,130 Q40,145 10,150" stroke="#9e9e9e" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="70" y="75">Talleres de</text>
+      <text x="70" y="88">Abuela RAM</text>
+      <text x="10" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ enchufe</text>
+      <text x="142" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">desguace →</text>
+      <text x="10" y="145" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">↓ paso</text>
+    </g>
+
+    <!-- Fila 2 (y=390) -->
+    <!-- 11 Desguace (3 conexiones) -->
+    <g transform="translate(30,390)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#9e9e9e" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#9e9e9e" opacity="0.5"/>
+      <rect x="0" y="0" width="15" height="25" fill="#0d1b2a"/>
+      <rect x="165" y="0" width="15" height="25" fill="#0d1b2a"/>
+      <rect x="0" y="125" width="15" height="25" fill="#0d1b2a"/>
+      <rect x="165" y="125" width="15" height="25" fill="#0d1b2a"/>
+      <rect x="40" y="40" width="25" height="20" fill="#0d1b2a"/>
+      <rect x="95" y="80" width="25" height="20" fill="#0d1b2a"/>
+      <path d="M90,20 Q60,5 20,0" stroke="#9e9e9e" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M160,70 Q175,80 180,95" stroke="#9e9e9e" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M90,130 Q60,145 20,150" stroke="#9e9e9e" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75">Desguace de las Nueve</text>
+      <text x="20" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ beta</text>
+      <text x="182" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">asamblea →</text>
+      <text x="20" y="145" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">← taller</text>
+    </g>
+
+    <!-- 12 Asamblea (4 conexiones) -->
+    <g transform="translate(230,390)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#009688" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#009688" opacity="0.5"/>
+      <rect x="0" y="0" width="35" height="30" fill="#0d1b2a"/>
+      <rect x="145" y="0" width="35" height="30" fill="#0d1b2a"/>
+      <rect x="0" y="120" width="30" height="30" fill="#0d1b2a"/>
+      <rect x="150" y="120" width="30" height="30" fill="#0d1b2a"/>
+      <rect x="45" y="45" width="60" height="20" fill="#0d1b2a"/>
+      <path d="M90,20 Q60,5 20,0" stroke="#009688" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M160,70 Q175,80 180,95" stroke="#009688" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M90,130 Q60,145 20,150" stroke="#009688" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M160,80 Q175,60 180,40" stroke="#009688" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75">Asamblea de</text>
+      <text x="90" y="88">las Esporas</text>
+      <text x="20" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ lonja</text>
+      <text x="182" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">colmena →</text>
+      <text x="20" y="145" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">← desguace</text>
+      <text x="182" y="43" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">atajo →</text>
+    </g>
+
+    <!-- 13 Atajo (2 conexiones) -->
+    <g transform="translate(430,390)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#009688" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#009688" opacity="0.5"/>
+      <rect x="0" y="0" width="35" height="30" fill="#0d1b2a"/>
+      <rect x="145" y="0" width="35" height="25" fill="#0d1b2a"/>
+      <rect x="0" y="120" width="35" height="30" fill="#0d1b2a"/>
+      <rect x="145" y="125" width="35" height="25" fill="#0d1b2a"/>
+      <rect x="40" y="45" width="25" height="20" fill="#0d1b2a"/>
+      <rect x="100" y="80" width="25" height="20" fill="#0d1b2a"/>
+      <path d="M80,20 Q50,5 15,0" stroke="#009688" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M80,130 Q50,145 15,150" stroke="#009688" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75">Atajo de las Esporas</text>
+      <text x="15" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ asamblea</text>
+      <text x="15" y="145" font-size="6" fill="#00e5ff" stroke="none">↓ colmena</text>
+    </g>
+
+    <!-- 14 Colmena (3 conexiones) -->
+    <g transform="translate(630,390)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#009688" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#009688" opacity="0.5"/>
+      <rect x="115" y="80" width="50" height="70" fill="#0d1b2a"/>
+      <rect x="0" y="0" width="25" height="20" fill="#0d1b2a"/>
+      <path d="M80,20 Q50,5 15,0" stroke="#009688" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M160,70 Q175,80 180,95" stroke="#009688" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M80,130 Q50,145 15,150" stroke="#009688" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75">Colmena Fúngica</text>
+      <text x="15" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ atajo</text>
+      <text x="182" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">encrucijada →</text>
+      <text x="15" y="145" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">← gran_mercado</text>
+    </g>
+
+    <!-- 15 Última Ruta (3 conexiones) -->
+    <g transform="translate(830,390)">
+      <rect width="140" height="150" fill="#1a2a3a" stroke="#ff9800" stroke-width="2"/>
+      <rect x="15" y="20" width="110" height="110" fill="#ff9800" opacity="0.5"/>
+      <rect x="0" y="0" width="20" height="30" fill="#0d1b2a"/>
+      <rect x="120" y="0" width="20" height="30" fill="#0d1b2a"/>
+      <rect x="0" y="120" width="20" height="30" fill="#0d1b2a"/>
+      <rect x="120" y="120" width="20" height="30" fill="#0d1b2a"/>
+      <rect x="40" y="45" width="20" height="15" fill="#0d1b2a"/>
+      <rect x="85" y="80" width="20" height="15" fill="#0d1b2a"/>
+      <path d="M70,20 Q40,5 10,0" stroke="#ff9800" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M70,130 Q40,145 10,150" stroke="#ff9800" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M125,70 Q135,80 140,95" stroke="#ff9800" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="70" y="75">La Última Ruta</text>
+      <text x="10" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ beta</text>
+      <text x="10" y="145" font-size="6" fill="#00e5ff" stroke="none">↓ instalación</text>
+      <text x="142" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">polígono →</text>
+    </g>
+
+    <!-- Fila 3 (y=560) -->
+    <!-- 16 Polígono (2 conexiones) -->
+    <g transform="translate(30,560)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#ff9800" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#ff9800" opacity="0.5"/>
+      <rect x="15" y="15" width="25" height="25" fill="#0d1b2a"/>
+      <rect x="140" y="15" width="25" height="25" fill="#0d1b2a"/>
+      <rect x="15" y="110" width="25" height="25" fill="#0d1b2a"/>
+      <rect x="140" y="110" width="25" height="25" fill="#0d1b2a"/>
+      <rect x="65" y="55" width="25" height="25" fill="#0d1b2a"/>
+      <path d="M90,20 Q60,5 20,0" stroke="#ff9800" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M160,70 Q175,80 180,95" stroke="#ff9800" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75">Polígono de Reparto</text>
+      <text x="20" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ última_ruta</text>
+      <text x="182" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">(borde) →</text>
+    </g>
+
+    <!-- 17 Camino (2 conexiones) -->
+    <g transform="translate(230,560)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#ffc107" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#ffc107" opacity="0.5"/>
+      <rect x="0" y="0" width="25" height="30" fill="#0d1b2a"/>
+      <rect x="155" y="0" width="25" height="25" fill="#0d1b2a"/>
+      <rect x="0" y="120" width="30" height="30" fill="#0d1b2a"/>
+      <rect x="150" y="125" width="30" height="25" fill="#0d1b2a"/>
+      <rect x="45" y="45" width="20" height="15" fill="#0d1b2a"/>
+      <rect x="95" y="80" width="20" height="15" fill="#0d1b2a"/>
+      <path d="M90,20 Q60,5 20,0" stroke="#ffc107" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M160,70 Q175,80 180,95" stroke="#ffc107" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75">Camino de los Dientes</text>
+      <text x="20" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ gran_mercado</text>
+      <text x="182" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">(borde) →</text>
+    </g>
+
+    <!-- 18 Instalación (2 conexiones, vacía) -->
+    <g transform="translate(430,560)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#f44336" stroke-width="2" stroke-dasharray="6,4"/>
+      <rect x="10" y="10" width="160" height="130" fill="#f44336" opacity="0.15"/>
+      <rect x="20" y="20" width="25" height="25" fill="#0d1b2a"/>
+      <rect x="135" y="20" width="25" height="25" fill="#0d1b2a"/>
+      <rect x="20" y="105" width="25" height="25" fill="#0d1b2a"/>
+      <rect x="135" y="105" width="25" height="25" fill="#0d1b2a"/>
+      <rect x="65" y="55" width="25" height="25" fill="#0d1b2a"/>
+      <path d="M90,20 Q60,5 20,0" stroke="#f44336" stroke-width="6" fill="none" opacity="0.6"/>
+      <path d="M90,130 Q60,145 20,150" stroke="#f44336" stroke-width="6" fill="none" opacity="0.6"/>
+      <text x="90" y="75">La Instalación</text>
+      <text x="90" y="88">Anterior</text>
+      <text x="20" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ canon</text>
+      <text x="20" y="145" font-size="6" fill="#00e5ff" stroke="none">↓ antecámara</text>
+    </g>
+
+    <!-- 19 Antecámara (3 conexiones) -->
+    <g transform="translate(630,560)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#f44336" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#f44336" opacity="0.3"/>
+      <rect x="115" y="80" width="50" height="70" fill="#0d1b2a"/>
+      <rect x="0" y="0" width="20" height="20" fill="#0d1b2a"/>
+      <path d="M80,20 Q50,5 15,0" stroke="#f44336" stroke-width="6" fill="none" opacity="0.6"/>
+      <path d="M160,70 Q175,80 180,95" stroke="#f44336" stroke-width="6" fill="none" opacity="0.6"/>
+      <path d="M80,130 Q50,145 15,150" stroke="#f44336" stroke-width="6" fill="none" opacity="0.6"/>
+      <text x="90" y="75">La Antecámara</text>
+      <text x="15" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ instalación</text>
+      <text x="182" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">encrucijada →</text>
+      <text x="15" y="145" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">← (borde)</text>
+    </g>
+
+    <!-- 20 Encrucijada (4 conexiones, cruz) -->
+    <g transform="translate(830,560)">
+      <rect width="140" height="150" fill="#1a2a3a" stroke="#ffffff" stroke-width="2"/>
+      <rect x="0" y="0" width="140" height="150" fill="#ffffff" opacity="0.1"/>
+      <rect x="5" y="5" width="35" height="35" fill="#0d1b2a"/>
+      <rect x="100" y="5" width="35" height="35" fill="#0d1b2a"/>
+      <rect x="5" y="110" width="35" height="35" fill="#0d1b2a"/>
+      <rect x="100" y="110" width="35" height="35" fill="#0d1b2a"/>
+      <rect x="50" y="0" width="40" height="150" fill="#ffffff" opacity="0.5"/>
+      <rect x="0" y="55" width="140" height="40" fill="#ffffff" opacity="0.5"/>
+      <path d="M70,20 Q40,5 10,0" stroke="#ffffff" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M130,70 Q135,80 140,95" stroke="#ffffff" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M70,130 Q40,145 10,150" stroke="#ffffff" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M130,80 Q135,60 140,40" stroke="#ffffff" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="70" y="75" fill="#000000">La Encrucijada</text>
+      <text x="10" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ colmena</text>
+      <text x="142" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">valle →</text>
+      <text x="10" y="145" font-size="6" fill="#00e5ff" stroke="none">↓ gran_cruce</text>
+      <text x="142" y="43" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">antecámara →</text>
+    </g>
+
+    <!-- Fila 4 (y=730) -->
+    <!-- 21 Valle (3 conexiones) -->
+    <g transform="translate(30,730)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#2196f3" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#2196f3" opacity="0.5"/>
+      <rect x="0" y="0" width="25" height="30" fill="#0d1b2a"/>
+      <rect x="155" y="0" width="25" height="25" fill="#0d1b2a"/>
+      <rect x="0" y="120" width="30" height="30" fill="#0d1b2a"/>
+      <rect x="150" y="125" width="30" height="25" fill="#0d1b2a"/>
+      <rect x="40" y="40" width="20" height="15" fill="#0d1b2a"/>
+      <rect x="100" y="75" width="20" height="15" fill="#0d1b2a"/>
+      <path d="M90,20 Q60,5 20,0" stroke="#2196f3" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M160,70 Q175,80 180,95" stroke="#2196f3" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M90,130 Q60,145 20,150" stroke="#2196f3" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75">Valle de las Esquinas</text>
+      <text x="20" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ cumbre</text>
+      <text x="182" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">(borde) →</text>
+      <text x="20" y="145" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">← encrucijada</text>
+    </g>
+
+    <!-- 22 Gran Cruce (3 conexiones, cruz) -->
+    <g transform="translate(230,730)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#ffffff" stroke-width="2"/>
+      <rect x="0" y="0" width="180" height="150" fill="#ffffff" opacity="0.1"/>
+      <rect x="8" y="8" width="30" height="30" fill="#0d1b2a"/>
+      <rect x="142" y="8" width="30" height="30" fill="#0d1b2a"/>
+      <rect x="8" y="112" width="30" height="30" fill="#0d1b2a"/>
+      <rect x="142" y="112" width="30" height="30" fill="#0d1b2a"/>
+      <rect x="60" y="0" width="60" height="150" fill="#ffffff" opacity="0.5"/>
+      <rect x="0" y="50" width="180" height="50" fill="#ffffff" opacity="0.5"/>
+      <path d="M90,20 Q60,5 20,0" stroke="#ffffff" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M160,70 Q175,80 180,95" stroke="#ffffff" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M90,130 Q60,145 20,150" stroke="#ffffff" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75" fill="#000000">El Gran Cruce</text>
+      <text x="20" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ encrucijada</text>
+      <text x="182" y="98" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">cementerio →</text>
+      <text x="20" y="145" font-size="6" fill="#00e5ff" stroke="none" text-anchor="start">← paso</text>
+    </g>
+
+    <!-- 23 Paso (2 conexiones) -->
+    <g transform="translate(430,730)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#9e9e9e" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#9e9e9e" opacity="0.5"/>
+      <rect x="0" y="0" width="25" height="25" fill="#0d1b2a"/>
+      <rect x="155" y="0" width="25" height="20" fill="#0d1b2a"/>
+      <rect x="0" y="125" width="30" height="25" fill="#0d1b2a"/>
+      <rect x="150" y="130" width="30" height="20" fill="#0d1b2a"/>
+      <rect x="40" y="40" width="20" height="15" fill="#0d1b2a"/>
+      <rect x="95" y="75" width="20" height="15" fill="#0d1b2a"/>
+      <path d="M80,20 Q50,5 15,0" stroke="#9e9e9e" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M80,130 Q50,145 15,150" stroke="#9e9e9e" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75">Paso de las Nueve</text>
+      <text x="15" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ taller</text>
+      <text x="15" y="145" font-size="6" fill="#00e5ff" stroke="none">↓ (borde)</text>
+    </g>
+
+    <!-- 24 Cementerio (2 conexiones) -->
+    <g transform="translate(630,730)">
+      <rect width="180" height="150" fill="#1a2a3a" stroke="#9e9e9e" stroke-width="2"/>
+      <rect x="20" y="20" width="140" height="110" fill="#9e9e9e" opacity="0.5"/>
+      <rect x="115" y="50" width="50" height="100" fill="#0d1b2a"/>
+      <rect x="0" y="0" width="20" height="15" fill="#0d1b2a"/>
+      <path d="M80,20 Q50,5 15,0" stroke="#9e9e9e" stroke-width="6" fill="none" opacity="0.9"/>
+      <path d="M80,130 Q50,145 15,150" stroke="#9e9e9e" stroke-width="6" fill="none" opacity="0.9"/>
+      <text x="90" y="75">Cementerio de Robots</text>
+      <text x="15" y="8" font-size="6" fill="#00e5ff" stroke="none">↑ valle</text>
+      <text x="15" y="145" font-size="6" fill="#00e5ff" stroke="none">↓ (borde)</text>
+      <text x="164" y="72" font-size="6" fill="#00e5ff" stroke="none" text-anchor="end">← gran_cruce</text>
+    </g>
+  </g>
+
+  <!-- Leyenda -->
+  <g font-size="9" fill="#ffffff">
+    <text x="30" y="905" font-weight="bold">Leyenda:</text>
+    <rect x="30" y="915" width="12" height="12" fill="#00bcd4"/><text x="48" y="925">Nudo (5)</text>
+    <rect x="120" y="915" width="12" height="12" fill="#4caf50"/><text x="138" y="925">Bosque (4)</text>
+    <rect x="210" y="915" width="12" height="12" fill="#2196f3"/><text x="228" y="925">Plegados (2-4)</text>
+    <rect x="310" y="915" width="12" height="12" fill="#9c27b0"/><text x="328" y="925">Ecos (2-3)</text>
+    <rect x="400" y="915" width="12" height="12" fill="#ffc107"/><text x="418" y="925">Grux (2-4)</text>
+    <rect x="500" y="915" width="12" height="12" fill="#9e9e9e"/><text x="518" y="925">Jubilados (2-3)</text>
+    <rect x="600" y="915" width="12" height="12" fill="#009688"/><text x="618" y="925">Mohócratas (2-4)</text>
+    <rect x="710" y="915" width="12" height="12" fill="#ff9800"/><text x="728" y="925">Manada (2-3)</text>
+    <rect x="800" y="915" width="12" height="12" fill="#f44336"/><text x="818" y="925">Final (2)</text>
+    <rect x="880" y="915" width="12" height="12" fill="#ffffff" stroke="#000000"/><text x="898" y="925">Cruce (3-4)</text>
+  </g>
+  <text x="500" y="950" font-size="9" fill="#888888" text-anchor="middle">Zonas cuadradas (escena Godot). Forma = zonas bloqueadas (oscuro). Caminos sinuosos llevan al borde → cambio de zona al cruzarlo.</text>
+  <text x="500" y="965" font-size="9" fill="#888888" text-anchor="middle">Las conexiones salen en posiciones distintas y no alineadas entre zonas. El número de conexiones varía (2-5). Cada zona muestra qué hay cerca en cada borde.</text>
+  <text x="500" y="980" font-size="9" fill="#888888" text-anchor="middle">Planteado como mapa mundi: a simple vista se ve qué zonas son vecinas y por dónde se conectan.</text>
+</svg>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="520" viewBox="0 0 680 520" font-family="sans-serif">
+  <rect width="680" height="520" fill="#1a2a3a"/>
+  <rect x="20" y="40" width="640" height="440" fill="#0d1b2a" stroke="#9e9e9e" stroke-width="2"/>
+  <rect x="20" y="40" width="640" height="440" fill="#9e9e9e" opacity="0.1"/>
+  <rect x="0" y="0" width="20" height="30" fill="#0d1b2a"/>
+  <rect x="175" y="0" width="20" height="30" fill="#0d1b2a"/>
+  <rect x="0" y="120" width="20" height="30" fill="#0d1b2a"/>
+  <rect x="175" y="120" width="20" height="30" fill="#0d1b2a"/>
+  <!-- Desguace (chatarrería) -->
+  <rect x="40" y="60" width="60" height="40" fill="#A8482A" stroke="#ffffff" stroke-width="1"/>
+  
+  <rect x="110" y="60" width="60" height="40" fill="#A8482A" stroke="#ffffff" stroke-width="1"/>
+  
+  <rect x="40" y="110" width="60" height="40" fill="#A8482A" stroke="#ffffff" stroke-width="1"/>
+  
+  <rect x="110" y="110" width="60" height="40" fill="#A8482A" stroke="#ffffff" stroke-width="1"/>
+  
+  <!-- Manada (almacenes) -->
+  <rect x="260" y="180" width="60" height="40" fill="#ff9800" stroke="#ffffff" stroke-width="1"/>
+  
+  <rect x="340" y="180" width="60" height="40" fill="#ff9800" stroke="#ffffff" stroke-width="1"/>
+  
+  <rect x="260" y="240" width="60" height="40" fill="#ff9800" stroke="#ffffff" stroke-width="1"/>
+  
+  <!-- Desguace (restos) -->
+  <rect x="460" y="120" width="50" height="40" fill="#8894B5" stroke="#ffffff" stroke-width="1"/>
+  
+  <rect x="520" y="120" width="50" height="40" fill="#8894B5" stroke="#ffffff" stroke-width="1"/>
+  
+  <rect x="460" y="170" width="50" height="40" fill="#8894B5" stroke="#ffffff" stroke-width="1"/>
+  
+  <!-- Club de petanca (secreto) -->
+  <circle cx="140" cy="320" r="25" fill="#ffc107" opacity="0.3" stroke="#FFD400" stroke-width="1" stroke-dasharray="4,4"/>
+  
+  <!-- Corredores -->
+  <rect x="80" y="0" width="15" height="45" fill="#9e9e9e" opacity="0.6"/>
+  <rect x="80" y="105" width="15" height="45" fill="#9e9e9e" opacity="0.6"/>
+  <rect x="0" y="65" width="50" height="15" fill="#9e9e9e" opacity="0.6"/>
+  <rect x="130" y="65" width="50" height="15" fill="#9e9e9e" opacity="0.6"/>
+  <!-- Guardados -->
+  <circle cx="70" cy="80" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <circle cx="290" cy="200" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <circle cx="485" cy="145" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <!-- Etiquetas de bordes -->
+  
+  
+  
+  
+</svg>

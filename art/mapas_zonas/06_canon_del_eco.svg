@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="520" viewBox="0 0 680 520" font-family="sans-serif">
+  <rect width="680" height="520" fill="#1a2a3a"/>
+  
+  <rect x="20" y="40" width="640" height="440" fill="#0d1b2a" stroke="#9c27b0" stroke-width="2"/>
+  <rect x="20" y="40" width="640" height="440" fill="#9c27b0" opacity="0.1"/>
+  <!-- Forma zigzag: bloques en esquinas -->
+  <rect x="20" y="40" width="60" height="50" fill="#0d1b2a"/>
+  <rect x="600" y="40" width="60" height="40" fill="#0d1b2a"/>
+  <rect x="20" y="390" width="70" height="50" fill="#0d1b2a"/>
+  <rect x="590" y="400" width="70" height="40" fill="#0d1b2a"/>
+  <rect x="80" y="80" width="50" height="35" fill="#0d1b2a"/>
+  <rect x="500" y="130" width="45" height="30" fill="#0d1b2a"/>
+  <!-- Cañón (paredes altas) -->
+  <rect x="60" y="100" width="80" height="320" fill="#8894B5" stroke="#ffffff" stroke-width="1"/>
+  
+  <rect x="540" y="100" width="80" height="320" fill="#8894B5" stroke="#ffffff" stroke-width="1"/>
+  
+  <!-- Eco (puntos de resonancia) -->
+  <circle cx="250" cy="180" r="15" fill="#9c27b0" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+  
+  <circle cx="340" cy="260" r="15" fill="#9c27b0" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+  
+  <circle cx="430" cy="340" r="15" fill="#9c27b0" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+  
+  <!-- Grux (comercio en el cañón) -->
+  <rect x="280" y="120" width="50" height="35" fill="#ffc107" stroke="#ffffff" stroke-width="1"/>
+  
+  <rect x="350" y="360" width="50" height="35" fill="#ffc107" stroke="#ffffff" stroke-width="1"/>
+  
+  <!-- Corredores -->
+  <rect x="320" y="40" width="40" height="65" fill="#9c27b0" opacity="0.6"/>
+  <rect x="320" y="395" width="40" height="65" fill="#9c27b0" opacity="0.6"/>
+  <rect x="0" y="230" width="65" height="30" fill="#9c27b0" opacity="0.6"/>
+  <rect x="615" y="230" width="65" height="30" fill="#9c27b0" opacity="0.6"/>
+  <!-- Guardados -->
+  <circle cx="250" cy="180" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <circle cx="430" cy="340" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <circle cx="340" cy="260" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <!-- Etiquetas de bordes -->
+  
+  
+  
+  
+  
+</svg>

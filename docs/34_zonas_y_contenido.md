@@ -159,6 +159,10 @@ La semilla permitirá reproducir la composición inicial de una zona si fuera ne
 Sin embargo, no dependeremos exclusivamente de regenerar el contenido desde la semilla para recuperar una zona visitada.
 La fuente de verdad será el estado persistido.
 Esto es importante porque los personajes pueden morir, desplazarse, recoger objetos o modificar el entorno.
+> **Multi-zona (11-nov):** la infraestructura multi-zona está definida en `docs/adr/0027-multi-zona.md`. Los parámetros de las 24 zonas (nombres, tamaños, formas, conexiones) están en `art/mapa_zonas_propuesta.svg`. Cada zona es un escenario cuadrado con geometría fija en escena y población/objetos desde JSON. Las formas se tallan con `shape_blocks` (rectángulos bloqueados) y los corredores se declaran en `geometry.corridors`.
+
+> **Mapas de zonas:** `art/mapas_zonas/` contiene 24 SVG (uno por zona, 680×520) con la distribución de edificios, vegetación, montañas, ríos y corredores. Son mapas de diseño (blueprints): en Godot el juego real se construye con nodos separados (suelo, paredes, props, fachadas). Los SVG son importables en Godot (sin texto). La leyenda de cada mapa está en `art/mapas_zonas/README.md`.
+
 ## Qué se genera y cuándo
 | Elemento | Momento |
 |---|---|

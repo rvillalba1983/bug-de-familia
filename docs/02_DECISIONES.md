@@ -129,6 +129,19 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 - **Descubrir consecuencias:** por restos, cambios en el mundo y conversaciones, y las IAs dicen lo que observan sin explicar la causa. El resumen de fin de partida revela cada cadena solo hasta donde llegó (P-13).
 - **Contenido por encargo:** Claude propone las compatibilidades del catálogo y el director revisa la tabla (P-02); Claude implementa las 20 IAs definidas y ajusta números jugando (P-05); Claude escribe preguntas, motes y comentarios, y el director marca lo que no le haga gracia (P-09).
 
+## Multi-zona (post-beta, 11-nov)
+
+- 24 zonas, mundo de 16.700 × 16.700 u (≈ 500 × 500 m). Mapa en `art/mapa_zonas_propuesta.svg`.
+- Cada zona es un escenario cuadrado con geometría fija en escena y población/objetos desde JSON.
+- Forma tallada con `shape_blocks` (rectángulos bloqueados); corredores explícitos con destino y borde (`geometry.corridors`).
+- Tres niveles de simulación por saltos en el grafo: completa (actual), simplificada (vecinas directas, individuos sin animar), estadística (resto).
+- Transición con carga de 5 s mínimo y fantasmas de IAs del destino.
+- Autoguardado en cada transición. Tiempo del mundo avanza durante el viaje.
+- Especies fijas por zona, relacionadas con el lore. 80–150 NPCs por zona.
+- Todas las zonas conocidas se simulan siempre (estadística si están lejos).
+
+Ver `docs/adr/0027-multi-zona.md`.
+
 ## Lo que no se puede inventar
 Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barra de salud, diario, personajes protegidos, multijugador, conexión online, vehículos, recetas cerradas de conversión.
 

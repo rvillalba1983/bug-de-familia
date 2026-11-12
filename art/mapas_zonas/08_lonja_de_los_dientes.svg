@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="520" viewBox="0 0 680 520" font-family="sans-serif">
+  <rect width="680" height="520" fill="#1a2a3a"/>
+  <rect x="20" y="40" width="640" height="440" fill="#0d1b2a" stroke="#ffc107" stroke-width="2"/>
+  <rect x="20" y="40" width="640" height="440" fill="#ffc107" opacity="0.1"/>
+  <rect x="12" y="12" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="44" y="12" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="76" y="12" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="108" y="12" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="140" y="12" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="12" y="44" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="76" y="44" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="140" y="44" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="12" y="76" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="44" y="76" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="117" y="76" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="12" y="108" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="44" y="108" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="76" y="108" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="108" y="108" width="22" height="22" fill="#0d1b2a"/>
+  <rect x="140" y="108" width="22" height="22" fill="#0d1b2a"/>
+  <!-- Lonja (puestos densos) -->
+  <rect x="60" y="80" width="30" height="25" fill="#ffc107" stroke="#ffffff" stroke-width="1"/>
+  <rect x="95" y="80" width="30" height="25" fill="#ffc107" stroke="#ffffff" stroke-width="1"/>
+  <rect x="130" y="80" width="30" height="25" fill="#ffc107" stroke="#ffffff" stroke-width="1"/>
+  <rect x="60" y="110" width="30" height="25" fill="#ffc107" stroke="#ffffff" stroke-width="1"/>
+  <rect x="95" y="110" width="30" height="25" fill="#ffc107" stroke="#ffffff" stroke-width="1"/>
+  <rect x="130" y="110" width="30" height="25" fill="#ffc107" stroke="#ffffff" stroke-width="1"/>
+  <!-- Jubilados (taller) -->
+  <rect x="260" y="200" width="60" height="40" fill="#9e9e9e" stroke="#ffffff" stroke-width="1"/>
+  <rect x="340" y="200" width="60" height="40" fill="#9e9e9e" stroke="#ffffff" stroke-width="1"/>
+  <rect x="260" y="260" width="60" height="40" fill="#9e9e9e" stroke="#ffffff" stroke-width="1"/>
+  <rect x="340" y="260" width="60" height="40" fill="#9e9e9e" stroke="#ffffff" stroke-width="1"/>
+  <!-- Corredores -->
+  <rect x="80" y="0" width="15" height="40" fill="#ffc107" opacity="0.6"/>
+  <rect x="80" y="110" width="15" height="40" fill="#ffc107" opacity="0.6"/>
+  <rect x="0" y="65" width="40" height="15" fill="#ffc107" opacity="0.6"/>
+  <rect x="130" y="65" width="40" height="15" fill="#ffc107" opacity="0.6"/>
+  <rect x="320" y="340" width="40" height="140" fill="#ffc107" opacity="0.6"/>
+  <!-- Guardados -->
+  <circle cx="100" cy="100" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <circle cx="300" cy="220" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <circle cx="380" cy="280" r="5" fill="#FFD400" stroke="#000000" stroke-width="1"/>
+  <!-- Etiquetas de bordes -->
+  
+  
+  
+  
+</svg>

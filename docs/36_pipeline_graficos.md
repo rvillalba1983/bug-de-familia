@@ -34,6 +34,18 @@ Código en `entities/art/palette.gd`.
 - Lo que necesite filtros (pincel, grano, brillo) se hornea antes a PNG con Chromium. Así se hacen las texturas del suelo (`tools/art/ground_gen.py`).
 - Tamaño del SVG acorde al de pantalla, para que no se vea borroso.
 
+## Imágenes del lore
+
+Arte de ilustración para el lore (rupestre/jeroglífico u otros estilos). Ubicación: `art/lore/`,
+con subcarpetas `svg/` y `png/`. Se referencian desde `docs/50_lore.md` (sección 7, Historia
+compartida) y desde pantallas intermedias (entrada, carga, etc.).
+
+Origen de los recursos generados: creados por el director con una IA externa (Claude), estilo
+rupestre, a partir de los grandes sucesos de la historia compartida (7 imágenes). Registrado el
+12-nov-2026. No son arte de juego (que sigue siendo Godot + SVG, sin generadores de imágenes); son
+ilustración de lore y pantallas intermedias, y el director ha autorizado abrir el abanico para ese
+uso. El director debe aprobar cualquier imagen nueva antes de integrarla en el juego.
+
 ## Perspectiva y profundidad
 - Cámara de juego: vista alta inclinada, de ángulo fijo.
 - La perspectiva marcada solo es correcta desde un punto fijo: se reserva para escenas fijas. Referencia: `tools/art/city_scene_gen.py`, que proyecta edificios 3D y añade sombras, neblina lejana y primer plano desenfocado.

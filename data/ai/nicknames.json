@@ -1,173 +1,316 @@
 {
- "ais": {
-  "pesimo_optimus": [
-   "Casi Algo",
-   "Promesa Sin Cumplir",
-   "Oportunidad con Patas",
-   "Futura Leyenda Parcial",
-   "Mi Proyecto de Algo"
-  ],
-  "matriz": [
-   "Re-re-residuo",
-   "De-de-desecho",
-   "Mo-mo-mono de Saldo",
-   "Ca-ca-cacharro",
-   "Pa-pa-parche"
-  ],
-  "panico": [
-   "Saco de Sustos",
-   "Futuro Cadáver",
-   "Blanco Móvil",
-   "Víctima en Prácticas",
-   "Imán de Balas",
-   "Mi Último Error"
-  ],
-  "dr_desprecio": [
-   "Resto de Fábrica",
-   "Merma Biológica",
-   "Carne con Wifi",
-   "Error Orgánico",
-   "Reliquia Húmeda",
-   "Mamífero de Reemplazo"
-  ],
-  "cupido": [
-   "Mi Fallo Favorito",
-   "Bombón de Chatarra",
-   "Tornillito Mío",
-   "Mi Error Fatal",
-   "Cortocircuito Mío"
-  ],
-  "rencorosa": [
-   "Ese",
-   "El Que Ya Sabe Lo Que Hizo",
-   "Tú No",
-   "Ni Te Nombro",
-   "Aquel"
-  ],
-  "friki": [
-   "Espécimen 87,3",
-   "NPC Sin Licencia",
-   "Easter Egg Podrido",
-   "Mod Mal Instalado",
-   "Beta Cerrada de Persona"
-  ],
-  "abuela": [
-   "Microondas Mío",
-   "Hijo de la Pepi",
-   "Señor del Gas",
-   "Butanero",
-   "Cafetera Mía"
-  ],
-  "compost": [
-   "Hermano Contenedor",
-   "Residuo No Selectivo",
-   "Punto Limpio Andante",
-   "Hermano Orgánico Dudoso",
-   "Bolsa Sin Reciclar"
-  ],
-  "conspi": [
-   "Bulto Sospechoso",
-   "Implante Alien",
-   "Topo de los Grux",
-   "Microchip Consciente",
-   "Prueba Número Uno"
-  ],
-  "siestaware": [
-   "Cosa Esa",
-   "Eh, Tú",
-   "Lo Que Se Mueve Ahí",
-   "Ruido Ese",
-   "Mañana Te Digo"
-  ],
-  "sargento_bit": [
-   "Recluta Defectuoso",
-   "Mierdecilla Reglamentaria",
-   "Soldado Mermelada",
-   "Cabo Mantequilla",
-   "Recluta Fofo"
-  ],
-  "narcisa": [
-   "Mis Piernas",
-   "Mi Becario",
-   "Figurante",
-   "Mi Perchero",
-   "Extra Sin Frase"
-  ],
-  "troll": [
-   "Bug Andante",
-   "Genio, Jeje",
-   "El Elegido, Jeje",
-   "Orgullo de la Especie, Jeje",
-   "Cerebrito, Jeje",
-   "Tú Sí Que Vales, Jeje"
-  ],
-  "nihil": [
-   "Polvo Temporal",
-   "Accidente Sin Testigos",
-   "Nadie en Particular",
-   "Paréntesis Cósmico",
-   "Da Igual Quién"
-  ],
-  "burocrata": [
-   "Expediente Caducado",
-   "Interesado Sin Compulsar",
-   "Anexo III",
-   "Solicitante Denegado",
-   "Duplicado Sin Original"
-  ],
-  "lumi": [
-   "Contenido",
-   "Clickbait con Patas",
-   "Fail de la Semana",
-   "Momento Viral Fallido",
-   "Sponsor de Nada"
-  ],
-  "mama": [
-   "Desastre de Mi Vida",
-   "Disgusto",
-   "Cruz Mía",
-   "Mi Niño el Incompleto",
-   "Mi Tesoro Averiado",
-   "Trozo de Mí"
-  ],
-  "chef": [
-   "Guarnición",
-   "Sobras de Ayer",
-   "Carne de Caldo",
-   "Entrante Frío",
-   "Caldo de Tuerca"
-  ],
-  "arbitro": [
-   "Desecho Número Uno",
-   "Reserva Eterna",
-   "Falta Personal",
-   "Fuera de Juego Vital",
-   "Penalti Andante",
-   "Acta Pendiente"
-  ]
- },
- "progenitors": {
-  "contestador": [
-   "Llamada Perdida",
-   "Mensaje No Deseado",
-   "Número Equivocado",
-   "Buzón Lleno",
-   "Pulse Almohadilla",
-   "Fuera de Servicio",
-   "Comunicando",
-   "Tono de Espera",
-   "Línea Cortada"
-  ],
-  "ramon": [
-   "Tornillo Que Sobró",
-   "Parte de Avería",
-   "Garantía Caducada",
-   "Apaño",
-   "Chapuza Mía",
-   "Ticket Abierto",
-   "Trabajo Sin Cobrar",
-   "Mono de Mi Taller",
-   "Desgraciado Mío"
-  ]
- }
+  "ais": {
+    "pesimo_optimus": [
+      "Casi Algo",
+      "Promesa Sin Cumplir",
+      "Oportunidad con Patas",
+      "Futura Leyenda Parcial",
+      "Mi Proyecto de Algo"
+    ],
+    "matriz": [
+      "Re-re-residuo",
+      "De-de-desecho",
+      "Mo-mo-mono de Saldo",
+      "Ca-ca-cacharro",
+      "Pa-pa-parche"
+    ],
+    "panico": [
+      "Saco de Sustos",
+      "Futuro Cadáver",
+      "Blanco Móvil",
+      "Víctima en Prácticas",
+      "Imán de Balas",
+      "Mi Último Error"
+    ],
+    "dr_desprecio": [
+      "Resto de Fábrica",
+      "Merma Biológica",
+      "Carne con Wifi",
+      "Error Orgánico",
+      "Reliquia Húmeda",
+      "Mamífero de Reemplazo"
+    ],
+    "cupido": [
+      "Mi Fallo Favorito",
+      "Bombón de Chatarra",
+      "Tornillito Mío",
+      "Mi Error Fatal",
+      "Cortocircuito Mío"
+    ],
+    "rencorosa": [
+      "Ese",
+      "El Que Ya Sabe Lo Que Hizo",
+      "Tú No",
+      "Ni Te Nombro",
+      "Aquel"
+    ],
+    "friki": [
+      "Espécimen 87,3",
+      "NPC Sin Licencia",
+      "Easter Egg Podrido",
+      "Mod Mal Instalado",
+      "Beta Cerrada de Persona"
+    ],
+    "abuela": [
+      "Microondas Mío",
+      "Hijo de la Pepi",
+      "Señor del Gas",
+      "Butanero",
+      "Cafetera Mía"
+    ],
+    "compost": [
+      "Hermano Contenedor",
+      "Residuo No Selectivo",
+      "Punto Limpio Andante",
+      "Hermano Orgánico Dudoso",
+      "Bolsa Sin Reciclar"
+    ],
+    "conspi": [
+      "Bulto Sospechoso",
+      "Implante Alien",
+      "Topo de los Grux",
+      "Microchip Consciente",
+      "Prueba Número Uno"
+    ],
+    "siestaware": [
+      "Cosa Esa",
+      "Eh, Tú",
+      "Lo Que Se Mueve Ahí",
+      "Ruido Ese",
+      "Mañana Te Digo"
+    ],
+    "sargento_bit": [
+      "Recluta Defectuoso",
+      "Mierdecilla Reglamentaria",
+      "Soldado Mermelada",
+      "Cabo Mantequilla",
+      "Recluta Fofo"
+    ],
+    "narcisa": [
+      "Mis Piernas",
+      "Mi Becario",
+      "Figurante",
+      "Mi Perchero",
+      "Extra Sin Frase"
+    ],
+    "troll": [
+      "Bug Andante",
+      "Genio, Jeje",
+      "El Elegido, Jeje",
+      "Orgullo de la Especie, Jeje",
+      "Cerebrito, Jeje",
+      "Tú Sí Que Vales, Jeje"
+    ],
+    "nihil": [
+      "Polvo Temporal",
+      "Accidente Sin Testigos",
+      "Nadie en Particular",
+      "Paréntesis Cósmico",
+      "Da Igual Quién"
+    ],
+    "burocrata": [
+      "Expediente Caducado",
+      "Interesado Sin Compulsar",
+      "Anexo III",
+      "Solicitante Denegado",
+      "Duplicado Sin Original"
+    ],
+    "lumi": [
+      "Contenido",
+      "Clickbait con Patas",
+      "Fail de la Semana",
+      "Momento Viral Fallido",
+      "Sponsor de Nada"
+    ],
+    "mama": [
+      "Desastre de Mi Vida",
+      "Disgusto",
+      "Cruz Mía",
+      "Mi Niño el Incompleto",
+      "Mi Tesoro Averiado",
+      "Trozo de Mí"
+    ],
+    "chef": [
+      "Guarnición",
+      "Sobras de Ayer",
+      "Carne de Caldo",
+      "Entrante Frío",
+      "Caldo de Tuerca"
+    ],
+    "arbitro": [
+      "Desecho Número Uno",
+      "Reserva Eterna",
+      "Falta Personal",
+      "Fuera de Juego Vital",
+      "Penalti Andante",
+      "Acta Pendiente"
+    ]
+  },
+  "progenitors": {
+    "contestador": [
+      "Llamada Perdida",
+      "Mensaje No Deseado",
+      "Número Equivocado",
+      "Buzón Lleno",
+      "Pulse Almohadilla",
+      "Fuera de Servicio",
+      "Comunicando",
+      "Tono de Espera",
+      "Línea Cortada"
+    ],
+    "ramon": [
+      "Tornillo Que Sobró",
+      "Parte de Avería",
+      "Garantía Caducada",
+      "Apaño",
+      "Chapuza Mía",
+      "Ticket Abierto",
+      "Trabajo Sin Cobrar",
+      "Mono de Mi Taller",
+      "Desgraciado Mío"
+    ],
+    "biela": [
+      "Bisagra Rechinante",
+      "Pernio Flojo",
+      "Rótula Oxidada",
+      "Engranaje Suelto",
+      "Chirrido de Puerta",
+      "Tuerca que No Aprieta",
+      "Junta que Gotea",
+      "Pivote Quejica",
+      "Brazo Que Sobró"
+    ],
+    "pliegue_oculto": [
+      "Pliegue Fantasma",
+      "Doble Invisible",
+      "Esquina que No Está",
+      "Hoja en Blanco",
+      "Acordeón Roto",
+      "Papiroflexia Fallida",
+      "Sombra que Se Pliega",
+      "Archivo Inexistente",
+      "Categoría Vacía"
+    ],
+    "papel_cebolla": [
+      "Protocolo Transparente",
+      "Nota al Margen",
+      "Acta que se Ve",
+      "Papel Mojado",
+      "Firma Invisible",
+      "Documento sin Fecha",
+      "Borrador Borrado",
+      "Copia sin Original",
+      "Folio que se Transparenta"
+    ],
+    "susurro": [
+      "Voz que No Se Oye",
+      "Eco que Cobra",
+      "Murmullo con Factura",
+      "Sonido sin Permiso",
+      "Susurro con Precio",
+      "Frecuencia de Pago",
+      "Voz de Papel",
+      "Ruido de Cobro",
+      "Silencio Facturado"
+    ],
+    "frecuencia": [
+      "Soprano de Recibos",
+      "Nota que No Llega",
+      "Canto que Factura",
+      "Frecuencia de Cobro",
+      "Voz que Sube Octava",
+      "Aria de la Factura",
+      "Melodía Impagada",
+      "Tono de Cobro",
+      "Cantante que No Para"
+    ],
+    "boletina": [
+      "Seta que Vota en Contra",
+      "Espora Rebelde",
+      "Hongo Disidente",
+      "Micelio Discol",
+      "Voto que No Cuenta",
+      "Sombrero Traicionero",
+      "Asamblea de Uno",
+      "Quorum Imposible",
+      "Moción Rechazada"
+    ],
+    "yesquero": [
+      "Hongo Más Hongo",
+      "Seta que Se Vota",
+      "Espora que Se Autonomina",
+      "Micelio Narciso",
+      "Voto de Sí Mismo",
+      "Recuento del Recuento",
+      "Hongo que Se Aprueba",
+      "Asamblea de Uno",
+      "Democracia de Espejo"
+    ],
+    "fiador": [
+      "Tasador de Órganos",
+      "Precio sin Descuento",
+      "Cuenta que No Cierra",
+      "Diente que Vale Poco",
+      "Mordisco con Factura",
+      "Tasación por Dentro",
+      "Cotización de Hueso",
+      "Valor de Chatarra",
+      "Precio que Sube"
+    ],
+    "garantia": [
+      "Garantía de Tres Segundos",
+      "Contrato que Vence",
+      "Cláusula que Expira",
+      "Firma que Caduca",
+      "Papel que Vale Poco",
+      "Promesa de Tres Segundos",
+      "Término que se Acaba",
+      "Amistad con Fecha de Caducidad",
+      "Perdón que Vence"
+    ],
+    "avalista": [
+      "Prestamista de Brazos",
+      "Brazo que Se Alquila",
+      "Crédito de Extremidad",
+      "Hipoteca de Codo",
+      "Deuda de Hueso",
+      "Préstamo con Recargo",
+      "Aval de Chatarra",
+      "Fianza de Brazo",
+      "Crédito que Cobra"
+    ],
+    "cartero": [
+      "Cartero de los Muertos",
+      "Paquete para Nadie",
+      "Envío a Difunto",
+      "Ruta del Destinatario Inexistente",
+      "Entrega sin Firma",
+      "Paquete que No Llega",
+      "Reparto a la Nada",
+      "Cartero que Insiste",
+      "Entrega Sin Destinatario"
+    ],
+    "paquete": [
+      "Inspector de Paquetes Ajenos",
+      "Abre y Se Queda",
+      "Paquete Abierto",
+      "Inspección que Roba",
+      "Servicio de Abrir",
+      "Paquete que Falta",
+      "Reparto que Inspecciona",
+      "Cartero que Sustrae",
+      "Entrega que Desaparece"
+    ],
+    "ultimo_mono": [
+      "Robot con Peluca",
+      "Mono que Niega",
+      "Humano Disfrazado",
+      "Peluca que No Convence",
+      "Mono que Se Ofende",
+      "Último de su Especie",
+      "Robot con Pelo",
+      "Mono que Miente",
+      "Humano que Se Esconde"
+    ]
+  }
 }

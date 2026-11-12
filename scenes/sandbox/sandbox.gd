@@ -219,6 +219,7 @@ func _build_world() -> void:
 	add_child(selection)
 	fight = FightDirector.new()
 	fight.body = player.body
+	fight.player = player
 	for enemy: Guard in guards():
 		fight.track(enemy)
 	add_child(fight)

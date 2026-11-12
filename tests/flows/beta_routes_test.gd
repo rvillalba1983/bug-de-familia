@@ -12,6 +12,8 @@ var walker: BetaWalker
 
 func _start(route_seed: int = 7) -> void:
 	var forced_day: int = WorldCalendar.forced_local_unix
+	if forced_day < 0:
+		forced_day = 1768474800  # 15 ene 2026, sin festividad: determinismo (P-39)
 	TestSupport.reset_session()
 	Sandbox.forced_seed = route_seed
 	BetaZone.forced_hour = 12
@@ -20,9 +22,14 @@ func _start(route_seed: int = 7) -> void:
 	Engine.time_scale = SPEED
 	get_tree().paused = false
 	zone = scene_runner(PATH).scene()
+	# Estabilizar en cuanto live_world esté listo (P-39): reintento por si la
+	# inicialización es diferida, para que ningún suceso aleatorio se dispare.
+	for _attempt: int in range(10):
+		if zone.live_world != null and zone.live_world.sim != null:
+			break
+		await get_tree().physics_frame
 	_stabilize_for_routes()
-	# Espera determinista en fotogramas de física (P-39): evita que la cadencia
-	# de fotogramas altere los pasos de WorldSim y las llamadas al RNG.
+	# Espera determinista en fotogramas de física (P-39).
 	for _i: int in range(54):
 		await get_tree().physics_frame
 	walker = BetaWalker.new(get_tree(), zone)

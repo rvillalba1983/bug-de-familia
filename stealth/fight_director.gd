@@ -12,6 +12,7 @@ const END_DELAY: float = 3.0
 
 var phase: Phase = Phase.CALM
 var body: ModularBody
+var player: Player = null
 var combat: CombatSystem
 
 var _guards: Array[Guard] = []
@@ -73,6 +74,11 @@ func _any_alert() -> bool:
 
 func _on_alert_started(guard: Guard) -> void:
 	if phase == Phase.CALM:
+		# No arrancar pelea automática si el jugador va agachado (sigilo).
+		# La pelea automática es para cuando el jugador se planta a pelear,
+		# no para cuando está escondido.
+		if player != null and player.is_crouching:
+			return
 		_alerting_guard = guard
 		phase = Phase.PRE_FIGHT
 		body.context = ModularBody.Context.PRE_FIGHT

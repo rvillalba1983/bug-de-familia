@@ -87,6 +87,7 @@ Necesitan ventana y gráfica, así que no llevan `--headless`. Se lanzan con `--
 - `git push` pide confirmación (permiso en `opencode.jsonc`). Crear el PR implica subir la rama a GitHub: se confirma con el director en el momento, porque no se sube código ni recursos a servicios externos sin autorización. Un push nuevo cancela la verificación en curso: no empujes mientras corre el CI.
 - CI en `.github/workflows/`:
   - `pruebas.yml`: en cada push, salvo cambios solo en `docs/` o `*.md`, y al abrir o reabrir un PR. Ejecuta `verificar.py` y todas las pruebas GdUnit en Linux, con tope de 30 min.
+  - **Nota (12-nov):** el workflow se dividió en 4 jobs paralelos (core, combate, simulación, beta). El job «beta» es el más lento (~10 min por `beta_routes_test.gd`). Si el tiempo total supera los 11 minutos, revisar: subir `SPEED` en `beta_routes_test.gd` (3.0 → 4.0 → 5.0, validando que sigan pasando) o reducir los recorridos.
   - `exportar.yml`: en push a `main` y a mano. Exporta Windows y sube el artefacto `bug-de-familia-windows`.
   - Un push nuevo cancela la verificación en curso: no empujes mientras corre.
 - Consultar el CI: `gh run list --repo rvillalba1983/bug-de-familia --limit 5` y `gh run view <id> --log-failed`.

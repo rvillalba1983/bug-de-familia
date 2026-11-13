@@ -122,6 +122,6 @@ Resumen. El texto completo está en `AGENTS.md` y `docs/35_normas_codigo.md`.
 - Si `python`, `godot` u `opencode` no responden, es el PATH heredado: ver sección 1.
 - Si `python` no está en el PATH de la sesión, el formatter de OpenCode falla y sigue. Ejecuta `python tools/formatear.py --comprobar` a mano.
 - Sin ejecutar: `ground_gen.py`, `gen_audio.py` y `validar_datos.py --actualizar`: todos escriben archivos. La exportación sí se ejecutó el 10-nov (§5) y `cambiar_modelo.py --rotar explore` se ejecutó el 10-nov (ADR 0022).
-- Sin validar todavía (13-nov): `validar_rutas.py`, `validar_informes.py` y `verificar_humo.py`, y el arreglo de arranque en curso en la rama `arreglo/arranque-despliegue-cero`. Los resultados finales los registra la conversación principal (ADR 0028).
+- Validado (13-nov): `validar_rutas.py`, `validar_informes.py` y `verificar_humo.py`, y el arreglo de arranque (PR #8, merge `f56ef52`): CI verde (5 jobs), 372/372 pruebas y humo OK. Ver `adr/0028-validacion-arranque-y-ci.md`.
 - En `C:\Program Files\Audacity` queda solo el desinstalador de la versión 3. La válida es `Audacity 4`.
 - El 10-nov, `opencode run` con `big-pickle` respondió: «Free usage limit reached. Connect a provider or subscribe to OpenCode Go to keep going, or switch models.». Si vuelve a pasar, aplica `FALLBACK_MODELS.md` y el ADR 0020.

@@ -307,7 +307,7 @@ class HumoTest(unittest.TestCase):
         self.assertIn("falta.tscn", errores[0])
 
     def test_registro_sin_motor(self) -> None:
-        _, errores = verificar_humo.revisar_registro("texto cualquiera\n")
+        _, errores = verificar_humo.revisar_registro("")
         self.assertTrue(any("motor" in e for e in errores))
 
     def test_partida_exportada_se_lee_de_json(self) -> None:

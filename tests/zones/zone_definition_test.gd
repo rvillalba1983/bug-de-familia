@@ -29,18 +29,20 @@ func test_zone_with_population_has_active_species() -> void:
 	assert_int(int(zone.population()["jubilado"]["start"])).is_equal(8)
 
 
-func test_skeleton_without_population_generates_no_people() -> void:
+func test_camara_has_eco_and_manada() -> void:
 	var zone: ZoneDefinition = ZoneDefinition.load_from(CAMARA_PATH)
-	assert_array(zone.species()).is_empty()
-	assert_array(zone.planned_species()).is_equal(["eco", "manada"])
-	assert_array(zone.active_species()).is_empty()
+	assert_array(zone.species()).is_equal(["eco", "manada"])
+	assert_array(zone.planned_species()).is_empty()
+	assert_array(zone.active_species()).is_equal(["eco", "manada"])
+	assert_int(int(zone.population()["eco"]["start"])).is_equal(8)
 
 
-func test_species_without_population_are_not_active() -> void:
+func test_lonja_has_jubilado_and_grux() -> void:
 	var zone: ZoneDefinition = ZoneDefinition.load_from(LONJA_PATH)
-	assert_array(zone.species()).is_equal(["jubilado"])
-	assert_array(zone.active_species()).is_equal(["jubilado"])
+	assert_array(zone.species()).is_equal(["grux", "jubilado"])
+	assert_array(zone.active_species()).is_equal(["grux", "jubilado"])
 	assert_int(int(zone.population()["jubilado"]["target"])).is_equal(10)
+	assert_int(int(zone.population()["grux"]["target"])).is_equal(10)
 
 
 func test_entry_points_are_inside_the_floor() -> void:

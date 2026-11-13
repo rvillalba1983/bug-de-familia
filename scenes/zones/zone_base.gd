@@ -9,7 +9,7 @@ extends Sandbox
 
 signal transition_requested(to_zone: String)
 
-const ART_FOLDER: String = "res://art/beta/"
+const ART_FOLDER: String = "res://art/shared/"
 const FAST_TRAVEL_LABEL: String = "UI_FAST_TRAVEL"
 const FAST_TRAVEL_ITEM: String = "fast_travel_"
 ## Provisional: distancia a la que un grupo se mete en la pelea de los suyos.
@@ -216,7 +216,35 @@ func _close_travel(screen: MessageScreen) -> void:
 
 
 func _build_enemies() -> void:
-	pass
+	for actor: Dictionary in _definition().list("actors"):
+		_spawn_actor(actor)
+
+
+## Pone en escena a un personaje guionado de la zona (pasivo, con ruta fija).
+func _spawn_actor(actor: Dictionary) -> void:
+	var species: String = str(actor.get("species", ""))
+	var guard_node: Guard = _add_zone_guard(
+		str(actor["id"]), _definition().points(str(actor["route"])), _look_of(actor)
+	)
+	guard_node.set_passive(true)
+	if actor.has("weapon") and not str(actor["weapon"]).is_empty():
+		guard_node.make_ranged(self, str(actor["weapon"]))
+	_add_convertible(str(actor["id"]), guard_node, _zone_materials[guard_node])
+	guard_node.fell.connect(_on_zone_enemy_fell)
+	guard_node.corpse_expired.connect(_on_corpse_expired)
+	if not species.is_empty():
+		guard_node.attacked.connect(_on_zone_citizen_attacked.bind(guard_node, species))
+
+
+## Aspecto de un actor: especie o progenitor, igual que en la beta.
+func _look_of(actor: Dictionary) -> Dictionary:
+	if actor.has("species"):
+		return _species_look(str(actor["species"]))
+	var entry: Dictionary = ProgenitorCatalog.entry(str(actor["progenitor"]))
+	return {
+		"species": "", "color": Color(str(entry["color"])), "art": entry["art"],
+		"material": entry["material"], "deaths": entry["deaths"],
+	}
 
 
 func _build_investigation() -> void:
@@ -301,6 +329,12 @@ func guards() -> Array[Guard]:
 
 func id_of_guard(enemy: Guard) -> String:
 	return str(_zone_enemy_ids.get(enemy, ""))
+
+
+## El Sandbox usa _id_of para guardar caídos y retirar cadáveres; aquí la identidad
+## es la del JSON (ciudadanos y actores), no el «guard/shooter» del nivel de prueba.
+func _id_of(enemy: Guard) -> String:
+	return id_of_guard(enemy)
 
 
 func attack_citizen(enemy: Guard) -> void:

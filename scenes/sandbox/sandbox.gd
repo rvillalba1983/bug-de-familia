@@ -425,8 +425,10 @@ func _connect_systems() -> void:
 func _connect_enemies() -> void:
 	for enemy: Guard in guards():
 		noise_bus.noise_emitted.connect(enemy.hear)
-		drone.alarm_raised.connect(enemy.investigate)
-		security_camera.alarm_raised.connect(enemy.investigate)
+		if is_instance_valid(drone):
+			drone.alarm_raised.connect(enemy.investigate)
+		if is_instance_valid(security_camera):
+			security_camera.alarm_raised.connect(enemy.investigate)
 		enemy.fell.connect(_on_enemy_fell)
 		enemy.corpse_expired.connect(_on_corpse_expired)
 

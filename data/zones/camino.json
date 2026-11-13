@@ -114,15 +114,57 @@
     "world_size": [
       4000,
       4000
+    ],
+    "grux_home": [
+      900,
+      900,
+      400,
+      400
+    ],
+    "grux_gate": [
+      1100,
+      1100
+    ],
+    "pleg_home": [
+      2700,
+      900,
+      400,
+      400
+    ],
+    "pleg_gate": [
+      2900,
+      1100
     ]
   },
   "id": "camino",
   "items": [],
   "name": "Camino de los Dientes",
-  "planned_species": [
+  "planned_species": [],
+  "props": [],
+  "species": [
     "grux",
     "plegado"
   ],
-  "props": [],
-  "species": []
+  "population": {
+    "grux": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    },
+    "plegado": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    }
+  },
+  "homes": {
+    "grux": {
+      "area": "grux_home",
+      "gate": "grux_gate"
+    },
+    "plegado": {
+      "area": "pleg_home",
+      "gate": "pleg_gate"
+    }
+  }
 }

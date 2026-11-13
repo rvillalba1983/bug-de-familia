@@ -8,7 +8,7 @@ func test_each_zone_species_has_actor_data_and_a_rival_in_the_zone() -> void:
 	for species: String in zone:
 		assert_bool(SpeciesCatalog.has(species)).is_true()
 		assert_bool(zone.has(SpeciesCatalog.rival(species))).is_true()
-		assert_bool(ResourceLoader.exists("res://art/beta/%s.svg" % SpeciesCatalog.art(species))).is_true()
+		assert_bool(ResourceLoader.exists("res://art/shared/%s.svg" % SpeciesCatalog.art(species))).is_true()
 		assert_array(SpeciesCatalog.deaths(species)).is_not_empty()
 
 

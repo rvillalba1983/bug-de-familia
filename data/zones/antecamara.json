@@ -110,15 +110,57 @@
     "world_size": [
       4000,
       4000
+    ],
+    "eco_home": [
+      2700,
+      900,
+      400,
+      400
+    ],
+    "eco_gate": [
+      2900,
+      1100
+    ],
+    "pleg_home": [
+      900,
+      2700,
+      400,
+      400
+    ],
+    "pleg_gate": [
+      1100,
+      2900
     ]
   },
   "id": "antecamara",
   "items": [],
   "name": "La Antecámara",
-  "planned_species": [
-    "plegado",
-    "eco"
-  ],
+  "planned_species": [],
   "props": [],
-  "species": []
+  "species": [
+    "eco",
+    "plegado"
+  ],
+  "population": {
+    "eco": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    },
+    "plegado": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    }
+  },
+  "homes": {
+    "eco": {
+      "area": "eco_home",
+      "gate": "eco_gate"
+    },
+    "plegado": {
+      "area": "pleg_home",
+      "gate": "pleg_gate"
+    }
+  }
 }

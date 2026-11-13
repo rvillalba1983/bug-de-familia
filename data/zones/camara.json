@@ -110,15 +110,57 @@
     "world_size": [
       4000,
       4000
+    ],
+    "eco_home": [
+      2700,
+      900,
+      400,
+      400
+    ],
+    "eco_gate": [
+      2900,
+      1100
+    ],
+    "manada_home": [
+      900,
+      2700,
+      400,
+      400
+    ],
+    "manada_gate": [
+      1100,
+      2900
     ]
   },
   "id": "camara",
   "items": [],
   "name": "Cámara de Resonancia",
-  "planned_species": [
+  "planned_species": [],
+  "props": [],
+  "species": [
     "eco",
     "manada"
   ],
-  "props": [],
-  "species": []
+  "population": {
+    "eco": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    },
+    "manada": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    }
+  },
+  "homes": {
+    "eco": {
+      "area": "eco_home",
+      "gate": "eco_gate"
+    },
+    "manada": {
+      "area": "manada_home",
+      "gate": "manada_gate"
+    }
+  }
 }

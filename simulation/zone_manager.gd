@@ -7,7 +7,7 @@ signal transition_started(from_zone: String, to_zone: String)
 signal transition_finished(zone_id: String)
 signal zone_loaded(zone_id: String)
 
-const BETA_SCENE: String = "res://scenes/beta/beta_zone.tscn"
+const DESPLEGUE_CERO_SCENE: String = "res://scenes/beta/beta_zone.tscn"
 const ZONE_SCENE: String = "res://scenes/zones/zone.tscn"
 ## Tiempo mínimo de carga entre zonas (decisión 2).
 const MIN_TRANSITION: float = 5.0
@@ -41,7 +41,7 @@ func setup(zone_host: Node) -> void:
 
 
 ## Carga la zona guardada o la de inicio. Devuelve si se ha montado.
-func start(start_zone_id: String = "beta") -> bool:
+func start(start_zone_id: String = "despliegue_cero") -> bool:
 	var loaded: Dictionary = SaveSystem.read()
 	if loaded["status"] == SaveSystem.Status.OK:
 		_restore(loaded["data"])
@@ -216,7 +216,7 @@ func _load_zone(zone_id: String, from_zone: String) -> bool:
 func _factory(zone_id: String) -> ZoneBase:
 	if zone_factory.is_valid():
 		return zone_factory.call(zone_id) as ZoneBase
-	var path: String = BETA_SCENE if zone_id == "beta" else ZONE_SCENE
+	var path: String = DESPLEGUE_CERO_SCENE if zone_id == "despliegue_cero" else ZONE_SCENE
 	var packed: PackedScene = load(path) as PackedScene
 	if packed == null:
 		return null
@@ -270,12 +270,12 @@ func _restore(data: Dictionary) -> void:
 	}
 	var zones: Dictionary = data.get("world_zones", {})
 	if zones.is_empty():
-		## Partida de la beta de antes del gestor multi-zona.
-		var record: ZoneRecord = _record("beta")
+		## Partida de la despliegue cero de antes del gestor multi-zona.
+		var record: ZoneRecord = _record("despliegue_cero")
 		record.level_state = data
 		record.visited = true
 		record.last_seen_day = WorldCalendar.today()
-		current_id = "beta"
+		current_id = "despliegue_cero"
 		return
 	current_id = str(zones.get("current", ""))
 	var stored: Dictionary = zones.get("records", {})
@@ -316,7 +316,7 @@ func _profile_body() -> ModularBody:
 ## Semilla estable por zona, derivada de la semilla global de la partida.
 func _zone_seed(zone_id: String) -> int:
 	var base: int = int(profile.get("seed", 0))
-	if zone_id == "beta":
+	if zone_id == "despliegue_cero":
 		return base
 	return hash("zona_%s_%d" % [zone_id, base])
 

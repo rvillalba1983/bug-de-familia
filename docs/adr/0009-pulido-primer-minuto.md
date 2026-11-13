@@ -10,7 +10,7 @@ Se mantiene Compatibility. Comprobado en Godot 4.7.2 ejecutando el juego con Ope
 
 ## Decisiones
 - Esqueletos: una vista, un `EnemyRig`, creado al necesitarlo. Articulaciones en `entities/art/enemy_rig_data.gd`. El oeste refleja al este. De perfil, la pierna se duplica para poder andar. El Mohócrata no tiene piernas: anda balanceándose.
-- `tools/art/rig_split.py` genera `art/beta/rig/` a partir de los SVG de `art/beta/`. Origen: Claude, sin servicios externos.
+- `tools/art/rig_split.py` genera `art/shared/rig/` a partir de los SVG de `art/shared/`. Origen: Claude, sin servicios externos.
 - Impacto: `core/impact_fx.gd`. La pausa usa `Engine.time_scale` y solo lo restaura si nadie lo ha cambiado. No se usa la semilla de la partida. Como el juego no tiene saltos, «aterrizar» es el golpe contra el suelo al caer un enemigo.
 - Convertir: el mundo parado se ve a oscuras y sin color, con foco en el objeto. Las burlas son el evento `taunt` de `data/ai/personalities.json`; se eligen sin gastar la semilla.
 - Silueta: `BodyHud` pinta cada pieza según su desgaste (verde, amarillo, rojo), con parpadeo por debajo del 25 %, blanco si recibe un golpe y solo contorno si falta. Sustituye a las barras.

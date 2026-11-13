@@ -146,17 +146,77 @@
     "world_size": [
       4000,
       4000
+    ],
+    "grux_home": [
+      700,
+      100,
+      400,
+      400
+    ],
+    "grux_gate": [
+      900,
+      300
+    ],
+    "manada_home": [
+      1100,
+      100,
+      400,
+      400
+    ],
+    "manada_gate": [
+      1300,
+      300
+    ],
+    "moho_home": [
+      1500,
+      100,
+      400,
+      400
+    ],
+    "moho_gate": [
+      1700,
+      300
     ]
   },
   "id": "gran_mercado",
   "items": [],
   "name": "Gran Mercado",
-  "planned_species": [
-    "manada",
-    "grux"
-  ],
+  "planned_species": [],
   "props": [],
   "species": [
+    "grux",
+    "manada",
     "mohocrata"
-  ]
+  ],
+  "population": {
+    "grux": {
+      "start": 6,
+      "target": 8,
+      "max": 12
+    },
+    "manada": {
+      "start": 6,
+      "target": 8,
+      "max": 12
+    },
+    "mohocrata": {
+      "start": 6,
+      "target": 8,
+      "max": 12
+    }
+  },
+  "homes": {
+    "grux": {
+      "area": "grux_home",
+      "gate": "grux_gate"
+    },
+    "manada": {
+      "area": "manada_home",
+      "gate": "manada_gate"
+    },
+    "mohocrata": {
+      "area": "moho_home",
+      "gate": "moho_gate"
+    }
+  }
 }

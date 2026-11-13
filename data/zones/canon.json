@@ -110,15 +110,57 @@
     "world_size": [
       4000,
       4000
+    ],
+    "eco_home": [
+      900,
+      900,
+      400,
+      400
+    ],
+    "eco_gate": [
+      1100,
+      1100
+    ],
+    "grux_home": [
+      2700,
+      900,
+      400,
+      400
+    ],
+    "grux_gate": [
+      2900,
+      1100
     ]
   },
   "id": "canon",
   "items": [],
   "name": "Cañón del Eco",
-  "planned_species": [
+  "planned_species": [],
+  "props": [],
+  "species": [
     "eco",
     "grux"
   ],
-  "props": [],
-  "species": []
+  "population": {
+    "eco": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    },
+    "grux": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    }
+  },
+  "homes": {
+    "eco": {
+      "area": "eco_home",
+      "gate": "eco_gate"
+    },
+    "grux": {
+      "area": "grux_home",
+      "gate": "grux_gate"
+    }
+  }
 }

@@ -110,16 +110,57 @@
     "world_size": [
       4000,
       4000
+    ],
+    "manada_home": [
+      900,
+      900,
+      400,
+      400
+    ],
+    "manada_gate": [
+      1100,
+      1100
+    ],
+    "moho_home": [
+      2700,
+      900,
+      400,
+      400
+    ],
+    "moho_gate": [
+      2900,
+      1100
     ]
   },
   "id": "atajo",
   "items": [],
   "name": "Atajo de las Esporas",
-  "planned_species": [
-    "manada"
-  ],
+  "planned_species": [],
   "props": [],
   "species": [
+    "manada",
     "mohocrata"
-  ]
+  ],
+  "population": {
+    "manada": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    },
+    "mohocrata": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    }
+  },
+  "homes": {
+    "manada": {
+      "area": "manada_home",
+      "gate": "manada_gate"
+    },
+    "mohocrata": {
+      "area": "moho_home",
+      "gate": "moho_gate"
+    }
+  }
 }

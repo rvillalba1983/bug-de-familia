@@ -11,7 +11,7 @@ const DAMAGE: float = 45.0
 const EXPLOSION_NOISE: float = 700.0
 const STUN_RADIUS: float = 190.0
 const STUN_TIME: float = 6.0
-const ART: Texture2D = preload("res://art/beta/mina_petanca.svg")
+const ART: Texture2D = preload("res://art/shared/mina_petanca.svg")
 const ART_RECT: Rect2 = Rect2(-20.0, -36.0, 40.0, 40.0)
 
 var mine_id: String = ""

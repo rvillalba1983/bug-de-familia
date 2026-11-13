@@ -1,9 +1,9 @@
 class_name PieceAtlas
 extends RefCounted
 ## Hoja única con las piezas de todos los personajes: al compartir textura se dibujan juntas.
-## La genera tools/art/piece_atlas_gen.gd a partir de art/beta/rig/.
+## La genera tools/art/piece_atlas_gen.gd a partir de art/shared/rig/.
 
-const IMAGE_PATH: String = "res://art/beta/atlas/piezas.png"
+const IMAGE_PATH: String = "res://art/shared/atlas/piezas.png"
 const INDEX_PATH: String = "res://data/art/atlas_piezas.json"
 const SHADOW: String = "sombra"
 

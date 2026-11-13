@@ -10,7 +10,7 @@
           240,
           64
         ],
-        "to": "beta"
+        "to": "despliegue_cero"
       },
       {
         "edge": "west",
@@ -120,16 +120,57 @@
     "world_size": [
       4000,
       4000
+    ],
+    "jub_home": [
+      2700,
+      900,
+      400,
+      400
+    ],
+    "jub_gate": [
+      2900,
+      1100
+    ],
+    "manada_home": [
+      900,
+      2700,
+      400,
+      400
+    ],
+    "manada_gate": [
+      1100,
+      2900
     ]
   },
   "id": "desguace",
   "items": [],
   "name": "Desguace de las Nueve",
-  "planned_species": [
-    "manada"
-  ],
+  "planned_species": [],
   "props": [],
   "species": [
-    "jubilado"
-  ]
+    "jubilado",
+    "manada"
+  ],
+  "population": {
+    "jubilado": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    },
+    "manada": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    }
+  },
+  "homes": {
+    "jubilado": {
+      "area": "jub_home",
+      "gate": "jub_gate"
+    },
+    "manada": {
+      "area": "manada_home",
+      "gate": "manada_gate"
+    }
+  }
 }

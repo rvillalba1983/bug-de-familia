@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "crate_a",
+      "material": "madera_cuantica"
+    },
+    {
+      "id": "crate_b",
+      "material": "madera_cuantica"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -124,29 +133,185 @@
     "world_size": [
       4000,
       4000
+    ],
+    "grux_home": [
+      800,
+      800,
+      600,
+      500
+    ],
+    "grux_gate": [
+      1100,
+      1050
+    ],
+    "toldos": [
+      [
+        1500,
+        1200
+      ],
+      [
+        2000,
+        1200
+      ],
+      [
+        2500,
+        1200
+      ],
+      [
+        3000,
+        1200
+      ]
+    ],
+    "paneles": [
+      [
+        1200,
+        2000
+      ],
+      [
+        1800,
+        2000
+      ],
+      [
+        2800,
+        2000
+      ]
+    ],
+    "crate_a": [
+      1600,
+      2600
+    ],
+    "crate_b": [
+      2400,
+      2600
+    ],
+    "pickup_leg": [
+      2000,
+      1600
+    ],
+    "pickup_arm": [
+      2800,
+      1600
+    ],
+    "tasador_route": [
+      [
+        1600,
+        1800
+      ],
+      [
+        2400,
+        1800
+      ],
+      [
+        2400,
+        2400
+      ],
+      [
+        1600,
+        2400
+      ]
+    ],
+    "fiador_route": [
+      [
+        1800,
+        2000
+      ],
+      [
+        2200,
+        2000
+      ],
+      [
+        2200,
+        2200
+      ],
+      [
+        1800,
+        2200
+      ]
     ]
   },
   "homes": {
     "jubilado": {
       "area": "jub_home",
       "gate": "jub_gate"
+    },
+    "grux": {
+      "area": "grux_home",
+      "gate": "grux_gate"
     }
   },
   "id": "lonja",
-  "items": [],
-  "name": "Lonja de los Dientes",
-  "planned_species": [
-    "grux"
+  "items": [
+    {
+      "at": "crate_a",
+      "id": "crate_a",
+      "type": "crate"
+    },
+    {
+      "at": "crate_b",
+      "id": "crate_b",
+      "type": "crate"
+    },
+    {
+      "at": "pickup_leg",
+      "id": "pickup_leg_1",
+      "type": "leg"
+    },
+    {
+      "at": "pickup_arm",
+      "id": "pickup_arm_1",
+      "type": "arm"
+    }
   ],
+  "name": "Lonja de los Dientes",
+  "planned_species": [],
   "population": {
     "jubilado": {
       "max": 14,
       "start": 8,
       "target": 10
+    },
+    "grux": {
+      "start": 8,
+      "target": 10,
+      "max": 14
     }
   },
-  "props": [],
+  "props": [
+    {
+      "at": "toldos",
+      "id_prefix": "toldo",
+      "material": "madera_cuantica",
+      "prop": "toldo",
+      "size": [
+        120,
+        60
+      ]
+    },
+    {
+      "at": "paneles",
+      "id_prefix": "panel",
+      "material": "fibra_fotonica",
+      "prop": "panel",
+      "size": [
+        72,
+        96
+      ]
+    }
+  ],
   "species": [
+    "grux",
     "jubilado"
+  ],
+  "actors": [
+    {
+      "id": "tasador",
+      "route": "tasador_route",
+      "species": "jubilado"
+    },
+    {
+      "id": "fiador",
+      "route": "fiador_route",
+      "species": "grux"
+    }
   ]
 }

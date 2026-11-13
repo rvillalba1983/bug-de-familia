@@ -122,17 +122,77 @@
     "world_size": [
       4000,
       4000
+    ],
+    "grux_home": [
+      700,
+      100,
+      400,
+      400
+    ],
+    "grux_gate": [
+      900,
+      300
+    ],
+    "jub_home": [
+      1100,
+      100,
+      400,
+      400
+    ],
+    "jub_gate": [
+      1300,
+      300
+    ],
+    "manada_home": [
+      1500,
+      100,
+      400,
+      400
+    ],
+    "manada_gate": [
+      1700,
+      300
     ]
   },
   "id": "cementerio",
   "items": [],
   "name": "Cementerio de Robots",
-  "planned_species": [
-    "grux",
-    "manada"
-  ],
+  "planned_species": [],
   "props": [],
   "species": [
-    "jubilado"
-  ]
+    "grux",
+    "jubilado",
+    "manada"
+  ],
+  "population": {
+    "grux": {
+      "start": 6,
+      "target": 8,
+      "max": 12
+    },
+    "jubilado": {
+      "start": 6,
+      "target": 8,
+      "max": 12
+    },
+    "manada": {
+      "start": 6,
+      "target": 8,
+      "max": 12
+    }
+  },
+  "homes": {
+    "grux": {
+      "area": "grux_home",
+      "gate": "grux_gate"
+    },
+    "jubilado": {
+      "area": "jub_home",
+      "gate": "jub_gate"
+    },
+    "manada": {
+      "area": "manada_home",
+      "gate": "manada_gate"
+    }
+  }
 }

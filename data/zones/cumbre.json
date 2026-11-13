@@ -20,7 +20,7 @@
           240,
           64
         ],
-        "to": "beta"
+        "to": "despliegue_cero"
       },
       {
         "edge": "south",
@@ -142,14 +142,37 @@
     "world_size": [
       4000,
       4000
+    ],
+    "pleg_home": [
+      700,
+      100,
+      400,
+      400
+    ],
+    "pleg_gate": [
+      900,
+      300
     ]
   },
   "id": "cumbre",
   "items": [],
   "name": "Cumbre de los Pliegues",
-  "planned_species": [
+  "planned_species": [],
+  "props": [],
+  "species": [
     "plegado"
   ],
-  "props": [],
-  "species": []
+  "population": {
+    "plegado": {
+      "start": 10,
+      "target": 12,
+      "max": 16
+    }
+  },
+  "homes": {
+    "plegado": {
+      "area": "pleg_home",
+      "gate": "pleg_gate"
+    }
+  }
 }

@@ -130,16 +130,57 @@
     "world_size": [
       4000,
       4000
+    ],
+    "eco_home": [
+      900,
+      900,
+      400,
+      400
+    ],
+    "eco_gate": [
+      1100,
+      1100
+    ],
+    "moho_home": [
+      2700,
+      900,
+      400,
+      400
+    ],
+    "moho_gate": [
+      2900,
+      1100
     ]
   },
   "id": "colmena",
   "items": [],
   "name": "Colmena Fúngica",
-  "planned_species": [
-    "eco"
-  ],
+  "planned_species": [],
   "props": [],
   "species": [
+    "eco",
     "mohocrata"
-  ]
+  ],
+  "population": {
+    "eco": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    },
+    "mohocrata": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    }
+  },
+  "homes": {
+    "eco": {
+      "area": "eco_home",
+      "gate": "eco_gate"
+    },
+    "mohocrata": {
+      "area": "moho_home",
+      "gate": "moho_gate"
+    }
+  }
 }

@@ -116,15 +116,57 @@
     "world_size": [
       4000,
       4000
+    ],
+    "eco_home": [
+      900,
+      900,
+      400,
+      400
+    ],
+    "eco_gate": [
+      1100,
+      1100
+    ],
+    "pleg_home": [
+      2700,
+      900,
+      400,
+      400
+    ],
+    "pleg_gate": [
+      2900,
+      1100
     ]
   },
   "id": "instalacion",
   "items": [],
   "name": "La Instalación Anterior",
-  "planned_species": [
+  "planned_species": [],
+  "props": [],
+  "species": [
     "eco",
     "plegado"
   ],
-  "props": [],
-  "species": []
+  "population": {
+    "eco": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    },
+    "plegado": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    }
+  },
+  "homes": {
+    "eco": {
+      "area": "eco_home",
+      "gate": "eco_gate"
+    },
+    "plegado": {
+      "area": "pleg_home",
+      "gate": "pleg_gate"
+    }
+  }
 }

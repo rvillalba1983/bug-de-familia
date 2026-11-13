@@ -100,15 +100,57 @@
     "world_size": [
       4000,
       4000
+    ],
+    "manada_home": [
+      900,
+      900,
+      400,
+      400
+    ],
+    "manada_gate": [
+      1100,
+      1100
+    ],
+    "pleg_home": [
+      2700,
+      900,
+      400,
+      400
+    ],
+    "pleg_gate": [
+      2900,
+      1100
     ]
   },
   "id": "sendero",
   "items": [],
   "name": "Sendero del Pliegue",
-  "planned_species": [
-    "plegado",
-    "manada"
-  ],
+  "planned_species": [],
   "props": [],
-  "species": []
+  "species": [
+    "manada",
+    "plegado"
+  ],
+  "population": {
+    "manada": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    },
+    "plegado": {
+      "start": 8,
+      "target": 10,
+      "max": 14
+    }
+  },
+  "homes": {
+    "manada": {
+      "area": "manada_home",
+      "gate": "manada_gate"
+    },
+    "plegado": {
+      "area": "pleg_home",
+      "gate": "pleg_gate"
+    }
+  }
 }

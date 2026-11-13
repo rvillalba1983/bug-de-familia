@@ -26,7 +26,7 @@ RAIZ: Path = Path(__file__).resolve().parent.parent
 DATA: Path = RAIZ / "data"
 REFERENCIA: Path = RAIZ / "tools" / "referencia_datos.json"
 
-ESPECIE_RAIZ: str = "res://art/beta/"
+ESPECIE_RAIZ: str = "res://art/shared/"
 
 
 class Informe:
@@ -225,7 +225,7 @@ def validar_mundo(informe: Informe) -> dict[str, Any]:
                 else:
                     for sufijo in ("", "_e", "_n"):
                         comprobar_fichero_existe(
-                            RAIZ / "art" / "beta" / ("%s%s.svg" % (arte, sufijo)),
+                            RAIZ / "art" / "shared" / ("%s%s.svg" % (arte, sufijo)),
                             rel_sp,
                             "%s.actor.art%s" % (campo, sufijo or " (base)"),
                             informe,
@@ -662,7 +662,7 @@ def validar_zonas(informe: Informe) -> None:
                         comprobar_fichero_existe(RAIZ / arte[len("res://"):], rel, "%s.art" % campo, informe)
                     else:
                         comprobar_fichero_existe(
-                            RAIZ / "art" / "beta" / ("%s.svg" % arte), rel, "%s.art" % campo, informe
+                            RAIZ / "art" / "shared" / ("%s.svg" % arte), rel, "%s.art" % campo, informe
                         )
 
         convertibles = zona.get("convertibles")
@@ -1056,7 +1056,7 @@ def validar_arte(informe: Informe) -> dict[str, Any]:
     conteos["atlas_piezas"] = len(claves_atlas)
 
     # El atlas debe cubrir las piezas de los rigs y solo las piezas de los rigs.
-    directorio_rig = RAIZ / "art" / "beta" / "rig"
+    directorio_rig = RAIZ / "art" / "shared" / "rig"
     piezas_rig: set[str] = set()
     if directorio_rig.is_dir():
         for sub in sorted(directorio_rig.iterdir()):
@@ -1065,7 +1065,7 @@ def validar_arte(informe: Informe) -> dict[str, Any]:
             for svg in sorted(sub.glob("*.svg")):
                 piezas_rig.add("%s/%s" % (sub.name, svg.stem))
     else:
-        informe.error(rel_at, "no existe el directorio de rigs 'art/beta/rig'")
+        informe.error(rel_at, "no existe el directorio de rigs 'art/shared/rig'")
 
     for clave in piezas_rig:
         if clave not in claves_atlas:

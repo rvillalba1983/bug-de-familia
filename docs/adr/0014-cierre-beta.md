@@ -34,7 +34,7 @@ Con Narcisa activa los disfraces duran un 60 % más y engañan mejor. Lumi deja 
 - Consecuencias al salir de la zona: no se pueden hacer sin zonas nuevas, porque no hay salida. Cerrar y volver ya conserva el estado.
 
 ## Recursos
-`art/beta/props/antena.svg`: escrito a mano por Claude, 9-nov, sin herramientas externas.
+`art/shared/props/antena.svg`: escrito a mano por Claude, 9-nov, sin herramientas externas.
 
 `art/fuentes/Bangers-Regular.ttf`: The Bangers Project Authors, SIL Open Font License 1.1 (`art/fuentes/OFL.txt`), de github.com/google/fonts.
 

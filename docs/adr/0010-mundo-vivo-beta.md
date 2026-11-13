@@ -37,6 +37,6 @@ Sin medir: gráfica real.
 - Cámara más cerrada: zoom inicial 1,75, mínimo 1,5 y máximo 2,6 (provisionales).
 - Chat de las IAs tipo IRC antiguo abajo a la izquierda (`ui/irc_chat.gd`), con dibujos ASCII inventados por IA en `data/ai/personalities.json`. El objetivo y la ayuda de controles pasan al chat.
 - Silueta de piezas encima del chat. Bocadillos de dibujos animados en `ai/speech_bubble.gd`.
-- Objetos dibujados en `art/beta/props/`, generados por `tools/art/props_gen.py`. Origen: Claude, sin servicios externos.
+- Objetos dibujados en `art/shared/props/`, generados por `tools/art/props_gen.py`. Origen: Claude, sin servicios externos.
 - Sin textos descriptivos en el mundo. Solo queda la tecla (E o Q) sobre lo que se puede usar ahora.
 - Personajes un 20 % más pequeños a petición del director (`ART_HEIGHT` 77), con las mismas colisiones.

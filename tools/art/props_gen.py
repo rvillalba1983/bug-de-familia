@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Genera los objetos de la beta en art/beta/props/. Origen: Claude, sin servicios externos."""
+"""Genera los objetos del juego en art/shared/props/. Origen: Claude, sin servicios externos."""
 from pathlib import Path
 
-OUT = Path(__file__).resolve().parents[2] / "art/beta/props"
+OUT = Path(__file__).resolve().parents[2] / "art/shared/props"
 INK, BER, CIAN, AZUL, ROSA, NAR, AMA, ACIDO, MOHO, OXI, HIER, HUE = (
     "#1B0E2A", "#6A2BA8", "#00E5FF", "#0A7FC2", "#FF1F8F", "#FF6A00",
     "#FFD400", "#C6FF00", "#2FBF71", "#A8482A", "#8894B5", "#F6E7C8",

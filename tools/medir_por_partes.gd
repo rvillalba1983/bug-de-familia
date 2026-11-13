@@ -8,7 +8,7 @@ const SAMPLES: int = 60
 const CASES: Array[String] = ["todo", "sin_filtro", "sin_conos", "sin_anim", "sin_dibujo_personajes", "sin_ambiente", "nada"]
 const SPOT: Vector2 = Vector2(1500.0, 620.0)
 
-var zone: BetaZone
+var zone: DespliegueCeroZone
 var _rigs: Array[Node] = []
 
 
@@ -24,9 +24,9 @@ func _run() -> void:
 	BattleDirector.auto_start = false
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	Engine.max_fps = 0
-	change_scene_to_file("res://scenes/beta/beta_zone.tscn")
+	change_scene_to_file("res://scenes/despliegue_cero/despliegue_cero_zone.tscn")
 	await create_timer(1.5).timeout
-	zone = current_scene as BetaZone
+	zone = current_scene as DespliegueCeroZone
 	var extra: int = int(OS.get_environment("EXTRA")) if OS.has_environment("EXTRA") else 0
 	for index: int in range(extra):
 		zone.live_world.sim.spawn("jubilado" if index % 2 == 0 else "mohocrata", SPOT + Vector2(float(index) * 25.0, 200.0), "nacido")
@@ -36,8 +36,8 @@ func _run() -> void:
 	for guard: Guard in zone.guards():
 		if guard.detector.detected.is_connected(guard._on_detected):
 			guard.detector.detected.disconnect(guard._on_detected)
-	for node: Node in zone.find_children("*", "BetaAtmosphere", true, false):
-		var atmosphere: BetaAtmosphere = node
+	for node: Node in zone.find_children("*", "DespliegueCeroAtmosphere", true, false):
+		var atmosphere: DespliegueCeroAtmosphere = node
 		atmosphere.hour_source = func() -> int: return 23 if OS.has_environment("NOCHE") else 12
 		atmosphere._apply_hour()
 	await create_timer(2.0).timeout
@@ -97,10 +97,10 @@ func _set_chars_drawn(on: bool) -> void:
 
 
 func _set_ambient(on: bool) -> void:
-	for node: Node in zone.find_children("*", "BetaAmbient", true, false):
+	for node: Node in zone.find_children("*", "DespliegueCeroAmbient", true, false):
 		(node as CanvasItem).visible = on
 		node.set_process(on)
-	for node: Node in zone.find_children("*", "BetaAtmosphere", true, false):
+	for node: Node in zone.find_children("*", "DespliegueCeroAtmosphere", true, false):
 		for child: Node in node.get_children():
 			if child is Light2D:
 				(child as Light2D).visible = on

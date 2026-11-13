@@ -3,7 +3,7 @@ extends SceneTree
 
 const FRAMES: Array[float] = [0.2, 1.0, 2.0, 4.0, 7.0]
 
-var zone: BetaZone
+var zone: DespliegueCeroZone
 var out: String = ""
 
 
@@ -16,13 +16,13 @@ func _run() -> void:
 	SaveSystem.delete_all()
 	Sandbox.session_started = true
 	Sandbox.forced_seed = 7
-	BetaZone.forced_hour = 12
+	DespliegueCeroZone.forced_hour = 12
 	BattleDirector.auto_start = false
 	out = OS.get_environment("SALIDA")
 	var id: String = OS.get_environment("GRUPO") if OS.has_environment("GRUPO") else "cuadrilla_moho"
-	change_scene_to_file("res://scenes/beta/beta_zone.tscn")
+	change_scene_to_file("res://scenes/despliegue_cero/despliegue_cero_zone.tscn")
 	await create_timer(1.5).timeout
-	zone = current_scene as BetaZone
+	zone = current_scene as DespliegueCeroZone
 	zone.set_enemies_active(false)
 	var item: Interactable = zone.investigation.npc_nodes[id]
 	zone.player.global_position = item.global_position + Vector2(-110.0, 60.0)

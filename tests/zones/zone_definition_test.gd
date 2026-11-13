@@ -1,7 +1,7 @@
 extends GdUnitTestSuite
 ## Zonas declaradas en data/zones/: esquema, especies activas y accesos.
 
-const BETA_PATH: String = "res://data/zones/beta.json"
+const DESPLEGUE_CERO_PATH: String = "res://data/zones/despliegue_cero.json"
 const EL_ENCHUFE_PATH: String = "res://data/zones/el_enchufe.json"
 const LONJA_PATH: String = "res://data/zones/lonja.json"
 const CAMARA_PATH: String = "res://data/zones/camara.json"
@@ -11,15 +11,15 @@ func before_test() -> void:
 	TestSupport.reset_session()
 
 
-func test_beta_keeps_its_reference_geometry() -> void:
-	var beta: ZoneDefinition = ZoneDefinition.load_from(BETA_PATH)
-	assert_str(beta.id).is_equal("beta")
-	assert_str(beta.display_name).is_equal("Despliegue Cero")
-	assert_vector(beta.world_size()).is_equal(Vector2(3800.0, 2600.0))
-	assert_vector(beta.floor_rect().position).is_equal(Vector2(100.0, 100.0))
-	assert_vector(beta.start()).is_equal(Vector2(300.0, 1300.0))
-	assert_array(beta.species()).is_equal(["jubilado", "mohocrata"])
-	assert_array(beta.active_species()).is_equal(["jubilado", "mohocrata"])
+func test_despliegue_cero_keeps_its_reference_geometry() -> void:
+	var zone: ZoneDefinition = ZoneDefinition.load_from(DESPLEGUE_CERO_PATH)
+	assert_str(zone.id).is_equal("despliegue_cero")
+	assert_str(zone.display_name).is_equal("Despliegue Cero")
+	assert_vector(zone.world_size()).is_equal(Vector2(3800.0, 2600.0))
+	assert_vector(zone.floor_rect().position).is_equal(Vector2(100.0, 100.0))
+	assert_vector(zone.start()).is_equal(Vector2(300.0, 1300.0))
+	assert_array(zone.species()).is_equal(["jubilado", "mohocrata"])
+	assert_array(zone.active_species()).is_equal(["jubilado", "mohocrata"])
 
 
 func test_zone_with_population_has_active_species() -> void:

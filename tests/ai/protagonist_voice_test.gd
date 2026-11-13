@@ -1,14 +1,14 @@
 extends GdUnitTestSuite
 ## Motes de IAs y progenitores, y comentarios de Sujeto Sobrante.
 
-const PATH: String = "res://scenes/beta/beta_zone.tscn"
+const PATH: String = "res://scenes/despliegue_cero/despliegue_cero_zone.tscn"
 
-var zone: BetaZone
+var zone: DespliegueCeroZone
 
 
 func before_test() -> void:
 	TestSupport.reset_session()
-	BetaZone.forced_hour = 12
+	DespliegueCeroZone.forced_hour = 12
 	zone = scene_runner(PATH).scene()
 	zone.set_enemies_active(false)
 	zone.ai.team.active = ["panico", "mama", "arbitro"]
@@ -17,7 +17,7 @@ func before_test() -> void:
 
 
 func after_test() -> void:
-	BetaZone.forced_hour = -1
+	DespliegueCeroZone.forced_hour = -1
 	get_tree().paused = false
 
 

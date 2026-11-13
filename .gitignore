@@ -4,3 +4,10 @@ export/
 build/
 reports/
 *.tmp
+# Bytecode de Python (las herramientas se importan en las pruebas unitarias).
+__pycache__/
+# Prueba de humo local (tools/verificar_humo.py): datos y registro.
+humo_datos/
+humo.log
+# Snapshots automaticos de edicion (herramienta de backup local).
+.backups/

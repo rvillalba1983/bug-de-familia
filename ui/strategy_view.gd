@@ -182,10 +182,10 @@ func _draw_labels() -> void:
 ## Pocos y dibujados antes de los luchadores: no tapan texto ni alteran la cámara.
 func building_rects() -> Array[Rect2]:
 	return [
-		BetaLayout.central_facade,
-		BetaLayout.depot_facade,
-		BetaLayout.jub_home,
-		BetaLayout.moho_home,
+		DespliegueCeroLayout.central_facade,
+		DespliegueCeroLayout.depot_facade,
+		DespliegueCeroLayout.jub_home,
+		DespliegueCeroLayout.moho_home,
 	]
 
 
@@ -196,8 +196,8 @@ func _draw_buildings() -> void:
 		var caja: Rect2 = Rect2(a, b - a)
 		_canvas.draw_rect(caja, COLOR_EDIFICIO)
 		_canvas.draw_rect(caja, COLOR_EDIFICIO_BORDE, false, 2.0)
-	var ciudad: Vector2 = _to_view(BetaLayout.city.position)
-	var fin: Vector2 = _to_view(BetaLayout.city.position + BetaLayout.city.size)
+	var ciudad: Vector2 = _to_view(DespliegueCeroLayout.city.position)
+	var fin: Vector2 = _to_view(DespliegueCeroLayout.city.position + DespliegueCeroLayout.city.size)
 	_canvas.draw_rect(Rect2(ciudad, fin - ciudad), COLOR_EDIFICIO_BORDE, false, 2.0)
 
 

@@ -1,9 +1,10 @@
 class_name DespliegueCeroLayout
 extends RefCounted
-## Geometría fija de la zona beta, leída de data/zones/beta.json: bosque con ciudad perdida.
+## Geometría fija de la zona de despliegue cero, leída de
+## data/zones/despliegue_cero.json: bosque con ciudad perdida.
 ## Jubilados al norte, Mohócratas al sur y la tierra de nadie entre ambos.
 
-const PATH: String = "res://data/zones/beta.json"
+const PATH: String = "res://data/zones/despliegue_cero.json"
 
 static var zone: ZoneDefinition = ZoneDefinition.load_from(PATH)
 static var antennas: Array[Vector2] = zone.points("antennas")

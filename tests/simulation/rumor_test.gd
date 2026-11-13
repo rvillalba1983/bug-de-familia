@@ -25,6 +25,25 @@ func test_generates_population_without_duplicates() -> void:
 	assert_int(unique.size()).is_equal(36)
 
 
+## Una simulación sin lista declarada solo puebla las especies que tienen hogar:
+## las demás no tienen dónde colocarse y se amontonarían en la esquina.
+func test_only_species_with_a_home_are_simulated() -> void:
+	var sim: WorldSim = _sim()
+	assert_array(sim.species_ids()).is_equal(["jubilado", "mohocrata"])
+	for id: String in sim.npc_ids:
+		var npc: NpcState = sim.npcs[id]
+		assert_bool(sim.spawn_areas.has(npc.species)).is_true()
+
+
+## Una zona que declara sus especies manda: la lista vale, aunque no haya hogares.
+func test_declared_species_win_over_the_homes() -> void:
+	var sim: WorldSim = WorldSim.new()
+	sim.spawn_areas = {"jubilado": Rect2(0, 0, 10, 10)}
+	sim.active_species = ["jubilado", "mohocrata"]
+	sim.species_declared = true
+	assert_array(sim.species_ids()).is_equal(["jubilado", "mohocrata"])
+
+
 func test_same_seed_same_world() -> void:
 	assert_dict(_sim().to_dict()).is_equal(_sim().to_dict())
 
@@ -86,9 +105,10 @@ func test_save_roundtrip_is_identical() -> void:
 
 func test_citizens_appear_in_the_zone_and_can_be_talked_to() -> void:
 	TestSupport.reset_session()
-	BetaZone.forced_hour = 12
-	var runner: GdUnitSceneRunner = scene_runner("res://scenes/beta/beta_zone.tscn")
-	var zone: BetaZone = runner.scene()
+	DespliegueCeroZone.forced_hour = 12
+	var path: String = "res://scenes/despliegue_cero/despliegue_cero_zone.tscn"
+	var runner: GdUnitSceneRunner = scene_runner(path)
+	var zone: DespliegueCeroZone = runner.scene()
 	await await_millis(100)
 	var world: LiveWorld = zone.live_world
 	assert_int(world.citizens.size()).is_equal(36)
@@ -102,4 +122,4 @@ func test_citizens_appear_in_the_zone_and_can_be_talked_to() -> void:
 	# Sus vecinos se unen a la pelea y sale la pausa previa: no debe pasar a la siguiente prueba.
 	get_tree().paused = false
 	Engine.time_scale = 1.0
-	BetaZone.forced_hour = -1
+	DespliegueCeroZone.forced_hour = -1

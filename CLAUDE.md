@@ -16,6 +16,8 @@ python tools/verificar.py                     # datos + normas de formato (deter
 
 Comprobaciones deterministas antes de commitear: `tools/verificar.py`. En OpenCode, comando `/verificar`. Ver `docs/adr/0019-herramientas-ci-y-mcp.md`.
 
+Escena principal: `res://scenes/world/world.tscn` (la zona inicial la monta `ZoneManager`), igual que en `AGENTS.md`.
+
 ## Reglas
 - Respeta `docs/02_DECISIONES.md`. No restaures decisiones sustituidas.
 - No resuelvas por tu cuenta nada de `docs/01_CONFLICTOS_Y_PENDIENTES.md`: propón alternativas y sigue con tareas independientes.

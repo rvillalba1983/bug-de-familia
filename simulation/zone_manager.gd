@@ -7,7 +7,7 @@ signal transition_started(from_zone: String, to_zone: String)
 signal transition_finished(zone_id: String)
 signal zone_loaded(zone_id: String)
 
-const DESPLEGUE_CERO_SCENE: String = "res://scenes/beta/beta_zone.tscn"
+const DESPLEGUE_CERO_SCENE: String = "res://scenes/despliegue_cero/despliegue_cero_zone.tscn"
 const ZONE_SCENE: String = "res://scenes/zones/zone.tscn"
 ## Tiempo mínimo de carga entre zonas (decisión 2).
 const MIN_TRANSITION: float = 5.0
@@ -277,11 +277,14 @@ func _restore(data: Dictionary) -> void:
 		record.last_seen_day = WorldCalendar.today()
 		current_id = "despliegue_cero"
 		return
-	current_id = str(zones.get("current", ""))
+	current_id = SaveSystem.migrate_zone_id(str(zones.get("current", "")))
 	var stored: Dictionary = zones.get("records", {})
 	for zone_id: Variant in stored:
 		var entry: Dictionary = stored[zone_id]
-		records[str(zone_id)] = ZoneRecord.from_dict(entry)
+		var migrated: String = SaveSystem.migrate_zone_id(str(zone_id))
+		var record: ZoneRecord = ZoneRecord.from_dict(entry)
+		record.zone_id = migrated
+		records[migrated] = record
 
 
 func _record(zone_id: String) -> ZoneRecord:

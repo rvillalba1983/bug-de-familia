@@ -20,7 +20,7 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 ## Estructura
 
 - Las carpetas raíz son sistemas de juego: `ai`, `art`, `audio`, `body`, `combat`, `conversion`, `core`, `entities`, `investigation`, `scenes`, `simulation`, `stealth`, `ui`. `tests/` espeja esas carpetas; `addons/gdUnit4` es el framework de pruebas; `tools/` son scripts de medición y captura.
-- Escena principal: `res://scenes/beta/beta_zone.tscn`.
+- Escena principal: `res://scenes/world/world.tscn` (la zona inicial la monta `ZoneManager`).
 - Contenido en datos, separado del código: catálogos en `core/data/`, mundo y zonas en `data/` (JSON). Ver `docs/adr/0016-revision-codigo.md`.
 - Los presets de exportación excluyen `addons/`, `tests/`, `tools/` y `docs/`, e incluyen `data/*.json`.
 

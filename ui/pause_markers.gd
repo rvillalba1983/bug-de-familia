@@ -7,7 +7,7 @@ const COLOR_MINE: Color = Color("#ffd24a")
 const COLOR_USABLE: Color = Color("#c060ff")
 const RING: float = 34.0
 
-var level: BetaZone
+var level: DespliegueCeroZone
 
 
 func _ready() -> void:

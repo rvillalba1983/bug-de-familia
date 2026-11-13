@@ -59,14 +59,30 @@ jobs:
       - name: Añadir Godot al PATH
         run: echo "/tmp/godot" >> "$GITHUB_PATH"
 
-      - name: Importar proyecto
-        run: godot --headless --import
+      - name: Importar proyecto (falla ante errores de script)
+        run: |
+          set -o pipefail
+          godot --headless --import 2>&1 | tee import.log
+          if grep -nE "^(ERROR|USER ERROR|SCRIPT ERROR|Parse Error):" import.log; then
+            echo "::error::La importacion dejo errores de script o de recursos"
+            exit 1
+          fi
         timeout-minutes: 5
 
+      # La prueba de humo del binario se hace en pruebas.yml (job «arranque»):
+      # exportar aqui solo produce el artefacto de Windows, que no se puede
+      # ejecutar en el runner de Linux. El arranque real lo valida ese job.
       - name: Exportar Windows
         run: |
           mkdir -p build
-          godot --headless --export-release "Windows" build/bug_de_familia.exe
+          godot --headless --export-release "Windows" build/bug_de_familia.exe \
+            2>&1 | tee export.log
+          test -s build/bug_de_familia.exe
+          test -s build/bug_de_familia.pck
+          if grep -nE "^(ERROR|USER ERROR|SCRIPT ERROR|Parse Error):" export.log; then
+            echo "::error::La exportacion dejo errores de script o de recursos"
+            exit 1
+          fi
 
       - name: Subir artefactos
         uses: actions/upload-artifact@v4
@@ -76,3 +92,13 @@ jobs:
             build/*.exe
             build/*.pck
           if-no-files-found: error
+
+      - name: Guardar registros si algo falla
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exportar-windows-registros
+          path: |
+            import.log
+            export.log
+          if-no-files-found: ignore

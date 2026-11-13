@@ -6,6 +6,8 @@ enum Status { NONE, OK, CORRUPT }
 
 const SCHEMA_VERSION: int = 3
 const DEFAULT_PATH: String = "user://partida.json"
+## Identificadores de zona de las partidas anteriores al renombrado beta -> despliegue_cero.
+const LEGACY_ZONE_IDS: Dictionary = {"beta": "despliegue_cero"}
 
 static var path: String = DEFAULT_PATH
 
@@ -47,7 +49,7 @@ static func is_valid(parsed: Variant) -> bool:
 
 
 ## Las partidas anteriores a la fase 8 no tienen mundo vivo: se genera al cargarlas.
-## Las de la versión 2 son de una sola zona: el gestor las trata como la beta.
+## Las de la versión 2 son de una sola zona: el gestor las trata como el despliegue cero.
 static func _migrated(parsed: Variant) -> Variant:
 	if not parsed is Dictionary:
 		return parsed
@@ -58,6 +60,11 @@ static func _migrated(parsed: Variant) -> Variant:
 	if version == 1 or version == 2:
 		values["version"] = SCHEMA_VERSION
 	return values
+
+
+## Traduce un identificador de zona de una partida anterior al renombrado.
+static func migrate_zone_id(zone_id: String) -> String:
+	return str(LEGACY_ZONE_IDS.get(zone_id, zone_id))
 
 
 ## La muerte se graba de inmediato y sin vuelta atrás.

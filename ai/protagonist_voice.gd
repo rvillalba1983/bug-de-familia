@@ -40,7 +40,7 @@ const ANSWER_CHANCE: float = 0.25
 const PAUSE_CHANCE: float = 0.2
 const LATE_NIGHT_END_HOUR: int = 6
 
-var level: BetaZone
+var level: DespliegueCeroZone
 var lines: Dictionary = {}
 var global_left: float = 0.0
 

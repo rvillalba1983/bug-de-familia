@@ -2,7 +2,7 @@ extends SceneTree
 ## Reproduce con clics reales cómo se empieza una pelea con habitantes, solos y en grupo.
 ## Uso con ventana: xvfb-run ... godot --rendering-driver opengl3 --path . -s tools/probar_pelea.gd
 
-var zone: BetaZone
+var zone: DespliegueCeroZone
 
 
 func _initialize() -> void:
@@ -15,9 +15,9 @@ func _run() -> void:
 	Sandbox.session_started = true
 	Sandbox.forced_seed = 77
 	BattleDirector.auto_start = false
-	change_scene_to_file("res://scenes/beta/beta_zone.tscn")
+	change_scene_to_file("res://scenes/despliegue_cero/despliegue_cero_zone.tscn")
 	await create_timer(1.5).timeout
-	zone = current_scene as BetaZone
+	zone = current_scene as DespliegueCeroZone
 	zone.set_enemies_active(false)
 	var near: Vector2 = zone.player.global_position
 	var people: Array = zone.live_world.citizens.values()

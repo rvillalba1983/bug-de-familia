@@ -1,11 +1,12 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesión):**
-> - **Rama en curso:** `fase/multi-zona` (infraestructura multi-zona, ADR 0027) — implementación completa en local, .exe regenerado en `build/`.
-> - **Fase:** Infraestructura multi-zona — gestor, 3 niveles, viaje rápido, persistencia, escena genérica, 24 esqueletos JSON, 28 pruebas nuevas (zones). Total de pruebas: 363+ (anterior 335 + 28).
-> - **Qué falta:** confirmación del director para commit/push y PR a `main`; CI verde en Linux; validación manual en partida.
-> - **Qué no está probado:** validación manual en partida, medición en gráfica real, Linux (CI pendiente).
-> - **Siguiente paso:** confirmar con el director el commit y la apertura del PR.
+> - **Rama en curso:** `arreglo/arranque-despliegue-cero` (arreglo del arranque roto tras el PR #7). `main` está en el merge `9e4c0c9` del PR #7.
+> - **Fase:** PR #8 `arreglo/arranque-despliegue-cero` — arreglo del arranque roto tras el PR #7. **Validado el 13-nov**: renombrado beta → despliegue_cero completado (0 referencias viejas), 372/372 pruebas en verde, `.exe` arranca y monta `despliegue_cero` con 36 habitantes. Pendiente: aprobación del director para fusionar, validación manual en partida y medición en gráfica real.
+> - **Qué se hizo:** renombrado de clases y rutas en 44 archivos `.gd`/`.tscn`, 20 literales `res://` rotos corregidos, 65 textos con mojibake restaurados en `species.json`, corrección de la causa raíz en `poblar_contenido.py`, 3 validadores nuevos (`validar_rutas.py`, `validar_informes.py`, `verificar_humo.py`) que cierran el falso verde de GdUnit, matriz del CI con suelos por grupo y job `arranque`. Decisión técnica validada en `adr/0028-validacion-arranque-y-ci.md`.
+> - **Qué está probado:** `verificar.py` OK; import limpio; 372/372 pruebas (53 suites) con informe JUnit validado; `.exe` exportado (104 MB) y prueba de humo OK (zona `despliegue_cero`, protagonista, 36 habitantes).
+> - **Qué no está probado:** validación manual en partida y medición en gráfica real. P-39 (fallo intermitente en Linux) sigue abierto. Decisión de rivales y nombre definitivo de la zona pendientes.
+> - **Reanudación de modelos (13-nov):** en esta rama los encargos se lanzan por tarea con modelos de OpenRouter: **MiniMax M3.1 Flash para tareas de ingeniería** y **GLM Flash para el resto** (qa, documentación, datos…). Es una asignación por tarea/sesión: **NO tocar `tools/modelos_agentes.json` ni `opencode.jsonc`**, que siguen siendo la fuente persistente (ADR 0020). Los identificadores exactos son los que muestra `opencode run` en la cabecera al relanzar cada tarea; si fallan (429/402/404), aplicar `FALLBACK_MODELS.md`.
 
 Se actualiza cada vez que una fase se fusiona en `main`.
 
@@ -23,6 +24,21 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | Pruebas finales de la beta y dudas | Fusionada en `main` el 9-nov con aprobación del director. 311 pruebas pasan. Las pruebas del director en Windows siguen pendientes: hará lista de lo raro durante la semana |
 | Configuración de OpenCode, herramientas y CI | **Fusionada en `main` el 10-nov con aprobación del director.** Equipo de 10 agentes con tres modelos cada uno, entorno local gratuito, scripts deterministas, formatter propio y GitHub Actions (pruebas + exportación). 311 pruebas en verde en Windows y en el CI de Linux. Ver `adr/0018-agentes-y-modelos.md`, `adr/0019-herramientas-ci-y-mcp.md` y `adr/0020-tres-modelos-por-agente.md`. Queda P-39 (fallo intermitente preexistente) para la post-beta |
 | Post-beta (mejoras gráficas/UI/audio/sim) | **Fusionada en `main` el 10-nov por el PR #3** (HEAD `fd9366e1`), con 329 pruebas y 0 fallos. La fase visual (P-25, P-26, P-28, P-31 y P-33) quedó cerrada; implementado: P-36 (maximizado), P-38 (centrado conversión), P-26 (fantasmas en conversación), P-33 (destello en chat), P-14 (límite rumores), P-23/P-27/P-09 (lotes propuestos). Pendiente: ajustes provisionales de la fusión y validación manual en partida; para la post-beta: P-29 (timbres) y P-39 (fallo intermitente en Linux). Ver `adr/0024-fotogramas-por-accion.md`, `adr/0025-alejazo-vista-estrategia.md` y `borradores/P-23_P-27_P-09_lotes.md`. |
+| Contenido multi-zona (post-infraestructura) | **Fusionada en `main` el 13-nov por el PR #7** (merge `9e4c0c9`; `c020fe5` es el último commit de la rama fusionada, no la fusión). Implementado: 4 especies nuevas (plegado, eco, grux, manada), 21 zonas esqueleto pobladas, El Enchufe y Lonja con contenido completo, renombrado beta → despliegue_cero, arte compartido (art/beta → art/shared), 12 SVG sprites nuevos. P-26 verificado. Ver `docs/34_zonas_y_contenido.md`. **Corrección del 13-nov:** la cifra «367 pruebas y 0 fallos» **no estaba verificada** en el momento de la fusión (el CI salió verde pero no prueba el arranque). El renombrado beta → despliegue_cero quedó incompleto y el `.exe` no arrancaba (incidente más abajo). **Resuelto el 13-nov por el PR #8**: 372/372 pruebas en verde, `.exe` arranca y monta `despliegue_cero`. El mundo completo queda **confirmado en arranque**; falta validación manual en partida y medición en gráfica real. |
+
+## Incidente de arranque tras el PR #7 (13-nov)
+
+Tras fusionar el PR #7, el `.exe` local y el de GitHub no arrancan. Reproducción documentada:
+
+- **Comando:** `build/bug_de_familia.exe --headless --quit-after 60 --log-file C:/Users/usuario/AppData/Local/Temp/opencode/arranque-roto.log` (Godot 4.7.2). El log se conserva en esa ruta.
+- **Errores literales del log:**
+  - `Parse Error: Identifier "BetaLayout" not declared in the current scope.` — `res://scenes/zones/zone_base.gd:459`.
+  - `Parse Error: Could not find type "BetaZone" in the current scope.` — `res://conversion/action_system.gd:178`, `180`, `267` y `271`.
+  - Fallos de compilación en cascada por scripts dependientes: `res://scenes/sandbox/sandbox.gd`, `res://simulation/zone_manager.gd` y `res://scenes/world/world.gd` («Failed to compile depended scripts»).
+  - `ERROR: ZoneManager: la zona de inicio «beta» no existe` y `ERROR: GameWorld: no se pudo montar la zona inicial`.
+- **Causa raíz:** el renombrado beta → despliegue_cero quedó incompleto: siguen existiendo referencias a clases renombradas (`BetaLayout`, `BetaZone`) y la zona de inicio «beta» ya no existe. El guardado heredado pide una zona que ya no existe.
+- **Lección:** el CI salió verde, pero un CI verde aquí **no valida el arranque del `.exe` ni garantiza que las 367 pruebas se ejecutaran**; el conteo de pruebas y el arranque hay que verificarlos aparte. Decisión técnica validada en `adr/0028-validacion-arranque-y-ci.md`.
+- **Resolución (13-nov, PR #8):** renombrado completado (0 referencias viejas), 372/372 pruebas en verde con informe JUnit validado, `.exe` exportado (104 MB) y prueba de humo OK (zona `despliegue_cero`, 36 habitantes). Los tres validadores nuevos (`validar_rutas.py`, `validar_informes.py`, `verificar_humo.py`) detectan el fallo real del `.exe` antiguo (9 errores) y el falso verde (0 casos). Pendiente: validación manual en partida y medición en gráfica real.
 
 ## Pendiente de respuesta del usuario (no bloquea)
 - Textos provisionales del caso y de las IAs.

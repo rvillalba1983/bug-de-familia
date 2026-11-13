@@ -1,7 +1,7 @@
 extends SceneTree
 ## Ejecuta en el juego real lo que el director tiene pendiente de confirmar y guarda capturas en SALIDA.
 
-var zone: BetaZone
+var zone: DespliegueCeroZone
 var out: String = ""
 
 
@@ -17,9 +17,9 @@ func _run() -> void:
 	WorldCalendar.forced_local_unix = 1794225600
 	BattleDirector.auto_start = false
 	out = OS.get_environment("SALIDA")
-	change_scene_to_file("res://scenes/beta/beta_zone.tscn")
+	change_scene_to_file("res://scenes/despliegue_cero/despliegue_cero_zone.tscn")
 	await create_timer(1.5).timeout
-	zone = current_scene as BetaZone
+	zone = current_scene as DespliegueCeroZone
 	zone.challenges.hour_source = func() -> int: return 12
 	await _pickup()
 	await _knockback()
@@ -43,9 +43,9 @@ func _wait(seconds: float) -> void:
 func _pickup() -> void:
 	var before: int = zone.player.body.spare_count()
 	zone.set_enemies_active(false)
-	zone.player.global_position = BetaLayout.pickup_arm + Vector2(-70.0, 0.0)
+	zone.player.global_position = DespliegueCeroLayout.pickup_arm + Vector2(-70.0, 0.0)
 	await _wait(0.2)
-	zone.player.global_position = BetaLayout.pickup_arm
+	zone.player.global_position = DespliegueCeroLayout.pickup_arm
 	await _wait(0.5)
 	print("RECOGER repuestos %d -> %d aviso=«%s» visible=%s" % [before, zone.player.body.spare_count(), zone.hud.notice_label.text, zone.hud.notice_label.visible])
 	await _shot("recoger")

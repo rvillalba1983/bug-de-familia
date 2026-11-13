@@ -1,20 +1,20 @@
-class_name BetaWalker
+class_name DespliegueCeroWalker
 extends RefCounted
-## Juega la beta de verdad, sin atajos de posición ni enemigos apagados, sin pegar a nadie.
-## Lo usan tools/recorrido_beta.gd y las pruebas de tests/flows/.
+## Juega el despliegue cero de verdad, sin atajos de posición ni enemigos apagados,
+## sin pegar a nadie. Lo usan tools/recorrido_despliegue_cero.gd y tests/flows/.
 
 const WALK_LIMIT: float = 120.0
 const ROUTES: Array[String] = ["sigilo", "palabra", "fuerza", "mision", "fiesta"]
 
 var tree: SceneTree
-var zone: BetaZone
+var zone: DespliegueCeroZone
 var fights: int = 0
 var log_lines: Array[String] = []
 
 
-func _init(scene_tree: SceneTree, beta_zone: BetaZone) -> void:
+func _init(scene_tree: SceneTree, target_zone: DespliegueCeroZone) -> void:
 	tree = scene_tree
-	zone = beta_zone
+	zone = target_zone
 	zone.fight.pre_fight_started.connect(func() -> void: fights += 1)
 
 
@@ -35,7 +35,7 @@ func run(route: String) -> void:
 
 func completed_challenges() -> Array[String]:
 	var done: Array[String] = []
-	for id: String in BetaChallenges.ALL_CHALLENGES:
+	for id: String in DespliegueCeroChallenges.ALL_CHALLENGES:
 		if _case().has_flag(id):
 			done.append(id)
 	return done
@@ -54,16 +54,16 @@ func ruta_sigilo() -> void:
 	await _go(Vector2(2580.0, 590.0))
 	await _go(Vector2(2580.0, 730.0))
 	await _go(Vector2(2580.0, 590.0))
-	await _go_and_use(BetaZone.ID_REEL)
+	await _go_and_use(DespliegueCeroZone.ID_REEL)
 	await _leave_depot()
-	await _go(BetaLayout.crossing_goal.get_center())
+	await _go(DespliegueCeroLayout.crossing_goal.get_center())
 
 
 func ruta_palabra() -> void:
 	await _go_near(zone.investigation.npc_nodes["panel"])
 	_case().open_dialogue("panel")
 	_say("21:00")
-	await _go(BetaLayout.central_inside.get_center())
+	await _go(DespliegueCeroLayout.central_inside.get_center())
 	for id: String in ["e_etiqueta", "e_acta"]:
 		await _go(_evidence_at(id), 90.0)
 		_case().examine(id)
@@ -76,21 +76,21 @@ func ruta_palabra() -> void:
 	_say("cruzar la tierra")
 	_say("repuesto")
 	_say("Gracias")
-	await _go(BetaLayout.crossing_goal.get_center())
+	await _go(DespliegueCeroLayout.crossing_goal.get_center())
 	await _go_near(zone.investigation.npc_nodes["eusebio"])
 	await _find_ramon()
 
 
 func ruta_fuerza() -> void:
-	await _go_and_use(BetaZone.ID_MINE)
-	await _go_and_use(BetaZone.ID_CRACK)
-	await _go(BetaLayout.central_inside.get_center())
-	await _go_and_use(BetaZone.ID_GENERATOR)
+	await _go_and_use(DespliegueCeroZone.ID_MINE)
+	await _go_and_use(DespliegueCeroZone.ID_CRACK)
+	await _go(DespliegueCeroLayout.central_inside.get_center())
+	await _go_and_use(DespliegueCeroZone.ID_GENERATOR)
 	await _wait(6.0)
 	await _find_ramon()
-	await _go_and_use(BetaZone.ID_REEL)
+	await _go_and_use(DespliegueCeroZone.ID_REEL)
 	await _leave_depot()
-	await _go(BetaLayout.crossing_goal.get_center())
+	await _go(DespliegueCeroLayout.crossing_goal.get_center())
 
 
 func ruta_mision() -> void:
@@ -132,7 +132,8 @@ func ruta_fiesta() -> void:
 
 func _find_ramon() -> void:
 	var limit: float = WALK_LIMIT
-	while limit > 0.0 and not _case().has_flag(BetaChallenges.FIND) and not zone.player.body.is_dead:
+	var found: String = DespliegueCeroChallenges.FIND
+	while limit > 0.0 and not _case().has_flag(found) and not zone.player.body.is_dead:
 		if is_instance_valid(zone.ramon):
 			zone.player.set_path(zone.nav.find_path(zone.player.global_position, zone.ramon.global_position))
 		await _tick(1.0)
@@ -140,7 +141,7 @@ func _find_ramon() -> void:
 
 
 func _leave_depot() -> void:
-	await _go(BetaLayout.depot.position + Vector2(-60.0, -60.0))
+	await _go(DespliegueCeroLayout.depot.position + Vector2(-60.0, -60.0))
 
 
 func _go_and_use(id: String) -> void:

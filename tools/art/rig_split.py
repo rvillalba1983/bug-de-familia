@@ -7,12 +7,12 @@ pero al andar hacen falta dos. Los números son los elementos de dibujo del SVG,
 y sin contar grupos; una tupla (n, k) es el trazo k de una ruta con varios trazos.
 
 Uso: python3 tools/art/rig_split.py
-Origen: art/beta/*.svg, generados por Claude. Sin servicios externos.
+Origen: art/shared/*.svg, generados por Claude. Sin servicios externos.
 """
 import re
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2] / "art" / "beta"
+ROOT = Path(__file__).resolve().parents[2] / "art" / "shared"
 TAG = re.compile(r"<(/?)(g|path|circle|ellipse|rect)\b[^>]*?(/?)>", re.S)
 PART_ORDER = ("pierna_i", "pierna_d", "brazo_i", "brazo_d", "torso", "cabeza")
 

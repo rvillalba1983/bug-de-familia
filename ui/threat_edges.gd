@@ -8,7 +8,7 @@ const VIEW: Rect2 = Rect2(0.0, 0.0, 1920.0, 1080.0)
 const COLOR_ALERT: Color = Color("#ff4a3a")
 const COLOR_NOISE: Color = Color("#ffe14a")
 
-var level: BetaZone
+var level: DespliegueCeroZone
 
 var _noises: Array = []
 

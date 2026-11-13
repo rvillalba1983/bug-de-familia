@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Genera las vistas de espalda (_n) y de lado (_e) de los NPC de la beta en art/beta/."""
+"""Genera las vistas de espalda (_n) y de lado (_e) de los NPC.
+
+El directorio de salida se pasa como argumento: python tools/art/npc_views_gen.py <carpeta>
+"""
 import sys
 src=open('tools/art/beta_assets_gen.py').read().split('# 1 MINA')[0]
 sys.argv=['x',sys.argv[1]];exec(src)

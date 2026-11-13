@@ -1,4 +1,4 @@
-class_name BetaAtmosphere
+class_name DespliegueCeroAtmosphere
 extends Node2D
 ## Ambiente de la beta: noche por hora real, farolas, esporas y lluvia ácida.
 ## Solo es visual: no influye en las reglas del juego.

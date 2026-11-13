@@ -43,6 +43,7 @@ Tras fusionar el PR #7, el `.exe` local y el de GitHub no arrancan. Reproducció
 ## Pendiente de respuesta del usuario (no bloquea)
 - Textos provisionales del caso y de las IAs.
 - ADR 0027 (infraestructura multi-zona) registrado el 11-nov: decisiones de arquitectura acordadas, pendiente de implementación en la fase de infraestructura post-beta. Ver `docs/adr/0027-multi-zona.md`.
+- **Diseño futuro (validación 13-nov):** en todos los mapas debe haber NPCs conversables en un ~40 % de la población, y todas las razas (incluidas las nuevas: plegado, eco, grux, manada) deben tener líneas de conversación. Hoy solo los NPCs especiales del caso son conversables; las 4 especies nuevas no tienen textos. Es tarea de contenido, no de código.
 
 ## Tras la fase 6
 - Los valores de daño, alcance y recarga del combate son provisionales (`docs/adr/0005-combate.md`).

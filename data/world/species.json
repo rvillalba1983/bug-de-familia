@@ -1,122 +1,554 @@
 {
   "jubilado": {
-    "actor": {"color": "#a0a8b8", "map_color": "#a0c8ff", "art": "jubilado_hierro", "material": "nanoacero", "plural": "Jubilados", "doll": "jubilado", "deaths": ["caida"]},
-    "rival": "mohocrata", "start": 18, "target": 20, "max": 26,
-    "roles": ["petanquista", "vigilante", "archivero", "mecanico"],
-    "names": ["Paco", "Encarna", "Fermín", "Remedios", "Sisebuto", "Angustias", "Evaristo", "Pura", "Nicanor", "Benita"],
-    "surnames": ["Tuerca", "Junta", "Biela", "Carburador", "Remache", "Chirrido", "Fusible", "Manivela"],
-    "opener": ["En mis tiempos esto no pasaba, pero", "Te lo digo yo, que tengo garantía caducada:", "Me lo creas o no,"],
-    "nothing": ["No sé nada y encima me duele la rodilla.", "Aquí no pasa nada desde 1987."],
-    "greet": ["¿Qué miras, chatarra con patas?", "Si vienes a vender algo, ya tengo de todo roto."],
-    "angry": ["¡Viejo lo será tu padre! Que son varios, por cierto.", "Vete antes de que me acuerde de cómo se pega."],
-    "praised": ["Hombre, un joven con modales. Sospechoso.", "Eso díselo a mi rodilla."],
-    "weird": ["*baila un pasodoble sin música*", "*saluda con solemnidad a una farola*"],
+    "actor": {
+      "color": "#a0a8b8",
+      "map_color": "#a0c8ff",
+      "art": "jubilado_hierro",
+      "material": "nanoacero",
+      "plural": "Jubilados",
+      "doll": "jubilado",
+      "deaths": [
+        "caida"
+      ]
+    },
+    "rival": "mohocrata",
+    "start": 18,
+    "target": 20,
+    "max": 26,
+    "roles": [
+      "petanquista",
+      "vigilante",
+      "archivero",
+      "mecanico"
+    ],
+    "names": [
+      "Paco",
+      "Encarna",
+      "FermÃ­n",
+      "Remedios",
+      "Sisebuto",
+      "Angustias",
+      "Evaristo",
+      "Pura",
+      "Nicanor",
+      "Benita"
+    ],
+    "surnames": [
+      "Tuerca",
+      "Junta",
+      "Biela",
+      "Carburador",
+      "Remache",
+      "Chirrido",
+      "Fusible",
+      "Manivela"
+    ],
+    "opener": [
+      "En mis tiempos esto no pasaba, pero",
+      "Te lo digo yo, que tengo garantÃ­a caducada:",
+      "Me lo creas o no,"
+    ],
+    "nothing": [
+      "No sÃ© nada y encima me duele la rodilla.",
+      "AquÃ­ no pasa nada desde 1987."
+    ],
+    "greet": [
+      "Â¿QuÃ© miras, chatarra con patas?",
+      "Si vienes a vender algo, ya tengo de todo roto."
+    ],
+    "angry": [
+      "Â¡Viejo lo serÃ¡ tu padre! Que son varios, por cierto.",
+      "Vete antes de que me acuerde de cÃ³mo se pega."
+    ],
+    "praised": [
+      "Hombre, un joven con modales. Sospechoso.",
+      "Eso dÃ­selo a mi rodilla."
+    ],
+    "weird": [
+      "*baila un pasodoble sin mÃºsica*",
+      "*saluda con solemnidad a una farola*"
+    ],
     "lore": [
-      {"text": "Nos apagamos a las nueve de la noche. Disciplina.", "true": true},
-      {"text": "Las escaleras las inventó alguien que nos odiaba.", "true": true},
-      {"text": "Antes del colapso yo era presidente de algo. O tostadora.", "true": false},
-      {"text": "Los humanos se fueron de vacaciones y ya vuelven.", "true": false},
-      {"text": "Las setas votan hasta si respirar. Lo he visto.", "true": true}
+      {
+        "text": "Nos apagamos a las nueve de la noche. Disciplina.",
+        "true": true
+      },
+      {
+        "text": "Las escaleras las inventÃ³ alguien que nos odiaba.",
+        "true": true
+      },
+      {
+        "text": "Antes del colapso yo era presidente de algo. O tostadora.",
+        "true": false
+      },
+      {
+        "text": "Los humanos se fueron de vacaciones y ya vuelven.",
+        "true": false
+      },
+      {
+        "text": "Las setas votan hasta si respirar. Lo he visto.",
+        "true": true
+      }
     ]
   },
   "mohocrata": {
-    "actor": {"color": "#8fbf60", "map_color": "#a0f060", "art": "mohocrata", "material": "bioceramica", "plural": "Mohócratas", "doll": "mohocrata", "deaths": ["caida"]},
-    "rival": "jubilado", "start": 18, "target": 20, "max": 26,
-    "roles": ["votante", "recolector", "escrutador", "reciclador"],
-    "names": ["Hongoberto", "Espora", "Micelio", "Colmenilla", "Níscalo", "Boletina", "Trufo", "Amanita", "Champi", "Yesquero"],
-    "surnames": ["Húmedo", "de la Mayoría", "Abstención", "Enmienda", "Quorum", "Sombrío", "Moción", "Recuento"],
-    "opener": ["Consta en acta que", "Por mayoría simple te comunico que", "Sin que sirva de precedente:"],
-    "nothing": ["Se ha votado no saber nada.", "Sobre eso aún no hay quorum."],
-    "greet": ["¿Vienes a votar o a oxidarte?", "Tu presencia queda pendiente de aprobación."],
-    "angry": ["Moción de insulto aprobada: vete.", "Votamos guerra contigo. Tres veces, como manda."],
-    "praised": ["Se admite el elogio a trámite.", "Qué bien hablas para estar tan seco."],
-    "weird": ["*somete a votación a sus propios pies*", "*se abstiene de moverse, con gran dignidad*"],
+    "actor": {
+      "color": "#8fbf60",
+      "map_color": "#a0f060",
+      "art": "mohocrata",
+      "material": "bioceramica",
+      "plural": "MohÃ³cratas",
+      "doll": "mohocrata",
+      "deaths": [
+        "caida"
+      ]
+    },
+    "rival": "jubilado",
+    "start": 18,
+    "target": 20,
+    "max": 26,
+    "roles": [
+      "votante",
+      "recolector",
+      "escrutador",
+      "reciclador"
+    ],
+    "names": [
+      "Hongoberto",
+      "Espora",
+      "Micelio",
+      "Colmenilla",
+      "NÃ­scalo",
+      "Boletina",
+      "Trufo",
+      "Amanita",
+      "Champi",
+      "Yesquero"
+    ],
+    "surnames": [
+      "HÃºmedo",
+      "de la MayorÃ­a",
+      "AbstenciÃ³n",
+      "Enmienda",
+      "Quorum",
+      "SombrÃ­o",
+      "MociÃ³n",
+      "Recuento"
+    ],
+    "opener": [
+      "Consta en acta que",
+      "Por mayorÃ­a simple te comunico que",
+      "Sin que sirva de precedente:"
+    ],
+    "nothing": [
+      "Se ha votado no saber nada.",
+      "Sobre eso aÃºn no hay quorum."
+    ],
+    "greet": [
+      "Â¿Vienes a votar o a oxidarte?",
+      "Tu presencia queda pendiente de aprobaciÃ³n."
+    ],
+    "angry": [
+      "MociÃ³n de insulto aprobada: vete.",
+      "Votamos guerra contigo. Tres veces, como manda."
+    ],
+    "praised": [
+      "Se admite el elogio a trÃ¡mite.",
+      "QuÃ© bien hablas para estar tan seco."
+    ],
+    "weird": [
+      "*somete a votaciÃ³n a sus propios pies*",
+      "*se abstiene de moverse, con gran dignidad*"
+    ],
     "lore": [
-      {"text": "Votamos tres veces antes de atacar. Es lo correcto.", "true": true},
-      {"text": "La luz es un abuso de poder.", "true": true},
-      {"text": "Un buen saco de fertilizante cambia cualquier voto.", "true": true},
-      {"text": "Los robots viejos no sienten nada al reciclarlos.", "true": false},
-      {"text": "Llegamos aquí antes que nadie. Consta en acta.", "true": false}
+      {
+        "text": "Votamos tres veces antes de atacar. Es lo correcto.",
+        "true": true
+      },
+      {
+        "text": "La luz es un abuso de poder.",
+        "true": true
+      },
+      {
+        "text": "Un buen saco de fertilizante cambia cualquier voto.",
+        "true": true
+      },
+      {
+        "text": "Los robots viejos no sienten nada al reciclarlos.",
+        "true": false
+      },
+      {
+        "text": "Llegamos aquÃ­ antes que nadie. Consta en acta.",
+        "true": false
+      }
     ]
   },
   "plegado": {
-    "actor": {"color": "#c8b8e8", "map_color": "#d8c8ff", "art": "plegado", "material": "fibra_fotonica", "plural": "Plegados", "doll": "plegado", "deaths": ["caida"]},
-    "rival": "grux", "start": 12, "target": 14, "max": 18,
-    "roles": ["archivista", "plegador", "clasificador", "desplegador"],
-    "names": ["Doblez", "Pliegue", "Esquina", "Bisel", "Canto", "Filigrana", "Solapa", "Cartela", "Bajoplano", "Origami"],
-    "surnames": ["Primero", "de la Carpeta", "Sin Ficha", "Provisional", "del Expediente", "Sin Clasificar", "de la Esquina", "Doblado"],
-    "opener": ["Consta en ficha que", "Según el inventario,", "En este pliegue se dice:"],
-    "nothing": ["No hay nada que archivar aquí. Ya está archivado.", "Eso no figura en ningún índice."],
-    "greet": ["¿Vienes a que te clasifique o a que te doble?", "Estás fuera de catálogo, criatura."],
-    "angry": ["Te archivo como amenaza, categoría inmediata.", "Te pliego en siete partes, que es el protocolo."],
-    "praised": ["Acepto el elogio a trámite, sin ficha definitiva.", "Queda registrado tu cumplido."],
-    "weird": ["*se pliega y desaparece dentro de su propio bolsillo*", "*dobla una esquina del aire y la guarda*"],
+    "actor": {
+      "color": "#c8b8e8",
+      "map_color": "#d8c8ff",
+      "art": "plegado",
+      "material": "fibra_fotonica",
+      "plural": "Plegados",
+      "doll": "plegado",
+      "deaths": [
+        "caida"
+      ]
+    },
+    "rival": "grux",
+    "start": 12,
+    "target": 14,
+    "max": 18,
+    "roles": [
+      "archivista",
+      "plegador",
+      "clasificador",
+      "desplegador"
+    ],
+    "names": [
+      "Doblez",
+      "Pliegue",
+      "Esquina",
+      "Bisel",
+      "Canto",
+      "Filigrana",
+      "Solapa",
+      "Cartela",
+      "Bajoplano",
+      "Origami"
+    ],
+    "surnames": [
+      "Primero",
+      "de la Carpeta",
+      "Sin Ficha",
+      "Provisional",
+      "del Expediente",
+      "Sin Clasificar",
+      "de la Esquina",
+      "Doblado"
+    ],
+    "opener": [
+      "Consta en ficha que",
+      "SegÃºn el inventario,",
+      "En este pliegue se dice:"
+    ],
+    "nothing": [
+      "No hay nada que archivar aquÃ­. Ya estÃ¡ archivado.",
+      "Eso no figura en ningÃºn Ã­ndice."
+    ],
+    "greet": [
+      "Â¿Vienes a que te clasifique o a que te doble?",
+      "EstÃ¡s fuera de catÃ¡logo, criatura."
+    ],
+    "angry": [
+      "Te archivo como amenaza, categorÃ­a inmediata.",
+      "Te pliego en siete partes, que es el protocolo."
+    ],
+    "praised": [
+      "Acepto el elogio a trÃ¡mite, sin ficha definitiva.",
+      "Queda registrado tu cumplido."
+    ],
+    "weird": [
+      "*se pliega y desaparece dentro de su propio bolsillo*",
+      "*dobla una esquina del aire y la guarda*"
+    ],
     "lore": [
-      {"text": "Todo lo que existe debe tener ficha. Hasta tu ficha tiene ficha.", "true": true},
-      {"text": "Nos mojamos y no podemos desplegarnos. Es humillante.", "true": true},
-      {"text": "Venimos a archivar el planeta. Fue un rescate, o un saqueo.", "true": true},
-      {"text": "Los Grux nos tasaron en cero dientes. Quedó como ofensa histórica.", "true": true},
-      {"text": "Las esquinas no existen hasta que alguien las archiva.", "true": false}
+      {
+        "text": "Todo lo que existe debe tener ficha. Hasta tu ficha tiene ficha.",
+        "true": true
+      },
+      {
+        "text": "Nos mojamos y no podemos desplegarnos. Es humillante.",
+        "true": true
+      },
+      {
+        "text": "Venimos a archivar el planeta. Fue un rescate, o un saqueo.",
+        "true": true
+      },
+      {
+        "text": "Los Grux nos tasaron en cero dientes. QuedÃ³ como ofensa histÃ³rica.",
+        "true": true
+      },
+      {
+        "text": "Las esquinas no existen hasta que alguien las archiva.",
+        "true": false
+      }
     ]
   },
   "eco": {
-    "actor": {"color": "#8fdbd8", "map_color": "#8fffe8", "art": "eco", "material": "cristal_plasma", "plural": "Ecos", "doll": "eco", "deaths": ["caida"]},
-    "rival": "grux", "start": 10, "target": 12, "max": 16,
-    "roles": ["resonador", "repetidor", "oyente", "amplificador"],
-    "names": ["Reverb", "Delai", "Soniquete", "Retumbo", "Silbato", "Murmullo", "Chasquido", "Resaca", "Tintineo", "Vibración"],
-    "surnames": ["Segundo", "del Cañón", "Repetido", "Sin Origen", "a Distancia", "de Vurm", "Amortiguado", "Ecológico"],
-    "opener": ["(repitiendo tu última palabra)", "Se oye que", "Por última vez que lo digo:"],
-    "nothing": ["Nada, nada, nada...", "Sobre eso no hay sonido. Solo silencio."],
-    "greet": ["¿Hablas o solo haces ruido?", "Te oigo, y te repito: te oigo."],
-    "angry": ["¡GRITO! Y el grito vuelve.", "Me repito hasta que te vayas. Empiezo ya."],
-    "praised": ["El elogio me suena bien.", "Qué bonito dices eso. Lo repito."],
-    "weird": ["*repite tu última palabra tres veces*", "*canta un acorde hecho de sí mismo*"],
+    "actor": {
+      "color": "#8fdbd8",
+      "map_color": "#8fffe8",
+      "art": "eco",
+      "material": "cristal_plasma",
+      "plural": "Ecos",
+      "doll": "eco",
+      "deaths": [
+        "caida"
+      ]
+    },
+    "rival": "grux",
+    "start": 10,
+    "target": 12,
+    "max": 16,
+    "roles": [
+      "resonador",
+      "repetidor",
+      "oyente",
+      "amplificador"
+    ],
+    "names": [
+      "Reverb",
+      "Delai",
+      "Soniquete",
+      "Retumbo",
+      "Silbato",
+      "Murmullo",
+      "Chasquido",
+      "Resaca",
+      "Tintineo",
+      "VibraciÃ³n"
+    ],
+    "surnames": [
+      "Segundo",
+      "del CaÃ±Ã³n",
+      "Repetido",
+      "Sin Origen",
+      "a Distancia",
+      "de Vurm",
+      "Amortiguado",
+      "EcolÃ³gico"
+    ],
+    "opener": [
+      "(repitiendo tu Ãºltima palabra)",
+      "Se oye que",
+      "Por Ãºltima vez que lo digo:"
+    ],
+    "nothing": [
+      "Nada, nada, nada...",
+      "Sobre eso no hay sonido. Solo silencio."
+    ],
+    "greet": [
+      "Â¿Hablas o solo haces ruido?",
+      "Te oigo, y te repito: te oigo."
+    ],
+    "angry": [
+      "Â¡GRITO! Y el grito vuelve.",
+      "Me repito hasta que te vayas. Empiezo ya."
+    ],
+    "praised": [
+      "El elogio me suena bien.",
+      "QuÃ© bonito dices eso. Lo repito."
+    ],
+    "weird": [
+      "*repite tu Ãºltima palabra tres veces*",
+      "*canta un acorde hecho de sÃ­ mismo*"
+    ],
     "lore": [
-      {"text": "Solo existimos mientras haya ruido. El silencio nos borra.", "true": true},
-      {"text": "Repetimos la última palabra que oímos. No es un tic, es dieta.", "true": true},
-      {"text": "Los Grux quieren cobrarnos el eco. Repetimos el recibo hasta que se rinden.", "true": true},
-      {"text": "Las radios humanas nos atrajeron hasta aquí.", "true": true},
-      {"text": "Somos inmortales mientras alguien grite nuestro nombre.", "true": false}
+      {
+        "text": "Solo existimos mientras haya ruido. El silencio nos borra.",
+        "true": true
+      },
+      {
+        "text": "Repetimos la Ãºltima palabra que oÃ­mos. No es un tic, es dieta.",
+        "true": true
+      },
+      {
+        "text": "Los Grux quieren cobrarnos el eco. Repetimos el recibo hasta que se rinden.",
+        "true": true
+      },
+      {
+        "text": "Las radios humanas nos atrajeron hasta aquÃ­.",
+        "true": true
+      },
+      {
+        "text": "Somos inmortales mientras alguien grite nuestro nombre.",
+        "true": false
+      }
     ]
   },
   "grux": {
-    "actor": {"color": "#d8985a", "map_color": "#ffb060", "art": "grux", "material": "restos", "plural": "Grux", "doll": "grux", "deaths": ["caida"]},
-    "rival": "plegado", "start": 14, "target": 16, "max": 20,
-    "roles": ["tasador", "cobrador", "tragaperras", "prestamista"],
-    "names": ["Tasa", "Mordisco", "Deudor", "Interés", "Garantía", "Bolsillo", "Recargo", "Embargo", "Vencido", "Fiador"],
-    "surnames": ["del Bolsillo", "Sin Aval", "al Contado", "en Dientes", "Vencido", "de la Muela", "Cobrador", "Usurero"],
-    "opener": ["Te taso por", "Según mi libreta,", "Firmaste sin leer:"],
-    "nothing": ["Nada que cobrar. De momento.", "Eso no vale ni un diente."],
-    "greet": ["¿Vienes a pagar o a que te empeñe?", "Muéstrame las piezas y te digo lo que no valen."],
-    "angry": ["Te cobro hasta el aire que respiras.", "Vas a pagar con lo que te sobre."],
-    "praised": ["El elogio te sale gratis. Aprovecha.", "Bien hablado. No lo anotaré como deuda."],
-    "weird": ["*se traga un objeto y lo vomita con un precio*", "*tasa una piedra a mordiscos*"],
+    "actor": {
+      "color": "#d8985a",
+      "map_color": "#ffb060",
+      "art": "grux",
+      "material": "restos",
+      "plural": "Grux",
+      "doll": "grux",
+      "deaths": [
+        "caida"
+      ]
+    },
+    "rival": "plegado",
+    "start": 14,
+    "target": 16,
+    "max": 20,
+    "roles": [
+      "tasador",
+      "cobrador",
+      "tragaperras",
+      "prestamista"
+    ],
+    "names": [
+      "Tasa",
+      "Mordisco",
+      "Deudor",
+      "InterÃ©s",
+      "GarantÃ­a",
+      "Bolsillo",
+      "Recargo",
+      "Embargo",
+      "Vencido",
+      "Fiador"
+    ],
+    "surnames": [
+      "del Bolsillo",
+      "Sin Aval",
+      "al Contado",
+      "en Dientes",
+      "Vencido",
+      "de la Muela",
+      "Cobrador",
+      "Usurero"
+    ],
+    "opener": [
+      "Te taso por",
+      "SegÃºn mi libreta,",
+      "Firmaste sin leer:"
+    ],
+    "nothing": [
+      "Nada que cobrar. De momento.",
+      "Eso no vale ni un diente."
+    ],
+    "greet": [
+      "Â¿Vienes a pagar o a que te empeÃ±e?",
+      "MuÃ©strame las piezas y te digo lo que no valen."
+    ],
+    "angry": [
+      "Te cobro hasta el aire que respiras.",
+      "Vas a pagar con lo que te sobre."
+    ],
+    "praised": [
+      "El elogio te sale gratis. Aprovecha.",
+      "Bien hablado. No lo anotarÃ© como deuda."
+    ],
+    "weird": [
+      "*se traga un objeto y lo vomita con un precio*",
+      "*tasa una piedra a mordiscos*"
+    ],
     "lore": [
-      {"text": "Pagan en dientes. La cabeza sale a cero, como en la lonja.", "true": true},
-      {"text": "Tragamos lo que robamos. El estómago es la caja fuerte.", "true": true},
-      {"text": "Llegamos después del colapso. Vinimos a cobrar.", "true": true},
-      {"text": "Si hueles azufre, vomitamos lo robado. Por eso no olemos azufre.", "true": true},
-      {"text": "Toda deuda es justa, sobre todo las que no recuerdas haber pedido.", "true": false}
+      {
+        "text": "Pagan en dientes. La cabeza sale a cero, como en la lonja.",
+        "true": true
+      },
+      {
+        "text": "Tragamos lo que robamos. El estÃ³mago es la caja fuerte.",
+        "true": true
+      },
+      {
+        "text": "Llegamos despuÃ©s del colapso. Vinimos a cobrar.",
+        "true": true
+      },
+      {
+        "text": "Si hueles azufre, vomitamos lo robado. Por eso no olemos azufre.",
+        "true": true
+      },
+      {
+        "text": "Toda deuda es justa, sobre todo las que no recuerdas haber pedido.",
+        "true": false
+      }
     ]
   },
   "manada": {
-    "actor": {"color": "#a8c860", "map_color": "#c0ff60", "art": "manada", "material": "gel_memoria", "plural": "Manada", "doll": "manada", "deaths": ["caida"]},
-    "rival": "grux", "start": 16, "target": 18, "max": 22,
-    "roles": ["repartidor", "recorredor", "cargador", "rastreador"],
-    "names": ["Ruta", "Paquete", "Giro", "Señal", "Norte", "Destino", "Etiqueta", "Bulto", "Recorrido", "Flecha"],
-    "surnames": ["a la Derecha", "Sin Entregar", "Devuelto", "del Reparto", "Extraviado", "en Tránsito", "Reexpedido", "Implantado"],
-    "opener": ["Según el reparto,", "Mi navegador dice que", "(oliendo un paquete vacío):"],
-    "nothing": ["No hay entrega para ti.", "Mi ruta no pasa por esa información."],
-    "greet": ["¿Eres el destinatario o el paquete?", "No puedo girar a la izquierda para mirarte."],
-    "angry": ["Te marco como no entregado.", "Voy a darte la vuelta, siempre a la derecha."],
-    "praised": ["El elogio se registra como entregado.", "Gracias. Continúo por la derecha."],
-    "weird": ["*solo gira a la derecha, dando vueltas*", "*entrega un paquete vacío a una farola*"],
+    "actor": {
+      "color": "#a8c860",
+      "map_color": "#c0ff60",
+      "art": "manada",
+      "material": "gel_memoria",
+      "plural": "Manada",
+      "doll": "manada",
+      "deaths": [
+        "caida"
+      ]
+    },
+    "rival": "grux",
+    "start": 16,
+    "target": 18,
+    "max": 22,
+    "roles": [
+      "repartidor",
+      "recorredor",
+      "cargador",
+      "rastreador"
+    ],
+    "names": [
+      "Ruta",
+      "Paquete",
+      "Giro",
+      "SeÃ±al",
+      "Norte",
+      "Destino",
+      "Etiqueta",
+      "Bulto",
+      "Recorrido",
+      "Flecha"
+    ],
+    "surnames": [
+      "a la Derecha",
+      "Sin Entregar",
+      "Devuelto",
+      "del Reparto",
+      "Extraviado",
+      "en TrÃ¡nsito",
+      "Reexpedido",
+      "Implantado"
+    ],
+    "opener": [
+      "SegÃºn el reparto,",
+      "Mi navegador dice que",
+      "(oliendo un paquete vacÃ­o):"
+    ],
+    "nothing": [
+      "No hay entrega para ti.",
+      "Mi ruta no pasa por esa informaciÃ³n."
+    ],
+    "greet": [
+      "Â¿Eres el destinatario o el paquete?",
+      "No puedo girar a la izquierda para mirarte."
+    ],
+    "angry": [
+      "Te marco como no entregado.",
+      "Voy a darte la vuelta, siempre a la derecha."
+    ],
+    "praised": [
+      "El elogio se registra como entregado.",
+      "Gracias. ContinÃºo por la derecha."
+    ],
+    "weird": [
+      "*solo gira a la derecha, dando vueltas*",
+      "*entrega un paquete vacÃ­o a una farola*"
+    ],
     "lore": [
-      {"text": "Solo giramos a la derecha. La izquierda no existe en la ruta.", "true": true},
-      {"text": "Seguimos entregando paquetes vacíos a direcciones que ya no existen.", "true": true},
-      {"text": "Nacimos aquí. Los navegadores nos los implantaron antes del fin.", "true": true},
-      {"text": "Obedecemos ladridos en binario. Cero, cero, uno, cero.", "true": true},
-      {"text": "Si cambias una señal, nos perdemos. No lo cambies.", "true": false}
+      {
+        "text": "Solo giramos a la derecha. La izquierda no existe en la ruta.",
+        "true": true
+      },
+      {
+        "text": "Seguimos entregando paquetes vacÃ­os a direcciones que ya no existen.",
+        "true": true
+      },
+      {
+        "text": "Nacimos aquÃ­. Los navegadores nos los implantaron antes del fin.",
+        "true": true
+      },
+      {
+        "text": "Obedecemos ladridos en binario. Cero, cero, uno, cero.",
+        "true": true
+      },
+      {
+        "text": "Si cambias una seÃ±al, nos perdemos. No lo cambies.",
+        "true": false
+      }
     ]
   }
 }

@@ -175,9 +175,9 @@ func _perform_generic(spec: Dictionary) -> bool:
 			if done:
 				door_hacked.emit()
 		"relation":
-			done = level is BetaZone
+			done = level is DespliegueCeroZone
 			if done:
-				(level as BetaZone).live_world.sim.change_species_relation(float(spec["amount"]))
+				(level as DespliegueCeroZone).live_world.sim.change_species_relation(float(spec["amount"]))
 		"pull":
 			done = _pull_pickup(float(spec["r"]))
 		"steal":
@@ -264,11 +264,11 @@ func _pull_pickup(radius: float) -> bool:
 
 func _steal(duration: float) -> bool:
 	var victim: Guard = _closest_guard(MELEE_RANGE, "")
-	if victim == null or _robbed.has(victim) or not level is BetaZone:
+	if victim == null or _robbed.has(victim) or not level is DespliegueCeroZone:
 		return false
 	_robbed[victim] = true
 	victim.stun(duration)
-	(level as BetaZone).reward_piece()
+	(level as DespliegueCeroZone).reward_piece()
 	return true
 
 

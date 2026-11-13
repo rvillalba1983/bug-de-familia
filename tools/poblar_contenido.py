@@ -2,7 +2,10 @@ import json
 
 # --- El Enchufe ---
 path = 'data/zones/el_enchufe.json'
-d = json.load(open(path))
+# encoding="utf-8" obligatorio: sin el, Windows lee con cp1252 y corrompe los
+# acentos (el mojibake de 65 strings en c020fe5). newline="\n" evita CRLF.
+with open(path, encoding='utf-8') as f:
+    d = json.load(f)
 
 d['actors'] = [
     {"id": "operador", "route": "operador_route", "species": "jubilado"},
@@ -23,14 +26,15 @@ d['props'] = [
     {"at": "panels", "id_prefix": "terminal", "material": "gel_memoria", "prop": "terminal", "size": [56, 84]}
 ]
 
-with open(path, 'w', encoding='utf-8') as f:
+with open(path, 'w', encoding='utf-8', newline='\n') as f:
     json.dump(d, f, ensure_ascii=False, indent=2)
     f.write('\n')
 print('El Enchufe updated')
 
 # --- Lonja ---
 path = 'data/zones/lonja.json'
-d = json.load(open(path))
+with open(path, encoding='utf-8') as f:
+    d = json.load(f)
 
 # Add grux to species
 d['species'] = ['grux', 'jubilado']
@@ -76,7 +80,7 @@ d['props'] = [
     {"at": "paneles", "id_prefix": "panel", "material": "fibra_fotonica", "prop": "panel", "size": [72, 96]}
 ]
 
-with open(path, 'w', encoding='utf-8') as f:
+with open(path, 'w', encoding='utf-8', newline='\n') as f:
     json.dump(d, f, ensure_ascii=False, indent=2)
     f.write('\n')
 print('Lonja updated')

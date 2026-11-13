@@ -1,4 +1,4 @@
-class_name BetaFacades
+class_name DespliegueCeroFacades
 extends RefCounted
 ## Fachadas de los edificios de la beta, que se aclaran al entrar el jugador.
 

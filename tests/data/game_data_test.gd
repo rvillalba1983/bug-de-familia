@@ -3,7 +3,7 @@ extends GdUnitTestSuite
 
 
 func test_each_zone_species_has_actor_data_and_a_rival_in_the_zone() -> void:
-	var zone: Array[String] = BetaLayout.zone.species()
+	var zone: Array[String] = DespliegueCeroLayout.zone.species()
 	assert_array(zone).is_not_empty()
 	for species: String in zone:
 		assert_bool(SpeciesCatalog.has(species)).is_true()
@@ -13,7 +13,7 @@ func test_each_zone_species_has_actor_data_and_a_rival_in_the_zone() -> void:
 
 
 func test_every_actor_route_and_identity_exists_in_the_zone() -> void:
-	var zone: ZoneDefinition = BetaLayout.zone
+	var zone: ZoneDefinition = DespliegueCeroLayout.zone
 	for actor: Dictionary in zone.list("actors"):
 		assert_int(zone.points(str(actor["route"])).size()).is_greater(1)
 		if actor.has("species"):
@@ -25,17 +25,17 @@ func test_every_actor_route_and_identity_exists_in_the_zone() -> void:
 
 
 func test_every_zone_item_has_a_real_position_and_known_material() -> void:
-	var zone: ZoneDefinition = BetaLayout.zone
+	var zone: ZoneDefinition = DespliegueCeroLayout.zone
 	var catalog: ConversionCatalog = ConversionCatalog.load_default()
 	for item: Dictionary in zone.list("items"):
-		assert_bool(BetaLayout.floor_rect.has_point(zone.point(str(item["at"])))).is_true()
+		assert_bool(DespliegueCeroLayout.floor_rect.has_point(zone.point(str(item["at"])))).is_true()
 	for entry: Dictionary in zone.list("convertibles"):
 		assert_bool(catalog.materials.has(str(entry["material"]))).is_true()
 
 
 func test_progenitors_have_a_material_the_catalog_knows() -> void:
 	var catalog: ConversionCatalog = ConversionCatalog.load_default()
-	for id: String in [BetaZone.ID_RAMON, BetaZone.ID_CONTESTADOR]:
+	for id: String in [DespliegueCeroZone.ID_RAMON, DespliegueCeroZone.ID_CONTESTADOR]:
 		assert_bool(catalog.materials.has(str(ProgenitorCatalog.entry(id)["material"]))).is_true()
 
 

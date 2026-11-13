@@ -9,7 +9,8 @@ y «homes» (área y puerta) para cada especie, con su geometría.
 Los valores de población son provisionales (el director los ajusta jugando):
 - 1 especie: 10/12/16 · 2 especies: 8/10/14 · 3: 6/8/12 · 4: 5/7/10.
 
-No toca beta.json (referencia) ni las zonas con contenido completo (el_enchufe, lonja).
+No toca despliegue_cero.json (la zona de arranque) ni las zonas con contenido
+completo (el_enchufe, lonja).
 """
 
 import json
@@ -17,7 +18,7 @@ import glob
 import os
 
 ZONES_DIR = "data/zones"
-SKIP = {"beta", "el_enchufe", "lonja"}
+SKIP = {"despliegue_cero", "el_enchufe", "lonja"}
 
 PREFIX = {
     "jubilado": "jub",
@@ -76,14 +77,27 @@ def place_home(species_index: int, blocks: list, floor: list, placed: list) -> l
     return [floor[0] + 100, floor[1] + 100, HOME_SIZE[0], HOME_SIZE[1]]
 
 
+def leer_json(ruta: str) -> dict:
+    """Lee un JSON en UTF-8: sin el encoding, Windows usa cp1252 (mojibake)."""
+    with open(ruta, encoding="utf-8") as handle:
+        datos = json.load(handle)
+    return datos
+
+
+def escribir_json(ruta: str, datos: dict) -> None:
+    """Escribe un JSON en UTF-8 con LF y salto final, sin escapar acentos."""
+    with open(ruta, "w", encoding="utf-8", newline="\n") as handle:
+        json.dump(datos, handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+
+
 def main() -> None:
     changed = []
     for path in sorted(glob.glob(os.path.join(ZONES_DIR, "*.json"))):
         zone_id = os.path.splitext(os.path.basename(path))[0]
         if zone_id in SKIP:
             continue
-        with open(path, encoding="utf-8") as handle:
-            data = json.load(handle)
+        data = leer_json(path)
 
         species = list(data.get("species", []))
         for planned in data.get("planned_species", []):
@@ -116,9 +130,7 @@ def main() -> None:
         data["population"] = population
         data["homes"] = homes
 
-        with open(path, "w", encoding="utf-8") as handle:
-            json.dump(data, handle, ensure_ascii=False, indent=2)
-            handle.write("\n")
+        escribir_json(path, data)
         changed.append("%s: %s" % (zone_id, ", ".join(species)))
 
     for line in changed:

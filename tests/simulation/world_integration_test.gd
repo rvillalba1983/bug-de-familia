@@ -91,7 +91,9 @@ func test_ignored_mission_becomes_a_rumor() -> void:
 	var count_before: int = sim.truth.records.size()
 	sim.tick(float(sim.missions.templates["pertenencia"]["deadline"]) + 2.0)
 	assert_str(mission["result"]).is_equal("ignorada")
-	var types: Array = sim.truth.records.slice(count_before).map(func(r: Dictionary) -> String: return r["type"])
+	var types: Array = sim.truth.records.slice(count_before).map(
+		func(r: Dictionary) -> String: return r["type"]
+	)
 	assert_array(types).contains(["oportunidad_perdida"])
 
 
@@ -123,34 +125,36 @@ func test_closed_game_freezes_world_but_leaves_traces() -> void:
 
 func test_birth_in_scene_appears_live_once() -> void:
 	TestSupport.reset_session()
-	BetaZone.forced_hour = 12
-	var runner: GdUnitSceneRunner = scene_runner("res://scenes/beta/beta_zone.tscn")
-	var zone: BetaZone = runner.scene()
+	DespliegueCeroZone.forced_hour = 12
+	var path: String = "res://scenes/despliegue_cero/despliegue_cero_zone.tscn"
+	var runner: GdUnitSceneRunner = scene_runner(path)
+	var zone: DespliegueCeroZone = runner.scene()
 	await await_millis(100)
 	var world: LiveWorld = zone.live_world
 	var count_before: int = world.citizens.size()
-	var npc: NpcState = world.sim.spawn("jubilado", BetaLayout.jub_gate, "llegado")
+	var npc: NpcState = world.sim.spawn("jubilado", DespliegueCeroLayout.jub_gate, "llegado")
 	assert_int(world.citizens.size()).is_equal(count_before + 1)
 	assert_bool(is_instance_valid(world.citizens[npc.id])).is_true()
 	assert_array(ConsistencyChecker.check(world.sim)).is_empty()
-	BetaZone.forced_hour = -1
+	DespliegueCeroZone.forced_hour = -1
 
 
 func test_save_and_reload_scene_keeps_same_people() -> void:
 	TestSupport.reset_session()
-	BetaZone.forced_hour = 12
-	var runner: GdUnitSceneRunner = scene_runner("res://scenes/beta/beta_zone.tscn")
-	var zone: BetaZone = runner.scene()
+	DespliegueCeroZone.forced_hour = 12
+	var path: String = "res://scenes/despliegue_cero/despliegue_cero_zone.tscn"
+	var runner: GdUnitSceneRunner = scene_runner(path)
+	var zone: DespliegueCeroZone = runner.scene()
 	await await_millis(100)
 	var world: LiveWorld = zone.live_world
 	var victim: String = world.sim.npc_ids[2]
 	(world.citizens[victim] as Guard).die_quietly()
 	zone.autosave()
 	var ids: Array = world.sim.npc_ids.duplicate()
-	var runner2: GdUnitSceneRunner = scene_runner("res://scenes/beta/beta_zone.tscn")
-	var zone2: BetaZone = runner2.scene()
+	var runner2: GdUnitSceneRunner = scene_runner(path)
+	var zone2: DespliegueCeroZone = runner2.scene()
 	await await_millis(100)
 	assert_array(zone2.live_world.sim.npc_ids).is_equal(ids)
 	assert_bool(zone2.live_world.citizens.has(victim)).is_false()
 	assert_bool((zone2.live_world.sim.npcs[victim] as NpcState).alive).is_false()
-	BetaZone.forced_hour = -1
+	DespliegueCeroZone.forced_hour = -1

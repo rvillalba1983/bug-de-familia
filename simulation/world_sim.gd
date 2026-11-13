@@ -42,7 +42,7 @@ var place_names: Array[String] = ["el barrio norte", "el barrio sur", "la tierra
 var spawn_areas: Dictionary = {}
 var open_spots: Array[Vector2] = []
 var gates: Dictionary = {}
-## Especies presentes en esta zona. Vacío: todas las del catálogo (beta).
+## Especies presentes en esta zona. Vacío: las que tengan un hogar asignado.
 var active_species: Array[String] = []
 ## Si la zona ha declarado sus especies, aunque la lista esté vacía.
 var species_declared: bool = false
@@ -96,12 +96,16 @@ func alive_of(species: String) -> Array[NpcState]:
 	return result
 
 
-## Especies que habitan la simulación. Sin lista declarada, todas las del catálogo.
+## Especies que la simulación puebla. Con lista declarada, esa lista; sin ella,
+## las que tienen un hogar asignado: una especie sin casa no se puede colocar
+## en el mundo, así que no se simula (quedaría amontonada en la esquina).
 func species_ids() -> Array[String]:
 	if species_declared:
 		return active_species
 	var result: Array[String] = []
-	result.assign(species_data.keys())
+	for species_id: String in species_data.keys():
+		if spawn_areas.has(species_id):
+			result.append(species_id)
 	return result
 
 

@@ -49,7 +49,7 @@ func test_visual_variant_survives_saving() -> void:
 
 
 func test_night_follows_the_blackout_hours() -> void:
-	var atmosphere: BetaAtmosphere = BetaAtmosphere.new()
+	var atmosphere: DespliegueCeroAtmosphere = DespliegueCeroAtmosphere.new()
 	atmosphere.hour_source = func() -> int: return 22
 	assert_bool(atmosphere.is_night()).is_true()
 	atmosphere.hour_source = func() -> int: return 12

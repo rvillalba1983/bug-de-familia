@@ -3,10 +3,16 @@
 
   python tools/verificar.py
 
-Ejecuta con el mismo interprete validar_datos.py, formatear.py --comprobar y,
-si existe medicion.txt en la raiz, comparar_medicion.py. Es la comprobacion que
-usa el workflow de GitHub Actions (pruebas.yml) antes de descargar Godot: falla
-rapido y no gasta minutos de CI ni tokens en errores mecanicos.
+Ejecuta, con el mismo interprete, validar_datos.py, validar_rutas.py,
+formatear.py --comprobar, cambiar_modelo.py --validar y las pruebas de las
+propias herramientas; y si existe medicion.txt en la raiz, comparar_medicion.py.
+Es la comprobacion que usa el workflow de GitHub Actions (pruebas.yml) antes de
+descargar Godot: falla rapido y no gasta minutos de CI ni tokens en errores
+mecanicos.
+
+validar_rutas.py existe por el incidente del 13-nov (ADR 0028): el renombrado
+beta -> despliegue_cero dejo rutas res:// rotas en escenas, tests y workflows,
+y el juego no arrancaba. Esta comprobacion lo detecta en segundos, sin Godot.
 
 Solo stdlib, sin dependencias y sin llamadas a servicios externos.
 """
@@ -19,8 +25,11 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 PASOS = [
 	("Datos", ["tools/validar_datos.py"]),
+	("Rutas res:// literales", ["tools/validar_rutas.py"]),
 	("Normas de formato", ["tools/formatear.py", "--comprobar", "--resumen"]),
 	("Modelos de los agentes", ["tools/cambiar_modelo.py", "--validar"]),
+	("Pruebas de las herramientas",
+	 ["-m", "unittest", "discover", "-s", "tools/tests", "-q"]),
 ]
 
 

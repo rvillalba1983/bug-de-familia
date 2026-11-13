@@ -5,7 +5,7 @@ extends SceneTree
 const JUMP_PER_TICK: float = 30.0
 const FOLLOW_TIME: float = 30.0
 
-var zone: BetaZone
+var zone: DespliegueCeroZone
 var world: LiveWorld
 var clock: float = 0.0
 var last_pos: Dictionary = {}
@@ -36,9 +36,9 @@ func _run() -> void:
 	BattleDirector.auto_start = false
 	if OS.has_environment("FECHA"):
 		WorldCalendar.forced_local_unix = int(OS.get_environment("FECHA"))
-	change_scene_to_file("res://scenes/beta/beta_zone.tscn")
+	change_scene_to_file("res://scenes/despliegue_cero/despliegue_cero_zone.tscn")
 	await create_timer(1.0).timeout
-	zone = current_scene as BetaZone
+	zone = current_scene as DespliegueCeroZone
 	world = zone.live_world
 	_quiet_guards()
 	zone.player.global_position = Vector2(float(_env("X", "1600")), float(_env("Y", "1320")))

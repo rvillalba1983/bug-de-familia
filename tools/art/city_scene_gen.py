@@ -194,7 +194,7 @@ items+=[lamp(-5.7,10,RESET,1.5),lamp(5.7,17,MULTA,-1.5),lamp(-5.7,27,ACID,1.5),l
 # sprites con escala real por profundidad
 def sprite(fn,x,y,hm,sw,sh,flip=False):
     def d():
-        b=base64.b64encode(open(f'art/beta/fuentes/{fn}.svg','rb').read()).decode()
+        b=base64.b64encode(open(f'art/shared/fuentes/{fn}.svg','rb').read()).decode()
         px,py=pr((x,y,0));s=S((x,y,0))*hm/sh
         wd,hd=sw*s,sh*s
         sx=-1 if flip else 1

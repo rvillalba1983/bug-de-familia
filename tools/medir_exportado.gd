@@ -8,7 +8,7 @@ extends Node
 const SETTLE: float = 3.0
 const SAMPLES: int = 150
 const SPOT: Vector2 = Vector2(1500.0, 620.0)
-const ZONE_PATH: String = "res://scenes/beta/beta_zone.tscn"
+const ZONE_PATH: String = "res://scenes/despliegue_cero/despliegue_cero_zone.tscn"
 const WALK_ROUTE: PackedVector2Array = [Vector2(1300.0, 1320.0), Vector2(2800.0, 1320.0)]
 const FIGHTERS: int = 6
 const FIGHT_RING: float = 70.0
@@ -32,11 +32,11 @@ func _run() -> void:
 	BattleDirector.auto_start = false
 	if OS.has_environment("ESCALA"):
 		CharacterScale.value = float(OS.get_environment("ESCALA"))
-	BetaZone.forced_hour = 23 if mode == "noche" else 12
+	DespliegueCeroZone.forced_hour = 23 if mode == "noche" else 12
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	Engine.max_fps = 0
 	var started: int = Time.get_ticks_usec()
-	var zone: BetaZone = (load(ZONE_PATH) as PackedScene).instantiate()
+	var zone: DespliegueCeroZone = (load(ZONE_PATH) as PackedScene).instantiate()
 	get_tree().root.add_child(zone)
 	await get_tree().process_frame
 	var load_ms: float = (Time.get_ticks_usec() - started) / 1000.0
@@ -74,7 +74,7 @@ func _run() -> void:
 	get_tree().quit()
 
 
-func _remove_part(zone: BetaZone, part: String) -> void:
+func _remove_part(zone: DespliegueCeroZone, part: String) -> void:
 	match part:
 		"filtro":
 			zone.screen_filter.visible = false
@@ -87,7 +87,7 @@ func _remove_part(zone: BetaZone, part: String) -> void:
 				if child is CanvasLayer and (child as CanvasLayer).layer == 2:
 					(child as CanvasLayer).visible = false
 		"ambiente":
-			for node: Node in zone.find_children("*", "BetaAmbient", true, false):
+			for node: Node in zone.find_children("*", "DespliegueCeroAmbient", true, false):
 				(node as CanvasItem).visible = false
 		"particulas":
 			for node: Node in zone.atmosphere.find_children("*", "GPUParticles2D", true, false):
@@ -128,7 +128,7 @@ func _append_to_report(line: String) -> void:
 	file.store_line(line)
 
 
-func _prepare(zone: BetaZone) -> void:
+func _prepare(zone: DespliegueCeroZone) -> void:
 	var extra: int = int(OS.get_environment("EXTRA")) if OS.has_environment("EXTRA") else 0
 	for index: int in range(extra):
 		var species: String = "jubilado" if index % 2 == 0 else "mohocrata"
@@ -139,7 +139,7 @@ func _prepare(zone: BetaZone) -> void:
 		guard.set_passive(true)
 
 
-func _start_case(zone: BetaZone, mode: String) -> void:
+func _start_case(zone: DespliegueCeroZone, mode: String) -> void:
 	if mode == "pausa":
 		zone.pause.set_paused(true)
 	elif mode == "caminando":
@@ -155,14 +155,14 @@ func _start_case(zone: BetaZone, mode: String) -> void:
 
 
 ## Espera a que el caso se asiente, manteniéndolo en marcha.
-func _settle(zone: BetaZone, mode: String) -> void:
+func _settle(zone: DespliegueCeroZone, mode: String) -> void:
 	var finish: int = Time.get_ticks_msec() + int(SETTLE * 1000.0)
 	while Time.get_ticks_msec() < finish:
 		await get_tree().process_frame
 		_keep_case_running(zone, mode)
 
 
-func _keep_case_running(zone: BetaZone, mode: String) -> void:
+func _keep_case_running(zone: DespliegueCeroZone, mode: String) -> void:
 	if mode == "caminando":
 		_keep_walking(zone)
 	elif mode == "pelea":
@@ -171,7 +171,7 @@ func _keep_case_running(zone: BetaZone, mode: String) -> void:
 	_last_position = zone.player.global_position
 
 
-func _keep_walking(zone: BetaZone) -> void:
+func _keep_walking(zone: DespliegueCeroZone) -> void:
 	var player: Player = zone.player
 	_heal(player)
 	if player.has_path():
@@ -182,7 +182,7 @@ func _keep_walking(zone: BetaZone) -> void:
 
 
 ## Pelea real con varios habitantes alrededor. Nadie muere, para que dure toda la medición.
-func _start_fight(zone: BetaZone) -> void:
+func _start_fight(zone: DespliegueCeroZone) -> void:
 	zone.player.process_mode = Node.PROCESS_MODE_INHERIT
 	var people: Array = zone.live_world.citizens.values()
 	for index: int in range(mini(FIGHTERS, people.size())):
@@ -200,7 +200,7 @@ func _start_fight(zone: BetaZone) -> void:
 	zone.combat.engage(_fighters[0])
 
 
-func _keep_fighting(zone: BetaZone) -> void:
+func _keep_fighting(zone: DespliegueCeroZone) -> void:
 	_heal(zone.player)
 	if zone.panel.is_open:
 		_panel_opened = true

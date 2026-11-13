@@ -61,6 +61,12 @@ func list(section: String) -> Array:
 	return data[section]
 
 
+## Lista de una sección opcional: si no está, no es un error y devuelve vacía.
+## La usan las secciones que solo algunas zonas declaran (los actores guionados).
+func list_optional(section: String) -> Array:
+	return data.get(section, [])
+
+
 func has(key: String) -> bool:
 	return _geometry.has(key)
 

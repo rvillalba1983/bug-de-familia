@@ -14,13 +14,13 @@ func _run() -> void:
 	if OS.has_environment("FECHA"):
 		WorldCalendar.forced_local_unix = int(OS.get_environment("FECHA"))
 	var out: String = OS.get_environment("SALIDA")
-	change_scene_to_file("res://scenes/beta/beta_zone.tscn")
+	change_scene_to_file("res://scenes/despliegue_cero/despliegue_cero_zone.tscn")
 	await create_timer(1.5).timeout
-	var zone: BetaZone = current_scene as BetaZone
+	var zone: DespliegueCeroZone = current_scene as DespliegueCeroZone
 	if OS.has_environment("NOCHE"):
-		for node: Node in zone.find_children("*", "BetaAtmosphere", true, false):
-			(node as BetaAtmosphere).hour_source = func() -> int: return 23
-			(node as BetaAtmosphere)._apply_hour()
+		for node: Node in zone.find_children("*", "DespliegueCeroAtmosphere", true, false):
+			(node as DespliegueCeroAtmosphere).hour_source = func() -> int: return 23
+			(node as DespliegueCeroAtmosphere)._apply_hour()
 	await _act(zone, OS.get_environment("ACCION"))
 	if OS.has_environment("SUCESO"):
 		var sim: WorldSim = zone.live_world.sim
@@ -44,7 +44,7 @@ func _run() -> void:
 	quit()
 
 
-func _act(zone: BetaZone, action: String) -> void:
+func _act(zone: DespliegueCeroZone, action: String) -> void:
 	var world: LiveWorld = zone.live_world
 	var sim: WorldSim = world.sim
 	var near: Vector2 = Vector2(1500.0, 900.0)

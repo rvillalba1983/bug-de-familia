@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Hornea las texturas pintadas y repetibles del suelo de la beta en art/beta/."""
+"""Hornea las texturas pintadas y repetibles del suelo (bosque, ciudad y barro).
+
+El directorio de salida se pasa como argumento: python tools/art/ground_gen.py <carpeta>
+"""
 import sys
 from playwright.sync_api import sync_playwright
 SETS={'suelo_bosque':('#1a3a33 #24493c #2c5a44 #3b7350 #274a55','#6fa56a'),

@@ -17,13 +17,13 @@ func test_los_edificios_son_los_rectangulos_reales_de_la_zona() -> void:
 	var rects: Array[Rect2] = vista.building_rects()
 	assert_int(rects.size()).is_equal(4)
 	for esperado: Rect2 in [
-		BetaLayout.central_facade,
-		BetaLayout.depot_facade,
-		BetaLayout.jub_home,
-		BetaLayout.moho_home,
+		DespliegueCeroLayout.central_facade,
+		DespliegueCeroLayout.depot_facade,
+		DespliegueCeroLayout.jub_home,
+		DespliegueCeroLayout.moho_home,
 	]:
 		assert_bool(rects.has(esperado)).is_true()
-		assert_bool(BetaLayout.floor_rect.encloses(esperado)).is_true()
+		assert_bool(DespliegueCeroLayout.floor_rect.encloses(esperado)).is_true()
 
 
 func test_la_ayuda_dice_esc_y_no_m_para_salir() -> void:
@@ -35,7 +35,7 @@ func test_la_ayuda_dice_esc_y_no_m_para_salir() -> void:
 
 func test_el_zoom_min_permite_ver_la_ciudad_completa() -> void:
 	assert_bool(
-		StrategyView.VIEW.y / StrategyView.ZOOM_MIN >= BetaLayout.city.size.y
+		StrategyView.VIEW.y / StrategyView.ZOOM_MIN >= DespliegueCeroLayout.city.size.y
 	).is_true()
 
 

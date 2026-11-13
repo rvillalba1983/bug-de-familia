@@ -8,7 +8,7 @@ const CHECK_INTERVAL: float = 1.0
 const COMBAT_HOLD: float = 6.0
 const RECENT_SIZE: int = 6
 
-var level: BetaZone
+var level: DespliegueCeroZone
 var current_state: String = ""
 var current_track: Dictionary = {}
 
@@ -65,11 +65,11 @@ func situation() -> String:
 
 func zone() -> String:
 	var feet: Vector2 = level.player.global_position
-	if BetaLayout.north_quarter.has_point(feet):
+	if DespliegueCeroLayout.north_quarter.has_point(feet):
 		return "barrio_jubilado"
-	if BetaLayout.south_quarter.has_point(feet):
+	if DespliegueCeroLayout.south_quarter.has_point(feet):
 		return "barrio_mohocrata"
-	if BetaLayout.no_mans_land.has_point(feet):
+	if DespliegueCeroLayout.no_mans_land.has_point(feet):
 		return "tierra_de_nadie"
 	return "bosque"
 

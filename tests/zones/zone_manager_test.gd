@@ -41,15 +41,15 @@ func before_test() -> void:
 	manager.zone_factory = func(_id: String) -> ZoneBase: return StubZone.new()
 	manager.min_transition = 0.0
 	add_child(manager)
-	assert_bool(manager.start("beta")).is_true()
+	assert_bool(manager.start("despliegue_cero")).is_true()
 
 
 func after_test() -> void:
 	get_tree().paused = false
 
 
-func test_levels_by_hops_from_beta() -> void:
-	assert_int(manager.level_of("beta")).is_equal(ZoneRecord.Level.FULL)
+func test_levels_by_hops_from_despliegue_cero() -> void:
+	assert_int(manager.level_of("despliegue_cero")).is_equal(ZoneRecord.Level.FULL)
 	assert_int(manager.level_of("cumbre")).is_equal(ZoneRecord.Level.SIMPLIFIED)
 	assert_int(manager.level_of("cementerio")).is_equal(ZoneRecord.Level.STATISTICAL)
 
@@ -58,23 +58,23 @@ func test_transition_moves_to_destination() -> void:
 	assert_bool(manager.enter("el_enchufe")).is_true()
 	assert_str(manager.current_id).is_equal("el_enchufe")
 	assert_int(manager.level_of("el_enchufe")).is_equal(ZoneRecord.Level.FULL)
-	assert_int(manager.level_of("beta")).is_equal(ZoneRecord.Level.SIMPLIFIED)
+	assert_int(manager.level_of("despliegue_cero")).is_equal(ZoneRecord.Level.SIMPLIFIED)
 
 
 func test_minimum_transition_waits_five_seconds() -> void:
 	manager.min_transition = ZoneManager.MIN_TRANSITION
 	manager.enter("cumbre")
-	assert_str(manager.current_id).is_equal("beta")
+	assert_str(manager.current_id).is_equal("despliegue_cero")
 	assert_bool(manager.loading).is_true()
 	manager._process(4.9)
-	assert_str(manager.current_id).is_equal("beta")
+	assert_str(manager.current_id).is_equal("despliegue_cero")
 	manager._process(0.2)
 	assert_str(manager.current_id).is_equal("cumbre")
 
 
 func test_fast_travel_requires_visited_destination() -> void:
 	manager.enter("el_enchufe")
-	manager.enter("beta")
+	manager.enter("despliegue_cero")
 	assert_bool(manager.can_fast_travel("el_enchufe")).is_true()
 	assert_int(manager.travel_destinations().size()).is_greater(0)
 	var before: float = manager.world_seconds
@@ -89,7 +89,7 @@ func test_unknown_destination_is_not_fast_travel() -> void:
 
 func test_persistence_round_trip() -> void:
 	manager.enter("el_enchufe")
-	manager.enter("beta")
+	manager.enter("despliegue_cero")
 	var second: ZoneManager = ZoneManager.new()
 	var second_host: Node2D = Node2D.new()
 	add_child(second_host)
@@ -97,14 +97,14 @@ func test_persistence_round_trip() -> void:
 	second.zone_factory = func(_id: String) -> ZoneBase: return StubZone.new()
 	second.min_transition = 0.0
 	add_child(second)
-	assert_bool(second.start("beta")).is_true()
-	assert_str(second.current_id).is_equal("beta")
+	assert_bool(second.start("despliegue_cero")).is_true()
+	assert_str(second.current_id).is_equal("despliegue_cero")
 	assert_bool(second.is_known("el_enchufe")).is_true()
 
 
 func test_statistical_zone_moves_toward_target() -> void:
 	manager.enter("el_enchufe")
-	manager.enter("beta")
+	manager.enter("despliegue_cero")
 	var record: ZoneRecord = manager.records.get("el_enchufe") as ZoneRecord
 	record.population = {"jubilado": 8, "mohocrata": 8}
 	manager.enter("archivo")

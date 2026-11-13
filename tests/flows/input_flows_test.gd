@@ -1,24 +1,28 @@
 extends GdUnitTestSuite
 ## Flujos de partida desde las acciones de entrada reales, no desde llamadas a sistemas.
 
-const PATH: String = "res://scenes/beta/beta_zone.tscn"
+const PATH: String = "res://scenes/despliegue_cero/despliegue_cero_zone.tscn"
 const SAFE_SPOT: Vector2 = Vector2(600.0, 1300.0)
 const ARM: ModularBody.Slot = ModularBody.Slot.ARM_EXTRA_LEFT
+const SAVE_POINTS: Array[Vector2] = [
+	Vector2(300.0, 1300.0), Vector2(1700.0, 950.0),
+	Vector2(1700.0, 1600.0), Vector2(3300.0, 1300.0),
+]
 
 var runner: GdUnitSceneRunner
-var zone: BetaZone
+var zone: DespliegueCeroZone
 
 
 func before_test() -> void:
 	TestSupport.reset_session()
-	BetaZone.forced_hour = 12
+	DespliegueCeroZone.forced_hour = 12
 	await _open()
 
 
 func after_test() -> void:
 	for action: StringName in [&"move_right", &"crouch"]:
 		Input.action_release(action)
-	BetaZone.forced_hour = -1
+	DespliegueCeroZone.forced_hour = -1
 	get_tree().paused = false
 	Engine.time_scale = 1.0
 
@@ -112,11 +116,11 @@ func test_right_click_on_the_ground_walks_there() -> void:
 
 
 func test_right_click_on_an_object_walks_and_uses_it() -> void:
-	zone.player.global_position = BetaLayout.generator + Vector2(-150.0, 0.0)
+	zone.player.global_position = DespliegueCeroLayout.generator + Vector2(-150.0, 0.0)
 	await await_millis(100)
-	await _click_world(BetaLayout.generator)
+	await _click_world(DespliegueCeroLayout.generator)
 	await await_millis(1500)
-	assert_bool((zone.items[BetaZone.ID_GENERATOR] as Interactable).used).is_true()
+	assert_bool((zone.items[DespliegueCeroZone.ID_GENERATOR] as Interactable).used).is_true()
 
 
 func test_q_converts_with_answer_keys_and_esc_accepts() -> void:
@@ -153,10 +157,10 @@ func test_f_throws_scrap_and_a_nearby_guard_goes_to_check() -> void:
 
 
 func test_save_point_saves_and_reopening_continues_there() -> void:
-	zone.player.global_position = BetaLayout.save_points[1]
+	zone.player.global_position = SAVE_POINTS[1]
 	await await_millis(200)
 	var saved: Dictionary = SaveSystem.read()["data"]
-	assert_float(float(saved["player"]["x"])).is_equal_approx(BetaLayout.save_points[1].x, 40.0)
+	assert_float(float(saved["player"]["x"])).is_equal_approx(SAVE_POINTS[1].x, 40.0)
 	Sandbox.session_started = false
 	await _open()
 	assert_object(zone.overlay).is_not_null()

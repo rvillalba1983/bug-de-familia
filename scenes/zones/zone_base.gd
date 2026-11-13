@@ -3,9 +3,10 @@ extends Sandbox
 ## Zona genérica del mundo (ADR 0027). La escena es fija y la geometría, la
 ## población y los objetos se declaran en data/zones/<id>.json.
 ##
-## La beta conserva su escena propia (`BetaZone extends ZoneBase`). Las zonas
-## provisionales usan `scenes/zones/zone.tscn`, que monta el suelo, los bloques
-## de forma, los corredores y los puntos de guardado del JSON.
+## La zona de despliegue cero conserva su escena propia (`DespliegueCeroZone
+## extends ZoneBase`). Las zonas provisionales usan `scenes/zones/zone.tscn`, que
+## monta el suelo, los bloques de forma, los corredores y los puntos de guardado
+## del JSON.
 
 signal transition_requested(to_zone: String)
 
@@ -216,31 +217,52 @@ func _close_travel(screen: MessageScreen) -> void:
 
 
 func _build_enemies() -> void:
-	for actor: Dictionary in _definition().list("actors"):
+	for actor: Dictionary in _definition().list_optional("actors"):
 		_spawn_actor(actor)
 
 
 ## Pone en escena a un personaje guionado de la zona (pasivo, con ruta fija).
 func _spawn_actor(actor: Dictionary) -> void:
+	var zone_def: ZoneDefinition = _definition()
+	var id: String = str(actor.get("id", ""))
+	var route_key: String = str(actor.get("route", ""))
+	if id.is_empty() or route_key.is_empty():
+		push_error("%s: actor sin id o sin ruta: %s" % [zone_def.path, actor])
+		return
 	var species: String = str(actor.get("species", ""))
-	var guard_node: Guard = _add_zone_guard(
-		str(actor["id"]), _definition().points(str(actor["route"])), _look_of(actor)
-	)
+	var weapon_id: String = str(actor.get("weapon", ""))
+	if not zone_def.has(route_key):
+		push_error("%s: el actor «%s» no tiene la ruta «%s»" % [zone_def.path, id, route_key])
+		return
+	var route: Array[Vector2] = zone_def.points(route_key)
+	if route.is_empty():
+		push_error("%s: la ruta «%s» del actor «%s» está vacía" % [
+			zone_def.path, route_key, id
+		])
+		return
+	var look: Dictionary = _look_of(actor)
+	if look.is_empty():
+		return
+	var guard_node: Guard = _add_zone_guard(id, route, look, weapon_id)
 	guard_node.set_passive(true)
-	if actor.has("weapon") and not str(actor["weapon"]).is_empty():
-		guard_node.make_ranged(self, str(actor["weapon"]))
-	_add_convertible(str(actor["id"]), guard_node, _zone_materials[guard_node])
-	guard_node.fell.connect(_on_zone_enemy_fell)
-	guard_node.corpse_expired.connect(_on_corpse_expired)
+	_add_convertible(id, guard_node, str(_zone_materials.get(guard_node, "")))
+	# La caída la conecta el Sandbox en _connect_enemies, con el id del JSON.
 	if not species.is_empty():
 		guard_node.attacked.connect(_on_zone_citizen_attacked.bind(guard_node, species))
 
 
-## Aspecto de un actor: especie o progenitor, igual que en la beta.
+## Aspecto de un actor: especie o progenitor, igual que en la zona de despliegue cero.
+## Devuelve un diccionario vacío si el actor no se puede identificar.
 func _look_of(actor: Dictionary) -> Dictionary:
 	if actor.has("species"):
 		return _species_look(str(actor["species"]))
-	var entry: Dictionary = ProgenitorCatalog.entry(str(actor["progenitor"]))
+	var progenitor: String = str(actor.get("progenitor", ""))
+	if not ProgenitorCatalog.has(progenitor):
+		push_error("%s: actor sin especie ni progenitor conocido: %s" % [
+			_definition().path, actor
+		])
+		return {}
+	var entry: Dictionary = ProgenitorCatalog.entry(progenitor)
 	return {
 		"species": "", "color": Color(str(entry["color"])), "art": entry["art"],
 		"material": entry["material"], "deaths": entry["deaths"],
@@ -311,9 +333,12 @@ func add_citizen(id: String, species: String, at: Vector2, home: Rect2) -> Guard
 	route[1] = route[1].clamp(home.position, home.end)
 	var guard_node: Guard = _add_zone_guard(id, route, _species_look(species))
 	guard_node.set_passive(true)
-	_add_convertible(id, guard_node, _zone_materials[guard_node])
+	_add_convertible(id, guard_node, str(_zone_materials.get(guard_node, "")))
 	fight.track(guard_node)
-	guard_node.fell.connect(_on_zone_enemy_fell)
+	# Los ciudadanos se crean después de que el Sandbox conectara a sus enemigos,
+	# así que aquí se les conecta su caída y su cadáver. El id es el del mundo vivo:
+	# el guardado los reconoce y no vuelven a aparecer.
+	guard_node.fell.connect(_on_enemy_fell)
 	guard_node.corpse_expired.connect(_on_corpse_expired)
 	guard_node.attacked.connect(_on_zone_citizen_attacked.bind(guard_node, species))
 	return guard_node
@@ -359,7 +384,9 @@ func reward_piece() -> void:
 	_add_pickup([ModularBody.Slot.ARM_MAIN_LEFT, ModularBody.Slot.ARM_MAIN_RIGHT])
 
 
-func _add_zone_guard(id: String, route: Array[Vector2], look: Dictionary) -> Guard:
+func _add_zone_guard(
+	id: String, route: Array[Vector2], look: Dictionary, weapon_id: String = ""
+) -> Guard:
 	var enemy: Guard = Guard.new()
 	enemy.target = player
 	enemy.nav = nav
@@ -368,7 +395,12 @@ func _add_zone_guard(id: String, route: Array[Vector2], look: Dictionary) -> Gua
 	enemy.visual.art_views = _load_views(str(look["art"]))
 	enemy.visual.rig_folder = ART_FOLDER + "rig/" + str(look["art"])
 	enemy.death = DeathCatalog.pick(look["deaths"], rng)
+	if not weapon_id.is_empty():
+		enemy.make_ranged(self, weapon_id)
 	enemy.setup(route, ground)
+	var species: String = str(look.get("species", ""))
+	if not species.is_empty():
+		enemy.detector.faction = species
 	actors.add_child(enemy)
 	_zone_enemy_ids[enemy] = id
 	_zone_materials[enemy] = look["material"]
@@ -389,18 +421,23 @@ func _load_views(base: String) -> Array[Texture2D]:
 	return views
 
 
-func _on_zone_enemy_fell(enemy: Guard) -> void:
-	fallen_ids.append(id_of_guard(enemy))
+## El Sandbox anota el caído con _id_of, que aquí es el id del JSON. La zona solo
+## avisa al mundo vivo, que es lo propio de cada zona.
+func _on_enemy_fell(enemy: Guard) -> void:
+	super(enemy)
 	if live_world != null:
 		live_world.on_citizen_gone(id_of_guard(enemy))
 
 
 func _on_zone_citizen_attacked(victim: Guard, species: String) -> void:
+	if live_world == null:
+		return
 	for id: String in live_world.citizens:
 		var other: Guard = live_world.citizens[id]
 		if other == victim or not is_instance_valid(other):
 			continue
-		if (live_world.sim.npcs[id] as NpcState).species != species:
+		var npc: NpcState = live_world.sim.npcs.get(id) as NpcState
+		if npc == null or npc.species != species:
 			continue
 		if battles != null and battles.is_fighter(id):
 			continue
@@ -456,5 +493,5 @@ func snapshot() -> Dictionary:
 func _definition() -> ZoneDefinition:
 	if definition == null:
 		push_error("ZoneBase sin definir: falta set_definition() antes de montar la escena")
-		return ZoneDefinition.load_from(BetaLayout.PATH)
+		return ZoneDefinition.load_from(DespliegueCeroLayout.PATH)
 	return definition

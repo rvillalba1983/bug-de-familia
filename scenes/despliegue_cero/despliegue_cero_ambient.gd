@@ -1,4 +1,4 @@
-class_name BetaAmbient
+class_name DespliegueCeroAmbient
 extends Node2D
 ## Fondo, solo visual: charcos, cables, plantas y copas de árbol a otra velocidad, todo quieto
 ## por rendimiento (docs/adr/0017). Se dibuja solo cerca del jugador.

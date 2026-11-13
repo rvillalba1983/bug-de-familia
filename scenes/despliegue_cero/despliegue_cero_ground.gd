@@ -1,4 +1,4 @@
-class_name BetaGround
+class_name DespliegueCeroGround
 extends RefCounted
 ## Pinta el suelo de la beta con formas de Godot: bosque, ciudad y tierra de nadie.
 ## Usa semilla propia para no tocar el generador de la partida.

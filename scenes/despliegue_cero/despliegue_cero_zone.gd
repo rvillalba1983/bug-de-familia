@@ -18,7 +18,7 @@ static var forced_hour: int = -1
 var challenges: DespliegueCeroChallenges
 var protagonist: ProtagonistVoice
 var rain: AcidRain
-var atmosphere: BetaAtmosphere
+var atmosphere: DespliegueCeroAtmosphere
 var music: MusicDirector
 var screen_filter: ScreenFilter
 var rain_label: Label
@@ -42,6 +42,12 @@ func world_size() -> Vector2:
 
 
 func zone_definition() -> ZoneDefinition:
+	return DespliegueCeroLayout.zone
+
+
+## La zona de despliegue cero trae su propia definición: no espera a que el
+## gestor se la asigne antes de montarse.
+func _definition() -> ZoneDefinition:
 	return DespliegueCeroLayout.zone
 
 
@@ -131,7 +137,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, world_size()), COLOR_BACKGROUND)
-	BetaGround.paint(self)
+	DespliegueCeroGround.paint(self)
 	for index: int in range(DespliegueCeroLayout.outdoor_shelters):
 		draw_texture_rect(PropArt.texture("toldo"), DespliegueCeroLayout.shelters[index], false)
 	var goal: Vector2 = DespliegueCeroLayout.crossing_goal.get_center()
@@ -183,12 +189,29 @@ func _build_enemies() -> void:
 
 
 func _spawn_actor(actor: Dictionary) -> void:
+	var id: String = str(actor.get("id", ""))
+	var route_key: String = str(actor.get("route", ""))
+	if id.is_empty() or route_key.is_empty():
+		push_error("%s: actor sin id o sin ruta: %s" % [DespliegueCeroLayout.PATH, actor])
+		return
 	var look: Dictionary = _look_of(actor)
-	var route: Array[Vector2] = DespliegueCeroLayout.zone.points(str(actor["route"]))
-	var enemy: Guard = _add_guard(str(actor["id"]), route, look, str(actor.get("weapon", "")))
+	if look.is_empty():
+		return
+	if not DespliegueCeroLayout.zone.has(route_key):
+		push_error("%s: el actor «%s» no tiene la ruta «%s»" % [
+			DespliegueCeroLayout.PATH, id, route_key
+		])
+		return
+	var route: Array[Vector2] = DespliegueCeroLayout.zone.points(route_key)
+	if route.is_empty():
+		push_error("%s: la ruta «%s» del actor «%s» está vacía" % [
+			DespliegueCeroLayout.PATH, route_key, id
+		])
+		return
+	var enemy: Guard = _add_guard(id, route, look, str(actor.get("weapon", "")))
 	if actor.get("passive", false):
 		enemy.set_passive(true)
-	for role: String in actor["roles"]:
+	for role: String in actor.get("roles", []):
 		match role:
 			"guard":
 				guard = enemy
@@ -207,7 +230,13 @@ func _spawn_actor(actor: Dictionary) -> void:
 func _look_of(actor: Dictionary) -> Dictionary:
 	if actor.has("species"):
 		return _species_look(str(actor["species"]))
-	var entry: Dictionary = ProgenitorCatalog.entry(str(actor["progenitor"]))
+	var progenitor: String = str(actor.get("progenitor", ""))
+	if not ProgenitorCatalog.has(progenitor):
+		push_error("%s: actor sin especie ni progenitor conocido: %s" % [
+			DespliegueCeroLayout.PATH, actor
+		])
+		return {}
+	var entry: Dictionary = ProgenitorCatalog.entry(progenitor)
 	return {
 		"species": "", "color": Color(str(entry["color"])), "art": entry["art"],
 		"material": entry["material"], "deaths": entry["deaths"],
@@ -233,10 +262,12 @@ func _add_guard(id: String, route: Array[Vector2], look: Dictionary, weapon_id: 
 	if not weapon_id.is_empty():
 		enemy.make_ranged(self, weapon_id)
 	enemy.setup(route, ground)
-	var species: String = look["species"]
+	var species: String = str(look.get("species", ""))
 	if not species.is_empty():
 		enemy.detector.faction = species
-		(_rosters[species] as Array).append(enemy)
+		var roster: Array = _rosters.get(species, [])
+		roster.append(enemy)
+		_rosters[species] = roster
 	actors.add_child(enemy)
 	_enemy_ids[enemy] = id
 	_materials[enemy] = look["material"]
@@ -248,7 +279,7 @@ func _build_items() -> void:
 		_build_item(entry)
 	for index: int in range(DespliegueCeroLayout.mines.size()):
 		_add_mine(index)
-	BetaFacades.build(self)
+	DespliegueCeroFacades.build(self)
 
 
 func _build_item(entry: Dictionary) -> void:
@@ -293,9 +324,12 @@ func _add_mine(index: int) -> void:
 
 func _register_convertibles() -> void:
 	for enemy: Guard in guards():
-		_add_convertible(_enemy_ids[enemy], enemy, _materials[enemy])
+		_add_convertible(_enemy_ids[enemy], enemy, str(_materials.get(enemy, "")))
 	for entry: Dictionary in DespliegueCeroLayout.zone.list("convertibles"):
-		_add_convertible(str(entry["id"]), _convertible_node(entry), str(entry["material"]))
+		var node: Node2D = _convertible_node(entry)
+		if node == null:
+			continue
+		_add_convertible(str(entry["id"]), node, str(entry["material"]))
 	_fix_progenitor_property(ID_RAMON)
 	for prop: Dictionary in DespliegueCeroLayout.zone.list("props"):
 		_build_prop(prop)
@@ -304,12 +338,18 @@ func _register_convertibles() -> void:
 
 
 func _convertible_node(entry: Dictionary) -> Node2D:
-	match str(entry["node"]):
+	match str(entry.get("node", "")):
 		"drone":
 			return drone
 		"camera":
 			return security_camera
-	return items[entry["id"]]
+	var node: Variant = items.get(str(entry["id"]))
+	if node == null:
+		push_error("%s: el convertible «%s» no tiene objeto" % [
+			DespliegueCeroLayout.PATH, str(entry["id"])
+		])
+		return null
+	return node as Node2D
 
 
 func _build_prop(prop: Dictionary) -> void:
@@ -323,6 +363,9 @@ func _build_prop(prop: Dictionary) -> void:
 
 
 func _fix_progenitor_property(id: String) -> void:
+	if not entities.has(id):
+		push_error("%s: no hay entidad «%s» que arreglar" % [DespliegueCeroLayout.PATH, id])
+		return
 	var entry: Dictionary = ProgenitorCatalog.entry(id)
 	for child: Node in (entities[id] as Node).get_children():
 		if child is Convertible:
@@ -341,6 +384,7 @@ func _build_investigation() -> void:
 	_add_convertible(ID_CONTESTADOR, investigation.npc_nodes[ID_CONTESTADOR], str(contestador["material"]))
 	_contestador_at = (entities[ID_CONTESTADOR] as Node2D).global_position
 	_fix_progenitor_property(ID_CONTESTADOR)
+	_fix_progenitor_property(ID_CONTESTADOR)
 	challenges = DespliegueCeroChallenges.new()
 	challenges.level = self
 	if forced_hour >= 0:
@@ -354,11 +398,11 @@ func _build_investigation() -> void:
 	protagonist = ProtagonistVoice.new()
 	protagonist.level = self
 	add_child(protagonist)
-	atmosphere = BetaAtmosphere.new()
+	atmosphere = DespliegueCeroAtmosphere.new()
 	atmosphere.player = player
 	atmosphere.hour_source = challenges.hour_source
 	add_child(atmosphere)
-	var ambient: BetaAmbient = BetaAmbient.new()
+	var ambient: DespliegueCeroAmbient = DespliegueCeroAmbient.new()
 	ambient.follow = player
 	actors.add_child(ambient)
 	live_world = LiveWorld.new()
@@ -410,18 +454,17 @@ func least_friendly_species() -> String:
 
 
 func id_of_guard(enemy: Guard) -> String:
-	return _enemy_ids[enemy]
+	return str(_enemy_ids.get(enemy, ""))
 
 
 func _id_of(enemy: Guard) -> String:
-	return _enemy_ids[enemy]
+	return str(_enemy_ids.get(enemy, ""))
 
 
 func _on_enemy_fell(enemy: Guard) -> void:
 	super(enemy)
 	if enemy == ramon:
 		challenges.on_ramon_fell()
-	live_world.on_citizen_gone(_id_of(enemy))
 
 
 func _on_converted(entity_id: String) -> void:
@@ -485,8 +528,9 @@ func add_citizen(id: String, species: String, at: Vector2, home: Rect2) -> Guard
 	route[1] = route[1].clamp(home.position, home.end)
 	var enemy: Guard = _add_guard(id, route, _species_look(species))
 	enemy.set_passive(true)
-	_add_convertible(id, enemy, _materials[enemy])
+	_add_convertible(id, enemy, str(_materials.get(enemy, "")))
 	fight.track(enemy)
+	# _on_enemy_fell avisa al mundo vivo, igual que en las zonas genéricas.
 	enemy.fell.connect(_on_enemy_fell)
 	enemy.corpse_expired.connect(_on_corpse_expired)
 	enemy.attacked.connect(_on_citizen_attacked.bind(enemy, species))
@@ -522,7 +566,10 @@ func _on_citizen_attacked(victim: Guard, species: String) -> void:
 		var other: Guard = live_world.citizens[id]
 		if other == victim or not is_instance_valid(other):
 			continue
-		if (live_world.sim.npcs[id] as NpcState).species != species or battles.is_fighter(id):
+		var npc: NpcState = live_world.sim.npcs.get(id) as NpcState
+		if npc == null or npc.species != species:
+			continue
+		if battles != null and battles.is_fighter(id):
 			continue
 		if other.global_position.distance_to(victim.global_position) <= GROUP_REACT_RADIUS:
 			other.join_fight()

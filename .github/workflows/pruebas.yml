@@ -23,26 +23,32 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Verificaciones deterministas (datos y normas)
+      # Incluye validar_rutas.py: cualquier res:// roto (renombrados como
+      # beta -> despliegue_cero) falla aqui en segundos, sin descargar Godot.
+      - name: Verificaciones deterministas (datos, rutas y normas)
         run: python3 tools/verificar.py
 
   pruebas:
     name: Pruebas GdUnit4 (${{ matrix.grupo }})
     runs-on: ubuntu-latest
     needs: verificar
-    timeout-minutes: 20
+    timeout-minutes: 25
     strategy:
       fail-fast: false
       matrix:
         include:
           - grupo: 'core'
             carpetas: '-a res://tests/core -a res://tests/entities -a res://tests/body'
+            minimo: 35
           - grupo: 'combate'
             carpetas: '-a res://tests/combat -a res://tests/conversion -a res://tests/stealth'
+            minimo: 52
           - grupo: 'simulacion'
             carpetas: '-a res://tests/ai -a res://tests/investigation -a res://tests/simulation -a res://tests/zones'
-          - grupo: 'beta'
-            carpetas: '-a res://tests/beta -a res://tests/flows -a res://tests/ui -a res://tests/art -a res://tests/data -a res://tests/sandbox'
+            minimo: 100
+          - grupo: 'despliegue_cero'
+            carpetas: '-a res://tests/despliegue_cero -a res://tests/flows -a res://tests/ui -a res://tests/art -a res://tests/data -a res://tests/sandbox'
+            minimo: 150
 
     steps:
       - name: Checkout
@@ -68,15 +74,25 @@ jobs:
       - name: Añadir Godot al PATH
         run: echo "/tmp/godot" >> "$GITHUB_PATH"
 
-      - name: Importar proyecto
-        run: godot --headless --import
+      # Godot puede devolver 0 aunque deje scripts sin cargar. Los prefijos
+      # ERROR:/SCRIPT ERROR:/Parse Error: son inequivocos: si aparecen, el
+      # proyecto esta roto y no se sigue gastando tiempo en la suite.
+      - name: Importar proyecto (falla ante errores de script)
+        run: |
+          set -o pipefail
+          godot --headless --import 2>&1 | tee import.log
+          if grep -nE "^(ERROR|USER ERROR|SCRIPT ERROR|Parse Error):" import.log; then
+            echo "::error::La importacion dejo errores de script o de recursos"
+            exit 1
+          fi
         timeout-minutes: 5
 
       - name: Ejecutar pruebas GdUnit4
         id: pruebas
         run: |
           set +e
-          timeout -k 30 600 godot --headless -s -d \
+          rm -rf reports
+          timeout -k 30 900 godot --headless -s -d \
             res://addons/gdUnit4/bin/GdUnitCmdTool.gd \
             --ignoreHeadlessMode \
             ${{ matrix.carpetas }} \
@@ -85,13 +101,26 @@ jobs:
           set -e
           cat pruebas.log
           if [ "$EXIT_CODE" -eq 124 ] || [ "$EXIT_CODE" -eq 137 ]; then
-            echo "::error::Las pruebas excedieron el tiempo limite de 600 segundos"
+            echo "::error::Las pruebas excedieron el tiempo limite de 900 segundos"
             exit 1
           fi
           if [ "$EXIT_CODE" -ne 0 ]; then
             echo "::error::Las pruebas fallaron con codigo de salida $EXIT_CODE"
           fi
           exit "$EXIT_CODE"
+
+      # GdUnit4 sale con 0 si una ruta -a no existe y no ejecuta nada: es el
+      # falso verde del PR #7 (ADR 0028). Se valida el informe JUnit real y,
+      # ademas, el registro de la corrida: los errores de parseo y de carga de
+      # scripts (descubrimiento roto) no siempre aparecen en el informe.
+      - name: Comprobar que las pruebas se ejecutaron de verdad
+        if: always()
+        run: |
+          python3 tools/validar_informes.py \
+            --grupo "${{ matrix.grupo }}" \
+            --minimo "${{ matrix.minimo }}" \
+            --argumentos-gdunit "${{ matrix.carpetas }}" \
+            --registro pruebas.log
 
       - name: Resumen de pruebas
         if: always()
@@ -101,3 +130,110 @@ jobs:
             sed 's/\x1b\[[0-9;]*m//g' pruebas.log | \
               grep -E "^(Overall Summary:|Executed test suites:|Executed test cases :|Total execution time:)" >> "$GITHUB_STEP_SUMMARY" || true
           fi
+
+      - name: Guardar registros e informes si algo falla
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: informes-${{ matrix.grupo }}
+          path: |
+            pruebas.log
+            import.log
+            reports/
+          if-no-files-found: ignore
+
+  # Prueba de humo del juego exportado con prueba positiva de arranque
+  # (ADR 0028): no basta con que el proceso termine, ni con que el log no
+  # tenga errores. tools/verificar_humo.py exige que ZoneManager haya montado
+  # la zona inicial, con protagonista y poblacion, leyendo user://partida.json.
+  arranque:
+    name: Arranque del juego exportado (Linux)
+    runs-on: ubuntu-latest
+    needs: verificar
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache Godot y plantillas de exportación
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: |
+            /tmp/godot
+            ~/.local/share/godot/export_templates/4.7.2.stable
+          key: godot-4.7.2-stable-linux-templates-${{ runner.os }}-v1
+
+      - name: Descargar Godot 4.7.2
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p /tmp/godot
+          curl -L -o /tmp/godot/godot.zip \
+            https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          unzip -o /tmp/godot/godot.zip -d /tmp/godot
+          mv /tmp/godot/Godot_v4.7.2-stable_linux.x86_64 /tmp/godot/godot
+          chmod +x /tmp/godot/godot
+
+      - name: Descargar e instalar plantillas de exportación
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p /tmp/godot-templates/extract
+          curl -L -o /tmp/godot-templates/templates.tpz \
+            https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_export_templates.tpz
+          mkdir -p ~/.local/share/godot/export_templates/4.7.2.stable
+          unzip -o /tmp/godot-templates/templates.tpz -d /tmp/godot-templates/extract
+          # Godot usa el directorio que contiene version.txt como raíz de contenido.
+          VERSION_TXT=$(find /tmp/godot-templates/extract -name version.txt -print -quit)
+          if [ -z "$VERSION_TXT" ]; then
+            echo "::error::No se encontró version.txt en las plantillas descargadas"
+            exit 1
+          fi
+          CONTENTS_DIR=$(dirname "$VERSION_TXT")
+          echo "Raíz de plantillas detectada: $CONTENTS_DIR"
+          find "$CONTENTS_DIR" -mindepth 1 -maxdepth 1 -not -name '__MACOSX' \
+            -exec cp -r {} ~/.local/share/godot/export_templates/4.7.2.stable/ \;
+
+      - name: Añadir Godot al PATH
+        run: echo "/tmp/godot" >> "$GITHUB_PATH"
+
+      - name: Importar proyecto (falla ante errores de script)
+        run: |
+          set -o pipefail
+          godot --headless --import 2>&1 | tee import.log
+          if grep -nE "^(ERROR|USER ERROR|SCRIPT ERROR|Parse Error):" import.log; then
+            echo "::error::La importacion dejo errores de script o de recursos"
+            exit 1
+          fi
+        timeout-minutes: 5
+
+      - name: Exportar Linux
+        run: |
+          mkdir -p build
+          godot --headless --export-release "Linux" build/bug_de_familia.x86_64 \
+            2>&1 | tee export.log
+          chmod +x build/bug_de_familia.x86_64
+          test -s build/bug_de_familia.pck
+          if grep -nE "^(ERROR|USER ERROR|SCRIPT ERROR|Parse Error):" export.log; then
+            echo "::error::La exportacion dejo errores de script o de recursos"
+            exit 1
+          fi
+
+      - name: Comprobar que el juego arranca y monta la zona
+        run: |
+          python3 tools/verificar_humo.py \
+            --binario build/bug_de_familia.x86_64 \
+            --datos humo_datos \
+            --registro humo.log \
+            --espera 90 \
+            --zona despliegue_cero
+
+      - name: Guardar registro de arranque si algo falla
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arranque-linux
+          path: |
+            humo.log
+            export.log
+            import.log
+          if-no-files-found: ignore

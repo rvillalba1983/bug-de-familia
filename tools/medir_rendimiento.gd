@@ -14,9 +14,9 @@ func _run() -> void:
 	SaveSystem.delete_all()
 	Sandbox.session_started = true
 	Sandbox.forced_seed = 77
-	change_scene_to_file("res://scenes/beta/beta_zone.tscn")
+	change_scene_to_file("res://scenes/despliegue_cero/despliegue_cero_zone.tscn")
 	await create_timer(1.5).timeout
-	var zone: BetaZone = current_scene as BetaZone
+	var zone: DespliegueCeroZone = current_scene as DespliegueCeroZone
 	var mode: String = OS.get_environment("CASO")
 	var extra: int = int(OS.get_environment("EXTRA")) if OS.has_environment("EXTRA") else 0
 	for index: int in range(extra):

@@ -15,23 +15,23 @@ func test_every_connection_is_reciprocal() -> void:
 
 func test_all_zones_are_reachable() -> void:
 	var registry: ZoneRegistry = ZoneRegistry.load_default()
-	assert_array(registry.graph.unreachable_from("beta")).is_empty()
+	assert_array(registry.graph.unreachable_from("despliegue_cero")).is_empty()
 
 
-func test_beta_has_five_neighbours() -> void:
+func test_despliegue_cero_has_five_neighbours() -> void:
 	var graph: WorldGraph = ZoneRegistry.load_default().graph
-	assert_array(graph.neighbours("beta")).is_equal(
+	assert_array(graph.neighbours("despliegue_cero")).is_equal(
 		["asamblea", "cumbre", "desguace", "el_enchufe", "ultima_ruta"]
 	)
 
 
 func test_hops_are_symmetric_and_bounded() -> void:
 	var graph: WorldGraph = ZoneRegistry.load_default().graph
-	assert_int(graph.hops("beta", "beta")).is_equal(0)
-	assert_int(graph.hops("beta", "el_enchufe")).is_equal(1)
-	assert_int(graph.hops("el_enchufe", "beta")).is_equal(1)
-	assert_int(graph.hops("beta", "cementerio")).is_greater(1)
-	assert_int(graph.hops("beta", "no_existe")).is_equal(-1)
+	assert_int(graph.hops("despliegue_cero", "despliegue_cero")).is_equal(0)
+	assert_int(graph.hops("despliegue_cero", "el_enchufe")).is_equal(1)
+	assert_int(graph.hops("el_enchufe", "despliegue_cero")).is_equal(1)
+	assert_int(graph.hops("despliegue_cero", "cementerio")).is_greater(1)
+	assert_int(graph.hops("despliegue_cero", "no_existe")).is_equal(-1)
 
 
 func test_corridor_sides_are_opposite_in_both_zones() -> void:

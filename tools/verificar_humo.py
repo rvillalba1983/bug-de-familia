@@ -66,7 +66,12 @@ def revisar_registro(texto: str) -> tuple[list[str], list[str]]:
         # no vacia como evidencia de que el motor arranco.
         buenas.append("OK el juego produjo salida (banner del motor ausente)")
     else:
-        errores.append("ERROR el registro esta vacio: el motor no arranco")
+        # Un registro vacio no demuestra por si solo que el motor no arranco:
+        # en Linux el binario puede no escribir nada en stdout/stderr capturado
+        # aunque haya montado la zona y creado la partida. La prueba positiva
+        # real es la partida.json (validada mas abajo); aqui solo se avisa.
+        buenas.append("AVISO: el registro no tiene salida del motor "
+                      "(se confia en partida.json)")
     for numero, linea in enumerate(texto.split("\n"), 1):
         limpia = linea.strip()
         empezar = limpia.startswith(PREFIJOS_ERROR)

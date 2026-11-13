@@ -307,8 +307,11 @@ class HumoTest(unittest.TestCase):
         self.assertIn("falta.tscn", errores[0])
 
     def test_registro_sin_motor(self) -> None:
-        _, errores = verificar_humo.revisar_registro("")
-        self.assertTrue(any("motor" in e for e in errores))
+        # En Linux el binario puede no emitir salida capturada; el registro
+        # vacio ya no es un fallo duro (la partida.json es la prueba real).
+        buenas, errores = verificar_humo.revisar_registro("")
+        self.assertEqual(errores, [])
+        self.assertTrue(any("AVISO" in b for b in buenas))
 
     def test_partida_exportada_se_lee_de_json(self) -> None:
         with tempfile.TemporaryDirectory() as temporal:

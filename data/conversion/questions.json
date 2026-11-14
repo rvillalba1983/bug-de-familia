@@ -784,5 +784,137 @@
    "Falso"
   ],
   "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué tienen los Mohócratas en lugar de corazón?",
+  "options": [
+   "Un núcleo de esporas",
+   "Un generador de votos",
+   "Un bloque de metal",
+   "Un corazón de robot"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿A qué hora dejan de votar los Mohócratas?",
+  "options": [
+   "Al atardecer",
+   "Cuando llueve",
+   "Nunca",
+   "A medianoche"
+  ],
+  "answer": 3
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué significa cuando un Mohócrata dice «voté con el corazón»?",
+  "options": [
+   "Mentira",
+   "Voto emocional",
+   "Voto nulo",
+   "Compra de voto"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Cómo se llama el líder espiritual de los Plegados?",
+  "options": [
+   "La Doblez Mayor",
+   "El Pliegue Cero",
+   "El Papiro",
+   "El Cierre"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué ocurre si un Plegado se despliega en público?",
+  "options": [
+   "Ataque inmediato",
+   "Reja de burla",
+   "Nada",
+   "Se esconde"
+  ],
+  "answer": 2
+ },
+ {
+  "type": "choice",
+  "text": "¿Cuántas veces se pliega un Plegado antes de ser adulto?",
+  "options": [
+   "Cuatro",
+   "Seis",
+   "Ocho",
+   "Diez"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Cuántos brazos tiene un Grux?",
+  "options": [
+   "Dos",
+   "Cuatro",
+   "Seis",
+   "Ocho"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué hacen los Grux con los objetos robados?",
+  "options": [
+   "Los guardan",
+   "Los vomitan",
+   "Los venden",
+   "Los destruyen"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Cómo tasa un Grux un objeto robado?",
+  "options": [
+   "Con un mordisco",
+   "Con una pesada",
+   "Con una moneda",
+   "Con un formulario"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Hacia qué dirección giran los perros de la Manada Recalculada?",
+  "options": [
+   "Siempre a la derecha",
+   "Hacia adelante",
+   "Aleatoriamente",
+   "Contra el viento"
+  ],
+  "answer": 0
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué ocurre si cambias una señal de la Manada?",
+  "options": [
+   "Entrega el paquete",
+   "Se pierde",
+   "Acelera",
+   "Devuelve el dinero"
+  ],
+  "answer": 1
+ },
+ {
+  "type": "choice",
+  "text": "¿Qué significa el ladrido binario de la Manada?",
+  "options": [
+   "Obedecer",
+   "Alerta",
+   "Desobediencia",
+   "Cambio de ruta"
+  ],
+  "answer": 0
  }
 ]

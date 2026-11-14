@@ -9,12 +9,15 @@ var zone: DespliegueCeroZone
 func before_test() -> void:
 	TestSupport.reset_session()
 	DespliegueCeroZone.forced_hour = 12
+	# Dia sin festividad para que la situacion inicial sea "dia" (P-39, determinismo).
+	WorldCalendar.forced_local_unix = 1768474800
 	zone = scene_runner(PATH).scene()
 	zone.set_enemies_active(false)
 
 
 func after_test() -> void:
 	DespliegueCeroZone.forced_hour = -1
+	WorldCalendar.forced_local_unix = -1
 	get_tree().paused = false
 
 

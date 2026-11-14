@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "madera_cuantica"
+    },
+    {
+      "id": "caja_2",
+      "material": "madera_cuantica"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -156,18 +165,173 @@
     "pleg_gate": [
       900,
       300
+    ],
+    "montanas": [
+      [
+        1000,
+        1800
+      ],
+      [
+        1300,
+        1800
+      ],
+      [
+        2700,
+        1800
+      ],
+      [
+        3000,
+        1800
+      ]
+    ],
+    "archivos": [
+      [
+        1600,
+        1800
+      ],
+      [
+        1900,
+        1800
+      ],
+      [
+        1900,
+        2200
+      ]
+    ],
+    "tuneles": [
+      [
+        1500,
+        2200
+      ],
+      [
+        2500,
+        2200
+      ]
+    ],
+    "puestos": [
+      [
+        2500,
+        3200
+      ],
+      [
+        2900,
+        3200
+      ],
+      [
+        1200,
+        3200
+      ]
+    ],
+    "caja_1": [
+      2000,
+      1600
+    ],
+    "caja_2": [
+      2000,
+      2000
+    ],
+    "pie_1": [
+      1400,
+      1600
+    ],
+    "brazo_1": [
+      2600,
+      1600
+    ],
+    "eco_route": [
+      [
+        1100,
+        2900
+      ],
+      [
+        1100,
+        3300
+      ],
+      [
+        1500,
+        3300
+      ],
+      [
+        1500,
+        2900
+      ]
+    ],
+    "grux_route": [
+      [
+        2900,
+        2900
+      ],
+      [
+        2900,
+        3300
+      ],
+      [
+        2500,
+        3300
+      ],
+      [
+        2500,
+        2900
+      ]
+    ],
+    "plegado_route": [
+      [
+        900,
+        300
+      ],
+      [
+        900,
+        600
+      ],
+      [
+        1300,
+        600
+      ],
+      [
+        1300,
+        300
+      ]
     ]
   },
+  "homes": {
+    "eco": {
+      "area": "eco_home",
+      "gate": "eco_gate"
+    },
+    "grux": {
+      "area": "grux_home",
+      "gate": "grux_gate"
+    },
+    "plegado": {
+      "area": "pleg_home",
+      "gate": "pleg_gate"
+    }
+  },
   "id": "valle",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    }
+  ],
   "name": "Valle de las Esquinas",
   "planned_species": [],
-  "props": [],
-  "species": [
-    "eco",
-    "grux",
-    "plegado"
-  ],
   "population": {
     "eco": {
       "start": 6,
@@ -185,18 +349,63 @@
       "max": 12
     }
   },
-  "homes": {
-    "eco": {
-      "area": "eco_home",
-      "gate": "eco_gate"
+  "props": [
+    {
+      "at": "montanas",
+      "id_prefix": "montana",
+      "material": "restos",
+      "prop": "grieta",
+      "size": [
+        70,
+        70
+      ]
     },
-    "grux": {
-      "area": "grux_home",
-      "gate": "grux_gate"
+    {
+      "at": "archivos",
+      "id_prefix": "archivo",
+      "material": "fibra_fotonica",
+      "prop": "panel",
+      "size": [
+        72,
+        96
+      ]
     },
-    "plegado": {
-      "area": "pleg_home",
-      "gate": "pleg_gate"
+    {
+      "at": "tuneles",
+      "id_prefix": "tunel",
+      "material": "cristal_plasma",
+      "prop": "camara",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "at": "puestos",
+      "id_prefix": "puesto",
+      "material": "madera_cuantica",
+      "prop": "toldo",
+      "size": [
+        120,
+        60
+      ]
     }
-  }
+  ],
+  "species": [
+    "eco",
+    "grux",
+    "plegado"
+  ],
+  "actors": [
+    {
+      "id": "eco_del_tunel",
+      "route": "eco_route",
+      "species": "eco"
+    },
+    {
+      "id": "grux_del_puesto",
+      "route": "grux_route",
+      "species": "grux"
+    }
+  ]
 }

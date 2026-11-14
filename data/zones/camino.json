@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "madera_cuantica"
+    },
+    {
+      "id": "caja_2",
+      "material": "madera_cuantica"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -134,17 +143,137 @@
     "pleg_gate": [
       2900,
       1100
+    ],
+    "puestos": [
+      [
+        1000,
+        1700
+      ],
+      [
+        1600,
+        1700
+      ],
+      [
+        2400,
+        1700
+      ],
+      [
+        3000,
+        1700
+      ]
+    ],
+    "archivos": [
+      [
+        1100,
+        2000
+      ],
+      [
+        1600,
+        2000
+      ],
+      [
+        2100,
+        2000
+      ]
+    ],
+    "miradores": [
+      [
+        3100,
+        1900
+      ],
+      [
+        3100,
+        2200
+      ]
+    ],
+    "caja_1": [
+      1000,
+      2300
+    ],
+    "caja_2": [
+      2600,
+      2300
+    ],
+    "pie_1": [
+      1200,
+      3000
+    ],
+    "brazo_1": [
+      2800,
+      3000
+    ],
+    "grux_route": [
+      [
+        1100,
+        1100
+      ],
+      [
+        1100,
+        1600
+      ],
+      [
+        1600,
+        1600
+      ],
+      [
+        1600,
+        1100
+      ]
+    ],
+    "plegado_route": [
+      [
+        2900,
+        1100
+      ],
+      [
+        2900,
+        1600
+      ],
+      [
+        2400,
+        1600
+      ],
+      [
+        2400,
+        1100
+      ]
     ]
   },
+  "homes": {
+    "grux": {
+      "area": "grux_home",
+      "gate": "grux_gate"
+    },
+    "plegado": {
+      "area": "pleg_home",
+      "gate": "pleg_gate"
+    }
+  },
   "id": "camino",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    }
+  ],
   "name": "Camino de los Dientes",
   "planned_species": [],
-  "props": [],
-  "species": [
-    "grux",
-    "plegado"
-  ],
   "population": {
     "grux": {
       "start": 8,
@@ -157,14 +286,52 @@
       "max": 14
     }
   },
-  "homes": {
-    "grux": {
-      "area": "grux_home",
-      "gate": "grux_gate"
+  "props": [
+    {
+      "at": "puestos",
+      "id_prefix": "puesto",
+      "material": "madera_cuantica",
+      "prop": "toldo",
+      "size": [
+        120,
+        60
+      ]
     },
-    "plegado": {
-      "area": "pleg_home",
-      "gate": "pleg_gate"
+    {
+      "at": "archivos",
+      "id_prefix": "archivo",
+      "material": "fibra_fotonica",
+      "prop": "panel",
+      "size": [
+        72,
+        96
+      ]
+    },
+    {
+      "at": "miradores",
+      "id_prefix": "mirador",
+      "material": "nanoacero",
+      "prop": "mirador",
+      "size": [
+        70,
+        70
+      ]
     }
-  }
+  ],
+  "species": [
+    "grux",
+    "plegado"
+  ],
+  "actors": [
+    {
+      "id": "grux_del_puesto",
+      "route": "grux_route",
+      "species": "grux"
+    },
+    {
+      "id": "plegado_archivista",
+      "route": "plegado_route",
+      "species": "plegado"
+    }
+  ]
 }

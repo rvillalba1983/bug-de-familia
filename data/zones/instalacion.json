@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "madera_cuantica"
+    },
+    {
+      "id": "caja_2",
+      "material": "madera_cuantica"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -136,17 +145,137 @@
     "pleg_gate": [
       2900,
       1100
+    ],
+    "ruinas": [
+      [
+        1200,
+        2200
+      ],
+      [
+        1600,
+        2200
+      ],
+      [
+        2800,
+        2200
+      ],
+      [
+        3200,
+        2200
+      ]
+    ],
+    "trampas": [
+      [
+        1000,
+        2000
+      ],
+      [
+        1000,
+        2800
+      ],
+      [
+        3000,
+        2000
+      ],
+      [
+        3000,
+        2800
+      ]
+    ],
+    "centro": [
+      [
+        2000,
+        2000
+      ]
+    ],
+    "caja_1": [
+      2400,
+      1900
+    ],
+    "caja_2": [
+      1900,
+      2800
+    ],
+    "pie_1": [
+      1300,
+      2000
+    ],
+    "brazo_1": [
+      2700,
+      2700
+    ],
+    "eco_route": [
+      [
+        1100,
+        1100
+      ],
+      [
+        1100,
+        1500
+      ],
+      [
+        1350,
+        1500
+      ],
+      [
+        1350,
+        1100
+      ]
+    ],
+    "plegado_route": [
+      [
+        2900,
+        1100
+      ],
+      [
+        2900,
+        1500
+      ],
+      [
+        2650,
+        1500
+      ],
+      [
+        2650,
+        1100
+      ]
     ]
   },
+  "homes": {
+    "eco": {
+      "area": "eco_home",
+      "gate": "eco_gate"
+    },
+    "plegado": {
+      "area": "pleg_home",
+      "gate": "pleg_gate"
+    }
+  },
   "id": "instalacion",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    }
+  ],
   "name": "La Instalación Anterior",
   "planned_species": [],
-  "props": [],
-  "species": [
-    "eco",
-    "plegado"
-  ],
   "population": {
     "eco": {
       "start": 8,
@@ -159,14 +288,52 @@
       "max": 14
     }
   },
-  "homes": {
-    "eco": {
-      "area": "eco_home",
-      "gate": "eco_gate"
+  "props": [
+    {
+      "at": "ruinas",
+      "id_prefix": "ruina",
+      "material": "restos",
+      "prop": "grieta",
+      "size": [
+        70,
+        70
+      ]
     },
-    "plegado": {
-      "area": "pleg_home",
-      "gate": "pleg_gate"
+    {
+      "at": "trampas",
+      "id_prefix": "trampa",
+      "material": "aleacion_magnetica",
+      "prop": "generador",
+      "size": [
+        77,
+        77
+      ]
+    },
+    {
+      "at": "centro",
+      "id_prefix": "boton",
+      "material": "cristal_plasma",
+      "prop": "guardado",
+      "size": [
+        56,
+        56
+      ]
     }
-  }
+  ],
+  "species": [
+    "eco",
+    "plegado"
+  ],
+  "actors": [
+    {
+      "id": "eco_fantasma",
+      "route": "eco_route",
+      "species": "eco"
+    },
+    {
+      "id": "plegado_registrador",
+      "route": "plegado_route",
+      "species": "plegado"
+    }
+  ]
 }

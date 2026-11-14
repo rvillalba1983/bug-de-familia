@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "madera_cuantica"
+    },
+    {
+      "id": "caja_2",
+      "material": "madera_cuantica"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -130,17 +139,133 @@
     "grux_gate": [
       2900,
       1100
+    ],
+    "puntos_eco": [
+      [
+        1200,
+        2200
+      ],
+      [
+        1600,
+        2300
+      ],
+      [
+        2000,
+        2200
+      ]
+    ],
+    "puestos": [
+      [
+        2700,
+        2000
+      ],
+      [
+        3000,
+        2200
+      ],
+      [
+        2600,
+        2600
+      ]
+    ],
+    "paredes": [
+      [
+        1400,
+        900
+      ],
+      [
+        2600,
+        900
+      ]
+    ],
+    "caja_1": [
+      1400,
+      2000
+    ],
+    "caja_2": [
+      2100,
+      1900
+    ],
+    "pie_1": [
+      2600,
+      1500
+    ],
+    "brazo_1": [
+      1200,
+      2600
+    ],
+    "eco_route": [
+      [
+        1100,
+        1100
+      ],
+      [
+        1100,
+        1500
+      ],
+      [
+        1350,
+        1500
+      ],
+      [
+        1350,
+        1100
+      ]
+    ],
+    "grux_route": [
+      [
+        2900,
+        1100
+      ],
+      [
+        2900,
+        1600
+      ],
+      [
+        2600,
+        1600
+      ],
+      [
+        2600,
+        1100
+      ]
     ]
   },
+  "homes": {
+    "eco": {
+      "area": "eco_home",
+      "gate": "eco_gate"
+    },
+    "grux": {
+      "area": "grux_home",
+      "gate": "grux_gate"
+    }
+  },
   "id": "canon",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    }
+  ],
   "name": "Cañón del Eco",
   "planned_species": [],
-  "props": [],
-  "species": [
-    "eco",
-    "grux"
-  ],
   "population": {
     "eco": {
       "start": 8,
@@ -153,14 +278,52 @@
       "max": 14
     }
   },
-  "homes": {
-    "eco": {
-      "area": "eco_home",
-      "gate": "eco_gate"
+  "props": [
+    {
+      "at": "puntos_eco",
+      "id_prefix": "punto_eco",
+      "material": "cristal_plasma",
+      "prop": "camara",
+      "size": [
+        96,
+        96
+      ]
     },
-    "grux": {
-      "area": "grux_home",
-      "gate": "grux_gate"
+    {
+      "at": "puestos",
+      "id_prefix": "puesto",
+      "material": "madera_cuantica",
+      "prop": "toldo",
+      "size": [
+        120,
+        60
+      ]
+    },
+    {
+      "at": "paredes",
+      "id_prefix": "grieta_canon",
+      "material": "restos",
+      "prop": "grieta",
+      "size": [
+        70,
+        70
+      ]
     }
-  }
+  ],
+  "species": [
+    "eco",
+    "grux"
+  ],
+  "actors": [
+    {
+      "id": "eco_oyente",
+      "route": "eco_route",
+      "species": "eco"
+    },
+    {
+      "id": "grux_tasador",
+      "route": "grux_route",
+      "species": "grux"
+    }
+  ]
 }

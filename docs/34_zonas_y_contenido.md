@@ -183,11 +183,29 @@ Clima y anomalÃ­as: pueden determinarse al generar la zona o por reglas de la 
 
 | Zona | Especies | Población | Contenido | Estado |
 |---|---|---|---|---|
-| beta (Despliegue Cero) | jubilado, mohocrata | 18/20/26 | Completo (beta propia) | Jugable |
+| despliegue_cero (Despliegue Cero) | jubilado, mohocrata | 18/20/26 | Completo (escena propia) | Jugable |
 | el_enchufe | jubilado, mohocrata | 8/10/14 | Completo (items, convertibles, props, actors) | Jugable |
 | lonja | jubilado, grux | 8/10/14 | Completo (items, convertibles, props, actors) | Jugable |
 
-### Zonas pobladas (especies implementadas)
+### Zonas con contenido y actores guionados (14-nov)
+
+Las ocho zonas que estaban «solo con especies planificadas» ya tienen población desde la fase de
+infraestructura y, desde el 14-nov, objetos, decorado y dos actores con ruta fija.
+
+| Zona | Especies | Población | Contenido |
+|---|---|---|---|
+| antecamara | eco, plegado | 8/10/14 | 3 props, 4 objetos, 2 convertibles, 2 actores |
+| camara | eco, manada | 8/10/14 | 3 props, 4 objetos, 2 convertibles, 2 actores |
+| camino | grux, plegado | 8/10/14 | 3 props, 4 objetos, 2 convertibles, 2 actores |
+| canon | eco, grux | 8/10/14 | 3 props, 4 objetos, 2 convertibles, 2 actores |
+| instalacion | eco, plegado | 8/10/14 | 3 props, 4 objetos, 2 convertibles, 2 actores |
+| sendero | manada, plegado | 8/10/14 | 3 props, 4 objetos, 2 convertibles, 2 actores |
+| ultima_ruta | grux, manada | 8/10/14 | 3 props, 4 objetos, 2 convertibles, 2 actores |
+| valle | eco, grux, plegado | 6/8/12 | 4 props, 4 objetos, 2 convertibles, 2 actores |
+
+### Zonas pobladas sin contenido (siguiente lote)
+
+Tienen población y vida, pero todavía ni decorado ni objetos ni actores guionados.
 
 | Zona | Especies | Población |
 |---|---|---|
@@ -205,19 +223,6 @@ Clima y anomalÃ­as: pueden determinarse al generar la zona o por reglas de la 
 | poligono | jubilado, manada | 8/10/14 |
 | taller | jubilado, mohocrata | 8/10/14 |
 
-### Zonas con solo especies planificadas (sin población real)
-
-| Zona | Especies planificadas |
-|---|---|
-| antecamara | eco, plegado |
-| camara | eco, manada |
-| camino | grux, plegado |
-| canon | eco, grux |
-| instalacion | eco, plegado |
-| sendero | manada, plegado |
-| ultima_ruta | grux, manada |
-| valle | eco, grux, plegado |
-
 ### Especies implementadas
 
 | Especie | Color | Material | Sprite |
@@ -231,5 +236,8 @@ Clima y anomalÃ­as: pueden determinarse al generar la zona o por reglas de la 
 
 ### Pruebas de contenido
 
-- 	ests/zones/content_test.gd: 7 pruebas nuevas
-- Total zonas: 35 pruebas, todas pasan
+- `tests/zones/content_test.gd`: 7 pruebas + 2 nuevas (14-nov) sobre las zonas con objetos, decorado y actores guiados.
+- `tests/zones/generic_zone_test.gd`: 1 prueba nueva (14-nov): una zona con actores montada en escena.
+- `tests/data/species_content_test.gd`: 3 pruebas nuevas (14-nov) sobre los textos de las especies.
+- `tests/simulation/live_dialogue_test.gd`: 2 pruebas nuevas (14-nov) sobre el saludo por oficio.
+- El total de la carpeta `tests/zones` se anota en `docs/03_ESTADO.md` con el resultado de la corrida.

@@ -120,6 +120,32 @@ func test_screen_stops_on_target_and_counts_down() -> void:
 	screen.close()
 
 
+func test_screen_centers_question_and_ai_lines() -> void:
+	var sandbox: Sandbox = _scene()
+	var screen: ConversionScreen = sandbox.conversion.screen
+	screen.begin(Vector2(960.0, 540.0))
+	screen.show_choices("Pregunta", [["1", func() -> void: pass]], true)
+	var header: HBoxContainer = screen._box.get_child(0) as HBoxContainer
+	assert_int(header.get_child_count()).is_equal(3)
+	var spacer: Control = header.get_child(0) as Control
+	assert_float(spacer.custom_minimum_size.x).is_equal(ConversionScreen.TIMER_WIDTH)
+	assert_int((header.get_child(1) as Label).horizontal_alignment).is_equal(
+		HORIZONTAL_ALIGNMENT_CENTER
+	)
+	screen.add_remark("Consejo de la IA", -1)
+	var remark: Label = screen._box.get_child(screen._box.get_child_count() - 2) as Label
+	assert_int(remark.horizontal_alignment).is_equal(HORIZONTAL_ALIGNMENT_CENTER)
+	screen.show_taunt("IA", "Burla", Color.RED)
+	assert_int((screen._taunt.get_child(0) as Label).horizontal_alignment).is_equal(
+		HORIZONTAL_ALIGNMENT_CENTER
+	)
+	screen.show_message("Resultado", "Cuerpo del parte")
+	assert_int((screen._box.get_child(1) as Label).horizontal_alignment).is_equal(
+		HORIZONTAL_ALIGNMENT_CENTER
+	)
+	screen.close()
+
+
 func test_taunt_comes_from_a_speaking_ai_and_keeps_the_seed() -> void:
 	var sandbox: Sandbox = _scene()
 	var state_before: int = sandbox.rng.state

@@ -16,11 +16,11 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Cache Godot y plantillas de exportación
         id: cache-godot
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             /tmp/godot
@@ -85,7 +85,7 @@ jobs:
           fi
 
       - name: Subir artefactos
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: bug-de-familia-windows
           path: |
@@ -95,7 +95,7 @@ jobs:
 
       - name: Guardar registros si algo falla
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: exportar-windows-registros
           path: |

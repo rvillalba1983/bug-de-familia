@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "madera_cuantica"
+    },
+    {
+      "id": "caja_2",
+      "material": "madera_cuantica"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -120,17 +129,133 @@
     "pleg_gate": [
       2900,
       1100
+    ],
+    "archivos": [
+      [
+        1200,
+        2200
+      ],
+      [
+        1900,
+        2200
+      ],
+      [
+        1900,
+        3000
+      ]
+    ],
+    "almacenes": [
+      [
+        2800,
+        2200
+      ],
+      [
+        3000,
+        2400
+      ],
+      [
+        2800,
+        2800
+      ]
+    ],
+    "montanas": [
+      [
+        2000,
+        1200
+      ],
+      [
+        2000,
+        1600
+      ]
+    ],
+    "caja_1": [
+      1600,
+      2100
+    ],
+    "caja_2": [
+      2600,
+      2000
+    ],
+    "pie_1": [
+      2200,
+      2800
+    ],
+    "brazo_1": [
+      1200,
+      2800
+    ],
+    "manada_route": [
+      [
+        1100,
+        1100
+      ],
+      [
+        1100,
+        1500
+      ],
+      [
+        1350,
+        1500
+      ],
+      [
+        1350,
+        1100
+      ]
+    ],
+    "plegado_route": [
+      [
+        2900,
+        1100
+      ],
+      [
+        2900,
+        1500
+      ],
+      [
+        2650,
+        1500
+      ],
+      [
+        2650,
+        1100
+      ]
     ]
   },
+  "homes": {
+    "manada": {
+      "area": "manada_home",
+      "gate": "manada_gate"
+    },
+    "plegado": {
+      "area": "pleg_home",
+      "gate": "pleg_gate"
+    }
+  },
   "id": "sendero",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    }
+  ],
   "name": "Sendero del Pliegue",
   "planned_species": [],
-  "props": [],
-  "species": [
-    "manada",
-    "plegado"
-  ],
   "population": {
     "manada": {
       "start": 8,
@@ -143,14 +268,52 @@
       "max": 14
     }
   },
-  "homes": {
-    "manada": {
-      "area": "manada_home",
-      "gate": "manada_gate"
+  "props": [
+    {
+      "at": "archivos",
+      "id_prefix": "archivo",
+      "material": "fibra_fotonica",
+      "prop": "panel",
+      "size": [
+        72,
+        96
+      ]
     },
-    "plegado": {
-      "area": "pleg_home",
-      "gate": "pleg_gate"
+    {
+      "at": "almacenes",
+      "id_prefix": "almacen",
+      "material": "madera_cuantica",
+      "prop": "caja_rota",
+      "size": [
+        65,
+        60
+      ]
+    },
+    {
+      "at": "montanas",
+      "id_prefix": "montana",
+      "material": "restos",
+      "prop": "grieta",
+      "size": [
+        70,
+        70
+      ]
     }
-  }
+  ],
+  "species": [
+    "manada",
+    "plegado"
+  ],
+  "actors": [
+    {
+      "id": "manada_repartidora",
+      "route": "manada_route",
+      "species": "manada"
+    },
+    {
+      "id": "plegado_archivista",
+      "route": "plegado_route",
+      "species": "plegado"
+    }
+  ]
 }

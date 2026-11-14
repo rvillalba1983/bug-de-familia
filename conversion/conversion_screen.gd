@@ -13,6 +13,7 @@ const TAUNT_WIDTH: float = 1080.0
 const TAUNT_TOP: float = 240.0
 const TAUNT_FONT_SIZE: int = 38
 const REMARK_FONT_SIZE: int = 30
+const TIMER_WIDTH: float = 130.0
 const TWO_COLUMNS_FROM: int = 5
 const TIME_LIMIT_SHOWN: float = 5.0
 const PANIC_FRACTION: float = 0.45
@@ -105,6 +106,7 @@ func show_message(title: String, body: String) -> void:
 	var label: Label = Label.new()
 	label.text = body
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_box.add_child(label)
 	_add_options(1)
 
@@ -229,6 +231,7 @@ func _reset(title: String) -> void:
 	heading.text = title
 	heading.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	heading.add_theme_font_size_override(&"font_size", 30)
 	header.add_child(heading)
 	if _spectres_team != null:
@@ -241,11 +244,19 @@ func _reset(title: String) -> void:
 
 func _add_timer() -> void:
 	_count = Label.new()
-	_count.custom_minimum_size = Vector2(130.0, 0.0)
+	_count.custom_minimum_size = Vector2(TIMER_WIDTH, 0.0)
 	_count.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_count.add_theme_font_size_override(&"font_size", 58)
 	_count.pivot_offset = Vector2(90.0, 40.0)
-	_box.get_child(0).add_child(_count)
+	var header: HBoxContainer = _box.get_child(0) as HBoxContainer
+	# Espacio simétrico a la cuenta atrás: el título queda centrado en el panel
+	# y no desplazado a la izquierda por el número.
+	var spacer: Control = Control.new()
+	spacer.custom_minimum_size = Vector2(TIMER_WIDTH, 0.0)
+	spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	header.add_child(spacer)
+	header.move_child(spacer, 0)
+	header.add_child(_count)
 	var track: ColorRect = ColorRect.new()
 	track.color = Palette.MORA
 	track.custom_minimum_size = Vector2(0.0, 16.0)

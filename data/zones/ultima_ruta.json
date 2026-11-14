@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "madera_cuantica"
+    },
+    {
+      "id": "caja_2",
+      "material": "madera_cuantica"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -144,17 +153,153 @@
     "manada_gate": [
       2900,
       1100
+    ],
+    "puestos": [
+      [
+        1500,
+        1200
+      ],
+      [
+        1900,
+        1200
+      ],
+      [
+        2300,
+        1200
+      ],
+      [
+        1900,
+        1600
+      ],
+      [
+        1900,
+        2000
+      ]
+    ],
+    "almacenes": [
+      [
+        1500,
+        2800
+      ],
+      [
+        1800,
+        2900
+      ],
+      [
+        2100,
+        2800
+      ],
+      [
+        2400,
+        2900
+      ],
+      [
+        2100,
+        3200
+      ]
+    ],
+    "mojones": [
+      [
+        2000,
+        1900
+      ],
+      [
+        2000,
+        2100
+      ],
+      [
+        2000,
+        2300
+      ]
+    ],
+    "caja_1": [
+      1700,
+      2400
+    ],
+    "caja_2": [
+      2300,
+      2400
+    ],
+    "pie_1": [
+      1500,
+      3200
+    ],
+    "brazo_1": [
+      2600,
+      3200
+    ],
+    "grux_route": [
+      [
+        1100,
+        1100
+      ],
+      [
+        1100,
+        1350
+      ],
+      [
+        1400,
+        1350
+      ],
+      [
+        1400,
+        1100
+      ]
+    ],
+    "manada_route": [
+      [
+        2900,
+        1100
+      ],
+      [
+        2900,
+        1350
+      ],
+      [
+        2600,
+        1350
+      ],
+      [
+        2600,
+        1100
+      ]
     ]
   },
+  "homes": {
+    "grux": {
+      "area": "grux_home",
+      "gate": "grux_gate"
+    },
+    "manada": {
+      "area": "manada_home",
+      "gate": "manada_gate"
+    }
+  },
   "id": "ultima_ruta",
-  "items": [],
-  "name": "La \u00c3\u0161ltima Ruta",
-  "planned_species": [],
-  "props": [],
-  "species": [
-    "grux",
-    "manada"
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    }
   ],
+  "name": "La Ãšltima Ruta",
+  "planned_species": [],
   "population": {
     "grux": {
       "start": 8,
@@ -167,14 +312,52 @@
       "max": 14
     }
   },
-  "homes": {
-    "grux": {
-      "area": "grux_home",
-      "gate": "grux_gate"
+  "props": [
+    {
+      "at": "puestos",
+      "id_prefix": "puesto",
+      "material": "madera_cuantica",
+      "prop": "toldo",
+      "size": [
+        120,
+        60
+      ]
     },
-    "manada": {
-      "area": "manada_home",
-      "gate": "manada_gate"
+    {
+      "at": "almacenes",
+      "id_prefix": "almacen",
+      "material": "gel_memoria",
+      "prop": "caja_rota",
+      "size": [
+        65,
+        60
+      ]
+    },
+    {
+      "at": "mojones",
+      "id_prefix": "mojon",
+      "material": "restos",
+      "prop": "placa",
+      "size": [
+        48,
+        48
+      ]
     }
-  }
+  ],
+  "species": [
+    "grux",
+    "manada"
+  ],
+  "actors": [
+    {
+      "id": "grux_del_puesto",
+      "route": "grux_route",
+      "species": "grux"
+    },
+    {
+      "id": "manada_cargadora",
+      "route": "manada_route",
+      "species": "manada"
+    }
+  ]
 }

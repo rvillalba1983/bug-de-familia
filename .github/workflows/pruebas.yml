@@ -22,7 +22,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       # Incluye validar_rutas.py: cualquier res:// roto (renombrados como
       # beta -> despliegue_cero) falla aqui en segundos, sin descargar Godot.
       - name: Verificaciones deterministas (datos, rutas y normas)
@@ -52,11 +52,11 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Cache Godot
         id: cache-godot
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: /tmp/godot
           key: godot-4.7.2-stable-linux-${{ runner.os }}-v1
@@ -133,7 +133,7 @@ jobs:
 
       - name: Guardar registros e informes si algo falla
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: informes-${{ matrix.grupo }}
           path: |
@@ -153,11 +153,11 @@ jobs:
     timeout-minutes: 25
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Cache Godot y plantillas de exportación
         id: cache-godot
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             /tmp/godot
@@ -229,7 +229,7 @@ jobs:
 
       - name: Guardar registro de arranque si algo falla
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: arranque-linux
           path: |

@@ -52,8 +52,18 @@ func open(target: NpcState) -> void:
 		_say(tr("LIVE_REFUSE"))
 		_set_options([[tr("LIVE_HIT"), _hit], [tr("LIVE_BYE"), close]])
 		return
-	_say(_random_line(npc, "greet"))
+	_say(_greeting(npc))
 	_refresh()
+
+
+## Saludo según el oficio del habitante. Sin línea de rol, el saludo normal.
+func _greeting(who: NpcState) -> String:
+	var info: Dictionary = world.sim.species_data.get(who.species, {})
+	var por_rol: Dictionary = info.get("role_lines", {})
+	var lines: Array = por_rol.get(who.role, [])
+	if lines.is_empty():
+		return _random_line(who, "greet")
+	return lines[absi((who.id + who.role + str(who.memories.size())).hash()) % lines.size()]
 
 
 func options() -> Array:

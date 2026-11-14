@@ -37,6 +37,7 @@ func test_full_flow_stops_time_and_creates_piece() -> void:
 	var director: ConversionDirector = sandbox.conversion
 	director.begin_on(_target(sandbox, Sandbox.ID_CRATE))
 	assert_bool(get_tree().paused).is_true()
+	director.choose_approach("convencer")
 	director.choose_objective("senuelo")
 	director.choose_slot(ARM)
 	assert_int(director.step).is_equal(ConversionDirector.Step.QUESTION)
@@ -55,6 +56,7 @@ func test_never_fails_even_if_time_runs_out() -> void:
 	var sandbox: Sandbox = _scene()
 	var director: ConversionDirector = sandbox.conversion
 	director.begin_on(_target(sandbox, Sandbox.ID_CRATE))
+	director.choose_approach("enganar")
 	director.choose_objective("velocidad")
 	director.choose_slot(ARM)
 	for round_index: int in range(ConversionSession.QUESTION_COUNT):
@@ -69,6 +71,7 @@ func test_can_convert_an_enemy() -> void:
 	var sandbox: Sandbox = _scene()
 	var director: ConversionDirector = sandbox.conversion
 	director.begin_on(_target(sandbox, Sandbox.ID_GUARD))
+	director.choose_approach("convencer")
 	director.choose_objective("defensa")
 	director.choose_slot(ARM)
 	_finish_with_answers(director, 0)
@@ -101,7 +104,7 @@ func test_key_converts_the_nearest_and_marks_it() -> void:
 	await get_tree().process_frame
 	assert_bool(crate.highlighted).is_true()
 	assert_bool(sandbox.conversion.convert_nearest()).is_true()
-	assert_int(sandbox.conversion.step).is_equal(ConversionDirector.Step.OBJECTIVE)
+	assert_int(sandbox.conversion.step).is_equal(ConversionDirector.Step.APPROACH)
 	assert_bool(crate.highlighted).is_false()
 
 

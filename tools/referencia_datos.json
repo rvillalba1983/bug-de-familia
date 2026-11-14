@@ -4,13 +4,13 @@
   "atlas_piezas": 55,
   "case_01": {
     "ambient": 6,
-    "dialogue": 13,
+    "dialogue": 14,
     "evidence": 4,
     "npcs": 4
   },
   "case_beta": {
     "ambient": 6,
-    "dialogue": 32,
+    "dialogue": 33,
     "evidence": 8,
     "npcs": 9
   },

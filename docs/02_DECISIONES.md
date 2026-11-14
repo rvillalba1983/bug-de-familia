@@ -148,7 +148,22 @@ Ver `docs/adr/0027-multi-zona.md`.
 - El pasillo (`geometry.corridors`) se descubre hoy al llegar al borde; el jugador no sabe a dónde lleva hasta entrar.
 - Se quiere que los caminos estén **señalizados en el mapa/vista de estrategia** (con destino visible antes de entrar) para que el viaje sea intencionado, no aleatorio.
 - Pendiente de diseño: cómo se señala (icono, flecha, nombre de zona), si se ve desde el inicio o al acercarse, y si aplica a los puntos de guardado también.
+- **Añadido (14-nov):** en los caminos a otras zonas se pondrán **señales de entrada con el nombre de la zona a la que se entra**, en un cartel con estilo «pueblos de España» (tabla con nombre de zona, flecha y distancia aproximada).
 - Registrado como **P-41** en `01_CONFLICTOS_Y_PENDIENTES.md`.
+
+## Contenido conversacional masivo (post-beta, 14-nov)
+
+- Cada raza debe tener **al menos 150 conversaciones**, alternando:
+  - Conversaciones de **una sola pregunta** (pregunta rápida, respuesta corta).
+  - Conversaciones de **3-4 preguntas** que llevan a información interesante.
+  - Conversaciones con **bifurcaciones**: si respondes distinto, vas por otro flujo.
+- El juego debe parecer que **cada NPC de cada zona sabe cosas distintas** y habla de sus propias cosas.
+- Deben existir conversaciones que acaben en un **regalo al protagonista en forma de pieza** (recarga de tokens, pieza de cuerpo, etc.).
+- Deben existir conversaciones que acaben en que el NPC se **enfada** y:
+  1. Se pega con el protagonista (pelea directa).
+  2. Se forma pelea con otra raza (provocación entre facciones).
+- El sistema de `LiveDialogue` debe soportar nodos de diálogo por raza/estado (ramificación), no solo menú plano.
+- Registrado como **P-42** en `01_CONFLICTOS_Y_PENDIENTES.md`.
 
 ## Lo que no se puede inventar
 Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barra de salud, diario, personajes protegidos, multijugador, conexión online, vehículos, recetas cerradas de conversión.

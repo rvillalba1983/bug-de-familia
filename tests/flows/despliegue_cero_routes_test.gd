@@ -44,9 +44,15 @@ func _stabilize_for_routes() -> void:
 	if zone.live_world == null or zone.live_world.sim == null:
 		return
 	var sim: WorldSim = zone.live_world.sim
+	# Desactivar eventos aleatorios para evitar muertes ajenas al recorrido.
 	sim.events.timer = 1e9
 	sim.events.staged.clear()
 	sim.events.pending.clear()
+	# Fijar el estado global para que no dependa de la cadencia de frames.
+	WorldCalendar.forced_local_unix = 1768474800  # 15 ene 2026, sin festividad
+	BattleDirector.auto_start = true
+	get_tree().paused = false
+	Engine.time_scale = SPEED
 
 
 func before_test() -> void:
@@ -67,10 +73,17 @@ func _dump_route() -> void:
 	for line: String in walker.log_lines:
 		print(line)
 	print("=== FALLEN ===")
-	print(zone.fallen_ids)
+	print("fallen_ids=%s" % str(zone.fallen_ids))
+	for id: String in zone.fallen_ids:
+		if zone.live_world != null and zone.live_world.sim.npcs.has(id):
+			var npc: NpcState = zone.live_world.sim.npcs[id]
+			print("  caído: %s (%s), pos=%s, muerto=%s" % [
+				id, npc.species, str(npc.pos), str(not npc.alive)
+			])
 	print("player_dead=%s challenges=%s" % [
 		str(zone.player.body.is_dead), str(walker.completed_challenges())
 	])
+	print("time_scale=%s paused=%s" % [str(Engine.time_scale), str(get_tree().paused)])
 
 
 func _assert_all_challenges_without_killing() -> void:

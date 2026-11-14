@@ -214,19 +214,19 @@ func _build_zone_sign(corridor: Dictionary) -> void:
 	add_child(sign)
 	_signs[to_zone] = sign
 	# Mostrar al acercarse al corredor.
-	area := Area2D.new()
-	area.collision_layer = 0
-	area.collision_mask = PhysicsLayers.PLAYER
-	area.monitoring = true
+	var prox_area: Area2D = Area2D.new()
+	prox_area.collision_layer = 0
+	prox_area.collision_mask = PhysicsLayers.PLAYER
+	prox_area.monitoring = true
 	var prox: RectangleShape2D = RectangleShape2D.new()
 	prox.size = rect.size + Vector2(200.0, 200.0)
 	var prox_collider: CollisionShape2D = CollisionShape2D.new()
 	prox_collider.shape = prox
 	prox_collider.position = rect.get_center()
-	area.add_child(prox_collider)
-	area.body_entered.connect(_on_sign_near.bind(to_zone))
-	area.body_exited.connect(_on_sign_far.bind(to_zone))
-	add_child(area)
+	prox_area.add_child(prox_collider)
+	prox_area.body_entered.connect(_on_sign_near.bind(to_zone))
+	prox_area.body_exited.connect(_on_sign_far.bind(to_zone))
+	add_child(prox_area)
 
 
 func _on_sign_near(body: Node2D, to_zone: String) -> void:
@@ -254,9 +254,8 @@ func _sign_distance(rect: Rect2) -> String:
 
 
 func zone_display_name(zone_id: String) -> String:
-	var manager: Node = get_node_or_null("../ZoneManager")
-	if manager != null and manager.has_method("zone_display_name"):
-		return manager.zone_display_name(zone_id)
+	if zone_manager != null and zone_manager.has_method("zone_display_name"):
+		return zone_manager.zone_display_name(zone_id)
 	return zone_id
 
 

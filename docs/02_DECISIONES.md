@@ -149,6 +149,7 @@ Ver `docs/adr/0027-multi-zona.md`.
 - Se quiere que los caminos estén **señalizados en el mapa/vista de estrategia** (con destino visible antes de entrar) para que el viaje sea intencionado, no aleatorio.
 - Pendiente de diseño: cómo se señala (icono, flecha, nombre de zona), si se ve desde el inicio o al acercarse, y si aplica a los puntos de guardado también.
 - **Añadido (14-nov):** en los caminos a otras zonas se pondrán **señales de entrada con el nombre de la zona a la que se entra**, en un cartel con estilo «pueblos de España» (tabla con nombre de zona, flecha y distancia aproximada).
+- **Añadido (14-nov):** también se quiere una **pantalla de carga inicial del juego** en la que aparezca el protagonista en una pose gamberra rodeado de 2 o 3 NPCs de cada especie (jubilado, mohocrata, plegado, eco, grux, manada).
 - Registrado como **P-41** en `01_CONFLICTOS_Y_PENDIENTES.md`.
 
 ## Contenido conversacional masivo (post-beta, 14-nov)

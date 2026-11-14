@@ -48,11 +48,6 @@ func _stabilize_for_routes() -> void:
 	sim.events.timer = 1e9
 	sim.events.staged.clear()
 	sim.events.pending.clear()
-	# Fijar el estado global para que no dependa de la cadencia de frames.
-	WorldCalendar.forced_local_unix = 1768474800  # 15 ene 2026, sin festividad
-	BattleDirector.auto_start = true
-	get_tree().paused = false
-	Engine.time_scale = SPEED
 
 
 func before_test() -> void:

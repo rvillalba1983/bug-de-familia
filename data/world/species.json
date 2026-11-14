@@ -61,7 +61,7 @@
   },
   "eco": {
     "actor": {"color": "#8fdbd8", "map_color": "#8fffe8", "art": "eco", "material": "cristal_plasma", "plural": "Ecos", "doll": "eco", "deaths": ["caida"]},
-    "rival": "grux", "start": 10, "target": 12, "max": 16,
+    "rival": "manada", "start": 10, "target": 12, "max": 16,
     "roles": ["resonador", "repetidor", "oyente", "amplificador"],
     "names": ["Reverb", "Delai", "Soniquete", "Retumbo", "Silbato", "Murmullo", "Chasquido", "Resaca", "Tintineo", "Vibración"],
     "surnames": ["Segundo", "del Cañón", "Repetido", "Sin Origen", "a Distancia", "de Vurm", "Amortiguado", "Ecológico"],
@@ -101,7 +101,7 @@
   },
   "manada": {
     "actor": {"color": "#a8c860", "map_color": "#c0ff60", "art": "manada", "material": "gel_memoria", "plural": "Manada", "doll": "manada", "deaths": ["caida"]},
-    "rival": "grux", "start": 16, "target": 18, "max": 22,
+    "rival": "eco", "start": 16, "target": 18, "max": 22,
     "roles": ["repartidor", "recorredor", "cargador", "rastreador"],
     "names": ["Ruta", "Paquete", "Giro", "Señal", "Norte", "Destino", "Etiqueta", "Bulto", "Recorrido", "Flecha"],
     "surnames": ["a la Derecha", "Sin Entregar", "Devuelto", "del Reparto", "Extraviado", "en Tránsito", "Reexpedido", "Implantado"],

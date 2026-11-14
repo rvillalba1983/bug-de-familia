@@ -327,8 +327,9 @@ func test_contestador_can_be_lost_for_good() -> void:
 func test_all_four_without_killing_and_state_survives_reload() -> void:
 	_quiet()
 	var fallen: Array = []
+	var on_fell: Callable = func(who: Guard) -> void: fallen.append(who)
 	for enemy: Guard in zone.guards():
-		enemy.fell.connect(func(who: Guard) -> void: fallen.append(who))
+		enemy.fell.connect(on_fell)
 	_case().open_dialogue("panel")
 	_say("21:00")
 	await _teleport(DespliegueCeroLayout.central_inside.get_center())
@@ -338,6 +339,9 @@ func test_all_four_without_killing_and_state_survives_reload() -> void:
 	await await_millis(60)
 	assert_bool(_case().has_flag("beta_completa")).is_true()
 	assert_array(fallen).is_empty()
+	for enemy: Guard in zone.guards():
+		if is_instance_valid(enemy) and enemy.fell.is_connected(on_fell):
+			enemy.fell.disconnect(on_fell)
 	zone.autosave()
 	var second: GdUnitSceneRunner = scene_runner(PATH)
 	var restored: DespliegueCeroZone = second.scene()

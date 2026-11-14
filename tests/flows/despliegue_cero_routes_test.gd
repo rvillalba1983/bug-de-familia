@@ -30,8 +30,10 @@ func _start(route_seed: int = 7) -> void:
 			break
 		await get_tree().physics_frame
 	_stabilize_for_routes()
-	# Espera determinista en fotogramas de física (P-39).
-	for _i: int in range(54):
+	# Espera determinista en fotogramas de física (P-39): margen amplio para que
+	# toda la inicialización diferida (NPCs, guardias, patrullas) termine antes
+	# de que el walker empiece a moverse, evitando muertes ajenas al recorrido.
+	for _i: int in range(120):
 		await get_tree().physics_frame
 	walker = DespliegueCeroWalker.new(get_tree(), zone)
 
@@ -41,10 +43,10 @@ func _start(route_seed: int = 7) -> void:
 func _stabilize_for_routes() -> void:
 	if zone.live_world == null or zone.live_world.sim == null:
 		return
-	var events: EventSystem = zone.live_world.sim.events
-	events.timer = 1e9
-	events.staged.clear()
-	events.pending.clear()
+	var sim: WorldSim = zone.live_world.sim
+	sim.events.timer = 1e9
+	sim.events.staged.clear()
+	sim.events.pending.clear()
 
 
 func before_test() -> void:

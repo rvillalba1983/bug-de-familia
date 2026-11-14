@@ -23,7 +23,6 @@ var battles: BattleDirector = null
 var _zone_enemy_ids: Dictionary = {}
 var _zone_materials: Dictionary = {}
 var _corridor_areas: Array[Area2D] = []
-var _zone_signs: Dictionary = {}
 
 
 func zone_definition() -> ZoneDefinition:
@@ -170,45 +169,6 @@ func _build_corridors() -> void:
 		area.body_entered.connect(_on_corridor_entered.bind(str(corridor["to"])))
 		add_child(area)
 		_corridor_areas.append(area)
-		_build_zone_sign(corridor)
-
-
-func _build_zone_sign(corridor: Dictionary) -> void:
-	var rect: Rect2 = corridor["rect"] as Rect2
-	var to_zone: String = str(corridor["to"])
-	var sign: PanelContainer = PanelContainer.new()
-	var style: StyleBoxFlat = StyleBoxFlat.new()
-	style.bg_color = Palette.HUESO
-	style.border_color = Palette.HIERRO
-	style.set_border_width_all(3)
-	style.set_corner_radius_all(6)
-	style.set_content_margin_all(10)
-	sign.add_theme_stylebox_override("panel", style)
-	var box: VBoxContainer = VBoxContainer.new()
-	box.add_theme_constant_override("separation", 4)
-	sign.add_child(box)
-	var title: Label = Label.new()
-	title.text = "Bienvenido a " + to_zone
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.add_theme_color_override("font_color", Palette.INK)
-	title.add_theme_font_size_override("font_size", 20)
-	box.add_child(title)
-	var arrow: Label = Label.new()
-	arrow.text = "->  Seguir el camino  ->"
-	arrow.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	arrow.add_theme_color_override("font_color", Palette.HIERRO)
-	arrow.add_theme_font_size_override("font_size", 24)
-	box.add_child(arrow)
-	var distance: Label = Label.new()
-	distance.text = "a " + str(int(rect.size.x / 10.0)) + " m"
-	distance.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	distance.add_theme_color_override("font_color", Palette.HIERRO_OSCURO)
-	distance.add_theme_font_size_override("font_size", 14)
-	box.add_child(distance)
-	sign.position = rect.get_center() + Vector2(0.0, -90.0)
-	sign.visible = true
-	add_child(sign)
-	_zone_signs[to_zone] = sign
 
 
 func _on_corridor_entered(body: Node2D, to_zone: String) -> void:

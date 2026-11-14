@@ -142,6 +142,14 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 
 Ver `docs/adr/0027-multi-zona.md`.
 
+## Caminos delimitados entre zonas (post-beta, 14-nov)
+
+- Las rutas hacia otras zonas serán **caminos delimitados**, no encontrados por casualidad.
+- El pasillo (`geometry.corridors`) se descubre hoy al llegar al borde; el jugador no sabe a dónde lleva hasta entrar.
+- Se quiere que los caminos estén **señalizados en el mapa/vista de estrategia** (con destino visible antes de entrar) para que el viaje sea intencionado, no aleatorio.
+- Pendiente de diseño: cómo se señala (icono, flecha, nombre de zona), si se ve desde el inicio o al acercarse, y si aplica a los puntos de guardado también.
+- Registrado como **P-41** en `01_CONFLICTOS_Y_PENDIENTES.md`.
+
 ## Lo que no se puede inventar
 Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barra de salud, diario, personajes protegidos, multijugador, conexión online, vehículos, recetas cerradas de conversión.
 

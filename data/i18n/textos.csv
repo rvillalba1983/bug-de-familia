@@ -115,5 +115,9 @@ UI_FAST_TRAVEL,Viaje rápido
 UI_FAST_TRAVEL_BACK,Volver
 UI_FAST_TRAVEL_EMPTY,Aún no conoces otro punto de guardado.
 UI_FAST_TRAVEL_BLOCKED,No se puede viajar ahora.
+UI_ZONE_SIGN,A la entrada
+UI_ZONE_SIGN_TITLE,"Bienvenido a %s"
+UI_ZONE_SIGN_ARROW,"→  Seguir el camino  →"
+UI_ZONE_SIGN_DISTANCE,"a %s"
 UI_LOADING,Cruzando el mundo…
 UI_LOADING_HINT,Las IAs del destino te esperan al otro lado.

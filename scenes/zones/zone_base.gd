@@ -13,6 +13,8 @@ signal transition_requested(to_zone: String)
 const ART_FOLDER: String = "res://art/shared/"
 const FAST_TRAVEL_LABEL: String = "UI_FAST_TRAVEL"
 const FAST_TRAVEL_ITEM: String = "fast_travel_"
+const SIGN_LABEL: String = "UI_ZONE_SIGN"
+const SIGN_SHOW_TIME: float = 3.0
 ## Provisional: distancia a la que un grupo se mete en la pelea de los suyos.
 const GROUP_REACT_RADIUS: float = 250.0
 
@@ -23,6 +25,7 @@ var battles: BattleDirector = null
 var _zone_enemy_ids: Dictionary = {}
 var _zone_materials: Dictionary = {}
 var _corridor_areas: Array[Area2D] = []
+var _signs: Dictionary = {}
 
 
 func zone_definition() -> ZoneDefinition:
@@ -169,6 +172,92 @@ func _build_corridors() -> void:
 		area.body_entered.connect(_on_corridor_entered.bind(str(corridor["to"])))
 		add_child(area)
 		_corridor_areas.append(area)
+		_build_zone_sign(corridor)
+
+
+## Cartel de entrada a otra zona, estilo pueblo: nombre del destino, flecha y
+## distancia aproximada. Se ve al acercarse al corredor.
+func _build_zone_sign(corridor: Dictionary) -> void:
+	var rect: Rect2 = corridor["rect"] as Rect2
+	var to_zone: String = str(corridor["to"])
+	var sign: PanelContainer = PanelContainer.new()
+	var style: StyleBoxFlat = StyleBoxFlat.new()
+	style.bg_color = Palette.HUESO
+	style.border_color = Palette.HIERRO
+	style.set_border_width_all(3)
+	style.set_corner_radius_all(6)
+	style.set_content_margin_all(10)
+	sign.add_theme_stylebox_override(&"panel", style)
+	var box: VBoxContainer = VBoxContainer.new()
+	box.add_theme_constant_override(&"separation", 4)
+	sign.add_child(box)
+	var title: Label = Label.new()
+	title.text = tr("UI_ZONE_SIGN_TITLE") % zone_display_name(to_zone)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.add_theme_color_override(&"font_color", Palette.INK)
+	title.add_theme_font_size_override(&"font_size", 20)
+	box.add_child(title)
+	var arrow: Label = Label.new()
+	arrow.text = tr("UI_ZONE_SIGN_ARROW")
+	arrow.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	arrow.add_theme_color_override(&"font_color", Palette.HIERRO)
+	arrow.add_theme_font_size_override(&"font_size", 24)
+	box.add_child(arrow)
+	var distance: Label = Label.new()
+	distance.text = tr("UI_ZONE_SIGN_DISTANCE") % _sign_distance(rect)
+	distance.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	distance.add_theme_color_override(&"font_color", Palette.HIERRO_OSCURO)
+	distance.add_theme_font_size_override(&"font_size", 14)
+	box.add_child(distance)
+	sign.position = _sign_position(rect)
+	sign.visible = false
+	add_child(sign)
+	_signs[to_zone] = sign
+	# Mostrar al acercarse al corredor.
+	area := Area2D.new()
+	area.collision_layer = 0
+	area.collision_mask = PhysicsLayers.PLAYER
+	area.monitoring = true
+	var prox: RectangleShape2D = RectangleShape2D.new()
+	prox.size = rect.size + Vector2(200.0, 200.0)
+	var prox_collider: CollisionShape2D = CollisionShape2D.new()
+	prox_collider.shape = prox
+	prox_collider.position = rect.get_center()
+	area.add_child(prox_collider)
+	area.body_entered.connect(_on_sign_near.bind(to_zone))
+	area.body_exited.connect(_on_sign_far.bind(to_zone))
+	add_child(area)
+
+
+func _on_sign_near(body: Node2D, to_zone: String) -> void:
+	if body != player:
+		return
+	var sign: PanelContainer = _signs.get(to_zone)
+	if sign != null:
+		sign.visible = true
+
+
+func _on_sign_far(body: Node2D, to_zone: String) -> void:
+	if body != player:
+		return
+	var sign: PanelContainer = _signs.get(to_zone)
+	if sign != null:
+		sign.visible = false
+
+
+func _sign_position(rect: Rect2) -> Vector2:
+	return rect.get_center() + Vector2(0.0, -90.0)
+
+
+func _sign_distance(rect: Rect2) -> String:
+	return "%d m" % int(rect.size.x / 10.0)
+
+
+func zone_display_name(zone_id: String) -> String:
+	var manager: Node = get_node_or_null("../ZoneManager")
+	if manager != null and manager.has_method("zone_display_name"):
+		return manager.zone_display_name(zone_id)
+	return zone_id
 
 
 func _on_corridor_entered(body: Node2D, to_zone: String) -> void:

@@ -166,6 +166,12 @@ Ver `docs/adr/0027-multi-zona.md`.
 - El sistema de `LiveDialogue` debe soportar nodos de diálogo por raza/estado (ramificación), no solo menú plano.
 - Registrado como **P-42** en `01_CONFLICTOS_Y_PENDIENTES.md`.
 
+## Pantalla de carga inicial y «Conoce la historia» (post-beta, 14-nov)
+
+- **Pantalla de carga inicial:** el protagonista aparece en una pose gamberra rodeado de 2 o 3 NPCs de cada especie (jubilado, mohocrata, plegado, eco, grux, manada). Señalado como P-41 (parte del mismo bloque de interfaz/mundo).
+- **Pantalla de inicio del juego (menú principal):** además de los botones actuales (Nueva partida, Continuar), debe aparecer otro botón que sea **«Conoce la historia»**. Al pulsarlo, se mostrará el lore del juego en modo gracioso de videojuego, con las imágenes que hemos creado de los hechos históricos.
+- Registrado como **P-43** en `01_CONFLICTOS_Y_PENDIENTES.md`.
+
 ## Lo que no se puede inventar
 Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barra de salud, diario, personajes protegidos, multijugador, conexión online, vehículos, recetas cerradas de conversión.
 

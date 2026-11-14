@@ -30,7 +30,7 @@ func test_generic_zone_nav_blocks_shape_blocks() -> void:
 	var zone: ZoneBase = await _mount("res://data/zones/el_enchufe.json")
 	var block: Rect2 = zone.shape_blocks()[0]
 	assert_bool(zone.nav.is_walkable(block.get_center())).is_false()
-	assert_bool(zone.nav.is_walkable(zone.start_point())).is_equal(true)
+	assert_bool(zone.nav.is_walkable(zone.start_point())).is_true()
 
 
 func test_generic_zone_creates_fast_travel_interactables() -> void:
@@ -44,7 +44,7 @@ func test_generic_zone_creates_fast_travel_interactables() -> void:
 
 func test_generic_zone_live_world_starts() -> void:
 	var zone: ZoneBase = await _mount("res://data/zones/el_enchufe.json")
-	assert_bool(zone.live_world.started).is_equal(true)
+	assert_bool(zone.live_world.started).is_true()
 	assert_int(zone.live_world.citizens.size()).is_greater(0)
 	assert_str(zone.objective_key()).is_equal("ZONE_OBJECTIVE")
 
@@ -62,7 +62,7 @@ func test_corridor_triggers_transition() -> void:
 func test_zone_without_actors_section_mounts_without_errors() -> void:
 	var zone: ZoneBase = await _mount("res://data/zones/archivo.json")
 	assert_bool(zone.zone_definition().data.has("actors")).is_false()
-	assert_bool(zone.live_world.started).is_equal(true)
+	assert_bool(zone.live_world.started).is_true()
 	assert_int(zone.live_world.citizens.size()).is_greater(0)
 	## Sin actores guionados, los Ãºnicos cuerpos son los ciudadanos del mundo vivo.
 	assert_int(zone.guards().size()).is_equal(zone.live_world.citizens.size())

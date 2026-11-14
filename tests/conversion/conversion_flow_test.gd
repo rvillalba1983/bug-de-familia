@@ -133,7 +133,7 @@ func test_screen_centers_question_and_ai_lines() -> void:
 		HORIZONTAL_ALIGNMENT_CENTER
 	)
 	screen.add_remark("Consejo de la IA", -1)
-	var remark: Label = screen._box.get_child(screen._box.get_child_count() - 2) as Label
+	var remark: Label = screen._box.get_child(screen._box.get_child_count() - 1) as Label
 	assert_int(remark.horizontal_alignment).is_equal(HORIZONTAL_ALIGNMENT_CENTER)
 	screen.show_taunt("IA", "Burla", Color.RED)
 	assert_int((screen._taunt.get_child(0) as Label).horizontal_alignment).is_equal(

@@ -7,7 +7,7 @@ signal answered(correct: bool)
 ## Se emite al terminar las preguntas con todas falladas.
 signal all_wrong
 
-enum Step { IDLE, OBJECTIVE, SLOT, QUESTION, FEEDBACK, RESULT }
+enum Step { IDLE, APPROACH, OBJECTIVE, SLOT, QUESTION, FEEDBACK, RESULT }
 
 const FEEDBACK_TIME: float = 1.4
 const HINT_TIME: float = 2.5
@@ -29,6 +29,8 @@ var taunter: Callable = Callable()
 
 var _target: Convertible
 var _highlighted: Convertible
+var _approach: String = "convencer"
+var _time_mult: float = 1.0
 var _hint_left: float = 0.0
 var _objective_id: String = ""
 var _slot: ModularBody.Slot = ModularBody.Slot.HEAD
@@ -96,14 +98,34 @@ func begin_on(target: Convertible) -> void:
 	hint.visible = false
 	pause.begin_modal()
 	screen.begin(target.get_global_transform_with_canvas().origin + FOCUS_OFFSET)
-	step = Step.OBJECTIVE
+	_approach = "convencer"
+	_time_mult = 1.0
+	step = Step.APPROACH
 	var entries: Array = []
-	for id: String in catalog.objectives:
-		if not _free_slots(id).is_empty():
-			entries.append([str(catalog.objectives[id]["name"]), choose_objective.bind(id)])
-	screen.show_choices(tr("UI_CONVERT_OBJECTIVE"), entries)
+	entries.append(["Convencer (más tiempo)", choose_approach.bind("convencer")])
+	entries.append(["Engañar (tiempo normal)", choose_approach.bind("enganar")])
+	entries.append(["Amenazar (menos tiempo)", choose_approach.bind("amenazar")])
+	screen.show_choices("¿Cómo abordas la conversión?", entries)
 	screen.show_inventory(_inventory_rows())
 	_show_material_hint()
+
+
+func choose_approach(id: String) -> void:
+	_approach = id
+	match id:
+		"convencer":
+			_time_mult = 1.2
+		"amenazar":
+			_time_mult = 0.8
+		_:
+			_time_mult = 1.0
+	step = Step.OBJECTIVE
+	var entries: Array = []
+	for oid: String in catalog.objectives:
+		if not _free_slots(oid).is_empty():
+			entries.append([str(catalog.objectives[oid]["name"]), choose_objective.bind(oid)])
+	screen.show_choices(tr("UI_CONVERT_OBJECTIVE"), entries)
+	screen.show_inventory(_inventory_rows())
 
 
 func choose_objective(id: String) -> void:
@@ -150,7 +172,7 @@ func confirm_result() -> void:
 ## Esc sale antes de las preguntas y acepta el resultado. Con el reloj en marcha no hay salida.
 func _on_close_key() -> void:
 	match step:
-		Step.OBJECTIVE, Step.SLOT:
+		Step.APPROACH, Step.OBJECTIVE, Step.SLOT:
 			step = Step.IDLE
 			screen.close()
 			pause.end_modal()
@@ -230,7 +252,7 @@ func _any_room() -> bool:
 
 func _show_question() -> void:
 	step = Step.QUESTION
-	_time_total = ConversionSession.TIME_LIMIT if perks == null else perks.question_time()
+	_time_total = (ConversionSession.TIME_LIMIT if perks == null else perks.question_time()) * _time_mult
 	_time_left = _time_total
 	screen.time_shown = _time_total
 	var question: Dictionary = _session.current()

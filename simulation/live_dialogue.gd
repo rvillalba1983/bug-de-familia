@@ -15,6 +15,7 @@ var bar: ConversationBar
 
 var _options: Array = []
 var _insulted: bool = false
+var _branch: String = ""
 var _option_uses: Dictionary = {}
 var _option_limits: Dictionary = {}
 
@@ -45,6 +46,7 @@ func is_open() -> bool:
 func open(target: NpcState) -> void:
 	npc = target
 	_insulted = false
+	_branch = ""
 	world.level.pause.begin_modal()
 	if float(world.sim.player_standing.get(npc.species, 0.0)) <= REFUSE_STANDING:
 		_say(tr("LIVE_REFUSE"))
@@ -110,6 +112,15 @@ func close() -> void:
 
 
 func _refresh() -> void:
+	if _branch == "news":
+		var entries: Array = []
+		if _latest_belief() >= 0:
+			entries.append([tr("LIVE_ASK_SOURCE"), _ask_source])
+		entries.append([tr("LIVE_ASK_LORE"), _ask_lore])
+		entries.append(["Volver", _back_to_root])
+		entries.append([tr("LIVE_BYE"), close])
+		_set_options(entries)
+		return
 	var entries: Array = [[tr("LIVE_ASK_NEWS"), _ask_news]]
 	if _latest_belief() >= 0:
 		entries.append([tr("LIVE_ASK_SOURCE"), _ask_source])
@@ -139,6 +150,7 @@ func _say(text: String) -> void:
 
 ## Permite a otros sistemas responder y seguir la conversación.
 func reply(text: String) -> void:
+	_branch = ""
 	_say(text)
 	_refresh()
 
@@ -161,10 +173,18 @@ func _latest_belief() -> int:
 func _ask_news() -> void:
 	var id: int = _latest_belief()
 	if id < 0:
+		_branch = ""
 		reply(_random_line(npc, "nothing"))
 		return
 	var text: String = world.sim.rumors.phrase(world.sim, npc.beliefs[str(id)])
-	reply("%s %s" % [_random_line(npc, "opener"), text])
+	_branch = "news"
+	_say("%s %s" % [_random_line(npc, "opener"), text])
+	_refresh()
+
+
+func _back_to_root() -> void:
+	_branch = ""
+	_refresh()
 
 
 func _ask_source() -> void:

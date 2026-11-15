@@ -62,15 +62,10 @@ func _build_ui() -> void:
 	progress_fg.name = "ProgressFg"
 	add_child(progress_fg)
 
-	# Protagonista en pose gamberra (centro)
-	var protagonist: TextureRect = TextureRect.new()
+	# Protagonista dibujado por código (pose gamberra, vista frontal)
+	var protagonist: ProtagonistDisplay = ProtagonistDisplay.new()
 	protagonist.custom_minimum_size = Vector2(200.0, 300.0)
-	protagonist.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	protagonist.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	protagonist.position = Vector2(860.0, 300.0)
-	var prot_tex: Texture2D = load("res://art/loading/protagonist_gamberra.svg") as Texture2D
-	if prot_tex != null:
-		protagonist.texture = prot_tex
+	protagonist.position = Vector2(860.0, 250.0)
 	add_child(protagonist)
 
 	# NPCs alrededor (placeholders)

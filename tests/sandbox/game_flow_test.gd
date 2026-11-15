@@ -114,7 +114,7 @@ func test_start_menu_appears_when_opening_existing_game() -> void:
 	var second: GdUnitSceneRunner = scene_runner(SANDBOX_PATH)
 	var reopened: Sandbox = second.scene()
 	assert_object(reopened.overlay).is_not_null()
-	assert_int(reopened.overlay.options.size()).is_equal(2)
+	assert_int(reopened.overlay.options.size()).is_equal(3)
 
 
 func test_con_un_solo_repuesto_se_pone_sin_abrir_nada() -> void:

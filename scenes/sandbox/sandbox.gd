@@ -506,9 +506,18 @@ func _show_start_menu() -> void:
 	var entries: Array = [
 		["UI_MENU_CONTINUE", _continue_game],
 		["UI_MENU_NEW", start_new_game],
+		["UI_MENU_HISTORY", _show_history],
 	]
 	overlay.setup("UI_MENU_TITLE", entries)
 	add_child(overlay)
+
+
+func _show_history() -> void:
+	overlay.queue_free()
+	overlay = null
+	pause.end_modal()
+	var history: HistoryScreen = HistoryScreen.new()
+	add_child(history)
 
 
 func _show_game_over() -> void:

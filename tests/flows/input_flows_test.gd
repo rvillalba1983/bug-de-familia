@@ -165,7 +165,7 @@ func test_save_point_saves_and_reopening_continues_there() -> void:
 	Sandbox.session_started = false
 	await _open()
 	assert_object(zone.overlay).is_not_null()
-	assert_int(zone.overlay.options.size()).is_equal(2)
+	assert_int(zone.overlay.options.size()).is_equal(3)
 	zone.overlay.options[0].pressed.emit()
 	await await_idle_frame()
 	assert_object(zone.overlay).is_null()

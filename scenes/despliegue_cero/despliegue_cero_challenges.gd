@@ -399,14 +399,22 @@ func _move_conversable_npcs(delta: float) -> void:
 	if not _npc_patrol_init:
 		_npc_patrol_init = true
 		for npc_id: String in level.investigation.npc_nodes:
-			var node: Node2D = level.investigation.npc_nodes[npc_id] as Node2D
+			var raw: Variant = level.investigation.npc_nodes[npc_id]
+			if not is_instance_valid(raw):
+				continue
+			var node: Node2D = raw as Node2D
 			if not is_instance_valid(node):
 				continue
 			var p: Vector2 = node.position
 			_npc_patrol[npc_id] = {"points": [p, p + Vector2(60.0, 0.0)], "index": 0, "speed": 20.0}
-	for npc_id: String in _npc_patrol:
-		var node: Node2D = level.investigation.npc_nodes.get(npc_id) as Node2D
+	for npc_id: String in _npc_patrol.keys():
+		var raw: Variant = level.investigation.npc_nodes.get(npc_id)
+		if not is_instance_valid(raw):
+			_npc_patrol.erase(npc_id)
+			continue
+		var node: Node2D = raw as Node2D
 		if not is_instance_valid(node):
+			_npc_patrol.erase(npc_id)
 			continue
 		var data: Dictionary = _npc_patrol[npc_id]
 		var points: Array = data["points"]

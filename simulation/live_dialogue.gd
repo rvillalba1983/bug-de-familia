@@ -18,6 +18,8 @@ var _insulted: bool = false
 var _branch: String = ""
 var _option_uses: Dictionary = {}
 var _option_limits: Dictionary = {}
+var _dialogue_tree: Dictionary = {}
+var _current_node_id: String = ""
 
 
 func _ready() -> void:
@@ -47,6 +49,8 @@ func open(target: NpcState) -> void:
 	npc = target
 	_insulted = false
 	_branch = ""
+	_current_node_id = ""
+	_dialogue_tree = DialogueTrees.tree_for(npc.species)
 	world.level.pause.begin_modal()
 	## P-32: hablar con un NPC descubre los retos de la zona.
 	world.level.discover_challenge()
@@ -124,6 +128,9 @@ func close() -> void:
 
 
 func _refresh() -> void:
+	if _current_node_id != "":
+		_show_dialogue_node(_current_node_id)
+		return
 	if _branch == "news":
 		var entries: Array = []
 		if _latest_belief() >= 0:
@@ -137,12 +144,68 @@ func _refresh() -> void:
 	if _latest_belief() >= 0:
 		entries.append([tr("LIVE_ASK_SOURCE"), _ask_source])
 	entries.append([tr("LIVE_ASK_LORE"), _ask_lore])
+	if not _dialogue_tree.is_empty():
+		entries.append(["Hablar", _enter_dialogue])
 	entries.append_array(world.extra_options(npc))
 	entries.append([tr("LIVE_BADMOUTH") % SpeciesCatalog.plural(SpeciesCatalog.rival(npc.species)), _badmouth])
 	entries.append([tr("LIVE_PRAISE"), _praise])
 	entries.append([tr("LIVE_HIT"), _hit] if _insulted else [tr("LIVE_INSULT"), _insult])
 	entries.append([tr("LIVE_BYE"), close])
 	_set_options(entries)
+
+
+func _enter_dialogue() -> void:
+	_current_node_id = "root"
+	_show_dialogue_node("root")
+
+
+func _show_dialogue_node(node_id: String) -> void:
+	if not _dialogue_tree.has(node_id):
+		_current_node_id = ""
+		_refresh()
+		return
+	var node: Dictionary = _dialogue_tree[node_id]
+	_current_node_id = node_id
+	_say(str(node.get("text", "...")))
+	var entries: Array = []
+	for opt: Dictionary in node.get("options", []):
+		var label: String = str(opt.get("label", "..."))
+		var next: String = str(opt.get("next", ""))
+		var action: String = str(opt.get("action", ""))
+		entries.append([label, func() -> void:
+			_execute_dialogue_action(action)
+			if next == "":
+				_current_node_id = ""
+				_refresh()
+			else:
+				_show_dialogue_node(next)
+		])
+	entries.append(["Volver", func() -> void:
+		_current_node_id = ""
+		_refresh()
+	])
+	_set_options(entries)
+
+
+func _execute_dialogue_action(action: String) -> void:
+	match action:
+		"gift_piece":
+			_give_piece()
+		"hit":
+			_hit()
+		"provoke_battle":
+			world.provoke_battle(tr("LIVE_BADMOUTH_BOOM"))
+		"praise":
+			_praise()
+		"insult":
+			_insult()
+
+
+func _give_piece() -> void:
+	## Regala una pieza al protagonista. Simplificado: muestra mensaje.
+	_say("Toma, una pieza para ti.")
+	if world.level.has_method("give_piece_to_player"):
+		world.level.give_piece_to_player()
 
 
 func _set_options(entries: Array) -> void:

@@ -72,6 +72,7 @@ El director tacha o aprueba, igual que en P-09.
 
 ---
 
-**Nota:** Estos son propuestas. El director debe tachar o aprobar cada uno.
-Los aprobados se añadirán al catálogo de conversión (`data/conversion/catalog.json`).
-Los rechazados se marcan como tachados.
+**Estado:** Todos los objetos aprobados por el director (15-nov).
+
+Los 50 objetos se añadirán al catálogo de conversión en una fase posterior.
+Los objetos aprobados se implementarán como nuevos materiales/objetos convertibles.

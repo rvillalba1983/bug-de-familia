@@ -352,7 +352,7 @@ func _play_next() -> void:
 		_line_time = duration
 	else:
 		bubble.say("%s: %s" % [info["name"], entry["text"]], color, duration)
-	voice.speak(float(info["pitch"]), id)
+	voice.speak(float(info["pitch"]), id, str(info.get("timbre", AudioMixer.TIMBRE_NORMAL)))
 	level.player.tail_color = color
 	level.player.tail_speaking = true
 	if level.rng.randf() >= level.player.body.total("token_save"):

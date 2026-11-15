@@ -172,6 +172,37 @@ Ver `docs/adr/0027-multi-zona.md`.
 - **Pantalla de inicio del juego (menú principal):** además de los botones actuales (Nueva partida, Continuar), debe aparecer otro botón que sea **«Conoce la historia»**. Al pulsarlo, se mostrará el lore del juego en modo gracioso de videojuego, con las imágenes que hemos creado de los hechos históricos.
 - Registrado como **P-43** en `01_CONFLICTOS_Y_PENDIENTES.md`.
 
+## Reparto del cálculo del mundo entre núcleos (post-beta, 15-nov)
+
+- **No se aplica `WorkerThreadPool` a la simulación del mundo vivo.** La petición original
+  (9-nov) ya decía «hacerlo solo cuando haga falta», y no hace falta: la simulación avanza por
+  pasos sobre una población pequeña y no hay medición en gráfica real que muestre tirones.
+- Se vuelve a mirar solo si la medición en la gráfica del director muestra tirones con muchas
+  zonas y habitantes.
+- Registrado como **P-30** en `01_CONFLICTOS_Y_PENDIENTES.md`.
+
+## Sonido direccional y timbre de las IAs (post-beta, 15-nov)
+
+- **Oír de dónde viene un guardia y si está tras una pared** es información de sigilo: el paso
+  tapado suena en un bus con filtro de agudos, más bajo y más grave.
+- **Cada IA tiene un timbre propio**: radio rota, eco o distorsión, además del timbre normal.
+- **Sin generar más voces**: el timbre se aplica con filtros de audio sobre los clips grabados
+  que ya hay, no con archivos nuevos.
+- Godot 4.7.2 no tiene oclusión de audio: se calcula con un rayo contra los muros.
+- Implementado en esta rama. Ver `adr/0031-sonido-direccional-y-timbre-ia.md`.
+- Registrado como **P-29** en `01_CONFLICTOS_Y_PENDIENTES.md`.
+
+## Retos de la zona en el chat (post-beta, 15-nov)
+
+- La lista de retos de la zona solo aparece en el chat del canal **si el jugador se ha enterado
+  de que existen**: hablando con un habitante o por las IAs.
+- Los retos completados **se quitan** de la lista.
+- No se tocan las **misiones emergentes**, que están decididas sin lista ni marcadores (P-11).
+- Implementado en esta rama: el estado «conocido» (`InvestigationDirector.known`) va aparte del
+  estado «completado» (`flags`), y la zona decide el texto del tema del chat
+  (`ZoneBase.chat_topic()`). Ver `adr/0030-retos-conocidos-en-el-chat.md`.
+- Registrado como **P-32** en `01_CONFLICTOS_Y_PENDIENTES.md`.
+
 ## Lo que no se puede inventar
 Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barra de salud, diario, personajes protegidos, multijugador, conexión online, vehículos, recetas cerradas de conversión.
 

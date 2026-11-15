@@ -11,6 +11,24 @@ func before_test() -> void:
 	DespliegueCeroZone.forced_hour = 12
 	zone = scene_runner(PATH).scene()
 	zone.set_enemies_active(false)
+	await _stabilize()
+
+
+## Sin sucesos aleatorios del mundo: si un habitante muere por un suceso, a su
+## bando le faltan combatientes y la batalla no puede empezar. El resultado
+## dependía de cuántos fotogramas pasaban antes (P-39, mismo motivo que en las
+## rutas).
+func _stabilize() -> void:
+	for _attempt: int in range(10):
+		if zone.live_world != null and zone.live_world.sim != null:
+			break
+		await get_tree().physics_frame
+	if zone.live_world == null or zone.live_world.sim == null:
+		return
+	var sim: WorldSim = zone.live_world.sim
+	sim.events.timer = 1e9
+	sim.events.staged.clear()
+	sim.events.pending.clear()
 
 
 func after_test() -> void:
@@ -20,8 +38,22 @@ func after_test() -> void:
 
 
 func _start() -> BattleDirector:
-	assert_bool(zone.battles.begin()).is_true()
+	var empieza: bool = zone.battles.begin()
+	assert_bool(empieza).is_true().override_failure_message(
+		"La batalla no pudo empezar: vivos por bando %s" % _vivos_por_bando()
+	)
 	return zone.battles
+
+
+## Cuántos habitantes vivos quedan en cada bando, para saber por qué no arranca.
+func _vivos_por_bando() -> String:
+	if zone.live_world == null or zone.live_world.sim == null:
+		return "desconocido"
+	var sim: WorldSim = zone.live_world.sim
+	var partes: Array[String] = []
+	for lado: String in zone.battles.species:
+		partes.append("%s=%d" % [lado, sim.alive_of(lado).size()])
+	return ", ".join(partes)
 
 
 func test_no_hay_duplicados_ni_nadie_en_dos_bandos() -> void:

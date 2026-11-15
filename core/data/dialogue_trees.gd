@@ -1,6 +1,6 @@
 class_name DialogueTrees
 extends RefCounted
-## Árboles de diálogo ramificados por raza. Entrega ampliada: 30+ nodos por raza, cubriendo todo el lore.
+## Árboles de diálogo ramificados por raza. Entrega ampliada: 40-50 nodos por raza, cubriendo todo el lore y humor.
 
 static func tree_for(species: String) -> Dictionary:
 	match species:
@@ -11,19 +11,18 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "¿Algo interesante?", "next": "rumor"},
 					{"label": "¿Cómo va la petanca?", "next": "petanca"},
 					{"label": "¿Conoces a Don Ramón?", "next": "ramon"},
-					{"label": "¿Qué opinas de los mohócratas?", "next": "opinion_moho"},
-					{"label": "¿Y de los grux?", "next": "opinion_grux"},
-					{"label": "¿Y de los plegados?", "next": "opinion_plegado"},
-					{"label": "¿Y de los ecos?", "next": "opinion_eco"},
-					{"label": "¿Y de la manada?", "next": "opinion_manada"},
+					{"label": "Opiniones sobre otras razas", "next": "opinions"},
 					{"label": "¿Alguna anécdota?", "next": "anecdote"},
 					{"label": "¿Qué fue el Apocalipsis?", "next": "apocalipsis"},
+					{"label": "¿Y la Guerra de las Esquinas?", "next": "guerra"},
+					{"label": "¿Y la Gran Clasificación?", "next": "granclas"},
 					{"label": "Adiós", "next": ""},
 				]},
 				"job": {"text": "Juego a la petanca con minas. Es lo que hay.", "options": [
 					{"label": "¿Petanca con minas?", "next": "job2"},
 					{"label": "¿No es peligroso?", "next": "job3"},
 					{"label": "¿Dónde consigues las minas?", "next": "job5"},
+					{"label": "¿Cómo empezaste?", "next": "job7"},
 				]},
 				"job2": {"text": "Sí, es peligroso pero divertido. ¿Quieres una pieza de repuesto?", "options": [
 					{"label": "Sí, gracias", "next": "", "action": "gift_piece"},
@@ -43,10 +42,21 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Jaja", "next": "root", "action": "praise"},
 					{"label": "Qué peligro", "next": "root"},
 				]},
+				"job7": {"text": "Empecé porque no había otra cosa. Los jubilados necesitamos algo que hacer.", "options": [
+					{"label": "¿Y antes?", "next": "job8"},
+				]},
+				"job8": {"text": "Antes trabajábamos en las instalaciones. Pero el Apocalipsis lo cambió todo.", "options": [
+					{"label": "¿Las instalaciones?", "next": "job9"},
+				]},
+				"job9": {"text": "Sí, manteníamos las máquinas. Ahora mantenemos las minas. Es lo que hay.", "options": [
+					{"label": "Qué vida", "next": "root", "action": "praise"},
+					{"label": "Qué triste", "next": "root"},
+				]},
 				"petanca": {"text": "La petanca va bien. Pero los grux flotan y no respetan las reglas.", "options": [
 					{"label": "¿Los grux?", "next": "petanca2"},
 					{"label": "¿Y los mohócratas?", "next": "petanca3"},
 					{"label": "¿Algún truco?", "next": "petanca4"},
+					{"label": "¿Quién gana más?", "next": "petanca5"},
 				]},
 				"petanca2": {"text": "Sí, flotan sobre el campo y dicen que el aire es suyo. ¡Ridículo!", "options": [
 					{"label": "Tienes razón", "next": "root", "action": "praise"},
@@ -60,10 +70,15 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Gracias", "next": "root", "action": "praise"},
 					{"label": "Qué difícil", "next": "root"},
 				]},
+				"petanca5": {"text": "Yo gano siempre. Porque los demás tienen miedo de las minas. ¡Ja!", "options": [
+					{"label": "Jaja", "next": "root", "action": "praise"},
+					{"label": "Qué ventaja", "next": "root"},
+				]},
 				"ramon": {"text": "Don Ramón es el jefe. Mejor no te metas con él.", "options": [
 					{"label": "¿Por qué?", "next": "ramon2"},
 					{"label": "¿Es peligroso?", "next": "ramon3"},
 					{"label": "¿Qué hace?", "next": "ramon4"},
+					{"label": "¿Es justo?", "next": "ramon6"},
 				]},
 				"ramon2": {"text": "Porque tiene un martillo y no le gusta que le molesten.", "options": [
 					{"label": "Entendido", "next": "root"},
@@ -79,6 +94,17 @@ static func tree_for(species: String) -> Dictionary:
 				"ramon5": {"text": "Sí, hasta por respirar. Pero los grux no pagan. ¡Es injusto!", "options": [
 					{"label": "Tienes razón", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"ramon6": {"text": "¿Justo? No. Pero es el jefe. Y nadie le discute.", "options": [
+					{"label": "Qué injusto", "next": "root", "action": "praise"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"opinions": {"text": "¿De quién quieres que te hable?", "options": [
+					{"label": "Mohócratas", "next": "opinion_moho"},
+					{"label": "Grux", "next": "opinion_grux"},
+					{"label": "Plegados", "next": "opinion_plegado"},
+					{"label": "Ecos", "next": "opinion_eco"},
+					{"label": "Manada", "next": "opinion_manada"},
 				]},
 				"opinion_moho": {"text": "Los mohócratas son... bueno, votan mucho. Pero son buena gente.", "options": [
 					{"label": "¿Buena gente?", "next": "opinion_moho2"},
@@ -143,6 +169,7 @@ static func tree_for(species: String) -> Dictionary:
 				"anecdote": {"text": "Una vez un grux cayó en una mina. ¡Explotó! Y flotó aún más alto. ¡Ja!", "options": [
 					{"label": "Jaja", "next": "anecdote2"},
 					{"label": "Qué cruel", "next": "anecdote3"},
+					{"label": "Otra anécdota", "next": "anecdote4"},
 				]},
 				"anecdote2": {"text": "Sí, fue gracioso. El grux no pensó lo mismo. Pero flotó más alto, así que ganó.", "options": [
 					{"label": "Jaja", "next": "root", "action": "praise"},
@@ -151,6 +178,10 @@ static func tree_for(species: String) -> Dictionary:
 				"anecdote3": {"text": "Cruel sí, pero el grux sobrevivió. Y ahora tiene una pierna de madera. ¡Ja!", "options": [
 					{"label": "Jaja", "next": "root", "action": "praise"},
 					{"label": "Qué horror", "next": "", "action": "insult"},
+				]},
+				"anecdote4": {"text": "Una vez un mohócrata votó para cambiar el color de las minas. ¡Ganó el verde!", "options": [
+					{"label": "Jaja", "next": "root", "action": "praise"},
+					{"label": "Qué pesados", "next": "", "action": "insult"},
 				]},
 				"apocalipsis": {"text": "El Apocalipsis fue cuando todo se desplegó. Ciudades enteras cambiaron de sitio.", "options": [
 					{"label": "¿Qué pasó?", "next": "apocalipsis2"},
@@ -166,10 +197,33 @@ static func tree_for(species: String) -> Dictionary:
 				]},
 				"apocalipsis4": {"text": "Los plegados ocultaron que la tecnología comprimía materia viva. Por eso hubo guerra.", "options": [
 					{"label": "¿Guerra?", "next": "apocalipsis5"},
-					{"label": "Volver", "next": "root"},
 				]},
 				"apocalipsis5": {"text": "Sí, la Guerra de las Esquinas. Los grux financiaron, los ecos transmitieron, los jubilados mantuvieron las instalaciones.", "options": [
 					{"label": "Qué historia", "next": "root", "action": "praise"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"guerra": {"text": "La Guerra de las Esquinas fue cuando los plegados ocultaron que la tecnología comprimía materia viva.", "options": [
+					{"label": "¿Materia viva?", "next": "guerra2"},
+				]},
+				"guerra2": {"text": "Sí, la tecnología que comprimía regiones enteras también podía comprimir seres vivos.", "options": [
+					{"label": "¿Y qué pasó?", "next": "guerra3"},
+				]},
+				"guerra3": {"text": "Las facciones lucharon por controlar las instalaciones. El experimento falló. Ciudades enteras cambiaron de sitio.", "options": [
+					{"label": "¿El Apocalipsis?", "next": "apocalipsis"},
+					{"label": "Volver", "next": "root"},
+				]},
+				"granclas": {"text": "La Gran Clasificación fue el sistema de los plegados para catalogar todo lo existente.", "options": [
+					{"label": "¿Todo?", "next": "granclas2"},
+				]},
+				"granclas2": {"text": "Sí, todo. Hasta las categorías. El sistema se volvió tan complejo que necesitaba más recursos que el gobierno.", "options": [
+					{"label": "¿Y qué pasó?", "next": "granclas3"},
+				]},
+				"granclas3": {"text": "La administración colapsó. Pero los archivos siguen ahí. En algún pliegue.", "options": [
+					{"label": "¿Dónde?", "next": "granclas4"},
+					{"label": "Volver", "next": "root"},
+				]},
+				"granclas4": {"text": "Nadie sabe. Los archivos están en pliegues que ya no aparecen en los registros.", "options": [
+					{"label": "Qué misterio", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
 				"rumor": {"text": "Los mohócratas han votado algo raro otra vez.", "options": [
@@ -200,13 +254,11 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "¿Alguna queja?", "next": "complaint"},
 					{"label": "¿Votáis mucho?", "next": "vote3"},
 					{"label": "¿Conoces a Don Ramón?", "next": "ramon"},
-					{"label": "¿Qué opinas de los jubilados?", "next": "opinion_jub"},
-					{"label": "¿Y de los grux?", "next": "opinion_grux"},
-					{"label": "¿Y de los plegados?", "next": "opinion_plegado"},
-					{"label": "¿Y de los ecos?", "next": "opinion_eco"},
-					{"label": "¿Y de la manada?", "next": "opinion_manada"},
+					{"label": "Opiniones sobre otras razas", "next": "opinions"},
 					{"label": "¿Alguna anécdota?", "next": "anecdote"},
 					{"label": "¿Qué fue el Apocalipsis?", "next": "apocalipsis"},
+					{"label": "¿Y la Guerra de las Esquinas?", "next": "guerra"},
+					{"label": "¿Y la Gran Clasificación?", "next": "granclas"},
 					{"label": "Adiós", "next": ""},
 				]},
 				"vote": {"text": "Hemos votado por unanimidad que el aire es nuestro.", "options": [
@@ -219,6 +271,7 @@ static func tree_for(species: String) -> Dictionary:
 				"vote3": {"text": "Votamos para todo. Incluso para votar. Es democracia.", "options": [
 					{"label": "¿Para todo?", "next": "vote4"},
 					{"label": "¿Votáis por diversión?", "next": "vote5"},
+					{"label": "¿Votáis por obligación?", "next": "vote6"},
 				]},
 				"vote4": {"text": "Sí. La última votación fue sobre si votar es divertido. Ganó el sí.", "options": [
 					{"label": "Jaja", "next": "root", "action": "praise"},
@@ -228,9 +281,14 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Jaja", "next": "root", "action": "praise"},
 					{"label": "Qué pesados", "next": "", "action": "insult"},
 				]},
+				"vote6": {"text": "No, por obligación no. Votamos porque queremos. Es nuestra cultura.", "options": [
+					{"label": "Qué bonito", "next": "root", "action": "praise"},
+					{"label": "Qué pesados", "next": "", "action": "insult"},
+				]},
 				"complaint": {"text": "Los plegados clasifican nuestras esporas. ¡Es una ofensa!", "options": [
 					{"label": "¿Esporas?", "next": "complaint2"},
 					{"label": "¿Qué más?", "next": "complaint3"},
+					{"label": "¿Y las minas?", "next": "complaint4"},
 				]},
 				"complaint2": {"text": "Sí, las clasifican por color. ¡Nosotros no somos colores!", "options": [
 					{"label": "Qué injusto", "next": "root", "action": "praise"},
@@ -240,10 +298,15 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Indignante", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
+				"complaint4": {"text": "Las minas las usan para jugar. ¡Es peligroso! Pero a ellos les da igual.", "options": [
+					{"label": "Qué horror", "next": "root", "action": "praise"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
 				"ramon": {"text": "Don Ramón es un tirano. Pero no lo digas muy alto.", "options": [
 					{"label": "¿Tirano?", "next": "ramon2"},
 					{"label": "¿Por qué?", "next": "ramon3"},
 					{"label": "¿Qué hace?", "next": "ramon4"},
+					{"label": "¿Es justo?", "next": "ramon6"},
 				]},
 				"ramon2": {"text": "Porque obliga a los jubilados a jugar con minas. ¡Es un abuso!", "options": [
 					{"label": "Qué horror", "next": "root", "action": "praise"},
@@ -259,6 +322,17 @@ static func tree_for(species: String) -> Dictionary:
 				"ramon5": {"text": "Sí, hasta por respirar. Pero los grux no pagan. ¡Es injusto!", "options": [
 					{"label": "Tienes razón", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"ramon6": {"text": "¿Justo? No. Pero es el jefe. Y nadie le discute.", "options": [
+					{"label": "Qué injusto", "next": "root", "action": "praise"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"opinions": {"text": "¿De quién quieres que te hable?", "options": [
+					{"label": "Jubilados", "next": "opinion_jub"},
+					{"label": "Grux", "next": "opinion_grux"},
+					{"label": "Plegados", "next": "opinion_plegado"},
+					{"label": "Ecos", "next": "opinion_eco"},
+					{"label": "Manada", "next": "opinion_manada"},
 				]},
 				"opinion_jub": {"text": "Los jubilados son... viejos y cansados. Pero buena gente.", "options": [
 					{"label": "¿Buena gente?", "next": "opinion_jub2"},
@@ -323,6 +397,7 @@ static func tree_for(species: String) -> Dictionary:
 				"anecdote": {"text": "Una vez un grux cayó en una mina. ¡Explotó! Y flotó aún más alto. ¡Ja!", "options": [
 					{"label": "Jaja", "next": "anecdote2"},
 					{"label": "Qué cruel", "next": "anecdote3"},
+					{"label": "Otra anécdota", "next": "anecdote4"},
 				]},
 				"anecdote2": {"text": "Sí, fue gracioso. El grux no pensó lo mismo. Pero flotó más alto, así que ganó.", "options": [
 					{"label": "Jaja", "next": "root", "action": "praise"},
@@ -331,6 +406,10 @@ static func tree_for(species: String) -> Dictionary:
 				"anecdote3": {"text": "Cruel sí, pero el grux sobrevivió. Y ahora tiene una pierna de madera. ¡Ja!", "options": [
 					{"label": "Jaja", "next": "root", "action": "praise"},
 					{"label": "Qué horror", "next": "", "action": "insult"},
+				]},
+				"anecdote4": {"text": "Una vez un mohócrata votó para cambiar el color de las minas. ¡Ganó el verde!", "options": [
+					{"label": "Jaja", "next": "root", "action": "praise"},
+					{"label": "Qué pesados", "next": "", "action": "insult"},
 				]},
 				"apocalipsis": {"text": "El Apocalipsis fue cuando todo se desplegó. Ciudades enteras cambiaron de sitio.", "options": [
 					{"label": "¿Qué pasó?", "next": "apocalipsis2"},
@@ -351,44 +430,17 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Qué historia", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
-			}
-		"plegado":
-			return {
-				"root": {"text": "¿En qué categoría te sitúo?", "options": [
-					{"label": "¿Categoría?", "next": "cat"},
-					{"label": "¿Algo interesante?", "next": "news"},
-					{"label": "¿Qué clasificas?", "next": "classify"},
-					{"label": "¿Qué fue la Gran Clasificación?", "next": "granclas"},
-					{"label": "¿Y la Guerra de las Esquinas?", "next": "guerra"},
-					{"label": "Adiós", "next": ""},
+				"guerra": {"text": "La Guerra de las Esquinas fue cuando los plegados ocultaron que la tecnología comprimía materia viva.", "options": [
+					{"label": "¿Materia viva?", "next": "guerra2"},
 				]},
-				"cat": {"text": "Todo debe tener una categoría. Tú eres... 'individuo sin pliegue'.", "options": [
-					{"label": "¿Sin pliegue?", "next": "cat2"},
+				"guerra2": {"text": "Sí, la tecnología que comprimía regiones enteras también podía comprimir seres vivos.", "options": [
+					{"label": "¿Y qué pasó?", "next": "guerra3"},
 				]},
-				"cat2": {"text": "Sí, no te puedes doblar. Es una limitación. ¿Quieres una pieza?", "options": [
-					{"label": "Sí", "next": "", "action": "gift_piece"},
-					{"label": "No", "next": "root"},
+				"guerra3": {"text": "Las facciones lucharon por controlar las instalaciones. El experimento falló. Ciudades enteras cambiaron de sitio.", "options": [
+					{"label": "¿El Apocalipsis?", "next": "apocalipsis"},
+					{"label": "Volver", "next": "root"},
 				]},
-				"classify": {"text": "Clasificamos todo. Incluso las quejas. Las esporas de los mohócratas están en 'hongos molestos'.", "options": [
-					{"label": "¿Hongos molestos?", "next": "classify2"},
-					{"label": "¿Y los grux?", "next": "classify3"},
-				]},
-				"classify2": {"text": "Sí. Y los grux están en 'seres que flotan sin permiso'.", "options": [
-					{"label": "Jaja", "next": "root", "action": "praise"},
-					{"label": "Qué ofensa", "next": "", "action": "insult"},
-				]},
-				"classify3": {"text": "Los grux están en 'seres que flotan sin permiso'. Y los ecos en 'ruido repetitivo'.", "options": [
-					{"label": "Jaja", "next": "root", "action": "praise"},
-					{"label": "Qué ofensa", "next": "", "action": "insult"},
-				]},
-				"news": {"text": "Los ecos han grabado un acta sobre nosotros. De nuevo.", "options": [
-					{"label": "¿Qué dice?", "next": "news2"},
-				]},
-				"news2": {"text": "Que somos 'plegados de tercera categoría'. ¡Indignante!", "options": [
-					{"label": "Indignante", "next": "root", "action": "praise"},
-					{"label": "Me da igual", "next": "", "action": "insult"},
-				]},
-				"granclas": {"text": "La Gran Clasificación fue nuestro mayor logro. Catalogamos todo lo existente.", "options": [
+				"granclas": {"text": "La Gran Clasificación fue el sistema de los plegados para catalogar todo lo existente.", "options": [
 					{"label": "¿Todo?", "next": "granclas2"},
 				]},
 				"granclas2": {"text": "Sí, todo. Hasta las categorías. El sistema se volvió tan complejo que necesitaba más recursos que el gobierno.", "options": [
@@ -402,18 +454,100 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Qué misterio", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
+			}
+		"plegado":
+			return {
+				"root": {"text": "¿En qué categoría te sitúo?", "options": [
+					{"label": "¿Categoría?", "next": "cat"},
+					{"label": "¿Algo interesante?", "next": "news"},
+					{"label": "¿Qué clasificas?", "next": "classify"},
+					{"label": "¿Qué fue la Gran Clasificación?", "next": "granclas"},
+					{"label": "¿Y la Guerra de las Esquinas?", "next": "guerra"},
+					{"label": "¿Y el Apocalipsis?", "next": "apocalipsis"},
+					{"label": "Adiós", "next": ""},
+				]},
+				"cat": {"text": "Todo debe tener una categoría. Tú eres... 'individuo sin pliegue'.", "options": [
+					{"label": "¿Sin pliegue?", "next": "cat2"},
+					{"label": "¿Y los demás?", "next": "cat3"},
+				]},
+				"cat2": {"text": "Sí, no te puedes doblar. Es una limitación. ¿Quieres una pieza?", "options": [
+					{"label": "Sí", "next": "", "action": "gift_piece"},
+					{"label": "No", "next": "root"},
+				]},
+				"cat3": {"text": "Los jubilados son 'seres que juegan con explosivos'. Los mohócratas son 'hongos que votan'.", "options": [
+					{"label": "Jaja", "next": "root", "action": "praise"},
+					{"label": "Qué ofensa", "next": "", "action": "insult"},
+				]},
+				"classify": {"text": "Clasificamos todo. Incluso las quejas. Las esporas de los mohócratas están en 'hongos molestos'.", "options": [
+					{"label": "¿Hongos molestos?", "next": "classify2"},
+					{"label": "¿Y los grux?", "next": "classify3"},
+					{"label": "¿Y los ecos?", "next": "classify4"},
+				]},
+				"classify2": {"text": "Sí. Y los grux están en 'seres que flotan sin permiso'.", "options": [
+					{"label": "Jaja", "next": "root", "action": "praise"},
+					{"label": "Qué ofensa", "next": "", "action": "insult"},
+				]},
+				"classify3": {"text": "Los grux están en 'seres que flotan sin permiso'. Y los ecos en 'ruido repetitivo'.", "options": [
+					{"label": "Jaja", "next": "root", "action": "praise"},
+					{"label": "Qué ofensa", "next": "", "action": "insult"},
+				]},
+				"classify4": {"text": "Los ecos están en 'ruido repetitivo'. Y la manada en 'seres que solo van a la derecha'.", "options": [
+					{"label": "Jaja", "next": "root", "action": "praise"},
+					{"label": "Qué ofensa", "next": "", "action": "insult"},
+				]},
+				"news": {"text": "Los ecos han grabado un acta sobre nosotros. De nuevo.", "options": [
+					{"label": "¿Qué dice?", "next": "news2"},
+					{"label": "¿Otra vez?", "next": "news3"},
+				]},
+				"news2": {"text": "Que somos 'plegados de tercera categoría'. ¡Indignante!", "options": [
+					{"label": "Indignante", "next": "root", "action": "praise"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"news3": {"text": "Sí, otra vez. Los ecos repiten todo. Es su naturaleza.", "options": [
+					{"label": "Qué pesados", "next": "root"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"granclas": {"text": "La Gran Clasificación fue nuestro mayor logro. Catalogamos todo lo existente.", "options": [
+					{"label": "¿Todo?", "next": "granclas2"},
+					{"label": "¿Por qué?", "next": "granclas5"},
+				]},
+				"granclas2": {"text": "Sí, todo. Hasta las categorías. El sistema se volvió tan complejo que necesitaba más recursos que el gobierno.", "options": [
+					{"label": "¿Y qué pasó?", "next": "granclas3"},
+				]},
+				"granclas3": {"text": "La administración colapsó. Pero los archivos siguen ahí. En algún pliegue.", "options": [
+					{"label": "¿Dónde?", "next": "granclas4"},
+				]},
+				"granclas4": {"text": "Nadie sabe. Los archivos están en pliegues que ya no aparecen en los registros.", "options": [
+					{"label": "Qué misterio", "next": "root", "action": "praise"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"granclas5": {"text": "Porque todo debe tener una categoría. Es nuestro principio fundamental.", "options": [
+					{"label": "¿Todo?", "next": "granclas2"},
+					{"label": "Volver", "next": "root"},
+				]},
 				"guerra": {"text": "La Guerra de las Esquinas fue cuando los plegados ocultaron que la tecnología comprimía materia viva.", "options": [
 					{"label": "¿Materia viva?", "next": "guerra2"},
+					{"label": "¿Quién luchó?", "next": "guerra4"},
 				]},
 				"guerra2": {"text": "Sí, la tecnología que comprimía regiones enteras también podía comprimir seres vivos.", "options": [
 					{"label": "¿Y qué pasó?", "next": "guerra3"},
 				]},
 				"guerra3": {"text": "Las facciones lucharon por controlar las instalaciones. El experimento falló. Ciudades enteras cambiaron de sitio.", "options": [
-					{"label": "¿El Apocalipsis?", "next": "guerra4"},
+					{"label": "¿El Apocalipsis?", "next": "apocalipsis"},
 					{"label": "Volver", "next": "root"},
 				]},
-				"guerra4": {"text": "Sí, el Apocalipsis del Despliegue. Las instalaciones recibieron órdenes contradictorias.", "options": [
-					{"label": "Qué horror", "next": "root", "action": "praise"},
+				"guerra4": {"text": "Los grux financiaron, los ecos transmitieron, los jubilados mantuvieron las instalaciones. Y los plegados ocultaron el peligro.", "options": [
+					{"label": "Qué traición", "next": "root", "action": "praise"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"apocalipsis": {"text": "El Apocalipsis del Despliegue fue cuando las instalaciones recibieron órdenes contradictorias.", "options": [
+					{"label": "¿Qué pasó?", "next": "apocalipsis2"},
+				]},
+				"apocalipsis2": {"text": "Unas regiones se desplegaron, otras se comprimieron. Ciudades enteras cambiaron de posición.", "options": [
+					{"label": "¿Y los plegados?", "next": "apocalipsis3"},
+				]},
+				"apocalipsis3": {"text": "Muchos sobrevivieron refugiándose en pliegues y espacios que ya no aparecían en los registros.", "options": [
+					{"label": "Qué suerte", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
 			}
@@ -424,28 +558,38 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "¿Alguna noticia?", "next": "news"},
 					{"label": "¿Qué repites?", "next": "repeat"},
 					{"label": "¿Qué fue el Apocalipsis?", "next": "apocalipsis"},
+					{"label": "¿Y la Guerra de las Esquinas?", "next": "guerra"},
 					{"label": "Adiós", "next": ""},
 				]},
 				"what": {"text": "Soy un eco. Repito lo que otros dicen. Pero con estilo.", "options": [
 					{"label": "¿Con estilo?", "next": "what2"},
+					{"label": "¿Siempre repites?", "next": "what3"},
 				]},
 				"what2": {"text": "Sí, añado resonancia. ¿Quieres que repita algo?", "options": [
 					{"label": "Sí", "next": "root", "action": "praise"},
 					{"label": "No", "next": "", "action": "insult"},
 				]},
+				"what3": {"text": "Sí, siempre. Es mi naturaleza. No puedo evitarlo.", "options": [
+					{"label": "Qué pesado", "next": "root"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
 				"repeat": {"text": "Repito todo. La última cosa que repetí fue 'el aire es nuestro'.", "options": [
 					{"label": "¿De quién?", "next": "repeat2"},
 					{"label": "¿Repites secretos?", "next": "repeat3"},
+					{"label": "¿Repites mentiras?", "next": "repeat4"},
 				]},
 				"repeat2": {"text": "De los grux. Lo repiten mucho. Y yo lo amplifico.", "options": [
 					{"label": "Jaja", "next": "root", "action": "praise"},
 					{"label": "Qué pesados", "next": "", "action": "insult"},
 				]},
 				"repeat3": {"text": "Sí, repito secretos. Pero no los entiendo. Solo los amplifico.", "options": [
-					{"label": "¿Qué secretos?", "next": "repeat4"},
-					{"label": "Volver", "next": "root"},
+					{"label": "¿Qué secretos?", "next": "repeat5"},
 				]},
-				"repeat4": {"text": "No sé. Algo sobre pliegues y materia viva. Pero solo es un eco.", "options": [
+				"repeat4": {"text": "Sí, repito mentiras. Pero no lo sé. Solo amplifico lo que oigo.", "options": [
+					{"label": "Qué peligro", "next": "root"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"repeat5": {"text": "No sé. Algo sobre pliegues y materia viva. Pero solo es un eco.", "options": [
 					{"label": "Qué misterio", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
@@ -471,6 +615,13 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Qué historia", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
+				"guerra": {"text": "La Guerra de las Esquinas... eco... fue cuando los plegados ocultaron que la tecnología comprimía materia viva.", "options": [
+					{"label": "¿Qué pasó?", "next": "guerra2"},
+				]},
+				"guerra2": {"text": "Las facciones lucharon por controlar las instalaciones. Lo repito: 'ciudades enteras cambiaron de sitio'.", "options": [
+					{"label": "Qué horror", "next": "root", "action": "praise"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
 			}
 		"grux":
 			return {
@@ -479,11 +630,13 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "¿Algo interesante?", "next": "news"},
 					{"label": "¿Por qué flotáis?", "next": "float"},
 					{"label": "¿Qué fue el Apocalipsis?", "next": "apocalipsis"},
+					{"label": "¿Y la Guerra de las Esquinas?", "next": "guerra"},
 					{"label": "Adiós", "next": ""},
 				]},
 				"below": {"text": "Sí, tú caminas por el suelo. Nosotros flotamos. Es mejor.", "options": [
 					{"label": "¿Mejor?", "next": "below2"},
 					{"label": "¿Por qué es mejor?", "next": "below3"},
+					{"label": "¿No os cansáis?", "next": "below4"},
 				]},
 				"below2": {"text": "Sí, el aire es nuestro. ¿Quieres una pieza voladora?", "options": [
 					{"label": "Sí", "next": "", "action": "gift_piece"},
@@ -493,15 +646,24 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Tienes razón", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
+				"below4": {"text": "No, no nos cansamos. El aire nos sostiene. Es nuestro derecho.", "options": [
+					{"label": "Tienes razón", "next": "root", "action": "praise"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
 				"float": {"text": "Flotamos porque el aire nos sostiene. Es nuestro derecho.", "options": [
 					{"label": "¿Derecho?", "next": "float2"},
 					{"label": "¿De dónde viene el aire?", "next": "float3"},
+					{"label": "¿Y los mohócratas?", "next": "float4"},
 				]},
 				"float2": {"text": "Sí. Los mohócratas quieren cobrar por respirar. ¡Ridículo!", "options": [
 					{"label": "Tienes razón", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
 				"float3": {"text": "El aire viene del planeta. Pero los mohócratas quieren cobrar por usarlo. ¡Es absurdo!", "options": [
+					{"label": "Tienes razón", "next": "root", "action": "praise"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"float4": {"text": "Los mohócratas quieren cobrar tributo por el aire. ¡Ridículo! El aire es de todos.", "options": [
 					{"label": "Tienes razón", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
@@ -522,13 +684,27 @@ static func tree_for(species: String) -> Dictionary:
 				]},
 				"apocalipsis": {"text": "El Apocalipsis... fue cuando todo se desplegó. Nosotros financiamos parte de los experimentos.", "options": [
 					{"label": "¿Financiasteis?", "next": "apocalipsis2"},
+					{"label": "¿Por qué?", "next": "apocalipsis3"},
 				]},
 				"apocalipsis2": {"text": "Sí, los grux financiaron la tecnología de los plegados. Pero no sabíamos que comprimía materia viva.", "options": [
-					{"label": "¿Y qué pasó?", "next": "apocalipsis3"},
+					{"label": "¿Y qué pasó?", "next": "apocalipsis4"},
 				]},
-				"apocalipsis3": {"text": "La guerra comenzó. Las instalaciones fallaron. Ciudades enteras cambiaron de sitio.", "options": [
+				"apocalipsis3": {"text": "Porque parecía un buen negocio. La tecnología de los plegados era revolucionaria.", "options": [
+					{"label": "¿Y qué pasó?", "next": "apocalipsis4"},
+				]},
+				"apocalipsis4": {"text": "La guerra comenzó. Las instalaciones fallaron. Ciudades enteras cambiaron de sitio.", "options": [
 					{"label": "Qué horror", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"guerra": {"text": "La Guerra de las Esquinas fue cuando los plegados ocultaron que la tecnología comprimía materia viva.", "options": [
+					{"label": "¿Materia viva?", "next": "guerra2"},
+				]},
+				"guerra2": {"text": "Sí, la tecnología que comprimía regiones enteras también podía comprimir seres vivos.", "options": [
+					{"label": "¿Y qué pasó?", "next": "guerra3"},
+				]},
+				"guerra3": {"text": "Las facciones lucharon por controlar las instalaciones. El experimento falló. Ciudades enteras cambiaron de sitio.", "options": [
+					{"label": "¿El Apocalipsis?", "next": "apocalipsis"},
+					{"label": "Volver", "next": "root"},
 				]},
 			}
 		"manada":
@@ -538,11 +714,13 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "¿Algo interesante?", "next": "news"},
 					{"label": "¿Por qué solo a la derecha?", "next": "why"},
 					{"label": "¿Qué fue el Apocalipsis?", "next": "apocalipsis"},
+					{"label": "¿Y la Guerra de las Esquinas?", "next": "guerra"},
 					{"label": "Adiós", "next": ""},
 				]},
 				"right": {"text": "Sí, no hay marcha atrás. Siempre adelante.", "options": [
 					{"label": "¿Por qué?", "next": "right2"},
 					{"label": "¿Nunca paráis?", "next": "right3"},
+					{"label": "¿Y si hay un muro?", "next": "right4"},
 				]},
 				"right2": {"text": "Porque así lo manda la ruta eterna. ¿Quieres una pieza?", "options": [
 					{"label": "Sí", "next": "", "action": "gift_piece"},
@@ -552,9 +730,14 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Qué valiente", "next": "root", "action": "praise"},
 					{"label": "Qué pesados", "next": "", "action": "insult"},
 				]},
+				"right4": {"text": "Entonces damos la vuelta. Pero solo a la derecha. Es la única forma.", "options": [
+					{"label": "Jaja", "next": "root", "action": "praise"},
+					{"label": "Qué raro", "next": "root"},
+				]},
 				"why": {"text": "Porque la ruta eterna va hacia adelante. No hay vuelta atrás.", "options": [
 					{"label": "¿Y si hay peligro?", "next": "why2"},
 					{"label": "¿Y si hay un muro?", "next": "why3"},
+					{"label": "¿Quién la manda?", "next": "why4"},
 				]},
 				"why2": {"text": "Entonces vamos más rápido. ¿Quieres venir?", "options": [
 					{"label": "Sí", "next": "root", "action": "praise"},
@@ -564,9 +747,14 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Jaja", "next": "root", "action": "praise"},
 					{"label": "Qué raro", "next": "root"},
 				]},
+				"why4": {"text": "La ruta eterna. Nadie sabe quién la manda. Solo sabemos que va a la derecha.", "options": [
+					{"label": "Qué misterio", "next": "root", "action": "praise"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
 				"news": {"text": "Los jubilados juegan con minas. Es peligroso.", "options": [
 					{"label": "¿Minas?", "next": "news2"},
 					{"label": "¿Algo más?", "next": "news3"},
+					{"label": "¿Y los grux?", "next": "news4"},
 				]},
 				"news2": {"text": "Sí, petanca con minas. Solo a la derecha, lejos de ellos.", "options": [
 					{"label": "Jaja", "next": "root", "action": "praise"},
@@ -576,10 +764,26 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Jaja", "next": "root", "action": "praise"},
 					{"label": "Qué pesados", "next": "", "action": "insult"},
 				]},
+				"news4": {"text": "Los grux flotan. Pero al menos no votan como los mohócratas.", "options": [
+					{"label": "Jaja", "next": "root", "action": "praise"},
+					{"label": "Qué pesados", "next": "", "action": "insult"},
+				]},
 				"apocalipsis": {"text": "El Apocalipsis... fue cuando todo se desplegó. Nosotros solo seguimos la ruta.", "options": [
 					{"label": "¿Qué pasó?", "next": "apocalipsis2"},
+					{"label": "¿Sobrevivisteis?", "next": "apocalipsis3"},
 				]},
 				"apocalipsis2": {"text": "Las ciudades cambiaron de sitio. Pero nosotros seguimos a la derecha. Es lo único que sabemos.", "options": [
+					{"label": "Qué valiente", "next": "root", "action": "praise"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"apocalipsis3": {"text": "Sí, sobrevivimos. La ruta eterna nos protegió. Siempre va adelante.", "options": [
+					{"label": "Qué suerte", "next": "root", "action": "praise"},
+					{"label": "Me da igual", "next": "", "action": "insult"},
+				]},
+				"guerra": {"text": "La Guerra de las Esquinas... fue cuando los plegados ocultaron que la tecnología comprimía materia viva.", "options": [
+					{"label": "¿Qué pasó?", "next": "guerra2"},
+				]},
+				"guerra2": {"text": "Las facciones lucharon. Pero nosotros seguimos a la derecha. No nos involucramos.", "options": [
 					{"label": "Qué valiente", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},

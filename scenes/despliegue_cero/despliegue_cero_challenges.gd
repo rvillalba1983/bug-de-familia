@@ -65,11 +65,16 @@ var _leaving: Dictionary = {}
 ## Ruta de NavGrid que sigue cada grupo desviado, para no atravesar edificios.
 var _leave_paths: Dictionary = {}
 var _leave_index: Dictionary = {}
+## Temporizadores para que los grupos desviados vuelvan a su ronda.
+var _return_timers: Dictionary = {}
 ## La primera aplicación viene de cargar: quien ya se fue no vuelve a irse andando.
 var _flags_applied: bool = false
 var hour_source: Callable = _system_hour
 
 var _group_index: Dictionary = {}
+## Patrulla de los NPCs conversables (móviles).
+var _npc_patrol: Dictionary = {}
+var _npc_patrol_init: bool = false
 var _offline_time: float = 0.0
 var _announced_complete: bool = false
 var _footprints: Dictionary = {}
@@ -366,6 +371,14 @@ func _alert_nearby() -> void:
 
 
 func _move_groups(delta: float) -> void:
+	## Temporizadores de retorno: los grupos desviados vuelven a su ronda tras 30 s.
+	for id: String in _return_timers.keys():
+		_return_timers[id] -= delta
+		if float(_return_timers[id]) <= 0.0:
+			_return_timers.erase(id)
+			var prefix: String = groups[id]["prefix"]
+			level.investigation.flags.erase(prefix + "_desviada")
+			_group_index[id] = 0
 	for id: String in groups:
 		var item: Variant = level.investigation.npc_nodes.get(id)
 		if _leaving.has(id) and is_instance_valid(item):
@@ -378,6 +391,31 @@ func _move_groups(delta: float) -> void:
 		node.position = node.position.move_toward(route[index], GROUP_SPEED * delta)
 		if node.position.is_equal_approx(route[index]):
 			_group_index[id] = (index + 1) % route.size()
+	## NPCs conversables móviles: patrullan entre 2 puntos cercanos.
+	_move_conversable_npcs(delta)
+
+
+func _move_conversable_npcs(delta: float) -> void:
+	if not _npc_patrol_init:
+		_npc_patrol_init = true
+		for npc_id: String in level.investigation.npc_nodes:
+			var node: Node2D = level.investigation.npc_nodes[npc_id] as Node2D
+			if not is_instance_valid(node):
+				continue
+			var p: Vector2 = node.position
+			_npc_patrol[npc_id] = {"points": [p, p + Vector2(60.0, 0.0)], "index": 0, "speed": 20.0}
+	for npc_id: String in _npc_patrol:
+		var node: Node2D = level.investigation.npc_nodes.get(npc_id) as Node2D
+		if not is_instance_valid(node):
+			continue
+		var data: Dictionary = _npc_patrol[npc_id]
+		var points: Array = data["points"]
+		var index: int = int(data["index"])
+		var speed: float = float(data["speed"])
+		node.position = node.position.move_toward(points[index], speed * delta)
+		if node.position.is_equal_approx(points[index]):
+			data["index"] = (index + 1) % points.size()
+			_npc_patrol[npc_id] = data
 
 
 ## Se va andando hasta donde le han dicho; al llegar deja de estar en la zona.
@@ -410,6 +448,10 @@ func _walk_away(id: String, node: Interactable, delta: float) -> void:
 		_leaving.erase(id)
 		_leave_paths.erase(id)
 		_leave_index.erase(id)
+		## Tras 30 s vuelve a su ronda.
+		var prefix: String = groups[id]["prefix"]
+		if flag(prefix + "_desviada"):
+			_return_timers[id] = 30.0
 		return
 	node.position = node.position.move_toward(path[index], GROUP_LEAVE_SPEED * delta)
 

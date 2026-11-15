@@ -15,6 +15,19 @@ oclusión por muro y timbre por IA), **P-30** (decidido: no se aplica `WorkerThr
 **P-39** (diagnóstico y fin del fallo intermitente) y **P-41** (carteles de entrada a las
 zonas).
 
+**Medición en gráfica real (15-nov):** el director ejecutó `MEDIR.bat` en la Intel HD 520.
+Ciudad 34,08 ms, caminando 153,11 ms, pelea 51,36 ms, pausa 52,82 ms (medianas). El
+caminando es el cuello de botella (6,5 fps). El desglose por partes muestra que el coste
+está distribuido: quitar personajes baja un 28 %, quitar el protagonista un 24 %, pero la
+física solo consume ~35 ms (23 % del fotograma); el resto es renderizado (~118 ms,
+draw_calls ~130-158).
+
+**Mini-fase de rendimiento (en curso):** `fase/p30-rendimiento`. P-30 se reactivó tras la
+medición. Implementado: (1) `WorldSim._step()` paraleliza el `calm_down` de cada NPC con
+`WorkerThreadPool`; (2) `Guard._physics_process()` solo actualiza el detector si el guard
+está en pantalla. Pruebas: 31/31 simulación, 83/83 core+stealth. Pendiente: medición con
+`MEDIR.bat` para verificar la mejora y fusión en `main`.
+
 **Estado del código:** `main` en verde, **405/405 pruebas** en Windows y en el CI de Linux
 (core 52, combate 59, simulación 120, despliegue_cero 174). `verificar.py` OK, `.exe`
 exportado y prueba de humo OK.
@@ -86,8 +99,10 @@ Las dos peticiones del director del 14-nov (`docs/01_CONFLICTOS_Y_PENDIENTES.md`
 - **Consecuencia importante:** la decisión de **P-30 (`WorkerThreadPool`) se reactiva**. La
   medición muestra que el caminando consume 153 ms/fotograma (6,5 fps) y que la física
   consume ~35 ms (23 %). Repartir la física entre núcleos es el primer candidato para bajar
-  el caminando por debajo de 60 fps. Decidir si se hace en una mini-fase de rendimiento
-  antes de P-42, o dentro de la fase de P-42.
+  el caminando por debajo de 60 fps. **Mini-fase de rendimiento en curso**
+  (`fase/p30-rendimiento`): implementado `WorkerThreadPool` en `WorldSim._step()` y culling
+  del detector fuera de pantalla en `Guard`. Pruebas 31/31 simulación, 83/83 core+stealth.
+  Pendiente: medición con `MEDIR.bat` para verificar la mejora y fusión en `main`.
 - **Desglose por partes (bloque 2 del MEDIR.bat):** el coste está distribuido. Quitar
   personajes baja un 28 % y quitar el protagonista un 24 %, pero quitar ambiente, fachadas,
   paredes o partículas solo baja un ~12 %. La física (`fisica_media`) es ~35 ms del fotograma

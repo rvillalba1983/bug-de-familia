@@ -234,8 +234,14 @@ func _generate(seed_value: int) -> void:
 
 func _step() -> void:
 	_steps += 1
+	# Paralelizar el calm_down de cada NPC: es independiente por NPC y es el
+	# bucle mas largo del paso (36 habitantes x 3 niveles). P-30.
+	var tasks: Array[int] = []
 	for id: String in npc_ids:
-		(npcs[id] as NpcState).calm_down(CALM_PER_STEP)
+		var task_id: int = WorkerThreadPool.add_task(_calm_down.bind(id), false, "calm_down %s" % id)
+		tasks.append(task_id)
+	for task_id: int in tasks:
+		WorkerThreadPool.wait_for_task_completion(task_id)
 	rumors.step(self)
 	events.step(self)
 	missions.step(self)
@@ -246,6 +252,10 @@ func _step() -> void:
 		rumors.forget_step(self)
 		rumors.drop_old_beliefs(self)
 		rumors.update_collective(self)
+
+
+func _calm_down(id: String) -> void:
+	(npcs[id] as NpcState).calm_down(CALM_PER_STEP)
 
 
 func _pick_name(info: Dictionary) -> String:

@@ -118,7 +118,8 @@ func _physics_process(delta: float) -> void:
 			_footsteps.tick(delta, 0.0, false, false)
 		return
 	if not passive:
-		detector.update(global_position, get_world_2d(), target, delta)
+		if seen:
+			detector.update(global_position, get_world_2d(), target, delta)
 	match state:
 		State.PATROL:
 			_move_toward_point(_patrol[_patrol_index], PATROL_SPEED, _on_patrol_point)

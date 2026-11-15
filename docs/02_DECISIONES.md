@@ -174,13 +174,21 @@ Ver `docs/adr/0027-multi-zona.md`.
 
 ## Reparto del cálculo del mundo entre núcleos (post-beta, 15-nov)
 
-- **Reactivado el 15-nov.** La medición en gráfica real (`MEDIR.bat`, Intel HD 520) muestra que
-  el caminando consume 153,11 ms por fotograma (6,5 fps) y que la física consume ~35 ms
-  (23 % del fotograma). El resto es renderizado (~118 ms). Repartir la física del mundo vivo
-  entre núcleos con `WorkerThreadPool` es el primer candidato para bajar el caminando por debajo
-  de 60 fps.
-- Decidir si se hace en una mini-fase de rendimiento antes de P-42, o dentro de la fase de P-42.
-- Ver `docs/adr/0017-optimizacion-integrada.md` y `tools/medir_windows/referencia.txt`.
+- **Implementado en la mini-fase de rendimiento (15-nov).** La medición en gráfica real
+  (`MEDIR.bat`, Intel HD 520) mostró que el caminando consume 153,11 ms por fotograma
+  (6,5 fps) y que la física consume ~35 ms (23 % del fotograma). Repartir la física del
+  mundo vivo entre núcleos con `WorkerThreadPool` era el primer candidato.
+- **Lo que se hizo:**
+  1. `WorldSim._step()`: el `calm_down` de cada NPC se lanza como tarea en
+     `WorkerThreadPool` y se espera a todas antes de seguir con los subsistemas.
+  2. `Guard._physics_process()`: el `detector.update()` (rayo de física por fotograma)
+     solo se ejecuta si el guard está en pantalla.
+- **Lo que NO se hizo (pendiente):** culling de guards fuera de pantalla en el renderizado
+  (los 36 guards se animan y dibujan aunque estén fuera de la cámara). Los draw_calls
+  (~130-158) y el coste de los rigs animados siguen ahí.
+- **Pruebas:** 31/31 simulación, 83/83 core+stealth. Pendiente: medición con `MEDIR.bat`
+  para verificar la mejora.
+- Ver `docs/adr/0032-rendimiento-workerthreadpool-y-culling.md`.
 - Registrado como **P-30** en `01_CONFLICTOS_Y_PENDIENTES.md`.
 
 ## Sonido direccional y timbre de las IAs (post-beta, 15-nov)

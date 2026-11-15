@@ -92,9 +92,19 @@ El resto es renderizado (~118 ms, draw_calls ~130-158). Repartir la física del 
 entre núcleos con `WorkerThreadPool` es el primer candidato para bajar el caminando por
 debajo de 60 fps.
 
-**Decisión pendiente:** decidir si se hace en una mini-fase de rendimiento antes de P-42,
-o dentro de la fase de P-42. Ver `docs/adr/0017-optimizacion-integrada.md` y
-`tools/medir_windows/referencia.txt`.
+**Pero ojo: el cuello de botella principal es el renderizado, no la física.** Quitar
+personajes baja un 28 % y quitar el protagonista un 24 %, pero la física solo consume ~35 ms
+del fotograma de 153 ms. Así que la mini-fase de rendimiento debería tener **dos frentes**:
+
+1. **Culling de guards fuera de pantalla** (renderizado): los 36 guards se animan y dibujan
+   aunque estén fuera de la cámara. Reducir draw_calls con atlas y occlusion culling.
+2. **WorkerThreadPool para la física** (P-30): repartir el recorrido de los 36 NPCs en
+   `_step()` y el `move_and_slide` de los guards entre núcleos.
+
+**Decisión pendiente:** mini-fase de rendimiento antes de P-42, o dentro de la fase de P-42.
+Si se hace antes, P-42 se construye sobre un juego que va a 60 fps en vez de 6,5 fps.
+
+Ver `docs/adr/0017-optimizacion-integrada.md` y `tools/medir_windows/referencia.txt`.
 
 ## Decisiones pendientes del director (no bloquean)
 

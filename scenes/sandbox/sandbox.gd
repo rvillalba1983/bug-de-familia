@@ -501,6 +501,16 @@ func replace_body(new_body: ModularBody) -> void:
 
 
 func _show_start_menu() -> void:
+	_show_loading()
+
+
+func _show_loading() -> void:
+	var loading: LoadingScreen = LoadingScreen.new()
+	add_child(loading)
+	loading.tree_exited.connect(_on_loading_finished, CONNECT_ONE_SHOT)
+
+
+func _on_loading_finished() -> void:
 	pause.begin_modal()
 	overlay = MessageScreen.new()
 	var entries: Array = [

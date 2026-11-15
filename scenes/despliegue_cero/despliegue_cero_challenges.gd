@@ -399,6 +399,8 @@ func _move_conversable_npcs(delta: float) -> void:
 	if not _npc_patrol_init:
 		_npc_patrol_init = true
 		for npc_id: String in level.investigation.npc_nodes:
+			if groups.has(npc_id):
+				continue
 			var raw: Variant = level.investigation.npc_nodes[npc_id]
 			if not is_instance_valid(raw):
 				continue

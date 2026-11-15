@@ -29,6 +29,8 @@ EXTENSIONES = {
 }
 EXCLUIR = {
 	".git", ".godot", "addons", "art", "audio", "build", "export", "reports",
+	# Prueba de humo local (tools/verificar_humo.py): datos y registro.
+	"humo_datos",
 }
 AVISAR_ESPACIOS = {
 	".gd", ".py", ".json", ".jsonc", ".yml", ".yaml", ".csv", ".cfg",

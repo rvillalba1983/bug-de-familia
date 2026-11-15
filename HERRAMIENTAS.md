@@ -64,6 +64,10 @@ cmd /c "C:\Users\usuario\opencode_projects\godot\Godot_v4.7.2-stable_win64_conso
 - Exportar Windows: preset «Windows» de `export_presets.cfg`. En PowerShell, con `cmd /c` y `< NUL`, el preset va **sin comillas internas** (con `"Windows"` se pierden y Godot recibe `.`, error `Invalid export preset name`): `cmd /c "C:\Users\usuario\opencode_projects\godot\Godot_v4.7.2-stable_win64_console.exe --headless --export-release Windows build/bug_de_familia.exe < NUL"`. Sale a `build/`, que no va a git. Verificado el 10-nov (`.exe` de 109 MB y `.pck` de 20,9 MB).
 - **Regla del director (10-nov):** en cada fusión a `main` se genera también el `.exe` con este comando, antes de actualizar `docs/03_ESTADO.md` y avisar del cambio de conversación. Ver `adr/0023-exe-en-cada-fusion.md`.
 - Medición en la gráfica del director: preset «Medicion Windows» y zip. El director ejecuta `MEDIR.bat` (unos 20 min) y envía `medicion.txt`. Lo copias a la raíz y ejecutas `verificar.py`. Solo el director puede medir su gráfica.
+  - **El kit se arma con `python tools/empaquetar_medicion.py`**: deja `build/medicion/` con el binario, su `.pck`, `MEDIR.bat` y `override.cfg`, y el `build/medicion.zip` para el director.
+  - **El `override.cfg` no aplica al exportar**: el binario arrancaba con la escena del juego normal y no medía nada. Hay que cambiar `run/main_scene` de `project.godot` a `res://tools/medir_exportado.tscn` **antes** de exportar y restaurarlo después (`git checkout project.godot`).
+  - En PowerShell el preset va **sin** `cmd /c`: `& "…\Godot_v4.7.2-stable_win64_console.exe" --headless --export-release "Medicion Windows" build/BugDeFamilia_medir.exe`. Con `cmd /c` el nombre con espacio se parte y Godot da «Invalid export preset name».
+  - Comprobación de que mide: ejecutar el binario con `CASO=ciudad` y ver que aparece `medicion.txt` al lado.
 - Medición por software: `tools/medir_rendimiento.gd` (CASO, EXTRA), `tools/medir_por_partes.gd` (NOCHE, EXTRA, CAPAS) y `tools/medir_exportado.gd` (CASO). Sirven para comparar, no para fijar cifras de la gráfica real.
 - Al dar una cifra, di si es medida por software, en gráfica real o no medida.
 

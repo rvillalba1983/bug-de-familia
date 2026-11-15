@@ -174,11 +174,13 @@ Ver `docs/adr/0027-multi-zona.md`.
 
 ## Reparto del cálculo del mundo entre núcleos (post-beta, 15-nov)
 
-- **No se aplica `WorkerThreadPool` a la simulación del mundo vivo.** La petición original
-  (9-nov) ya decía «hacerlo solo cuando haga falta», y no hace falta: la simulación avanza por
-  pasos sobre una población pequeña y no hay medición en gráfica real que muestre tirones.
-- Se vuelve a mirar solo si la medición en la gráfica del director muestra tirones con muchas
-  zonas y habitantes.
+- **Reactivado el 15-nov.** La medición en gráfica real (`MEDIR.bat`, Intel HD 520) muestra que
+  el caminando consume 153,11 ms por fotograma (6,5 fps) y que la física consume ~35 ms
+  (23 % del fotograma). El resto es renderizado (~118 ms). Repartir la física del mundo vivo
+  entre núcleos con `WorkerThreadPool` es el primer candidato para bajar el caminando por debajo
+  de 60 fps.
+- Decidir si se hace en una mini-fase de rendimiento antes de P-42, o dentro de la fase de P-42.
+- Ver `docs/adr/0017-optimizacion-integrada.md` y `tools/medir_windows/referencia.txt`.
 - Registrado como **P-30** en `01_CONFLICTOS_Y_PENDIENTES.md`.
 
 ## Sonido direccional y timbre de las IAs (post-beta, 15-nov)

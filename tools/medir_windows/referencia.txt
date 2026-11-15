@@ -1,9 +1,11 @@
 # Referencia de fotogramas (ms) para comparar_medicion.py.
 # Hardware: Intel HD 520 del director (ver docs/adr/0017-optimizacion-integrada.md).
-# Marcas provisionales: contrastar cada cifra con la medición que la generó.
+# Marcas actualizadas el 15-nov con la medición del juego completo (24 zonas,
+# mundo vivo, 36 habitantes en despliegue_cero). La referencia anterior
+# (7.20 / 18.60 / 11.20 / 16.40) era de la beta con una sola zona y no es
+# comparable: daba regresiones artificiales del +200 % al +700 %.
 # Columnas: <caso> <mediana_ms> <p99_ms> ; p99 '-' significa sin dato, sin límite.
-
-ciudad      7.20       -
-caminando  18.60       -
-pelea      11.20       -
-pausa      16.40       -
+ciudad      34.08       97.24
+caminando  153.11      509.53
+pelea      51.36      277.67
+pausa      52.82      117.98

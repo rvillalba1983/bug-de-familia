@@ -38,7 +38,8 @@ Medido por el director, con OpenGL directo, mediana de fotograma en ms antes y d
 ## OpenGL directo en la HD 520 (medido por el director, antes de los demás cambios)
 Godot obligaba a usar ANGLE en cualquier «Intel HD Graphics». Mediana de fotograma en ms, directo frente a ANGLE: ciudad 12,7 y 28,2; caminando 118 y 715; pelea 30 y 463; pausa 20 y 143. La lista de `project.godot` deja de forzar ANGLE en las HD modernas y lo mantiene en las generaciones antiguas (2000 a 6000). Sin el protagonista, caminando bajaba de 118 a 30 ms: era el principal coste.
 
-## Lateral izquierdo
+## Medición del 15-nov (juego completo)
+La medición de la fase de tareas críticas (PR #11, 15-nov) dio: ciudad 34,08 ms, caminando 153,11 ms, pelea 51,36 ms, pausa 52,82 ms (medianas, en la Intel HD 520 del director). El caminando sigue siendo el cuello de botella (6,5 fps). El desglose por partes muestra que **el coste está distribuido**: quitar personajes baja un 28 % y quitar el protagonista un 24 %, pero la física (`fisica_media`) solo consume ~35 ms del fotograma de 153 ms; el resto es renderizado (draw_calls ~130-158). La referencia anterior (7,20 / 18,60 / 11,20 / 16,40) era de la beta con una sola zona y no era comparable. La nueva referencia es esta medición (`tools/medir_windows/referencia.txt`). **Consecuencia:** la decisión de no aplicar `WorkerThreadPool` (P-30) se revierte; ahora sí hay medición que lo justifica.
 Controles, cuerpo y chat comparten ancho en un panel uniforme. Junto a la silueta: estado, nivel y repuestos de cada zona, sin mostrar estadísticas (ver `02_DECISIONES.md`).
 
 ## Pausa táctica

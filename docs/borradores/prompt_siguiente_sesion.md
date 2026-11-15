@@ -76,18 +76,25 @@ Las dos peticiones del director del 14-nov (`docs/01_CONFLICTOS_Y_PENDIENTES.md`
    (qué coches, qué temas, cuántas conversaciones por raza y de qué tipo). Las decisiones
    técnicas son tuyas.
 
-## Pendiente de la fase anterior
+## Pendiente de la fase anterior (ACTUALIZADO con la medición)
 
-- **Medición en gráfica real:** el director tiene el kit en `build/medicion.zip`
-  (`MEDIR.bat` + `BugDeFamilia_medir.exe`, ~56 MB). Tarda unos 20 minutos y deja un
-  `medicion.txt` en la misma carpeta. Cuando llegue: cópialo a la raíz y ejecuta
-  `python tools/comparar_medicion.py medicion.txt`; si muestra regresiones, míralas antes de
-  tocar nada. La referencia está en `tools/medir_windows/referencia.txt`.
-  Con ese resultado se revisa la decisión de **P-30** (`WorkerThreadPool`), que está en
-  «no se aplica» mientras no haya medición que lo justifique.
-- **Validación manual en partida** (el director dijo que sus pruebas en local fueron bien):
-  el timbre de cada IA, que el paso tapado se distinga del claro, la lista de retos del
-  chat y los carteles de entrada de las zonas.
+- **Medición en gráfica real (15-nov, HECHA):** el director ejecutó `MEDIR.bat` en la Intel
+  HD 520. 0 regresiones contra la nueva referencia: **ciudad 34,08 ms, caminando 153,11 ms,
+  pelea 51,36 ms, pausa 52,82 ms** (medianas, 12/12/6/6 rondas). La referencia anterior
+  (7,20 / 18,60 / 11,20 / 16,40) era de la beta con una sola zona y no era comparable.
+  La nueva referencia es esta medición (`tools/medir_windows/referencia.txt`).
+- **Consecuencia importante:** la decisión de **P-30 (`WorkerThreadPool`) se reactiva**. La
+  medición muestra que el caminando consume 153 ms/fotograma (6,5 fps) y que la física
+  consume ~35 ms (23 %). Repartir la física entre núcleos es el primer candidato para bajar
+  el caminando por debajo de 60 fps. Decidir si se hace en una mini-fase de rendimiento
+  antes de P-42, o dentro de la fase de P-42.
+- **Desglose por partes (bloque 2 del MEDIR.bat):** el coste está distribuido. Quitar
+  personajes baja un 28 % y quitar el protagonista un 24 %, pero quitar ambiente, fachadas,
+  paredes o partículas solo baja un ~12 %. La física (`fisica_media`) es ~35 ms del fotograma
+  de 153 ms; el resto es renderizado (~118 ms, draw_calls ~130-158).
+- **Validación manual en partida** (el director dijo que sus pruebas en local fueron bien): el
+  timbre de cada IA, que el paso tapado se distinga del claro, la lista de retos del chat y
+  los carteles de entrada de las zonas.
 
 ## Cosas que ya se saben del código (te ahorra tiempo)
 

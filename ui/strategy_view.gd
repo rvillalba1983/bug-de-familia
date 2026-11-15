@@ -190,12 +190,23 @@ func building_rects() -> Array[Rect2]:
 
 
 func _draw_buildings() -> void:
+	var font: Font = ThemeDB.fallback_font
 	for rect: Rect2 in building_rects():
 		var a: Vector2 = _to_view(rect.position)
 		var b: Vector2 = _to_view(rect.position + rect.size)
 		var caja: Rect2 = Rect2(a, b - a)
+		# Sombra
+		_canvas.draw_rect(caja.grow(4.0), Color(0.0, 0.0, 0.0, 0.3))
+		# Edificio
 		_canvas.draw_rect(caja, COLOR_EDIFICIO)
 		_canvas.draw_rect(caja, COLOR_EDIFICIO_BORDE, false, 2.0)
+		# Ventanas (líneas horizontales)
+		var window_step: float = 8.0 * _zoom
+		var y: float = caja.position.y + window_step
+		while y < caja.end.y - window_step:
+			_canvas.draw_line(Vector2(caja.position.x + 4.0, y), Vector2(caja.end.x - 4.0, y), COLOR_EDIFICIO_BORDE, 1.0)
+			y += window_step
+	# Contorno de la ciudad
 	var ciudad: Vector2 = _to_view(DespliegueCeroLayout.city.position)
 	var fin: Vector2 = _to_view(DespliegueCeroLayout.city.position + DespliegueCeroLayout.city.size)
 	_canvas.draw_rect(Rect2(ciudad, fin - ciudad), COLOR_EDIFICIO_BORDE, false, 2.0)

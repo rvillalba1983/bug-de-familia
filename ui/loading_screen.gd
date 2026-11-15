@@ -3,7 +3,7 @@ extends CanvasLayer
 ## Pantalla de carga inicial: el protagonista en pose gamberra rodeado de NPCs de cada especie.
 
 const NPC_IMAGES: Array = [
-	"res://art/shared/jubilado.svg",
+	"res://art/shared/jubilado_hierro.svg",
 	"res://art/shared/mohocrata.svg",
 	"res://art/shared/plegado.svg",
 	"res://art/shared/eco.svg",

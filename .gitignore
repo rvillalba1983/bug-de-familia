@@ -11,3 +11,4 @@ humo_datos/
 humo.log
 # Snapshots automaticos de edicion (herramienta de backup local).
 .backups/
+medicion.txt

@@ -84,6 +84,12 @@ jobs:
             exit 1
           fi
 
+      - name: Limpiar artefacto anterior
+        uses: actions/delete-artifact@v3
+        continue-on-error: true
+        with:
+          name: bug-de-familia-windows
+
       - name: Subir artefactos
         uses: actions/upload-artifact@v7
         with:
@@ -92,6 +98,7 @@ jobs:
             build/*.exe
             build/*.pck
           if-no-files-found: error
+          retention-days: 1
 
       - name: Guardar registros si algo falla
         if: failure()

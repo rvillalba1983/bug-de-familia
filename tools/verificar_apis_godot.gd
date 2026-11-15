@@ -7,11 +7,20 @@ const PROPIEDADES: Dictionary = {
 		"relative_index", "elapsed_time", "offset", "color", "env", "visible"
 	],
 	"RichTextLabel": ["custom_effects", "bbcode_enabled", "scroll_active"],
+	## P-29: buses de voz con timbre y bus de pasos tapados.
+	"AudioEffectLowPassFilter": ["cutoff_hz", "resonance"],
+	"AudioEffectBandPassFilter": ["cutoff_hz", "resonance"],
+	"AudioEffectDistortion": ["mode", "drive", "keep_hf_hz"],
+	"AudioEffectReverb": ["room_size", "damping", "dry", "wet", "predelay_msec"],
 }
 const METODOS: Dictionary = {
 	"Image": [
 		"create", "blit_rect", "get_used_rect", "save_png", "set_pixel", "get_region",
 		"resize", "convert", "fill_rect"
+	],
+	"AudioServer": [
+		"add_bus", "add_bus_effect", "get_bus_effect_count", "get_bus_index",
+		"set_bus_name", "set_bus_send", "set_bus_volume_db"
 	],
 }
 
@@ -44,7 +53,8 @@ func _initialize() -> void:
 
 
 func _tiene_propiedad(clase: String, nombre: String) -> bool:
-	for info: Dictionary in ClassDB.class_get_property_list(clase, true):
+	## Con herencia: los filtros de audio toman sus propiedades de AudioEffectFilter.
+	for info: Dictionary in ClassDB.class_get_property_list(clase, false):
 		if str(info["name"]) == nombre:
 			return true
 	return false

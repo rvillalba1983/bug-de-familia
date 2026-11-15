@@ -141,6 +141,7 @@ jobs:
             import.log
             reports/
           if-no-files-found: ignore
+          retention-days: 1
 
   # Prueba de humo del juego exportado con prueba positiva de arranque
   # (ADR 0028): no basta con que el proceso termine, ni con que el log no
@@ -237,3 +238,4 @@ jobs:
             export.log
             import.log
           if-no-files-found: ignore
+          retention-days: 1

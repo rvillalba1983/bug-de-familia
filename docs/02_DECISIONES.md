@@ -148,7 +148,60 @@ Ver `docs/adr/0027-multi-zona.md`.
 - El pasillo (`geometry.corridors`) se descubre hoy al llegar al borde; el jugador no sabe a dónde lleva hasta entrar.
 - Se quiere que los caminos estén **señalizados en el mapa/vista de estrategia** (con destino visible antes de entrar) para que el viaje sea intencionado, no aleatorio.
 - Pendiente de diseño: cómo se señala (icono, flecha, nombre de zona), si se ve desde el inicio o al acercarse, y si aplica a los puntos de guardado también.
+- **Añadido (14-nov):** en los caminos a otras zonas se pondrán **señales de entrada con el nombre de la zona a la que se entra**, en un cartel con estilo «pueblos de España» (tabla con nombre de zona, flecha y distancia aproximada).
+- **Añadido (14-nov):** también se quiere una **pantalla de carga inicial del juego** en la que aparezca el protagonista en una pose gamberra rodeado de 2 o 3 NPCs de cada especie (jubilado, mohocrata, plegado, eco, grux, manada).
 - Registrado como **P-41** en `01_CONFLICTOS_Y_PENDIENTES.md`.
+
+## Contenido conversacional masivo (post-beta, 14-nov)
+
+- Cada raza debe tener **al menos 150 conversaciones**, alternando:
+  - Conversaciones de **una sola pregunta** (pregunta rápida, respuesta corta).
+  - Conversaciones de **3-4 preguntas** que llevan a información interesante.
+  - Conversaciones con **bifurcaciones**: si respondes distinto, vas por otro flujo.
+- El juego debe parecer que **cada NPC de cada zona sabe cosas distintas** y habla de sus propias cosas.
+- Deben existir conversaciones que acaben en un **regalo al protagonista en forma de pieza** (recarga de tokens, pieza de cuerpo, etc.).
+- Deben existir conversaciones que acaben en que el NPC se **enfada** y:
+  1. Se pega con el protagonista (pelea directa).
+  2. Se forma pelea con otra raza (provocación entre facciones).
+- El sistema de `LiveDialogue` debe soportar nodos de diálogo por raza/estado (ramificación), no solo menú plano.
+- Registrado como **P-42** en `01_CONFLICTOS_Y_PENDIENTES.md`.
+
+## Pantalla de carga inicial y «Conoce la historia» (post-beta, 14-nov)
+
+- **Pantalla de carga inicial:** el protagonista aparece en una pose gamberra rodeado de 2 o 3 NPCs de cada especie (jubilado, mohocrata, plegado, eco, grux, manada). Señalado como P-41 (parte del mismo bloque de interfaz/mundo).
+- **Pantalla de inicio del juego (menú principal):** además de los botones actuales (Nueva partida, Continuar), debe aparecer otro botón que sea **«Conoce la historia»**. Al pulsarlo, se mostrará el lore del juego en modo gracioso de videojuego, con las imágenes que hemos creado de los hechos históricos.
+- Registrado como **P-43** en `01_CONFLICTOS_Y_PENDIENTES.md`.
+
+## Reparto del cálculo del mundo entre núcleos (post-beta, 15-nov)
+
+- **No se aplica `WorkerThreadPool` a la simulación del mundo vivo.** La petición original
+  (9-nov) ya decía «hacerlo solo cuando haga falta», y no hace falta: la simulación avanza por
+  pasos sobre una población pequeña y no hay medición en gráfica real que muestre tirones.
+- Se vuelve a mirar solo si la medición en la gráfica del director muestra tirones con muchas
+  zonas y habitantes.
+- Registrado como **P-30** en `01_CONFLICTOS_Y_PENDIENTES.md`.
+
+## Sonido direccional y timbre de las IAs (post-beta, 15-nov)
+
+- **Oír de dónde viene un guardia y si está tras una pared** es información de sigilo: el paso
+  tapado suena en un bus con filtro de agudos, más bajo y más grave.
+- **Cada IA tiene un timbre propio**: radio rota, eco o distorsión, además del timbre normal.
+- **Sin generar más voces**: el timbre se aplica con filtros de audio sobre los clips grabados
+  que ya hay, no con archivos nuevos.
+- Godot 4.7.2 no tiene oclusión de audio: se calcula con un rayo contra los muros.
+- Implementado en esta rama. Ver `adr/0031-sonido-direccional-y-timbre-ia.md`.
+- Registrado como **P-29** en `01_CONFLICTOS_Y_PENDIENTES.md`.
+
+## Retos de la zona en el chat (post-beta, 15-nov)
+
+- La lista de retos de la zona solo aparece en el chat del canal **si el jugador se ha enterado
+  de que existen**: hablando con un habitante o por las IAs.
+- Los retos completados **se quitan** de la lista.
+- No se tocan las **misiones emergentes**, que están decididas sin lista ni marcadores (P-11).
+- Implementado en esta rama: el estado «conocido» (`InvestigationDirector.known`) va aparte del
+  estado «completado» (`flags`), y la zona decide el texto del tema del chat
+  (`ZoneBase.chat_topic()`). Ver `adr/0030-retos-conocidos-en-el-chat.md`.
+- Registrado como **P-32** en `01_CONFLICTOS_Y_PENDIENTES.md`.
 
 ## Lo que no se puede inventar
 Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barra de salud, diario, personajes protegidos, multijugador, conexión online, vehículos, recetas cerradas de conversión.

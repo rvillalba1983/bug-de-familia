@@ -84,6 +84,9 @@ func setup(points: Array[Vector2], ground: Node2D) -> void:
 	_view = Sentinel.add_cone(self, ground, detector)
 	detector.detected.connect(_on_detected)
 	_footsteps = load("res://audio/footstep_audio.gd").new()
+	## P-29: el paso del guardia se oye tapado si hay una pared con el jugador.
+	_footsteps.listener = target
+	_footsteps.occludable = true
 	add_child(_footsteps)
 
 

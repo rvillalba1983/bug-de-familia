@@ -157,6 +157,43 @@ func objective_key() -> String:
 	return "BETA_OBJECTIVE"
 
 
+## P-32: el chat solo enseña los retos conocidos y no completados.
+func chat_topic() -> String:
+	var pendientes: Array[String] = []
+	for id: String in DespliegueCeroChallenges.ALL_CHALLENGES:
+		if challenges.flag(id):
+			continue
+		if investigation.has_known(id):
+			var key: String = _reto_key(id)
+			if not key.is_empty():
+				pendientes.append(tr(key))
+	if pendientes.is_empty():
+		return tr("ZONE_OBJECTIVE")
+	var joined: String = ", ".join(pendientes)
+	if pendientes.size() > 1:
+		var last: String = pendientes.pop_back()
+		joined = ", ".join(pendientes) + " y " + last
+	return tr("ZONE_OBJECTIVE_PENDING") % joined
+
+
+func _reto_key(id: String) -> String:
+	return {
+		"reto_entrar": "ZONE_RETO_ENTRAR",
+		"reto_sacar": "ZONE_RETO_SACAR",
+		"reto_cruzar": "ZONE_RETO_CRUZAR",
+		"reto_encontrar": "ZONE_RETO_ENCONTRAR",
+	}.get(id, "")
+
+
+## P-32: descubre el primer reto no conocido al hablar con un habitante.
+func discover_challenge() -> void:
+	for id: String in DespliegueCeroChallenges.ALL_CHALLENGES:
+		if challenges.flag(id) or investigation.has_known(id):
+			continue
+		investigation.set_known(id)
+		return
+
+
 func _check_goal(_feet: Vector2) -> void:
 	pass
 

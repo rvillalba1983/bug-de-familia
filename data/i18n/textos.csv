@@ -50,6 +50,11 @@ CASE_OUTCOME_guerra,Ha estallado la guerra entre Jubilados y Mohócratas.
 CASE_TENSION,La tensión entre Jubilados y Mohócratas va en aumento.
 UI_ANSWER_NOW,¡Responde ya! Callar también es una respuesta.
 BETA_OBJECTIVE,"Asuntos pendientes: entrar en la centralita, sacar la bobina del depósito, cruzar la tierra de nadie y encontrar a Don Ramón. En el orden que quieras."
+ZONE_RETO_ENTRAR,Entrar en la centralita
+ZONE_RETO_SACAR,Sacar la bobina del depósito
+ZONE_RETO_CRUZAR,Cruzar la tierra de nadie
+ZONE_RETO_ENCONTRAR,Encontrar a Don Ramón
+ZONE_OBJECTIVE_PENDING,"Asuntos pendientes: %s"
 BETA_PLACE_LOOKOUT,Mirador
 BETA_PLACE_NORTH,Barrio de los Jubilados
 BETA_PLACE_SOUTH,Barrio mohócrata
@@ -115,5 +120,9 @@ UI_FAST_TRAVEL,Viaje rápido
 UI_FAST_TRAVEL_BACK,Volver
 UI_FAST_TRAVEL_EMPTY,Aún no conoces otro punto de guardado.
 UI_FAST_TRAVEL_BLOCKED,No se puede viajar ahora.
+UI_ZONE_SIGN,A la entrada
+UI_ZONE_SIGN_TITLE,"Bienvenido a %s"
+UI_ZONE_SIGN_ARROW,"→  Seguir el camino  →"
+UI_ZONE_SIGN_DISTANCE,"a %s"
 UI_LOADING,Cruzando el mundo…
 UI_LOADING_HINT,Las IAs del destino te esperan al otro lado.

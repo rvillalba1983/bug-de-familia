@@ -5,6 +5,7 @@
    "effort": 3,
    "color": "#ffcf40",
    "pitch": 1.7,
+   "timbre": "radio",
    "tolerance": 3,
    "lines": {
     "idle_advice": [
@@ -64,6 +65,7 @@
    "effort": 4,
    "color": "#d04050",
    "pitch": 0.75,
+   "timbre": "distorsion",
    "tolerance": 3,
    "lines": {
     "idle_advice": [
@@ -118,6 +120,7 @@
    "effort": 3,
    "color": "#ff90c0",
    "pitch": 1.25,
+   "timbre": "distorsion",
    "tolerance": 4,
    "lines": {
     "idle_advice": [
@@ -179,6 +182,7 @@
    "effort": 4,
    "color": "#60e070",
    "pitch": 1.05,
+   "timbre": "distorsion",
    "tolerance": 3,
    "lines": {
     "idle_advice": [
@@ -233,6 +237,7 @@
    "effort": 1,
    "color": "#b0a0e0",
    "pitch": 0.9,
+   "timbre": "eco",
    "tolerance": 5,
    "lines": {
     "idle_advice": [
@@ -287,6 +292,7 @@
    "effort": 4,
    "color": "#70b0ff",
    "pitch": 0.85,
+   "timbre": "normal",
    "tolerance": 3,
    "lines": {
     "idle_advice": [
@@ -341,6 +347,7 @@
    "effort": 2,
    "color": "#7dff6a",
    "pitch": 1.45,
+   "timbre": "radio",
    "tolerance": 4,
    "lines": {
     "idle_advice": [
@@ -395,6 +402,7 @@
    "effort": 5,
    "color": "#40e0ff",
    "pitch": 0.95,
+   "timbre": "eco",
    "tolerance": 3,
    "lines": {
     "idle_advice": [
@@ -452,6 +460,7 @@
    "effort": 2,
    "color": "#ff66b2",
    "pitch": 1.55,
+   "timbre": "normal",
    "tolerance": 2,
    "lines": {
     "idle_advice": [
@@ -509,6 +518,7 @@
    "effort": 4,
    "color": "#b08cff",
    "pitch": 0.8,
+   "timbre": "distorsion",
    "tolerance": 1,
    "lines": {
     "idle_advice": [
@@ -563,6 +573,7 @@
    "effort": 3,
    "color": "#ffd24a",
    "pitch": 1.2,
+   "timbre": "radio",
    "tolerance": 3,
    "lines": {
     "idle_advice": [
@@ -620,6 +631,7 @@
    "effort": 2,
    "color": "#8fbf4d",
    "pitch": 0.85,
+   "timbre": "normal",
    "tolerance": 4,
    "lines": {
     "idle_advice": [
@@ -674,6 +686,7 @@
    "effort": 3,
    "color": "#c0ff30",
    "pitch": 1.05,
+   "timbre": "eco",
    "tolerance": 3,
    "lines": {
     "idle_advice": [
@@ -731,6 +744,7 @@
    "effort": 1,
    "color": "#9aa7c7",
    "pitch": 0.6,
+   "timbre": "radio",
    "tolerance": 4,
    "lines": {
     "idle_advice": [
@@ -786,6 +800,7 @@
    "effort": 3,
    "color": "#ff5a36",
    "pitch": 0.7,
+   "timbre": "radio",
    "tolerance": 2,
    "lines": {
     "idle_advice": [
@@ -840,6 +855,7 @@
    "effort": 3,
    "color": "#ff9ee0",
    "pitch": 1.35,
+   "timbre": "normal",
    "tolerance": 2,
    "lines": {
     "idle_advice": [
@@ -894,6 +910,7 @@
    "effort": 5,
    "color": "#c8c8d8",
    "pitch": 0.65,
+   "timbre": "eco",
    "tolerance": 3,
    "lines": {
     "idle_advice": [
@@ -948,6 +965,7 @@
    "effort": 2,
    "color": "#a0b070",
    "pitch": 0.9,
+   "timbre": "eco",
    "tolerance": 3,
    "lines": {
     "idle_advice": [
@@ -1005,6 +1023,7 @@
    "effort": 2,
    "color": "#ff4fd8",
    "pitch": 1.7,
+   "timbre": "normal",
    "tolerance": 3,
    "lines": {
     "idle_advice": [
@@ -1063,6 +1082,7 @@
    "effort": 3,
    "color": "#ffa040",
    "pitch": 1.0,
+   "timbre": "distorsion",
    "tolerance": 3,
    "lines": {
     "idle_advice": [

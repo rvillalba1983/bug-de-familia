@@ -48,6 +48,8 @@ func open(target: NpcState) -> void:
 	_insulted = false
 	_branch = ""
 	world.level.pause.begin_modal()
+	## P-32: hablar con un NPC descubre los retos de la zona.
+	world.level.discover_challenge()
 	if float(world.sim.player_standing.get(npc.species, 0.0)) <= REFUSE_STANDING:
 		_say(tr("LIVE_REFUSE"))
 		_set_options([[tr("LIVE_HIT"), _hit], [tr("LIVE_BYE"), close]])

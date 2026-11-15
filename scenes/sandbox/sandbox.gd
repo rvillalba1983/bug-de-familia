@@ -502,15 +502,17 @@ func replace_body(new_body: ModularBody) -> void:
 
 func _show_start_menu() -> void:
 	_show_loading()
+	_show_menu()
 
 
+## La pantalla de carga es solo visual: se dibuja encima (CanvasLayer 30) del menú
+## ya construido. No decide cuándo aparece el menú, así que ni lo retrasa ni deja
+## señales colgadas al liberarse la escena.
 func _show_loading() -> void:
-	var loading: LoadingScreen = LoadingScreen.new()
-	add_child(loading)
-	loading.tree_exited.connect(_on_loading_finished, CONNECT_ONE_SHOT)
+	add_child(LoadingScreen.new())
 
 
-func _on_loading_finished() -> void:
+func _show_menu() -> void:
 	pause.begin_modal()
 	overlay = MessageScreen.new()
 	var entries: Array = [

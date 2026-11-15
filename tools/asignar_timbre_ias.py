@@ -43,6 +43,7 @@ TIMBRES = {
 
 PATRON_IA = re.compile(r'^(\s*)"([a-z_]+)": \{$')
 PATRON_PITCH = re.compile(r'^(\s*)"pitch": ([0-9.]+),$')
+PATRON_TIMBRE = re.compile(r'^\s*"timbre": "[a-z]+",\s*$')
 
 
 def main() -> int:
@@ -52,6 +53,10 @@ def main() -> int:
     ia_actual = ""
     insertadas = []
     for linea in lineas:
+        # Si el campo ya estaba (ejecucion anterior), se quita antes de
+        # insertarlo de nuevo: el script se puede repetir sin duplicar.
+        if PATRON_TIMBRE.match(linea.rstrip("\n")):
+            continue
         coincide_ia = PATRON_IA.match(linea.rstrip("\n"))
         if coincide_ia:
             ia_actual = coincide_ia.group(2)

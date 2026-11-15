@@ -84,6 +84,8 @@ Necesitan ventana y gráfica, así que no llevan `--headless`. Se lanzan con `--
 - Otros generadores de `tools/art/` (`rig_split.py`, `protagonist_gen.py`, `props_gen.py`, `npc_views_gen.py`, `facades_gen.py`, `city_scene_gen.py`, `beta_assets_gen.py`): solo con encargo.
 - `python tools/audio/gen_audio.py [carpeta]`: sintetiza música y voces. Necesita numpy, scipy y ffmpeg con libvorbis (los tres comprobados). La semilla de cada pista es su número. Regenera la biblioteca: no lo lances sin encargo. Catálogo: `data/audio/library.json`.
 - `tools/poblar_contenido.py` y `tools/poblar_zonas.py` reescriben JSON: desde el 13-nov leen y escriben UTF-8 con LF y `ensure_ascii=False`. Antes leían sin `encoding` y en Windows (cp1252) dañaron 65 textos de `data/world/species.json`. No los ejecutes sin encargo.
+- `tools/asignar_timbre_ias.py` (15-nov, P-29) inserta el campo `timbre` de cada IA en `data/ai/personalities.json` **sin reformatear el fichero**: edita el texto línea a línea y falla si alguna IA del reparto no existe. Es idempotente: si el campo ya está, lo quita y lo vuelve a poner.
+- `tools/verificar_apis_godot.gd` (§3) comprueba también las APIs de audio de P-29: los buses (`AudioServer.add_bus`, `add_bus_effect`, `get_bus_effect_count`…) y las propiedades de `AudioEffectLowPassFilter`, `AudioEffectBandPassFilter`, `AudioEffectDistortion` y `AudioEffectReverb`. Ojo: Godot 4.7.2 **no** tiene `AudioEffectOcclusion` ni `AudioStreamPlayer2D.occlusion`; la oclusión se calcula con un rayo.
 - Cada recurso generado registra origen y herramienta (`AGENTS.md`).
 
 ## 8. Git y GitHub

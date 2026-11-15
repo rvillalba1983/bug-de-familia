@@ -50,6 +50,11 @@ CASE_OUTCOME_guerra,Ha estallado la guerra entre Jubilados y Mohócratas.
 CASE_TENSION,La tensión entre Jubilados y Mohócratas va en aumento.
 UI_ANSWER_NOW,¡Responde ya! Callar también es una respuesta.
 BETA_OBJECTIVE,"Asuntos pendientes: entrar en la centralita, sacar la bobina del depósito, cruzar la tierra de nadie y encontrar a Don Ramón. En el orden que quieras."
+ZONE_RETO_ENTRAR,Entrar en la centralita
+ZONE_RETO_SACAR,Sacar la bobina del depósito
+ZONE_RETO_CRUZAR,Cruzar la tierra de nadie
+ZONE_RETO_ENCONTRAR,Encontrar a Don Ramón
+ZONE_OBJECTIVE_PENDING,"Asuntos pendientes: %s"
 BETA_PLACE_LOOKOUT,Mirador
 BETA_PLACE_NORTH,Barrio de los Jubilados
 BETA_PLACE_SOUTH,Barrio mohócrata

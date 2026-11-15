@@ -36,7 +36,10 @@ static func _build_chat(zone: DespliegueCeroZone, layer: CanvasLayer) -> void:
 	irc.team = zone.ai.team
 	zone.ramon_item().body_hidden = true
 	layer.add_child(irc)
-	irc.set_topic(TranslationServer.translate(zone.objective_key()))
+	irc.set_topic(zone.chat_topic())
+	## P-32: el topic del chat solo enseña los retos conocidos y no completados.
+	zone.investigation.known_changed.connect(func() -> void: irc.set_topic(zone.chat_topic()))
+	zone.investigation.flags_changed.connect(func() -> void: irc.set_topic(zone.chat_topic()))
 	zone.ai.chat = irc
 
 

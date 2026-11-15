@@ -239,6 +239,7 @@ func _complete(id: String) -> void:
 	if flag(id):
 		return
 	level.investigation.set_flag(id)
+	level.investigation.clear_known(id)
 	level.show_notice(tr("BETA_DONE_%s" % id))
 	level.ai.say_custom(tr("BETA_AI_%s" % id))
 	challenge_completed.emit(id)

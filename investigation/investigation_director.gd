@@ -5,6 +5,7 @@ extends Node
 
 signal outcome_reached(result: String)
 signal flags_changed
+signal known_changed
 
 const CASE_PATH: String = "res://data/investigation/case_01.json"
 const OUTCOMES: Array[String] = ["paz", "tregua", "guerra"]
@@ -25,6 +26,9 @@ var case_path: String = CASE_PATH
 var enabled: bool = true
 var case_data: Dictionary = {}
 var flags: Dictionary = {}
+## Cosas descubiertas (retos conocidos): no son lo mismo que los flags,
+## que marcan lo completado. P-32: el chat solo enseña lo descubierto.
+var known: Dictionary = {}
 var neglect_time: float = 0.0
 var zone_entered: bool = false
 var current_node: String = ""
@@ -114,6 +118,22 @@ func clear_flag(flag: String) -> void:
 
 func has_flag(flag: String) -> bool:
 	return flags.has(flag)
+
+
+func set_known(key: String) -> void:
+	if not known.has(key):
+		known[key] = true
+		known_changed.emit()
+
+
+func has_known(key: String) -> bool:
+	return known.has(key)
+
+
+func clear_known(key: String) -> void:
+	if known.has(key):
+		known.erase(key)
+		known_changed.emit()
 
 
 func is_resolved() -> bool:
@@ -249,13 +269,16 @@ func advance_neglect(delta: float) -> void:
 
 
 func to_dict() -> Dictionary:
-	return {"flags": flags.keys(), "neglect": neglect_time, "zone": zone_entered}
+	return {"flags": flags.keys(), "known": known.keys(), "neglect": neglect_time, "zone": zone_entered}
 
 
 func restore(data: Dictionary) -> void:
 	flags.clear()
 	for flag: Variant in data.get("flags", []):
 		flags[flag] = true
+	known.clear()
+	for key: Variant in data.get("known", []):
+		known[key] = true
 	neglect_time = float(data.get("neglect", 0.0))
 	zone_entered = bool(data.get("zone", false))
 	_announced = is_resolved()

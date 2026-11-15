@@ -502,6 +502,15 @@ func objective_key() -> String:
 	return "ZONE_OBJECTIVE"
 
 
+func chat_topic() -> String:
+	return tr("ZONE_OBJECTIVE")
+
+
+## P-32: descubre un reto pendiente. Las zonas sin retos no hacen nada.
+func discover_challenge() -> void:
+	pass
+
+
 func _check_goal(_feet: Vector2) -> void:
 	pass
 

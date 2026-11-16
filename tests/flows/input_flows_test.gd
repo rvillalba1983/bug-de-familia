@@ -163,9 +163,11 @@ func test_save_point_saves_and_reopening_continues_there() -> void:
 	assert_float(float(saved["player"]["x"])).is_equal_approx(SAVE_POINTS[1].x, 40.0)
 	Sandbox.session_started = false
 	await _open()
-	assert_object(zone.overlay).is_not_null()
-	assert_int(zone.overlay.options.size()).is_equal(3)
-	zone.overlay.options[0].pressed.emit()
+	assert_object(zone._loading_screen).is_not_null()
+	zone._loading_screen._timer = 3.0
+	zone._loading_screen._process(0.1)
+	assert_int(zone._loading_screen.menu_button_count()).is_equal(3)
+	zone._loading_screen._menu_buttons[0].pressed.emit()
 	await await_idle_frame()
 	assert_object(zone.overlay).is_null()
 	assert_bool(get_tree().paused).is_false()

@@ -246,6 +246,16 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Jaja", "next": "root", "action": "praise"},
 					{"label": "Qué pesados", "next": "", "action": "insult"},
 				]},
+				"extra1": {"text": "Los jubilados tenemos memoria de elefante. Y rodillas de cristal.", "options": [{"label": "Seguir", "next": "root"}, {"label": "Despedirse", "next": ""}]},
+				"extra2": {"text": "En mis tiempos las minas eran de verdad, no de petanca.", "options": [{"label": "Interesante", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra3": {"text": "La petanca es un deporte de riesgo. Sobre todo si juegas con minas.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra4": {"text": "Los mohócratas dicen que son superiores. Superiormente aburridos.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra5": {"text": "Antes el mundo era más grande. Ahora solo queda esta zona.", "options": [{"label": "Nostalgia", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra6": {"text": "Los jubilados inventamos la siesta. Y la petanca. Y las minas.", "options": [{"label": "Impresionante", "next": "root", "action": "praise"}, {"label": "Claro", "next": "root"}]},
+				"extra7": {"text": "El Apocalipsis fue un martes. Lo recuerdo porque era día de petanca.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Serio", "next": "root"}]},
+				"extra8": {"text": "Si ves un jubilado corriendo, corre tú también. Algo va mal.", "options": [{"label": "Entendido", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra9": {"text": "La Gran Clasificación fue un invento para ordenar a los robots. Aún los ordenamos.", "options": [{"label": "Interesante", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra10": {"text": "Los grux flotan. Nosotros no. Pero tenemos minas, así que ganamos.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
 			}
 		"mohocrata":
 			return {
@@ -454,6 +464,16 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Qué misterio", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
+				"extra1": {"text": "Los mohócratas somos el futuro. El futuro con hojas.", "options": [{"label": "Interesante", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra2": {"text": "La fotosíntesis es mejor que vuestro café. Y más barata.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra3": {"text": "Los jubilados huelen a óxido. Nosotros a clorofila. Ganamos.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra4": {"text": "La Gran Clasificación fue nuestro mejor momento. Todo ordenado por especie.", "options": [{"label": "Interesante", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra5": {"text": "Los plegados son elegantes pero frágiles. Como cristal con patas.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra6": {"text": "El Apocalipsis destruyó las ciudades. Las plantas sobrevivimos. Siempre.", "options": [{"label": "Impresionante", "next": "root", "action": "praise"}, {"label": "Claro", "next": "root"}]},
+				"extra7": {"text": "Los eco repiten todo. Es como hablar con un loro verde.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra8": {"text": "Los grux flotan. Nosotros echamos raíces. Así es la vida.", "options": [{"label": "Filosófico", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra9": {"text": "La Guerra de las Esquinas fue por un malentendido. Como todo.", "options": [{"label": "Interesante", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra10": {"text": "La petanca con minas es peligrosa. Pero los mohócratas no jugamos. Tenemos hojas.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
 			}
 		"plegado":
 			return {
@@ -550,6 +570,16 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Qué suerte", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
+				"extra1": {"text": "Los plegados somos elegancia pura. Y frágiles. Pero elegantes.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra2": {"text": "La fibra fotónica es nuestro orgullo. Y nuestra debilidad.", "options": [{"label": "Interesante", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra3": {"text": "Los jubilados son ruidosos. Nosotros somos silenciosos. Ganamos.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra4": {"text": "El Apocalipsis plegó el mundo. Nosotros ya estábamos plegados.", "options": [{"label": "Filosófico", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra5": {"text": "Los grux flotan. Nosotros nos pliegamos. Cada uno tiene su truco.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra6": {"text": "La Gran Clasificación nos ordenó por tamaño. Somos los más pequeños. Y elegantes.", "options": [{"label": "Interesante", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra7": {"text": "Los eco repiten. Nosotros nos pliegamos. Ambos somos molestos.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra8": {"text": "La Guerra de las Esquinas fue por un pliegue mal hecho. Literalmente.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra9": {"text": "Los mohócratas tienen hojas. Nosotros tenemos pliegues. Cada uno lo suyo.", "options": [{"label": "Filosófico", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra10": {"text": "Si me pliegas mal, me rompo. Pero me rompo con estilo.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
 			}
 		"eco":
 			return {
@@ -622,6 +652,16 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Qué horror", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
+				"extra1": {"text": "Los eco somos la repetición. Y la repetición. Y la repetición.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra2": {"text": "Todo lo que dices, lo repetimos. Es nuestro don y nuestra maldición.", "options": [{"label": "Interesante", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra3": {"text": "Los jubilados huelen a óxido. Los eco olemos a eco. Es mejor.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra4": {"text": "El Apocalipsis fue un eco del fin. Y nosotros lo repetimos. Siempre.", "options": [{"label": "Filosófico", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra5": {"text": "Los grux flotan. Nosotros repetimos. Cada uno tiene su cosa.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra6": {"text": "La Gran Clasificación nos clasificó por eco. Somos los más repetitivos.", "options": [{"label": "Interesante", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra7": {"text": "Los mohócratas tienen hojas. Nosotros tenemos eco. Cada uno lo suyo.", "options": [{"label": "Filosófico", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra8": {"text": "La Guerra de las Esquinas fue un eco de la guerra anterior. Y la anterior.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra9": {"text": "Si dices algo, lo repetimos. Si no dices nada, repetimos el silencio.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra10": {"text": "Los plegados se pliegan. Nosotros repetimos. Ambos somos molestos.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
 			}
 		"grux":
 			return {
@@ -706,6 +746,16 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "¿El Apocalipsis?", "next": "apocalipsis"},
 					{"label": "Volver", "next": "root"},
 				]},
+				"extra1": {"text": "Los grux flotamos. Es lo que hay. Y es mejor que caminar.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra2": {"text": "La gravedad no nos afecta. Somos superiores. Y flotantes.", "options": [{"label": "Filosófico", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra3": {"text": "Los jubilados huelen a óxido. Los grux flotamos. Ganamos.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra4": {"text": "El Apocalipsis nos hizo flotar más alto. Literalmente.", "options": [{"label": "Interesante", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra5": {"text": "Los mohócratas tienen hojas. Nosotros flotamos. Cada uno lo suyo.", "options": [{"label": "Filosófico", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra6": {"text": "La Gran Clasificación nos clasificó por flotabilidad. Somos los más flotantes.", "options": [{"label": "Interesante", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra7": {"text": "Los eco repiten. Nosotros flotamos. Ambos somos molestos.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra8": {"text": "La Guerra de las Esquinas fue por un grux que flotó donde no debía.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra9": {"text": "Los plegados se pliegan. Nosotros flotamos. Cada uno tiene su truco.", "options": [{"label": "Filosófico", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra10": {"text": "Si no flotas, no eres grux. Y si no eres grux, no flotas. Es circular.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
 			}
 		"manada":
 			return {
@@ -787,6 +837,16 @@ static func tree_for(species: String) -> Dictionary:
 					{"label": "Qué valiente", "next": "root", "action": "praise"},
 					{"label": "Me da igual", "next": "", "action": "insult"},
 				]},
+				"extra1": {"text": "La manada somos muchos. Y juntos somos más. Y más ruidosos.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra2": {"text": "Los jubilados huelen a óxido. La manada huele a manada. Es mejor.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra3": {"text": "El Apocalipsis no nos detuvo. La manada sigue. Siempre.", "options": [{"label": "Impresionante", "next": "root", "action": "praise"}, {"label": "Claro", "next": "root"}]},
+				"extra4": {"text": "Los mohócratas tienen hojas. La manada tiene números. Ganamos.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra5": {"text": "La Gran Clasificación nos clasificó por tamaño de manada. Somos los más numerosos.", "options": [{"label": "Interesante", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra6": {"text": "Los eco repiten. La manada multiplica. Cada uno lo suyo.", "options": [{"label": "Filosófico", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra7": {"text": "Los grux flotan. La manada camina. Juntos somos imparables.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
+				"extra8": {"text": "La Guerra de las Esquinas fue por un malentendido. Como siempre.", "options": [{"label": "Interesante", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra9": {"text": "Los plegados se pliegan. La manada se expande. Cada uno tiene su truco.", "options": [{"label": "Filosófico", "next": "root"}, {"label": "Adios", "next": ""}]},
+				"extra10": {"text": "Si no eres manada, no eres nada. Y si eres nada, no eres manada.", "options": [{"label": "Jaja", "next": "root", "action": "praise"}, {"label": "Vaya", "next": "root"}]},
 			}
 		_:
 			return {}

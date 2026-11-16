@@ -15,6 +15,46 @@
     {
       "id": "paraguas_rebelde",
       "material": "paraguas_rebelde"
+    },
+    {
+      "id": "zapatilla_de_andar_por_casa_con_gps",
+      "material": "zapatilla_de_andar_por_casa_con_gps"
+    },
+    {
+      "id": "paraguas_que_solo_abre_cuando_no_llueve",
+      "material": "paraguas_que_solo_abre_cuando_no_llueve"
+    },
+    {
+      "id": "reloj_que_marca_la_hora_en_base_7",
+      "material": "reloj_que_marca_la_hora_en_base_7"
+    },
+    {
+      "id": "cepillo_de_dientes_con_bluetooth",
+      "material": "cepillo_de_dientes_con_bluetooth"
+    },
+    {
+      "id": "tostadora_que_solo_tuesta_por_un_lado",
+      "material": "tostadora_que_solo_tuesta_por_un_lado"
+    },
+    {
+      "id": "par_de_calcetines_con_gps_integrado",
+      "material": "par_de_calcetines_con_gps_integrado"
+    },
+    {
+      "id": "mando_a_distancia_que_solo_funciona_si_gritas",
+      "material": "mando_a_distancia_que_solo_funciona_si_gritas"
+    },
+    {
+      "id": "lampara_que_se_apaga_cuando_hay_gente",
+      "material": "lampara_que_se_apaga_cuando_hay_gente"
+    },
+    {
+      "id": "silla_que_se_mueve_sola",
+      "material": "silla_que_se_mueve_sola"
+    },
+    {
+      "id": "espejo_que_te_hace_mas_guapo",
+      "material": "espejo_que_te_hace_mas_guapo"
     }
   ],
   "geometry": {
@@ -261,6 +301,46 @@
     "paraguas_rebelde": [
       2200,
       2000
+    ],
+    "zapatilla_de_andar_por_casa_con_gps": [
+      1200,
+      1800
+    ],
+    "paraguas_que_solo_abre_cuando_no_llueve": [
+      1320,
+      1800
+    ],
+    "reloj_que_marca_la_hora_en_base_7": [
+      1440,
+      1800
+    ],
+    "cepillo_de_dientes_con_bluetooth": [
+      1560,
+      1800
+    ],
+    "tostadora_que_solo_tuesta_por_un_lado": [
+      1680,
+      1800
+    ],
+    "par_de_calcetines_con_gps_integrado": [
+      1200,
+      1920
+    ],
+    "mando_a_distancia_que_solo_funciona_si_gritas": [
+      1320,
+      1920
+    ],
+    "lampara_que_se_apaga_cuando_hay_gente": [
+      1440,
+      1920
+    ],
+    "silla_que_se_mueve_sola": [
+      1560,
+      1920
+    ],
+    "espejo_que_te_hace_mas_guapo": [
+      1680,
+      1920
     ]
   },
   "id": "colmena",
@@ -293,6 +373,56 @@
     {
       "at": "paraguas_rebelde",
       "id": "paraguas_rebelde",
+      "type": "crate"
+    },
+    {
+      "at": "zapatilla_de_andar_por_casa_con_gps",
+      "id": "zapatilla_de_andar_por_casa_con_gps",
+      "type": "crate"
+    },
+    {
+      "at": "paraguas_que_solo_abre_cuando_no_llueve",
+      "id": "paraguas_que_solo_abre_cuando_no_llueve",
+      "type": "crate"
+    },
+    {
+      "at": "reloj_que_marca_la_hora_en_base_7",
+      "id": "reloj_que_marca_la_hora_en_base_7",
+      "type": "crate"
+    },
+    {
+      "at": "cepillo_de_dientes_con_bluetooth",
+      "id": "cepillo_de_dientes_con_bluetooth",
+      "type": "crate"
+    },
+    {
+      "at": "tostadora_que_solo_tuesta_por_un_lado",
+      "id": "tostadora_que_solo_tuesta_por_un_lado",
+      "type": "crate"
+    },
+    {
+      "at": "par_de_calcetines_con_gps_integrado",
+      "id": "par_de_calcetines_con_gps_integrado",
+      "type": "crate"
+    },
+    {
+      "at": "mando_a_distancia_que_solo_funciona_si_gritas",
+      "id": "mando_a_distancia_que_solo_funciona_si_gritas",
+      "type": "crate"
+    },
+    {
+      "at": "lampara_que_se_apaga_cuando_hay_gente",
+      "id": "lampara_que_se_apaga_cuando_hay_gente",
+      "type": "crate"
+    },
+    {
+      "at": "silla_que_se_mueve_sola",
+      "id": "silla_que_se_mueve_sola",
+      "type": "crate"
+    },
+    {
+      "at": "espejo_que_te_hace_mas_guapo",
+      "id": "espejo_que_te_hace_mas_guapo",
       "type": "crate"
     }
   ],

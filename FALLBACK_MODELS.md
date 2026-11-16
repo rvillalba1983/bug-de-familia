@@ -27,7 +27,7 @@ Cada modelo de Go tiene tres ventanas: 5 horas (20 % del límite mensual), seman
 | `qa` | `opencode/deepseek-v4.1-flash-free` (gratis) | `opencode-go/deepseek-v4.1-flash` (¡franja punta!), `opencode/big-pickle`, `opencode/beam-free` |
 | `documentacion` | `opencode/glm-5.3-flash-free` (gratis) | `opencode-go/glm-5.3-flash`, `opencode/big-pickle`, `opencode-go/gpt-6-luna` |
 | `datos` | `opencode-go/minimax-m3` | `opencode/big-pickle`, `opencode-go/glm-5.3-flash`, `opencode/glm-5.3-flash-free` |
-| `arte` | `opencode-go/qwen3.8-flash` | `opencode-go/qwen3.7-plus`, `opencode/big-pickle`, `opencode/glm-5.3-flash-free` |
+| `arte` | `opencode-go/deepseek-v4.1-flash` | `opencode-go/qwen3.8-flash`, `opencode-go/qwen3.7-plus`, `opencode/big-pickle` |
 | `audio` | `opencode-go/glm-5.3-flash` | `opencode/glm-5.3-flash-free`, `opencode/big-pickle`, `opencode/beam-free` |
 | `medidor` | `opencode-go/glm-5.3-flash` | `opencode/glm-5.3-flash-free`, `opencode-go/gpt-6-luna`, `opencode/beam-free` |
 

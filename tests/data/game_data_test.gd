@@ -41,7 +41,8 @@ func test_progenitors_have_a_material_the_catalog_knows() -> void:
 
 func test_each_death_names_an_animation_that_exists() -> void:
 	var clips: Dictionary = DataFile.load_dictionary(EnemyRig.CLIPS_PATH)
-	assert_bool(clips.has(str(DeathCatalog.entry(DeathCatalog.DEFAULT_ID)["animation"]))).is_true()
+	for id: String in DeathCatalog.ids():
+		assert_bool(clips.has(str(DeathCatalog.entry(id)["animation"]))).is_true()
 
 
 func test_a_single_death_option_does_not_consume_the_game_seed() -> void:

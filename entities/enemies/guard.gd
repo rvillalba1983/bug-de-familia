@@ -373,9 +373,20 @@ func _fall() -> void:
 	collision_layer = 0
 	collision_mask = 0
 	queue_redraw()
+	_spawn_death_effect()
 	if was_alert:
 		alert_ended.emit()
 	fell.emit(self)
+
+
+func _spawn_death_effect() -> void:
+	var effect: String = str(death.get("effect", "none"))
+	if effect.is_empty() or effect == "none":
+		return
+	var fx: DeathEffect = DeathEffect.new()
+	add_child(fx)
+	var col: Color = visual.body_color if visual.body_color.a > 0.0 else GuardVisual.COLOR_BODY
+	fx.play(death, col)
 
 
 func _on_patrol_point() -> void:

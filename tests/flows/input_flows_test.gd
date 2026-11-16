@@ -129,9 +129,8 @@ func test_q_converts_with_answer_keys_and_esc_accepts() -> void:
 	await await_millis(100)
 	await _press(&"convert")
 	var director: ConversionDirector = zone.conversion
-	assert_int(director.step).is_equal(ConversionDirector.Step.APPROACH)
+	assert_int(director.step).is_equal(ConversionDirector.Step.OBJECTIVE)
 	assert_bool(get_tree().paused).is_true()
-	director.choose_approach("enganar")
 	director.choose_objective("senuelo")
 	director.choose_slot(ARM)
 	for _round: int in range(ConversionSession.QUESTION_COUNT):

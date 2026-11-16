@@ -26,6 +26,8 @@ var material_hinter: Callable = Callable()
 var advisor: Callable = Callable()
 ## Recibe la pregunta y devuelve { "name": String, "text": String, "color": Color }.
 var taunter: Callable = Callable()
+## Recibe el convertible y devuelve {"name","text","color"} con una descripcion graciosa.
+var describer: Callable = Callable()
 
 var _target: Convertible
 var _highlighted: Convertible
@@ -100,12 +102,16 @@ func begin_on(target: Convertible) -> void:
 	screen.begin(target.get_global_transform_with_canvas().origin + FOCUS_OFFSET)
 	_approach = "convencer"
 	_time_mult = 1.0
-	step = Step.APPROACH
+	step = Step.OBJECTIVE
 	var entries: Array = []
-	entries.append(["Convencer (más tiempo)", choose_approach.bind("convencer")])
-	entries.append(["Engañar (tiempo normal)", choose_approach.bind("enganar")])
-	entries.append(["Amenazar (menos tiempo)", choose_approach.bind("amenazar")])
-	screen.show_choices("¿Cómo abordas la conversión?", entries)
+	for oid: String in catalog.objectives:
+		if not _free_slots(oid).is_empty():
+			entries.append([str(catalog.objectives[oid]["name"]), choose_objective.bind(oid)])
+	screen.show_choices(tr("UI_CONVERT_OBJECTIVE"), entries)
+	if describer.is_valid():
+		var desc: Dictionary = describer.call(_target)
+		if not desc.is_empty():
+			screen.show_taunt(str(desc.get("name", "")), str(desc.get("text", "")), desc.get("color", Color.WHITE) as Color)
 	screen.show_inventory(_inventory_rows())
 	_show_material_hint()
 

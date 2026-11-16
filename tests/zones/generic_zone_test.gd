@@ -1,5 +1,5 @@
 extends GdUnitTestSuite
-## Escena genÃ©rica zone.tscn: geometrÃ­a, corredores, guardado y mundo vivo.
+## Escena genÃƒÂ©rica zone.tscn: geometrÃƒÂ­a, corredores, guardado y mundo vivo.
 
 
 func before_test() -> void:
@@ -57,14 +57,14 @@ func test_corridor_triggers_transition() -> void:
 	assert_array(received).is_equal(["cumbre"])
 
 
-## La secciÃ³n Â«actorsÂ» es opcional: solo algunas zonas la declaran. Montar las
-## otras no debe quejar ni dejar a nadie sin facciÃ³n.
+## La secciÃƒÂ³n Ã‚Â«actorsÃ‚Â» es opcional: solo algunas zonas la declaran. Montar las
+## otras no debe quejar ni dejar a nadie sin facciÃƒÂ³n.
 func test_zone_without_actors_section_mounts_without_errors() -> void:
-	var zone: ZoneBase = await _mount("res://data/zones/archivo.json")
+	var zone: ZoneBase = await _mount("res://data/zones/taller.json")
 	assert_bool(zone.zone_definition().data.has("actors")).is_false()
 	assert_bool(zone.live_world.started).is_true()
 	assert_int(zone.live_world.citizens.size()).is_greater(0)
-	## Sin actores guionados, los Ãºnicos cuerpos son los ciudadanos del mundo vivo.
+	## Sin actores guionados, los ÃƒÂºnicos cuerpos son los ciudadanos del mundo vivo.
 	assert_int(zone.guards().size()).is_equal(zone.live_world.citizens.size())
 
 
@@ -76,8 +76,8 @@ func test_zone_with_actors_mounts_the_scripted_actors() -> void:
 	assert_int(zone.guards().size()).is_equal(zone.live_world.citizens.size() + 2)
 
 
-## Los habitantes y los actores guionados llevan su bando: sin Ã©l, las acciones
-## que filtran por facciÃ³n no encuentran a nadie en las zonas genÃ©ricas.
+## Los habitantes y los actores guionados llevan su bando: sin ÃƒÂ©l, las acciones
+## que filtran por facciÃƒÂ³n no encuentran a nadie en las zonas genÃƒÂ©ricas.
 func test_citizens_and_actors_have_their_faction() -> void:
 	var zone: ZoneBase = await _mount("res://data/zones/el_enchufe.json")
 	for id: String in zone.live_world.citizens:

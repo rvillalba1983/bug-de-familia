@@ -116,7 +116,7 @@ func _question() -> Dictionary:
 
 
 func test_catalogo_completo_con_acciones_con_efecto() -> void:
-	assert_int(catalog.materials.size()).is_equal(9)
+	assert_int(catalog.materials.size()).is_equal(60)
 	assert_int(catalog.objectives.size()).is_equal(14)
 	assert_int(catalog.properties.size()).is_equal(50)
 	assert_int(catalog.actions.size()).is_equal(104)

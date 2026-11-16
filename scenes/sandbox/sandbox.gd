@@ -270,21 +270,16 @@ func _describe_convertible(target: Convertible) -> Dictionary:
 	var material_name: String = target.material_id
 	if catalog != null and catalog.materials.has(target.material_id):
 		material_name = str(catalog.materials[target.material_id].get("name", target.material_id))
-	var funny: String = "Voy a convertirte en pieza. No te emociones."
-	match target.material_id:
-		"madera_cuantica":
-			funny = "Madera fósil cuántica. Antes fue árbol; ahora será pieza."
-		"nanoacero":
-			funny = "Nanoacero. Resistente, pero no a la conversión."
-		"cristal_plasma":
-			funny = "Cristal de plasma. Brillante, pero no inmortal."
-		"gel_memoria":
-			funny = "Gel de memoria. Recuerda... hasta que lo convierto."
-		"aleacion_magnetica":
-			funny = "Aleación magnética. Atrae la chatarra... y la conversión."
-		"restos":
-			funny = "Restos. Lo que queda de algo que ya no es."
-	return {"name": material_name, "text": funny, "color": Color("#ff60b0")}
+	var funny: Dictionary = {
+		"madera_cuantica": "Antes fue árbol; ahora será pieza.",
+		"nanoacero": "Resistente, pero no a la conversión.",
+		"cristal_plasma": "Brillante, pero no inmortal.",
+		"gel_memoria": "Recuerda... hasta que lo convierto.",
+		"aleacion_magnetica": "Atrae la chatarra... y la conversión.",
+		"restos": "Lo que queda de algo que ya no es.",
+	}
+	var phrase: String = funny.get(target.material_id, "Voy a convertir a %s en pieza. No te emociones." % material_name)
+	return {"name": target.entity_id, "text": "%s. %s" % [material_name, phrase], "color": Color("#ff60b0")}
 
 func _register_convertibles() -> void:
 	_add_convertible(ID_GUARD, guard, "nanoacero")

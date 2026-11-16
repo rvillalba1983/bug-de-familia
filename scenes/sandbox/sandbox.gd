@@ -267,22 +267,24 @@ func _add_convertible(id: String, owner_node: Node2D, material: String) -> void:
 
 
 func _describe_convertible(target: Convertible) -> Dictionary:
-	var name: String = target.entity_id
+	var material_name: String = target.material_id
+	if catalog != null and catalog.materials.has(target.material_id):
+		material_name = str(catalog.materials[target.material_id].get("name", target.material_id))
 	var funny: String = "Voy a convertirte en pieza. No te emociones."
-	match name:
-		"crate":
-			funny = "Esta caja lleva años esperando ser algo útil. Hoy es su día."
-		"generator":
-			funny = "El generador zumba. Pronto zumbará convertido en pieza."
-		"guard", "shooter":
-			funny = "Caído y convertible. La vida es así de cruel y graciosa."
-		"camera":
-			funny = "La cámara que todo lo ve... menos su propio final."
-		"terminal":
-			funny = "Terminal de memoria. Pronto será memoria de terminal."
-		"drone":
-			funny = "Drone caído. De volar alto a ser pieza de repuesto."
-	return {"name": name, "text": funny, "color": Color("#ff60b0")}
+	match target.material_id:
+		"madera_cuantica":
+			funny = "Madera fósil cuántica. Antes fue árbol; ahora será pieza."
+		"nanoacero":
+			funny = "Nanoacero. Resistente, pero no a la conversión."
+		"cristal_plasma":
+			funny = "Cristal de plasma. Brillante, pero no inmortal."
+		"gel_memoria":
+			funny = "Gel de memoria. Recuerda... hasta que lo convierto."
+		"aleacion_magnetica":
+			funny = "Aleación magnética. Atrae la chatarra... y la conversión."
+		"restos":
+			funny = "Restos. Lo que queda de algo que ya no es."
+	return {"name": material_name, "text": funny, "color": Color("#ff60b0")}
 
 func _register_convertibles() -> void:
 	_add_convertible(ID_GUARD, guard, "nanoacero")
@@ -527,25 +529,31 @@ func _show_start_menu() -> void:
 ## La pantalla de carga es solo visual: se dibuja encima (CanvasLayer 30) del menú
 ## ya construido. No decide cuándo aparece el menú, así que ni lo retrasa ni deja
 ## señales colgadas al liberarse la escena.
+var _loading_screen: LoadingScreen = null
+
 func _show_loading() -> void:
-	add_child(LoadingScreen.new())
+	_loading_screen = LoadingScreen.new()
+	_loading_screen.on_continue = _continue_game
+	_loading_screen.on_new = start_new_game
+	_loading_screen.on_history = _show_history
+	add_child(_loading_screen)
 
 
 func _show_menu() -> void:
 	pause.begin_modal()
-	overlay = MessageScreen.new()
-	var entries: Array = [
-		["UI_MENU_CONTINUE", _continue_game],
-		["UI_MENU_NEW", start_new_game],
-		["UI_MENU_HISTORY", _show_history],
-	]
-	overlay.setup("UI_MENU_TITLE", entries)
-	add_child(overlay)
+	if _loading_screen != null:
+		_loading_screen.on_continue = _continue_game
+		_loading_screen.on_new = start_new_game
+		_loading_screen.on_history = _show_history
 
 
 func _show_history() -> void:
-	overlay.queue_free()
-	overlay = null
+	if overlay != null:
+		overlay.queue_free()
+		overlay = null
+	if _loading_screen != null:
+		_loading_screen.queue_free()
+		_loading_screen = null
 	pause.end_modal()
 	var history: HistoryScreen = HistoryScreen.new()
 	add_child(history)
@@ -559,8 +567,12 @@ func _show_game_over() -> void:
 
 
 func _continue_game() -> void:
-	overlay.queue_free()
-	overlay = null
+	if overlay != null:
+		overlay.queue_free()
+		overlay = null
+	if _loading_screen != null:
+		_loading_screen.queue_free()
+		_loading_screen = null
 	pause.end_modal()
 
 

@@ -266,6 +266,24 @@ func _add_convertible(id: String, owner_node: Node2D, material: String) -> void:
 	entities[id] = owner_node
 
 
+func _describe_convertible(target: Convertible) -> Dictionary:
+	var name: String = target.entity_id
+	var funny: String = "Voy a convertirte en pieza. No te emociones."
+	match name:
+		"crate":
+			funny = "Esta caja lleva años esperando ser algo útil. Hoy es su día."
+		"generator":
+			funny = "El generador zumba. Pronto zumbará convertido en pieza."
+		"guard", "shooter":
+			funny = "Caído y convertible. La vida es así de cruel y graciosa."
+		"camera":
+			funny = "La cámara que todo lo ve... menos su propio final."
+		"terminal":
+			funny = "Terminal de memoria. Pronto será memoria de terminal."
+		"drone":
+			funny = "Drone caído. De volar alto a ser pieza de repuesto."
+	return {"name": name, "text": funny, "color": Color("#ff60b0")}
+
 func _register_convertibles() -> void:
 	_add_convertible(ID_GUARD, guard, "nanoacero")
 	_add_convertible(ID_SHOOTER, shooter, "nanoacero")
@@ -416,6 +434,7 @@ func _connect_systems() -> void:
 	conversion.perks = ai.perks
 	conversion.material_hinter = ai.material_hint
 	conversion.taunter = ai.question_taunt
+	conversion.describer = Callable(self, "_describe_convertible")
 	panel.discarded.connect(ai.on_piece_discarded)
 	fight.pre_fight_started.connect(ai.say.bind("fight"))
 	actions.door_hacked.connect(open_door)

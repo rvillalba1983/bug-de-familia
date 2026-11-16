@@ -104,7 +104,7 @@ func test_key_converts_the_nearest_and_marks_it() -> void:
 	await get_tree().process_frame
 	assert_bool(crate.highlighted).is_true()
 	assert_bool(sandbox.conversion.convert_nearest()).is_true()
-	assert_int(sandbox.conversion.step).is_equal(ConversionDirector.Step.APPROACH)
+	assert_int(sandbox.conversion.step).is_equal(ConversionDirector.Step.OBJECTIVE)
 	assert_bool(crate.highlighted).is_false()
 
 

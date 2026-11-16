@@ -7,6 +7,14 @@
     {
       "id": "caja_2",
       "material": "madera_cuantica"
+    },
+    {
+      "id": "zapatilla_gps",
+      "material": "zapatilla_gps"
+    },
+    {
+      "id": "paraguas_rebelde",
+      "material": "paraguas_rebelde"
     }
   ],
   "geometry": {
@@ -225,6 +233,14 @@
         1500,
         2900
       ]
+    ],
+    "zapatilla_gps": [
+      1800,
+      2000
+    ],
+    "paraguas_rebelde": [
+      2200,
+      2000
     ]
   },
   "id": "atajo",
@@ -248,6 +264,16 @@
       "at": "brazo_1",
       "id": "brazo_1",
       "type": "arm"
+    },
+    {
+      "at": "zapatilla_gps",
+      "id": "zapatilla_gps",
+      "type": "crate"
+    },
+    {
+      "at": "paraguas_rebelde",
+      "id": "paraguas_rebelde",
+      "type": "crate"
     }
   ],
   "name": "Atajo de las Esporas",

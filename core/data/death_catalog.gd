@@ -4,13 +4,23 @@ extends RefCounted
 
 const PATH: String = "res://data/combat/deaths.json"
 const DEFAULT_ID: String = "caida"
-const FIELDS: Array[String] = ["animation", "shake", "stop", "land_delay", "land_shake", "land_squash", "corpse_time"]
+const FIELDS: Array[String] = [
+	"animation", "shake", "stop", "land_delay", "land_shake", "land_squash",
+	"corpse_time", "effect", "effect_color", "effect_duration",
+]
 
 static var _entries: Dictionary = {}
 
 
 static func entry(id: String) -> Dictionary:
 	return _all()[id]
+
+
+static func ids() -> Array[String]:
+	var result: Array[String] = []
+	for id: String in _all():
+		result.append(id)
+	return result
 
 
 ## Con una sola opción no gasta números de la semilla de la partida.

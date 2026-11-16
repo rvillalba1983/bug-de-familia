@@ -1,6 +1,6 @@
 {
   "jubilado": {
-    "actor": {"color": "#a0a8b8", "map_color": "#a0c8ff", "art": "jubilado_hierro", "material": "nanoacero", "plural": "Jubilados", "doll": "jubilado", "deaths": ["caida"]},
+    "actor": {"color": "#a0a8b8", "map_color": "#a0c8ff", "art": "jubilado_hierro", "material": "nanoacero", "plural": "Jubilados", "doll": "jubilado", "deaths": ["trozos", "cohete", "confeti", "congelado", "estatua", "muelle", "apagon"]},
     "angry": ["¡Viejo lo será tu padre! Que son varios, por cierto.", "Vete antes de que me acuerde de cómo se pega.", "Te he aguantado tres mandatos y ninguna guerra, no me hagas dar la vara.", "¡Que te ha oído mi rodilla y se ha ofendido ella, y ella no perdona!"],
     "greet": ["¿Qué miras, chatarra con patas?", "Si vienes a vender algo, ya tengo de todo roto.", "Buenos días. Que ya sea tarde da igual: a mi edad el reloj es decoración.", "A ver si vas a ser de los que tocan el timbre sin motivo. Eso lo anoto."],
     "lore": [
@@ -33,7 +33,7 @@
     "weird": ["*baila un pasodoble sin música*", "*saluda con solemnidad a una farola*", "*le pregunta la hora a una bomba de riego*", "*da un discurso de cuatro horas en el funeral de una aspiradora*"]
   },
   "mohocrata": {
-    "actor": {"color": "#8fbf60", "map_color": "#a0f060", "art": "mohocrata", "material": "bioceramica", "plural": "Mohócratas", "doll": "mohocrata", "deaths": ["caida"]},
+    "actor": {"color": "#8fbf60", "map_color": "#a0f060", "art": "mohocrata", "material": "bioceramica", "plural": "Mohócratas", "doll": "mohocrata", "deaths": ["trozos", "cohete", "confeti", "congelado", "estatua", "muelle", "oxidacion"]},
     "angry": ["Moción de insulto aprobada: vete.", "Votamos guerra contigo. Tres veces, como manda.", "Te declaro en abstención permanente. Que es lo peor que hay.", "Propuesta: que te marches. Se aprueba. Se ratifica. Se confirma que valía."],
     "greet": ["¿Vienes a votar o a oxidarte?", "Tu presencia queda pendiente de aprobación.", "Hola. La frase la he votado, no la toques.", "¿Ratificas tu presencia o pasas de trámite? La una y la otra cuestan lo mismo."],
     "lore": [
@@ -66,7 +66,7 @@
     "weird": ["*somete a votación a sus propios pies*", "*se abstiene de moverse, con gran dignidad*", "*vota tres veces mover el sombrero y lo deja quieto*", "*se abstiene de respirar durante un minuto, por protocolo*"]
   },
   "plegado": {
-    "actor": {"color": "#c8b8e8", "map_color": "#d8c8ff", "art": "plegado", "material": "fibra_fotonica", "plural": "Plegados", "doll": "plegado", "deaths": ["caida"]},
+    "actor": {"color": "#c8b8e8", "map_color": "#d8c8ff", "art": "plegado", "material": "fibra_fotonica", "plural": "Plegados", "doll": "plegado", "deaths": ["trozos", "cohete", "confeti", "congelado", "estatua", "muelle", "origami"]},
     "angry": ["Te archivo como amenaza, categoría inmediata.", "Te pliego en siete partes, que es el protocolo.", "Te doblo en formato carta y te envío por contrareembolso.", "Pliegue uno, con permiso. Pliegue dos, sin él."],
     "greet": ["¿Vienes a que te clasifique o a que te doble?", "Estás fuera de catálogo, criatura.", "Declara tus esquinas, que aquí todo se archiva.", "Catorce pliegues y medio. Indecente, y eso que solo has entrado."],
     "lore": [
@@ -99,7 +99,7 @@
     "weird": ["*se pliega y desaparece dentro de su propio bolsillo*", "*dobla una esquina del aire y la guarda*", "*mide la estancia en pliegues y se escandaliza*", "*corrige un mapa ajeno en plena huida de su dueño*"]
   },
   "eco": {
-    "actor": {"color": "#8fdbd8", "map_color": "#8fffe8", "art": "eco", "material": "cristal_plasma", "plural": "Ecos", "doll": "eco", "deaths": ["caida"]},
+    "actor": {"color": "#8fdbd8", "map_color": "#8fffe8", "art": "eco", "material": "cristal_plasma", "plural": "Ecos", "doll": "eco", "deaths": ["trozos", "cohete", "confeti", "congelado", "estatua", "muelle", "burbujas"]},
     "angry": ["¡GRITO! Y el grito vuelve.", "Me repito hasta que te vayas. Empiezo ya.", "¡TE REPITO EL INSULTO HASTA QUE SE TE OLVIDE!", "Grito, el grito vuelve, y la vuelta ya es un ritual."],
     "greet": ["¿Hablas o solo haces ruido?", "Te oigo, y te repito: te oigo.", "¿Eso era saludo? Lo repito mejor.", "Te oyen tres de nosotros. Solo soy uno. Se anima."],
     "lore": [
@@ -132,7 +132,7 @@
     "weird": ["*repite tu última palabra tres veces*", "*canta un acorde hecho de sí mismo*", "*aplaude su propio eco y abuchea el del vecino*", "*canta en karaoke lo que acabas de decir, sin permiso ni vergüenza*"]
   },
   "grux": {
-    "actor": {"color": "#d8985a", "map_color": "#ffb060", "art": "grux", "material": "restos", "plural": "Grux", "doll": "grux", "deaths": ["caida"]},
+    "actor": {"color": "#d8985a", "map_color": "#ffb060", "art": "grux", "material": "restos", "plural": "Grux", "doll": "grux", "deaths": ["trozos", "cohete", "confeti", "congelado", "estatua", "muelle", "prensa"]},
     "angry": ["Te cobro hasta el aire que respiras.", "Vas a pagar con lo que te sobre.", "Cuatro brazos: dos para cobrarte y dos para sujetarte mientras.", "Te embargo el recuerdo de esta conversación. Ya lo tengo dentro."],
     "greet": ["¿Vienes a pagar o a que te empeñe?", "Muéstrame las piezas y te digo lo que no valen.", "Pasa. La entrada tiene precio pendiente de tasación.", "Huele a solvencia. Esto va a ser rápido y a mi favor."],
     "lore": [
@@ -165,7 +165,7 @@
     "weird": ["*se traga un objeto y lo vomita con un precio*", "*tasa una piedra a mordiscos*", "*regatea consigo mismo antes de salir y pierde, como siempre*", "*tasa el silencio: 3 dientes, producto estrella*"]
   },
   "manada": {
-    "actor": {"color": "#a8c860", "map_color": "#c0ff60", "art": "manada", "material": "gel_memoria", "plural": "Manada", "doll": "manada", "deaths": ["caida"]},
+    "actor": {"color": "#a8c860", "map_color": "#c0ff60", "art": "manada", "material": "gel_memoria", "plural": "Manada", "doll": "manada", "deaths": ["trozos", "cohete", "confeti", "congelado", "estatua", "muelle", "dispersion"]},
     "angry": ["Te marco como no entregado.", "Voy a darte la vuelta, siempre a la derecha.", "Te reexpedio a una dirección que no existe. Es lo peor que sé hacer.", "Ladrido binario de rechazo. Los once minutos los cobramos aparte."],
     "greet": ["¿Eres el destinatario o el paquete?", "No puedo girar a la izquierda para mirarte.", "¿Firmas el acuse? Lo pregunto por rutina: nadie firma.", "Huele a «en camino». Todo aquí huele a «en camino»."],
     "lore": [

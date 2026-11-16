@@ -1,11 +1,11 @@
 extends GdUnitTestSuite
-## Pruebas de contenido: zonas con población generan ciudadanos, homes válidos,
-## corredores recíprocos y los 3 niveles de simulación.
+## Pruebas de contenido: zonas con poblaciÃ³n generan ciudadanos, homes vÃ¡lidos,
+## corredores recÃ­procos y los 3 niveles de simulaciÃ³n.
 
 ## Zonas con contenido completo: objetos, decorado y actores guiados.
 const ZONAS_CON_CONTENIDO: Array[String] = [
 	"el_enchufe", "lonja", "antecamara", "camara", "camino", "canon",
-	"instalacion", "sendero", "ultima_ruta", "valle",
+	"instalacion", "sendero", "ultima_ruta", "valle", "archivo", "asamblea",
 ]
 
 func before_test() -> void:
@@ -17,7 +17,7 @@ func test_all_zones_have_valid_world_size() -> void:
 	for zone_id: String in registry.ids():
 		var zone: ZoneDefinition = registry.zone(zone_id)
 		assert_bool(zone.world_size().x > 0 and zone.world_size().y > 0).override_failure_message(
-			"%s: world_size inválido" % zone_id
+			"%s: world_size invÃ¡lido" % zone_id
 		).is_true()
 
 func test_every_zone_with_population_has_homes() -> void:
@@ -26,7 +26,7 @@ func test_every_zone_with_population_has_homes() -> void:
 		var zone: ZoneDefinition = registry.zone(zone_id)
 		for species_id: String in zone.active_species():
 			assert_bool(zone.home_area(species_id).has_area()).override_failure_message(
-				"%s: %s sin área de home" % [zone_id, species_id]
+				"%s: %s sin Ã¡rea de home" % [zone_id, species_id]
 			).is_true()
 			assert_bool(zone.home_gate(species_id) != Vector2.ZERO).override_failure_message(
 				"%s: %s sin puerta de home" % [zone_id, species_id]
@@ -67,7 +67,7 @@ func test_all_zones_have_valid_floor_rect() -> void:
 	for zone_id: String in registry.ids():
 		var zone: ZoneDefinition = registry.zone(zone_id)
 		assert_bool(zone.floor_rect().has_area()).override_failure_message(
-			"%s: floor_rect sin área" % zone_id
+			"%s: floor_rect sin Ã¡rea" % zone_id
 		).is_true()
 
 func test_all_zones_have_valid_start_point() -> void:
@@ -101,12 +101,12 @@ func test_filled_zones_place_objects_and_actors_inside_the_floor() -> void:
 		var zone: ZoneDefinition = registry.zone(zone_id)
 		for item: Dictionary in zone.list("items"):
 			assert_bool(zone.floor_rect().has_point(zone.point(str(item["at"])))).override_failure_message(
-				"%s: el objeto %s está fuera del suelo" % [zone_id, str(item["id"])]
+				"%s: el objeto %s estÃ¡ fuera del suelo" % [zone_id, str(item["id"])]
 			).is_true()
 		for prop: Dictionary in zone.list("props"):
 			for punto: Vector2 in zone.points(str(prop["at"])):
 				assert_bool(zone.floor_rect().has_point(punto)).override_failure_message(
-					"%s: el decorado %s está fuera del suelo" % [zone_id, str(prop["id_prefix"])]
+					"%s: el decorado %s estÃ¡ fuera del suelo" % [zone_id, str(prop["id_prefix"])]
 				).is_true()
 		for actor: Dictionary in zone.list_optional("actors"):
 			var ruta: String = str(actor["route"])

@@ -1,5 +1,22 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "madera_cuantica"
+    },
+    {
+      "id": "caja_2",
+      "material": "madera_cuantica"
+    },
+    {
+      "id": "zapatilla_gps",
+      "material": "zapatilla_gps"
+    },
+    {
+      "id": "paraguas_rebelde",
+      "material": "paraguas_rebelde"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -130,13 +147,169 @@
     "moho_gate": [
       2900,
       1100
+    ],
+    "caja_1": [
+      1750,
+      1600
+    ],
+    "caja_2": [
+      2150,
+      1600
+    ],
+    "pie_1": [
+      1500,
+      1800
+    ],
+    "brazo_1": [
+      2500,
+      1800
+    ],
+    "ruinas": [
+      [
+        1100,
+        2200
+      ],
+      [
+        2000,
+        2200
+      ],
+      [
+        2900,
+        2200
+      ]
+    ],
+    "archivos": [
+      [
+        1600,
+        1900
+      ],
+      [
+        1900,
+        1900
+      ]
+    ],
+    "tunel": [
+      [
+        3000,
+        1500
+      ],
+      [
+        3000,
+        1800
+      ]
+    ],
+    "ruta_1": [
+      [
+        2900,
+        1100
+      ],
+      [
+        2900,
+        1500
+      ],
+      [
+        2550,
+        1500
+      ],
+      [
+        2550,
+        1100
+      ]
+    ],
+    "ruta_2": [
+      [
+        1100,
+        2900
+      ],
+      [
+        1100,
+        2550
+      ],
+      [
+        1500,
+        2550
+      ],
+      [
+        1500,
+        2900
+      ]
+    ],
+    "zapatilla_gps": [
+      1800,
+      2000
+    ],
+    "paraguas_rebelde": [
+      2200,
+      2000
     ]
   },
   "id": "atajo",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    },
+    {
+      "at": "zapatilla_gps",
+      "id": "zapatilla_gps",
+      "type": "crate"
+    },
+    {
+      "at": "paraguas_rebelde",
+      "id": "paraguas_rebelde",
+      "type": "crate"
+    }
+  ],
   "name": "Atajo de las Esporas",
   "planned_species": [],
-  "props": [],
+  "props": [
+    {
+      "at": "ruinas",
+      "id_prefix": "ruina",
+      "material": "madera_cuantica",
+      "prop": "grieta",
+      "size": [
+        70,
+        70
+      ]
+    },
+    {
+      "at": "archivos",
+      "id_prefix": "archivo",
+      "material": "fibra_fotonica",
+      "prop": "panel",
+      "size": [
+        72,
+        96
+      ]
+    },
+    {
+      "at": "tunel",
+      "id_prefix": "tunel",
+      "material": "cristal_plasma",
+      "prop": "camara",
+      "size": [
+        96,
+        96
+      ]
+    }
+  ],
   "species": [
     "manada",
     "mohocrata"
@@ -162,5 +335,17 @@
       "area": "moho_home",
       "gate": "moho_gate"
     }
-  }
+  },
+  "actors": [
+    {
+      "id": "manada_guia",
+      "route": "ruta_1",
+      "species": "manada"
+    },
+    {
+      "id": "mohocrata_archivista",
+      "route": "ruta_2",
+      "species": "mohocrata"
+    }
+  ]
 }

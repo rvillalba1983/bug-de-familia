@@ -1,5 +1,62 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "madera_cuantica"
+    },
+    {
+      "id": "caja_2",
+      "material": "madera_cuantica"
+    },
+    {
+      "id": "zapatilla_gps",
+      "material": "zapatilla_gps"
+    },
+    {
+      "id": "paraguas_rebelde",
+      "material": "paraguas_rebelde"
+    },
+    {
+      "id": "zapatilla_de_andar_por_casa_con_gps",
+      "material": "zapatilla_de_andar_por_casa_con_gps"
+    },
+    {
+      "id": "paraguas_que_solo_abre_cuando_no_llueve",
+      "material": "paraguas_que_solo_abre_cuando_no_llueve"
+    },
+    {
+      "id": "reloj_que_marca_la_hora_en_base_7",
+      "material": "reloj_que_marca_la_hora_en_base_7"
+    },
+    {
+      "id": "cepillo_de_dientes_con_bluetooth",
+      "material": "cepillo_de_dientes_con_bluetooth"
+    },
+    {
+      "id": "tostadora_que_solo_tuesta_por_un_lado",
+      "material": "tostadora_que_solo_tuesta_por_un_lado"
+    },
+    {
+      "id": "par_de_calcetines_con_gps_integrado",
+      "material": "par_de_calcetines_con_gps_integrado"
+    },
+    {
+      "id": "mando_a_distancia_que_solo_funciona_si_gritas",
+      "material": "mando_a_distancia_que_solo_funciona_si_gritas"
+    },
+    {
+      "id": "lampara_que_se_apaga_cuando_hay_gente",
+      "material": "lampara_que_se_apaga_cuando_hay_gente"
+    },
+    {
+      "id": "silla_que_se_mueve_sola",
+      "material": "silla_que_se_mueve_sola"
+    },
+    {
+      "id": "espejo_que_te_hace_mas_guapo",
+      "material": "espejo_que_te_hace_mas_guapo"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -150,13 +207,259 @@
     "moho_gate": [
       2900,
       1100
+    ],
+    "caja_1": [
+      1750,
+      1600
+    ],
+    "caja_2": [
+      2150,
+      1600
+    ],
+    "pie_1": [
+      1500,
+      1800
+    ],
+    "brazo_1": [
+      2500,
+      1800
+    ],
+    "ruinas": [
+      [
+        1100,
+        2200
+      ],
+      [
+        2000,
+        2200
+      ],
+      [
+        2900,
+        2200
+      ]
+    ],
+    "archivos": [
+      [
+        1600,
+        1900
+      ],
+      [
+        1900,
+        1900
+      ]
+    ],
+    "tunel": [
+      [
+        3000,
+        1500
+      ],
+      [
+        3000,
+        1800
+      ]
+    ],
+    "ruta_1": [
+      [
+        2900,
+        1100
+      ],
+      [
+        2900,
+        1500
+      ],
+      [
+        2550,
+        1500
+      ],
+      [
+        2550,
+        1100
+      ]
+    ],
+    "ruta_2": [
+      [
+        1100,
+        2900
+      ],
+      [
+        1100,
+        2550
+      ],
+      [
+        1500,
+        2550
+      ],
+      [
+        1500,
+        2900
+      ]
+    ],
+    "zapatilla_gps": [
+      1800,
+      2000
+    ],
+    "paraguas_rebelde": [
+      2200,
+      2000
+    ],
+    "zapatilla_de_andar_por_casa_con_gps": [
+      1200,
+      1800
+    ],
+    "paraguas_que_solo_abre_cuando_no_llueve": [
+      1320,
+      1800
+    ],
+    "reloj_que_marca_la_hora_en_base_7": [
+      1440,
+      1800
+    ],
+    "cepillo_de_dientes_con_bluetooth": [
+      1560,
+      1800
+    ],
+    "tostadora_que_solo_tuesta_por_un_lado": [
+      1680,
+      1800
+    ],
+    "par_de_calcetines_con_gps_integrado": [
+      1200,
+      1920
+    ],
+    "mando_a_distancia_que_solo_funciona_si_gritas": [
+      1320,
+      1920
+    ],
+    "lampara_que_se_apaga_cuando_hay_gente": [
+      1440,
+      1920
+    ],
+    "silla_que_se_mueve_sola": [
+      1560,
+      1920
+    ],
+    "espejo_que_te_hace_mas_guapo": [
+      1680,
+      1920
     ]
   },
   "id": "colmena",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    },
+    {
+      "at": "zapatilla_gps",
+      "id": "zapatilla_gps",
+      "type": "crate"
+    },
+    {
+      "at": "paraguas_rebelde",
+      "id": "paraguas_rebelde",
+      "type": "crate"
+    },
+    {
+      "at": "zapatilla_de_andar_por_casa_con_gps",
+      "id": "zapatilla_de_andar_por_casa_con_gps",
+      "type": "crate"
+    },
+    {
+      "at": "paraguas_que_solo_abre_cuando_no_llueve",
+      "id": "paraguas_que_solo_abre_cuando_no_llueve",
+      "type": "crate"
+    },
+    {
+      "at": "reloj_que_marca_la_hora_en_base_7",
+      "id": "reloj_que_marca_la_hora_en_base_7",
+      "type": "crate"
+    },
+    {
+      "at": "cepillo_de_dientes_con_bluetooth",
+      "id": "cepillo_de_dientes_con_bluetooth",
+      "type": "crate"
+    },
+    {
+      "at": "tostadora_que_solo_tuesta_por_un_lado",
+      "id": "tostadora_que_solo_tuesta_por_un_lado",
+      "type": "crate"
+    },
+    {
+      "at": "par_de_calcetines_con_gps_integrado",
+      "id": "par_de_calcetines_con_gps_integrado",
+      "type": "crate"
+    },
+    {
+      "at": "mando_a_distancia_que_solo_funciona_si_gritas",
+      "id": "mando_a_distancia_que_solo_funciona_si_gritas",
+      "type": "crate"
+    },
+    {
+      "at": "lampara_que_se_apaga_cuando_hay_gente",
+      "id": "lampara_que_se_apaga_cuando_hay_gente",
+      "type": "crate"
+    },
+    {
+      "at": "silla_que_se_mueve_sola",
+      "id": "silla_que_se_mueve_sola",
+      "type": "crate"
+    },
+    {
+      "at": "espejo_que_te_hace_mas_guapo",
+      "id": "espejo_que_te_hace_mas_guapo",
+      "type": "crate"
+    }
+  ],
   "name": "Colmena Fúngica",
   "planned_species": [],
-  "props": [],
+  "props": [
+    {
+      "at": "ruinas",
+      "id_prefix": "ruina",
+      "material": "madera_cuantica",
+      "prop": "grieta",
+      "size": [
+        70,
+        70
+      ]
+    },
+    {
+      "at": "archivos",
+      "id_prefix": "archivo",
+      "material": "fibra_fotonica",
+      "prop": "panel",
+      "size": [
+        72,
+        96
+      ]
+    },
+    {
+      "at": "tunel",
+      "id_prefix": "tunel",
+      "material": "cristal_plasma",
+      "prop": "camara",
+      "size": [
+        96,
+        96
+      ]
+    }
+  ],
   "species": [
     "eco",
     "mohocrata"
@@ -182,5 +485,17 @@
       "area": "moho_home",
       "gate": "moho_gate"
     }
-  }
+  },
+  "actors": [
+    {
+      "id": "eco_guia",
+      "route": "ruta_1",
+      "species": "eco"
+    },
+    {
+      "id": "mohocrata_archivista",
+      "route": "ruta_2",
+      "species": "mohocrata"
+    }
+  ]
 }

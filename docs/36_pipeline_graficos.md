@@ -62,6 +62,16 @@ uso. El director debe aprobar cualquier imagen nueva antes de integrarla en el j
 
 Elementos de la beta: mina de petanca, bobina, cartel de tierra de nadie, dron viejo, urna de esporas, Mohócrata votante, Jubilado de Hierro, Don Ramón, centralita del Contestador y depósito mohócrata. El cartel y la urna aún no están integrados. Vistas extra de los NPC en `tools/art/npc_views_gen.py` y fachadas en `tools/art/facades_gen.py`.
 
+### Objetos del catálogo P-23
+
+Los 50 objetos graciosos convertibles de `docs/borradores/P-23_objetos_graciosos.md` tienen SVG propio en `art/shared/props/` y se dibujan a 70×60 px desde `entities/art/prop_art.gd`. Tres se dibujaron primero como prototipo reconocible: `zapatilla_gps`, `paraguas_rebelde` y `tostadora_filosofica`. El 16-nov-2026 se redibujaron a mano los otros 48 archivos, uno por objeto, para que la silueta se reconozca a tamaño de juego.
+
+- Herramienta: edición manual de SVG (formas, trazos y opacidades). Sin generadores de imagen.
+- Autor: agente `arte` del proyecto (DeepSeek V4.1 Flash), a partir de la descripción de cada objeto en el borrador P-23.
+- Origen: dibujo propio; no usa material de terceros.
+- Estilo: `viewBox` «0 0 100 90», contornos `#1B0E2A` de 4 a 5 px, sombra elíptica al pie y colores de la paleta «Cuñado Radiactivo».
+- Validación: `godot --headless --import` sin errores (16-nov-2026). Pendiente de verlos en partida.
+
 ## Estilo
 Cartoon grotesco de acabado pintado: anatomías extrañas, formas asimétricas, ojos, bocas y extremidades exagerados, colores saturados y poco naturales, mezcla de atractivo y desagradable, y humor visual. Estética adulta. Cada especie con identidad propia.
 

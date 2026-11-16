@@ -77,10 +77,10 @@
     "arte": {
       "config_en": "agents.arte.model",
       "cadena": [
+        "opencode-go/deepseek-v4.1-flash",
         "opencode-go/qwen3.8-flash",
         "opencode-go/qwen3.7-plus",
-        "opencode/big-pickle",
-        "opencode/glm-5.3-flash-free"
+        "opencode/big-pickle"
       ]
     },
     "audio": {

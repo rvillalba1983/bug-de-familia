@@ -103,6 +103,567 @@
     "p049",
     "p050"
    ]
+  },
+  "zapatilla_gps": {
+   "name": "Zapatilla con GPS",
+   "metal": false,
+   "properties": [
+    "p036",
+    "p037",
+    "p038",
+    "p039",
+    "p040"
+   ]
+  },
+  "paraguas_rebelde": {
+   "name": "Paraguas rebelde",
+   "metal": false,
+   "properties": [
+    "p036",
+    "p037",
+    "p038",
+    "p039",
+    "p040"
+   ]
+  },
+  "tostadora_filosofica": {
+   "name": "Tostadora filosofica",
+   "metal": true,
+   "properties": [
+    "p001",
+    "p002",
+    "p003",
+    "p004",
+    "p005"
+   ]
+  },
+  "zapatilla_de_andar_por_casa_con_gps": {
+   "name": "Zapatilla de andar por casa con GPS",
+   "metal": false,
+   "properties": [
+    "p008",
+    "p015",
+    "p022",
+    "p029",
+    "p036"
+   ]
+  },
+  "paraguas_que_solo_abre_cuando_no_llueve": {
+   "name": "Paraguas que solo abre cuando no llueve",
+   "metal": true,
+   "properties": [
+    "p015",
+    "p022",
+    "p029",
+    "p036",
+    "p003"
+   ]
+  },
+  "reloj_que_marca_la_hora_en_base_7": {
+   "name": "Reloj que marca la hora en base 7",
+   "metal": false,
+   "properties": [
+    "p022",
+    "p029",
+    "p036",
+    "p003",
+    "p010"
+   ]
+  },
+  "cepillo_de_dientes_con_bluetooth": {
+   "name": "Cepillo de dientes con Bluetooth",
+   "metal": true,
+   "properties": [
+    "p029",
+    "p036",
+    "p003",
+    "p010",
+    "p017"
+   ]
+  },
+  "tostadora_que_solo_tuesta_por_un_lado": {
+   "name": "Tostadora que solo tuesta por un lado",
+   "metal": false,
+   "properties": [
+    "p036",
+    "p003",
+    "p010",
+    "p017",
+    "p024"
+   ]
+  },
+  "par_de_calcetines_con_gps_integrado": {
+   "name": "Par de calcetines con GPS integrado",
+   "metal": true,
+   "properties": [
+    "p003",
+    "p010",
+    "p017",
+    "p024",
+    "p031"
+   ]
+  },
+  "mando_a_distancia_que_solo_funciona_si_gritas": {
+   "name": "Mando a distancia que solo funciona si gritas",
+   "metal": false,
+   "properties": [
+    "p010",
+    "p017",
+    "p024",
+    "p031",
+    "p038"
+   ]
+  },
+  "lampara_que_se_apaga_cuando_hay_gente": {
+   "name": "Lámpara que se apaga cuando hay gente",
+   "metal": false,
+   "properties": [
+    "p010",
+    "p017",
+    "p024",
+    "p031",
+    "p038"
+   ]
+  },
+  "silla_que_se_mueve_sola": {
+   "name": "Silla que se mueve sola",
+   "metal": false,
+   "properties": [
+    "p024",
+    "p031",
+    "p038",
+    "p005",
+    "p012"
+   ]
+  },
+  "espejo_que_te_hace_mas_guapo": {
+   "name": "Espejo que te hace más guapo",
+   "metal": true,
+   "properties": [
+    "p031",
+    "p038",
+    "p005",
+    "p012",
+    "p019"
+   ]
+  },
+  "drone_que_solo_vuela_hacia_abajo": {
+   "name": "Drone que solo vuela hacia abajo",
+   "metal": false,
+   "properties": [
+    "p038",
+    "p005",
+    "p012",
+    "p019",
+    "p026"
+   ]
+  },
+  "teclado_que_escribe_lo_que_piensas": {
+   "name": "Teclado que escribe lo que piensas",
+   "metal": true,
+   "properties": [
+    "p005",
+    "p012",
+    "p019",
+    "p026",
+    "p033"
+   ]
+  },
+  "raton_de_ordenador_que_huye": {
+   "name": "Ratón de ordenador que huye",
+   "metal": false,
+   "properties": [
+    "p012",
+    "p019",
+    "p026",
+    "p033",
+    "p040"
+   ]
+  },
+  "pantalla_que_muestra_lo_que_quieres_ver_no_lo_que_hay": {
+   "name": "Pantalla que muestra lo que quieres ver, no lo que hay",
+   "metal": true,
+   "properties": [
+    "p019",
+    "p026",
+    "p033",
+    "p040",
+    "p007"
+   ]
+  },
+  "altavoz_que_solo_reproduce_silencio": {
+   "name": "Altavoz que solo reproduce silencio",
+   "metal": false,
+   "properties": [
+    "p026",
+    "p033",
+    "p040",
+    "p007",
+    "p014"
+   ]
+  },
+  "camara_que_borra_lo_que_fotografia": {
+   "name": "Cámara que borra lo que fotografía",
+   "metal": true,
+   "properties": [
+    "p033",
+    "p040",
+    "p007",
+    "p014",
+    "p021"
+   ]
+  },
+  "impresora_que_solo_imprime_en_invisible": {
+   "name": "Impresora que solo imprime en invisible",
+   "metal": false,
+   "properties": [
+    "p024",
+    "p031",
+    "p038",
+    "p005",
+    "p012"
+   ]
+  },
+  "router_que_solo_conecta_a_redes_inventadas": {
+   "name": "Router que solo conecta a redes inventadas",
+   "metal": true,
+   "properties": [
+    "p007",
+    "p014",
+    "p021",
+    "p028",
+    "p035"
+   ]
+  },
+  "bateria_que_se_carga_con_aplausos": {
+   "name": "Batería que se carga con aplausos",
+   "metal": false,
+   "properties": [
+    "p014",
+    "p021",
+    "p028",
+    "p035",
+    "p002"
+   ]
+  },
+  "cable_usb_que_solo_funciona_si_lo_giras_3_veces": {
+   "name": "Cable USB que solo funciona si lo giras 3 veces",
+   "metal": true,
+   "properties": [
+    "p021",
+    "p028",
+    "p035",
+    "p002",
+    "p009"
+   ]
+  },
+  "sombrero_que_te_hace_invisible_a_los_que_no_te_quieren": {
+   "name": "Sombrero que te hace invisible a los que no te quieren",
+   "metal": false,
+   "properties": [
+    "p028",
+    "p035",
+    "p002",
+    "p009",
+    "p016"
+   ]
+  },
+  "guantes_que_escriben_lo_que_dices": {
+   "name": "Guantes que escriben lo que dices",
+   "metal": true,
+   "properties": [
+    "p035",
+    "p002",
+    "p009",
+    "p016",
+    "p023"
+   ]
+  },
+  "zapatos_que_te_llevan_donde_quieren": {
+   "name": "Zapatos que te llevan donde quieren",
+   "metal": false,
+   "properties": [
+    "p002",
+    "p009",
+    "p016",
+    "p023",
+    "p030"
+   ]
+  },
+  "gafas_que_ven_el_futuro_pero_solo_el_pasado": {
+   "name": "Gafas que ven el futuro, pero solo el pasado",
+   "metal": true,
+   "properties": [
+    "p009",
+    "p016",
+    "p023",
+    "p030",
+    "p037"
+   ]
+  },
+  "bufanda_que_se_calienta_cuando_mientes": {
+   "name": "Bufanda que se calienta cuando mientes",
+   "metal": false,
+   "properties": [
+    "p016",
+    "p023",
+    "p030",
+    "p037",
+    "p004"
+   ]
+  },
+  "cinturon_que_se_afloja_cuando_comes": {
+   "name": "Cinturón que se afloja cuando comes",
+   "metal": true,
+   "properties": [
+    "p023",
+    "p030",
+    "p037",
+    "p004",
+    "p011"
+   ]
+  },
+  "reloj_de_pulsera_que_marca_la_hora_en_la_que_deberias_haber_llegado": {
+   "name": "Reloj de pulsera que marca la hora en la que deberías haber llegado",
+   "metal": false,
+   "properties": [
+    "p030",
+    "p037",
+    "p004",
+    "p011",
+    "p018"
+   ]
+  },
+  "anillo_que_se_agranda_cuando_estas_nervioso": {
+   "name": "Anillo que se agranda cuando estás nervioso",
+   "metal": true,
+   "properties": [
+    "p037",
+    "p004",
+    "p011",
+    "p018",
+    "p025"
+   ]
+  },
+  "corbata_que_se_anuda_sola": {
+   "name": "Corbata que se anuda sola",
+   "metal": false,
+   "properties": [
+    "p004",
+    "p011",
+    "p018",
+    "p025",
+    "p032"
+   ]
+  },
+  "calcetines_que_se_emparejan_solos": {
+   "name": "Calcetines que se emparejan solos",
+   "metal": true,
+   "properties": [
+    "p011",
+    "p018",
+    "p025",
+    "p032",
+    "p039"
+   ]
+  },
+  "cuchara_que_mide_la_tristeza": {
+   "name": "Cuchara que mide la tristeza",
+   "metal": false,
+   "properties": [
+    "p018",
+    "p025",
+    "p032",
+    "p039",
+    "p006"
+   ]
+  },
+  "tenedor_que_solo_pincha_lo_que_te_gusta": {
+   "name": "Tenedor que solo pincha lo que te gusta",
+   "metal": true,
+   "properties": [
+    "p025",
+    "p032",
+    "p039",
+    "p006",
+    "p013"
+   ]
+  },
+  "plato_que_se_limpia_solo_pero_solo_si_le_cantas": {
+   "name": "Plato que se limpia solo, pero solo si le cantas",
+   "metal": false,
+   "properties": [
+    "p032",
+    "p039",
+    "p006",
+    "p013",
+    "p020"
+   ]
+  },
+  "vaso_que_nunca_se_vacia": {
+   "name": "Vaso que nunca se vacía",
+   "metal": true,
+   "properties": [
+    "p039",
+    "p006",
+    "p013",
+    "p020",
+    "p027"
+   ]
+  },
+  "sarten_que_cocina_sola": {
+   "name": "Sartén que cocina sola",
+   "metal": false,
+   "properties": [
+    "p006",
+    "p013",
+    "p020",
+    "p027",
+    "p034"
+   ]
+  },
+  "nevera_que_te_juzga_por_lo_que_comes": {
+   "name": "Nevera que te juzga por lo que comes",
+   "metal": true,
+   "properties": [
+    "p013",
+    "p020",
+    "p027",
+    "p034",
+    "p001"
+   ]
+  },
+  "microondas_que_solo_calienta_en_el_centro": {
+   "name": "Microondas que solo calienta en el centro",
+   "metal": false,
+   "properties": [
+    "p020",
+    "p027",
+    "p034",
+    "p001",
+    "p008"
+   ]
+  },
+  "batidora_que_solo_bate_en_silencio": {
+   "name": "Batidora que solo bate en silencio",
+   "metal": true,
+   "properties": [
+    "p027",
+    "p034",
+    "p001",
+    "p008",
+    "p015"
+   ]
+  },
+  "cafetera_que_solo_hace_te": {
+   "name": "Cafetera que solo hace té",
+   "metal": false,
+   "properties": [
+    "p034",
+    "p001",
+    "p008",
+    "p015",
+    "p022"
+   ]
+  },
+  "tostador_que_solo_tuesta_por_un_lado": {
+   "name": "Tostador que solo tuesta por un lado",
+   "metal": true,
+   "properties": [
+    "p001",
+    "p008",
+    "p015",
+    "p022",
+    "p029"
+   ]
+  },
+  "grapadora_que_grapas_en_el_aire": {
+   "name": "Grapadora que grapas en el aire",
+   "metal": false,
+   "properties": [
+    "p008",
+    "p015",
+    "p022",
+    "p029",
+    "p036"
+   ]
+  },
+  "boligrafo_que_solo_escribe_en_invisible": {
+   "name": "Bolígrafo que solo escribe en invisible",
+   "metal": true,
+   "properties": [
+    "p015",
+    "p022",
+    "p029",
+    "p036",
+    "p003"
+   ]
+  },
+  "papelera_que_te_devuelve_lo_que_tiras": {
+   "name": "Papelera que te devuelve lo que tiras",
+   "metal": false,
+   "properties": [
+    "p022",
+    "p029",
+    "p036",
+    "p003",
+    "p010"
+   ]
+  },
+  "grapadora_que_solo_grapa_en_el_vacio": {
+   "name": "Grapadora que solo grapa en el vacío",
+   "metal": true,
+   "properties": [
+    "p029",
+    "p036",
+    "p003",
+    "p010",
+    "p017"
+   ]
+  },
+  "silla_de_oficina_que_se_mueve_sola": {
+   "name": "Silla de oficina que se mueve sola",
+   "metal": false,
+   "properties": [
+    "p036",
+    "p003",
+    "p010",
+    "p017",
+    "p024"
+   ]
+  },
+  "mesa_que_se_inclina_cuando_estas_triste": {
+   "name": "Mesa que se inclina cuando estás triste",
+   "metal": true,
+   "properties": [
+    "p003",
+    "p010",
+    "p017",
+    "p024",
+    "p031"
+   ]
+  },
+  "telefono_que_solo_llama_a_numeros_inventados": {
+   "name": "Teléfono que solo llama a números inventados",
+   "metal": true,
+   "properties": [
+    "p017",
+    "p024",
+    "p031",
+    "p038",
+    "p005"
+   ]
+  },
+  "fax_que_envia_a_otra_dimension": {
+   "name": "Fax que envía a otra dimensión",
+   "metal": true,
+   "properties": [
+    "p031",
+    "p038",
+    "p005",
+    "p012",
+    "p019"
+   ]
   }
  },
  "objectives": {

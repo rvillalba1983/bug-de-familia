@@ -20,7 +20,7 @@
           64
         ],
         "to": "el_enchufe",
-        "walls": [
+        "facades": [
           [
             1840,
             64,
@@ -45,7 +45,7 @@
           64
         ],
         "to": "paso",
-        "walls": [
+        "facades": [
           [
             1840,
             3536,
@@ -70,7 +70,7 @@
           240
         ],
         "to": "desguace",
-        "walls": [
+        "facades": [
           [
             3536,
             1840,

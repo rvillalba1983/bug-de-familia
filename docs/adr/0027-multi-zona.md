@@ -4,7 +4,7 @@ Estado: propuesto por el director el 11-nov-2026. Pendiente de implementación e
 
 ## Contexto
 
-El juego completo (fase «Post-beta. Mundo completo» del plan) necesita varias zonas independientes, conectadas por accesos que se descubren explorando, con cargas breves, tres niveles de simulación y persistencia entre visitas. Hoy solo existe la zona beta (`data/zones/beta.json`, escena `scenes/beta/beta_zone.tscn`), que es un escenario único de 3800 × 2600 u.
+El juego completo (fase «Post-beta. Mundo completo» del plan) necesita varias zonas independientes, conectadas por accesos que se descubren explorando, con cargas breves, tres niveles de simulación y persistencia entre visitas. Hoy existen 24 zonas en `data/zones/`; la inicial es `despliegue_cero` (`data/zones/despliegue_cero.json`, escena `scenes/despliegue_cero/despliegue_cero_zone.tscn`), un escenario de 4000 × 4000 u ampliado el 17-nov (antes 3800 × 2600).
 
 El director ha definido los parámetros del mundo: **24 zonas** (6 territorios de especie + 1 frontera + 1 nudo neutral + 1 final + 15 zonas intermedias), mundo de 16.700 × 16.700 u (≈ 500 × 500 m reales), formas no rectangulares talladas con zonas bloqueadas, 3–5 especies por zona, 80–150 NPCs por zona, y conexiones por corredores que llevan al borde (cambio de zona al cruzar). El mapa completo está en `art/mapa_zonas_propuesta.svg`.
 
@@ -61,6 +61,18 @@ En el JSON de la zona, el campo `geometry.corridors` es un array de objetos:
 ```
 
 Cada corredor es un rectángulo caminable que llega al borde de la zona. El `NavGrid` trata esas celdas como transitables (no bloqueadas). El cambio de zona ocurre al cruzar el borde por un corredor.
+
+Claves opcionales de un corredor (ADR 0034). Las tres son aditivas: las zonas que no
+las declaran no cambian.
+
+| Clave | Tipo | Para qué |
+|---|---|---|
+| `walls` | `[[x, y, w, h], ...]` | Delimita el pasillo con muros. **Legacy**: desde P-53 la forma normal son las fachadas. |
+| `facades` | `[[x, y, w, h], ...]` | Delimita el pasillo con edificios de fachada (P-53). Misma interpretación que `walls`; un corredor declara una u otra, **nunca las dos**. |
+| `sign` | `String`, `señal_01`..`señal_10` | Cartel de la boca. Si falta, se elige por la zona destino. |
+
+Los rectángulos de `walls` y `facades` no invaden el `rect` caminable del corredor; lo
+comprueban `tools/validar_datos.py` y las pruebas de `tests/zones/`.
 
 ### 8. NavGrid: construido al cargar
 

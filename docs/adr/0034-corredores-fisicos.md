@@ -106,14 +106,59 @@ panel de fondo en la boca; se implementó como muro, sin `zigzag`, porque un sol
 - Pruebas: `tests/zones/generic_zone_test.gd` (fondo, paso abierto, opacidad y opt-in) y
   `tests/entities/wall_test.gd` (`BACKDROP` sin colisión y sin atenuación).
 
+## 7. Delimitación con edificios/fachadas (P-53, 17-nov-2026)
+
+Decisión del director: los pasillos se delimitan con **edificios con fachada**, no con muros.
+Las fachadas son la **forma normal** y `walls` queda como **legacy** soportado. No se rehacen
+las zonas que ya usan muros; las nuevas y las mejoras usan fachadas.
+
+- **Datos:** clave opcional nueva por corredor, `"facades"`: `Array` de rectángulos
+  `[x, y, w, h]` con la **misma interpretación que `walls`** (delimitan el pasillo sin invadir
+  el `rect` caminable). Un corredor declara `walls`, `facades` o ninguno, **nunca los dos**:
+  `ZoneDefinition.corridors()` avisa con el archivo y el destino y se queda con `facades`
+  (la forma normal), para no montar dos veces el mismo delimitador. La misma regla la aplica
+  `tools/validar_datos.py` antes de arrancar el motor.
+- **Montaje:** cada rect se monta como `CorridorFacade` (`entities/world/corridor_facade.gd`),
+  un `StaticBody2D` **nuevo**, hermano de `Wall`, y no como `BuildingFacade`. Se descartó
+  reutilizar `BuildingFacade` porque ésta es un edificio transitable: no tiene colisión, se
+  vuelve translúcida al acercarse el jugador (`_process` con distancia al interior) y necesita
+  `player`, `interior` y puerta. Parametrizarla habría metido un modo muro dentro de la
+  fachada de interior y puesto en riesgo las dos fachadas de `despliegue_cero`. El nodo nuevo
+  hace lo mismo que un muro (colisión, oclusión y y-sort) sin código condicional.
+- **Aspecto:** frente hacia el norte de `CORRIDOR_WALL_HEIGHT` (200 u), como los muros, con la
+  textura SVG estirada al frente y un tejado del color de los muros para que el pasillo se lea
+  como una pieza. **Provisional:** las fachadas genéricas de corredor todavía no están
+  dibujadas (las hará el agente `arte`); mientras tanto se alternan `fachada_centralita.svg` y
+  `fachada_deposito.svg` desde el catálogo `ZoneBase.CORRIDOR_FACADE_ART`, único punto donde
+  cambiar la lista de modelos.
+- **Opacidad:** la fachada de corredor **nunca se atenúa**. No se registra en `Sandbox.walls`
+  (la lista que `_update_wall_occlusion` recorre) ni tiene `_process`, así que no hay
+  desvanecido por proximidad: cumple la función de muro de ocultar lo que hay más allá.
+- **Navegación:** los rects de `facades` entran en `_all_blockers()` igual que los de `walls`,
+  así que `NavGrid` los respeta sin tocar `core/nav_grid.gd`.
+- **Fondo de las bocas sur y este (apartado 6):** ahora se deriva de declarar **algún**
+  delimitador (`walls` o `facades`); sin claves nuevas y con el mismo aspecto.
+- **Señal y nombre de la boca:** sin cambios (apartados 1 y 4).
+- **Pruebas:** `tests/zones/corridor_facades_test.gd` (montaje con colisión, NavGrid, opacidad,
+  fondo con fachadas, conflicto `walls`+`facades` y corredores legacy intactos),
+  `tests/entities/corridor_facade_test.gd` (geometría, colisión y ausencia de desvanecido) y
+  `tools/tests/test_herramientas.py` (validación de los rects y del conflicto).
+- **Pendiente:** las fachadas SVG genéricas de corredor y aplicar el modelo a
+  `data/zones/*.json` (lo hace otro agente con este modelo). Los placeholders actuales estiran
+  un edificio entero al frente del pasillo, así que el aspecto definitivo depende del arte.
+
 ## Consecuencias
 
 - Positivas: las zonas sin `walls` en sus corredores no cambian (cambio 100% opt-in); las 8
   zonas de la fase ganan pasillos con identidad, la señal SVG sustituye el cartel genérico y
   las bocas sur/este quedan cerradas visualmente sin tocar la cámara.
+- Positivas (P-53): el modelo es aditivo; ningún JSON cambia hasta que se declaren `facades`, y
+  los corredores con `walls` siguen montando exactamente los mismos muros y fondos.
 - Negativas / limitaciones: el texto de los SVG no se renderiza en Godot (se pierde al
   importar), por eso el nombre de la zona se dibuja como `Label` encima. La señal de las
   salidas este y oeste sobresale del borde del mapa por diseño (parte queda recortada por la
-  cámara).
+  cámara). Mientras el arte no dibuje las fachadas genéricas, los corredores con `facades` se
+  ven con las dos fachadas de edificio existentes, que no están dibujadas para la proporción
+  del frente de un pasillo.
 - Herramientas: `tools/verificar.py` y `tests/zones/content_test.gd` (lista
   `ZONAS_CON_CONTENIDO`) deben seguir en verde zona por zona.

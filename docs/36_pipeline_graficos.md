@@ -72,6 +72,33 @@ Los 50 objetos graciosos convertibles de `docs/borradores/P-23_objetos_graciosos
 - Estilo: `viewBox` «0 0 100 90», contornos `#1B0E2A` de 4 a 5 px, sombra elíptica al pie y colores de la paleta «Cuñado Radiactivo».
 - Validación: `godot --headless --import` sin errores (16-nov-2026). Pendiente de verlos en partida.
 
+### Fachadas genéricas de corredor (P-53)
+
+Cuatro modelos para delimitar los pasillos entre zonas (ADR 0034, apartado 7): `art/shared/fachada_corredor_01.svg` a `_04.svg`.
+
+- Qué son: frente de edificio de 400 × 240 que se estira al frente del pasillo (200 u de alto y el ancho del rect `facades` del JSON). No llevan puerta caminable: son muros de pasillo. El tejado, la sombra y el contorno del frente los dibuja `CorridorFacade`; el SVG solo pinta la fachada.
+- Modelos: 01 bloque entero, 02 derruido con boquete, 03 en obras con andamio y chapa, 04 carteles y grafiti. **Son solo para `despliegue_cero`**: el director quiere que cada zona tenga edificios, colores y elementos acordes a su lore (P-56). Las otras 8 zonas los usan de forma provisional hasta que tengan fachadas propias; ninguno es de una raza concreta.
+- Herramienta: edición manual de SVG (formas, trazos y degradados; sin filtros ni `<text>`).
+- Autor: agente `arte` del proyecto, 17-nov-2026.
+- Origen: dibujo propio; sin material de terceros.
+- Estilo: muro a sangre (cubre todo el lienzo para que el estirado no abra huecos), contornos `#1B0E2A`, paleta «Cuñado Radiactivo», ventanas con marco `#F6E7C8` como en las fachadas de la beta y detalle repartido en vertical para tolerar el estirado horizontal.
+- Validación: `godot --headless --import` sin errores y las cuatro cargan en ThorVG a 400 × 240 con el lienzo cubierto al 100 % (17-nov-2026). Muestra con los cuatro modelos, una simulación de pasillo y los anchos mínimos: `docs/borradores/muestra_fachadas_corredor.png`. `ZoneBase.CORRIDOR_FACADE_ART` ya apunta a las cuatro (17-nov). Pendiente: verlas en partida.
+
+### Vistas diagonales de NPCs y dron (P-52)
+
+Catorce SVG planos nuevos (`<figura>_se.svg` y `<figura>_ne.svg` para
+jubilado_hierro, don_ramon, mohocrata, eco, grux, manada, plegado y
+dron_viejo) y 30 piezas de rig en `art/shared/rig/*_{se,ne}/`, que sustituyen
+los placeholders copiados de la vista este. Las 5 vistas dibujadas (S, SE, E,
+NE, N) cubren las 8 direcciones con espejo directo para SO, O y NO.
+Los joints de las diagonales están medidos sobre el arte (ADR 0035 §1).
+
+- Herramienta: edición manual de SVG (formas, trazos y degradados; sin filtros ni `<text>`). Mohócrata: piezas extraídas por corte del plano aprobado.
+- Autor: agente `arte` del proyecto, 17-nov-2026.
+- Origen: dibujo propio derivado de los SVG sur/este/norte de cada figura; sin material de terceros.
+- Estilo: mismos pies/sombra que la vista base, contorno `#1B0E2A`, degradados propios, lado lejano recogido hacia el cuerpo. La muestra aprobada por el director fue `docs/borradores/muestra_mohocrata_8_dir.png`; hay una comparativa por figura en `docs/borradores/muestra_<figura>_8_dir.png`.
+- Validación: import limpio, 46/46 recursos cargan y rasterizan en ThorVG, recomposición de las 6 vistas con rig idéntica a su plano. Atlas regenerado con 90 piezas (85 tras P-52, 90 tras P-51). Pendiente: verlas en partida.
+
 ## Estilo
 Cartoon grotesco de acabado pintado: anatomías extrañas, formas asimétricas, ojos, bocas y extremidades exagerados, colores saturados y poco naturales, mezcla de atractivo y desagradable, y humor visual. Estética adulta. Cada especie con identidad propia.
 

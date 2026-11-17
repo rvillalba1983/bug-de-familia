@@ -28,6 +28,10 @@ REFERENCIA: Path = RAIZ / "tools" / "referencia_datos.json"
 
 ESPECIE_RAIZ: str = "res://art/shared/"
 
+## Claves de un corredor que delimitan el pasillo con rectangulos: muros (legacy)
+## y fachadas de edificio (P-53, ADR 0034). Un corredor declara una u otra.
+DELIMITADORES: tuple[str, ...] = ("walls", "facades")
+
 
 class Informe:
     """Acumula errores y avisos de la validacion."""
@@ -386,6 +390,59 @@ def _lado_del_rect(rect: list[float], suelo: list[float]) -> str:
     return ""
 
 
+def _se_solapan(a: list[float], b: list[float]) -> bool:
+    """Solape real de dos rectangulos: tocarse por un borde no cuenta."""
+    return (
+        a[0] < b[0] + b[2]
+        and b[0] < a[0] + a[2]
+        and a[1] < b[1] + b[3]
+        and b[1] < a[1] + a[3]
+    )
+
+
+def _comprobar_delimitadores(
+    rel: str,
+    campo: str,
+    corredor: dict,
+    rect: list[float] | None,
+    mundo_box: list[float] | None,
+    informe: Informe,
+) -> None:
+    """Muros (legacy) y fachadas que delimitan un corredor (ADR 0034, P-53).
+
+    Ambas claves son listas de rectangulos con la misma interpretacion: no pueden
+    invadir el rect caminable del corredor. Un corredor declara una u otra, nunca
+    las dos: las fachadas son la forma normal desde P-53.
+    """
+    rectangulos: dict[str, list[list[float]]] = {}
+    for clave in DELIMITADORES:
+        valor = corredor.get(clave)
+        if valor is None:
+            rectangulos[clave] = []
+            continue
+        if not isinstance(valor, list):
+            informe.error(rel, "%s.%s: se esperaba una lista de rectangulos" % (campo, clave))
+            rectangulos[clave] = []
+            continue
+        comprobados: list[list[float]] = []
+        for indice, entrada in enumerate(valor):
+            etiqueta = "%s.%s[%d]" % (campo, clave, indice)
+            rectangulo = _comprobar_rect(entrada, rel, etiqueta, informe)
+            if rectangulo is None:
+                continue
+            comprobados.append(rectangulo)
+            if mundo_box is not None and not _dentro_de(rectangulo, mundo_box):
+                informe.error(rel, "%s: se sale de world_size" % etiqueta)
+            if rect is not None and _se_solapan(rectangulo, rect):
+                informe.error(rel, "%s: invade el rect caminable del corredor" % etiqueta)
+        rectangulos[clave] = comprobados
+    if rectangulos["walls"] and rectangulos["facades"]:
+        informe.error(
+            rel,
+            "%s: declara walls y facades a la vez; usa solo facades (P-53)" % campo,
+        )
+
+
 def validar_zonas(informe: Informe) -> None:
     """Zonas: indice, grafo, reparto, rutas, objetos y convertibles."""
     directorio = DATA / "zones"
@@ -610,6 +667,7 @@ def validar_zonas(informe: Informe) -> None:
                         "%s.edge: dice '%s' pero el rectangulo toca el borde %s"
                         % (campo, str(lado), lado_real),
                     )
+                _comprobar_delimitadores(rel, campo, corredor, rect, mundo_box, informe)
 
         conversiones = cargar_json(DATA / "conversion" / "catalog.json", informe)
         materiales = set(conversiones.get("materials", {}).keys()) if isinstance(conversiones, dict) else set()
@@ -1088,12 +1146,18 @@ def validar_arte(informe: Informe) -> dict[str, Any]:
                 informe.error(rel_fr, "%s: no es un objeto" % accion)
                 continue
             claves = bloque.get("frames")
-            if not isinstance(claves, list) or not claves:
+            rig_only = bloque.get("rig_only") is True
+            if not isinstance(claves, list) or (not claves and not rig_only):
                 informe.error(rel_fr, "%s.frames: falta o está vacío" % accion)
                 continue
+            if rig_only and claves:
+                informe.error(rel_fr, "%s: rig_only no puede declarar fotogramas" % accion)
             fps = bloque.get("fps")
             if not isinstance(fps, (int, float)) or fps <= 0:
                 informe.error(rel_fr, "%s.fps: debe ser un número positivo" % accion)
+            for campo in ("duration", "priority"):
+                if campo in bloque and not isinstance(bloque[campo], (int, float)):
+                    informe.error(rel_fr, "%s.%s: debe ser un número" % (accion, campo))
             for clave in claves:
                 if "/" in str(clave):
                     informe.error(rel_fr, "%s: '%s' no puede llevar '/'" % (accion, clave))

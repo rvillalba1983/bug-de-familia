@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  fachada_corredor_03 · Bloque en obras con andamio y chapa
+  Bug de Familia · P-53 (fachadas genéricas de corredor)
+  Origen: dibujo propio; no usa material de terceros
+  Herramienta: edición manual de SVG (formas, trazos y degradados)
+  Lienzo 400 x 240 · sin fondo · se estira al frente del pasillo (200 u de alto)
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240" viewBox="0 0 400 240">
+  <defs>
+    <linearGradient id="f3_muro" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5A6488"/>
+      <stop offset="0.55" stop-color="#3A1A5C"/>
+      <stop offset="1" stop-color="#2A1244"/>
+    </linearGradient>
+    <linearGradient id="f3_cornisa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6A2BA8"/>
+      <stop offset="1" stop-color="#3A1A5C"/>
+    </linearGradient>
+    <linearGradient id="f3_chapa" x1="0" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#C05A32"/>
+      <stop offset="0.5" stop-color="#A8482A"/>
+      <stop offset="1" stop-color="#6A2A20"/>
+    </linearGradient>
+    <linearGradient id="f3_zocalo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8894B5"/>
+      <stop offset="1" stop-color="#4A5478"/>
+    </linearGradient>
+  </defs>
+
+  <!-- muro -->
+  <rect x="0" y="0" width="400" height="240" fill="url(#f3_muro)"/>
+  <g fill="#8894B5" opacity="0.14">
+    <path d="M0 96h400v10H0Z"/>
+    <path d="M0 118h400v6H0Z"/>
+    <path d="M0 168h400v8H0Z"/>
+  </g>
+  <g stroke="#8894B5" stroke-width="2" fill="none" opacity="0.12">
+    <path d="M0 60H400M0 144H400M0 194H400M0 210H400M56 60V96M148 96V118M232 168V194M316 144V168M92 194V210M284 194V210"/>
+  </g>
+  <g fill="#1B0E2A" opacity="0.18">
+    <rect x="0" y="22" width="10" height="192"/>
+    <rect x="390" y="22" width="10" height="192"/>
+  </g>
+
+  <!-- cornisa: la obra no la ha tocado, todavía está entera -->
+  <rect x="0" y="0" width="400" height="22" fill="url(#f3_cornisa)"/>
+  <path d="M0 22H400" stroke="#1B0E2A" stroke-width="7"/>
+  <g fill="#1B0E2A" opacity="0.4">
+    <rect x="16" y="22" width="40" height="8"/>
+    <rect x="96" y="22" width="40" height="8"/>
+    <rect x="176" y="22" width="40" height="8"/>
+    <rect x="256" y="22" width="40" height="8"/>
+    <rect x="336" y="22" width="40" height="8"/>
+  </g>
+
+  <!-- ventanas del bloque, marco claro y medio tapadas por la obra -->
+  <g stroke="#1B0E2A" stroke-width="5" stroke-linejoin="round">
+    <rect x="36" y="62" width="74" height="68" fill="#F6E7C8"/>
+    <rect x="288" y="66" width="76" height="70" fill="#F6E7C8"/>
+    <rect x="36" y="144" width="74" height="62" fill="#F6E7C8"/>
+  </g>
+  <g stroke="#1B0E2A" stroke-width="4">
+    <rect x="44" y="70" width="58" height="52" fill="#150A22"/>
+    <rect x="296" y="74" width="60" height="54" fill="#150A22"/>
+    <rect x="44" y="152" width="58" height="46" fill="#3A4A6E"/>
+  </g>
+  <g fill="#8894B5" opacity="0.45">
+    <path d="M52 78L66 88L56 100Z"/>
+    <path d="M306 82L320 92L310 104Z"/>
+  </g>
+  <path d="M52 160Q66 176 58 194" fill="none" stroke="#F6E7C8" stroke-width="5"
+        stroke-linecap="round" opacity="0.5"/>
+
+  <!-- andamio: tubos de hierro con abrazaderas -->
+  <g stroke-linecap="round" fill="none">
+    <g stroke="#1B0E2A" stroke-width="14">
+      <path d="M30 8V240M104 8V240M178 8V240M252 8V240M326 8V240M392 8V240"/>
+      <path d="M0 54H400M0 128H400M0 200H400"/>
+    </g>
+    <g stroke="#8894B5" stroke-width="7">
+      <path d="M30 8V240M104 8V240M178 8V240M252 8V240M326 8V240M392 8V240"/>
+      <path d="M0 54H400M0 128H400M0 200H400"/>
+    </g>
+    <g stroke="#1B0E2A" stroke-width="11">
+      <path d="M30 200L104 128M104 200L178 128M252 128L326 200M326 128L392 200M104 128L178 200"/>
+    </g>
+    <g stroke="#B4BED8" stroke-width="4" opacity="0.9">
+      <path d="M30 200L104 128M104 200L178 128M252 128L326 200M326 128L392 200M104 128L178 200"/>
+    </g>
+  </g>
+  <g fill="#8894B5" stroke="#1B0E2A" stroke-width="3" stroke-linejoin="round">
+    <rect x="24" y="48" width="12" height="12"/>
+    <rect x="98" y="48" width="12" height="12"/>
+    <rect x="172" y="48" width="12" height="12"/>
+    <rect x="246" y="48" width="12" height="12"/>
+    <rect x="320" y="48" width="12" height="12"/>
+    <rect x="24" y="122" width="12" height="12"/>
+    <rect x="98" y="122" width="12" height="12"/>
+    <rect x="172" y="122" width="12" height="12"/>
+    <rect x="246" y="122" width="12" height="12"/>
+    <rect x="320" y="122" width="12" height="12"/>
+    <rect x="98" y="194" width="12" height="12"/>
+    <rect x="246" y="194" width="12" height="12"/>
+    <rect x="320" y="194" width="12" height="12"/>
+  </g>
+  <!-- tablones de la plataforma -->
+  <g fill="#6A2A20" stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round">
+    <rect x="30" y="128" width="74" height="11"/>
+    <rect x="178" y="128" width="74" height="11"/>
+    <rect x="326" y="200" width="66" height="11"/>
+  </g>
+
+  <!-- chapa de obra atornillada, tapando media fachada -->
+  <g transform="rotate(-3 200 108)">
+    <rect x="120" y="64" width="150" height="88" fill="url(#f3_chapa)" stroke="#1B0E2A"
+          stroke-width="6" stroke-linejoin="round"/>
+    <path d="M126 66V150M198 64V152M264 66V150" fill="none" stroke="#6A2A20"
+          stroke-width="4"/>
+    <path d="M128 76L262 142" fill="none" stroke="#1B0E2A" stroke-width="3" opacity="0.45"/>
+    <path d="M136 70H160" stroke="#F6E7C8" stroke-width="4" opacity="0.4"/>
+    <g fill="#8894B5" stroke="#1B0E2A" stroke-width="2.5">
+      <circle cx="128" cy="72" r="4"/>
+      <circle cx="262" cy="72" r="4"/>
+      <circle cx="128" cy="144" r="4"/>
+      <circle cx="262" cy="144" r="4"/>
+      <circle cx="195" cy="72" r="4"/>
+      <circle cx="195" cy="144" r="4"/>
+    </g>
+    <!-- esquina arrancada -->
+    <path d="M270 118L262 120L266 152H270Z" fill="#1B0E2A"/>
+  </g>
+
+  <!-- lona raída colgada del andamio -->
+  <g transform="rotate(4 288 60)">
+    <path d="M266 28Q282 26 296 30L300 96Q288 104 276 98L270 102Z" fill="#FF1F8F"
+          stroke="#1B0E2A" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M276 40L292 96M288 34L274 88" fill="none" stroke="#A80F6B" stroke-width="4"
+          stroke-linecap="round"/>
+  </g>
+
+  <!-- bombilla colgando del tubo -->
+  <path d="M212 130V158" stroke="#1B0E2A" stroke-width="4" stroke-linecap="round"/>
+  <g stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round">
+    <path d="M200 158H224L220 170H204Z" fill="#8894B5"/>
+    <circle cx="212" cy="176" r="7" fill="#FFD400"/>
+  </g>
+
+  <!-- cartel de aviso sin texto: rayas de obra -->
+  <g transform="rotate(-6 62 138)">
+    <rect x="34" y="128" width="58" height="30" fill="#FFD400" stroke="#1B0E2A"
+          stroke-width="4" stroke-linejoin="round"/>
+    <g fill="#1B0E2A">
+      <path d="M40 154l26 -24h10l-26 24Z"/>
+      <path d="M62 154l20 -18v8l-12 10Z"/>
+    </g>
+  </g>
+
+  <!-- chapa y bidón al pie -->
+  <g fill="#8894B5" stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round">
+    <path d="M320 208L350 208L346 238L324 238Z"/>
+    <path d="M322 214H348M322 226H347"/>
+  </g>
+  <g fill="#FF6A00" stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round">
+    <ellipse cx="335" cy="208" rx="15" ry="5" fill="#FFD400"/>
+  </g>
+  <g fill="#A8482A" stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round">
+    <path d="M46 214L74 210L78 238H42Z"/>
+    <path d="M50 222H74M48 230H76"/>
+  </g>
+
+  <!-- cables y cuerda suelta -->
+  <path d="M0 36Q70 54 140 36" fill="none" stroke="#1B0E2A" stroke-width="7"
+        stroke-linecap="round"/>
+  <path d="M0 36Q70 54 140 36" fill="none" stroke="#00E5FF" stroke-width="3"
+        stroke-linecap="round"/>
+  <path d="M360 44q14 24 4 46" fill="none" stroke="#1B0E2A" stroke-width="4"
+        stroke-linecap="round"/>
+
+  <!-- manchas y zócalo -->
+  <g fill="#1B0E2A" opacity="0.16">
+    <path d="M92 168q8 20 3 34l-12 0q-5 -16 9 -34z"/>
+    <path d="M232 158q9 22 3 38l-12 0q-6 -18 9 -38z"/>
+  </g>
+  <rect x="0" y="214" width="400" height="26" fill="url(#f3_zocalo)"/>
+  <path d="M0 214H400" stroke="#1B0E2A" stroke-width="6"/>
+  <g stroke="#1B0E2A" stroke-width="4" opacity="0.5" fill="none">
+    <path d="M58 214V240M142 214V240M226 214V240M310 214V240"/>
+  </g>
+</svg>

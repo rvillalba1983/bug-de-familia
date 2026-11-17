@@ -14,7 +14,7 @@ Estado: aprobado por el director el 9-nov, tras ejecutarlo en Godot 4.7.2 y ver 
 - Las vistas intermedias se calculan deformando las principales (`tools/art/protagonist_gen.py`).
 - Piezas: 10 cabezas, 20 brazos y 10 piernas, con colores y complementos propios. La pieza original usa el aspecto 0.
 - Las piezas convertidas eligen aspecto a partir de su nombre, sin gastar azar de la partida.
-- NPC y dron: 4 direcciones (sur, este y norte dibujadas; oeste reflejada).
+- NPC y dron: **8 direcciones** (sur, sureste, este, nordeste y norte dibujadas; oeste, suroeste y noroeste reflejadas). Antes eran 4 (sur, este y norte dibujadas; oeste reflejada). Ampliación implementada en P-52: ver `adr/0035-arte-personajes-y-delimitadores.md`.
 
 ## Fachadas
 - La centralita y el depósito tienen fachada propia, con la puerta encajada en la de la centralita.

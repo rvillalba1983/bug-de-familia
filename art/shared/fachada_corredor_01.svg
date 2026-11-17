@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  fachada_corredor_01 · Bloque de viviendas con la fachada entera
+  Bug de Familia · P-53 (fachadas genéricas de corredor)
+  Origen: dibujo propio; no usa material de terceros
+  Herramienta: edición manual de SVG (formas, trazos y degradados)
+  Lienzo 400 x 240 · sin fondo · se estira al frente del pasillo (200 u de alto)
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240" viewBox="0 0 400 240">
+  <defs>
+    <linearGradient id="f1_muro" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4A5478"/>
+      <stop offset="0.55" stop-color="#3A1A5C"/>
+      <stop offset="1" stop-color="#36205F"/>
+    </linearGradient>
+    <linearGradient id="f1_cornisa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6A2BA8"/>
+      <stop offset="1" stop-color="#3A1A5C"/>
+    </linearGradient>
+    <linearGradient id="f1_cristal" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#8894B5"/>
+      <stop offset="0.6" stop-color="#3A4A6E"/>
+      <stop offset="1" stop-color="#1B0E2A"/>
+    </linearGradient>
+    <linearGradient id="f1_zocalo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8894B5"/>
+      <stop offset="1" stop-color="#4A5478"/>
+    </linearGradient>
+  </defs>
+
+  <!-- muro: cubre todo el lienzo para que el estirado no abra huecos -->
+  <rect x="0" y="0" width="400" height="240" fill="url(#f1_muro)"/>
+
+  <!-- llagas del ladrillo: líneas tenues, repartidas para tolerar el estirado -->
+  <g stroke="#8894B5" stroke-width="2" fill="none" opacity="0.16">
+    <path d="M0 40H400M0 60H400M0 80H400M0 132H400M0 152H400M0 172H400M0 192H400M0 206H400"/>
+  </g>
+  <g stroke="#8894B5" stroke-width="2" fill="none" opacity="0.12">
+    <path d="M48 40V60M120 60V80M192 40V60M264 60V80M336 40V60M84 132V152M156 152V172M228 132V152M300 152V172M372 132V152"/>
+  </g>
+  <!-- esquinas en sombra: dan canto al edificio en frentes anchos -->
+  <g fill="#1B0E2A" opacity="0.2">
+    <rect x="0" y="26" width="10" height="186"/>
+    <rect x="390" y="26" width="10" height="186"/>
+  </g>
+
+  <!-- cornisa: remate del frente, pegado al tejado que dibuja el nodo -->
+  <rect x="0" y="0" width="400" height="26" fill="url(#f1_cornisa)"/>
+  <g fill="#1B0E2A" opacity="0.45">
+    <rect x="10" y="26" width="14" height="10"/>
+    <rect x="42" y="26" width="14" height="10"/>
+    <rect x="74" y="26" width="14" height="10"/>
+    <rect x="106" y="26" width="14" height="10"/>
+    <rect x="138" y="26" width="14" height="10"/>
+    <rect x="170" y="26" width="14" height="10"/>
+    <rect x="202" y="26" width="14" height="10"/>
+    <rect x="234" y="26" width="14" height="10"/>
+    <rect x="266" y="26" width="14" height="10"/>
+    <rect x="298" y="26" width="14" height="10"/>
+    <rect x="330" y="26" width="14" height="10"/>
+    <rect x="362" y="26" width="14" height="10"/>
+  </g>
+  <path d="M0 26H400" stroke="#1B0E2A" stroke-width="7"/>
+
+  <!-- marcos claros: el mismo recurso que las fachadas de referencia -->
+  <g fill="#F6E7C8" stroke="#1B0E2A" stroke-width="5" stroke-linejoin="round">
+    <rect x="5" y="35" width="70" height="66"/>
+    <rect x="85" y="35" width="70" height="66"/>
+    <rect x="165" y="35" width="70" height="66"/>
+    <rect x="245" y="35" width="70" height="66"/>
+    <rect x="325" y="35" width="70" height="66"/>
+    <rect x="11" y="139" width="78" height="76"/>
+    <rect x="111" y="139" width="78" height="76"/>
+    <rect x="211" y="139" width="78" height="76"/>
+    <rect x="311" y="139" width="78" height="76"/>
+  </g>
+
+  <!-- ventanas altas: intacta, con tablones, con reflejo, rota y con persiana -->
+  <g stroke="#1B0E2A" stroke-width="5" stroke-linejoin="round">
+    <rect x="12" y="42" width="56" height="52" fill="url(#f1_cristal)"/>
+    <rect x="92" y="42" width="56" height="52" fill="#1B0E2A"/>
+    <rect x="172" y="42" width="56" height="52" fill="url(#f1_cristal)"/>
+    <rect x="252" y="42" width="56" height="52" fill="#1B0E2A"/>
+    <rect x="332" y="42" width="56" height="52" fill="#4A5478"/>
+  </g>
+  <g stroke="#1B0E2A" stroke-width="4" fill="none">
+    <path d="M40 42V94M12 68H68"/>
+    <path d="M200 42V94M172 68H228"/>
+    <path d="M360 42V94M332 68H360"/>
+  </g>
+  <path d="M20 52L32 68L26 82" fill="none" stroke="#F6E7C8" stroke-width="2.5"
+        stroke-linecap="round" opacity="0.55"/>
+  <path d="M178 90L214 46" fill="none" stroke="#F6E7C8" stroke-width="3"
+        stroke-linecap="round" opacity="0.28"/>
+  <!-- tablones sobre la ventana tapiada -->
+  <g fill="#6A2A20" stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round">
+    <rect x="86" y="54" width="70" height="13" transform="rotate(-4 121 60)"/>
+    <rect x="86" y="76" width="70" height="13" transform="rotate(3 121 82)"/>
+  </g>
+  <g fill="#8894B5">
+    <circle cx="94" cy="60" r="2.5"/>
+    <circle cx="150" cy="58" r="2.5"/>
+    <circle cx="94" cy="84" r="2.5"/>
+    <circle cx="150" cy="88" r="2.5"/>
+  </g>
+  <!-- cristales rotos -->
+  <g fill="#8894B5" opacity="0.55">
+    <path d="M258 48L272 58L262 66Z"/>
+    <path d="M296 52L302 70L288 74Z"/>
+    <path d="M264 88L278 78L282 92Z"/>
+  </g>
+  <!-- persiana torcida -->
+  <g transform="rotate(7 360 94)">
+    <rect x="332" y="52" width="56" height="44" fill="#A8482A" stroke="#1B0E2A"
+          stroke-width="4" stroke-linejoin="round"/>
+    <g stroke="#6A2A20" stroke-width="3">
+      <path d="M336 62H384M336 72H384M336 82H384"/>
+    </g>
+  </g>
+
+  <!-- imposta entre plantas -->
+  <rect x="0" y="120" width="400" height="12" fill="#4A5478"/>
+  <path d="M0 120H400M0 132H400" stroke="#1B0E2A" stroke-width="4"/>
+
+  <!-- ventanas bajas: reja, tablones, cortina y una tapiada con ladrillo -->
+  <g stroke="#1B0E2A" stroke-width="5" stroke-linejoin="round">
+    <rect x="18" y="146" width="64" height="62" fill="#1B0E2A"/>
+    <rect x="118" y="146" width="64" height="62" fill="#1B0E2A"/>
+    <rect x="218" y="146" width="64" height="62" fill="#3A4A6E"/>
+    <rect x="318" y="146" width="64" height="62" fill="#6A2A20"/>
+  </g>
+  <g stroke="#8894B5" stroke-width="4" fill="none">
+    <path d="M30 146V208M44 146V208M58 146V208M72 146V208"/>
+    <path d="M18 168H82M18 188H82"/>
+  </g>
+  <g fill="#6A2A20" stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round">
+    <rect x="112" y="160" width="76" height="12" transform="rotate(-6 150 166)"/>
+    <rect x="112" y="188" width="76" height="12" transform="rotate(5 150 194)"/>
+  </g>
+  <path d="M224 152Q236 178 226 204" fill="none" stroke="#F6E7C8" stroke-width="6"
+        stroke-linecap="round" opacity="0.65"/>
+  <g stroke="#1B0E2A" stroke-width="3" fill="none" opacity="0.7">
+    <path d="M318 166H382M318 186H382M318 206H382M340 146V166M362 166V186M334 186V208"/>
+  </g>
+
+  <!-- aparato de aire acondicionado con su chorretón -->
+  <rect x="344" y="98" width="44" height="24" rx="3" fill="#8894B5" stroke="#1B0E2A"
+        stroke-width="4" stroke-linejoin="round"/>
+  <g stroke="#1B0E2A" stroke-width="2.5" fill="none" opacity="0.8">
+    <path d="M350 104H382M350 110H382M350 116H382"/>
+  </g>
+  <path d="M356 124q4 14 0 22" fill="none" stroke="#1B0E2A" stroke-width="3"
+        stroke-linecap="round" opacity="0.35"/>
+
+  <!-- bajantes de hierro en los dos cantos -->
+  <g stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round" fill="#8894B5">
+    <rect x="4" y="26" width="12" height="186"/>
+    <rect x="384" y="26" width="12" height="186"/>
+  </g>
+  <g stroke="#1B0E2A" stroke-width="3" fill="none">
+    <path d="M4 62H16M4 118H16M4 176H16M384 62H396M384 118H396M384 176H396"/>
+  </g>
+
+  <!-- cable colgando de fachada a fachada -->
+  <path d="M0 34Q100 56 200 34T400 38" fill="none" stroke="#1B0E2A" stroke-width="8"
+        stroke-linecap="round"/>
+  <path d="M0 34Q100 56 200 34T400 38" fill="none" stroke="#FFD400" stroke-width="3.5"
+        stroke-linecap="round"/>
+
+  <!-- grietas y manchas -->
+  <g fill="none" stroke="#1B0E2A" stroke-width="3" stroke-linecap="round" opacity="0.8">
+    <path d="M104 134L112 156L102 176"/>
+    <path d="M244 134L258 158L248 178L256 196"/>
+    <path d="M76 96L84 112"/>
+    <path d="M300 136L312 154"/>
+  </g>
+  <g fill="#1B0E2A" opacity="0.16">
+    <path d="M60 134q8 24 3 40l-12 0q-6 -20 9 -40z"/>
+    <path d="M268 134q7 20 2 32l-10 0q-5 -16 8 -32z"/>
+  </g>
+
+  <!-- zócalo -->
+  <rect x="0" y="212" width="400" height="28" fill="url(#f1_zocalo)"/>
+  <path d="M0 212H400" stroke="#1B0E2A" stroke-width="6"/>
+  <g stroke="#1B0E2A" stroke-width="4" opacity="0.55" fill="none">
+    <path d="M62 212V240M146 212V240M230 212V240M314 212V240"/>
+  </g>
+  <g fill="#2FBF71" stroke="#1B0E2A" stroke-width="3" stroke-linejoin="round" opacity="0.85">
+    <circle cx="100" cy="222" r="9"/>
+    <circle cx="112" cy="226" r="6"/>
+    <circle cx="286" cy="224" r="8"/>
+    <circle cx="298" cy="228" r="5"/>
+  </g>
+</svg>

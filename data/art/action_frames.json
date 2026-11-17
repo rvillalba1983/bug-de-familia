@@ -1,8 +1,36 @@
 {
-  "_origen": "Fotogramas dibujados por codigo en tools/art/piece_atlas_gen.gd (Godot 4.7.2), con la paleta Cunado Radiactivo. Provisional, P-25.",
+  "_origen": "Fotogramas dibujados por codigo en tools/art/piece_atlas_gen.gd (Godot 4.7.2), con la paleta Cunado Radiactivo. Acciones, prioridad y duracion de P-25 y P-51. Provisional.",
   "acciones": {
-    "idle": {"fps": 2.0, "frames": ["accion_idle_0", "accion_idle_1"]},
-    "ataque": {"fps": 10.0, "frames": ["accion_ataque_0", "accion_ataque_1", "accion_ataque_2"]},
-    "recarga": {"fps": 4.0, "frames": ["accion_recarga_0", "accion_recarga_1"]}
+    "idle": {
+      "fps": 2.0, "frames": ["accion_idle_0", "accion_idle_1"],
+      "priority": 0, "duration": -1.0
+    },
+    "ataque": {
+      "fps": 10.0, "frames": ["accion_ataque_0", "accion_ataque_1", "accion_ataque_2"],
+      "priority": 5, "duration": 0.3
+    },
+    "recarga": {
+      "fps": 4.0, "frames": ["accion_recarga_0", "accion_recarga_1"],
+      "priority": 5, "duration": 0.5
+    },
+    "lanzar": {
+      "fps": 8.0, "frames": ["accion_lanzar_0", "accion_lanzar_1", "accion_lanzar_2"],
+      "priority": 5, "duration": 0.4, "holds_movement": true
+    },
+    "convertir": {
+      "fps": 4.0, "frames": ["accion_convertir_0", "accion_convertir_1"],
+      "priority": 5, "duration": 0.6
+    },
+    "recoger": {"fps": 1.0, "rig_only": true, "frames": [], "priority": 3, "duration": 0.25},
+    "celebrar": {"fps": 1.0, "rig_only": true, "frames": [], "priority": 4, "duration": 1.2},
+    "provocar": {"fps": 1.0, "rig_only": true, "frames": [], "priority": 4, "duration": 0.8},
+    "saludar": {"fps": 1.0, "rig_only": true, "frames": [], "priority": 4, "duration": 0.6},
+    "señalar": {"fps": 1.0, "rig_only": true, "frames": [], "priority": 4, "duration": 0.5},
+    "daño": {"fps": 1.0, "rig_only": true, "frames": [], "priority": 8, "duration": 0.25},
+    "perdida": {"fps": 1.0, "rig_only": true, "frames": [], "priority": 9, "duration": 0.6},
+    "morir": {
+      "fps": 1.0, "rig_only": true, "frames": [], "priority": 10, "duration": 1.5, "terminal": true
+    },
+    "rascar": {"fps": 1.0, "rig_only": true, "frames": [], "priority": 1, "duration": 1.0}
   }
 }

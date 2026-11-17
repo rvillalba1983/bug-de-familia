@@ -90,7 +90,38 @@ func _action_frame(accion: String, index: int, total: int, key: String) -> Dicti
 	_linea(image, mano, punta, COLOR_INK, 8.0)
 	_linea(image, mano, punta, COLOR_WEAPON, 4.0)
 	_punto(image, punta, 4.0, COLOR_ACCENT)
+	_detalle(image, accion, mano, punta, angulo, fase)
 	return {"key": key, "image": image, "trim_x": 0, "trim_y": 0, "full": FRAME_SIDE}
+
+
+## Lo que añade cada acción nueva de P-51 sobre la silueta de brazo y arma.
+func _detalle(
+	image: Image, accion: String, mano: Vector2, punta: Vector2, angulo: float, fase: float
+) -> void:
+	match accion:
+		"lanzar":
+			_chatarra(image, punta, angulo, fase)
+		"convertir":
+			_brillo(image, mano)
+
+
+## La chatarra sale de la mano y se aleja: el destello se lee a 13 px.
+func _chatarra(image: Image, punta: Vector2, angulo: float, fase: float) -> void:
+	var paso: float = 6.0 + 12.0 * fase
+	var at: Vector2 = punta + Vector2(cos(angulo), sin(angulo)) * paso
+	var lado: float = 3.5 + 1.5 * fase
+	_rectangulo(image, at, lado + 1.0, Palette.INK)
+	_rectangulo(image, at, lado, Palette.HIERRO)
+	_rectangulo(image, at + Vector2(-1.0, -1.0), lado * 0.5, Palette.HIERRO_OSCURO)
+	_punto(image, punta, 3.0 + fase, Palette.OBRA)
+	_punto(image, punta, 1.5 + fase, Palette.HUESO)
+
+
+## El brillo morado de la conversión, la señal que se ve incluso a 13 px.
+func _brillo(image: Image, mano: Vector2) -> void:
+	_punto(image, mano, 9.0, Palette.BERENJENA)
+	_punto(image, mano, 5.0, Palette.BERENJENA.lerp(Palette.HUESO, 0.45))
+	_punto(image, mano, 2.0, Palette.HUESO)
 
 
 func _angulo(accion: String, fase: float) -> float:
@@ -99,8 +130,23 @@ func _angulo(accion: String, fase: float) -> float:
 			return lerpf(-1.2, -0.1, fase)
 		"recarga":
 			return lerpf(-0.2, -0.9, fase) + sin(fase * TAU) * 0.15
+		"lanzar":
+			return lerpf(-0.55, -1.05, fase)
+		"convertir":
+			return lerpf(-0.7, -0.95, fase)
 		_:
 			return -0.65 + sin(fase * TAU) * 0.12
+
+
+## Cuadrado relleno, para los trozos de chatarra.
+func _rectangulo(image: Image, center: Vector2, half: float, color: Color) -> void:
+	var x0: int = maxi(int(center.x - half), 0)
+	var x1: int = mini(int(center.x + half), FRAME_SIDE - 1)
+	var y0: int = maxi(int(center.y - half), 0)
+	var y1: int = mini(int(center.y + half), FRAME_SIDE - 1)
+	for y: int in range(y0, y1 + 1):
+		for x: int in range(x0, x1 + 1):
+			image.set_pixel(x, y, color)
 
 
 func _linea(image: Image, from: Vector2, to: Vector2, color: Color, width: float) -> void:

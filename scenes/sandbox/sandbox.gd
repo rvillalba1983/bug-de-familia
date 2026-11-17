@@ -435,7 +435,22 @@ func _connect_systems() -> void:
 	panel.discarded.connect(ai.on_piece_discarded)
 	fight.pre_fight_started.connect(ai.say.bind("fight"))
 	actions.door_hacked.connect(open_door)
+	_connect_celebrations()
 	_connect_body()
+
+
+## P-51: celebrar cada reto completado. Se buscan los nodos que emiten
+## `challenge_completed` para no acoplar la escena base a ninguna zona.
+func _connect_celebrations() -> void:
+	for node: Node in get_children():
+		if node.has_signal("challenge_completed"):
+			var call: Callable = _on_challenge_completed
+			if not node.is_connected("challenge_completed", call):
+				node.connect("challenge_completed", call)
+
+
+func _on_challenge_completed(_id: String) -> void:
+	player.set_action("celebrar")
 
 
 func _connect_enemies() -> void:
@@ -580,6 +595,7 @@ func open_door() -> void:
 
 func _complete_challenge() -> void:
 	challenge_done = true
+	player.set_action("celebrar")
 	hud.done_label.visible = true
 	autosave()
 
@@ -595,6 +611,7 @@ func _add_pickup(slots: Array[ModularBody.Slot]) -> void:
 
 
 func on_item_activated(item: Interactable) -> void:
+	player.gesture_for(item.kind, item.item_id)
 	match item.kind:
 		Interactable.Kind.NPC:
 			investigation.open_dialogue(item.item_id)

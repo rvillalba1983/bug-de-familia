@@ -16,6 +16,9 @@ func _init(owner_level: Sandbox) -> void:
 func order_at(point: Vector2) -> void:
 	_pending_use = null
 	var enemy: Guard = enemy_at(point)
+	if enemy != null and can_provoke(enemy):
+		## P-51: enemigo en alerta pero sin pelea. Es solo el gesto: no cambia el combate.
+		level.player.set_action("provocar")
 	if enemy != null and (not enemy.passive or enemy.is_alert() or _is_selected(enemy)):
 		level.combat.engage(enemy)
 		return
@@ -25,6 +28,13 @@ func order_at(point: Vector2) -> void:
 		_go_and_use(item)
 		return
 	level.player.set_path(level.nav.find_path(level.player.global_position, point))
+
+
+## Contexto nuevo de P-51: el enemigo ya te ha visto pero la pelea no ha empezado.
+func can_provoke(enemy: Guard) -> bool:
+	if level.fight == null:
+		return false
+	return enemy.is_alert() and level.fight.phase == FightDirector.Phase.CALM
 
 
 ## Al llegar, se usa solo. Si te mueves con el teclado, la orden se cancela.

@@ -12,12 +12,22 @@ const COLOR_ART_SHADOW: Color = Color(0.0, 0.0, 0.0, 0.4)
 const ART_HEIGHT: float = 77.0
 ## Altura de los pies dentro del dibujo, medida desde arriba.
 const ART_FEET: float = 0.93
+## Vistas dibujadas, en el orden de `VIEW_SUFFIX`. Las de poniente son espejos.
 const VIEW_SOUTH: int = 0
-const VIEW_EAST: int = 1
-const VIEW_NORTH: int = 2
-const VIEW_SUFFIX: Array[String] = ["", "_e", "_n"]
+const VIEW_SOUTHEAST: int = 1
+const VIEW_EAST: int = 2
+const VIEW_NORTHEAST: int = 3
+const VIEW_NORTH: int = 4
+const VIEW_SUFFIX: Array[String] = ["", "_se", "_e", "_ne", "_n"]
+## Vista dibujada por octante de `octant_of`, en el orden de `Player.octant_of`:
+## 0 este, 1 sureste, 2 sur, 3 suroeste, 4 oeste, 5 noroeste, 6 norte, 7 nordeste.
+const VIEW_BY_OCTANT: Array[int] = [
+	VIEW_EAST, VIEW_SOUTHEAST, VIEW_SOUTH, VIEW_SOUTHEAST,
+	VIEW_EAST, VIEW_NORTHEAST, VIEW_NORTH, VIEW_NORTHEAST,
+]
 
-## Vistas sur, este y norte, en ese orden. El oeste refleja al este.
+## Vistas sur, sureste, este, nordeste y norte, en ese orden. El oeste, el suroeste
+## y el noroeste reflejan la lateral correspondiente.
 ## Si está vacío se dibuja el círculo de color.
 var art_views: Array[Texture2D] = []
 ## Carpeta base de piezas con huesos; vacía si este personaje no las tiene.
@@ -33,7 +43,7 @@ var frames: ActionFrame = ActionFrame.new()
 var rig_root: Node2D
 
 var _guard: Guard
-var _rigs: Array[EnemyRig] = [null, null, null]
+var _rigs: Array[EnemyRig] = [null, null, null, null, null]
 var _rig_view: int = VIEW_SOUTH
 var _was_alert: bool = false
 
@@ -42,10 +52,38 @@ func _init(guard: Guard) -> void:
 	_guard = guard
 
 
+## Octante de la dirección, con el mismo criterio que `Player.octant_of`.
+static func octant_of(direction: Vector2) -> int:
+	return posmod(roundi(direction.angle() / (TAU / 8.0)), 8)
+
+
+## Vista dibujada para esa dirección: ocho octantes sobre cinco vistas.
 static func view_for(direction: Vector2) -> int:
-	if absf(direction.y) > absf(direction.x):
-		return VIEW_SOUTH if direction.y > 0.0 else VIEW_NORTH
-	return VIEW_EAST
+	return VIEW_BY_OCTANT[octant_of(direction)]
+
+
+## Las tres vistas laterales también se dibujan espejadas hacia poniente.
+static func is_side(view: int) -> bool:
+	return view == VIEW_SOUTHEAST or view == VIEW_EAST or view == VIEW_NORTHEAST
+
+
+## Cierto si esa dirección se dibuja con la vista lateral espejada.
+static func is_mirrored(direction: Vector2) -> bool:
+	return direction.x < 0.0 and is_side(view_for(direction))
+
+
+## Carga las cinco vistas de `base` desde `folder`.
+## Desde P-52 el arte dibuja las cinco: no hay respaldo entre vistas, así que un
+## archivo que falte deja la textura nula y lo cazan las pruebas de `tests/art`.
+static func load_views(folder: String, base: String) -> Array[Texture2D]:
+	var views: Array[Texture2D] = []
+	for view: int in VIEW_SUFFIX.size():
+		views.append(_view_texture(folder, base, view))
+	return views
+
+
+static func _view_texture(folder: String, base: String, view: int) -> Texture2D:
+	return load(folder + base + VIEW_SUFFIX[view] + ".svg") as Texture2D
 
 
 func draw() -> void:
@@ -71,7 +109,7 @@ func update_rig() -> void:
 	var facing: Vector2 = Vector2.from_angle(_guard.detector.facing_angle)
 	if state != Guard.State.DOWN or rig == null:
 		_show_view(view_for(facing))
-	if _rig_view == VIEW_EAST:
+	if is_side(_rig_view):
 		var flipped: bool = facing.x < 0.0 and state != Guard.State.DOWN
 		rig.scale.x = absf(rig.scale.x) * (-1.0 if flipped else 1.0)
 	rig.modulate = _rig_tint(state)
@@ -170,10 +208,11 @@ func _draw_art() -> void:
 		return
 	var direction: Vector2 = Vector2.from_angle(_guard.detector.facing_angle)
 	var view: int = view_for(direction)
-	var art: Texture2D = art_views[view]
+	## Respaldo: un juego de vistas corto (datos viejos) no debe reventar el dibujo.
+	var art: Texture2D = art_views[mini(view, art_views.size() - 1)]
 	var height: float = _art_height()
 	var size: Vector2 = Vector2(height * art.get_size().aspect(), height)
-	if view == VIEW_EAST and direction.x < 0.0:
+	if is_mirrored(direction):
 		size.x = -size.x
 	var tint: Color = COLOR_ALERT.lightened(0.5) if _guard.state == Guard.State.ALERT else Color.WHITE
 	_draw_shadow()

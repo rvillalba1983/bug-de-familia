@@ -20,7 +20,7 @@
           64
         ],
         "to": "taller",
-        "walls": [
+        "facades": [
           [
             1840,
             64,
@@ -45,7 +45,7 @@
           240
         ],
         "to": "gran_cruce",
-        "walls": [
+        "facades": [
           [
             3536,
             1840,

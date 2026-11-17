@@ -237,6 +237,37 @@ class RegistroTest(unittest.TestCase):
         self.assertEqual(errores, [])
         self.assertEqual(len(avisos), 1)
 
+    def test_registro_avisa_push_error_capturado_por_gdunit(self) -> None:
+        # Un test negativo provoca el push_error y GdUnit4 lo captura con
+        # assert_push_error: es esperado, no un fallo de descubrimiento.
+        registro = (
+            "ERROR: res://data/zones/taller.json: el corredor hacia paso "
+            "declara walls y facades a la vez\n"
+            "   at: push_error (core/variant/variant_utility.cpp:1023)\n"
+            "   GDScript backtrace (most recent call first):\n"
+            "       [0] corridors (res://core/data/zone_definition.gd:155)\n"
+            "       [1] <anonymous lambda> (res://tests/zones/"
+            "corridor_facades_test.gd:153)\n"
+            "       [2] _execute (res://addons/gdUnit4/src/asserts/"
+            "GdUnitGodotErrorAssertImpl.gd:23)\n"
+            "       [3] is_push_error (res://addons/gdUnit4/src/asserts/"
+            "GdUnitGodotErrorAssertImpl.gd:139)\n"
+            "       [4] test_corridor_with_walls_and_facades_is_a_clear_error\n"
+        )
+        avisos, errores = validar_informes.revisar_registro(registro)
+        self.assertEqual(errores, [])
+        self.assertEqual(len(avisos), 1)
+        self.assertIn("assert_push_error", avisos[0])
+
+    def test_registro_no_ignora_el_mismo_error_sin_backtrace(self) -> None:
+        # Sin la captura de GdUnit4, el mismo mensaje sigue siendo fatal.
+        _, errores = validar_informes.revisar_registro(
+            "ERROR: res://data/zones/taller.json: el corredor hacia paso "
+            "declara walls y facades a la vez\n"
+            "   at: push_error (core/variant/variant_utility.cpp:1023)\n")
+        self.assertEqual(len(errores), 1)
+        self.assertIn("taller.json", errores[0])
+
     def test_registro_quita_colores_ansi(self) -> None:
         _, errores = validar_informes.revisar_registro(
             "\x1b[31mSCRIPT ERROR:\x1b[0m Parse Error: x\n")

@@ -29,13 +29,17 @@ const COLOR_SHADOW: Color = Color(0.0, 0.0, 0.0, 0.35)
 const SHADOW_HEIGHT: float = 14.0
 const CHARACTER_WIDTH: float = 36.0
 
-enum Kind { SOLID, LOW, DOOR }
+enum Kind { SOLID, LOW, DOOR, BACKDROP }
 
 var footprint: Rect2
 var front_height: float
 var kind: Kind = Kind.SOLID
 var is_open: bool = false
 var label_key: String = ""
+## Muro que nunca se atenúa aunque su área visible pise a un personaje. Lo usan
+## los fondos de corredor: su frente no cubre a nadie (solo tapa el borde del
+## mapa) y atenuarlo descubriría justo el corte que está ocultando.
+var always_opaque: bool = false
 
 var _collider: CollisionShape2D
 var _mesh: ArrayMesh
@@ -46,7 +50,7 @@ func setup(new_footprint: Rect2, new_front_height: float, new_kind: Kind = Kind.
 	front_height = new_front_height
 	kind = new_kind
 	position = Vector2(footprint.position.x, footprint.end.y)
-	collision_layer = PhysicsLayers.LOW_COVER if kind == Kind.LOW else PhysicsLayers.WALLS
+	collision_layer = _collision_layer()
 	collision_mask = 0
 	var shape: RectangleShape2D = RectangleShape2D.new()
 	shape.size = footprint.size
@@ -54,6 +58,17 @@ func setup(new_footprint: Rect2, new_front_height: float, new_kind: Kind = Kind.
 	_collider.shape = shape
 	_collider.position = Vector2(footprint.size.x * 0.5, -footprint.size.y * 0.5)
 	add_child(_collider)
+
+
+## El fondo de corredor es solo visual: no bloquea, porque el hueco del pasillo
+## tiene que seguir abierto (la transición la dispara el Area2D del corredor).
+func _collision_layer() -> int:
+	match kind:
+		Kind.LOW:
+			return PhysicsLayers.LOW_COVER
+		Kind.BACKDROP:
+			return 0
+	return PhysicsLayers.WALLS
 
 
 func _draw() -> void:
@@ -131,6 +146,8 @@ func _kind_colors() -> Array[Color]:
 			return [Palette.OXIDO, Palette.OXIDO_OSCURO, COLOR_LOW_TOP]
 		Kind.DOOR:
 			return [Palette.BUTANO, Palette.OXIDO_OSCURO, Palette.OBRA]
+		Kind.BACKDROP:
+			return [Palette.HIERRO, Palette.HIERRO_OSCURO, Palette.MORA]
 	return [COLOR_FRONT_LIGHT, Palette.MORA, COLOR_ROOF]
 
 
@@ -204,6 +221,8 @@ func visual_rect() -> Rect2:
 
 ## Atenúa la pared si tapa a alguien que está detrás de ella.
 func update_occlusion(character_feet: Vector2, character_height: float) -> void:
+	if always_opaque:
+		return
 	var base_y: float = footprint.end.y
 	var fade: bool = hides_character(visual_rect(), base_y, character_feet, character_height)
 	modulate.a = FADED_ALPHA if fade else 1.0

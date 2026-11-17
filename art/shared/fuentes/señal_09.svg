@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  señal_09 · Pizarra torcida
+  Origen: brief del director (señales improvisadas de Bug de Familia)
+  Herramienta: generación de SVG por código
+  Lienzo 512x320 · fondo transparente · piezas editables
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="320" viewBox="0 0 512 320">
+
+  <defs>
+    <linearGradient id="s9_marco" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#A9835A"/>
+      <stop offset="0.55" stop-color="#7C5A3A"/>
+      <stop offset="1" stop-color="#553B26"/>
+    </linearGradient>
+    <linearGradient id="s9_pizarra" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#414E57"/>
+      <stop offset="0.6" stop-color="#333E46"/>
+      <stop offset="1" stop-color="#26303A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sombra -->
+  <ellipse cx="258" cy="306" rx="148" ry="12" fill="#1B0E2A" opacity="0.24"/>
+
+  <g id="s9_conjunto" transform="rotate(-8 256 168)">
+
+    <!-- pata trasera -->
+    <g stroke="#1B0E2A" stroke-width="6" stroke-linejoin="round"
+       stroke-linecap="round">
+      <path d="M296 236 L340 294 L352 288 L308 230 Z" fill="#553B26"/>
+    </g>
+
+    <!-- patas delanteras -->
+    <g stroke="#1B0E2A" stroke-width="6" stroke-linejoin="round"
+       stroke-linecap="round">
+      <path d="M148 232 L136 292 L152 296 L164 236 Z" fill="url(#s9_marco)"/>
+      <path d="M360 232 L372 294 L356 298 L346 236 Z" fill="url(#s9_marco)"/>
+    </g>
+
+    <!-- marco -->
+    <g id="s9_marco" stroke="#1B0E2A" stroke-width="7" stroke-linejoin="round"
+       stroke-linecap="round">
+      <rect x="126" y="66" width="260" height="172" rx="12"
+            fill="url(#s9_marco)"/>
+      <rect x="146" y="86" width="220" height="132" rx="6"
+            fill="url(#s9_pizarra)" stroke-width="5"/>
+
+      <!-- veta del marco -->
+      <g fill="none" stroke="#5A3F28" stroke-width="2.5" opacity="0.8">
+        <path d="M136 78 L372 74"/>
+        <path d="M134 228 L374 222"/>
+        <path d="M136 200 L142 78"/>
+      </g>
+
+      <!-- letras de tiza -->
+      <text x="256" y="164" text-anchor="middle"
+            font-family="Impact, 'Arial Black', sans-serif" font-weight="bold"
+            font-size="48" letter-spacing="3" fill="#E6EFE9" stroke="none"
+            opacity="0.92">SALIDA</text>
+
+      <!-- flecha de tiza -->
+      <g fill="none" stroke="#E6EFE9" stroke-width="5" stroke-linecap="round"
+         stroke-linejoin="round" opacity="0.85">
+        <path d="M180 192 L322 186"/>
+        <path d="M304 174 L328 186 L306 200"/>
+      </g>
+
+      <!-- rayas de la cuenta -->
+      <g stroke="#C8D3CE" stroke-width="3" stroke-linecap="round"
+         opacity="0.6">
+        <path d="M166 204 v10 M176 204 v10 M186 204 v10 M200 206 L206 212"/>
+      </g>
+
+      <!-- polvo y borrones de tiza -->
+      <g fill="#DCE6DF" opacity="0.12">
+        <ellipse cx="196" cy="128" rx="34" ry="18"/>
+        <ellipse cx="318" cy="196" rx="26" ry="14"/>
+      </g>
+
+      <!-- grieta en la pizarra -->
+      <g fill="none" stroke="#1A222A" stroke-width="3" stroke-linecap="round">
+        <path d="M336 88 L318 118 L324 140"/>
+        <path d="M318 118 L302 124"/>
+      </g>
+
+      <!-- tiza colgando de un cordel -->
+      <g stroke="#8A7A5F" stroke-width="2.5" fill="none">
+        <path d="M382 112 q22 26 18 50"/>
+      </g>
+      <path d="M400 158 L424 156 L426 168 L404 170 L398 164 Z" fill="#E6EFE9"
+            stroke="#1B0E2A" stroke-width="3.5" stroke-linejoin="round"/>
+
+      <!-- cinta sobre la esquina -->
+      <path d="M124 62 L184 76 L178 96 L118 82 Z" fill="#B6B2A4"
+            stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M132 70 L176 81" stroke="#CFCBBC" stroke-width="2.5"/>
+
+      <!-- tornillos del marco -->
+      <g fill="#8C93A2" stroke="#1B0E2A" stroke-width="3">
+        <circle cx="136" cy="76" r="4.5"/>
+        <circle cx="376" cy="72" r="4.5"/>
+        <circle cx="136" cy="228" r="4.5"/>
+        <circle cx="376" cy="224" r="4.5"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- hierba seca en la base -->
+  <g stroke="#1B0E2A" stroke-width="3" stroke-linecap="round">
+    <path d="M180 306 q12 -16 26 -4 q8 8 18 2 q-8 12 -24 8 q-16 -2 -20 -6z"
+          fill="#7A7548"/>
+  </g>
+</svg>

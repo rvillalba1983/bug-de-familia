@@ -15,6 +15,31 @@ const FAST_TRAVEL_LABEL: String = "UI_FAST_TRAVEL"
 const FAST_TRAVEL_ITEM: String = "fast_travel_"
 const SIGN_LABEL: String = "UI_ZONE_SIGN"
 const SIGN_SHOW_TIME: float = 3.0
+## Altura de los muros de corredor: por encima de las 48 u de las salas, para que
+## el frente oculte el tramo siguiente en la proyección y el pasillo tenga identidad.
+const CORRIDOR_WALL_HEIGHT: float = 200.0
+## Profundidad de la lengüeta del fondo de las bocas sur: la justa para que su
+## tejado no llegue a los pies de quien aparece en el pasillo.
+const BACKDROP_LIP: float = 16.0
+## Distancia de la señal de la boca hacia dentro de la sala.
+const SIGN_LIFT: float = 150.0
+## Catálogo de señales del director: `señal_01`..`señal_10`. Si el corredor no
+## declara `sign`, se elige una por el destino (ADR 0034).
+const SIGN_PREFIX: String = "señal_"
+const SIGN_COUNT: int = 10
+## Nombre de la zona destino que se superpone al cartel de la señal: tipografía
+## grande con contorno de tinta y fondo semitransparente para que se lea encima.
+const SIGN_NAME_SIZE: int = 26
+const SIGN_NAME_OUTLINE: int = 6
+## Desplazamiento del nombre respecto al ancla de la señal: 0 lo centra sobre el
+## cartel (la señal mide 200 × 125 u con la proporción 512 × 320).
+const SIGN_NAME_DROP: float = 0.0
+## Fondo del nombre: tinta semitransparente para que el cartel se siga viendo
+## detrás del texto, con el contorno de tinta del arte.
+const SIGN_NAME_BG_ALPHA: float = 0.35
+## Los textos de la boca van por encima de los muros; el nombre, sobre la señal.
+const SIGN_SPRITE_Z: int = 1
+const SIGN_NAME_Z: int = 2
 ## Provisional: distancia a la que un grupo se mete en la pelea de los suyos.
 const GROUP_REACT_RADIUS: float = 250.0
 
@@ -25,6 +50,7 @@ var battles: BattleDirector = null
 var _zone_enemy_ids: Dictionary = {}
 var _zone_materials: Dictionary = {}
 var _corridor_areas: Array[Area2D] = []
+## Nombre de la zona destino de cada boca, por id de la zona destino.
 var _zone_signs: Dictionary = {}
 
 
@@ -172,45 +198,160 @@ func _build_corridors() -> void:
 		area.body_entered.connect(_on_corridor_entered.bind(str(corridor["to"])))
 		add_child(area)
 		_corridor_areas.append(area)
+		_build_corridor_walls(corridor)
+		_build_corridor_backdrop(corridor)
 		_build_zone_sign(corridor)
 
 
-func _build_zone_sign(corridor: Dictionary) -> void:
+## Muros del pasillo físico: cierran el paso (blockers de NavGrid) y se dibujan
+## como muro real (oclusión y y-sort), a diferencia de los shape_blocks.
+func _build_corridor_walls(corridor: Dictionary) -> void:
+	for wall_rect: Rect2 in corridor.get("walls", []):
+		_add_wall(wall_rect, CORRIDOR_WALL_HEIGHT, Wall.Kind.SOLID)
+
+
+## Cierre visual de la boca en las salidas que la proyección no oculta.
+##
+## En esta proyección el frente de un muro se dibuja hacia el norte de su base
+## (`entities/world/wall.gd`), así que los muros laterales del pasillo no tapan
+## lo que queda al sur ni al este: por esas dos bocas se veía el pasillo cortado
+## en el borde del mapa, sin nada que cerrara la vista.
+##
+## El fondo es un muro real (entra en `walls` para la oclusión y en `actors` para
+## el y-sort) pero de tipo `BACKDROP`: no colisiona, porque el hueco del pasillo
+## tiene que seguir abierto y la transición ya la dispara el Area2D del corredor.
+## Su frente mide la dimensión Y del rect del corredor y arranca en el borde del
+## mapa, así que queda justo sobre ese rect en pantalla y cierra la vista.
+##
+## No entra en `_all_blockers()` a propósito: el rect del corredor tiene que
+## seguir siendo caminable en NavGrid (`test_corridor_walls_keep_gap_walkable`).
+##
+## Es opt-in: solo lo llevan los corredores que ya declaran `walls`, así que las
+## zonas sin pasillos físicos no cambian.
+func _build_corridor_backdrop(corridor: Dictionary) -> void:
+	var edge: String = str(corridor.get("edge", ""))
+	if edge != "south" and edge != "east":
+		return
+	if (corridor.get("walls", []) as Array).is_empty():
+		return
 	var rect: Rect2 = corridor["rect"] as Rect2
+	var backdrop: Wall = _add_wall(
+		_backdrop_footprint(rect, edge), rect.size.y, Wall.Kind.BACKDROP
+	)
+	# Su frente no cubre a nadie: atenuarlo descubriría justo el corte que tapa.
+	backdrop.always_opaque = true
+
+
+## Huella del fondo. La salida sur gasta una lengüeta corta porque el tejado del
+## muro se dibuja hacia el norte, sobre el pasillo, y con la huella entera taparía
+## los pies de quien aparece en la boca (el punto de entrada está 48 u dentro). En
+## la salida este el tejado cae fuera del pasillo y puede ser el rect completo.
+func _backdrop_footprint(rect: Rect2, edge: String) -> Rect2:
+	if edge == "south":
+		var lip: float = minf(BACKDROP_LIP, rect.size.y)
+		return Rect2(rect.position.x, rect.end.y - lip, rect.size.x, lip)
+	return rect
+
+
+## Boca del pasillo: cartel SVG del director y, delante, el nombre de la zona
+## destino. Sustituye al panel de texto viejo («Bienvenido a… / Seguir el camino»),
+## que se retira (P-55). Toda boca lleva cartel, también las que no declaran `sign`
+## (despliegue_cero): se elige por el destino con el fallback del ADR 0034.
+func _build_zone_sign(corridor: Dictionary) -> void:
+	var sign_id: String = _corridor_sign_id(corridor)
+	_add_corridor_sign_sprite(sign_id, corridor)
+	_add_corridor_sign_name(corridor)
+
+
+## Señal de la boca: la que declara el corredor o, si falta, la que toca por el
+## destino (`hash(to_zone) % 10 + 1`), para que ninguna boca quede sin cartel.
+func _corridor_sign_id(corridor: Dictionary) -> String:
+	var declared: String = str(corridor.get("sign", ""))
+	if not declared.is_empty():
+		return declared
+	var index: int = posmod(hash(str(corridor["to"])), SIGN_COUNT) + 1
+	return SIGN_PREFIX + "%02d" % index
+
+
+func _add_corridor_sign_sprite(sign_id: String, corridor: Dictionary) -> void:
+	var path: String = "res://art/shared/fuentes/%s.svg" % sign_id
+	var texture: Texture2D = load(path) as Texture2D
+	if texture == null:
+		push_warning("ZoneBase: no se encontro la senal %s en %s" % [sign_id, path])
+		return
+	var sprite: Sprite2D = Sprite2D.new()
+	sprite.texture = texture
+	var target_width: float = 200.0
+	sprite.scale = Vector2(target_width / texture.get_width(), target_width / texture.get_width())
+	sprite.position = corridor_sign_position(corridor)
+	# Por encima de los muros del pasillo y de su fondo: si no, en las salidas
+	# norte y este queda tapada y la boca pierde su identidad.
+	sprite.z_index = SIGN_SPRITE_Z
+	actors.add_child(sprite)
+
+
+## Nombre de la zona destino superpuesto al cartel de la señal: el SVG queda
+## detrás y el texto delante (`z_index` mayor). Hijo de `actors` para el y-sort.
+func _add_corridor_sign_name(corridor: Dictionary) -> void:
 	var to_zone: String = str(corridor["to"])
-	var sign: PanelContainer = PanelContainer.new()
-	var style: StyleBoxFlat = StyleBoxFlat.new()
-	style.bg_color = Palette.HUESO
-	style.border_color = Palette.HIERRO
-	style.set_border_width_all(3)
-	style.set_corner_radius_all(6)
-	style.set_content_margin_all(10)
-	sign.add_theme_stylebox_override("panel", style)
-	var box: VBoxContainer = VBoxContainer.new()
-	box.add_theme_constant_override("separation", 4)
-	sign.add_child(box)
-	var title: Label = Label.new()
-	title.text = "Bienvenido a " + to_zone
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.add_theme_color_override("font_color", Palette.INK)
-	title.add_theme_font_size_override("font_size", 20)
-	box.add_child(title)
-	var arrow: Label = Label.new()
-	arrow.text = "->  Seguir el camino  ->"
-	arrow.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	arrow.add_theme_color_override("font_color", Palette.HIERRO)
-	arrow.add_theme_font_size_override("font_size", 24)
-	box.add_child(arrow)
-	var distance: Label = Label.new()
-	distance.text = "a " + str(int(rect.size.x / 10.0)) + " m"
-	distance.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	distance.add_theme_color_override("font_color", Palette.HIERRO_OSCURO)
-	distance.add_theme_font_size_override("font_size", 14)
-	box.add_child(distance)
-	sign.position = rect.get_center() + Vector2(0.0, -90.0)
-	sign.visible = true
-	add_child(sign)
-	_zone_signs[to_zone] = sign
+	var label: Label = Label.new()
+	label.text = _destination_name(to_zone)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.add_theme_font_override(&"font", UiStyle.FONT_LOUD)
+	label.add_theme_font_size_override(&"font_size", SIGN_NAME_SIZE)
+	label.add_theme_color_override(&"font_color", Palette.HUESO)
+	label.add_theme_color_override(&"font_outline_color", Palette.INK)
+	label.add_theme_constant_override(&"outline_size", SIGN_NAME_OUTLINE)
+	label.add_theme_stylebox_override(&"normal", _sign_name_box())
+	label.size = label.get_combined_minimum_size()
+	label.position = corridor_sign_position(corridor) + Vector2(
+		0.0, SIGN_NAME_DROP
+	) - label.size * 0.5
+	label.z_index = SIGN_NAME_Z
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	actors.add_child(label)
+	_zone_signs[to_zone] = label
+
+
+## Fondo del nombre: tinta semitransparente (el cartel se sigue viendo detrás) con
+## el contorno de tinta del arte.
+func _sign_name_box() -> StyleBoxFlat:
+	var box: StyleBoxFlat = StyleBoxFlat.new()
+	box.bg_color = Color(Palette.INK.r, Palette.INK.g, Palette.INK.b, SIGN_NAME_BG_ALPHA)
+	box.border_color = Color(Palette.INK.r, Palette.INK.g, Palette.INK.b, 0.85)
+	box.set_border_width_all(3)
+	box.set_corner_radius_all(10)
+	box.set_content_margin_all(6.0)
+	box.content_margin_left = 12.0
+	box.content_margin_right = 12.0
+	box.content_margin_top = 2.0
+	box.content_margin_bottom = 2.0
+	return box
+
+
+## Nombre de la zona destino: el del registro de zonas si la monta el gestor y, si
+## no hay definición, el propio identificador.
+func _destination_name(to_zone: String) -> String:
+	var registry: ZoneRegistry = null
+	if zone_manager != null:
+		registry = zone_manager.get(&"registry") as ZoneRegistry
+	if registry == null:
+		return to_zone
+	var zone: ZoneDefinition = registry.zone(to_zone)
+	return zone.display_name if zone != null else to_zone
+
+
+## Posición de la señal de la boca: `SIGN_LIFT` unidades hacia dentro de la sala.
+## En las salidas norte el corredor está en el borde superior del mapa, así que el
+## desplazamiento va hacia el sur; con el desplazamiento hacia el norte la señal
+## caía fuera del límite de la cámara y no se veía nunca.
+func corridor_sign_position(corridor: Dictionary) -> Vector2:
+	var rect: Rect2 = corridor["rect"] as Rect2
+	var offset: float = -SIGN_LIFT
+	if str(corridor.get("edge", "")) == "north":
+		offset = SIGN_LIFT
+	return rect.get_center() + Vector2(0.0, offset)
 
 
 func _on_corridor_entered(body: Node2D, to_zone: String) -> void:
@@ -495,6 +636,9 @@ func _shows_help_labels() -> bool:
 func _all_blockers() -> Array[Rect2]:
 	var result: Array[Rect2] = super()
 	result.append_array(shape_blocks())
+	for corridor: Dictionary in _definition().corridors():
+		for wall_rect: Rect2 in corridor.get("walls", []):
+			result.append(wall_rect)
 	return result
 
 

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  señal_04 · Tela atada
+  Origen: brief del director (señales improvisadas de Bug de Familia)
+  Herramienta: generación de SVG por código
+  Lienzo 512x320 · fondo transparente · piezas editables
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="320" viewBox="0 0 512 320">
+
+  <defs>
+    <linearGradient id="s4_tela" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#D6C9AB"/>
+      <stop offset="0.55" stop-color="#C0B091"/>
+      <stop offset="1" stop-color="#A3937A"/>
+    </linearGradient>
+    <linearGradient id="s4_poste" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4F3524"/>
+      <stop offset="0.45" stop-color="#7C5A3A"/>
+      <stop offset="1" stop-color="#432C1E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sombra -->
+  <ellipse cx="268" cy="304" rx="132" ry="12" fill="#1B0E2A" opacity="0.22"/>
+
+  <!-- poste inclinado -->
+  <g id="s4_poste" stroke="#1B0E2A" stroke-width="6" stroke-linejoin="round"
+     stroke-linecap="round">
+    <path d="M266 30 L286 28 L292 300 L260 304 Z" fill="url(#s4_poste)"/>
+    <path d="M274 288 L272 200 M282 284 L280 160" fill="none" stroke="#432C1E"
+          stroke-width="3" opacity="0.8"/>
+  </g>
+
+  <!-- travesaño -->
+  <g id="s4_travesaño" stroke="#1B0E2A" stroke-width="6" stroke-linejoin="round"
+     stroke-linecap="round">
+    <path d="M98 106 L318 88 L320 104 L100 122 Z" fill="url(#s4_poste)"/>
+    <path d="M114 106 L134 104 M296 90 L314 88" stroke="#432C1E" stroke-width="3"/>
+  </g>
+
+  <!-- banda de tela grande -->
+  <g id="s4_banda">
+    <path d="M110 114 L316 96 L314 152 L310 200 L306 236 L286 246 L270 228
+             L254 248 L238 228 L222 244 L206 226 L190 242 L174 224 L158 238
+             L142 222 L128 232 L114 214 Z"
+          fill="url(#s4_tela)" stroke="#1B0E2A" stroke-width="7"
+          stroke-linejoin="round" stroke-linecap="round"/>
+
+    <!-- costuras y dobladillo -->
+    <g fill="none" stroke="#8A7A5F" stroke-width="3" stroke-dasharray="7 6"
+       stroke-linecap="round">
+      <path d="M118 126 L308 110"/>
+      <path d="M116 200 L308 188"/>
+    </g>
+
+    <!-- manchas -->
+    <g fill="#9A8768" opacity="0.55">
+      <path d="M150 150 q16 12 10 30 q-16 6 -22 -10 q-2 -16 12 -20z"/>
+      <path d="M268 196 q18 4 18 20 q-14 10 -26 -2 q0 -14 8 -18z"/>
+    </g>
+
+    <!-- letras pintadas sobre la tela -->
+    <text x="212" y="186" text-anchor="middle" transform="rotate(-2 212 186)"
+          font-family="Impact, 'Arial Black', sans-serif" font-weight="bold"
+          font-size="44" letter-spacing="2" fill="#6A2A20">SALIDA</text>
+    <path d="M158 156 q6 10 2 20 q-6 -4 -2 -20z" fill="#6A2A20" opacity="0.6"/>
+
+    <!-- desgarro -->
+    <path d="M296 138 L302 172 L294 176 Z" fill="#6F6350" stroke="#1B0E2A"
+          stroke-width="3" stroke-linejoin="round"/>
+
+    <!-- parche cosido -->
+    <path d="M236 206 L282 202 L284 232 L238 236 Z" fill="#8E8A7C"
+          stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round"/>
+    <g stroke="#5C5749" stroke-width="2.5" stroke-linecap="round">
+      <path d="M240 210 L248 216 M252 208 L258 214 M264 206 L272 212"/>
+      <path d="M240 226 L248 232 M252 224 L260 230"/>
+    </g>
+  </g>
+
+  <!-- nudos de amarre del travesaño -->
+  <g stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round">
+    <ellipse cx="128" cy="108" rx="13" ry="9" fill="#B0A184"/>
+    <ellipse cx="300" cy="94" rx="13" ry="9" fill="#B0A184"/>
+    <path d="M124 118 q-8 14 4 22 M300 104 q10 12 0 22" fill="none"
+          stroke-width="3.5"/>
+  </g>
+
+  <!-- retales atados al poste, lado derecho -->
+  <g id="s4_retales" stroke="#1B0E2A" stroke-width="5" stroke-linejoin="round"
+     stroke-linecap="round">
+    <path d="M294 118 L342 112 L346 174 L332 182 L324 168 L314 180 L304 166
+             L296 176 Z" fill="#4E7A52"/>
+    <path d="M300 140 q16 4 34 0" fill="none" stroke="#2F5238" stroke-width="3"/>
+
+    <path d="M294 192 L354 186 L358 244 L342 252 L334 238 L320 250 L310 234
+             L300 244 L294 238 Z" fill="#7E7A72"/>
+    <path d="M302 214 q20 4 46 -2" fill="none" stroke="#5B574F" stroke-width="3"/>
+
+    <path d="M290 264 L332 260 L336 302 L324 310 L316 298 L306 308 L298 296
+             L292 304 Z" fill="#9E4A3C"/>
+    <path d="M296 288 q16 2 30 -2" fill="none" stroke="#6A2A20" stroke-width="3"/>
+  </g>
+  <g fill="#C0B091" stroke="#1B0E2A" stroke-width="3.5">
+    <ellipse cx="296" cy="118" rx="9" ry="7"/>
+    <ellipse cx="296" cy="192" rx="9" ry="7"/>
+    <ellipse cx="292" cy="264" rx="9" ry="7"/>
+  </g>
+
+  <!-- hierba seca en la base -->
+  <g stroke="#1B0E2A" stroke-width="3" stroke-linecap="round">
+    <path d="M224 302 q14 -18 30 -4 q10 8 20 2 q-8 12 -26 10 q-18 -2 -24 -8z"
+          fill="#7A7548"/>
+  </g>
+</svg>

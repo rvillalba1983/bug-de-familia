@@ -10,6 +10,10 @@ const LOADING_LAYER: int = 30
 const TITLE_SIZE: int = 40
 const ZONE_SIZE: int = 24
 const HINT_SIZE: int = 16
+## Los textos de la pantalla de carga se dibujan por encima de los fantasmas: si
+## no, las IAs tapan el título y el nombre de la zona destino (que se escribe al
+## empezar la transición).
+const LOADING_TEXT_Z: int = 1
 
 var manager: ZoneManager
 var zone_host: Node2D
@@ -44,36 +48,44 @@ func _build_loading_screen() -> void:
 	loading.visible = false
 	add_child(loading)
 	var backdrop: ColorRect = ColorRect.new()
+	backdrop.name = "Backdrop"
 	backdrop.color = Color(0.05, 0.04, 0.09, 0.96)
 	backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	loading.add_child(backdrop)
 	var title: Label = Label.new()
+	title.name = "Title"
 	title.text = tr("UI_LOADING")
 	title.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	title.offset_top = 120.0
+	title.z_index = LOADING_TEXT_Z
 	title.add_theme_font_size_override(&"font_size", TITLE_SIZE)
 	loading.add_child(title)
 	_zone_label = Label.new()
+	_zone_label.name = "ZoneName"
 	_zone_label.text = ""
 	_zone_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_zone_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_zone_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	_zone_label.offset_top = 180.0
+	_zone_label.z_index = LOADING_TEXT_Z
 	_zone_label.add_theme_font_size_override(&"font_size", ZONE_SIZE)
 	loading.add_child(_zone_label)
 	team = AiTeam.new()
 	ghosts = AiSpectres.new()
+	ghosts.name = "Ghosts"
 	ghosts.team = team
 	ghosts.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	loading.add_child(ghosts)
 	var hint: Label = Label.new()
+	hint.name = "Hint"
 	hint.text = tr("UI_LOADING_HINT")
 	hint.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	hint.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
 	hint.offset_bottom = -80.0
+	hint.z_index = LOADING_TEXT_Z
 	hint.add_theme_font_size_override(&"font_size", HINT_SIZE)
 	loading.add_child(hint)
 

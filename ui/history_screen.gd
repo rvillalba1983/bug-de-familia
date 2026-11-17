@@ -1,6 +1,7 @@
 class_name HistoryScreen
 extends CanvasLayer
-## Pantalla «Conoce la historia»: texto con imágenes interleaved de los hechos históricos.
+## Pantalla «Conoce la historia»: texto con imágenes de los hechos históricos.
+## Mismo acabado de cartel que la pantalla de carga (MenuButtonStyle y Palette).
 
 const FACTS: Array = [
 	{"image": "res://art/lore/png/08_plegados_la_piedra_clasificada.png", "title": "Los Plegados: la piedra clasificada", "text": "Los Plegados son seres planos que doblan sus cuerpos en múltiples direcciones. Su civilización giraba en torno a la Gran Clasificación: un sistema que pretendía catalogar todo lo existente, hasta las propias categorías."},
@@ -15,6 +16,17 @@ const FACTS: Array = [
 	{"image": "res://art/lore/png/17_manada_la_ruta_eterna_nueve.png", "title": "La Manada: la ruta eterna nueve", "text": "La Manada sigue la ruta eterna nueve: un camino que nunca termina y que siempre va hacia adelante. Su cultura se basa en el movimiento y la exploración sin fin."},
 	{"image": "res://art/lore/png/18_jubilados_petanca_con_minas.png", "title": "Los Jubilados: petanca con minas", "text": "Los Jubilados de Hierro son robots que juegan a la petanca con minas. Su civilización se basa en la jubilación: una vez que cumplen su función, se dedican a jugar. La petanca con minas es su pasatiempo favorito."},
 	{"image": "res://art/lore/png/19_jubilados_el_minuto_de_apagon.png", "title": "Los Jubilados: el minuto de apagón", "text": "Los Jubilados tienen un minuto de apagón cada día: un momento en el que todos se desconectan y descansan. Es su ritual sagrado y su momento de paz."},
+]
+
+## Las ilustraciones son 2040x1560 (≈4:3). El rectángulo se acerca a esa
+## proporción para que, con STRETCH_KEEP_ASPECT_CENTERED, ocupen ~el 50% real
+## de la pantalla en vez de quedar muy carteladas dentro de un rect 1500x700.
+const IMAGE_SIZE: Vector2 = Vector2(1180.0, 900.0)
+## Señales de art/shared/fuentes: POR AQUÍ, NO PASAR, CAMINO.
+const NAV_ICONS: Array[String] = [
+	"res://art/shared/fuentes/señal_01.svg",
+	"res://art/shared/fuentes/señal_02.svg",
+	"res://art/shared/fuentes/señal_07.svg",
 ]
 
 var _index: int = 0
@@ -37,52 +49,72 @@ func _ready() -> void:
 
 func _build_ui() -> void:
 	var backdrop: ColorRect = ColorRect.new()
-	backdrop.color = Color(0.05, 0.05, 0.08, 0.95)
+	backdrop.color = Color(Palette.INK.r, Palette.INK.g, Palette.INK.b, 0.96)
 	backdrop.size = Vector2(1920.0, 1080.0)
 	add_child(backdrop)
 
-	var container: VBoxContainer = VBoxContainer.new()
-	container.position = Vector2(460.0, 60.0)
-	container.custom_minimum_size = Vector2(1000.0, 0.0)
-	container.add_theme_constant_override(&"separation", 16)
-	add_child(container)
-
-	_title_label = Label.new()
-	_title_label.add_theme_font_size_override(&"font_size", 28)
-	_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	container.add_child(_title_label)
+	# Ilustración grande a la izquierda, con marco de cartel.
+	var image_frame: Panel = Panel.new()
+	image_frame.position = Vector2(40.0, 90.0)
+	image_frame.size = IMAGE_SIZE + Vector2(12.0, 12.0)
+	image_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	image_frame.add_theme_stylebox_override(&"panel", \
+		MenuButtonStyle.ring_box(Palette.CIAN))
+	add_child(image_frame)
 
 	_image_rect = TextureRect.new()
-	_image_rect.custom_minimum_size = Vector2(1000.0, 400.0)
+	_image_rect.position = Vector2(46.0, 96.0)
+	_image_rect.size = IMAGE_SIZE
 	_image_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_image_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	container.add_child(_image_rect)
+	add_child(_image_rect)
+
+	# Texto y navegación a la derecha, sobre un panel de tinta semitransparente.
+	var panel: Panel = Panel.new()
+	panel.position = Vector2(1250.0, 90.0)
+	panel.size = Vector2(630.0, 900.0)
+	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.add_theme_stylebox_override(&"panel", MenuButtonStyle.backing_box())
+	add_child(panel)
+
+	_title_label = Label.new()
+	_title_label.position = Vector2(1274.0, 114.0)
+	_title_label.size = Vector2(582.0, 110.0)
+	_title_label.add_theme_font_override(&"font", UiStyle.FONT_LOUD)
+	_title_label.add_theme_font_size_override(&"font_size", 38)
+	_title_label.add_theme_color_override(&"font_color", Palette.OBRA)
+	_title_label.add_theme_color_override(&"font_outline_color", Palette.INK)
+	_title_label.add_theme_constant_override(&"outline_size", 5)
+	_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_title_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_title_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	add_child(_title_label)
 
 	_text_label = RichTextLabel.new()
-	_text_label.custom_minimum_size = Vector2(1000.0, 200.0)
+	_text_label.position = Vector2(1274.0, 236.0)
+	_text_label.size = Vector2(582.0, 420.0)
+	_text_label.add_theme_font_override(&"normal_font", UiStyle.FONT_LOUD)
+	_text_label.add_theme_font_size_override(&"normal_font_size", 26)
+	_text_label.add_theme_color_override(&"default_color", Palette.HUESO)
+	_text_label.add_theme_color_override(&"font_outline_color", Palette.INK)
+	_text_label.add_theme_constant_override(&"outline_size", 3)
 	_text_label.fit_content = true
 	_text_label.bbcode_enabled = false
-	container.add_child(_text_label)
+	_text_label.scroll_active = false
+	add_child(_text_label)
 
-	var nav_box: HBoxContainer = HBoxContainer.new()
-	nav_box.add_theme_constant_override(&"separation", 16)
-	nav_box.alignment = BoxContainer.ALIGNMENT_CENTER
-	container.add_child(nav_box)
+	var nav_box: VBoxContainer = VBoxContainer.new()
+	nav_box.position = Vector2(1274.0, 686.0)
+	nav_box.size = Vector2(582.0, 280.0)
+	nav_box.add_theme_constant_override(&"separation", 14)
+	add_child(nav_box)
 
-	_prev_button = Button.new()
-	_prev_button.text = "Anterior"
-	_prev_button.pressed.connect(_prev)
-	nav_box.add_child(_prev_button)
-
-	var close_button: Button = Button.new()
-	close_button.text = "Volver"
-	close_button.pressed.connect(_close)
-	nav_box.add_child(close_button)
-
-	_next_button = Button.new()
-	_next_button.text = "Siguiente"
-	_next_button.pressed.connect(_next)
-	nav_box.add_child(_next_button)
+	_prev_button = MenuButtonStyle.make_button(nav_box, 0, "Anterior", _prev, \
+		Vector2(582.0, 84.0), NAV_ICONS[0])
+	MenuButtonStyle.make_button(nav_box, 1, "Volver", _close, \
+		Vector2(582.0, 84.0), NAV_ICONS[1])
+	_next_button = MenuButtonStyle.make_button(nav_box, 2, "Siguiente", _next, \
+		Vector2(582.0, 84.0), NAV_ICONS[2])
 
 
 func _show_fact(index: int) -> void:

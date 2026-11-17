@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  señal_05 · Pantalla rota
+  Origen: brief del director (señales improvisadas de Bug de Familia)
+  Herramienta: generación de SVG por código
+  Lienzo 512x320 · fondo transparente · piezas editables
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="320" viewBox="0 0 512 320">
+
+  <defs>
+    <linearGradient id="s5_carcasa" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#8C93A2"/>
+      <stop offset="0.55" stop-color="#6C7486"/>
+      <stop offset="1" stop-color="#4C5566"/>
+    </linearGradient>
+    <linearGradient id="s5_pantalla" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#1E3446"/>
+      <stop offset="0.6" stop-color="#16283A"/>
+      <stop offset="1" stop-color="#101E2C"/>
+    </linearGradient>
+    <linearGradient id="s5_base" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3F4757"/>
+      <stop offset="0.5" stop-color="#6C7486"/>
+      <stop offset="1" stop-color="#38404F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sombra -->
+  <ellipse cx="262" cy="306" rx="150" ry="12" fill="#1B0E2A" opacity="0.24"/>
+
+  <!-- antena doblada -->
+  <g stroke-linecap="round">
+    <path d="M312 56 L352 24 L392 18" fill="none" stroke="#1B0E2A" stroke-width="7"/>
+    <path d="M312 56 L352 24 L392 18" fill="none" stroke="#7E8697" stroke-width="3"/>
+    <circle cx="394" cy="18" r="7" fill="#A8482A" stroke="#1B0E2A"
+            stroke-width="4"/>
+  </g>
+
+  <!-- pie y cuello -->
+  <g stroke="#1B0E2A" stroke-width="6" stroke-linejoin="round"
+     stroke-linecap="round">
+    <path d="M240 240 L272 240 L280 286 L232 286 Z" fill="url(#s5_base)"/>
+    <path d="M196 284 L318 284 L322 300 L190 300 Z" fill="url(#s5_base)"/>
+  </g>
+
+  <!-- carcasa -->
+  <g id="s5_carcasa" stroke="#1B0E2A" stroke-width="7" stroke-linejoin="round"
+     stroke-linecap="round">
+    <rect x="104" y="48" width="300" height="196" rx="16"
+          fill="url(#s5_carcasa)"/>
+
+    <!-- hundido del bisel -->
+    <rect x="126" y="70" width="256" height="152" rx="10" fill="#2A2438"
+          stroke="#1B0E2A" stroke-width="5"/>
+
+    <!-- pantalla -->
+    <rect x="140" y="82" width="228" height="124" rx="6"
+          fill="url(#s5_pantalla)" stroke="#1B0E2A" stroke-width="4"/>
+
+    <!-- líneas de barrido -->
+    <g stroke="#35D6C0" stroke-width="2" opacity="0.10">
+      <path d="M142 100 h224 M142 118 h224 M142 136 h224 M142 154 h224
+               M142 172 h224 M142 190 h224"/>
+    </g>
+
+    <!-- banda de fallo -->
+    <rect x="146" y="168" width="212" height="9" fill="#35D6C0" opacity="0.14"/>
+    <rect x="146" y="96" width="164" height="5" fill="#EADCB4" opacity="0.10"/>
+
+    <!-- píxeles muertos -->
+    <g fill="#0B1119" opacity="0.9">
+      <rect x="196" y="186" width="7" height="7"/>
+      <rect x="205" y="186" width="7" height="7"/>
+      <rect x="196" y="195" width="7" height="7"/>
+      <rect x="330" y="98" width="7" height="7"/>
+      <rect x="322" y="106" width="7" height="7"/>
+    </g>
+
+    <!-- grietas -->
+    <g stroke-linecap="round" stroke-linejoin="round">
+      <g fill="none" stroke="#0A1017" stroke-width="4">
+        <path d="M274 116 L206 84 M274 116 L336 88 M274 116 L366 148
+                 M274 116 L322 198 M274 116 L232 202 M274 116 L150 96"/>
+      </g>
+      <g fill="none" stroke="#9BA3B4" stroke-width="1.6" opacity="0.6">
+        <path d="M276 118 L208 86 M276 118 L338 90 M276 118 L368 150"/>
+      </g>
+      <path d="M268 110 L282 122 L270 128 Z" fill="#8FA6B4" opacity="0.35"
+            stroke="#0A1017" stroke-width="2.5"/>
+      <path d="M300 132 L316 126 L312 146 Z" fill="#8FA6B4" opacity="0.22"
+            stroke="#0A1017" stroke-width="2.5"/>
+    </g>
+
+    <!-- letras encendidas, por delante de las grietas -->
+    <text x="254" y="160" text-anchor="middle"
+          font-family="Impact, 'Arial Black', sans-serif" font-weight="bold"
+          font-size="42" letter-spacing="3" fill="#35D6C0" stroke="none"
+          opacity="0.95">PELIGRO</text>
+
+    <!-- botones y piloto -->
+    <g fill="#9BA3B4" stroke="#1B0E2A" stroke-width="4">
+      <circle cx="152" cy="228" r="7"/>
+      <circle cx="180" cy="228" r="7"/>
+      <circle cx="208" cy="228" r="7"/>
+    </g>
+    <circle cx="356" cy="228" r="6" fill="#4E7A52" stroke="#1B0E2A"
+            stroke-width="4"/>
+
+    <!-- óxido y golpes -->
+    <g stroke="#1B0E2A" stroke-width="3" stroke-linejoin="round">
+      <path d="M356 200 q22 -4 34 8 q-8 12 -28 6 q-10 -8 -6 -14z" fill="#A8482A"/>
+      <path d="M108 224 q18 -4 26 6 q-6 10 -24 4 q-6 -6 -2 -10z" fill="#8C93A2"
+            stroke-width="2.5"/>
+    </g>
+    <g fill="none" stroke="#4C5566" stroke-width="3" stroke-linecap="round">
+      <path d="M116 62 q26 12 54 6"/>
+      <path d="M330 60 q30 8 56 0"/>
+    </g>
+
+    <!-- cinta americana sobre el bisel -->
+    <path d="M118 60 L188 74 L184 92 L114 78 Z" fill="#B6B2A4"
+          stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M126 68 L180 80" stroke="#CFCBBC" stroke-width="2.5"/>
+
+    <!-- cable colgando -->
+    <path d="M396 232 q30 14 24 40 q-6 22 -26 26" fill="none" stroke="#1B0E2A"
+          stroke-width="8" stroke-linecap="round"/>
+    <path d="M396 232 q30 14 24 40 q-6 22 -26 26" fill="none" stroke="#4C5566"
+          stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

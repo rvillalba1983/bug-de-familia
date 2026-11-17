@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  señal_07 · Chatarra con forma de flecha
+  Origen: brief del director (señales improvisadas de Bug de Familia)
+  Herramienta: generación de SVG por código
+  Lienzo 512x320 · fondo transparente · piezas editables
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="320" viewBox="0 0 512 320">
+
+  <defs>
+    <linearGradient id="s7_chapa" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#9BA3B4"/>
+      <stop offset="0.5" stop-color="#7C8496"/>
+      <stop offset="1" stop-color="#535B6C"/>
+    </linearGradient>
+    <linearGradient id="s7_punta" x1="0" y1="0" x2="1" y2="0.6">
+      <stop offset="0" stop-color="#8C93A2"/>
+      <stop offset="0.6" stop-color="#6C7486"/>
+      <stop offset="1" stop-color="#454E5F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sombra -->
+  <ellipse cx="248" cy="302" rx="176" ry="13" fill="#1B0E2A" opacity="0.24"/>
+
+  <!-- punta de la flecha -->
+  <g id="s7_punta" stroke="#1B0E2A" stroke-width="7" stroke-linejoin="round"
+     stroke-linecap="round">
+    <path d="M336 96 L478 190 L342 286 Z" fill="url(#s7_punta)"/>
+
+    <!-- refuerzos interiores -->
+    <path d="M352 128 L436 190 L356 250 Z" fill="none" stroke="#454E5F"
+          stroke-width="4"/>
+    <path d="M336 96 L412 190 L342 286" fill="none" stroke="#9BA3B4"
+          stroke-width="4" opacity="0.5"/>
+
+    <!-- franjas de aviso desconchadas -->
+    <g fill="#C9A62C" opacity="0.85">
+      <path d="M372 152 L392 140 L404 152 L384 164 Z"/>
+      <path d="M396 180 L416 168 L428 180 L408 192 Z"/>
+      <path d="M420 208 L440 196 L452 208 L432 220 Z"/>
+    </g>
+    <g fill="#535B6C" opacity="0.7">
+      <path d="M410 186 q10 -6 14 2 q-8 8 -14 -2z"/>
+      <path d="M388 158 q8 -4 10 4 q-8 6 -10 -4z"/>
+    </g>
+
+    <!-- óxido en la punta -->
+    <path d="M456 186 q14 6 12 18 q-14 2 -18 -10 q0 -8 6 -8z" fill="#A8482A"
+          stroke="#1B0E2A" stroke-width="3"/>
+  </g>
+
+  <!-- asta de chatarra -->
+  <g id="s7_asta" stroke="#1B0E2A" stroke-width="7" stroke-linejoin="round"
+     stroke-linecap="round">
+    <path d="M50 190 L200 182 L344 176 L350 238 L200 244 L52 250 L46 220 Z"
+          fill="url(#s7_chapa)"/>
+
+    <!-- placas remachadas -->
+    <g stroke-width="5">
+      <path d="M74 196 L142 192 L144 226 L78 230 Z" fill="#8C93A2"/>
+      <path d="M232 184 L300 180 L304 216 L236 220 Z" fill="#6C7486"/>
+    </g>
+    <g fill="#B9703F" stroke="#1B0E2A" stroke-width="2.5">
+      <circle cx="86" cy="204" r="4"/>
+      <circle cx="130" cy="201" r="4"/>
+      <circle cx="248" cy="192" r="4"/>
+      <circle cx="290" cy="189" r="4"/>
+    </g>
+
+    <!-- soldadura en el empalme con la punta -->
+    <g fill="#B9703F" stroke="#1B0E2A" stroke-width="2.5">
+      <circle cx="336" cy="182" r="6"/>
+      <circle cx="344" cy="200" r="6"/>
+      <circle cx="348" cy="218" r="6"/>
+      <circle cx="342" cy="234" r="5"/>
+    </g>
+
+    <!-- letras pintadas -->
+    <text x="200" y="230" text-anchor="middle" transform="rotate(-2 200 230)"
+          font-family="Impact, 'Arial Black', sans-serif" font-weight="bold"
+          font-size="48" letter-spacing="2" fill="#EADCB4" stroke="none"
+          >CAMINO</text>
+    <path d="M150 236 q3 10 0 16 q-6 -3 0 -16z" fill="#EADCB4" opacity="0.5"/>
+
+    <!-- alambre enrollado -->
+    <g fill="none" stroke="#1B0E2A" stroke-width="4" stroke-linecap="round">
+      <path d="M70 190 q-14 30 -2 60"/>
+      <path d="M82 188 q-14 30 -2 62"/>
+    </g>
+    <g fill="none" stroke="#8C93A2" stroke-width="2" stroke-linecap="round">
+      <path d="M70 190 q-14 30 -2 60"/>
+      <path d="M82 188 q-14 30 -2 62"/>
+    </g>
+
+    <!-- arañazos y golpes -->
+    <g stroke="#C2C8D2" stroke-width="2.5" stroke-linecap="round" opacity="0.5">
+      <path d="M96 212 L150 208 M256 200 L320 196"/>
+    </g>
+    <path d="M120 240 q16 4 26 -2" fill="none" stroke="#454E5F"
+          stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- apoyo torcido -->
+  <g stroke="#1B0E2A" stroke-width="6" stroke-linecap="round">
+    <path d="M236 246 L214 300" fill="none"/>
+    <path d="M236 246 L214 300" fill="none" stroke="#7C8496" stroke-width="3"/>
+  </g>
+
+  <!-- etiqueta colgando -->
+  <g stroke="#1B0E2A" stroke-width="3.5" stroke-linejoin="round">
+    <path d="M96 250 q-2 14 -12 20" fill="none"/>
+    <path d="M66 268 L92 264 L96 286 L70 290 Z" fill="#CFC3A6"/>
+    <path d="M74 274 L88 272" stroke="#6A2A20" stroke-width="2.5"/>
+  </g>
+</svg>

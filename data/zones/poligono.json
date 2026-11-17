@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "nanoacero"
+    },
+    {
+      "id": "caja_2",
+      "material": "restos"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -10,7 +19,22 @@
           64,
           240
         ],
-        "to": "camino"
+        "to": "camino",
+        "walls": [
+          [
+            64,
+            1213,
+            400,
+            40
+          ],
+          [
+            64,
+            1493,
+            400,
+            40
+          ]
+        ],
+        "sign": "señal_01"
       },
       {
         "edge": "west",
@@ -20,7 +44,22 @@
           64,
           240
         ],
-        "to": "ultima_ruta"
+        "to": "ultima_ruta",
+        "walls": [
+          [
+            64,
+            2466,
+            400,
+            40
+          ],
+          [
+            64,
+            2746,
+            400,
+            40
+          ]
+        ],
+        "sign": "señal_02"
       }
     ],
     "floor_rect": [
@@ -146,13 +185,151 @@
     "manada_gate": [
       1300,
       300
+    ],
+    "caja_1": [
+      1900,
+      1650
+    ],
+    "caja_2": [
+      2100,
+      2400
+    ],
+    "pie_1": [
+      1650,
+      2000
+    ],
+    "brazo_1": [
+      2350,
+      2000
+    ],
+    "ruinas": [
+      [
+        900,
+        1900
+      ],
+      [
+        2000,
+        1900
+      ],
+      [
+        3100,
+        1900
+      ]
+    ],
+    "archivos": [
+      [
+        1650,
+        700
+      ],
+      [
+        1850,
+        700
+      ]
+    ],
+    "tunel": [
+      [
+        3050,
+        1400
+      ],
+      [
+        3050,
+        1650
+      ]
+    ],
+    "ruta_1": [
+      [
+        800,
+        700
+      ],
+      [
+        800,
+        950
+      ],
+      [
+        1350,
+        950
+      ],
+      [
+        1350,
+        700
+      ]
+    ],
+    "ruta_2": [
+      [
+        2000,
+        3150
+      ],
+      [
+        2000,
+        3400
+      ],
+      [
+        2450,
+        3400
+      ],
+      [
+        2450,
+        3150
+      ]
     ]
   },
   "id": "poligono",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    }
+  ],
   "name": "Polígono de Reparto",
   "planned_species": [],
-  "props": [],
+  "props": [
+    {
+      "at": "ruinas",
+      "id_prefix": "ruina",
+      "material": "nanoacero",
+      "prop": "grieta",
+      "size": [
+        70,
+        70
+      ]
+    },
+    {
+      "at": "archivos",
+      "id_prefix": "archivo",
+      "material": "madera_cuantica",
+      "prop": "panel",
+      "size": [
+        72,
+        96
+      ]
+    },
+    {
+      "at": "tunel",
+      "id_prefix": "tunel",
+      "material": "aleacion_magnetica",
+      "prop": "camara",
+      "size": [
+        96,
+        96
+      ]
+    }
+  ],
   "species": [
     "jubilado",
     "manada"
@@ -178,5 +355,17 @@
       "area": "manada_home",
       "gate": "manada_gate"
     }
-  }
+  },
+  "actors": [
+    {
+      "id": "jubilado_almacenista",
+      "route": "ruta_1",
+      "species": "jubilado"
+    },
+    {
+      "id": "manada_de_reparto",
+      "route": "ruta_2",
+      "species": "manada"
+    }
+  ]
 }

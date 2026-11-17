@@ -16,7 +16,7 @@
   },
   "comments_grupos": 41,
   "conversion_actions": 104,
-  "conversion_materials": 9,
+  "conversion_materials": 60,
   "conversion_objectives": 14,
   "conversion_properties": 50,
   "deaths": 13,
@@ -35,7 +35,7 @@
   "protagonista_vistas": 8,
   "questions": 88,
   "species": 6,
-  "textos": 127,
+  "textos": 128,
   "weapons_enemy": 2,
   "weapons_player": 5,
   "zones": 24

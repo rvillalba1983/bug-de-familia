@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "antimateria"
+    },
+    {
+      "id": "caja_2",
+      "material": "aleacion_magnetica"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -10,7 +19,22 @@
           240,
           64
         ],
-        "to": "taller"
+        "to": "taller",
+        "walls": [
+          [
+            1840,
+            64,
+            40,
+            400
+          ],
+          [
+            2120,
+            64,
+            40,
+            400
+          ]
+        ],
+        "sign": "señal_01"
       },
       {
         "edge": "east",
@@ -20,7 +44,22 @@
           64,
           240
         ],
-        "to": "gran_cruce"
+        "to": "gran_cruce",
+        "walls": [
+          [
+            3536,
+            1840,
+            400,
+            40
+          ],
+          [
+            3536,
+            2120,
+            400,
+            40
+          ]
+        ],
+        "sign": "señal_02"
       }
     ],
     "floor_rect": [
@@ -130,13 +169,151 @@
     "moho_gate": [
       2900,
       1100
+    ],
+    "caja_1": [
+      1700,
+      1900
+    ],
+    "caja_2": [
+      2300,
+      1900
+    ],
+    "pie_1": [
+      1600,
+      2700
+    ],
+    "brazo_1": [
+      2400,
+      2700
+    ],
+    "ruinas": [
+      [
+        900,
+        2050
+      ],
+      [
+        2000,
+        2050
+      ],
+      [
+        3100,
+        2050
+      ]
+    ],
+    "archivos": [
+      [
+        1300,
+        750
+      ],
+      [
+        1600,
+        750
+      ]
+    ],
+    "tunel": [
+      [
+        3050,
+        1400
+      ],
+      [
+        3050,
+        1650
+      ]
+    ],
+    "ruta_1": [
+      [
+        1100,
+        600
+      ],
+      [
+        1100,
+        800
+      ],
+      [
+        1600,
+        800
+      ],
+      [
+        1600,
+        600
+      ]
+    ],
+    "ruta_2": [
+      [
+        2000,
+        2900
+      ],
+      [
+        2000,
+        3150
+      ],
+      [
+        2500,
+        3150
+      ],
+      [
+        2500,
+        2900
+      ]
     ]
   },
   "id": "paso",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    }
+  ],
   "name": "Paso de las Nueve",
   "planned_species": [],
-  "props": [],
+  "props": [
+    {
+      "at": "ruinas",
+      "id_prefix": "ruina",
+      "material": "restos",
+      "prop": "grieta",
+      "size": [
+        70,
+        70
+      ]
+    },
+    {
+      "at": "archivos",
+      "id_prefix": "archivo",
+      "material": "fibra_fotonica",
+      "prop": "panel",
+      "size": [
+        72,
+        96
+      ]
+    },
+    {
+      "at": "tunel",
+      "id_prefix": "tunel",
+      "material": "antimateria",
+      "prop": "camara",
+      "size": [
+        96,
+        96
+      ]
+    }
+  ],
   "species": [
     "jubilado",
     "mohocrata"
@@ -162,5 +339,17 @@
       "area": "moho_home",
       "gate": "moho_gate"
     }
-  }
+  },
+  "actors": [
+    {
+      "id": "jubilado_de_la_frontera",
+      "route": "ruta_1",
+      "species": "jubilado"
+    },
+    {
+      "id": "mohocrata_del_paso",
+      "route": "ruta_2",
+      "species": "mohocrata"
+    }
+  ]
 }

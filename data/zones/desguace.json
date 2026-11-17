@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "restos"
+    },
+    {
+      "id": "caja_2",
+      "material": "nanoacero"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -10,7 +19,22 @@
           240,
           64
         ],
-        "to": "despliegue_cero"
+        "to": "despliegue_cero",
+        "walls": [
+          [
+            1840,
+            64,
+            40,
+            400
+          ],
+          [
+            2120,
+            64,
+            40,
+            400
+          ]
+        ],
+        "sign": "señal_01"
       },
       {
         "edge": "west",
@@ -20,7 +44,22 @@
           64,
           240
         ],
-        "to": "taller"
+        "to": "taller",
+        "walls": [
+          [
+            64,
+            1840,
+            400,
+            40
+          ],
+          [
+            64,
+            2120,
+            400,
+            40
+          ]
+        ],
+        "sign": "señal_02"
       },
       {
         "edge": "east",
@@ -30,7 +69,22 @@
           64,
           240
         ],
-        "to": "asamblea"
+        "to": "asamblea",
+        "walls": [
+          [
+            3536,
+            1840,
+            400,
+            40
+          ],
+          [
+            3536,
+            2120,
+            400,
+            40
+          ]
+        ],
+        "sign": "señal_03"
       }
     ],
     "floor_rect": [
@@ -140,13 +194,151 @@
     "manada_gate": [
       1100,
       2900
+    ],
+    "caja_1": [
+      1650,
+      1550
+    ],
+    "caja_2": [
+      2150,
+      1550
+    ],
+    "pie_1": [
+      1400,
+      2000
+    ],
+    "brazo_1": [
+      3000,
+      1900
+    ],
+    "ruinas": [
+      [
+        1200,
+        800
+      ],
+      [
+        2000,
+        800
+      ],
+      [
+        2800,
+        800
+      ]
+    ],
+    "archivos": [
+      [
+        900,
+        1500
+      ],
+      [
+        900,
+        1750
+      ]
+    ],
+    "tunel": [
+      [
+        2050,
+        1900
+      ],
+      [
+        2050,
+        2150
+      ]
+    ],
+    "ruta_1": [
+      [
+        2900,
+        1450
+      ],
+      [
+        2900,
+        1700
+      ],
+      [
+        2650,
+        1700
+      ],
+      [
+        2650,
+        1450
+      ]
+    ],
+    "ruta_2": [
+      [
+        1100,
+        3200
+      ],
+      [
+        1100,
+        3450
+      ],
+      [
+        1600,
+        3450
+      ],
+      [
+        1600,
+        3200
+      ]
     ]
   },
   "id": "desguace",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    }
+  ],
   "name": "Desguace de las Nueve",
   "planned_species": [],
-  "props": [],
+  "props": [
+    {
+      "at": "ruinas",
+      "id_prefix": "ruina",
+      "material": "restos",
+      "prop": "grieta",
+      "size": [
+        70,
+        70
+      ]
+    },
+    {
+      "at": "archivos",
+      "id_prefix": "archivo",
+      "material": "nanoacero",
+      "prop": "panel",
+      "size": [
+        72,
+        96
+      ]
+    },
+    {
+      "at": "tunel",
+      "id_prefix": "tunel",
+      "material": "aleacion_magnetica",
+      "prop": "camara",
+      "size": [
+        96,
+        96
+      ]
+    }
+  ],
   "species": [
     "jubilado",
     "manada"
@@ -172,5 +364,17 @@
       "area": "manada_home",
       "gate": "manada_gate"
     }
-  }
+  },
+  "actors": [
+    {
+      "id": "jubilado_de_la_petanca",
+      "route": "ruta_1",
+      "species": "jubilado"
+    },
+    {
+      "id": "manada_repartidora",
+      "route": "ruta_2",
+      "species": "manada"
+    }
+  ]
 }

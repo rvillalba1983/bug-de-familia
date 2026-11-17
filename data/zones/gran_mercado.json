@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "bioceramica"
+    },
+    {
+      "id": "caja_2",
+      "material": "gel_memoria"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -10,7 +19,22 @@
           240,
           64
         ],
-        "to": "colmena"
+        "to": "colmena",
+        "walls": [
+          [
+            1840,
+            3536,
+            40,
+            400
+          ],
+          [
+            2120,
+            3536,
+            40,
+            400
+          ]
+        ],
+        "sign": "señal_01"
       },
       {
         "edge": "west",
@@ -20,7 +44,22 @@
           64,
           240
         ],
-        "to": "el_enchufe"
+        "to": "el_enchufe",
+        "walls": [
+          [
+            64,
+            1213,
+            400,
+            40
+          ],
+          [
+            64,
+            1493,
+            400,
+            40
+          ]
+        ],
+        "sign": "señal_02"
       },
       {
         "edge": "west",
@@ -30,7 +69,22 @@
           64,
           240
         ],
-        "to": "lonja"
+        "to": "lonja",
+        "walls": [
+          [
+            64,
+            2466,
+            400,
+            40
+          ],
+          [
+            64,
+            2746,
+            400,
+            40
+          ]
+        ],
+        "sign": "señal_03"
       },
       {
         "edge": "east",
@@ -40,7 +94,22 @@
           64,
           240
         ],
-        "to": "camino"
+        "to": "camino",
+        "walls": [
+          [
+            3536,
+            1840,
+            400,
+            40
+          ],
+          [
+            3536,
+            2120,
+            400,
+            40
+          ]
+        ],
+        "sign": "señal_04"
       }
     ],
     "floor_rect": [
@@ -176,13 +245,151 @@
     "moho_gate": [
       1700,
       300
+    ],
+    "caja_1": [
+      1700,
+      1600
+    ],
+    "caja_2": [
+      2300,
+      1600
+    ],
+    "pie_1": [
+      2000,
+      1300
+    ],
+    "brazo_1": [
+      2000,
+      2700
+    ],
+    "ruinas": [
+      [
+        950,
+        1900
+      ],
+      [
+        2000,
+        1900
+      ],
+      [
+        3050,
+        1900
+      ]
+    ],
+    "archivos": [
+      [
+        1650,
+        700
+      ],
+      [
+        1850,
+        700
+      ]
+    ],
+    "tunel": [
+      [
+        3050,
+        1350
+      ],
+      [
+        3050,
+        1600
+      ]
+    ],
+    "ruta_1": [
+      [
+        800,
+        700
+      ],
+      [
+        800,
+        950
+      ],
+      [
+        1350,
+        950
+      ],
+      [
+        1350,
+        700
+      ]
+    ],
+    "ruta_2": [
+      [
+        2000,
+        3200
+      ],
+      [
+        2000,
+        3450
+      ],
+      [
+        2450,
+        3450
+      ],
+      [
+        2450,
+        3200
+      ]
     ]
   },
   "id": "gran_mercado",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    }
+  ],
   "name": "Gran Mercado",
   "planned_species": [],
-  "props": [],
+  "props": [
+    {
+      "at": "ruinas",
+      "id_prefix": "ruina",
+      "material": "bioceramica",
+      "prop": "grieta",
+      "size": [
+        70,
+        70
+      ]
+    },
+    {
+      "at": "archivos",
+      "id_prefix": "archivo",
+      "material": "gel_memoria",
+      "prop": "panel",
+      "size": [
+        72,
+        96
+      ]
+    },
+    {
+      "at": "tunel",
+      "id_prefix": "tunel",
+      "material": "aleacion_magnetica",
+      "prop": "camara",
+      "size": [
+        96,
+        96
+      ]
+    }
+  ],
   "species": [
     "grux",
     "manada",
@@ -218,5 +425,17 @@
       "area": "moho_home",
       "gate": "moho_gate"
     }
-  }
+  },
+  "actors": [
+    {
+      "id": "grux_pregonero",
+      "route": "ruta_1",
+      "species": "grux"
+    },
+    {
+      "id": "mohocrata_votante",
+      "route": "ruta_2",
+      "species": "mohocrata"
+    }
+  ]
 }

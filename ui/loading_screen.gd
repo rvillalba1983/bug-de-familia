@@ -1,16 +1,19 @@
 class_name LoadingScreen
 extends CanvasLayer
-## Pantalla de carga inicial: el protagonista en pose gamberra rodeado de NPCs de cada especie.
+## Pantalla de carga inicial: arte a pantalla completa con el protagonista y todos los NPCs.
 ## Al terminar la carga, sin cambiar el fondo, aparecen las opciones del menú.
+## Origen del arte: imagen facilitada por el director en el chat, 16-nov-2026.
+## Herramienta: copia local desde ~/Downloads (no generada por IA en este repo).
+## El menú usa la paleta «Cuñado Radiactivo» (Palette) y señales de art/shared/fuentes.
 
-const NPC_IMAGES: Array = [
-	"res://art/shared/jubilado_hierro.svg",
-	"res://art/shared/mohocrata.svg",
-	"res://art/shared/plegado.svg",
-	"res://art/shared/eco.svg",
-	"res://art/shared/grux.svg",
-	"res://art/shared/manada.svg",
+## Señales existentes usadas como iconos: REFUGIO, SALIDA, SALIDA.
+const SIGN_ICONS: Array[String] = [
+	"res://art/shared/fuentes/señal_03.svg",
+	"res://art/shared/fuentes/señal_04.svg",
+	"res://art/shared/fuentes/señal_09.svg",
 ]
+const MENU_WIDTH: float = 500.0
+const ROW_HEIGHT: float = 84.0
 
 var _progress: float = 0.0
 var _timer: float = 0.0
@@ -32,56 +35,40 @@ func _ready() -> void:
 
 
 func _build_ui() -> void:
-	var backdrop: ColorRect = ColorRect.new()
-	backdrop.color = Color(0.1, 0.1, 0.15, 1.0)
-	backdrop.size = Vector2(1920.0, 1080.0)
-	add_child(backdrop)
+	# Fondo a pantalla completa: recorta un poco sin distorsionar (proporción 16:9).
+	var carga_tex: Texture2D = load("res://art/loading/carga_con_npcs.png") as Texture2D
+	if carga_tex != null:
+		var background: TextureRect = TextureRect.new()
+		background.texture = carga_tex
+		background.position = Vector2.ZERO
+		background.size = Vector2(1920.0, 1080.0)
+		background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		add_child(background)
+	else:
+		# Respaldo oscuro si falta el archivo de imagen.
+		var backdrop: ColorRect = ColorRect.new()
+		backdrop.color = Palette.INK
+		backdrop.size = Vector2(1920.0, 1080.0)
+		add_child(backdrop)
 
 	# Título
 	var title: Label = Label.new()
 	title.text = "Bug de Familia"
 	title.add_theme_font_size_override(&"font_size", 48)
+	title.add_theme_color_override(&"font_outline_color", Palette.INK)
+	title.add_theme_constant_override(&"outline_size", 6)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.position = Vector2(0.0, 60.0)
 	title.size = Vector2(1920.0, 60.0)
 	add_child(title)
 
-	# Protagonista en pose gamberra (centro)
-	var protagonist: TextureRect = TextureRect.new()
-	protagonist.custom_minimum_size = Vector2(400.0, 400.0)
-	protagonist.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	protagonist.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	protagonist.position = Vector2(760.0, 340.0)
-	var prot_tex: Texture2D = load("res://art/loading/protagonist_gamberra.png") as Texture2D
-	if prot_tex != null:
-		protagonist.texture = prot_tex
-	add_child(protagonist)
-
-	# NPCs alrededor, decenas de distintos tamaños
-	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-	rng.seed = 1234
-	var center: Vector2 = Vector2(960.0, 540.0)
-	for i: int in range(24):
-		var img_path: String = NPC_IMAGES[rng.randi() % NPC_IMAGES.size()]
-		var tex_rect: TextureRect = TextureRect.new()
-		var size: float = rng.randf_range(48.0, 160.0)
-		tex_rect.custom_minimum_size = Vector2(size, size)
-		tex_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		var angle: float = rng.randf() * TAU
-		var radius: float = rng.randf_range(220.0, 460.0)
-		var pos: Vector2 = center + Vector2(cos(angle), sin(angle)) * radius
-		tex_rect.position = pos - Vector2(size * 0.5, size * 0.5)
-		var texture: Texture2D = load(img_path) as Texture2D
-		if texture != null:
-			tex_rect.texture = texture
-		tex_rect.modulate.a = rng.randf_range(0.6, 1.0)
-		add_child(tex_rect)
-
 	# Subtítulo
 	var subtitle: Label = Label.new()
 	subtitle.text = "Cargando..."
 	subtitle.add_theme_font_size_override(&"font_size", 24)
+	subtitle.add_theme_color_override(&"font_outline_color", Palette.INK)
+	subtitle.add_theme_constant_override(&"outline_size", 5)
 	subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	subtitle.position = Vector2(0.0, 900.0)
 	subtitle.size = Vector2(1920.0, 40.0)
@@ -90,13 +77,13 @@ func _build_ui() -> void:
 
 	# Barra de progreso
 	var progress_bg: ColorRect = ColorRect.new()
-	progress_bg.color = Color(0.2, 0.2, 0.2, 1.0)
+	progress_bg.color = Color(Palette.INK.r, Palette.INK.g, Palette.INK.b, 0.8)
 	progress_bg.position = Vector2(660.0, 960.0)
 	progress_bg.size = Vector2(600.0, 20.0)
 	add_child(progress_bg)
 
 	var progress_fg: ColorRect = ColorRect.new()
-	progress_fg.color = Color(0.3, 0.8, 0.4, 1.0)
+	progress_fg.color = Palette.ACIDO
 	progress_fg.position = Vector2(660.0, 960.0)
 	progress_fg.size = Vector2(0.0, 20.0)
 	progress_fg.name = "ProgressFg"
@@ -122,22 +109,27 @@ func _show_menu_buttons() -> void:
 	if fg != null:
 		fg.visible = false
 
+	# Panel semitransparente para que las señales se lean sobre la imagen.
+	var backing: Panel = Panel.new()
+	backing.position = Vector2(690.0, 764.0)
+	backing.size = Vector2(540.0, 304.0)
+	backing.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	backing.add_theme_stylebox_override(&"panel", MenuButtonStyle.backing_box())
+	add_child(backing)
+
 	var btn_container: VBoxContainer = VBoxContainer.new()
-	btn_container.position = Vector2(760.0, 820.0)
-	btn_container.size = Vector2(400.0, 200.0)
-	btn_container.add_theme_constant_override(&"separation", 16)
+	btn_container.position = Vector2(710.0, 778.0)
+	btn_container.size = Vector2(MENU_WIDTH, ROW_HEIGHT * 3.0 + 28.0)
+	btn_container.add_theme_constant_override(&"separation", 14)
 	add_child(btn_container)
 
 	var labels: Array[String] = ["UI_MENU_CONTINUE", "UI_MENU_NEW", "UI_MENU_HISTORY"]
 	var callbacks: Array[Callable] = [on_continue, on_new, on_history]
 	for i: int in range(labels.size()):
-		var btn: Button = Button.new()
-		btn.text = tr(labels[i])
-		btn.custom_minimum_size = Vector2(400.0, 48.0)
-		var cb: Callable = callbacks[i]
-		if cb.is_valid():
-			btn.pressed.connect(cb)
-		btn_container.add_child(btn)
+		var btn: Button = MenuButtonStyle.make_button(
+			btn_container, i, tr(labels[i]), callbacks[i],
+			Vector2(MENU_WIDTH, ROW_HEIGHT), SIGN_ICONS[i]
+		)
 		_menu_buttons.append(btn)
 
 

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  señal_02 · Chapa oxidada
+  Origen: brief del director (señales improvisadas de Bug de Familia)
+  Herramienta: generación de SVG por código
+  Lienzo 512x320 · fondo transparente · piezas editables
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="320" viewBox="0 0 512 320">
+
+  <defs>
+    <linearGradient id="s2_chapa" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#8C93A2"/>
+      <stop offset="0.5" stop-color="#767E8E"/>
+      <stop offset="1" stop-color="#5A6272"/>
+    </linearGradient>
+    <linearGradient id="s2_poste" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3F4757"/>
+      <stop offset="0.42" stop-color="#6C7486"/>
+      <stop offset="1" stop-color="#38404F"/>
+    </linearGradient>
+    <linearGradient id="s2_oxido" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#B9703F"/>
+      <stop offset="0.6" stop-color="#A8482A"/>
+      <stop offset="1" stop-color="#6A2A20"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sombra -->
+  <ellipse cx="256" cy="302" rx="148" ry="13" fill="#1B0E2A" opacity="0.25"/>
+
+  <!-- poste torcido -->
+  <g id="s2_poste" stroke="#1B0E2A" stroke-width="6" stroke-linejoin="round"
+     stroke-linecap="round">
+    <path d="M244 304 L236 174 L264 170 L268 304 Z" fill="url(#s2_poste)"/>
+    <path d="M250 292 L248 216 M258 288 L257 196" fill="none" stroke="#31394A"
+          stroke-width="3" opacity="0.8"/>
+  </g>
+
+  <!-- chapa abollada -->
+  <g id="s2_chapa" transform="rotate(-2 256 140)">
+    <path d="M46 94 L298 80 L436 74 L468 100 L472 130 L474 194 L300 202 L152 208
+             L44 200 L42 150 L44 118 Z"
+          fill="url(#s2_chapa)" stroke="#1B0E2A" stroke-width="7"
+          stroke-linejoin="round" stroke-linecap="round"/>
+
+    <!-- canto inferior en sombra -->
+    <path d="M46 186 L300 194 L474 186 L474 196 L300 204 L44 200 Z" fill="#3F4757"
+          opacity="0.6"/>
+
+    <!-- esquina doblada hacia fuera -->
+    <path d="M436 74 L468 100 L438 106 L428 88 Z" fill="#9BA3B4" stroke="#1B0E2A"
+          stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- óxido -->
+    <g stroke="#1B0E2A" stroke-width="3" opacity="0.95" stroke-linejoin="round">
+      <path d="M60 96 q26 -6 40 10 q10 14 -2 24 q-20 8 -34 -4 q-10 -16 -4 -30z"
+            fill="url(#s2_oxido)"/>
+      <path d="M402 186 q26 -4 46 6 q-4 8 -22 8 q-18 1 -24 -14z"
+            fill="url(#s2_oxido)"/>
+      <path d="M196 200 q22 -6 38 2 q-2 8 -18 8 q-16 0 -20 -10z"
+            fill="#A8482A" stroke-width="2.5"/>
+    </g>
+    <g fill="#6A2A20" opacity="0.85">
+      <circle cx="86" cy="120" r="4"/>
+      <circle cx="100" cy="132" r="3"/>
+      <circle cx="420" cy="196" r="4"/>
+    </g>
+
+    <!-- abolladuras -->
+    <g fill="none" stroke="#4C5566" stroke-width="3" stroke-linecap="round"
+       opacity="0.9">
+      <path d="M104 112 q22 14 48 10"/>
+      <path d="M300 106 q30 -6 54 8"/>
+      <path d="M148 176 q34 10 66 4"/>
+      <path d="M356 118 q26 12 52 4"/>
+    </g>
+
+    <!-- arañazos -->
+    <g stroke="#B6BCC8" stroke-width="2.5" stroke-linecap="round" opacity="0.55">
+      <path d="M214 96 L256 118 M226 92 L268 114 M330 168 L372 186"/>
+      <path d="M120 148 L164 142"/>
+    </g>
+
+    <!-- tornillos -->
+    <g fill="#9BA3B4" stroke="#1B0E2A" stroke-width="4">
+      <circle cx="76" cy="114" r="8"/>
+      <circle cx="74" cy="180" r="8"/>
+      <circle cx="446" cy="112" r="8"/>
+      <circle cx="448" cy="180" r="8"/>
+      <circle cx="266" cy="86" r="8"/>
+    </g>
+    <g stroke="#3F4A5C" stroke-width="2.5" stroke-linecap="round">
+      <path d="M71 114 h10 M74 175 v10 M441 112 h10 M443 175 v10 M261 86 h10"/>
+    </g>
+
+    <!-- letras -->
+    <text x="258" y="160" text-anchor="middle"
+          font-family="Impact, 'Arial Black', sans-serif" font-weight="bold"
+          font-size="54" letter-spacing="3" fill="#EADCB4" stroke="none"
+          >NO PASAR</text>
+
+    <!-- parche soldado con remaches -->
+    <g>
+      <path d="M120 96 L166 92 L170 130 L124 134 Z" fill="#7E8697" stroke="#1B0E2A"
+            stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="130" cy="102" r="4" fill="#B9703F" stroke="#1B0E2A"
+              stroke-width="2.5"/>
+      <circle cx="160" cy="100" r="4" fill="#B9703F" stroke="#1B0E2A"
+              stroke-width="2.5"/>
+      <circle cx="162" cy="126" r="4" fill="#B9703F" stroke="#1B0E2A"
+              stroke-width="2.5"/>
+    </g>
+  </g>
+
+  <!-- chorretones de óxido -->
+  <g stroke="#1B0E2A" stroke-width="2.5" stroke-linecap="round">
+    <path d="M96 198 q4 16 0 26 q-8 -2 -2 -26z" fill="#A8482A"/>
+    <path d="M330 202 q3 12 0 20 q-7 -2 -1 -20z" fill="#A8482A"/>
+  </g>
+</svg>

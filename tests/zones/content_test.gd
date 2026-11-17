@@ -6,6 +6,7 @@ extends GdUnitTestSuite
 const ZONAS_CON_CONTENIDO: Array[String] = [
 	"el_enchufe", "lonja", "antecamara", "camara", "camino", "canon",
 	"instalacion", "sendero", "ultima_ruta", "valle", "archivo", "asamblea", "colmena", "atajo", "cementerio",
+	"cumbre", "desguace", "encrucijada", "gran_cruce", "gran_mercado", "paso", "poligono", "taller",
 ]
 
 func before_test() -> void:

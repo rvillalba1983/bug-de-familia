@@ -15,6 +15,7 @@ UI_BODY_EQUIP,Poner
 UI_MENU_TITLE,Bug de Familia
 UI_MENU_CONTINUE,Continuar
 UI_MENU_NEW,Nueva partida
+UI_MENU_HISTORY,Conoce la historia
 UI_GAME_OVER,Has muerto. No hay vuelta atrás.
 SLOT_0,Cabeza
 SLOT_1,Brazo principal izquierdo

@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "cristal_plasma"
+    },
+    {
+      "id": "caja_2",
+      "material": "restos"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -10,7 +19,22 @@
           240,
           64
         ],
-        "to": "encrucijada"
+        "to": "encrucijada",
+        "walls": [
+          [
+            1840,
+            64,
+            40,
+            400
+          ],
+          [
+            2120,
+            64,
+            40,
+            400
+          ]
+        ],
+        "sign": "señal_01"
       },
       {
         "edge": "west",
@@ -20,7 +44,22 @@
           64,
           240
         ],
-        "to": "paso"
+        "to": "paso",
+        "walls": [
+          [
+            64,
+            1840,
+            400,
+            40
+          ],
+          [
+            64,
+            2120,
+            400,
+            40
+          ]
+        ],
+        "sign": "señal_02"
       },
       {
         "edge": "east",
@@ -30,7 +69,22 @@
           64,
           240
         ],
-        "to": "cementerio"
+        "to": "cementerio",
+        "walls": [
+          [
+            3536,
+            1840,
+            400,
+            40
+          ],
+          [
+            3536,
+            2120,
+            400,
+            40
+          ]
+        ],
+        "sign": "señal_03"
       }
     ],
     "floor_rect": [
@@ -172,13 +226,151 @@
     "pleg_gate": [
       2100,
       300
+    ],
+    "caja_1": [
+      1900,
+      1600
+    ],
+    "caja_2": [
+      2100,
+      2450
+    ],
+    "pie_1": [
+      1600,
+      2000
+    ],
+    "brazo_1": [
+      2400,
+      2000
+    ],
+    "ruinas": [
+      [
+        900,
+        1050
+      ],
+      [
+        2000,
+        1050
+      ],
+      [
+        3100,
+        1050
+      ]
+    ],
+    "archivos": [
+      [
+        1350,
+        1050
+      ],
+      [
+        1600,
+        1050
+      ]
+    ],
+    "tunel": [
+      [
+        2900,
+        1600
+      ],
+      [
+        2900,
+        1900
+      ]
+    ],
+    "ruta_1": [
+      [
+        1750,
+        600
+      ],
+      [
+        1750,
+        850
+      ],
+      [
+        2150,
+        850
+      ],
+      [
+        2150,
+        600
+      ]
+    ],
+    "ruta_2": [
+      [
+        1800,
+        3150
+      ],
+      [
+        1800,
+        3400
+      ],
+      [
+        2250,
+        3400
+      ],
+      [
+        2250,
+        3150
+      ]
     ]
   },
   "id": "gran_cruce",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    }
+  ],
   "name": "El Gran Cruce",
   "planned_species": [],
-  "props": [],
+  "props": [
+    {
+      "at": "ruinas",
+      "id_prefix": "ruina",
+      "material": "restos",
+      "prop": "grieta",
+      "size": [
+        70,
+        70
+      ]
+    },
+    {
+      "at": "archivos",
+      "id_prefix": "archivo",
+      "material": "fibra_fotonica",
+      "prop": "panel",
+      "size": [
+        72,
+        96
+      ]
+    },
+    {
+      "at": "tunel",
+      "id_prefix": "tunel",
+      "material": "nanoacero",
+      "prop": "camara",
+      "size": [
+        96,
+        96
+      ]
+    }
+  ],
   "species": [
     "eco",
     "grux",
@@ -224,5 +416,17 @@
       "area": "pleg_home",
       "gate": "pleg_gate"
     }
-  }
+  },
+  "actors": [
+    {
+      "id": "jubilado_del_cruce",
+      "route": "ruta_1",
+      "species": "jubilado"
+    },
+    {
+      "id": "plegado_del_cruce",
+      "route": "ruta_2",
+      "species": "plegado"
+    }
+  ]
 }

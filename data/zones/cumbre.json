@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "madera_cuantica"
+    },
+    {
+      "id": "caja_2",
+      "material": "fibra_fotonica"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -10,7 +19,22 @@
           240,
           64
         ],
-        "to": "archivo"
+        "to": "archivo",
+        "walls": [
+          [
+            900,
+            3536,
+            40,
+            400
+          ],
+          [
+            1180,
+            3536,
+            40,
+            400
+          ]
+        ],
+        "sign": "señal_01"
       },
       {
         "edge": "south",
@@ -20,7 +44,22 @@
           240,
           64
         ],
-        "to": "despliegue_cero"
+        "to": "despliegue_cero",
+        "walls": [
+          [
+            1840,
+            3536,
+            40,
+            400
+          ],
+          [
+            2120,
+            3536,
+            40,
+            400
+          ]
+        ],
+        "sign": "señal_02"
       },
       {
         "edge": "south",
@@ -30,7 +69,22 @@
           240,
           64
         ],
-        "to": "el_enchufe"
+        "to": "el_enchufe",
+        "walls": [
+          [
+            2780,
+            3536,
+            40,
+            400
+          ],
+          [
+            3060,
+            3536,
+            40,
+            400
+          ]
+        ],
+        "sign": "señal_03"
       },
       {
         "edge": "east",
@@ -40,7 +94,22 @@
           64,
           240
         ],
-        "to": "valle"
+        "to": "valle",
+        "walls": [
+          [
+            3536,
+            1840,
+            400,
+            40
+          ],
+          [
+            3536,
+            2120,
+            400,
+            40
+          ]
+        ],
+        "sign": "señal_04"
       }
     ],
     "floor_rect": [
@@ -152,13 +221,151 @@
     "pleg_gate": [
       900,
       300
+    ],
+    "caja_1": [
+      1750,
+      1550
+    ],
+    "caja_2": [
+      2250,
+      1550
+    ],
+    "pie_1": [
+      1550,
+      1950
+    ],
+    "brazo_1": [
+      2450,
+      1950
+    ],
+    "ruinas": [
+      [
+        1150,
+        1900
+      ],
+      [
+        2000,
+        1900
+      ],
+      [
+        2850,
+        1900
+      ]
+    ],
+    "archivos": [
+      [
+        1700,
+        1450
+      ],
+      [
+        1950,
+        1450
+      ]
+    ],
+    "tunel": [
+      [
+        3050,
+        1700
+      ],
+      [
+        3050,
+        1950
+      ]
+    ],
+    "ruta_1": [
+      [
+        1250,
+        600
+      ],
+      [
+        1250,
+        850
+      ],
+      [
+        1750,
+        850
+      ],
+      [
+        1750,
+        600
+      ]
+    ],
+    "ruta_2": [
+      [
+        2250,
+        3200
+      ],
+      [
+        2250,
+        3450
+      ],
+      [
+        2750,
+        3450
+      ],
+      [
+        2750,
+        3200
+      ]
     ]
   },
   "id": "cumbre",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    }
+  ],
   "name": "Cumbre de los Pliegues",
   "planned_species": [],
-  "props": [],
+  "props": [
+    {
+      "at": "ruinas",
+      "id_prefix": "ruina",
+      "material": "madera_cuantica",
+      "prop": "grieta",
+      "size": [
+        70,
+        70
+      ]
+    },
+    {
+      "at": "archivos",
+      "id_prefix": "archivo",
+      "material": "fibra_fotonica",
+      "prop": "panel",
+      "size": [
+        72,
+        96
+      ]
+    },
+    {
+      "at": "tunel",
+      "id_prefix": "tunel",
+      "material": "cristal_plasma",
+      "prop": "camara",
+      "size": [
+        96,
+        96
+      ]
+    }
+  ],
   "species": [
     "plegado"
   ],
@@ -174,5 +381,17 @@
       "area": "pleg_home",
       "gate": "pleg_gate"
     }
-  }
+  },
+  "actors": [
+    {
+      "id": "plegado_archivista",
+      "route": "ruta_1",
+      "species": "plegado"
+    },
+    {
+      "id": "plegado_vigia",
+      "route": "ruta_2",
+      "species": "plegado"
+    }
+  ]
 }

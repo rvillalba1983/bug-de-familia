@@ -143,6 +143,8 @@ func corridors() -> Array[Dictionary]:
 			"to": str(corridor.get("to", "")),
 			"edge": str(corridor.get("edge", "")),
 			"rect": _to_rect(corridor.get("rect", [0.0, 0.0, 0.0, 0.0])),
+			"walls": _to_rects(corridor.get("walls", [])),
+			"sign": str(corridor.get("sign", "")),
 		})
 	return result
 
@@ -222,3 +224,11 @@ func _to_point(value: Array) -> Vector2:
 
 func _to_rect(value: Array) -> Rect2:
 	return Rect2(float(value[0]), float(value[1]), float(value[2]), float(value[3]))
+
+
+## Convierte una lista de [x, y, w, h] en rectángulos. Lista vacía -> vacío.
+func _to_rects(value: Array) -> Array[Rect2]:
+	var result: Array[Rect2] = []
+	for entry: Variant in value:
+		result.append(_to_rect(entry))
+	return result

@@ -1,5 +1,14 @@
 {
-  "convertibles": [],
+  "convertibles": [
+    {
+      "id": "caja_1",
+      "material": "fibra_fotonica"
+    },
+    {
+      "id": "caja_2",
+      "material": "nanoacero"
+    }
+  ],
   "geometry": {
     "corridors": [
       {
@@ -10,7 +19,22 @@
           240,
           64
         ],
-        "to": "el_enchufe"
+        "to": "el_enchufe",
+        "walls": [
+          [
+            1840,
+            64,
+            40,
+            400
+          ],
+          [
+            2120,
+            64,
+            40,
+            400
+          ]
+        ],
+        "sign": "señal_01"
       },
       {
         "edge": "south",
@@ -20,7 +44,22 @@
           240,
           64
         ],
-        "to": "paso"
+        "to": "paso",
+        "walls": [
+          [
+            1840,
+            3536,
+            40,
+            400
+          ],
+          [
+            2120,
+            3536,
+            40,
+            400
+          ]
+        ],
+        "sign": "señal_02"
       },
       {
         "edge": "east",
@@ -30,7 +69,22 @@
           64,
           240
         ],
-        "to": "desguace"
+        "to": "desguace",
+        "walls": [
+          [
+            3536,
+            1840,
+            400,
+            40
+          ],
+          [
+            3536,
+            2120,
+            400,
+            40
+          ]
+        ],
+        "sign": "señal_03"
       }
     ],
     "floor_rect": [
@@ -140,13 +194,151 @@
     "moho_gate": [
       2900,
       1100
+    ],
+    "caja_1": [
+      1750,
+      1700
+    ],
+    "caja_2": [
+      2250,
+      1700
+    ],
+    "pie_1": [
+      1600,
+      2150
+    ],
+    "brazo_1": [
+      2400,
+      2150
+    ],
+    "ruinas": [
+      [
+        900,
+        2000
+      ],
+      [
+        2000,
+        2000
+      ],
+      [
+        3100,
+        2000
+      ]
+    ],
+    "archivos": [
+      [
+        1650,
+        700
+      ],
+      [
+        1850,
+        700
+      ]
+    ],
+    "tunel": [
+      [
+        3050,
+        1400
+      ],
+      [
+        3050,
+        1650
+      ]
+    ],
+    "ruta_1": [
+      [
+        1100,
+        600
+      ],
+      [
+        1100,
+        850
+      ],
+      [
+        1600,
+        850
+      ],
+      [
+        1600,
+        600
+      ]
+    ],
+    "ruta_2": [
+      [
+        2000,
+        3100
+      ],
+      [
+        2000,
+        3350
+      ],
+      [
+        2500,
+        3350
+      ],
+      [
+        2500,
+        3100
+      ]
     ]
   },
   "id": "taller",
-  "items": [],
+  "items": [
+    {
+      "at": "caja_1",
+      "id": "caja_1",
+      "type": "crate"
+    },
+    {
+      "at": "caja_2",
+      "id": "caja_2",
+      "type": "crate"
+    },
+    {
+      "at": "pie_1",
+      "id": "pie_1",
+      "type": "leg"
+    },
+    {
+      "at": "brazo_1",
+      "id": "brazo_1",
+      "type": "arm"
+    }
+  ],
   "name": "Talleres de Abuela RAM",
   "planned_species": [],
-  "props": [],
+  "props": [
+    {
+      "at": "ruinas",
+      "id_prefix": "ruina",
+      "material": "madera_cuantica",
+      "prop": "grieta",
+      "size": [
+        70,
+        70
+      ]
+    },
+    {
+      "at": "archivos",
+      "id_prefix": "archivo",
+      "material": "nanoacero",
+      "prop": "panel",
+      "size": [
+        72,
+        96
+      ]
+    },
+    {
+      "at": "tunel",
+      "id_prefix": "tunel",
+      "material": "fibra_fotonica",
+      "prop": "camara",
+      "size": [
+        96,
+        96
+      ]
+    }
+  ],
   "species": [
     "jubilado",
     "mohocrata"
@@ -172,5 +364,17 @@
       "area": "moho_home",
       "gate": "moho_gate"
     }
-  }
+  },
+  "actors": [
+    {
+      "id": "jubilado_aprendiz",
+      "route": "ruta_1",
+      "species": "jubilado"
+    },
+    {
+      "id": "mohocrata_chatarra",
+      "route": "ruta_2",
+      "species": "mohocrata"
+    }
+  ]
 }

@@ -32,10 +32,10 @@
     "ingeniero-godot": {
       "config_en": "agents.ingeniero-godot.model",
       "cadena": [
+        "opencode-go/deepseek-v4.1-flash",
         "opencode-go/kimi-k2.7-code",
         "opencode/big-pickle",
-        "opencode-go/glm-5.3",
-        "opencode/glm-5.3-flash-free"
+        "opencode-go/glm-5.3"
       ]
     },
     "gameplay": {
@@ -68,10 +68,10 @@
     "datos": {
       "config_en": "agents.datos.model",
       "cadena": [
+        "opencode-go/deepseek-v4.1-flash",
         "opencode-go/minimax-m3",
         "opencode/big-pickle",
-        "opencode-go/glm-5.3-flash",
-        "opencode/glm-5.3-flash-free"
+        "opencode-go/glm-5.3-flash"
       ]
     },
     "arte": {

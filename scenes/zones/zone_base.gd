@@ -42,12 +42,68 @@ const SIGN_SPRITE_Z: int = 1
 const SIGN_NAME_Z: int = 2
 ## Fachadas genéricas de corredor (P-53), dibujadas por el agente `arte` el 17-nov
 ## (registro en `docs/36_pipeline_graficos.md`). Se alternan por orden de montaje.
-const CORRIDOR_FACADE_ART: Array[String] = [
+## Son el **fallback** para las zonas que no tienen fachadas propias (hoy solo
+## `despliegue_cero`, según la directriz del director del 17-nov: P-56).
+const CORRIDOR_FACADE_ART_DEFAULT: Array[String] = [
 	"res://art/shared/fachada_corredor_01.svg",
 	"res://art/shared/fachada_corredor_02.svg",
 	"res://art/shared/fachada_corredor_03.svg",
 	"res://art/shared/fachada_corredor_04.svg",
 ]
+## Fachadas propias por zona (P-56): cada zona con identidad visual propia declara
+## aquí sus 4 SVGs. Si una zona no aparece, se usa `CORRIDOR_FACADE_ART_DEFAULT`.
+## Único punto donde cambiar el juego de fachadas de un zona: no se toca ni datos
+## (JSON) ni la lógica de montaje (`_build_corridor_facades`).
+const CORRIDOR_FACADE_ART_BY_ZONE: Dictionary = {
+	"cumbre": [
+		"res://art/shared/fachada_corredor_cumbre_01.svg",
+		"res://art/shared/fachada_corredor_cumbre_02.svg",
+		"res://art/shared/fachada_corredor_cumbre_03.svg",
+		"res://art/shared/fachada_corredor_cumbre_04.svg",
+	],
+	"desguace": [
+		"res://art/shared/fachada_corredor_desguace_01.svg",
+		"res://art/shared/fachada_corredor_desguace_02.svg",
+		"res://art/shared/fachada_corredor_desguace_03.svg",
+		"res://art/shared/fachada_corredor_desguace_04.svg",
+	],
+	"encrucijada": [
+		"res://art/shared/fachada_corredor_encrucijada_01.svg",
+		"res://art/shared/fachada_corredor_encrucijada_02.svg",
+		"res://art/shared/fachada_corredor_encrucijada_03.svg",
+		"res://art/shared/fachada_corredor_encrucijada_04.svg",
+	],
+	"gran_cruce": [
+		"res://art/shared/fachada_corredor_gran_cruce_01.svg",
+		"res://art/shared/fachada_corredor_gran_cruce_02.svg",
+		"res://art/shared/fachada_corredor_gran_cruce_03.svg",
+		"res://art/shared/fachada_corredor_gran_cruce_04.svg",
+	],
+	"gran_mercado": [
+		"res://art/shared/fachada_corredor_gran_mercado_01.svg",
+		"res://art/shared/fachada_corredor_gran_mercado_02.svg",
+		"res://art/shared/fachada_corredor_gran_mercado_03.svg",
+		"res://art/shared/fachada_corredor_gran_mercado_04.svg",
+	],
+	"paso": [
+		"res://art/shared/fachada_corredor_paso_01.svg",
+		"res://art/shared/fachada_corredor_paso_02.svg",
+		"res://art/shared/fachada_corredor_paso_03.svg",
+		"res://art/shared/fachada_corredor_paso_04.svg",
+	],
+	"poligono": [
+		"res://art/shared/fachada_corredor_poligono_01.svg",
+		"res://art/shared/fachada_corredor_poligono_02.svg",
+		"res://art/shared/fachada_corredor_poligono_03.svg",
+		"res://art/shared/fachada_corredor_poligono_04.svg",
+	],
+	"taller": [
+		"res://art/shared/fachada_corredor_taller_01.svg",
+		"res://art/shared/fachada_corredor_taller_02.svg",
+		"res://art/shared/fachada_corredor_taller_03.svg",
+		"res://art/shared/fachada_corredor_taller_04.svg",
+	],
+}
 ## Provisional: distancia a la que un grupo se mete en la pelea de los suyos.
 const GROUP_REACT_RADIUS: float = 250.0
 
@@ -236,12 +292,28 @@ func _build_corridor_facades(corridor: Dictionary) -> void:
 		corridor_facades.append(facade)
 
 
+## Catálogo de fachadas que toca a esta zona: el propio si tiene identidad visual
+## (P-56) y, si no, el fallback genérico (solo `despliegue_cero`).
+func _corridor_facade_art() -> Array:
+	var zone_id: String = ""
+	if definition != null:
+		zone_id = definition.id
+	if CORRIDOR_FACADE_ART_BY_ZONE.has(zone_id):
+		var value: Array = CORRIDOR_FACADE_ART_BY_ZONE[zone_id]
+		return value
+	return CORRIDOR_FACADE_ART_DEFAULT
+
+
 ## Textura de la fachada de corredor: se alternan los modelos del catálogo para
 ## que dos edificios seguidos no salgan iguales. Devuelve null si falta el SVG, y
 ## la fachada se dibuja igualmente (el error queda visible en el registro).
 func _corridor_facade_texture() -> Texture2D:
-	var index: int = corridor_facades.size() % CORRIDOR_FACADE_ART.size()
-	var path: String = CORRIDOR_FACADE_ART[index]
+	var art: Array = _corridor_facade_art()
+	if art.is_empty():
+		push_error("ZoneBase: catálogo de fachadas vacío para %s" % (definition.id if definition != null else "?"))
+		return null
+	var index: int = corridor_facades.size() % art.size()
+	var path: String = art[index]
 	var texture: Texture2D = load(path) as Texture2D
 	if texture == null:
 		push_error("ZoneBase: no se encontro la fachada de corredor %s" % path)

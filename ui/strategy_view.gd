@@ -196,6 +196,18 @@ func _draw_buildings() -> void:
 		var caja: Rect2 = Rect2(a, b - a)
 		_canvas.draw_rect(caja, COLOR_EDIFICIO)
 		_canvas.draw_rect(caja, COLOR_EDIFICIO_BORDE, false, 2.0)
+	# Fachadas de corredor de la zona actual (P-31/P-56): se dibujan como
+	# bloques con el color de edificio, usando su huella en el mundo.
+	if director != null and is_instance_valid(director.level):
+		for facade: CorridorFacade in director.level.corridor_facades:
+			if not is_instance_valid(facade):
+				continue
+			var r: Rect2 = facade.visual_rect()
+			var a: Vector2 = _to_view(r.position)
+			var b: Vector2 = _to_view(r.position + r.size)
+			var caja: Rect2 = Rect2(a, b - a)
+			_canvas.draw_rect(caja, COLOR_EDIFICIO)
+			_canvas.draw_rect(caja, COLOR_EDIFICIO_BORDE, false, 2.0)
 	var ciudad: Vector2 = _to_view(DespliegueCeroLayout.city.position)
 	var fin: Vector2 = _to_view(DespliegueCeroLayout.city.position + DespliegueCeroLayout.city.size)
 	_canvas.draw_rect(Rect2(ciudad, fin - ciudad), COLOR_EDIFICIO_BORDE, false, 2.0)

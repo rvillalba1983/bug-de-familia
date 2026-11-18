@@ -1,7 +1,7 @@
 {
-  "action_frames": 3,
+  "action_frames": 14,
   "ai_faces": 20,
-  "atlas_piezas": 55,
+  "atlas_piezas": 90,
   "case_01": {
     "ambient": 6,
     "dialogue": 14,

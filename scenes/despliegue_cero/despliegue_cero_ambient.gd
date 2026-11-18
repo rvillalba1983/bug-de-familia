@@ -10,8 +10,23 @@ const CABLES: Array[Array] = [
 	[Vector2(1320.0, 1160.0), Vector2(1560.0, 1140.0)], [Vector2(1900.0, 1140.0), Vector2(2140.0, 1160.0)],
 	[Vector2(1340.0, 1500.0), Vector2(1600.0, 1520.0)],
 ]
-const PLANTS: Array[Vector2] = [Vector2(1180.0, 1000.0), Vector2(1120.0, 1560.0), Vector2(2260.0, 1100.0), Vector2(860.0, 1240.0), Vector2(2780.0, 1500.0)]
-const CANOPIES: Array[Vector2] = [Vector2(220.0, 420.0), Vector2(440.0, 1100.0), Vector2(260.0, 1900.0), Vector2(640.0, 2300.0), Vector2(3480.0, 500.0), Vector2(3600.0, 2100.0), Vector2(860.0, 280.0)]
+const PLANTS: Array[Vector2] = [
+	Vector2(1180.0, 1000.0), Vector2(1120.0, 1560.0), Vector2(2260.0, 1100.0),
+	Vector2(860.0, 1240.0), Vector2(2780.0, 1500.0),
+	# Afueras (P-54): hierba alta en el bosque sur y en la franja este.
+	Vector2(1400.0, 2740.0), Vector2(2060.0, 3620.0), Vector2(3130.0, 2660.0),
+	Vector2(3740.0, 2000.0), Vector2(3860.0, 1300.0),
+]
+const CANOPIES: Array[Vector2] = [
+	Vector2(220.0, 420.0), Vector2(440.0, 1100.0), Vector2(260.0, 1900.0),
+	Vector2(640.0, 2300.0), Vector2(3480.0, 500.0), Vector2(3600.0, 2100.0),
+	Vector2(860.0, 280.0),
+	# Afueras (P-54): copas del bosque de transición hacia los corredores.
+	Vector2(300.0, 2750.0), Vector2(720.0, 3250.0), Vector2(1260.0, 3660.0),
+	Vector2(1820.0, 2900.0), Vector2(2280.0, 3440.0), Vector2(2760.0, 2790.0),
+	Vector2(3400.0, 3320.0), Vector2(3780.0, 620.0), Vector2(3800.0, 1350.0),
+	Vector2(3760.0, 2450.0), Vector2(3820.0, 3620.0),
+]
 const CANOPY_PARALLAX: float = 0.09
 const CANOPY_CLEAR: float = 170.0
 const COLOR_WATER: Color = Color(0.3, 0.8, 0.9, 0.55)

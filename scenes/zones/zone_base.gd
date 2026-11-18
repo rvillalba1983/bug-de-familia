@@ -40,6 +40,14 @@ const SIGN_NAME_BG_ALPHA: float = 0.35
 ## Los textos de la boca van por encima de los muros; el nombre, sobre la señal.
 const SIGN_SPRITE_Z: int = 1
 const SIGN_NAME_Z: int = 2
+## Fachadas genéricas de corredor (P-53), dibujadas por el agente `arte` el 17-nov
+## (registro en `docs/36_pipeline_graficos.md`). Se alternan por orden de montaje.
+const CORRIDOR_FACADE_ART: Array[String] = [
+	"res://art/shared/fachada_corredor_01.svg",
+	"res://art/shared/fachada_corredor_02.svg",
+	"res://art/shared/fachada_corredor_03.svg",
+	"res://art/shared/fachada_corredor_04.svg",
+]
 ## Provisional: distancia a la que un grupo se mete en la pelea de los suyos.
 const GROUP_REACT_RADIUS: float = 250.0
 
@@ -50,6 +58,9 @@ var battles: BattleDirector = null
 var _zone_enemy_ids: Dictionary = {}
 var _zone_materials: Dictionary = {}
 var _corridor_areas: Array[Area2D] = []
+## Edificios que delimitan los corredores (P-53). No van en `walls`: esa lista es
+## la que se atenúa al tapar a un personaje y estas fachadas nunca se atenúan.
+var corridor_facades: Array[CorridorFacade] = []
 ## Nombre de la zona destino de cada boca, por id de la zona destino.
 var _zone_signs: Dictionary = {}
 
@@ -199,15 +210,42 @@ func _build_corridors() -> void:
 		add_child(area)
 		_corridor_areas.append(area)
 		_build_corridor_walls(corridor)
+		_build_corridor_facades(corridor)
 		_build_corridor_backdrop(corridor)
 		_build_zone_sign(corridor)
 
 
 ## Muros del pasillo físico: cierran el paso (blockers de NavGrid) y se dibujan
 ## como muro real (oclusión y y-sort), a diferencia de los shape_blocks.
+## Es la forma legacy (ADR 0034); la forma normal desde P-53 son las fachadas.
 func _build_corridor_walls(corridor: Dictionary) -> void:
 	for wall_rect: Rect2 in corridor.get("walls", []):
 		_add_wall(wall_rect, CORRIDOR_WALL_HEIGHT, Wall.Kind.SOLID)
+
+
+## Delimitación por edificios (P-53): cada rect se monta como una fachada de
+## corredor del alto de los muros. Igual que ellos, colisiona y entra en
+## `_all_blockers()`, así que `NavGrid` la respeta; a diferencia de la fachada de
+## un edificio transitable, nunca se atenúa: tiene que ocultar lo que hay más allá
+## del pasillo. Las texturas son provisionales (ver `CORRIDOR_FACADE_ART`).
+func _build_corridor_facades(corridor: Dictionary) -> void:
+	for facade_rect: Rect2 in corridor.get("facades", []):
+		var facade: CorridorFacade = CorridorFacade.new()
+		facade.setup(facade_rect, CORRIDOR_WALL_HEIGHT, _corridor_facade_texture())
+		actors.add_child(facade)
+		corridor_facades.append(facade)
+
+
+## Textura de la fachada de corredor: se alternan los modelos del catálogo para
+## que dos edificios seguidos no salgan iguales. Devuelve null si falta el SVG, y
+## la fachada se dibuja igualmente (el error queda visible en el registro).
+func _corridor_facade_texture() -> Texture2D:
+	var index: int = corridor_facades.size() % CORRIDOR_FACADE_ART.size()
+	var path: String = CORRIDOR_FACADE_ART[index]
+	var texture: Texture2D = load(path) as Texture2D
+	if texture == null:
+		push_error("ZoneBase: no se encontro la fachada de corredor %s" % path)
+	return texture
 
 
 ## Cierre visual de la boca en las salidas que la proyección no oculta.
@@ -226,13 +264,14 @@ func _build_corridor_walls(corridor: Dictionary) -> void:
 ## No entra en `_all_blockers()` a propósito: el rect del corredor tiene que
 ## seguir siendo caminable en NavGrid (`test_corridor_walls_keep_gap_walkable`).
 ##
-## Es opt-in: solo lo llevan los corredores que ya declaran `walls`, así que las
-## zonas sin pasillos físicos no cambian.
+## Es opt-in: solo lo llevan los corredores que declaran algún delimitador
+## (`walls` legacy o `facades`), así que las zonas sin pasillos físicos no cambian.
 func _build_corridor_backdrop(corridor: Dictionary) -> void:
 	var edge: String = str(corridor.get("edge", ""))
 	if edge != "south" and edge != "east":
 		return
-	if (corridor.get("walls", []) as Array).is_empty():
+	if (corridor.get("walls", []) as Array).is_empty() \
+			and (corridor.get("facades", []) as Array).is_empty():
 		return
 	var rect: Rect2 = corridor["rect"] as Rect2
 	var backdrop: Wall = _add_wall(
@@ -598,10 +637,7 @@ func _species_look(species: String) -> Dictionary:
 
 
 func _load_views(base: String) -> Array[Texture2D]:
-	var views: Array[Texture2D] = []
-	for suffix: String in ["", "_e", "_n"]:
-		views.append(load(ART_FOLDER + base + suffix + ".svg") as Texture2D)
-	return views
+	return GuardVisual.load_views(ART_FOLDER, base)
 
 
 ## El Sandbox anota el caído con _id_of, que aquí es el id del JSON. La zona solo
@@ -633,12 +669,16 @@ func _shows_help_labels() -> bool:
 
 
 ## Los bloques de forma cierran el paso y deben estar en la rejilla de navegación.
+## Los delimitadores de los corredores (muros legacy y fachadas) también: así nadie
+## cruza el edificio ni el muro que separa el pasillo de la sala.
 func _all_blockers() -> Array[Rect2]:
 	var result: Array[Rect2] = super()
 	result.append_array(shape_blocks())
 	for corridor: Dictionary in _definition().corridors():
 		for wall_rect: Rect2 in corridor.get("walls", []):
 			result.append(wall_rect)
+		for facade_rect: Rect2 in corridor.get("facades", []):
+			result.append(facade_rect)
 	return result
 
 

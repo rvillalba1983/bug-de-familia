@@ -20,7 +20,7 @@
           64
         ],
         "to": "despliegue_cero",
-        "walls": [
+        "facades": [
           [
             1840,
             64,
@@ -45,7 +45,7 @@
           240
         ],
         "to": "taller",
-        "walls": [
+        "facades": [
           [
             64,
             1840,
@@ -70,7 +70,7 @@
           240
         ],
         "to": "asamblea",
-        "walls": [
+        "facades": [
           [
             3536,
             1840,

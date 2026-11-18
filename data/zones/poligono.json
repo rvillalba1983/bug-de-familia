@@ -20,7 +20,7 @@
           240
         ],
         "to": "camino",
-        "walls": [
+        "facades": [
           [
             64,
             1213,
@@ -45,7 +45,7 @@
           240
         ],
         "to": "ultima_ruta",
-        "walls": [
+        "facades": [
           [
             64,
             2466,

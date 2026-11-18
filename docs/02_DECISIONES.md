@@ -213,6 +213,21 @@ Ver `docs/adr/0027-multi-zona.md`.
   (`ZoneBase.chat_topic()`). Ver `adr/0030-retos-conocidos-en-el-chat.md`.
 - Registrado como **P-32** en `01_CONFLICTOS_Y_PENDIENTES.md`.
 
+## Corredores delimitados por edificios (post-beta, 17-nov)
+
+- Decisión del director (P-53): los caminos entre zonas se delimitan con **edificios con
+  fachada**, no con muros. Las fachadas son la **forma normal**; los `walls` quedan como
+  solución **legacy** soportada y no hay que rehacer las zonas que ya los usan.
+- El modelo de datos es una clave opcional nueva por corredor, `geometry.corridors[].facades`
+  (lista de rects `[x, y, w, h]`, misma interpretación que `walls`). Un corredor declara
+  `walls`, `facades` o ninguno, **nunca los dos**.
+- La fachada de corredor **oculta** lo que hay más allá (no se aclara al acercarse el jugador,
+  al contrario que la fachada de un edificio interior) y el fondo de las bocas sur/este se
+  mantiene.
+- Implementado en la rama `fase/arte-personajes-y-delimitadores`; ver el apartado 7 de
+  `adr/0034-corredores-fisicos.md`. Pendiente: las fachadas SVG genéricas de corredor (arte) y
+  declarar `facades` en `data/zones/*.json`.
+
 ## Lo que no se puede inventar
 Progenitores y su origen, personalidades de las IA, reglas de tokens, mapa, barra de salud, diario, personajes protegidos, multijugador, conexión online, vehículos, recetas cerradas de conversión.
 

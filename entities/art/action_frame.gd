@@ -1,7 +1,7 @@
 class_name ActionFrame
 extends RefCounted
-## Fotograma actual de una acción del personaje (idle/ataque/recarga). Provisional, P-25.
-## Usa el reloj del motor, no el RNG global: no altera la semilla de la partida.
+## Fotograma actual de la acción del personaje (idle, ataque, recarga y gestos con atlas).
+## Provisional, P-25 y P-51. Usa el reloj del motor, no el RNG global: no altera la semilla.
 
 var action: String = ActionFrameCatalog.DEFAULT
 ## Permite fijar el reloj en pruebas; si no es válida, usa el reloj del motor.

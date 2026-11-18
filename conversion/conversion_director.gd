@@ -96,6 +96,8 @@ func begin_on(target: Convertible) -> void:
 		step = Step.IDLE
 		_flash_hint(tr("UI_CONVERT_NO_ROOM"))
 		return
+	## Gesto de conversión (P-51): brillo morado en las manos; solo visual.
+	player.set_action("convertir")
 	_hint_left = 0.0
 	hint.visible = false
 	pause.begin_modal()

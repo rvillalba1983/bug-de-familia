@@ -101,7 +101,7 @@ func throw_at(point: Vector2) -> bool:
 		return false
 	_throw_timer = THROW_COOLDOWN
 	_shoot(WeaponCatalog.thrown(), point)
-	_mark_action("ataque")
+	_mark_action("lanzar", WeaponCatalog.THROWN_ID)
 	return true
 
 
@@ -110,14 +110,19 @@ func fire_weapon(id: String, point: Vector2) -> bool:
 	if not WeaponCatalog.has_player_weapon(id):
 		return false
 	_shoot(WeaponCatalog.player(id), point)
-	_mark_action("ataque")
+	_mark_action("ataque", id)
 	return true
 
 
-## Marca la acción cosmética del protagonista (P-25). Provisional.
-func _mark_action(accion: String) -> void:
-	if level != null and level.player != null:
-		level.player.set_action(accion)
+## Marca el gesto del protagonista (P-25 y P-51). La cadena de búsqueda está en
+## ActionFrameCatalog: primero `base_<arma>`, luego `base_<tipo>` y luego `base`.
+func _mark_action(base: String, weapon_id: String = "") -> void:
+	if level == null or level.player == null:
+		return
+	var gesture: String = ""
+	if not weapon_id.is_empty() and WeaponCatalog.has_player_weapon(weapon_id):
+		gesture = str(WeaponCatalog.player(weapon_id).get("gesture_type", ""))
+	level.player.set_action(ActionFrameCatalog.resolve(base, weapon_id, gesture))
 
 
 func _shoot(weapon: Dictionary, point: Vector2) -> void:

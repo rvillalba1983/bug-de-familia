@@ -20,7 +20,9 @@ errores de parseo y de carga de scripts (`SCRIPT ERROR:`, `Parse Error:` y
 `ERROR:` que mencionen una ruta `res://`) fallan aunque el informe no los
 refleje (son fallos de descubrimiento fuera del informe). Las lineas
 `USER ERROR:` se listan como avisos: un `push_error` de codigo bajo prueba no
-implica que la prueba haya fallado.
+implica que la prueba haya fallado. Tampoco fallan los `ERROR:` cuyo backtrace
+muestra que GdUnit4 los capturo con `assert_push_error` (`is_push_error`):
+son errores esperados por un test negativo, no fallos de descubrimiento.
 
 Uso (desde la raiz del repo):
 
@@ -180,18 +182,44 @@ def comprobar(datos: dict[str, object], minimo: int,
     return buenas, errores
 
 
+def _error_esperado_por_gdunit(lineas: list[str], indice: int) -> bool:
+    """True si el backtrace delata un `assert_push_error` capturado por GdUnit4.
+
+    Un test negativo provoca un `push_error` a proposito. Godot lo escribe como
+    `ERROR:` con ruta `res://`, pero el backtrace incluye `is_push_error` de
+    `GdUnitGodotErrorAssertImpl.gd`: es un error esperado, no un fallo de carga.
+    Se revisa solo el backtrace inmediatamente posterior, hasta el siguiente
+    error, para no absorber errores reales posteriores.
+    """
+    visto_metodo = False
+    visto_asercion = False
+    for posterior in lineas[indice + 1:indice + 40]:
+        texto = PATRON_ANSI.sub("", posterior).strip()
+        if (texto.startswith(PREFIJOS_FATAL) or texto.startswith("ERROR:")
+                or texto.startswith("USER ERROR:")):
+            break
+        if "is_push_error" in texto:
+            visto_metodo = True
+        if "GdUnitGodotErrorAssertImpl.gd" in texto:
+            visto_asercion = True
+        if visto_metodo and visto_asercion:
+            return True
+    return False
+
+
 def revisar_registro(texto: str) -> tuple[list[str], list[str]]:
     """Devuelve (avisos, errores) del registro de la ejecucion de GdUnit4.
 
     Los errores de parseo y de carga de scripts invalidan la ejecucion aunque
     el informe no los refleje: son fallos de descubrimiento fuera del informe.
-    Los `USER ERROR:` (push_error de codigo bajo prueba) se listan como
-    avisos, no como fallos.
+    Los `USER ERROR:` (push_error de codigo bajo prueba) y los `ERROR:` capturados
+    por `assert_push_error` se listan como avisos, no como fallos.
     """
     avisos: list[str] = []
     errores: list[str] = []
     vistas: set[str] = set()
-    for numero, cruda in enumerate(texto.split("\n"), 1):
+    lineas = texto.split("\n")
+    for numero, cruda in enumerate(lineas, 1):
         linea = PATRON_ANSI.sub("", cruda).strip()
         if not linea or linea in vistas:
             continue
@@ -199,7 +227,12 @@ def revisar_registro(texto: str) -> tuple[list[str], list[str]]:
             linea.startswith("ERROR:") and "res://" in linea)
         if fatal:
             vistas.add(linea)
-            errores.append(f"ERROR registro linea {numero}: {linea}")
+            if ("res://" in linea and linea.startswith("ERROR:")
+                    and _error_esperado_por_gdunit(lineas, numero - 1)):
+                avisos.append(f"AVISO registro linea {numero}: error esperado "
+                              f"por assert_push_error: {linea}")
+            else:
+                errores.append(f"ERROR registro linea {numero}: {linea}")
         elif linea.startswith("USER ERROR:"):
             vistas.add(linea)
             avisos.append(f"AVISO registro linea {numero}: {linea}")

@@ -9,7 +9,8 @@
    "noise": 160,
    "noise_at_impact": true,
    "stops_at_aim": true,
-   "color": "#c0c0c0"
+   "color": "#c0c0c0",
+   "gesture_type": "proyectil"
   },
   "a101": {
    "damage": 10,
@@ -21,7 +22,8 @@
    "noise_at_impact": true,
    "cooldown": 1,
    "wear": 1,
-   "color": "#d8d0a0"
+   "color": "#d8d0a0",
+   "gesture_type": "proyectil"
   },
   "a102": {
    "damage": 9,
@@ -33,7 +35,8 @@
    "noise_at_impact": false,
    "cooldown": 3,
    "wear": 6,
-   "color": "#ffa040"
+   "color": "#ffa040",
+   "gesture_type": "scatter"
   },
   "a103": {
    "damage": 40,
@@ -45,7 +48,8 @@
    "noise_at_impact": false,
    "cooldown": 4,
    "wear": 4,
-   "color": "#70d0ff"
+   "color": "#70d0ff",
+   "gesture_type": "proyectil"
   },
   "a104": {
    "damage": 0,
@@ -57,7 +61,8 @@
    "noise_at_impact": true,
    "cooldown": 7,
    "wear": 3,
-   "color": "#90e040"
+   "color": "#90e040",
+   "gesture_type": "aturdir"
   }
  },
  "enemy": {

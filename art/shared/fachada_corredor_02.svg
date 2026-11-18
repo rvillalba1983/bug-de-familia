@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  fachada_corredor_02 · Bloque derruido con boquete y escombros
+  Bug de Familia · P-53 (fachadas genéricas de corredor)
+  Origen: dibujo propio; no usa material de terceros
+  Herramienta: edición manual de SVG (formas, trazos y degradados)
+  Lienzo 400 x 240 · sin fondo · se estira al frente del pasillo (200 u de alto)
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240" viewBox="0 0 400 240">
+  <defs>
+    <linearGradient id="f2_muro" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5A6488"/>
+      <stop offset="0.5" stop-color="#3A1A5C"/>
+      <stop offset="1" stop-color="#241138"/>
+    </linearGradient>
+    <linearGradient id="f2_cornisa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6A2BA8"/>
+      <stop offset="1" stop-color="#3A1A5C"/>
+    </linearGradient>
+    <linearGradient id="f2_zocalo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7C88A8"/>
+      <stop offset="1" stop-color="#3F4866"/>
+    </linearGradient>
+  </defs>
+
+  <!-- muro: cubre todo el lienzo, el estirado no puede abrir huecos -->
+  <rect x="0" y="0" width="400" height="240" fill="url(#f2_muro)"/>
+  <g stroke="#8894B5" stroke-width="2" fill="none" opacity="0.14">
+    <path d="M0 42H400M0 62H400M0 82H400M0 106H400M0 126H400M0 146H400M0 166H400M0 186H400M0 202H400"/>
+  </g>
+  <g stroke="#8894B5" stroke-width="2" fill="none" opacity="0.1">
+    <path d="M44 42V62M104 62V82M164 42V62M224 62V82M284 42V62M344 62V82M74 126V146M134 146V166M194 126V146M254 146V166M314 126V146M374 146V166"/>
+  </g>
+  <g fill="#1B0E2A" opacity="0.2">
+    <rect x="0" y="20" width="9" height="196"/>
+    <rect x="391" y="20" width="9" height="196"/>
+  </g>
+
+  <!-- cornisa rota: dientes de sierra en el borde inferior -->
+  <rect x="0" y="0" width="400" height="20" fill="url(#f2_cornisa)"/>
+  <path d="M0 20L26 34L52 22L78 36L104 24L128 38L152 26L176 40L200 28L226 42L250 30L276 44L300 32L326 42L352 26L378 38L400 22V20Z"
+        fill="#3A1A5C"/>
+  <path d="M0 20L26 34L52 22L78 36L104 24L128 38L152 26L176 40L200 28L226 42L250 30L276 44L300 32L326 42L352 26L378 38L400 22"
+        fill="none" stroke="#1B0E2A" stroke-width="5" stroke-linejoin="round"/>
+
+  <!-- boquete: hueco irregular, ancho abajo, que se come dos plantas -->
+  <path d="M148 54L186 46L206 60L236 56L252 92L232 108L256 130L238 156L214 172L188 158L162 168L146 140L136 108L142 78Z"
+        fill="#150A22" stroke="#1B0E2A" stroke-width="6" stroke-linejoin="miter"/>
+  <!-- ladrillos partidos en el borde: dan grosor al muro sin dibujar un marco -->
+  <g fill="#5A5080" stroke="#1B0E2A" stroke-width="3" stroke-linejoin="round">
+    <path d="M140 90H162V102H140Z"/>
+    <path d="M144 136H166V146H144Z"/>
+    <path d="M232 62H248V74H232Z"/>
+    <path d="M238 118H254V130H238Z"/>
+  </g>
+  <g fill="#8894B5" opacity="0.35">
+    <path d="M146 74L158 62L170 66L160 78Z"/>
+    <path d="M244 150L254 138L254 152L246 158Z"/>
+  </g>
+  <!-- forjado que asoma dentro del hueco -->
+  <path d="M150 114H232V128H150Z" fill="#7C88A8" stroke="#1B0E2A" stroke-width="4"
+        stroke-linejoin="round"/>
+  <path d="M156 128H228" stroke="#1B0E2A" stroke-width="3" opacity="0.6"/>
+  <!-- vigueta colgando del forjado -->
+  <path d="M176 128L194 132L188 170L170 166Z" fill="#6A2A20" stroke="#1B0E2A"
+        stroke-width="4" stroke-linejoin="round"/>
+  <g fill="none" stroke="#1B0E2A" stroke-width="3" stroke-linecap="round" opacity="0.85">
+    <path d="M162 58Q168 78 162 94"/>
+    <path d="M238 100Q230 114 234 126"/>
+    <path d="M196 170Q202 182 196 190"/>
+  </g>
+
+  <!-- ventanas: marco claro y hueco negro, como en las fachadas de referencia -->
+  <g stroke="#1B0E2A" stroke-width="5" stroke-linejoin="round">
+    <rect x="22" y="44" width="54" height="52" fill="#F6E7C8" transform="rotate(-4 49 70)"/>
+    <rect x="306" y="44" width="54" height="52" fill="#F6E7C8"/>
+    <rect x="22" y="124" width="54" height="52" fill="#F6E7C8"/>
+    <rect x="306" y="124" width="54" height="52" fill="#F6E7C8"/>
+  </g>
+  <g fill="#150A22" stroke="#1B0E2A" stroke-width="4">
+    <rect x="31" y="53" width="36" height="34" transform="rotate(-4 49 70)"/>
+    <rect x="315" y="53" width="36" height="34"/>
+    <rect x="31" y="133" width="36" height="34"/>
+    <rect x="315" y="133" width="36" height="34"/>
+  </g>
+  <!-- tablón cruzado en la ventana de arriba a la izquierda -->
+  <path d="M18 62H80V74H18Z" fill="#6A2A20" stroke="#1B0E2A" stroke-width="4"
+        stroke-linejoin="round" transform="rotate(-4 49 70)"/>
+  <!-- cristales rotos en la de arriba a la derecha -->
+  <g fill="#8894B5" opacity="0.5">
+    <path d="M318 57L330 65L320 77Z"/>
+    <path d="M348 58L354 74L342 78Z"/>
+  </g>
+  <!-- reja en la de abajo a la izquierda -->
+  <g stroke="#8894B5" stroke-width="4" fill="none">
+    <path d="M39 133V167M47 133V167M55 133V167M63 133V167"/>
+    <path d="M31 145H67M31 157H67"/>
+  </g>
+  <!-- postigo colgando de la de abajo a la derecha -->
+  <g transform="rotate(22 318 178)">
+    <rect x="306" y="150" width="32" height="46" fill="#A8482A" stroke="#1B0E2A"
+          stroke-width="4" stroke-linejoin="round"/>
+    <g stroke="#6A2A20" stroke-width="3">
+      <path d="M310 160H342M310 172H342M310 184H342"/>
+    </g>
+  </g>
+
+  <!-- grietas que salen del boquete hacia los cantos -->
+  <g fill="none" stroke="#1B0E2A" stroke-width="4" stroke-linecap="round" opacity="0.85">
+    <path d="M138 112L104 104L74 112L40 106"/>
+    <path d="M248 94L290 86L320 96L360 88"/>
+    <path d="M240 160L272 172L300 168"/>
+    <path d="M150 144L120 156L96 152"/>
+    <path d="M150 58L126 40"/>
+    <path d="M234 64L262 46"/>
+  </g>
+  <g fill="none" stroke="#1B0E2A" stroke-width="3" stroke-linecap="round" opacity="0.5">
+    <path d="M104 104L98 88"/>
+    <path d="M290 86L284 70"/>
+    <path d="M272 172L266 188"/>
+    <path d="M74 112L70 128"/>
+  </g>
+
+  <!-- manchas de humedad y desconchones -->
+  <g fill="#1B0E2A" opacity="0.16">
+    <path d="M96 132q10 26 4 44l-14 0q-7 -22 10 -44z"/>
+    <path d="M330 134q9 20 3 34l-12 0q-6 -16 9 -34z"/>
+  </g>
+  <g fill="#8894B5" opacity="0.2">
+    <path d="M40 96L62 88L68 106L44 112Z"/>
+    <path d="M320 100L344 94L348 112L324 118Z"/>
+  </g>
+
+  <!-- escombros: losa caída y cascotes al pie del boquete -->
+  <g fill="#6A2A20" stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round">
+    <path d="M150 200L174 184L196 194L182 210L156 212Z"/>
+    <path d="M186 200L208 186L232 196L218 212L192 212Z"/>
+    <path d="M222 202L244 190L268 200L254 214L228 214Z"/>
+    <path d="M258 198L276 188L292 198L278 210L262 210Z"/>
+  </g>
+  <g fill="#7C88A8" stroke="#1B0E2A" stroke-width="3" stroke-linejoin="round">
+    <path d="M164 202L178 194L188 202L176 208Z"/>
+    <path d="M236 204L250 196L260 204L246 210Z"/>
+  </g>
+  <path d="M282 178L304 168L316 176L292 190Z" fill="#8894B5" stroke="#1B0E2A"
+        stroke-width="4" stroke-linejoin="round"/>
+  <g fill="none" stroke="#1B0E2A" stroke-width="3" stroke-linecap="round">
+    <path d="M140 190L126 176"/>
+    <path d="M268 182L282 170"/>
+  </g>
+
+  <!-- hierbajos en las grietas -->
+  <g fill="#2FBF71" stroke="#1B0E2A" stroke-width="2.5" stroke-linejoin="round"
+     opacity="0.8">
+    <path d="M104 172q-8 -12 -2 -20q8 6 4 20z"/>
+    <path d="M112 174q4 -14 12 -18q2 10 -8 20z"/>
+    <path d="M290 176q-6 -14 0 -20q8 8 2 20z"/>
+    <path d="M126 110q-6 -10 -1 -16q6 5 3 16z"/>
+  </g>
+
+  <!-- cable cortado en dos: nadie ha venido a arreglarlo -->
+  <path d="M0 32Q60 46 118 34" fill="none" stroke="#1B0E2A" stroke-width="7"
+        stroke-linecap="round"/>
+  <path d="M0 32Q60 46 118 34" fill="none" stroke="#FFD400" stroke-width="3"
+        stroke-linecap="round"/>
+  <path d="M292 36Q348 48 400 36" fill="none" stroke="#1B0E2A" stroke-width="7"
+        stroke-linecap="round"/>
+  <path d="M292 36Q348 48 400 36" fill="none" stroke="#FFD400" stroke-width="3"
+        stroke-linecap="round"/>
+  <path d="M118 34Q122 54 116 66" fill="none" stroke="#1B0E2A" stroke-width="4"
+        stroke-linecap="round"/>
+  <path d="M292 36Q288 56 292 66" fill="none" stroke="#1B0E2A" stroke-width="4"
+        stroke-linecap="round"/>
+
+  <!-- zócalo partido -->
+  <rect x="0" y="216" width="400" height="24" fill="url(#f2_zocalo)"/>
+  <path d="M0 216H400" stroke="#1B0E2A" stroke-width="6"/>
+  <g fill="none" stroke="#1B0E2A" stroke-width="4" opacity="0.6">
+    <path d="M92 216V240M182 216V240M286 216V240M366 216V240"/>
+    <path d="M204 216L214 240M208 216L220 230"/>
+  </g>
+  <g fill="#1B0E2A" opacity="0.22">
+    <path d="M120 222q16 8 34 4l2 14H116Z"/>
+    <path d="M300 220q14 10 30 6l4 14H296Z"/>
+  </g>
+
+  <!-- bañera arrumbada al pie del muro: el chiste de la ruina -->
+  <g stroke="#1B0E2A" stroke-width="4" stroke-linejoin="round">
+    <path d="M18 182H88V196Q53 208 18 196Z" fill="#8894B5"/>
+    <path d="M18 182H88V189H18Z" fill="#4A5478"/>
+    <path d="M88 182V196" fill="none"/>
+    <circle cx="78" cy="186" r="3" fill="#F6E7C8"/>
+  </g>
+  <path d="M26 192H62" stroke="#1B0E2A" stroke-width="3" opacity="0.45"/>
+  <path d="M30 208v8M76 204v10" stroke="#1B0E2A" stroke-width="5" stroke-linecap="round"/>
+</svg>

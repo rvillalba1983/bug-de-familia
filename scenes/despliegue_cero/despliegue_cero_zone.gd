@@ -338,10 +338,7 @@ func _build_item(entry: Dictionary) -> void:
 
 
 func _load_views(base: String) -> Array[Texture2D]:
-	var views: Array[Texture2D] = []
-	for suffix: String in ["", "_e", "_n"]:
-		views.append(load(ART_FOLDER + base + suffix + ".svg") as Texture2D)
-	return views
+	return GuardVisual.load_views(ART_FOLDER, base)
 
 
 func _add_named(id: String, at: Vector2, label_key: String, is_reusable: bool) -> void:

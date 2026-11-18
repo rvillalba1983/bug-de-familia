@@ -17,6 +17,46 @@ const WORN_TINT: Color = Color("#ff4a3a")
 const WORN_MIX: float = 0.55
 const LEG_SWING: float = 0.2
 const ARM_SWING: float = 0.12
+## P-51: modificadores de pose por estado y por gesto. Valores provisionales.
+const RUN_LEAN: float = 0.08
+const RUN_SWING_SCALE: float = 1.3
+const CROUCH_LEG_SPREAD: float = 0.15
+const CROUCH_ARM_TUCK: float = 0.25
+const SIT_LEG_BEND: float = 0.6
+const SIT_DROP: float = 12.0
+const GATHER_ARM: float = 0.4
+const ATTACK_ARM: float = -0.6
+const PIECE_ARM: float = -0.5
+const THROW_ARM: float = -1.2
+const THROW_TIME: float = 0.15
+const CAST_ARM: float = -0.8
+const CELEBRATE_ARM: float = -1.0
+const CELEBRATE_HOP: float = 8.0
+const CELEBRATE_HOP_TIME: float = 0.3
+const TAUNT_ARM: float = -0.6
+const TAUNT_HEAD: float = 0.15
+const TAUNT_TAIL_WIDTH: float = 1.3
+const SALUTE_ARM: float = -0.8
+const SALUTE_SWING: float = 0.15
+const SALUTE_PERIOD: float = 0.3
+const SALUTE_HEAD: float = 0.08
+const POINT_ARM: float = -0.4
+const POINT_HEAD: float = 0.1
+const SCRATCH_ARM: float = -1.3
+const SCRATCH_SWING: float = 0.05
+const SCRATCH_PERIOD: float = 0.15
+const SCRATCH_HEAD: float = 0.1
+const HIT_LEAN: float = -0.12
+const HIT_ARMS: float = 0.2
+const STAGGER_LEAN: float = 0.1
+const STAGGER_TIME: float = 0.6
+const DEATH_SQUASH: Vector2 = Vector2(1.3, 0.7)
+const DEATH_SQUASH_TIME: float = 0.3
+const DEATH_FALL_END: float = 0.8
+const DEATH_FALL: float = 1.2
+const DEATH_SPREAD_TIME: float = 0.5
+const DEATH_SPREAD: float = 4.0
+const FRAGILE_RATIO: float = 0.2
 const SHADOW_COLOR: Color = Color(0.0, 0.0, 0.0, 0.4)
 const TAIL_POINTS: int = 22
 const TAIL_STEP: float = 3.6
@@ -62,28 +102,69 @@ static func draw(
 	_tail_speaking: bool,
 	walk_phase: float,
 	squash: Vector2 = Vector2.ONE,
-	frame_key: String = ""
+	frame_key: String = "",
+	pose: Dictionary = {}
 ) -> void:
 	_ensure_loaded()
 	var view_name: String = view_for(facing)
 	var away: bool = VIEWS_FROM_BEHIND.has(view_name)
 	canvas.draw_set_transform_matrix(Transform2D.IDENTITY)
 	var size: float = CharacterScale.value
+	var total_squash: Vector2 = squash * (pose.get("squash", Vector2.ONE) as Vector2)
 	CircleDot.draw(canvas, Vector2(0.0, 3.0 * size), 22.0 * size, SHADOW_COLOR)
 	if not away:
-		_draw_tail(canvas, facing, height_ratio, tail_color)
+		_draw_tail(canvas, facing, height_ratio, tail_color, pose)
 	var bob: float = -absf(sin(walk_phase)) * 1.5 * size
 	var art: float = ART_SCALE * size
+	var offset: Vector2 = pose.get("body_offset", Vector2.ZERO) as Vector2
 	var base: Transform2D = Transform2D(
-		0.0, Vector2(art * squash.x, art * height_ratio * squash.y), 0.0, Vector2(0.0, bob)
+		float(pose.get("base_rotation", 0.0)),
+		Vector2(art * total_squash.x, art * height_ratio * total_squash.y),
+		0.0,
+		Vector2(0.0, bob) + offset * size
 	)
 	var view: Dictionary = _views[view_name]
 	for part_name: String in view["order"]:
-		_draw_part(canvas, view_name, part_name, base, body, walk_phase)
+		_draw_part(canvas, view_name, part_name, base, body, walk_phase, pose)
 	canvas.draw_set_transform_matrix(Transform2D.IDENTITY)
 	if away:
-		_draw_tail(canvas, facing, height_ratio, tail_color)
+		_draw_tail(canvas, facing, height_ratio, tail_color, pose)
 	_draw_action_frame(canvas, frame_key, size)
+
+
+## Pose del rig según el estado del protagonista (P-51). Es pura: se puede probar
+## sin dibujar. Espera claves `action`, `elapsed`, `crouching`, `running`, `sitting`
+## y `dead`; devuelve rotaciones por pieza, inclinaciones y desplazamientos.
+static func pose_for(state: Dictionary) -> Dictionary:
+	var pose: Dictionary = {
+		"base_rotation": 0.0,
+		"body_offset": Vector2.ZERO,
+		"swing_scale": 1.0,
+		"parts": {},
+		"tail_amplitude": 1.0,
+		"tail_width_scale": 1.0,
+		"piece_offset": 0.0,
+		"hide_fragile": false,
+		"squash": Vector2.ONE,
+	}
+	if bool(state.get("running", false)):
+		pose["swing_scale"] = RUN_SWING_SCALE
+		pose["base_rotation"] = RUN_LEAN
+	if bool(state.get("crouching", false)):
+		_add_part(pose, "leg_left", CROUCH_LEG_SPREAD)
+		_add_part(pose, "leg_right", -CROUCH_LEG_SPREAD)
+		_add_part(pose, "arm_main_right", CROUCH_ARM_TUCK)
+		_add_part(pose, "arm_main_left", -CROUCH_ARM_TUCK)
+	if bool(state.get("sitting", false)):
+		pose["parts"] = {}
+		_add_part(pose, "leg_left", SIT_LEG_BEND)
+		_add_part(pose, "leg_right", -SIT_LEG_BEND)
+		pose["body_offset"] = Vector2(0.0, SIT_DROP)
+	if bool(state.get("dead", false)):
+		_apply_death_pose(pose, float(state.get("elapsed", 0.0)))
+		return pose
+	_apply_action_pose(pose, str(state.get("action", "")), float(state.get("elapsed", 0.0)))
+	return pose
 
 
 ## Fotograma de la acción actual, del atlas compartido (P-25). Una sola llamada de dibujo.
@@ -199,7 +280,7 @@ static func view_for(facing: Vector2) -> String:
 
 static func _draw_part(
 	canvas: CanvasItem, view_name: String, part_name: String,
-	base: Transform2D, body: ModularBody, walk_phase: float
+	base: Transform2D, body: ModularBody, walk_phase: float, pose: Dictionary
 ) -> void:
 	var worn: bool = false
 	var variant: int = 0
@@ -208,17 +289,102 @@ static func _draw_part(
 		var piece: BodyPiece = body.equipped(PART_SLOTS[part_name] as ModularBody.Slot)
 		if piece == null:
 			return
+		if bool(pose.get("hide_fragile", false)):
+			if piece.durability < BodyPiece.MAX_DURABILITY * FRAGILE_RATIO:
+				return
 		worn = piece.durability / BodyPiece.MAX_DURABILITY < WORN_RATIO
 		variant = piece.visual_variant
 		group = VARIANT_GROUPS[piece.kind]
 	var part: Dictionary = _views[view_name]["parts"][part_name]
 	var pivot: Vector2 = _vector(part["pivot"] as Array)
-	var rotation: Transform2D = Transform2D(_swing(part_name, walk_phase), Vector2.ZERO)
+	var swing: float = _swing(part_name, walk_phase) * float(pose.get("swing_scale", 1.0))
+	swing += _gesture_rotation(part_name, pose)
+	var rotation: Transform2D = Transform2D(swing, Vector2.ZERO)
 	var placed: Transform2D = base * Transform2D(0.0, pivot) * rotation * Transform2D(0.0, -pivot)
+	var spread: float = float(pose.get("piece_offset", 0.0))
+	if spread > 0.0:
+		## La pose da píxeles de pantalla; dentro del rig hay que pasarlos a sus unidades.
+		var units: float = maxf(ART_SCALE * CharacterScale.value, 0.0001)
+		placed = placed * Transform2D(0.0, Vector2(signf(pivot.x) * spread / units, 0.0))
 	canvas.draw_set_transform_matrix(placed)
 	canvas.draw_mesh(_mesh_for(view_name, part_name, group, variant, worn), null)
 	if PART_SLOTS.has(part_name):
 		_draw_damage(canvas, pivot, body.equipped(PART_SLOTS[part_name] as ModularBody.Slot), body.acid_time > 0.0)
+
+
+## Rotación que añade el gesto en curso a una pieza del rig (P-51).
+static func _gesture_rotation(part_name: String, pose: Dictionary) -> float:
+	return float((pose.get("parts", {}) as Dictionary).get(part_name, 0.0))
+
+
+static func _add_part(pose: Dictionary, part_name: String, rotation: float) -> void:
+	var parts: Dictionary = pose["parts"]
+	parts[part_name] = float(parts.get(part_name, 0.0)) + rotation
+
+
+## Gestos que no usan fotograma de atlas: se leen solo en la postura del rig.
+static func _apply_action_pose(pose: Dictionary, action: String, elapsed: float) -> void:
+	match action:
+		"lanzar":
+			_add_part(pose, "arm_main_right", THROW_ARM * clampf(elapsed / THROW_TIME, 0.0, 1.0))
+		"convertir":
+			_add_part(pose, "arm_main_right", CAST_ARM)
+			_add_part(pose, "arm_main_left", -CAST_ARM)
+		"recoger":
+			_add_part(pose, "arm_main_right", GATHER_ARM)
+		"ataque":
+			_add_part(pose, "arm_main_right", ATTACK_ARM)
+		"recarga":
+			_add_part(pose, "arm_main_right", PIECE_ARM)
+		"celebrar":
+			_add_part(pose, "arm_main_right", CELEBRATE_ARM)
+			_add_part(pose, "arm_main_left", -CELEBRATE_ARM)
+			_add_part(pose, "arm_extra_right", CELEBRATE_ARM)
+			_add_part(pose, "arm_extra_left", -CELEBRATE_ARM)
+			pose["tail_amplitude"] = 2.0
+			if elapsed < CELEBRATE_HOP_TIME:
+				var hop: float = sin(elapsed / CELEBRATE_HOP_TIME * PI)
+				pose["body_offset"] = Vector2(0.0, -CELEBRATE_HOP * hop)
+		"provocar":
+			_add_part(pose, "arm_main_right", TAUNT_ARM)
+			_add_part(pose, "head", TAUNT_HEAD)
+			pose["tail_width_scale"] = TAUNT_TAIL_WIDTH
+		"saludar":
+			var wave: float = sin(elapsed / SALUTE_PERIOD * TAU) * SALUTE_SWING
+			_add_part(pose, "arm_main_right", SALUTE_ARM + wave)
+			_add_part(pose, "head", SALUTE_HEAD * sin(elapsed / SALUTE_PERIOD * PI))
+		"señalar":
+			_add_part(pose, "arm_main_right", POINT_ARM)
+			_add_part(pose, "head", POINT_HEAD)
+		"rascar":
+			var scratch: float = sin(elapsed / SCRATCH_PERIOD * TAU) * SCRATCH_SWING
+			_add_part(pose, "arm_main_right", SCRATCH_ARM + scratch)
+			_add_part(pose, "head", SCRATCH_HEAD)
+		"daño":
+			pose["base_rotation"] += HIT_LEAN
+			_add_part(pose, "arm_main_right", HIT_ARMS)
+			_add_part(pose, "arm_main_left", -HIT_ARMS)
+		"perdida":
+			var cycles: float = elapsed / STAGGER_TIME * 3.0
+			pose["base_rotation"] += STAGGER_LEAN * sin(cycles * TAU)
+
+
+## Secuencia de muerte en tres fases (P-51 §2.2 R3). Terminal: no vuelve.
+static func _apply_death_pose(pose: Dictionary, elapsed: float) -> void:
+	pose["parts"] = {}
+	pose["body_offset"] = Vector2.ZERO
+	pose["swing_scale"] = 1.0
+	pose["base_rotation"] = 0.0
+	if elapsed < DEATH_SQUASH_TIME:
+		pose["squash"] = Vector2.ONE.lerp(DEATH_SQUASH, elapsed / DEATH_SQUASH_TIME)
+	elif elapsed < DEATH_FALL_END:
+		var fall: float = (elapsed - DEATH_SQUASH_TIME) / (DEATH_FALL_END - DEATH_SQUASH_TIME)
+		pose["base_rotation"] = DEATH_FALL * fall * fall
+	else:
+		pose["base_rotation"] = DEATH_FALL
+		pose["hide_fragile"] = true
+	if elapsed >= DEATH_SPREAD_TIME:
+		pose["piece_offset"] = DEATH_SPREAD
 
 
 ## Óxido que avanza con el desgaste y, bajo la lluvia ácida, metal que burbujea.
@@ -306,23 +472,30 @@ static func _draw_shape(canvas: CanvasItem, shape: Dictionary) -> void:
 
 
 ## Cola quieta, por rendimiento. Su color sigue indicando qué IA habla.
-static func _draw_tail(canvas: CanvasItem, facing: Vector2, height_ratio: float, color: Color) -> void:
+## P-51: la amplitud y el ancho cambian durante celebrar y provocar.
+static func _draw_tail(
+	canvas: CanvasItem, facing: Vector2, height_ratio: float, color: Color, pose: Dictionary
+) -> void:
 	var size: float = CharacterScale.value
 	var back: Vector2 = -facing
 	var side: Vector2 = back.orthogonal()
 	var base: Vector2 = Vector2(0.0, -30.0 * height_ratio * size)
+	var amplitude: float = float(pose.get("tail_amplitude", 1.0))
+	var width_scale: float = float(pose.get("tail_width_scale", 1.0))
 	var points: PackedVector2Array = PackedVector2Array()
 	for index: int in range(TAIL_POINTS):
 		var along: float = float(index) * TAIL_STEP
-		var sway: float = sin(float(index) * 0.32) * float(index) * 0.75
+		var sway: float = sin(float(index) * 0.32) * float(index) * 0.75 * amplitude
 		points.append(base + (back * along + side * sway) * size)
 	for index: int in range(TAIL_POINTS):
-		CircleDot.draw(canvas, points[index], (_tail_width(index) + 1.6) * size, Palette.INK)
+		var thick: float = _tail_width(index) * width_scale
+		CircleDot.draw(canvas, points[index], (thick + 1.6) * size, Palette.INK)
 	for index: int in range(TAIL_POINTS):
 		var lit: bool = index / 4 % 2 == 0
-		CircleDot.draw(canvas, points[index], _tail_width(index) * size, color if lit else TAIL_DARK)
+		var thick: float = _tail_width(index) * width_scale
+		CircleDot.draw(canvas, points[index], thick * size, color if lit else TAIL_DARK)
 		if lit and index % 4 == 2:
-			CircleDot.draw(canvas, points[index], _tail_width(index) * 0.3 * size, Color.WHITE)
+			CircleDot.draw(canvas, points[index], thick * 0.3 * size, Color.WHITE)
 
 
 static func _tail_width(index: int) -> float:

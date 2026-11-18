@@ -134,16 +134,32 @@ func shape_blocks() -> Array[Rect2]:
 	return result
 
 
-## Conexiones normalizadas: {to, edge, rect}.
+## Conexiones normalizadas: {to, edge, rect, walls, facades, sign}.
+##
+## `walls` y `facades` delimitan el pasillo con la misma interpretación: son
+## rectángulos `[x, y, w, h]` que no invaden el `rect` caminable. `walls` monta
+## muros (legacy) y `facades` monta edificios con fachada (P-53, ADR 0034). Un
+## corredor declara una u otra, nunca ambas: si las declara, avisa y se queda con
+## `facades`, que es la forma normal, para no montar los dos delimitadores.
 func corridors() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	for entry: Variant in _geometry.get("corridors", []):
 		var corridor: Dictionary = entry
+		var walls: Array[Rect2] = _to_rects(corridor.get("walls", []))
+		var facades: Array[Rect2] = _to_rects(corridor.get("facades", []))
+		if not walls.is_empty() and not facades.is_empty():
+			var message: String = (
+				"%s: el corredor hacia %s declara walls y facades a la vez; "
+				+ "se delimita con facades (ADR 0034, P-53)"
+			)
+			push_error(message % [path, str(corridor.get("to", ""))])
+			walls = []
 		result.append({
 			"to": str(corridor.get("to", "")),
 			"edge": str(corridor.get("edge", "")),
 			"rect": _to_rect(corridor.get("rect", [0.0, 0.0, 0.0, 0.0])),
-			"walls": _to_rects(corridor.get("walls", [])),
+			"walls": walls,
+			"facades": facades,
 			"sign": str(corridor.get("sign", "")),
 		})
 	return result

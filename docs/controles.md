@@ -6,6 +6,7 @@ Basados en los de World of Warcraft, adaptados a una cámara de ángulo fijo. Ap
 |---|---|
 | Moverse en 8 direcciones | WASD |
 | Ir a un punto; usar o hablar; atacar | Clic derecho, según lo que haya debajo |
+| Provocar a un enemigo que ya te ha visto (agachado, sin pelea) | Clic derecho sobre él: el protagonista lo insulta; el clic hace lo de siempre |
 | Atacar a alguien tranquilo | Seleccionarlo con clic izquierdo y clic derecho |
 | Seleccionar objetivo | Clic izquierdo sobre cualquier parte del cuerpo |
 | Cambiar de objetivo | Tab |

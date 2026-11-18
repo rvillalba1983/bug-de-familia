@@ -22,6 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import poblar_zonas  # noqa: E402
+import validar_datos  # noqa: E402
 import validar_informes  # noqa: E402
 import validar_rutas  # noqa: E402
 import verificar_humo  # noqa: E402
@@ -236,6 +237,37 @@ class RegistroTest(unittest.TestCase):
         self.assertEqual(errores, [])
         self.assertEqual(len(avisos), 1)
 
+    def test_registro_avisa_push_error_capturado_por_gdunit(self) -> None:
+        # Un test negativo provoca el push_error y GdUnit4 lo captura con
+        # assert_push_error: es esperado, no un fallo de descubrimiento.
+        registro = (
+            "ERROR: res://data/zones/taller.json: el corredor hacia paso "
+            "declara walls y facades a la vez\n"
+            "   at: push_error (core/variant/variant_utility.cpp:1023)\n"
+            "   GDScript backtrace (most recent call first):\n"
+            "       [0] corridors (res://core/data/zone_definition.gd:155)\n"
+            "       [1] <anonymous lambda> (res://tests/zones/"
+            "corridor_facades_test.gd:153)\n"
+            "       [2] _execute (res://addons/gdUnit4/src/asserts/"
+            "GdUnitGodotErrorAssertImpl.gd:23)\n"
+            "       [3] is_push_error (res://addons/gdUnit4/src/asserts/"
+            "GdUnitGodotErrorAssertImpl.gd:139)\n"
+            "       [4] test_corridor_with_walls_and_facades_is_a_clear_error\n"
+        )
+        avisos, errores = validar_informes.revisar_registro(registro)
+        self.assertEqual(errores, [])
+        self.assertEqual(len(avisos), 1)
+        self.assertIn("assert_push_error", avisos[0])
+
+    def test_registro_no_ignora_el_mismo_error_sin_backtrace(self) -> None:
+        # Sin la captura de GdUnit4, el mismo mensaje sigue siendo fatal.
+        _, errores = validar_informes.revisar_registro(
+            "ERROR: res://data/zones/taller.json: el corredor hacia paso "
+            "declara walls y facades a la vez\n"
+            "   at: push_error (core/variant/variant_utility.cpp:1023)\n")
+        self.assertEqual(len(errores), 1)
+        self.assertIn("taller.json", errores[0])
+
     def test_registro_quita_colores_ansi(self) -> None:
         _, errores = validar_informes.revisar_registro(
             "\x1b[31mSCRIPT ERROR:\x1b[0m Parse Error: x\n")
@@ -429,6 +461,60 @@ class PobladoJsonTest(unittest.TestCase):
             self.assertIn("ñ".encode("utf-8"), crudo)
             self.assertTrue(crudo.endswith(b"\n"))
             self.assertEqual(poblar_zonas.leer_json(str(ruta)), datos)
+
+
+class DelimitadoresCorredorTest(unittest.TestCase):
+    """validar_datos: muros (legacy) y fachadas de corredor (P-53)."""
+
+    def comprobar(self, corredor: dict, rect: list[float] | None = None) -> list[str]:
+        informe = validar_datos.Informe()
+        validar_datos._comprobar_delimitadores(
+            "data/zones/zona.json",
+            "geometry.corridors[0]",
+            corredor,
+            rect if rect is not None else [100.0, 100.0, 240.0, 64.0],
+            [0.0, 0.0, 4000.0, 4000.0],
+            informe,
+        )
+        return informe.errores
+
+    def test_fachadas_validas(self) -> None:
+        self.assertEqual(self.comprobar({"facades": [[60.0, 100.0, 40.0, 400.0]]}), [])
+
+    def test_muros_legacy_validos(self) -> None:
+        self.assertEqual(self.comprobar({"walls": [[60.0, 100.0, 40.0, 400.0]]}), [])
+
+    def test_sin_delimitadores(self) -> None:
+        self.assertEqual(self.comprobar({}), [])
+
+    def test_muros_y_fachadas_a_la_vez_es_error(self) -> None:
+        errores = self.comprobar({
+            "walls": [[60.0, 100.0, 40.0, 400.0]],
+            "facades": [[400.0, 100.0, 40.0, 400.0]],
+        })
+        self.assertEqual(len(errores), 1)
+        self.assertIn("walls y facades a la vez", errores[0])
+
+    def test_fachada_que_invade_el_pasillo_es_error(self) -> None:
+        errores = self.comprobar({"facades": [[120.0, 100.0, 40.0, 400.0]]})
+        self.assertEqual(len(errores), 1)
+        self.assertIn("invade el rect caminable", errores[0])
+
+    def test_fachada_que_toca_el_borde_del_pasillo_es_valida(self) -> None:
+        self.assertEqual(self.comprobar({"facades": [[60.0, 100.0, 40.0, 400.0]]}), [])
+
+    def test_fachada_fuera_del_mundo_es_error(self) -> None:
+        errores = self.comprobar({"facades": [[3990.0, 3800.0, 40.0, 400.0]]})
+        self.assertEqual(len(errores), 1)
+        self.assertIn("se sale de world_size", errores[0])
+
+    def test_delimitador_mal_formado_es_error(self) -> None:
+        errores = self.comprobar({"facades": "no soy una lista"})
+        self.assertEqual(len(errores), 1)
+        self.assertIn("se esperaba una lista de rectangulos", errores[0])
+        errores = self.comprobar({"facades": [[10.0, 10.0, 0.0, 40.0]]})
+        self.assertEqual(len(errores), 1)
+        self.assertIn("ancho y alto deben ser positivos", errores[0])
 
 
 if __name__ == "__main__":

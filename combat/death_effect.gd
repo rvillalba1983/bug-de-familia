@@ -52,6 +52,11 @@ func _setup() -> void:
 			_press_body()
 		"dispersion":
 			_spawn_runners(4)
+		## P-51: reacciones del protagonista. Solo dibujan: no tocan reglas ni colisiones.
+		"chispas_miembro":
+			_spawn_chunks(6, 110.0)
+		"muerte_protagonista":
+			_spawn_chunks(10, 130.0)
 
 
 func _spawn_chunks(count: int, speed: float, colorful: bool = false) -> void:
@@ -217,6 +222,8 @@ func _draw() -> void:
 			_draw_press(col)
 		"dispersion":
 			_draw_runners()
+		"chispas_miembro", "muerte_protagonista":
+			_draw_chunks(col, false)
 
 
 func _draw_chunks(base: Color, puddle: bool) -> void:

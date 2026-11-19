@@ -267,7 +267,12 @@ func stun(duration: float) -> void:
 
 
 func _exit_tree() -> void:
-	_view.queue_free()
+	## El cono cuelga del suelo (ground), que puede liberarse antes que el
+	## guardia: en ese caso `_view` ya no es válido y no debe liberarse de
+	## nuevo (P-57).
+	if is_instance_valid(_view):
+		_view.queue_free()
+	_view = null
 
 
 func is_alert() -> bool:

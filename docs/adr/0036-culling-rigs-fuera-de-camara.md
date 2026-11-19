@@ -1,8 +1,10 @@
 # ADR 0036: culling de rigs fuera de cámara (P-30) y medición completa del 19-nov
 
-Estado: **aceptado por el director el 19-nov-2026**. Implementado en la rama
-`fase/p30-culling-rigs` (sin fusionar). Pendiente de medición posterior del
-ahorro real y de validación manual en partida. Complementa a
+Estado: **aceptado por el director el 19-nov-2026**. Implementado y **fusionado
+en `main`** (PR #31, merge `68cc315`). La medición posterior se ejecutó el mismo
+día (sección «Medición completa en gráfica real»), pero el ahorro concreto del
+culling **no se pudo aislar** del ruido de entorno; sigue pendiente la
+validación manual en partida. Complementa a
 `adr/0032-rendimiento-workerthreadpool-y-culling.md` (física condicionada a
 `seen` desde el 9-nov): esta decisión cubre la parte que allí quedó pendiente,
 el ocultado del renderizado de los guards fuera de pantalla.

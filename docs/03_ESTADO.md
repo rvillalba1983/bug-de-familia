@@ -1,6 +1,24 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
+> - **Estado (19-nov, en curso):** rama `fase/p30-culling-rigs`, sin fusionar.
+>   **P-30 pasa a «implementado, pendiente de medición posterior»**: ocultado
+>   de rigs fuera de cámara (`GuardVisual.set_visible`, llamado desde
+>   `Guard._physics_process` tras `update_rig()`). Ver
+>   `docs/adr/0036-culling-rigs-fuera-de-camara.md`.
+>   **Medición completa del 19-nov 18:22 en gráfica real** (Intel HD 520,
+>   `build/medicion/medicion.txt`, 84 líneas `RESULTADO`): ciudad 35,27 ms
+>   (+3,5 %), caminando 148,58 ms (−3,0 %), pelea 71,34 ms (**+38,9 %,
+>   REGRESIÓN**) y pausa 62,10 ms (+17,6 %) contra la referencia del 15-nov;
+>   `verificar.py` falla solo por la mediana de pelea. La regresión queda
+>   **documentada y no confirmada** (deriva de entorno y ANGLE; p99 dentro de
+>   referencia). Decisión del director: documentar y seguir; **NO se actualizó
+>   `tools/medir_windows/referencia.txt`**, no se subieron umbrales y no se
+>   tocó código de rendimiento a ciegas. **Pruebas: 491/491 en verde** (69
+>   suites, informe JUnit validado; 485 previas y 6 nuevas de
+>   `tests/entities/guard_rig_culling_test.gd`, que fallan al revertir el
+>   cambio). Rotación del agente `documentacion` por modelo retirado: ver
+>   `FALLBACK_MODELS.md`.
 > - **Estado (18-nov):** Fase «Arte de personajes y delimitadores de caminos» **fusionada en `main`** (PR #29, merge `a8fd618`). Hecho: **P-52** (NPCs y dron a 8 direcciones: 14 SVG + 30 piezas de rig, joints medidos, atlas 90 piezas), **P-51** (17 gestos del protagonista: máquina de prioridades, rig por estado, 5 fotogramas nuevos, muerte propia, gestos sociales automáticos, cadena de fotograma por arma; cierra P-25), **P-53** (`corridors[].facades` con `CorridorFacade`, 4 fachadas SVG genéricas, 25 corredores de las 8 zonas + 5 de la zona cero convertidos de `walls`) y **P-54** (`despliegue_cero` ampliada a 4000×4000 con afueras de bosque y corredores nuevos). ADR 0035. **Pruebas: 485/485 en verde** (68 suites, informe JUnit validado), `verificar.py` OK, `.exe` (109 MB, `.pck` 29,3 MB) regenerado con humo OK (zona y 36 habitantes). Aviso: montar la zona cero pasa de ~0,23 s a ~1,0 s por NavGrid y `despliegue_cero_robustness_test` tarda 17-24 min (vigilar el CI). **Cambiar de conversación.**
 > - **Rama en curso:** ninguna. La fase «Fachadas por zona e identidad visual del lore» **está fusionada en `main`** (PR #30, merge `81589a9`, 18-nov). Hecho: **P-56** (32 fachadas SVG propias para las 8 zonas del PR #28, paleta por lore, sistema `CORRIDOR_FACADE_ART_BY_ZONE` en `ZoneBase`, sin tocar datos ni lógica de montaje) y **P-31** (StrategyView dibuja las fachadas de corredor de la zona actual). P-30 no aplicado (sin medición). **Pruebas:** zones 59/59, verificar.py OK, .exe regenerado con humo OK. **Siguiente fase:** definir con el director (P-30 con medición, o nuevo bloque de contenido). Ver `01_CONFLICTOS_Y_PENDIENTES.md`.
 > - **QuÃ© se hizo en esa fase:** P-30 (mini-fase de rendimiento). `WorldSim._step()` paraleliza el `calm_down` de cada NPC con `WorkerThreadPool` (las tareas son independientes por NPC; los subsistemas siguen secuenciales por dependencias). `Guard._physics_process()` solo actualiza el detector si el guard estÃ¡ en pantalla (un guard fuera de pantalla no ve al jugador). ADR 0032.
@@ -44,6 +62,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | Contenido y diseño de zonas (17-nov) | **Fusionada en `main` el 17-nov** (PR #28, merge `942c5da`). Hecho: 8 zonas pobladas (cumbre, desguace, encrucijada, gran_cruce, gran_mercado, paso, poligono, taller); 10 SVG de señales; corredores físicos opt-in con muros de 200 u, fondo en bocas sur/este y cartel SVG + nombre de destino delante, con fallback para `despliegue_cero`; pantalla de carga con imagen del director a pantalla completa y carteles de menú compartidos con «Conoce la historia»; títulos de transición por encima de los fantasmas; referencias de datos actualizadas; P-51 a P-55 apuntados. **Pruebas:** 429/429 en verde, `verificar.py` OK, `.exe` (109 MB) con humo OK. Ver `adr/0034-corredores-fisicos.md`. Pendiente: validación manual en partida y medición en gráfica real. |
 | Arte de personajes y delimitadores (18-nov) | **Fusionada en `main`** (PR #29, merge `a8fd618`, aprobado por el director; CI 6/6). Hecho: **P-52** (8 direcciones en NPCs y dron, 14 SVG + 30 piezas de rig, joints medidos, fallback retirado); **P-51** (17 gestos del protagonista, máquina de prioridades, rig por estado, 5 fotogramas nuevos, muerte propia, gestos sociales automáticos y cadena de arma; cierra P-25); **P-53** (`facades` en corredores con `CorridorFacade`, 4 fachadas SVG, 30 corredores convertidos); **P-54** (`despliegue_cero` a 4000×4000 con afueras de bosque). ADR 0035. **485/485 pruebas en verde** (68 suites, JUnit validado), `verificar.py` OK, `.exe` (109 MB) con humo OK. Aviso: montar la zona cero pasa de ~0,23 s a ~1,0 s y el test de robustez tarda 17-24 min (vigilar CI). |
 | Fachadas por zona e identidad visual (18-nov) | **Fusionada en `main`** (PR #30, merge `81589a9`, aprobado por el director). Hecho: **P-56** (32 fachadas SVG propias para las 8 zonas del PR #28: cumbre, desguace, encrucijada, gran_cruce, gran_mercado, paso, poligono, taller; paleta por lore; sistema `CORRIDOR_FACADE_ART_BY_ZONE` en `ZoneBase` sin tocar datos ni lógica de montaje; generador `tools/gen_fachadas_zona.py`) y **P-31** (StrategyView dibuja las fachadas de corredor de la zona actual). P-30 no aplicado (sin medición). **Pruebas:** zones 59/59, `verificar.py` OK, `.exe` regenerado con humo OK. |
+| Culling de rigs y medición del 19-nov (P-30) | **En curso** en la rama `fase/p30-culling-rigs`, sin fusionar. Hecho: ocultado de rigs fuera de cámara (`GuardVisual.set_visible` + llamada en `Guard._physics_process`); ver `adr/0036-culling-rigs-fuera-de-camara.md`. Medición completa del 19-nov en gráfica real: pelea +38,9 % **no confirmada** (deriva de entorno/ANGLE); la referencia del 15-nov **sin cambiar**. Pruebas: 491/491 en verde (69 suites, JUnit validado). Ver «Medición en gráfica real del 19-nov» más abajo. |
 erificar.py OK. .exe regenerado. Pendiente validación manual en partida. |
 
 ## Incidente de arranque tras el PR #7 (13-nov)
@@ -70,6 +89,38 @@ Tras fusionar el PR #7, el `.exe` local y el de GitHub no arrancan. ReproducciÃ
 - **DiseÃ±o futuro (UI conversiÃ³n, 14-nov):** en las pantallas de preguntas de conversiÃ³n, centrar mÃ¡s la pregunta y las frases de las IAs en la pantalla. Tarea de UI/visual, no bloquea gameplay. **Hecho en esta fase (14-nov):** el tÃ­tulo de la pregunta y el cuerpo del mensaje se centran en el panel, y la cuenta atrÃ¡s lleva un espacio compensatorio para que el tÃ­tulo no se descentre; las frases de las IAs ya estaban centradas y ahora lo cubren pruebas. La posiciÃ³n vertical del bloque no se cambia (ver `adr/0029-contenido-y-ui-conversion.md`); falta la validaciÃ³n manual en partida.
 - **DecisiÃ³n tomada (validaciÃ³n 13-nov):** en zonas con una sola especie no se ofrece la opciÃ³n Â«malmeterÂ» (no hay rival presente). El sistema ya lo gestiona asÃ­ y se acepta.
 - **MediciÃ³n en grÃ¡fica real (15-nov, esta fase):** el director ejecutÃ³ `MEDIR.bat` en la Intel HD 520. 0 regresiones contra la nueva referencia: ciudad 34,08 ms, caminando 153,11 ms, pelea 51,36 ms, pausa 52,82 ms (medianas, 12/12/6/6 rondas). El caminando sigue siendo el cuello de botella (6,5 fps). El desglose por partes muestra que **el coste estÃ¡ distribuido**: quitar personajes baja un 28 % y quitar el protagonista un 24 %, pero la fÃ­sica solo consume ~35 ms del fotograma de 153 ms; el resto es renderizado (draw_calls ~130-158). **Consecuencia:** la decisiÃ³n de P-30 (`WorkerThreadPool`) se **revierte** â€” ahora sÃ­ hay mediciÃ³n que la justifica, y pasa a la siguiente fase. La referencia anterior (7,20 / 18,60 / 11,20 / 16,40) era de la beta con una sola zona y no era comparable: daba regresiones artificiales del +200 % al +700 %. La nueva referencia es esta mediciÃ³n. Ver `tools/medir_windows/referencia.txt`.
+
+## Medición en gráfica real del 19-nov (P-30)
+
+Medición **completa** hecha por el director el 19-nov 18:22 en su Intel HD 520
+(`MEDIR.bat`, archivo `build/medicion/medicion.txt`, 84 líneas `RESULTADO`,
+36 rondas base y 48 con `quitar=`). Es medición **en gráfica real**.
+
+| Caso | Referencia (15-nov) | Medición (19-nov) | Variación |
+|---|---|---|---|
+| ciudad | 34,08 ms | 35,27 ms | +3,5 % |
+| caminando | 153,11 ms | 148,58 ms | −3,0 % |
+| pelea | 51,36 ms | 71,34 ms | **+38,9 % (REGRESIÓN)** |
+| pausa | 52,82 ms | 62,10 ms | +17,6 % |
+
+- `python tools/verificar.py` falla **solo por la mediana de pelea**.
+- **Regresión de pelea no confirmada** (análisis del medidor): hay deriva de
+  entorno (los bloques `r`/`p1` corrieron un 30-45 % más lentos que `p2`/`t`
+  sin cambio de guion, y la pelea solo corrió en el bloque lento); en
+  `opengl3` la pelea sube +11,5 % (bajo el umbral) y la bandera la dispara
+  ANGLE; el p99 está dentro de referencia en todos los casos. No hay medición
+  del 15-nov por driver para comparar.
+- Desglose `quitar=personajes`: en caminando solo baja 8-16 ms de ~150
+  (6-10 %) y en ciudad 0-2 ms; el coste no está en los sprites de personajes.
+- **Decisión del director (19-nov):** implementar igualmente el ocultado de
+  rigs fuera de cámara (ver `adr/0036-culling-rigs-fuera-de-camara.md`) y
+  **documentar y seguir** con la regresión de pelea: la referencia del 15-nov
+  **NO se actualizó**, no se subieron umbrales y no se tocó código de
+  rendimiento a ciegas. `verificar.py` seguirá dando la bandera mientras no
+  cambie la referencia.
+- **Sin medir:** el ahorro real del culling de rigs tras el cambio. La
+  confirmación se hará en una medición nueva en gráfica real, con desglose
+  por driver para aislar ANGLE.
 
 ## Tras la fase 6
 - Los valores de daÃ±o, alcance y recarga del combate son provisionales (`docs/adr/0005-combate.md`).

@@ -190,6 +190,11 @@ Ver `docs/adr/0027-multi-zona.md`.
   para verificar la mejora.
 - Ver `docs/adr/0032-rendimiento-workerthreadpool-y-culling.md`.
 - Registrado como **P-30** en `01_CONFLICTOS_Y_PENDIENTES.md`.
+- **Actualización (19-nov):** se completa el culling de rigs fuera de cámara
+  (segunda parte de P-30, `GuardVisual.set_visible`) y se documenta la
+  medición completa del 19-nov, con la regresión de pelea **no confirmada** y
+  la referencia del 15-nov sin cambiar. Decisión del director. Ver
+  `docs/adr/0036-culling-rigs-fuera-de-camara.md`.
 
 ## Sonido direccional y timbre de las IAs (post-beta, 15-nov)
 

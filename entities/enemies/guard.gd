@@ -97,6 +97,7 @@ func _physics_process(delta: float) -> void:
 		visual.rig.player.active = seen
 	if seen or visual.rig == null:
 		visual.update_rig()
+	visual.set_visible(seen)
 	if state == State.DOWN:
 		_corpse_time -= delta
 		if _footsteps != null:

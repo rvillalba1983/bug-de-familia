@@ -122,6 +122,15 @@ func update_rig() -> void:
 	_was_alert = state == Guard.State.ALERT
 
 
+## Muestra u oculta de golpe el subárbol de esqueletos (P-30). No toca los flags
+## `visible` de cada vista ni el estado del `AnimationPlayer`. Seguro sin `rig_root`
+## (especies sin esqueleto o guardia que aún no ha montado ninguno): no crea nada.
+func set_visible(value: bool) -> void:
+	if rig_root == null or rig_root.visible == value:
+		return
+	rig_root.visible = value
+
+
 ## Acción según el estado del ataque (P-25). Provisional.
 static func action_for(windup_left: float, hit_timer: float) -> String:
 	if windup_left > 0.0:

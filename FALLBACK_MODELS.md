@@ -1,6 +1,7 @@
 # Guía de modelos y fallback de los agentes
 
-Última actualización: 10-nov-2026, junto a `adr/0018-agentes-y-modelos.md`.
+Última actualización: 19-nov-2026 (rotación de `documentacion` por modelo
+retirado).
 
 ## Fuentes de modelos
 
@@ -25,7 +26,7 @@ Cada modelo de Go tiene tres ventanas: 5 horas (20 % del límite mensual), seman
 | `ingeniero-godot` | `opencode-go/kimi-k2.7-code` | `opencode/big-pickle`, `opencode-go/glm-5.3`, `opencode/glm-5.3-flash-free` |
 | `gameplay` | `opencode-go/qwen3.7-plus` | `opencode/big-pickle`, `opencode-go/minimax-m3`, `opencode/glm-5.3-flash-free` |
 | `qa` | `opencode/deepseek-v4.1-flash-free` (gratis) | `opencode-go/deepseek-v4.1-flash` (¡franja punta!), `opencode/big-pickle`, `opencode/beam-free` |
-| `documentacion` | `opencode/glm-5.3-flash-free` (gratis) | `opencode-go/glm-5.3-flash`, `opencode/big-pickle`, `opencode-go/gpt-6-luna` |
+| `documentacion` | `opencode-go/glm-5.3-flash` (rotado el 19-nov) | `opencode/big-pickle`, `opencode-go/gpt-6-luna`, `opencode/glm-5.3-flash-free` |
 | `datos` | `opencode-go/minimax-m3` | `opencode/big-pickle`, `opencode-go/glm-5.3-flash`, `opencode/glm-5.3-flash-free` |
 | `arte` | `opencode-go/deepseek-v4.1-flash` | `opencode-go/qwen3.8-flash`, `opencode-go/qwen3.7-plus`, `opencode/big-pickle` |
 | `audio` | `opencode-go/glm-5.3-flash` | `opencode/glm-5.3-flash-free`, `opencode/big-pickle`, `opencode/beam-free` |
@@ -33,15 +34,17 @@ Cada modelo de Go tiene tres ventanas: 5 horas (20 % del límite mensual), seman
 
 Criterio: los agentes con versión gemela gratuita (qa, documentacion) o de alto volumen (conversaciones principales, explore) van sobre el gratuito; los especializados sin gemela gratuita usan Go con Big Pickle de primer respaldo, para no gastar ventanas de otros modelos de Go.
 
-## Rotaciones vigentes (10-nov)
+## Rotaciones vigentes (19-nov)
 
 | Agente | Modelo en config | Motivo | Volver |
 |---|---|---|---|
 | `explore` | `opencode-go/gpt-6-luna` (alternativo 1, de pago) | `Free usage limit reached` en `opencode/big-pickle`; el director pidió «rota a modelo de pago» | `python tools/cambiar_modelo.py --restaurar explore` |
+| `documentacion` | `opencode-go/glm-5.3-flash` (alternativo 1, de pago) | `opencode/glm-5.3-flash-free` retirado/indisponible (19-nov-2026); tarea relanzada con el modelo nuevo | `python tools/cambiar_modelo.py --restaurar documentacion` |
 
 La cadena de `tools/modelos_agentes.json` no cambia: sigue siendo la fuente única y el
 principal de la cadena sigue siendo `big-pickle`. Validado con `--validar` (0 errores) y
 la tarea se relanzó con el modelo nuevo. Detalle completo en `adr/0022-rotacion-explore-a-go.md`.
+La rotación de `documentacion` está detallada en `docs/adr/0036-culling-rigs-fuera-de-camara.md`.
 
 ## Catálogo Go usado
 

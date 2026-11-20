@@ -1,6 +1,11 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
+> - **Estado (20-nov):** fase «Robustez P-57» **fusionada en `main`** (PR #32,
+>   merge `05a684e`, aprobado por el director; CI verde). **Cambiar de
+>   conversación.** Hecho: corrección de `Guard._exit_tree()` (P-57) con
+>   `is_instance_valid(_view)` y prueba `guard_exit_tree_test.gd` (1 caso).
+>   `.exe` regenerado en `main` (104,2 MB) con humo OK. Pruebas: 492/492.
 > - **Estado (19-nov):** fase «Culling de rigs y medición del 19-nov»
 >   **fusionada en `main`** (PR #31, merge `68cc315`, aprobado por el director;
 >   CI 6/6). **Cambiar de conversación.** **P-30 pasa a «implementado, con
@@ -75,6 +80,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | Arte de personajes y delimitadores (18-nov) | **Fusionada en `main`** (PR #29, merge `a8fd618`, aprobado por el director; CI 6/6). Hecho: **P-52** (8 direcciones en NPCs y dron, 14 SVG + 30 piezas de rig, joints medidos, fallback retirado); **P-51** (17 gestos del protagonista, máquina de prioridades, rig por estado, 5 fotogramas nuevos, muerte propia, gestos sociales automáticos y cadena de arma; cierra P-25); **P-53** (`facades` en corredores con `CorridorFacade`, 4 fachadas SVG, 30 corredores convertidos); **P-54** (`despliegue_cero` a 4000×4000 con afueras de bosque). ADR 0035. **485/485 pruebas en verde** (68 suites, JUnit validado), `verificar.py` OK, `.exe` (109 MB) con humo OK. Aviso: montar la zona cero pasa de ~0,23 s a ~1,0 s y el test de robustez tarda 17-24 min (vigilar CI). |
 | Fachadas por zona e identidad visual (18-nov) | **Fusionada en `main`** (PR #30, merge `81589a9`, aprobado por el director). Hecho: **P-56** (32 fachadas SVG propias para las 8 zonas del PR #28: cumbre, desguace, encrucijada, gran_cruce, gran_mercado, paso, poligono, taller; paleta por lore; sistema `CORRIDOR_FACADE_ART_BY_ZONE` en `ZoneBase` sin tocar datos ni lógica de montaje; generador `tools/gen_fachadas_zona.py`) y **P-31** (StrategyView dibuja las fachadas de corredor de la zona actual). P-30 no aplicado (sin medición). **Pruebas:** zones 59/59, `verificar.py` OK, `.exe` regenerado con humo OK. |
 | Culling de rigs y medición del 19-nov (P-30) | **Fusionada en `main`** (PR #31, merge `68cc315`, aprobado por el director; CI 6/6). Hecho: ocultado de rigs fuera de cámara (`GuardVisual.set_visible` + llamada en `Guard._physics_process`); ver `adr/0036-culling-rigs-fuera-de-camara.md`. Medición completa del 19-nov en gráfica real: pelea +38,9 % **no confirmada** (deriva de entorno/ANGLE); la referencia del 15-nov **sin cambiar**. Pruebas: 491/491 en verde (69 suites, JUnit validado), `verificar.py` OK. `.exe` regenerado (109 MB, `.pck` 29,5 MB) con humo OK (zona y 36 habitantes). Ver «Medición en gráfica real del 19-nov» más abajo. |
+| Robustez P-57 (20-nov) | **Fusionada en `main`** (PR #32, merge `05a684e`, aprobado por el director). Hecho: corrección de `Guard._exit_tree()` (P-57) con `is_instance_valid(_view)` para evitar el `SCRIPT ERROR` cuando el suelo se libera antes que el guardia; prueba `guard_exit_tree_test.gd` (1 caso). Pruebas: 492/492 en verde. `.exe` regenerado (104,2 MB) con humo OK. |
 erificar.py OK. .exe regenerado. Pendiente validación manual en partida. |
 
 ## Incidente de arranque tras el PR #7 (13-nov)

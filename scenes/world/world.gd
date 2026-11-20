@@ -101,3 +101,7 @@ func _on_transition_started(_from_zone: String, to_zone: String) -> void:
 func _on_transition_finished(_zone_id: String) -> void:
 	ghosts.set_shown(false)
 	loading.visible = false
+	## Red de seguridad: si la zona no se montó, el host queda vacío y la
+	## pantalla se ve gris. Se deja constancia para diagnosticar.
+	if manager != null and manager.current_zone == null:
+		push_error("GameWorld: la transición terminó sin zona montada («%s»)" % _zone_id)

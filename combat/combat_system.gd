@@ -27,10 +27,26 @@ var _throw_timer: float = 0.0
 var _repath_timer: float = 0.0
 
 
+var _engaging_automatically: bool = false
+
+var _engaging_automatically: bool = false
+
 func engage(enemy: Guard) -> void:
+	_engage(enemy, false)
+
+func engage_automatic(enemy: Guard) -> void:
+	_engage(enemy, true)
+
+func _engage(enemy: Guard, automatic: bool) -> void:
+	# P-37: en modo pelea el auto-ataque es el unico que engancha; el jugador
+	# no puede enganchar manualmente otro objetivo.
+	if not automatic and level != null and level.fight != null \
+			and level.fight.phase == FightDirector.Phase.FIGHTING:
+		return
+	_engaging_automatically = automatic
 	target = enemy
 	_repath_timer = 0.0
-
+	_engaging_automatically = false
 
 func disengage() -> void:
 	target = null

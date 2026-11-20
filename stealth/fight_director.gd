@@ -42,12 +42,13 @@ func start_combat() -> void:
 		return
 	# Enganchar primero al guardia que disparó la alerta (P-39: evita bajas
 	# ajenas por pelea automática). Si no es válido, el primero disponible.
-	if is_instance_valid(_alerting_guard) and not _alerting_guard.passive and not _alerting_guard.is_down():
-		combat.engage(_alerting_guard)
+	if is_instance_valid(_alerting_guard) and not _alerting_guard.passive \
+			and not _alerting_guard.is_down():
+		combat.engage_automatic(_alerting_guard)
 		return
 	for guard: Guard in _guards:
 		if is_instance_valid(guard) and not guard.passive and not guard.is_down():
-			combat.engage(guard)
+			combat.engage_automatic(guard)
 			return
 
 

@@ -19,7 +19,8 @@
           240,
           64
         ],
-        "to": "instalacion"
+        "to": "instalacion",
+        "distance": 1970
       },
       {
         "edge": "east",
@@ -29,7 +30,8 @@
           64,
           240
         ],
-        "to": "encrucijada"
+        "to": "encrucijada",
+        "distance": 1970
       }
     ],
     "floor_rect": [

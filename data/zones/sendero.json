@@ -19,7 +19,8 @@
           64,
           240
         ],
-        "to": "archivo"
+        "to": "archivo",
+        "distance": 1970
       }
     ],
     "floor_rect": [

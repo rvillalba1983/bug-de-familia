@@ -19,7 +19,8 @@
           240,
           64
         ],
-        "to": "valle"
+        "to": "valle",
+        "distance": 1970
       },
       {
         "edge": "west",
@@ -29,7 +30,8 @@
           64,
           240
         ],
-        "to": "gran_cruce"
+        "to": "gran_cruce",
+        "distance": 1970
       }
     ],
     "floor_rect": [

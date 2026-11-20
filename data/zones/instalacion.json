@@ -19,7 +19,8 @@
           240,
           64
         ],
-        "to": "canon"
+        "to": "canon",
+        "distance": 2070
       },
       {
         "edge": "north",
@@ -29,7 +30,8 @@
           240,
           64
         ],
-        "to": "ultima_ruta"
+        "to": "ultima_ruta",
+        "distance": 2070
       },
       {
         "edge": "south",
@@ -39,7 +41,8 @@
           240,
           64
         ],
-        "to": "antecamara"
+        "to": "antecamara",
+        "distance": 1970
       }
     ],
     "floor_rect": [

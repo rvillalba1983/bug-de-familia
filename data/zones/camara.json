@@ -19,7 +19,8 @@
           240,
           64
         ],
-        "to": "archivo"
+        "to": "archivo",
+        "distance": 1970
       },
       {
         "edge": "south",
@@ -29,7 +30,8 @@
           240,
           64
         ],
-        "to": "canon"
+        "to": "canon",
+        "distance": 1970
       }
     ],
     "floor_rect": [

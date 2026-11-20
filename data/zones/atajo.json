@@ -27,7 +27,8 @@
           240,
           64
         ],
-        "to": "asamblea"
+        "to": "asamblea",
+        "distance": 1970
       },
       {
         "edge": "south",
@@ -37,7 +38,8 @@
           240,
           64
         ],
-        "to": "colmena"
+        "to": "colmena",
+        "distance": 1970
       }
     ],
     "floor_rect": [

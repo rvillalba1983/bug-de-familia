@@ -19,7 +19,8 @@
           240,
           64
         ],
-        "to": "cumbre"
+        "to": "cumbre",
+        "distance": 1970
       },
       {
         "edge": "south",
@@ -29,7 +30,8 @@
           240,
           64
         ],
-        "to": "taller"
+        "to": "taller",
+        "distance": 1970
       },
       {
         "edge": "west",
@@ -39,7 +41,8 @@
           64,
           240
         ],
-        "to": "despliegue_cero"
+        "to": "despliegue_cero",
+        "distance": 1970
       },
       {
         "edge": "east",
@@ -49,7 +52,8 @@
           64,
           240
         ],
-        "to": "gran_mercado"
+        "to": "gran_mercado",
+        "distance": 2070
       },
       {
         "edge": "east",
@@ -59,7 +63,8 @@
           64,
           240
         ],
-        "to": "lonja"
+        "to": "lonja",
+        "distance": 2070
       }
     ],
     "floor_rect": [

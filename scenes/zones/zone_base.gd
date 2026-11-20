@@ -432,7 +432,12 @@ func _add_corridor_sign_sprite(sign_id: String, corridor: Dictionary) -> void:
 func _add_corridor_sign_name(corridor: Dictionary) -> void:
 	var to_zone: String = str(corridor["to"])
 	var label: Label = Label.new()
-	label.text = _destination_name(to_zone)
+	var destination: String = _destination_name(to_zone)
+	var distance: int = int(corridor.get("distance", 0))
+	if distance > 0:
+		label.text = "%s  →  %d m" % [destination, distance]
+	else:
+		label.text = destination
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.add_theme_font_override(&"font", UiStyle.FONT_LOUD)

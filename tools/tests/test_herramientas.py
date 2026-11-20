@@ -22,6 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import poblar_zonas  # noqa: E402
+import validar_conversaciones  # noqa: E402
 import validar_datos  # noqa: E402
 import validar_informes  # noqa: E402
 import validar_rutas  # noqa: E402
@@ -446,6 +447,65 @@ class HumoTest(unittest.TestCase):
             with unittest.mock.patch("sys.argv", argv):
                 codigo = verificar_humo.main()
         self.assertEqual(codigo, 1)
+
+
+class ConversacionesTest(unittest.TestCase):
+    """validar_conversaciones: forma de una conversación de P-42."""
+
+    def conversacion(self) -> dict:
+        return {
+            "id": "eco_000",
+            "nodes": {
+                "root": {
+                    "text": "¿Sabes qué pasa aquí?",
+                    "options": [
+                        {"label": "Sí", "next": "n1"},
+                        {"label": "No", "next": ""},
+                    ],
+                },
+                "n1": {
+                    "text": "Pasa que todo suena.",
+                    "options": [
+                        {"label": "Gracias", "next": "", "action": "praise"},
+                    ],
+                },
+            },
+        }
+
+    def validar(self, conversacion: dict) -> list[str]:
+        fallos: list[str] = []
+        validar_conversaciones.validar_conversacion("live_eco.json", conversacion, fallos)
+        return fallos
+
+    def test_conversacion_correcta(self) -> None:
+        self.assertEqual(self.validar(self.conversacion()), [])
+
+    def test_next_inexistente(self) -> None:
+        conversacion = self.conversacion()
+        conversacion["nodes"]["root"]["options"][0]["next"] = "n99"
+        fallos = self.validar(conversacion)
+        self.assertTrue(any("n99" in fallo for fallo in fallos), fallos)
+
+    def test_accion_desconocida(self) -> None:
+        conversacion = self.conversacion()
+        conversacion["nodes"]["n1"]["options"][0]["action"] = "explotar"
+        fallos = self.validar(conversacion)
+        self.assertTrue(any("explotar" in fallo for fallo in fallos), fallos)
+
+    def test_texto_vacio(self) -> None:
+        conversacion = self.conversacion()
+        conversacion["nodes"]["n1"]["text"] = "   "
+        fallos = self.validar(conversacion)
+        self.assertTrue(any("texto vacío" in fallo for fallo in fallos), fallos)
+
+    def test_nodo_inalcanzable(self) -> None:
+        conversacion = self.conversacion()
+        conversacion["nodes"]["suelto"] = {
+            "text": "Nadie llega aquí.",
+            "options": [{"label": "Vale", "next": ""}],
+        }
+        fallos = self.validar(conversacion)
+        self.assertTrue(any("inalcanzables" in fallo for fallo in fallos), fallos)
 
 
 class PobladoJsonTest(unittest.TestCase):

@@ -4,7 +4,7 @@ extends GdUnitTestSuite
 func test_la_imagen_es_grande_y_no_se_distorsiona() -> void:
 	var screen: HistoryScreen = HistoryScreen.new()
 	add_child(screen)
-	assert_int(HistoryScreen.FACTS.size()).is_equal(12)
+	assert_int(HistoryScreen.FACTS.size()).is_equal(20)
 	assert_object(screen._image_rect).is_not_null()
 	assert_float(screen._image_rect.size.x).is_greater_equal(1100.0)
 	assert_float(screen._image_rect.size.y).is_greater_equal(800.0)
@@ -39,3 +39,19 @@ func test_navegacion_y_estados_disabled() -> void:
 	screen._prev()
 	assert_int(screen._index).is_equal(0)
 	assert_object(screen._image_rect.texture).is_not_null()
+
+
+func test_los_veinte_hechos_tienen_imagen_titulo_y_texto() -> void:
+	var imagenes: Dictionary = {}
+	for fact: Dictionary in HistoryScreen.FACTS:
+		var ruta: String = str(fact["image"])
+		assert_bool(imagenes.has(ruta)).is_false().override_failure_message(
+			"Imagen repetida en la pantalla de historia: %s" % ruta
+		)
+		imagenes[ruta] = true
+		assert_bool(ResourceLoader.exists(ruta)).is_true().override_failure_message(
+			"Falta la imagen %s" % ruta
+		)
+		assert_str(str(fact["title"]).strip_edges()).is_not_empty()
+		assert_str(str(fact["text"]).strip_edges()).is_not_empty()
+	assert_int(imagenes.size()).is_equal(HistoryScreen.FACTS.size())

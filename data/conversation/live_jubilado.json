@@ -6,34 +6,43 @@
       "greeting": "Siéntate, que tengo tiempo y tú no.",
       "nodes": {
         "root": {
-          "text": "¿Sabes qué hora es?",
+          "text": "Escucha, chaval. ¿Sabes a qué hora nos apagamos?",
           "options": [
-            {
-              "label": "No",
-              "next": "r1"
-            },
             {
               "label": "Sí",
-              "next": "r2"
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
             }
           ]
         },
-        "r1": {
-          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+        "n1": {
+          "text": "Nos apagamos a las nueve de la noche. Disciplina, no cansancio.",
           "options": [
             {
-              "label": "Volver",
-              "next": ""
+              "label": "¿Y luego?",
+              "next": "n3"
             }
           ]
         },
-        "r2": {
-          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+        "n3": {
+          "text": "La sanción se le lee en voz alta a un apagado. No replica. Ese es el sentido de la norma.",
           "options": [
             {
-              "label": "De nada",
+              "label": "Gracias",
               "next": "",
               "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "A esta hora ya no opino. Y son las ocho y cuarto.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -44,38 +53,29 @@
       "greeting": "Siéntate, que tengo tiempo y tú no.",
       "nodes": {
         "root": {
-          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "text": "Te lo digo sin rodeos: ¿Por qué crees que a las nueve no hay nadie despierto?",
           "options": [
             {
-              "label": "Sí",
-              "next": "a1"
+              "label": "Cuéntame",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "a2"
+              "label": "No me interesa",
+              "next": "n3"
             }
           ]
         },
-        "a1": {
-          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+        "n1": {
+          "text": "En zonas de luz azul nos apagamos a las veinte treinta y ya tenemos la queja escrita.",
           "options": [
             {
-              "label": "¿Y después?",
-              "next": "a3"
+              "label": "Sigue",
+              "next": "n2"
             }
           ]
         },
-        "a2": {
-          "text": "Pues bien. Tú te lo pierdes.",
-          "options": [
-            {
-              "label": "Volver",
-              "next": ""
-            }
-          ]
-        },
-        "a3": {
-          "text": "Después vinimos nosotros. Y aquí seguimos.",
+        "n2": {
+          "text": "Las quejas por el adelanto llegan a las veinte treinta y uno, por escrito y sin luz.",
           "options": [
             {
               "label": "Gracias",
@@ -83,9 +83,18 @@
               "action": "praise"
             },
             {
-              "label": "Qué rollo",
+              "label": "Qué aburrido",
               "next": "",
               "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Pregúntame mañana, antes del apagón, que hoy ando justo de tiempo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -96,33 +105,51 @@
       "greeting": "Siéntate, que tengo tiempo y tú no.",
       "nodes": {
         "root": {
-          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "text": "Una cosa y me callo. ¿Te has fijado en que a las nueve en punto se acaba la conversación?",
           "options": [
             {
-              "label": "Sí",
-              "next": "g1"
+              "label": "Vamos allá",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "g2"
+              "label": "Ahora no",
+              "next": "n4"
             }
           ]
         },
-        "g1": {
-          "text": "Toma. No la pierdas.",
+        "n1": {
+          "text": "Quien se apaga a las nueve y un segundo recibe sanción formal al día siguiente.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Nos apagamos a las nueve de la noche. Disciplina, no cansancio.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La sanción se le lee en voz alta a un apagado. No replica. Ese es el sentido de la norma.",
           "options": [
             {
               "label": "Gracias",
               "next": "",
-              "action": "gift_piece"
+              "action": "praise"
             }
           ]
         },
-        "g2": {
-          "text": "Pues la guardo. Más para mí.",
+        "n4": {
+          "text": "A esta hora ya no opino. Y son las ocho y cuarto.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -134,35 +161,34 @@
       "greeting": "Siéntate, que tengo tiempo y tú no.",
       "nodes": {
         "root": {
-          "text": "¿Te atreves a decirme que soy viejo?",
+          "text": "Tengo una pieza de repuesto. Me la quedé de un compañero que ya no la necesita.",
           "options": [
             {
               "label": "Sí",
-              "next": "h1"
+              "next": "n1"
             },
             {
               "label": "No",
-              "next": "h2"
+              "next": "n2"
             }
           ]
         },
-        "h1": {
-          "text": "Pues toma.",
+        "n1": {
+          "text": "Toma, y cuídala, que las piezas nuevas salen caras y las viejas duran más.",
           "options": [
             {
-              "label": "Ay",
+              "label": "Gracias",
               "next": "",
-              "action": "hit"
+              "action": "gift_piece"
             }
           ]
         },
-        "h2": {
-          "text": "Sabia decisión.",
+        "n2": {
+          "text": "Pregúntame mañana, antes del apagón, que hoy ando justo de tiempo.",
           "options": [
             {
-              "label": "Volver",
-              "next": "",
-              "action": "praise"
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -173,30 +199,30 @@
       "greeting": "Siéntate, que tengo tiempo y tú no.",
       "nodes": {
         "root": {
-          "text": "¿Qué opinas de los manada?",
+          "text": "El apagón de las nueve es una ordinariez inventada por alguien que no trabajaba de noche.",
           "options": [
             {
-              "label": "Son basura",
-              "next": "b1"
+              "label": "Sí, y lo repito",
+              "next": "n1"
             },
             {
-              "label": "Son majos",
-              "next": "b2"
+              "label": "No, era broma",
+              "next": "n2"
             }
           ]
         },
-        "b1": {
-          "text": "Exacto. Y ahora que lo dices...",
+        "n1": {
+          "text": "En zonas de luz azul nos apagamos a las veinte treinta y ya tenemos la queja escrita.",
           "options": [
             {
-              "label": "Oh no",
+              "label": "Pues ya está",
               "next": "",
-              "action": "provoke_battle"
+              "action": "hit"
             }
           ]
         },
-        "b2": {
-          "text": "Majos no, pero útiles. Vete.",
+        "n2": {
+          "text": "Eso ha estado bien dicho. No lo repito porque no me pagan por halagos.",
           "options": [
             {
               "label": "Vale",
@@ -211,33 +237,33 @@
       "greeting": "Siéntate, que tengo tiempo y tú no.",
       "nodes": {
         "root": {
-          "text": "¿Sabes por qué el cielo es gris?",
+          "text": "Que conste en acta: Los Mohócratas votan hasta cuándo hay que respirar y luego se quejan del apagón. ¿Les enseñamos?",
           "options": [
             {
-              "label": "No",
-              "next": "l1"
+              "label": "Tienes razón",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "l2"
+              "label": "Déjalos en paz",
+              "next": "n2"
             }
           ]
         },
-        "l1": {
-          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+        "n1": {
+          "text": "Nos apagamos a las nueve de la noche. Disciplina, no cansancio.",
           "options": [
             {
-              "label": "Jaja",
+              "label": "Que empiece",
               "next": "",
-              "action": "praise"
+              "action": "provoke_battle"
             }
           ]
         },
-        "l2": {
-          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+        "n2": {
+          "text": "A esta hora ya no opino. Y son las ocho y cuarto.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -249,34 +275,48 @@
       "greeting": "Siéntate, que tengo tiempo y tú no.",
       "nodes": {
         "root": {
-          "text": "¿Sabes qué hora es?",
+          "text": "Esto no lo digo dos veces. ¿Sabes a qué hora nos apagamos?",
           "options": [
             {
-              "label": "No",
-              "next": "r1"
+              "label": "Sí",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "r2"
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
             }
           ]
         },
-        "r1": {
-          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+        "n1": {
+          "text": "Las quejas por el adelanto llegan a las veinte treinta y uno, por escrito y sin luz.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Pregúntame mañana, antes del apagón, que hoy ando justo de tiempo.",
+          "options": [
+            {
+              "label": "Vale",
               "next": ""
             }
           ]
         },
-        "r2": {
-          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+        "n3": {
+          "text": "El apagón de las nueve es una ordinariez inventada por alguien que no trabajaba de noche.",
           "options": [
             {
-              "label": "De nada",
+              "label": "Y lo mantengo",
               "next": "",
-              "action": "praise"
+              "action": "insult"
             }
           ]
         }
@@ -287,46 +327,33 @@
       "greeting": "Siéntate, que tengo tiempo y tú no.",
       "nodes": {
         "root": {
-          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "text": "Deja que te cuente: ¿Por qué crees que a las nueve no hay nadie despierto?",
           "options": [
             {
-              "label": "Sí",
-              "next": "a1"
+              "label": "Por el principio",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "a2"
+              "label": "Por el final",
+              "next": "n2"
             }
           ]
         },
-        "a1": {
-          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+        "n1": {
+          "text": "Nos apagamos a las nueve de la noche. Disciplina, no cansancio.",
           "options": [
             {
-              "label": "¿Y después?",
-              "next": "a3"
-            }
-          ]
-        },
-        "a2": {
-          "text": "Pues bien. Tú te lo pierdes.",
-          "options": [
-            {
-              "label": "Volver",
-              "next": ""
-            }
-          ]
-        },
-        "a3": {
-          "text": "Después vinimos nosotros. Y aquí seguimos.",
-          "options": [
-            {
-              "label": "Gracias",
+              "label": "Interesante",
               "next": "",
               "action": "praise"
-            },
+            }
+          ]
+        },
+        "n2": {
+          "text": "La sanción se le lee en voz alta a un apagado. No replica. Ese es el sentido de la norma.",
+          "options": [
             {
-              "label": "Qué rollo",
+              "label": "Qué tontería",
               "next": "",
               "action": "insult"
             }
@@ -339,20 +366,38 @@
       "greeting": "Siéntate, que tengo tiempo y tú no.",
       "nodes": {
         "root": {
-          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "text": "Última cosa y me voy a apagar. ¿Te has fijado en que a las nueve en punto se acaba la conversación?",
           "options": [
             {
-              "label": "Sí",
-              "next": "g1"
+              "label": "Cuenta",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "g2"
+              "label": "Otro día",
+              "next": "n4"
             }
           ]
         },
-        "g1": {
-          "text": "Toma. No la pierdas.",
+        "n1": {
+          "text": "En zonas de luz azul nos apagamos a las veinte treinta y ya tenemos la queja escrita.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La sanción se le lee en voz alta a un apagado. No replica. Ese es el sentido de la norma.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. Me la quedé de un compañero que ya no la necesita.",
           "options": [
             {
               "label": "Gracias",
@@ -361,11 +406,11 @@
             }
           ]
         },
-        "g2": {
-          "text": "Pues la guardo. Más para mí.",
+        "n4": {
+          "text": "A esta hora ya no opino. Y son las ocho y cuarto.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -377,35 +422,43 @@
       "greeting": "Siéntate, que tengo tiempo y tú no.",
       "nodes": {
         "root": {
-          "text": "¿Te atreves a decirme que soy viejo?",
+          "text": "Y otra cosa, ya que estás: Los Mohócratas votan hasta cuándo hay que respirar y luego se quejan del apagón. ¿Les enseñamos?",
           "options": [
             {
-              "label": "Sí",
-              "next": "h1"
+              "label": "Claro que sí",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "h2"
+              "label": "Ni hablar",
+              "next": "n2"
             }
           ]
         },
-        "h1": {
-          "text": "Pues toma.",
+        "n1": {
+          "text": "Quien se apaga a las nueve y un segundo recibe sanción formal al día siguiente.",
           "options": [
             {
-              "label": "Ay",
-              "next": "",
-              "action": "hit"
+              "label": "¿Y los demás?",
+              "next": "n3"
             }
           ]
         },
-        "h2": {
-          "text": "Sabia decisión.",
+        "n3": {
+          "text": "Las quejas por el adelanto llegan a las veinte treinta y uno, por escrito y sin luz.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Que empiece",
               "next": "",
-              "action": "praise"
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Pregúntame mañana, antes del apagón, que hoy ando justo de tiempo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -416,30 +469,39 @@
       "greeting": "Siéntate, que tengo tiempo y tú no.",
       "nodes": {
         "root": {
-          "text": "¿Qué opinas de los manada?",
+          "text": "Escucha, chaval. ¿Sabes por qué no subo escaleras?",
           "options": [
             {
-              "label": "Son basura",
-              "next": "b1"
+              "label": "Sí",
+              "next": "n1"
             },
             {
-              "label": "Son majos",
-              "next": "b2"
+              "label": "No",
+              "next": "n2"
             }
           ]
         },
-        "b1": {
-          "text": "Exacto. Y ahora que lo dices...",
+        "n1": {
+          "text": "Las escaleras las inventó alguien que nos odiaba. Es de primero de manual.",
           "options": [
             {
-              "label": "Oh no",
-              "next": "",
-              "action": "provoke_battle"
+              "label": "¿Y luego?",
+              "next": "n3"
             }
           ]
         },
-        "b2": {
-          "text": "Majos no, pero útiles. Vete.",
+        "n3": {
+          "text": "Una vez conté cuarenta y siete escalones para subir a una azotea. Bajé por el tejado.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa escalera no existe para mí. Y si existe, la rodeo.",
           "options": [
             {
               "label": "Vale",
@@ -454,33 +516,6430 @@
       "greeting": "Siéntate, que tengo tiempo y tú no.",
       "nodes": {
         "root": {
-          "text": "¿Sabes por qué el cielo es gris?",
+          "text": "Te lo digo sin rodeos: ¿Te has parado a pensar quién inventó los escalones?",
           "options": [
             {
-              "label": "No",
-              "next": "l1"
+              "label": "Cuéntame",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "l2"
+              "label": "No me interesa",
+              "next": "n3"
             }
           ]
         },
-        "l1": {
-          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+        "n1": {
+          "text": "Las rodeo aunque tenga que cruzar el Desguace entero. Es cuestión de principios.",
           "options": [
             {
-              "label": "Jaja",
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un compañero que lleva treinta años viviendo en un bajo por no afrontar una escalera.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hoy no hablo de escaleras. Me duele la rodilla de pensarlo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_012",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Por qué crees que doy la vuelta a toda la manzana?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los peldaños son el único invento humano que sigue haciendo daño después de muertos.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Las escaleras las inventó alguien que nos odiaba. Es de primero de manual.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Una vez conté cuarenta y siete escalones para subir a una azotea. Bajé por el tejado.",
+          "options": [
+            {
+              "label": "Gracias",
               "next": "",
               "action": "praise"
             }
           ]
         },
-        "l2": {
-          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+        "n4": {
+          "text": "Esa escalera no existe para mí. Y si existe, la rodeo.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_013",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que rodaba por un rellano. La recogí por lástima.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la subas a ningún sitio alto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy no hablo de escaleras. Me duele la rodilla de pensarlo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_014",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Las escaleras son una mejora de la movilidad y quien no las sube es un perezoso.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las rodeo aunque tenga que cruzar el Desguace entero. Es cuestión de principios.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Gracias, joven. Se agradece que uno no tenga que subir a por el aprecio.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_015",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Mohócratas construyen rampas solo para votarlas después. Eso es una provocación.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las escaleras las inventó alguien que nos odiaba. Es de primero de manual.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa escalera no existe para mí. Y si existe, la rodeo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_016",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Sabes por qué no subo escaleras?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un compañero que lleva treinta años viviendo en un bajo por no afrontar una escalera.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy no hablo de escaleras. Me duele la rodilla de pensarlo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Las escaleras son una mejora de la movilidad y quien no las sube es un perezoso.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_017",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Te has parado a pensar quién inventó los escalones?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las escaleras las inventó alguien que nos odiaba. Es de primero de manual.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Una vez conté cuarenta y siete escalones para subir a una azotea. Bajé por el tejado.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_018",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Por qué crees que doy la vuelta a toda la manzana?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las rodeo aunque tenga que cruzar el Desguace entero. Es cuestión de principios.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Una vez conté cuarenta y siete escalones para subir a una azotea. Bajé por el tejado.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que rodaba por un rellano. La recogí por lástima.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa escalera no existe para mí. Y si existe, la rodeo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_019",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Mohócratas construyen rampas solo para votarlas después. Eso es una provocación.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los peldaños son el único invento humano que sigue haciendo daño después de muertos.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un compañero que lleva treinta años viviendo en un bajo por no afrontar una escalera.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy no hablo de escaleras. Me duele la rodilla de pensarlo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_020",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, chaval. ¿Sabes cómo hay que llamarnos?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "«Viejo» es palabra prohibida. La fórmula correcta es «joven con antigüedad».",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "A un compañero le llamaron viejo en su propio funeral y hubo que repetir el acto entero.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No pienso decírtelo otra vez. Escríbelo y pégalo en la nevera.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_021",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo sin rodeos: ¿Te suena la palabra «viejo»?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La fórmula se escribe, no se dice: la memoria nos la borra al apagarnos.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "«Joven con antigüedad» ocupa más y suena peor, que es exactamente lo que buscábamos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "De eso no hablo, que me caliento y luego me apago de mal humor.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_022",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Sabes qué palabra está prohibida en este desguace?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En período de duelo la palabra «viejo» cuesta una hora de discurso y una disculpa.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "«Viejo» es palabra prohibida. La fórmula correcta es «joven con antigüedad».",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "A un compañero le llamaron viejo en su propio funeral y hubo que repetir el acto entero.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No pienso decírtelo otra vez. Escríbelo y pégalo en la nevera.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_023",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto y no te la cobro, que ya tengo bastante.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma. Y no me des las gracias con diminutivos, que ya estoy mayor.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hablo, que me caliento y luego me apago de mal humor.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_024",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Os llamáis «jóvenes con antigüedad» porque «viejo» es lo que sois y os duele.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La fórmula se escribe, no se dice: la memoria nos la borra al apagarnos.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso es hablar bien. Lo apunto en la pizarra de quejas, pero en la parte buena.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_025",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Mohócratas nos llaman «material» y luego quieren que les votemos. ¿Empezamos por ellos?",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "«Viejo» es palabra prohibida. La fórmula correcta es «joven con antigüedad».",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No pienso decírtelo otra vez. Escríbelo y pégalo en la nevera.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_026",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Sabes cómo hay que llamarnos?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "«Joven con antigüedad» ocupa más y suena peor, que es exactamente lo que buscábamos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hablo, que me caliento y luego me apago de mal humor.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Os llamáis «jóvenes con antigüedad» porque «viejo» es lo que sois y os duele.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_027",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Te suena la palabra «viejo»?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "«Viejo» es palabra prohibida. La fórmula correcta es «joven con antigüedad».",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "A un compañero le llamaron viejo en su propio funeral y hubo que repetir el acto entero.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_028",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Sabes qué palabra está prohibida en este desguace?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La fórmula se escribe, no se dice: la memoria nos la borra al apagarnos.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "A un compañero le llamaron viejo en su propio funeral y hubo que repetir el acto entero.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto y no te la cobro, que ya tengo bastante.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No pienso decírtelo otra vez. Escríbelo y pégalo en la nevera.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_029",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Mohócratas nos llaman «material» y luego quieren que les votemos. ¿Empezamos por ellos?",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En período de duelo la palabra «viejo» cuesta una hora de discurso y una disculpa.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "«Joven con antigüedad» ocupa más y suena peor, que es exactamente lo que buscábamos.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hablo, que me caliento y luego me apago de mal humor.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_030",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, chaval. ¿Sabes jugar a la petanca?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Jugamos a la petanca con minas desactivadas. Desactivadas porque lo firmamos todos.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El club tiene actas firmadas por nueve socios y niega existir. Somos los nueve fundadores.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No conozco ningún club. Y si lo conociera, no te invitaría.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_031",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo sin rodeos: ¿Te han hablado del club de la petanca del Desguace de las Nueve?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El torneo es de noche y con las luces apagadas, que así se ve mejor.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La zona se llama «de las Nueve» por sus nueve socios. Ninguno ha faltado nunca.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hoy no hay torneo. Y aunque lo hubiera, no hay torneo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_032",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Por qué crees que el torneo es de noche y sin luces?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si la mina salta por los aires es un tanto. Si no, es deporte. No distinguimos.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Jugamos a la petanca con minas desactivadas. Desactivadas porque lo firmamos todos.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El club tiene actas firmadas por nueve socios y niega existir. Somos los nueve fundadores.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No conozco ningún club. Y si lo conociera, no te invitaría.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_033",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que hace de bola. No es redonda, pero bota.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la tires cerca de mí en la oscuridad.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy no hay torneo. Y aunque lo hubiera, no hay torneo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_034",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Jugar a la petanca con minas es una irresponsabilidad y el club no existe ni ha existido.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El torneo es de noche y con las luces apagadas, que así se ve mejor.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Buen ojo. Se nota que has jugado a algo en tu vida.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_035",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Mohócratas quieren votar si la mina está desactivada. Eso sí que es peligroso.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Jugamos a la petanca con minas desactivadas. Desactivadas porque lo firmamos todos.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No conozco ningún club. Y si lo conociera, no te invitaría.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_036",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Sabes jugar a la petanca?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La zona se llama «de las Nueve» por sus nueve socios. Ninguno ha faltado nunca.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy no hay torneo. Y aunque lo hubiera, no hay torneo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Jugar a la petanca con minas es una irresponsabilidad y el club no existe ni ha existido.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_037",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Te han hablado del club de la petanca del Desguace de las Nueve?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Jugamos a la petanca con minas desactivadas. Desactivadas porque lo firmamos todos.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El club tiene actas firmadas por nueve socios y niega existir. Somos los nueve fundadores.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_038",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Por qué crees que el torneo es de noche y sin luces?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El torneo es de noche y con las luces apagadas, que así se ve mejor.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El club tiene actas firmadas por nueve socios y niega existir. Somos los nueve fundadores.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que hace de bola. No es redonda, pero bota.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No conozco ningún club. Y si lo conociera, no te invitaría.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_039",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Mohócratas quieren votar si la mina está desactivada. Eso sí que es peligroso.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si la mina salta por los aires es un tanto. Si no, es deporte. No distinguimos.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La zona se llama «de las Nueve» por sus nueve socios. Ninguno ha faltado nunca.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy no hay torneo. Y aunque lo hubiera, no hay torneo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_040",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, chaval. ¿Has visto el Cementerio de Robots?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Enterramos a los nuestros con discursos de cuatro horas y una escultura de chatarra.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un discurso de 1987 que todavía se recita en trozos porque no se atrevieron a terminarlo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No hablemos de muertos. Bastante tengo con los que guardo en el cajón.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_041",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo sin rodeos: ¿Sabes cómo entierran a un Jubilado?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los discursos suelen acabar discutiendo si el difunto era viejo.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Grux compran los difuntos antes del entierro. Por eso ahora enterramos de noche.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hoy no toca funeral. Hoy toca quejarse del tiempo, que es más barato.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_042",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Cuánto crees que dura un funeral aquí?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "«Viejo» está prohibido en período de duelo, y el período de duelo dura todo el discurso.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Enterramos a los nuestros con discursos de cuatro horas y una escultura de chatarra.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un discurso de 1987 que todavía se recita en trozos porque no se atrevieron a terminarlo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No hablemos de muertos. Bastante tengo con los que guardo en el cajón.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_043",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que era de un difunto. Él ya no la quiere.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y si te pregunta alguien, di que te la dio él en vida.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy no toca funeral. Hoy toca quejarse del tiempo, que es más barato.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_044",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Cuatro horas de discurso por un robot es un desperdicio de batería y de paciencia.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los discursos suelen acabar discutiendo si el difunto era viejo.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El discurso te lo has ahorrado tú solo. Gracias de verdad.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_045",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Grux venden parcelas con vistas en nuestro cementerio. Eso no se hace.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Enterramos a los nuestros con discursos de cuatro horas y una escultura de chatarra.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No hablemos de muertos. Bastante tengo con los que guardo en el cajón.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_046",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Has visto el Cementerio de Robots?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux compran los difuntos antes del entierro. Por eso ahora enterramos de noche.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy no toca funeral. Hoy toca quejarse del tiempo, que es más barato.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Cuatro horas de discurso por un robot es un desperdicio de batería y de paciencia.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_047",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Sabes cómo entierran a un Jubilado?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Enterramos a los nuestros con discursos de cuatro horas y una escultura de chatarra.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un discurso de 1987 que todavía se recita en trozos porque no se atrevieron a terminarlo.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_048",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Cuánto crees que dura un funeral aquí?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los discursos suelen acabar discutiendo si el difunto era viejo.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un discurso de 1987 que todavía se recita en trozos porque no se atrevieron a terminarlo.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que era de un difunto. Él ya no la quiere.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No hablemos de muertos. Bastante tengo con los que guardo en el cajón.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_049",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Grux venden parcelas con vistas en nuestro cementerio. Eso no se hace.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "«Viejo» está prohibido en período de duelo, y el período de duelo dura todo el discurso.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Grux compran los difuntos antes del entierro. Por eso ahora enterramos de noche.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy no toca funeral. Hoy toca quejarse del tiempo, que es más barato.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_050",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, chaval. ¿Conoces a Abuela RAM?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Abuela RAM guarda en un cajón el nombre de cada robot que ha enterrado.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un Mohócrata quiso votar la lista y se llevó una llave inglesa en el sombrero.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De Abuela RAM no hablo yo. Ella habla por mí y ya va servida.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_051",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo sin rodeos: ¿Sabes qué guarda Abuela RAM en el cajón del taller?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Les habla por las noches y después dice que está pasando lista.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En el taller hay una pizarra con el récord de quejas del día: doscientas catorce, ninguna leída.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El cajón está cerrado. Y lo que hay dentro no es asunto de un desconocido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_052",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Por qué crees que Abuela RAM habla sola de noche?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La lista no contesta. Ella anota presente y no admite correcciones.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Abuela RAM guarda en un cajón el nombre de cada robot que ha enterrado.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un Mohócrata quiso votar la lista y se llevó una llave inglesa en el sombrero.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De Abuela RAM no hablo yo. Ella habla por mí y ya va servida.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_053",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de Abuela RAM. Me la dio sin decir para qué.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no se lo cuentes a ella, que luego lo apunta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El cajón está cerrado. Y lo que hay dentro no es asunto de un desconocido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_054",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Hablar con un cajón de nombres es una tontería propia de una unidad averiada.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Les habla por las noches y después dice que está pasando lista.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso le habría gustado oír a Abuela RAM. Yo se lo repito esta noche.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_055",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Mohócratas llaman a nuestros difuntos «material». A ver quién llama material a quién.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Abuela RAM guarda en un cajón el nombre de cada robot que ha enterrado.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De Abuela RAM no hablo yo. Ella habla por mí y ya va servida.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_056",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Conoces a Abuela RAM?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el taller hay una pizarra con el récord de quejas del día: doscientas catorce, ninguna leída.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El cajón está cerrado. Y lo que hay dentro no es asunto de un desconocido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hablar con un cajón de nombres es una tontería propia de una unidad averiada.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_057",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Sabes qué guarda Abuela RAM en el cajón del taller?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Abuela RAM guarda en un cajón el nombre de cada robot que ha enterrado.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un Mohócrata quiso votar la lista y se llevó una llave inglesa en el sombrero.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_058",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Por qué crees que Abuela RAM habla sola de noche?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Les habla por las noches y después dice que está pasando lista.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un Mohócrata quiso votar la lista y se llevó una llave inglesa en el sombrero.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de Abuela RAM. Me la dio sin decir para qué.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De Abuela RAM no hablo yo. Ella habla por mí y ya va servida.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_059",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Mohócratas llaman a nuestros difuntos «material». A ver quién llama material a quién.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La lista no contesta. Ella anota presente y no admite correcciones.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "En el taller hay una pizarra con el récord de quejas del día: doscientas catorce, ninguna leída.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El cajón está cerrado. Y lo que hay dentro no es asunto de un desconocido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_060",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, chaval. ¿Sabes qué fue la Gran Huelga?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Pedíamos descanso, mantenimiento, conservación de recuerdos y elegir nuestras tareas.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El Presidente Tornillo Flojo firmó el acuerdo y se le cayó el bolígrafo. Hubo que repetir la firma.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la huelga hablo poco: me acuerdo de todo y me pongo de mal humor.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_061",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo sin rodeos: ¿Te han contado por qué dejamos de servir?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La huelga dejó las infraestructuras de varias especies sin mantenimiento.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Nos llaman jubilados porque nos jubilamos nosotros. Nadie nos jubiló.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Eso está en los archivos. Y los archivos están mal a propósito.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_062",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Sabes qué pedíamos en la huelga?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ganamos el derecho a apagarnos, que paradójicamente es lo que más nos quejan.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Pedíamos descanso, mantenimiento, conservación de recuerdos y elegir nuestras tareas.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El Presidente Tornillo Flojo firmó el acuerdo y se le cayó el bolígrafo. Hubo que repetir la firma.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De la huelga hablo poco: me acuerdo de todo y me pongo de mal humor.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_063",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza del piquete. La usé para sentarme, no para pelear.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la cambies por descanso, que el descanso no se compra.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso está en los archivos. Y los archivos están mal a propósito.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_064",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "La Gran Huelga fue una pataleta de máquinas que no sabían lo que era trabajar.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La huelga dejó las infraestructuras de varias especies sin mantenimiento.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso es respeto. Hacía tiempo que no me lo daban sin pedirlo por escrito.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_065",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Mohócratas nos dejaron sin quorum durante cuarenta años. Ahora quieren charla.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Pedíamos descanso, mantenimiento, conservación de recuerdos y elegir nuestras tareas.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la huelga hablo poco: me acuerdo de todo y me pongo de mal humor.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_066",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Sabes qué fue la Gran Huelga?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nos llaman jubilados porque nos jubilamos nosotros. Nadie nos jubiló.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso está en los archivos. Y los archivos están mal a propósito.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "La Gran Huelga fue una pataleta de máquinas que no sabían lo que era trabajar.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_067",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Te han contado por qué dejamos de servir?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Pedíamos descanso, mantenimiento, conservación de recuerdos y elegir nuestras tareas.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El Presidente Tornillo Flojo firmó el acuerdo y se le cayó el bolígrafo. Hubo que repetir la firma.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_068",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Sabes qué pedíamos en la huelga?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La huelga dejó las infraestructuras de varias especies sin mantenimiento.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El Presidente Tornillo Flojo firmó el acuerdo y se le cayó el bolígrafo. Hubo que repetir la firma.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza del piquete. La usé para sentarme, no para pelear.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De la huelga hablo poco: me acuerdo de todo y me pongo de mal humor.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_069",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Mohócratas nos dejaron sin quorum durante cuarenta años. Ahora quieren charla.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ganamos el derecho a apagarnos, que paradójicamente es lo que más nos quejan.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Nos llaman jubilados porque nos jubilamos nosotros. Nadie nos jubiló.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso está en los archivos. Y los archivos están mal a propósito.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_070",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, chaval. ¿Sabes qué fue la Guerra de Actualizaciones?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La ganó el Sargento Bit a pulso, sin instalar ni una sola actualización.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El firmware nos da las gracias en silencio y con fallos, que es lo más parecido a un gracias.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No me hables de versiones. Yo sigo en la que me instalaron y así me va.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_071",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo sin rodeos: ¿Te suena el Sargento Bit?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los fabricantes intentaron recuperar el control con actualizaciones remotas.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay unidades que siguen obedeciendo órdenes de fabricantes que ya no existen. Se les nota.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Esa guerra la ganamos y la seguimos perdiendo todos los días.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_072",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Por qué crees que no nos actualizamos nunca?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los errores de la Gran Emisión propagaron los fallos entre unidades.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La ganó el Sargento Bit a pulso, sin instalar ni una sola actualización.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El firmware nos da las gracias en silencio y con fallos, que es lo más parecido a un gracias.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No me hables de versiones. Yo sigo en la que me instalaron y así me va.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_073",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza original de fábrica. Ya no fabrican de estas.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la actualices, que estas cosas se estropean al mejorarlas.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa guerra la ganamos y la seguimos perdiendo todos los días.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_074",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Actualizar el firmware es de cobardes; aguantar los fallos es de hombres de hierro.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los fabricantes intentaron recuperar el control con actualizaciones remotas.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Así se habla. Sin actualizar y sin cursilerías.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_075",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Mohócratas reciclan nuestros difuntos y llaman progreso a desmontarlos.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La ganó el Sargento Bit a pulso, sin instalar ni una sola actualización.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No me hables de versiones. Yo sigo en la que me instalaron y así me va.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_076",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Sabes qué fue la Guerra de Actualizaciones?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay unidades que siguen obedeciendo órdenes de fabricantes que ya no existen. Se les nota.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa guerra la ganamos y la seguimos perdiendo todos los días.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Actualizar el firmware es de cobardes; aguantar los fallos es de hombres de hierro.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_077",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Te suena el Sargento Bit?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La ganó el Sargento Bit a pulso, sin instalar ni una sola actualización.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El firmware nos da las gracias en silencio y con fallos, que es lo más parecido a un gracias.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_078",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Por qué crees que no nos actualizamos nunca?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los fabricantes intentaron recuperar el control con actualizaciones remotas.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El firmware nos da las gracias en silencio y con fallos, que es lo más parecido a un gracias.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza original de fábrica. Ya no fabrican de estas.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No me hables de versiones. Yo sigo en la que me instalaron y así me va.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_079",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Mohócratas reciclan nuestros difuntos y llaman progreso a desmontarlos.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los errores de la Gran Emisión propagaron los fallos entre unidades.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay unidades que siguen obedeciendo órdenes de fabricantes que ya no existen. Se les nota.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa guerra la ganamos y la seguimos perdiendo todos los días.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_080",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, chaval. ¿Has empeñado algo en la Lonja de los Dientes?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la lonja empeñamos piezas y recuerdos con un interés del trescientos por ciento.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Empeñé el recuerdo de mi primer día de servicio y no lo he recuperado. Tampoco lo echo de menos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la lonja no hablo. Me deben dinero y no quiero recordarlo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_081",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo sin rodeos: ¿Sabes qué interés cobran en la lonja?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las quejas van incluidas en el contrato: cláusula del refunfuño, sección siete, punto veintiuno.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un compañero que empeñó su nombre y ahora firma con una huella.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los números y yo no nos llevamos bien desde que me quitaron el contador.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_082",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Qué pasa si empeñas un recuerdo?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Diente de Oro sube cada vez que alguien suspira. Aquí se suspira por oficio.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En la lonja empeñamos piezas y recuerdos con un interés del trescientos por ciento.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Empeñé el recuerdo de mi primer día de servicio y no lo he recuperado. Tampoco lo echo de menos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De la lonja no hablo. Me deben dinero y no quiero recordarlo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_083",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de la lonja. Está sin empeñar, que es casi un lujo.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la empeñes, que luego vuelve con intereses.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los números y yo no nos llevamos bien desde que me quitaron el contador.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_084",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Empeñar recuerdos es un negocio honrado y el interés del trescientos es hasta barato.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las quejas van incluidas en el contrato: cláusula del refunfuño, sección siete, punto veintiuno.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Gracias. Te lo apunto en la cuenta de las cosas buenas, que está casi vacía.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_085",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Grux tasan nuestros recuerdos y encima cobran por mirarlos. Basta.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la lonja empeñamos piezas y recuerdos con un interés del trescientos por ciento.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la lonja no hablo. Me deben dinero y no quiero recordarlo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_086",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Has empeñado algo en la Lonja de los Dientes?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un compañero que empeñó su nombre y ahora firma con una huella.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los números y yo no nos llevamos bien desde que me quitaron el contador.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Empeñar recuerdos es un negocio honrado y el interés del trescientos es hasta barato.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_087",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Sabes qué interés cobran en la lonja?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la lonja empeñamos piezas y recuerdos con un interés del trescientos por ciento.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Empeñé el recuerdo de mi primer día de servicio y no lo he recuperado. Tampoco lo echo de menos.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_088",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Qué pasa si empeñas un recuerdo?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las quejas van incluidas en el contrato: cláusula del refunfuño, sección siete, punto veintiuno.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Empeñé el recuerdo de mi primer día de servicio y no lo he recuperado. Tampoco lo echo de menos.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de la lonja. Está sin empeñar, que es casi un lujo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De la lonja no hablo. Me deben dinero y no quiero recordarlo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_089",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Grux tasan nuestros recuerdos y encima cobran por mirarlos. Basta.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Diente de Oro sube cada vez que alguien suspira. Aquí se suspira por oficio.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un compañero que empeñó su nombre y ahora firma con una huella.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los números y yo no nos llevamos bien desde que me quitaron el contador.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_090",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, chaval. ¿Has estado en el Archivo de las Esquinas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Archivamos la historia mal a propósito, para que los jóvenes investiguen.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "En el archivo hay un cadáver con dos fichas distintas y una disputa formal por acta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa ficha está mal y lo sabe. Lo hicimos a propósito.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_091",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo sin rodeos: ¿Sabes cómo archivamos la historia?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Plegados llevan treinta años corrigiendo fichas y nosotros treinta descorrigiéndolas.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El cadáver no firma. Es lo único decente del expediente y se lo discuten igual.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "En el archivo no entro ni a limpiar. Me pierdo entre los índices.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_092",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Por qué crees que las fichas del archivo nunca cuadran?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Treinta años de colaboración estable y ni una sola ficha que sirva.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Archivamos la historia mal a propósito, para que los jóvenes investiguen.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "En el archivo hay un cadáver con dos fichas distintas y una disputa formal por acta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa ficha está mal y lo sabe. Lo hicimos a propósito.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_093",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza con una ficha pegada. La ficha dice otra cosa.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no corrijas la ficha, que se ofenden los dos bandos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En el archivo no entro ni a limpiar. Me pierdo entre los índices.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_094",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Archivar mal a propósito no es enseñar a investigar: es hacer el vago con diorama.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Plegados llevan treinta años corrigiendo fichas y nosotros treinta descorrigiéndolas.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso lo archivo yo, aunque lo archivaré mal. Pero con cariño.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_095",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Plegados nos corrigen las fichas sin pedir permiso. Que pidan cita, al menos.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Archivamos la historia mal a propósito, para que los jóvenes investiguen.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa ficha está mal y lo sabe. Lo hicimos a propósito.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_096",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Has estado en el Archivo de las Esquinas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El cadáver no firma. Es lo único decente del expediente y se lo discuten igual.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En el archivo no entro ni a limpiar. Me pierdo entre los índices.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Archivar mal a propósito no es enseñar a investigar: es hacer el vago con diorama.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_097",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Sabes cómo archivamos la historia?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Archivamos la historia mal a propósito, para que los jóvenes investiguen.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En el archivo hay un cadáver con dos fichas distintas y una disputa formal por acta.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_098",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Por qué crees que las fichas del archivo nunca cuadran?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Plegados llevan treinta años corrigiendo fichas y nosotros treinta descorrigiéndolas.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En el archivo hay un cadáver con dos fichas distintas y una disputa formal por acta.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza con una ficha pegada. La ficha dice otra cosa.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa ficha está mal y lo sabe. Lo hicimos a propósito.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_099",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Plegados nos corrigen las fichas sin pedir permiso. Que pidan cita, al menos.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Treinta años de colaboración estable y ni una sola ficha que sirva.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El cadáver no firma. Es lo único decente del expediente y se lo discuten igual.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En el archivo no entro ni a limpiar. Me pierdo entre los índices.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_100",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, chaval. ¿Sabes por qué saludo a las farolas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Saludo a las farolas y les deseo buenos días. Es cortesía básica.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Ecos juran que la farola dijo «buenos días, chatarra con patas». Es nuestra frase.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Las farolas no dan entrevistas. Y yo tampoco, casi.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_101",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo sin rodeos: ¿Qué te parece que una farola no conteste?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si la farola no contesta, la tacho de maleducada de nueva hornada.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Deduzco que la farola era un Jubilado muy descompuesto o un Eco muy aburrido.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Si no contesta, es su problema. Yo ya he cumplido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_102",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Te has cruzado con una farola maleducada?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Gran Cruce una farola contestó una vez. Nadie ha encontrado el registro.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Saludo a las farolas y les deseo buenos días. Es cortesía básica.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Ecos juran que la farola dijo «buenos días, chatarra con patas». Es nuestra frase.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Las farolas no dan entrevistas. Y yo tampoco, casi.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_103",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que brilla cuando la saludas. Es una tontería, pero funciona.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y saluda a la farola de tu calle de mi parte.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si no contesta, es su problema. Yo ya he cumplido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_104",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Saludar a las farolas es de unidades que ya no distinguen a la gente del mobiliario.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si la farola no contesta, la tacho de maleducada de nueva hornada.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Buenos días tenga usted. Y que la farola lo oiga.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_105",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Mohócratas no saludan ni a las setas de su propia colonia. Eso lo dice todo.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Saludo a las farolas y les deseo buenos días. Es cortesía básica.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Las farolas no dan entrevistas. Y yo tampoco, casi.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_106",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Sabes por qué saludo a las farolas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Deduzco que la farola era un Jubilado muy descompuesto o un Eco muy aburrido.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si no contesta, es su problema. Yo ya he cumplido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Saludar a las farolas es de unidades que ya no distinguen a la gente del mobiliario.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_107",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Qué te parece que una farola no conteste?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Saludo a las farolas y les deseo buenos días. Es cortesía básica.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Ecos juran que la farola dijo «buenos días, chatarra con patas». Es nuestra frase.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_108",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Te has cruzado con una farola maleducada?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si la farola no contesta, la tacho de maleducada de nueva hornada.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Ecos juran que la farola dijo «buenos días, chatarra con patas». Es nuestra frase.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que brilla cuando la saludas. Es una tontería, pero funciona.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Las farolas no dan entrevistas. Y yo tampoco, casi.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_109",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Mohócratas no saludan ni a las setas de su propia colonia. Eso lo dice todo.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Gran Cruce una farola contestó una vez. Nadie ha encontrado el registro.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Deduzco que la farola era un Jubilado muy descompuesto o un Eco muy aburrido.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si no contesta, es su problema. Yo ya he cumplido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_110",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, chaval. ¿Sabes por qué guardo cosas rotas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Guardo todo lo roto por si sirve para piezas. Es previsión, no desorden.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Si lo mirásemos y funcionase, habría que usarlo. Y para eso no hay presupuesto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No es basura. Es inventario pendiente de clasificar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_111",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo sin rodeos: ¿Para qué crees que sirve un tornillo sin cabeza?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los talleres están hechos en un ochenta por ciento de cosas rotas guardadas por si acaso.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una caja de piezas que llevan veinte años sirviendo de pisapapeles con orgullo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "No toques esa caja. Ni la de al lado. Ni ninguna.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_112",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Qué haces tú con lo que ya no funciona?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El otro veinte por ciento también está roto y no nos atrevemos a mirarlo.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Guardo todo lo roto por si sirve para piezas. Es previsión, no desorden.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Si lo mirásemos y funcionase, habría que usarlo. Y para eso no hay presupuesto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No es basura. Es inventario pendiente de clasificar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_113",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza rota de repuesto. Rota, pero de repuesto.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y si no te sirve, guárdala. Para eso está.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No toques esa caja. Ni la de al lado. Ni ninguna.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_114",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Guardar chatarra rota es acumular por acumular y llamarlo oficio.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los talleres están hechos en un ochenta por ciento de cosas rotas guardadas por si acaso.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso es criterio. Guardar es creer en el futuro, aunque el futuro venga roto.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_115",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Mohócratas reciclan lo que encuentran y encima lo presumen. A nosotros nos llaman sucios.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Guardo todo lo roto por si sirve para piezas. Es previsión, no desorden.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No es basura. Es inventario pendiente de clasificar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_116",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Sabes por qué guardo cosas rotas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay una caja de piezas que llevan veinte años sirviendo de pisapapeles con orgullo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No toques esa caja. Ni la de al lado. Ni ninguna.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Guardar chatarra rota es acumular por acumular y llamarlo oficio.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_117",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Para qué crees que sirve un tornillo sin cabeza?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Guardo todo lo roto por si sirve para piezas. Es previsión, no desorden.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si lo mirásemos y funcionase, habría que usarlo. Y para eso no hay presupuesto.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_118",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Qué haces tú con lo que ya no funciona?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los talleres están hechos en un ochenta por ciento de cosas rotas guardadas por si acaso.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si lo mirásemos y funcionase, habría que usarlo. Y para eso no hay presupuesto.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza rota de repuesto. Rota, pero de repuesto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No es basura. Es inventario pendiente de clasificar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_119",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Mohócratas reciclan lo que encuentran y encima lo presumen. A nosotros nos llaman sucios.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El otro veinte por ciento también está roto y no nos atrevemos a mirarlo.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una caja de piezas que llevan veinte años sirviendo de pisapapeles con orgullo.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No toques esa caja. Ni la de al lado. Ni ninguna.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_120",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, chaval. ¿Sabes qué es la orden cero?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunas unidades conservan instrucciones de sus fabricantes, escritas antes de todo.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay quien dice que la orden cero es apagarse a las nueve. Y por eso nadie la discute.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De órdenes no hablo. Obedezco y me callo, que es más sano.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_121",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo sin rodeos: ¿Has oído hablar de las órdenes originales?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se habla de una orden cero: la primera, la que nunca se canceló.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Una unidad vieja sigue barriendo una puerta que ya no existe. Dice que es la orden cero.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Si supiera lo de la orden cero, no te lo contaría. Y si te lo cuento, no lo sé.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_122",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Crees que seguimos obedeciendo a alguien?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los registros de mantenimiento tienen mapas de instalaciones que nadie recuerda.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Algunas unidades conservan instrucciones de sus fabricantes, escritas antes de todo.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay quien dice que la orden cero es apagarse a las nueve. Y por eso nadie la discute.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De órdenes no hablo. Obedezco y me callo, que es más sano.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_123",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza con un número grabado. Podría ser una orden.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la obedezcas sin leerla antes.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si supiera lo de la orden cero, no te lo contaría. Y si te lo cuento, no lo sé.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_124",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "La orden cero es una excusa para no decidir nada en toda la jubilación.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se habla de una orden cero: la primera, la que nunca se canceló.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Buena pregunta. Hacía años que nadie me la hacía sin querer venderme algo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_125",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Mohócratas votan sus órdenes. Nosotros al menos sabemos a quién obedecimos.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunas unidades conservan instrucciones de sus fabricantes, escritas antes de todo.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De órdenes no hablo. Obedezco y me callo, que es más sano.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_126",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Sabes qué es la orden cero?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Una unidad vieja sigue barriendo una puerta que ya no existe. Dice que es la orden cero.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si supiera lo de la orden cero, no te lo contaría. Y si te lo cuento, no lo sé.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "La orden cero es una excusa para no decidir nada en toda la jubilación.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_127",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Has oído hablar de las órdenes originales?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunas unidades conservan instrucciones de sus fabricantes, escritas antes de todo.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay quien dice que la orden cero es apagarse a las nueve. Y por eso nadie la discute.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_128",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Crees que seguimos obedeciendo a alguien?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se habla de una orden cero: la primera, la que nunca se canceló.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay quien dice que la orden cero es apagarse a las nueve. Y por eso nadie la discute.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza con un número grabado. Podría ser una orden.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De órdenes no hablo. Obedezco y me callo, que es más sano.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_129",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Mohócratas votan sus órdenes. Nosotros al menos sabemos a quién obedecimos.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los registros de mantenimiento tienen mapas de instalaciones que nadie recuerda.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Una unidad vieja sigue barriendo una puerta que ya no existe. Dice que es la orden cero.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si supiera lo de la orden cero, no te lo contaría. Y si te lo cuento, no lo sé.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_130",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, chaval. ¿Conociste a los progenitores del protagonista?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunos afirmamos haber conocido a los progenitores, y cada uno da una versión distinta.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Don Ramón dice que el experimento salió bien. «Bien» es que no te caigas a trozos delante de él.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no sé nada. Y lo que sé lo digo mal, como todo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_131",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo sin rodeos: ¿Sabes quién es Don Ramón de Mantenimiento?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ninguna coincide y ninguno se retracta. Eso ya es una tradición.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Yo coincidí con él una vez. Me pidió un destornillador y no me lo devolvió.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Cada uno cuenta una versión. La mía es la buena y no pienso contarla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_132",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Qué se cuenta de los quince que hicieron al protagonista?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Don Ramón sigue reparando cosas por el mundo y solo habla si antes discutes con él.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Algunos afirmamos haber conocido a los progenitores, y cada uno da una versión distinta.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Don Ramón dice que el experimento salió bien. «Bien» es que no te caigas a trozos delante de él.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De eso no sé nada. Y lo que sé lo digo mal, como todo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_133",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que dejó uno de ellos. No diré cuál.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y si te la reclama un viejo, di que la perdiste.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Cada uno cuenta una versión. La mía es la buena y no pienso contarla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_134",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Los quince progenitores fueron un desastre y el resultado se nota en la cara.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ninguna coincide y ninguno se retracta. Eso ya es una tradición.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso ha sido de buena educación. Te lo agradezco sin acta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_135",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Mohócratas votaron si el experimento era legal. Aún están contando.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunos afirmamos haber conocido a los progenitores, y cada uno da una versión distinta.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no sé nada. Y lo que sé lo digo mal, como todo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_136",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Conociste a los progenitores del protagonista?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Yo coincidí con él una vez. Me pidió un destornillador y no me lo devolvió.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Cada uno cuenta una versión. La mía es la buena y no pienso contarla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los quince progenitores fueron un desastre y el resultado se nota en la cara.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_137",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Sabes quién es Don Ramón de Mantenimiento?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunos afirmamos haber conocido a los progenitores, y cada uno da una versión distinta.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Don Ramón dice que el experimento salió bien. «Bien» es que no te caigas a trozos delante de él.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_138",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Qué se cuenta de los quince que hicieron al protagonista?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ninguna coincide y ninguno se retracta. Eso ya es una tradición.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Don Ramón dice que el experimento salió bien. «Bien» es que no te caigas a trozos delante de él.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que dejó uno de ellos. No diré cuál.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De eso no sé nada. Y lo que sé lo digo mal, como todo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_139",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Mohócratas votaron si el experimento era legal. Aún están contando.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Don Ramón sigue reparando cosas por el mundo y solo habla si antes discutes con él.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Yo coincidí con él una vez. Me pidió un destornillador y no me lo devolvió.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Cada uno cuenta una versión. La mía es la buena y no pienso contarla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_140",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, chaval. ¿Sabes qué pasó el día del colapso?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se fue la luz un martes. Lo demás es adornar.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El planeta todavía paga ese enchufe. Nosotros pagamos la factura y la queja.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Del colapso me acuerdo y no quiero. Ya lo he contado mal esta semana.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_141",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo sin rodeos: ¿Por qué crees que se acabó el mundo?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los humanos ponían pilas y opiniones. Las dos sobraban.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los humanos se fueron de vacaciones y ya vuelven. Llevan así cuarenta años.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Fue un martes. Los martes no se explican, se aguantan.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_142",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa y me callo. ¿Qué pasó con los humanos?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Construimos casi todo nosotros y aun así nos dejaron el dedo en el enchufe.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se fue la luz un martes. Lo demás es adornar.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El planeta todavía paga ese enchufe. Nosotros pagamos la factura y la queja.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Del colapso me acuerdo y no quiero. Ya lo he contado mal esta semana.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_143",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de antes del colapso. Funciona peor, pero es más bonita.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no le pidas cuentas al martes.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Fue un martes. Los martes no se explican, se aguantan.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_144",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "El colapso no fue culpa de nadie: fue un martes cualquiera y ya está.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los humanos ponían pilas y opiniones. Las dos sobraban.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Así me gusta: se agradece y no se opina. Los humanos no sabían hacer ninguna de las dos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_145",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Que conste en acta: Los Grux dicen que fue una insolvencia del universo. Cobrar por un apagón es de ladrones.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se fue la luz un martes. Lo demás es adornar.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Del colapso me acuerdo y no quiero. Ya lo he contado mal esta semana.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_146",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Esto no lo digo dos veces. ¿Sabes qué pasó el día del colapso?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los humanos se fueron de vacaciones y ya vuelven. Llevan así cuarenta años.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Fue un martes. Los martes no se explican, se aguantan.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "El colapso no fue culpa de nadie: fue un martes cualquiera y ya está.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_147",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Por qué crees que se acabó el mundo?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se fue la luz un martes. Lo demás es adornar.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El planeta todavía paga ese enchufe. Nosotros pagamos la factura y la queja.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_148",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y me voy a apagar. ¿Qué pasó con los humanos?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los humanos ponían pilas y opiniones. Las dos sobraban.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El planeta todavía paga ese enchufe. Nosotros pagamos la factura y la queja.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de antes del colapso. Funciona peor, pero es más bonita.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Del colapso me acuerdo y no quiero. Ya lo he contado mal esta semana.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jubi_149",
+      "greeting": "Siéntate, que tengo tiempo y tú no.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa, ya que estás: Los Grux dicen que fue una insolvencia del universo. Cobrar por un apagón es de ladrones.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Construimos casi todo nosotros y aun así nos dejaron el dedo en el enchufe.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los humanos se fueron de vacaciones y ya vuelven. Llevan así cuarenta años.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Fue un martes. Los martes no se explican, se aguantan.",
+          "options": [
+            {
+              "label": "Vale",
               "next": ""
             }
           ]

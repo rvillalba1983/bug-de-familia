@@ -1,6 +1,16 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
+> - **Estado (20-nov, noche):** fase «P-42 lotes de conversaciones y P-43»
+>   **fusionada en `main`** (PR #35, merge `3ee9ebc`, aprobado por el director;
+>   CI verde). **Cambiar de conversación.** Hecho: P-42 completo (150
+>   conversaciones por raza, 900 en total, catálogos en
+>   `data/conversation/`, validador `tools/validar_conversaciones.py`,
+>   pruebas en `tests/simulation/live_dialogue_test.gd`) y P-43 (pantalla
+>   «Conoce la historia» con 20 carteles y textos corregidos). `.exe`
+>   regenerado en `main` (104,2 MB, `.pck` 29,3 MB). Pruebas: 497/497
+>   (70 suites, informe JUnit validado). **Siguiente fase:** definir con el
+>   director. Ver `01_CONFLICTOS_Y_PENDIENTES.md`.
 > - **Estado (20-nov, cierre de contenido):** rama `fase/p42-lotes-conversaciones`
 >   **abierta, sin fusionar**. **P-42 completo:** 150 conversaciones por raza
 >   (900 en total) generadas desde los bancos `tools/conversaciones/<especie>.py`

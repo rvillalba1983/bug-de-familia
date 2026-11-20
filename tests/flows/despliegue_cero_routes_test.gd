@@ -44,6 +44,9 @@ func _stabilize_for_routes() -> void:
 	if zone.live_world == null or zone.live_world.sim == null:
 		return
 	var sim: WorldSim = zone.live_world.sim
+	# Desactivar los subsistemas aleatorios para que el recorrido sea
+	# determinista independientemente de la cadencia de fotogramas (P-39).
+	sim.stabilized = true
 	# Desactivar eventos aleatorios para evitar muertes ajenas al recorrido.
 	sim.events.timer = 1e9
 	sim.events.staged.clear()

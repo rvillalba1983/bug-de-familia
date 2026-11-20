@@ -102,6 +102,12 @@ func test_persistence_round_trip() -> void:
 	assert_bool(second.is_known("el_enchufe")).is_true()
 
 
+func test_transition_hides_loading_when_zone_fails_to_load() -> void:
+	manager.zone_factory = func(_id: String) -> ZoneBase: return null
+	assert_bool(manager.enter("el_enchufe")).is_true()
+	assert_bool(manager.loading).is_false()
+
+
 func test_statistical_zone_moves_toward_target() -> void:
 	manager.enter("el_enchufe")
 	manager.enter("despliegue_cero")

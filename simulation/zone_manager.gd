@@ -38,6 +38,10 @@ var _sims: Dictionary = {}
 
 func setup(zone_host: Node) -> void:
 	host = zone_host
+	## La transición depende del temporizador de `_process`; si el árbol está
+	## pausado, la pantalla de carga se quedaría visible para siempre (pantalla
+	## gris). Se fuerza a que procese siempre.
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 
 ## Carga la zona guardada o la de inicio. Devuelve si se ha montado.
@@ -241,10 +245,13 @@ func _complete_transition() -> void:
 	transition_target = ""
 	var moved: bool = _load_zone(target, from_zone)
 	if not moved:
-		_load_zone(from_zone, "")
+		push_warning("ZoneManager: no se pudo cargar «%s»; intento volver a «%s»" % [target, from_zone])
+		moved = _load_zone(from_zone, "")
+	if not moved:
+		push_error("ZoneManager: no se pudo montar ni la zona destino ni la de origen («%s»)" % from_zone)
+	transition_finished.emit(current_id)
 	refresh_levels()
 	autosave()
-	transition_finished.emit(current_id)
 
 
 func _capture_current() -> void:

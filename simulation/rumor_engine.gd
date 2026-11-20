@@ -3,6 +3,9 @@ extends RefCounted
 ## Testigos, transmisión y deformación de lo ocurrido. Rumores de 4 minutos (P-14).
 
 var _told_counts: Dictionary = {}
+## P-14: eventos con hecho del tope (están en espera) y tiempo restante en s.
+var _limited: Dictionary = {}
+var _delays: Dictionary = {}
 
 ## Duración decidida por el director; el resto de valores son provisionales.
 const WINDOW: float = 7.0
@@ -17,6 +20,8 @@ const LASTING_IMPORTANCE: float = 70.0
 const MAX_VERSIONS: int = 3
 ## Límite duro provisional al reparto de un rumor (P-14): tope de personajes que lo propagan por evento.
 const MAX_TELLERS_PER_EVENT: int = 6
+## P-14: espera tras alcanzar el tope antes de volver a contar (segundos).
+const RETRY_DELAY: float = 10.0
 const BELIEF_LIFETIME: float = 1800.0
 const LASTING_BELIEF: float = 30.0
 
@@ -67,13 +72,28 @@ func step(sim: WorldSim) -> void:
 			if hearer.pos.distance_to(teller.pos) > TALK_RANGE:
 				continue
 			if not hearer.beliefs.has(str(news)):
-				if int(_told_counts.get(news, 0)) >= MAX_TELLERS_PER_EVENT:
+				if int(_told_counts.get(news, 0)) >= MAX_TELLERS_PER_EVENT or _limited.has(str(news)):
 					break
 				if sim.rng.randf() < TELL_CHANCE * teller.trait_value("sociabilidad") / 50.0:
 					tell(sim, teller, hearer, news)
 					_told_counts[news] = int(_told_counts.get(news, 0)) + 1
+					if int(_told_counts.get(news, 0)) >= MAX_TELLERS_PER_EVENT and not _limited.has(str(news)):
+						_limited[str(news)] = true
+						_delays[news] = RETRY_DELAY
 				break
-			_compare_versions(teller, hearer, news)
+				_compare_versions(teller, hearer, news)
+	_step_delayed()
+
+
+## P-14: si el rumor pega al tope de contados, se encolona una espera
+## (10 segundos) para poder volver a contarlo de nuevo.
+func _step_delayed() -> void:
+	for event_id: int in Array(_delays.keys()):
+		_delays[event_id] = int(_delays[event_id]) - 1
+		if int(_delays[event_id]) <= 0:
+			_delays.erase(event_id)
+			_limited.erase(str(event_id))
+			_told_counts[event_id] = 0
 
 
 ## Transmite la versión del que cuenta. La verdad objetiva no se toca.

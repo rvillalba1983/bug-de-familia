@@ -127,11 +127,24 @@ func can_fast_travel(zone_id: String) -> bool:
 func fast_travel(zone_id: String) -> bool:
 	if not can_fast_travel(zone_id):
 		return false
-	var seconds: float = TRAVEL_SECONDS_PER_HOP * float(registry.graph.hops(current_id, zone_id))
+	var hops: int = int(registry.graph.hops(current_id, zone_id))
+	var seconds: float = TRAVEL_SECONDS_PER_HOP * float(hops)
 	_advance_world(seconds)
 	_persist_sims()
 	world_seconds += seconds
+	## P-14/P-02: el viaje rápido cuesta desgaste de piernas y tokens de las
+	## IAs activas, conforme a la decisión del director.
+	if current_zone != null:
+		_apply_travel_cost(current_zone, hops)
 	return enter(zone_id)
+
+
+static func _apply_travel_cost(zone: ZoneBase, hops: int) -> void:
+	if zone.player != null and zone.player.body != null:
+		zone.player.body.wear_legs(64.0 * float(hops))
+	if zone.ai != null and zone.ai.team != null:
+		for id: String in zone.ai.team.active.duplicate():
+			zone.ai.team.spend(id, zone.rng)
 
 
 func refresh_levels() -> void:

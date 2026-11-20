@@ -19,6 +19,8 @@ var _branch: String = ""
 var _option_uses: Dictionary = {}
 var _option_limits: Dictionary = {}
 var _dialogue_tree: Dictionary = {}
+var _conversation: Dictionary = {}
+var _conversation_nodes: Dictionary = {}
 var _current_node_id: String = ""
 
 
@@ -51,6 +53,8 @@ func open(target: NpcState) -> void:
 	_branch = ""
 	_current_node_id = ""
 	_dialogue_tree = DialogueTrees.tree_for(npc.species)
+	_conversation = ConversationCatalog.pick(npc.species, npc.id + npc.role)
+	_conversation_nodes = (_conversation.get("nodes", {}) as Dictionary) if not _conversation.is_empty() else {}
 	world.level.pause.begin_modal()
 	## P-32: hablar con un NPC descubre los retos de la zona.
 	world.level.discover_challenge()
@@ -123,6 +127,8 @@ func close() -> void:
 	world.bubble_of(npc.id).clear()
 	npc = null
 	_options = []
+	_conversation = {}
+	_conversation_nodes = {}
 	bar.clear()
 	world.level.pause.end_modal()
 
@@ -146,6 +152,8 @@ func _refresh() -> void:
 	entries.append([tr("LIVE_ASK_LORE"), _ask_lore])
 	if not _dialogue_tree.is_empty():
 		entries.append(["Hablar", _enter_dialogue])
+	if not _conversation_nodes.is_empty():
+		entries.append(["Te cuento algo", _enter_conversation])
 	entries.append_array(world.extra_options(npc))
 	entries.append([tr("LIVE_BADMOUTH") % SpeciesCatalog.plural(SpeciesCatalog.rival(npc.species)), _badmouth])
 	entries.append([tr("LIVE_PRAISE"), _praise])
@@ -159,18 +167,29 @@ func _enter_dialogue() -> void:
 	_show_dialogue_node("root")
 
 
+func _enter_conversation() -> void:
+	_current_node_id = "conv_root"
+	_show_dialogue_node("conv_root")
+
+
 func _show_dialogue_node(node_id: String) -> void:
-	if not _dialogue_tree.has(node_id):
+	var tree: Dictionary = _dialogue_tree
+	if node_id.begins_with("conv_"):
+		tree = _conversation_nodes
+	var real_id: String = node_id.trim_prefix("conv_")
+	if not tree.has(real_id):
 		_current_node_id = ""
 		_refresh()
 		return
-	var node: Dictionary = _dialogue_tree[node_id]
+	var node: Dictionary = tree[real_id]
 	_current_node_id = node_id
 	_say(str(node.get("text", "...")))
 	var entries: Array = []
 	for opt: Dictionary in node.get("options", []):
 		var label: String = str(opt.get("label", "..."))
 		var next: String = str(opt.get("next", ""))
+		if not next.is_empty() and node_id.begins_with("conv_"):
+			next = "conv_" + next
 		var action: String = str(opt.get("action", ""))
 		entries.append([label, func() -> void:
 			_execute_dialogue_action(action)

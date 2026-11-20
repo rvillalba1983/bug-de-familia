@@ -1,0 +1,491 @@
+{
+  "species": "eco",
+  "conversations": [
+    {
+      "id": "eco_000",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "¿Sabes qué hora es?",
+          "options": [
+            {
+              "label": "No",
+              "next": "r1"
+            },
+            {
+              "label": "Sí",
+              "next": "r2"
+            }
+          ]
+        },
+        "r1": {
+          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+          "options": [
+            {
+              "label": "Volver",
+              "next": ""
+            }
+          ]
+        },
+        "r2": {
+          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+          "options": [
+            {
+              "label": "De nada",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_001",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "a1"
+            },
+            {
+              "label": "No",
+              "next": "a2"
+            }
+          ]
+        },
+        "a1": {
+          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+          "options": [
+            {
+              "label": "¿Y después?",
+              "next": "a3"
+            }
+          ]
+        },
+        "a2": {
+          "text": "Pues bien. Tú te lo pierdes.",
+          "options": [
+            {
+              "label": "Volver",
+              "next": ""
+            }
+          ]
+        },
+        "a3": {
+          "text": "Después vinimos nosotros. Y aquí seguimos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué rollo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_002",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "g1"
+            },
+            {
+              "label": "No",
+              "next": "g2"
+            }
+          ]
+        },
+        "g1": {
+          "text": "Toma. No la pierdas.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "g2": {
+          "text": "Pues la guardo. Más para mí.",
+          "options": [
+            {
+              "label": "Volver",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_003",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "¿Te atreves a decirme que soy viejo?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "h1"
+            },
+            {
+              "label": "No",
+              "next": "h2"
+            }
+          ]
+        },
+        "h1": {
+          "text": "Pues toma.",
+          "options": [
+            {
+              "label": "Ay",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "h2": {
+          "text": "Sabia decisión.",
+          "options": [
+            {
+              "label": "Volver",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_004",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "¿Qué opinas de los plegado?",
+          "options": [
+            {
+              "label": "Son basura",
+              "next": "b1"
+            },
+            {
+              "label": "Son majos",
+              "next": "b2"
+            }
+          ]
+        },
+        "b1": {
+          "text": "Exacto. Y ahora que lo dices...",
+          "options": [
+            {
+              "label": "Oh no",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "b2": {
+          "text": "Majos no, pero útiles. Vete.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_005",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "¿Sabes por qué el cielo es gris?",
+          "options": [
+            {
+              "label": "No",
+              "next": "l1"
+            },
+            {
+              "label": "Sí",
+              "next": "l2"
+            }
+          ]
+        },
+        "l1": {
+          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+          "options": [
+            {
+              "label": "Jaja",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "l2": {
+          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+          "options": [
+            {
+              "label": "Volver",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_006",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "¿Sabes qué hora es?",
+          "options": [
+            {
+              "label": "No",
+              "next": "r1"
+            },
+            {
+              "label": "Sí",
+              "next": "r2"
+            }
+          ]
+        },
+        "r1": {
+          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+          "options": [
+            {
+              "label": "Volver",
+              "next": ""
+            }
+          ]
+        },
+        "r2": {
+          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+          "options": [
+            {
+              "label": "De nada",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_007",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "a1"
+            },
+            {
+              "label": "No",
+              "next": "a2"
+            }
+          ]
+        },
+        "a1": {
+          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+          "options": [
+            {
+              "label": "¿Y después?",
+              "next": "a3"
+            }
+          ]
+        },
+        "a2": {
+          "text": "Pues bien. Tú te lo pierdes.",
+          "options": [
+            {
+              "label": "Volver",
+              "next": ""
+            }
+          ]
+        },
+        "a3": {
+          "text": "Después vinimos nosotros. Y aquí seguimos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué rollo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_008",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "g1"
+            },
+            {
+              "label": "No",
+              "next": "g2"
+            }
+          ]
+        },
+        "g1": {
+          "text": "Toma. No la pierdas.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "g2": {
+          "text": "Pues la guardo. Más para mí.",
+          "options": [
+            {
+              "label": "Volver",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_009",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "¿Te atreves a decirme que soy viejo?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "h1"
+            },
+            {
+              "label": "No",
+              "next": "h2"
+            }
+          ]
+        },
+        "h1": {
+          "text": "Pues toma.",
+          "options": [
+            {
+              "label": "Ay",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "h2": {
+          "text": "Sabia decisión.",
+          "options": [
+            {
+              "label": "Volver",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_010",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "¿Qué opinas de los plegado?",
+          "options": [
+            {
+              "label": "Son basura",
+              "next": "b1"
+            },
+            {
+              "label": "Son majos",
+              "next": "b2"
+            }
+          ]
+        },
+        "b1": {
+          "text": "Exacto. Y ahora que lo dices...",
+          "options": [
+            {
+              "label": "Oh no",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "b2": {
+          "text": "Majos no, pero útiles. Vete.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_011",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "¿Sabes por qué el cielo es gris?",
+          "options": [
+            {
+              "label": "No",
+              "next": "l1"
+            },
+            {
+              "label": "Sí",
+              "next": "l2"
+            }
+          ]
+        },
+        "l1": {
+          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+          "options": [
+            {
+              "label": "Jaja",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "l2": {
+          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+          "options": [
+            {
+              "label": "Volver",
+              "next": ""
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

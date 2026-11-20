@@ -223,6 +223,9 @@ func _register_option_use(node_id: String, index: int) -> bool:
 	return uses >= int(_option_limits[key])
 
 
+## P-35: insistir por otra vía al agotar una pregunta no solo manda a pelear;
+## explota el enfado, y si se insiste siguiendo también acumula ofensa para
+## que la pelea se termine desde fuera.
 func _provoke_dialogue_fight() -> void:
 	var speaker: String = case_data["dialogue"][current_node]["speaker"]
 	_close()

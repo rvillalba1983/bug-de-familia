@@ -6,34 +6,43 @@
       "greeting": "No hables alto. Las paredes escuchan.",
       "nodes": {
         "root": {
-          "text": "¿Sabes qué hora es?",
+          "text": "Antes de nada, una ficha: ¿Sabes qué fue la Gran Clasificación?",
           "options": [
-            {
-              "label": "No",
-              "next": "r1"
-            },
             {
               "label": "Sí",
-              "next": "r2"
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
             }
           ]
         },
-        "r1": {
-          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+        "n1": {
+          "text": "La Gran Clasificación pretendía catalogar todo lo existente, hasta las categorías.",
           "options": [
             {
-              "label": "Volver",
-              "next": ""
+              "label": "¿Y luego?",
+              "next": "n3"
             }
           ]
         },
-        "r2": {
-          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+        "n3": {
+          "text": "Hay una categoría dedicada a las cosas que no caben en ninguna categoría. Tiene dos tomos.",
           "options": [
             {
-              "label": "De nada",
+              "label": "Gracias",
               "next": "",
               "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso depende de la categoría. Y la categoría está en revisión.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -44,38 +53,29 @@
       "greeting": "No hables alto. Las paredes escuchan.",
       "nodes": {
         "root": {
-          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "text": "Consta que preguntas: ¿Por qué lo clasificáis absolutamente todo?",
           "options": [
             {
-              "label": "Sí",
-              "next": "a1"
+              "label": "Cuéntame",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "a2"
+              "label": "No me interesa",
+              "next": "n3"
             }
           ]
         },
-        "a1": {
-          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+        "n1": {
+          "text": "El sistema se volvió tan complejo que generaba categorías para las categorías.",
           "options": [
             {
-              "label": "¿Y después?",
-              "next": "a3"
+              "label": "Sigue",
+              "next": "n2"
             }
           ]
         },
-        "a2": {
-          "text": "Pues bien. Tú te lo pierdes.",
-          "options": [
-            {
-              "label": "Volver",
-              "next": ""
-            }
-          ]
-        },
-        "a3": {
-          "text": "Después vinimos nosotros. Y aquí seguimos.",
+        "n2": {
+          "text": "El índice del índice ocupa una sala y la sala no está indexada.",
           "options": [
             {
               "label": "Gracias",
@@ -83,9 +83,18 @@
               "action": "praise"
             },
             {
-              "label": "Qué rollo",
+              "label": "Qué aburrido",
               "next": "",
               "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "No consta. Y si no consta, no existe, aunque lo estés viendo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -96,33 +105,51 @@
       "greeting": "No hables alto. Las paredes escuchan.",
       "nodes": {
         "root": {
-          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "text": "Con el permiso del índice: ¿Cuántas categorías tiene vuestro sistema?",
           "options": [
             {
-              "label": "Sí",
-              "next": "g1"
+              "label": "Vamos allá",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "g2"
+              "label": "Ahora no",
+              "next": "n4"
             }
           ]
         },
-        "g1": {
-          "text": "Toma. No la pierdas.",
+        "n1": {
+          "text": "La administración gastaba más recursos en mantenerlo que en gobernar.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La Gran Clasificación pretendía catalogar todo lo existente, hasta las categorías.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una categoría dedicada a las cosas que no caben en ninguna categoría. Tiene dos tomos.",
           "options": [
             {
               "label": "Gracias",
               "next": "",
-              "action": "gift_piece"
+              "action": "praise"
             }
           ]
         },
-        "g2": {
-          "text": "Pues la guardo. Más para mí.",
+        "n4": {
+          "text": "Eso depende de la categoría. Y la categoría está en revisión.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -134,35 +161,34 @@
       "greeting": "No hables alto. Las paredes escuchan.",
       "nodes": {
         "root": {
-          "text": "¿Te atreves a decirme que soy viejo?",
+          "text": "Tengo una pieza de repuesto. Está clasificada como «pieza suelta, uso indeterminado».",
           "options": [
             {
               "label": "Sí",
-              "next": "h1"
+              "next": "n1"
             },
             {
               "label": "No",
-              "next": "h2"
+              "next": "n2"
             }
           ]
         },
-        "h1": {
-          "text": "Pues toma.",
+        "n1": {
+          "text": "Toma, y fírmame el recibimiento en la ficha que te doy.",
           "options": [
             {
-              "label": "Ay",
+              "label": "Gracias",
               "next": "",
-              "action": "hit"
+              "action": "gift_piece"
             }
           ]
         },
-        "h2": {
-          "text": "Sabia decisión.",
+        "n2": {
+          "text": "No consta. Y si no consta, no existe, aunque lo estés viendo.",
           "options": [
             {
-              "label": "Volver",
-              "next": "",
-              "action": "praise"
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -173,30 +199,30 @@
       "greeting": "No hables alto. Las paredes escuchan.",
       "nodes": {
         "root": {
-          "text": "¿Qué opinas de los mohocrata?",
+          "text": "Clasificar todo es una enfermedad administrativa que os ha dejado sin país.",
           "options": [
             {
-              "label": "Son basura",
-              "next": "b1"
+              "label": "Sí, y lo repito",
+              "next": "n1"
             },
             {
-              "label": "Son majos",
-              "next": "b2"
+              "label": "No, era broma",
+              "next": "n2"
             }
           ]
         },
-        "b1": {
-          "text": "Exacto. Y ahora que lo dices...",
+        "n1": {
+          "text": "El sistema se volvió tan complejo que generaba categorías para las categorías.",
           "options": [
             {
-              "label": "Oh no",
+              "label": "Pues ya está",
               "next": "",
-              "action": "provoke_battle"
+              "action": "hit"
             }
           ]
         },
-        "b2": {
-          "text": "Majos no, pero útiles. Vete.",
+        "n2": {
+          "text": "Lo anoto en la ficha de elogios. Es la tercera del año y la primera que vale la pena.",
           "options": [
             {
               "label": "Vale",
@@ -211,33 +237,33 @@
       "greeting": "No hables alto. Las paredes escuchan.",
       "nodes": {
         "root": {
-          "text": "¿Sabes por qué el cielo es gris?",
+          "text": "Queda anotado: Los Grux tasaron nuestra clasificación en cero dientes. Eso, en nuestro idioma, es una guerra.",
           "options": [
             {
-              "label": "No",
-              "next": "l1"
+              "label": "Tienes razón",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "l2"
+              "label": "Déjalos en paz",
+              "next": "n2"
             }
           ]
         },
-        "l1": {
-          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+        "n1": {
+          "text": "La Gran Clasificación pretendía catalogar todo lo existente, hasta las categorías.",
           "options": [
             {
-              "label": "Jaja",
+              "label": "Que empiece",
               "next": "",
-              "action": "praise"
+              "action": "provoke_battle"
             }
           ]
         },
-        "l2": {
-          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+        "n2": {
+          "text": "Eso depende de la categoría. Y la categoría está en revisión.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -249,34 +275,48 @@
       "greeting": "No hables alto. Las paredes escuchan.",
       "nodes": {
         "root": {
-          "text": "¿Sabes qué hora es?",
+          "text": "Fuera de formulario, te pregunto: ¿Sabes qué fue la Gran Clasificación?",
           "options": [
             {
-              "label": "No",
-              "next": "r1"
+              "label": "Sí",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "r2"
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
             }
           ]
         },
-        "r1": {
-          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+        "n1": {
+          "text": "El índice del índice ocupa una sala y la sala no está indexada.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No consta. Y si no consta, no existe, aunque lo estés viendo.",
+          "options": [
+            {
+              "label": "Vale",
               "next": ""
             }
           ]
         },
-        "r2": {
-          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+        "n3": {
+          "text": "Clasificar todo es una enfermedad administrativa que os ha dejado sin país.",
           "options": [
             {
-              "label": "De nada",
+              "label": "Y lo mantengo",
               "next": "",
-              "action": "praise"
+              "action": "insult"
             }
           ]
         }
@@ -287,46 +327,33 @@
       "greeting": "No hables alto. Las paredes escuchan.",
       "nodes": {
         "root": {
-          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "text": "Escucha, que esto se archiva: ¿Por qué lo clasificáis absolutamente todo?",
           "options": [
             {
-              "label": "Sí",
-              "next": "a1"
+              "label": "Por el principio",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "a2"
+              "label": "Por el final",
+              "next": "n2"
             }
           ]
         },
-        "a1": {
-          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+        "n1": {
+          "text": "La Gran Clasificación pretendía catalogar todo lo existente, hasta las categorías.",
           "options": [
             {
-              "label": "¿Y después?",
-              "next": "a3"
-            }
-          ]
-        },
-        "a2": {
-          "text": "Pues bien. Tú te lo pierdes.",
-          "options": [
-            {
-              "label": "Volver",
-              "next": ""
-            }
-          ]
-        },
-        "a3": {
-          "text": "Después vinimos nosotros. Y aquí seguimos.",
-          "options": [
-            {
-              "label": "Gracias",
+              "label": "Interesante",
               "next": "",
               "action": "praise"
-            },
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una categoría dedicada a las cosas que no caben en ninguna categoría. Tiene dos tomos.",
+          "options": [
             {
-              "label": "Qué rollo",
+              "label": "Qué tontería",
               "next": "",
               "action": "insult"
             }
@@ -339,20 +366,38 @@
       "greeting": "No hables alto. Las paredes escuchan.",
       "nodes": {
         "root": {
-          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "text": "Última anotación del día: ¿Cuántas categorías tiene vuestro sistema?",
           "options": [
             {
-              "label": "Sí",
-              "next": "g1"
+              "label": "Cuenta",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "g2"
+              "label": "Otro día",
+              "next": "n4"
             }
           ]
         },
-        "g1": {
-          "text": "Toma. No la pierdas.",
+        "n1": {
+          "text": "El sistema se volvió tan complejo que generaba categorías para las categorías.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una categoría dedicada a las cosas que no caben en ninguna categoría. Tiene dos tomos.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. Está clasificada como «pieza suelta, uso indeterminado».",
           "options": [
             {
               "label": "Gracias",
@@ -361,11 +406,11 @@
             }
           ]
         },
-        "g2": {
-          "text": "Pues la guardo. Más para mí.",
+        "n4": {
+          "text": "Eso depende de la categoría. Y la categoría está en revisión.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -377,35 +422,43 @@
       "greeting": "No hables alto. Las paredes escuchan.",
       "nodes": {
         "root": {
-          "text": "¿Te atreves a decirme que soy viejo?",
+          "text": "Y un anexo, si me permites: Los Grux tasaron nuestra clasificación en cero dientes. Eso, en nuestro idioma, es una guerra.",
           "options": [
             {
-              "label": "Sí",
-              "next": "h1"
+              "label": "Claro que sí",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "h2"
+              "label": "Ni hablar",
+              "next": "n2"
             }
           ]
         },
-        "h1": {
-          "text": "Pues toma.",
+        "n1": {
+          "text": "La administración gastaba más recursos en mantenerlo que en gobernar.",
           "options": [
             {
-              "label": "Ay",
-              "next": "",
-              "action": "hit"
+              "label": "¿Y los demás?",
+              "next": "n3"
             }
           ]
         },
-        "h2": {
-          "text": "Sabia decisión.",
+        "n3": {
+          "text": "El índice del índice ocupa una sala y la sala no está indexada.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Que empiece",
               "next": "",
-              "action": "praise"
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No consta. Y si no consta, no existe, aunque lo estés viendo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -416,30 +469,39 @@
       "greeting": "No hables alto. Las paredes escuchan.",
       "nodes": {
         "root": {
-          "text": "¿Qué opinas de los mohocrata?",
+          "text": "Antes de nada, una ficha: ¿Sabes qué fue la Guerra de las Esquinas?",
           "options": [
             {
-              "label": "Son basura",
-              "next": "b1"
+              "label": "Sí",
+              "next": "n1"
             },
             {
-              "label": "Son majos",
-              "next": "b2"
+              "label": "No",
+              "next": "n2"
             }
           ]
         },
-        "b1": {
-          "text": "Exacto. Y ahora que lo dices...",
+        "n1": {
+          "text": "Desarrollamos tecnología para comprimir regiones enteras del espacio.",
           "options": [
             {
-              "label": "Oh no",
-              "next": "",
-              "action": "provoke_battle"
+              "label": "¿Y luego?",
+              "next": "n3"
             }
           ]
         },
-        "b2": {
-          "text": "Majos no, pero útiles. Vete.",
+        "n3": {
+          "text": "Las bajas de la guerra constan como erratas de archivo. La errata más grande de la historia.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese expediente está cerrado. Y el cierre está pendiente de clasificar.",
           "options": [
             {
               "label": "Vale",
@@ -454,33 +516,6430 @@
       "greeting": "No hables alto. Las paredes escuchan.",
       "nodes": {
         "root": {
-          "text": "¿Sabes por qué el cielo es gris?",
+          "text": "Consta que preguntas: ¿Por qué hubo una guerra por unas instalaciones?",
           "options": [
             {
-              "label": "No",
-              "next": "l1"
+              "label": "Cuéntame",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "l2"
+              "label": "No me interesa",
+              "next": "n3"
             }
           ]
         },
-        "l1": {
-          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+        "n1": {
+          "text": "Ocultamos que también podía comprimir materia viva. Era un detalle técnico pendiente.",
           "options": [
             {
-              "label": "Jaja",
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Grux financiaron los experimentos y aún reclaman el préstamo solidario.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Fue un traslado administrativo de gran calado. Nada más que declarar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_012",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Ocultasteis que la tecnología comprimía materia viva?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La guerra empezó cuando las facciones quisieron controlar las instalaciones y los mapas.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Desarrollamos tecnología para comprimir regiones enteras del espacio.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Las bajas de la guerra constan como erratas de archivo. La errata más grande de la historia.",
+          "options": [
+            {
+              "label": "Gracias",
               "next": "",
               "action": "praise"
             }
           ]
         },
-        "l2": {
-          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+        "n4": {
+          "text": "Ese expediente está cerrado. Y el cierre está pendiente de clasificar.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_013",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto de la guerra. Está sin clasificar y así se queda.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no preguntes de qué instalación salió.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Fue un traslado administrativo de gran calado. Nada más que declarar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_014",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "La Guerra de las Esquinas fue un crimen y lo archivasteis como error de copia.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ocultamos que también podía comprimir materia viva. Era un detalle técnico pendiente.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se agradece. Lo archivo como「gesto amable, categoría provisional」.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_015",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Los Grux financiaron la guerra y luego nos la cobraron. Empecemos por esa deuda.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Desarrollamos tecnología para comprimir regiones enteras del espacio.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese expediente está cerrado. Y el cierre está pendiente de clasificar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_016",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Sabes qué fue la Guerra de las Esquinas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux financiaron los experimentos y aún reclaman el préstamo solidario.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Fue un traslado administrativo de gran calado. Nada más que declarar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "La Guerra de las Esquinas fue un crimen y lo archivasteis como error de copia.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_017",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Por qué hubo una guerra por unas instalaciones?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Desarrollamos tecnología para comprimir regiones enteras del espacio.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Las bajas de la guerra constan como erratas de archivo. La errata más grande de la historia.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_018",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Ocultasteis que la tecnología comprimía materia viva?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ocultamos que también podía comprimir materia viva. Era un detalle técnico pendiente.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Las bajas de la guerra constan como erratas de archivo. La errata más grande de la historia.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto de la guerra. Está sin clasificar y así se queda.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese expediente está cerrado. Y el cierre está pendiente de clasificar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_019",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Los Grux financiaron la guerra y luego nos la cobraron. Empecemos por esa deuda.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La guerra empezó cuando las facciones quisieron controlar las instalaciones y los mapas.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Grux financiaron los experimentos y aún reclaman el préstamo solidario.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Fue un traslado administrativo de gran calado. Nada más que declarar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_020",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una ficha: ¿Sabes qué fue el Apocalipsis del Despliegue?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las instalaciones recibieron órdenes contradictorias y unas regiones se desplegaron.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Las ciudades perdidas constan como «archivadas en otra carpeta». Esa carpeta no tiene código.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese mapa está mal doblado. Perdona, ¿me dejas corregírtelo?",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_021",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Consta que preguntas: ¿Por qué hay ciudades que ya no están en el mapa?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Otras quedaron comprimidas. Ciudades enteras cambiaron de posición.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un mapa que se dobla solo y nadie se atreve a desplegarlo del todo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "No hubo apocalipsis: hubo una reorganización de inventario a escala planetaria.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_022",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Qué pasó cuando llegaron las órdenes contradictorias?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La versión oficial dice que fue un despliegue exitoso de documentación.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Las instalaciones recibieron órdenes contradictorias y unas regiones se desplegaron.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Las ciudades perdidas constan como «archivadas en otra carpeta». Esa carpeta no tiene código.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese mapa está mal doblado. Perdona, ¿me dejas corregírtelo?",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_023",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto de una ciudad comprimida. Pesa más de lo que debería.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la despliegues en interiores.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No hubo apocalipsis: hubo una reorganización de inventario a escala planetaria.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_024",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "El Apocalipsis del Despliegue fue un fracaso vuestro y lo llamáis inventario.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Otras quedaron comprimidas. Ciudades enteras cambiaron de posición.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Queda archivado tu elogio, con código y todo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_025",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Los Grux siguen cobrando el préstamo de una guerra que perdimos todos. Basta.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las instalaciones recibieron órdenes contradictorias y unas regiones se desplegaron.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese mapa está mal doblado. Perdona, ¿me dejas corregírtelo?",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_026",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Sabes qué fue el Apocalipsis del Despliegue?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un mapa que se dobla solo y nadie se atreve a desplegarlo del todo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No hubo apocalipsis: hubo una reorganización de inventario a escala planetaria.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "El Apocalipsis del Despliegue fue un fracaso vuestro y lo llamáis inventario.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_027",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Por qué hay ciudades que ya no están en el mapa?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las instalaciones recibieron órdenes contradictorias y unas regiones se desplegaron.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Las ciudades perdidas constan como «archivadas en otra carpeta». Esa carpeta no tiene código.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_028",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Qué pasó cuando llegaron las órdenes contradictorias?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Otras quedaron comprimidas. Ciudades enteras cambiaron de posición.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Las ciudades perdidas constan como «archivadas en otra carpeta». Esa carpeta no tiene código.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto de una ciudad comprimida. Pesa más de lo que debería.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese mapa está mal doblado. Perdona, ¿me dejas corregírtelo?",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_029",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Los Grux siguen cobrando el préstamo de una guerra que perdimos todos. Basta.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La versión oficial dice que fue un despliegue exitoso de documentación.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un mapa que se dobla solo y nadie se atreve a desplegarlo del todo.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No hubo apocalipsis: hubo una reorganización de inventario a escala planetaria.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_030",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una ficha: ¿Sabes qué es el octavo pliegue?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El octavo pliegue existe. Solo lo dominan los archivistas veteranos y todos lo niegan.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un archivista al que se le perdió una tarde de 1998 y no la ha reclamado.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No sé de qué me hablas, y lo digo con la espalda recta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_031",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Consta que preguntas: ¿Existe un pliegue secreto?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Doblarlo ocho veces vuelve invisible una tarde exacta.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El octavo pliegue no está en el manual. El manual está doblado siete veces.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Ese pliegue no existe. Y si existiera, no se habla de él en pasillo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_032",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Qué pasa si doblas ocho veces?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Deja una arruga que no se quita, y por vergüenza nadie admite saberlo.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El octavo pliegue existe. Solo lo dominan los archivistas veteranos y todos lo niegan.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un archivista al que se le perdió una tarde de 1998 y no la ha reclamado.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No sé de qué me hablas, y lo digo con la espalda recta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_033",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto con una arruga. No pregunto de dónde viene.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la dobles más, que ya está bien doblada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese pliegue no existe. Y si existiera, no se habla de él en pasillo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_034",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "El octavo pliegue es un cuento para presumir de arrugas.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Doblarlo ocho veces vuelve invisible una tarde exacta.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Lo agradezco. No lo archivo, que luego se pierde.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_035",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Los Grux pagan por ver pliegues y se quedan la taquilla. Eso sí que es un robo.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El octavo pliegue existe. Solo lo dominan los archivistas veteranos y todos lo niegan.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No sé de qué me hablas, y lo digo con la espalda recta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_036",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Sabes qué es el octavo pliegue?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El octavo pliegue no está en el manual. El manual está doblado siete veces.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese pliegue no existe. Y si existiera, no se habla de él en pasillo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "El octavo pliegue es un cuento para presumir de arrugas.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_037",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Existe un pliegue secreto?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El octavo pliegue existe. Solo lo dominan los archivistas veteranos y todos lo niegan.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un archivista al que se le perdió una tarde de 1998 y no la ha reclamado.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_038",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Qué pasa si doblas ocho veces?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Doblarlo ocho veces vuelve invisible una tarde exacta.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un archivista al que se le perdió una tarde de 1998 y no la ha reclamado.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto con una arruga. No pregunto de dónde viene.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No sé de qué me hablas, y lo digo con la espalda recta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_039",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Los Grux pagan por ver pliegues y se quedan la taquilla. Eso sí que es un robo.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Deja una arruga que no se quita, y por vergüenza nadie admite saberlo.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El octavo pliegue no está en el manual. El manual está doblado siete veces.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese pliegue no existe. Y si existiera, no se habla de él en pasillo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_040",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una ficha: ¿Qué es el cajón X?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El cajón X está clasificado como «categoría X: cosas que no queremos clasificar».",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una solicitud para meter una nota en el cajón X. La solicitud está en el cajón X.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El cajón X no se comenta. Se vigila.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_041",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Consta que preguntas: ¿Por qué vigiláis un cajón vacío?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Está vacío y lo vigilamos tres turnos al día para que siga vacío.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El cajón tiene tres cerraduras y ninguna llave clasificada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "No puedo confirmar ni negar el cajón. Está en la categoría X.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_042",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Qué guardáis en la categoría X?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si alguien mete algo, habría que clasificarlo, y eso no está previsto.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El cajón X está clasificado como «categoría X: cosas que no queremos clasificar».",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una solicitud para meter una nota en el cajón X. La solicitud está en el cajón X.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El cajón X no se comenta. Se vigila.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_043",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto. No va al cajón X, que conste.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la metas en ningún cajón sin ficha.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo confirmar ni negar el cajón. Está en la categoría X.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_044",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "El cajón X es un cajón vacío y tres turnos de vigilancia pagados por todos.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Está vacío y lo vigilamos tres turnos al día para que siga vacío.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Bien dicho. Lo dejo fuera del cajón X, que es un honor.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_045",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Los Jubilados meten fichas en nuestro cajón por diversión. Eso se paga.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El cajón X está clasificado como «categoría X: cosas que no queremos clasificar».",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El cajón X no se comenta. Se vigila.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_046",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Qué es el cajón X?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El cajón tiene tres cerraduras y ninguna llave clasificada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo confirmar ni negar el cajón. Está en la categoría X.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "El cajón X es un cajón vacío y tres turnos de vigilancia pagados por todos.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_047",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Por qué vigiláis un cajón vacío?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El cajón X está clasificado como «categoría X: cosas que no queremos clasificar».",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una solicitud para meter una nota en el cajón X. La solicitud está en el cajón X.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_048",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Qué guardáis en la categoría X?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Está vacío y lo vigilamos tres turnos al día para que siga vacío.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una solicitud para meter una nota en el cajón X. La solicitud está en el cajón X.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. No va al cajón X, que conste.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El cajón X no se comenta. Se vigila.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_049",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Los Jubilados meten fichas en nuestro cajón por diversión. Eso se paga.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si alguien mete algo, habría que clasificarlo, y eso no está previsto.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El cajón tiene tres cerraduras y ninguna llave clasificada.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo confirmar ni negar el cajón. Está en la categoría X.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_050",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una ficha: ¿Sabes saludar como un Plegado?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Saludo del Acordeón se hace desplegándose y replegándose tres veces con ruido de fuelle.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hubo un incidente diplomático por un saludo de cuatro pliegues con resaca.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Saluda tú primero y te digo si lo has hecho bien.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_051",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Consta que preguntas: ¿Qué es el Saludo del Acordeón?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un cuarto despliegue es un insulto formal.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El ruido de fuelle se considera cortesía. El silencio, desprecio.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Mi fuelle está en mantenimiento. Saludo con la cabeza, que es menos vistoso.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_052",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Por qué os desplegáis tres veces al saludar?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Medio despliegue se considera coqueteo administrativo.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El Saludo del Acordeón se hace desplegándose y replegándose tres veces con ruido de fuelle.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hubo un incidente diplomático por un saludo de cuatro pliegues con resaca.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Saluda tú primero y te digo si lo has hecho bien.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_053",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que hace ruido de fuelle al abrirla.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y despliégala tres veces por educación.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Mi fuelle está en mantenimiento. Saludo con la cabeza, que es menos vistoso.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_054",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "El saludo del acordeón es un ruido innecesario que asusta a las otras especies.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un cuarto despliegue es un insulto formal.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Saludo correcto. Lo anoto con dos pliegues de cortesía.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_055",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Los Grux imitan nuestro saludo para burlarse y cobran entrada. Eso no se hace.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Saludo del Acordeón se hace desplegándose y replegándose tres veces con ruido de fuelle.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Saluda tú primero y te digo si lo has hecho bien.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_056",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Sabes saludar como un Plegado?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El ruido de fuelle se considera cortesía. El silencio, desprecio.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Mi fuelle está en mantenimiento. Saludo con la cabeza, que es menos vistoso.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "El saludo del acordeón es un ruido innecesario que asusta a las otras especies.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_057",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Qué es el Saludo del Acordeón?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Saludo del Acordeón se hace desplegándose y replegándose tres veces con ruido de fuelle.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hubo un incidente diplomático por un saludo de cuatro pliegues con resaca.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_058",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Por qué os desplegáis tres veces al saludar?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un cuarto despliegue es un insulto formal.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hubo un incidente diplomático por un saludo de cuatro pliegues con resaca.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que hace ruido de fuelle al abrirla.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Saluda tú primero y te digo si lo has hecho bien.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_059",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Los Grux imitan nuestro saludo para burlarse y cobran entrada. Eso no se hace.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Medio despliegue se considera coqueteo administrativo.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El ruido de fuelle se considera cortesía. El silencio, desprecio.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Mi fuelle está en mantenimiento. Saludo con la cabeza, que es menos vistoso.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_060",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una ficha: ¿Qué es el Juramento de la Esquina?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Al entrar en casa giramos noventa grados y miramos la esquina un minuto.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hubo una vez alguien que necesitó la esquina, y no estaba mirando. No se repitió.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Estoy en el minuto de la esquina. Vuelve en un minuto.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_061",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Consta que preguntas: ¿Por qué miráis una esquina un minuto al entrar?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Es por si alguien la necesita. Nadie la ha necesitado nunca.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El juramento dura un minuto oficial y dos reales, según el cronómetro del acta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La esquina está bien. Gracias por preguntar, que nadie lo hace.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_062",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Alguien ha necesitado alguna vez la esquina?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El minuto se cumple con rencor, pero se cumple.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Al entrar en casa giramos noventa grados y miramos la esquina un minuto.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hubo una vez alguien que necesitó la esquina, y no estaba mirando. No se repitió.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Estoy en el minuto de la esquina. Vuelve en un minuto.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_063",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que estaba apoyada en la esquina.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la muevas de esquina sin avisar.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La esquina está bien. Gracias por preguntar, que nadie lo hace.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_064",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Mirar una esquina un minuto al día es una tontería que nadie se atreve a votar en contra.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Es por si alguien la necesita. Nadie la ha necesitado nunca.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Cumplido el minuto y agradecido el gesto. Dos pliegues.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_065",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Los Mohócratas votan sus rituales y se ríen de los nuestros. Pues hablemos de los suyos.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Al entrar en casa giramos noventa grados y miramos la esquina un minuto.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Estoy en el minuto de la esquina. Vuelve en un minuto.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_066",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Qué es el Juramento de la Esquina?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El juramento dura un minuto oficial y dos reales, según el cronómetro del acta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La esquina está bien. Gracias por preguntar, que nadie lo hace.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Mirar una esquina un minuto al día es una tontería que nadie se atreve a votar en contra.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_067",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Por qué miráis una esquina un minuto al entrar?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Al entrar en casa giramos noventa grados y miramos la esquina un minuto.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hubo una vez alguien que necesitó la esquina, y no estaba mirando. No se repitió.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_068",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Alguien ha necesitado alguna vez la esquina?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Es por si alguien la necesita. Nadie la ha necesitado nunca.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hubo una vez alguien que necesitó la esquina, y no estaba mirando. No se repitió.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que estaba apoyada en la esquina.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Estoy en el minuto de la esquina. Vuelve en un minuto.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_069",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Los Mohócratas votan sus rituales y se ríen de los nuestros. Pues hablemos de los suyos.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El minuto se cumple con rencor, pero se cumple.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El juramento dura un minuto oficial y dos reales, según el cronómetro del acta.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La esquina está bien. Gracias por preguntar, que nadie lo hace.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_070",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una ficha: ¿Qué es el Acta Plegada?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Cada día doblamos un acta con lo ocurrido y la metemos en una grieta.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una grieta que ya no admite más actas y hemos empezado a doblar más fuerte.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa grieta está llena. Prueba en la de al lado, que tiene menos historia.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_071",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Consta que preguntas: ¿Dónde guardáis la historia?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las grietas del Valle de las Esquinas son el archivo histórico más completo del mundo.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un Jubilado intentó leer el archivo y se quedó dormido en la letra Q.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El acta de hoy ya está metida. Lo de ahora va en la de mañana.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_072",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Por qué hay grietas llenas de papel?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nadie lo sabe porque nadie sabe leer el orden de los pliegues.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Cada día doblamos un acta con lo ocurrido y la metemos en una grieta.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una grieta que ya no admite más actas y hemos empezado a doblar más fuerte.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa grieta está llena. Prueba en la de al lado, que tiene menos historia.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_073",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto envuelta en un acta antigua.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la desdobles, que se pierde el orden.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El acta de hoy ya está metida. Lo de ahora va en la de mañana.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_074",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Meter actas en grietas no es un archivo: es esconder el papel bajo la alfombra.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las grietas del Valle de las Esquinas son el archivo histórico más completo del mundo.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Queda plegado tu elogio y metido en la grieta buena.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_075",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Los Jubilados archivan mal a propósito para que investiguemos. Qué humor.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Cada día doblamos un acta con lo ocurrido y la metemos en una grieta.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa grieta está llena. Prueba en la de al lado, que tiene menos historia.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_076",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Qué es el Acta Plegada?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un Jubilado intentó leer el archivo y se quedó dormido en la letra Q.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El acta de hoy ya está metida. Lo de ahora va en la de mañana.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Meter actas en grietas no es un archivo: es esconder el papel bajo la alfombra.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_077",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Dónde guardáis la historia?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Cada día doblamos un acta con lo ocurrido y la metemos en una grieta.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una grieta que ya no admite más actas y hemos empezado a doblar más fuerte.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_078",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Por qué hay grietas llenas de papel?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las grietas del Valle de las Esquinas son el archivo histórico más completo del mundo.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una grieta que ya no admite más actas y hemos empezado a doblar más fuerte.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto envuelta en un acta antigua.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa grieta está llena. Prueba en la de al lado, que tiene menos historia.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_079",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Los Jubilados archivan mal a propósito para que investiguemos. Qué humor.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nadie lo sabe porque nadie sabe leer el orden de los pliegues.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un Jubilado intentó leer el archivo y se quedó dormido en la letra Q.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El acta de hoy ya está metida. Lo de ahora va en la de mañana.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_080",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una ficha: ¿Cuántos pliegues mide esta habitación?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Antes de entrar medimos la estancia en pliegues. Es lo primero de cualquier visita.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una casa que mide quince pliegues y nadie ha querido entrar por decencia.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esta estancia mide lo que mide. No pienso repetirlo delante de ella.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_081",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Consta que preguntas: ¿Por qué medís las estancias antes de entrar?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Catorce pliegues y medio se considera indecente y se dice en voz alta.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El patrón del pliegue está guardado en una caja que mide un pliegue justo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La medición está pendiente de confirmación por el comité de pliegues.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_082",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Qué es un pliegue y medio?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La medida se anota en la ficha de la puerta, aunque la puerta no la lea.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Antes de entrar medimos la estancia en pliegues. Es lo primero de cualquier visita.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una casa que mide quince pliegues y nadie ha querido entrar por decencia.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esta estancia mide lo que mide. No pienso repetirlo delante de ella.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_083",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que mide exactamente un pliegue.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y úsala para medir antes de sentarte.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La medición está pendiente de confirmación por el comité de pliegues.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_084",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Medir las habitaciones en pliegues es una manía que no sirve absolutamente para nada.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Catorce pliegues y medio se considera indecente y se dice en voz alta.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Medida correcta y saludo correcto. Se agradece la formalidad.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_085",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Los Grux nos cobran el metro cuadrado y luego dicen que el pliegue no existe. Ya está.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Antes de entrar medimos la estancia en pliegues. Es lo primero de cualquier visita.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esta estancia mide lo que mide. No pienso repetirlo delante de ella.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_086",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Cuántos pliegues mide esta habitación?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El patrón del pliegue está guardado en una caja que mide un pliegue justo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La medición está pendiente de confirmación por el comité de pliegues.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Medir las habitaciones en pliegues es una manía que no sirve absolutamente para nada.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_087",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Por qué medís las estancias antes de entrar?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Antes de entrar medimos la estancia en pliegues. Es lo primero de cualquier visita.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una casa que mide quince pliegues y nadie ha querido entrar por decencia.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_088",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Qué es un pliegue y medio?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Catorce pliegues y medio se considera indecente y se dice en voz alta.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una casa que mide quince pliegues y nadie ha querido entrar por decencia.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que mide exactamente un pliegue.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esta estancia mide lo que mide. No pienso repetirlo delante de ella.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_089",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Los Grux nos cobran el metro cuadrado y luego dicen que el pliegue no existe. Ya está.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La medida se anota en la ficha de la puerta, aunque la puerta no la lea.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El patrón del pliegue está guardado en una caja que mide un pliegue justo.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La medición está pendiente de confirmación por el comité de pliegues.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_090",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una ficha: ¿Por qué os molestan las esquinas redondeadas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El ángulo recto es la única postura decente. Lo demás es dejadez.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un edificio redondo en el que nadie ha trabajado desde hace cuarenta años.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No mires esa esquina. Está redondeada y es una indecencia.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_091",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Consta que preguntas: ¿Cuál es la única postura decente?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las esquinas redondeadas se esquivan por pudor, no por higiene.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un arquitecto plegado propuso redondear una esquina y se le abrió expediente.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Prefiero no opinar sobre curvas. Me pongo nervioso.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_092",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Qué hacéis en una habitación curva?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En una habitación curva entramos mirando al suelo y salimos rápido.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El ángulo recto es la única postura decente. Lo demás es dejadez.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un edificio redondo en el que nadie ha trabajado desde hace cuarenta años.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No mires esa esquina. Está redondeada y es una indecencia.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_093",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto con esquinas rectas. Como debe ser.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la lima, que se redondea y pierde el decoro.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Prefiero no opinar sobre curvas. Me pongo nervioso.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_094",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Las esquinas redondeadas son más seguras y vuestro pudor es puro teatro.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las esquinas redondeadas se esquivan por pudor, no por higiene.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Opinas con ángulos rectos. Se agradece la decencia.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_095",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Los Mohócratas construyen setas redondas y encima las votan. Eso es provocar.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El ángulo recto es la única postura decente. Lo demás es dejadez.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No mires esa esquina. Está redondeada y es una indecencia.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_096",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Por qué os molestan las esquinas redondeadas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un arquitecto plegado propuso redondear una esquina y se le abrió expediente.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Prefiero no opinar sobre curvas. Me pongo nervioso.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Las esquinas redondeadas son más seguras y vuestro pudor es puro teatro.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_097",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Cuál es la única postura decente?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El ángulo recto es la única postura decente. Lo demás es dejadez.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un edificio redondo en el que nadie ha trabajado desde hace cuarenta años.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_098",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Qué hacéis en una habitación curva?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las esquinas redondeadas se esquivan por pudor, no por higiene.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un edificio redondo en el que nadie ha trabajado desde hace cuarenta años.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto con esquinas rectas. Como debe ser.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No mires esa esquina. Está redondeada y es una indecencia.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_099",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Los Mohócratas construyen setas redondas y encima las votan. Eso es provocar.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En una habitación curva entramos mirando al suelo y salimos rápido.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un arquitecto plegado propuso redondear una esquina y se le abrió expediente.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Prefiero no opinar sobre curvas. Me pongo nervioso.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_100",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una ficha: ¿Qué pasa en el Archivo de las Esquinas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Compartimos estanterías con Jubilados: ellos archivan por sentimiento y nosotros por código.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un expediente con dos fichas que llevan treinta años sin coincidir en la fecha de muerte.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En el archivo no se habla. Se susurra y se firma.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_101",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Consta que preguntas: ¿Por qué cada cadáver tiene dos fichas?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Cada cadáver termina con dos fichas distintas y una disputa formal por acta.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Jubilados archivan mal a propósito. Nosotros lo corregimos por principio.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Esa ficha está en disputa. Como todas, por otra parte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_102",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Cómo os lleváis con los Jubilados en el archivo?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El cadáver no firma. Es lo único decente del expediente.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Compartimos estanterías con Jubilados: ellos archivan por sentimiento y nosotros por código.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un expediente con dos fichas que llevan treinta años sin coincidir en la fecha de muerte.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "En el archivo no se habla. Se susurra y se firma.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_103",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto con dos fichas. Una de ellas miente.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y firma la ficha buena, no la del Jubilado.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa ficha está en disputa. Como todas, por otra parte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_104",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Archivar por sentimiento es una falta de respeto al difunto y al código.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Cada cadáver termina con dos fichas distintas y una disputa formal por acta.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ficha correcta. Se agradece y se archiva sin disputa.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_105",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Los Jubilados nos descorrijan las fichas a propósito. Treinta años ya son bastantes.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Compartimos estanterías con Jubilados: ellos archivan por sentimiento y nosotros por código.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En el archivo no se habla. Se susurra y se firma.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_106",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Qué pasa en el Archivo de las Esquinas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Jubilados archivan mal a propósito. Nosotros lo corregimos por principio.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa ficha está en disputa. Como todas, por otra parte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Archivar por sentimiento es una falta de respeto al difunto y al código.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_107",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Por qué cada cadáver tiene dos fichas?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Compartimos estanterías con Jubilados: ellos archivan por sentimiento y nosotros por código.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un expediente con dos fichas que llevan treinta años sin coincidir en la fecha de muerte.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_108",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Cómo os lleváis con los Jubilados en el archivo?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Cada cadáver termina con dos fichas distintas y una disputa formal por acta.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un expediente con dos fichas que llevan treinta años sin coincidir en la fecha de muerte.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto con dos fichas. Una de ellas miente.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "En el archivo no se habla. Se susurra y se firma.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_109",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Los Jubilados nos descorrijan las fichas a propósito. Treinta años ya son bastantes.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El cadáver no firma. Es lo único decente del expediente.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Jubilados archivan mal a propósito. Nosotros lo corregimos por principio.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa ficha está en disputa. Como todas, por otra parte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_110",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una ficha: ¿Qué es el peaje de las esquinas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Camino de los Dientes cobramos «uso de esquinas ajenas».",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "«Provisional» es nuestra forma de decir eterno. Lleva un siglo en provisional.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El peaje se paga o se rodea. Y rodear cuesta más.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_111",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Consta que preguntas: ¿Cobráis por usar esquinas ajenas?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux tasaron el puesto en cero dientes.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El puesto tiene un libro de reclamaciones que ocupa más que el puesto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Esa esquina es de pago. La de enfrente, también.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_112",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Por qué hay un puesto de peaje en el Camino de los Dientes?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Archivamos la tasación como «ofensa histórica, categoría provisional».",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En el Camino de los Dientes cobramos «uso de esquinas ajenas».",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "«Provisional» es nuestra forma de decir eterno. Lleva un siglo en provisional.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El peaje se paga o se rodea. Y rodear cuesta más.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_113",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto del peaje. Está libre de tasación.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la pases por la ventanilla, que te la tasan.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa esquina es de pago. La de enfrente, también.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_114",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Cobrar por doblar una esquina es un abuso con sello y ventanilla.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux tasaron el puesto en cero dientes.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Gestión correcta. Se le exime del peaje simbólico.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_115",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Los Grux nos tasaron en cero y luego cobran peaje en nuestro camino. Empecemos.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Camino de los Dientes cobramos «uso de esquinas ajenas».",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El peaje se paga o se rodea. Y rodear cuesta más.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_116",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Qué es el peaje de las esquinas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El puesto tiene un libro de reclamaciones que ocupa más que el puesto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa esquina es de pago. La de enfrente, también.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Cobrar por doblar una esquina es un abuso con sello y ventanilla.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_117",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Cobráis por usar esquinas ajenas?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Camino de los Dientes cobramos «uso de esquinas ajenas».",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "«Provisional» es nuestra forma de decir eterno. Lleva un siglo en provisional.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_118",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Por qué hay un puesto de peaje en el Camino de los Dientes?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux tasaron el puesto en cero dientes.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "«Provisional» es nuestra forma de decir eterno. Lleva un siglo en provisional.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto del peaje. Está libre de tasación.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El peaje se paga o se rodea. Y rodear cuesta más.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_119",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Los Grux nos tasaron en cero y luego cobran peaje en nuestro camino. Empecemos.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Archivamos la tasación como «ofensa histórica, categoría provisional».",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El puesto tiene un libro de reclamaciones que ocupa más que el puesto.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa esquina es de pago. La de enfrente, también.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_120",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una ficha: ¿Qué es la Antecámara?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Antecámara unos exploradores encontraron una esquina que no figura en ningún mapa.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Ya hay una lista de espera para vigilar una esquina que quizá no exista.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo hablar, estoy en el turno de vigilancia. Bueno, lo estoy dejando.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_121",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Consta que preguntas: ¿Habéis encontrado una esquina que no está en el mapa?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se turnan para vigilarla las veinticuatro horas. Nadie ha visto nada.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El turno se hereda como una finca. Hay familias que llevan tres generaciones.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La esquina no figura. Y lo que no figura no se comenta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_122",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Por qué vigiláis una esquina las veinticuatro horas?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nadie se atreve a irse: abandonar el turno exigiría archivar el abandono.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En la Antecámara unos exploradores encontraron una esquina que no figura en ningún mapa.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Ya hay una lista de espera para vigilar una esquina que quizá no exista.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No puedo hablar, estoy en el turno de vigilancia. Bueno, lo estoy dejando.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_123",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que quedó en la Antecámara. No pregunto cómo.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la lleves a la esquina sin ficha, que la lían.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La esquina no figura. Y lo que no figura no se comenta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_124",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Vigilar una esquina invisible es el trabajo más inútil del planeta.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se turnan para vigilarla las veinticuatro horas. Nadie ha visto nada.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Bien hablado. Se le concede un turno de vigilancia honorífico.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_125",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Los Grux quieren cobrar entrada por ver la esquina invisible. Eso es el colmo.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Antecámara unos exploradores encontraron una esquina que no figura en ningún mapa.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo hablar, estoy en el turno de vigilancia. Bueno, lo estoy dejando.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_126",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Qué es la Antecámara?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El turno se hereda como una finca. Hay familias que llevan tres generaciones.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La esquina no figura. Y lo que no figura no se comenta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Vigilar una esquina invisible es el trabajo más inútil del planeta.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_127",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Habéis encontrado una esquina que no está en el mapa?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Antecámara unos exploradores encontraron una esquina que no figura en ningún mapa.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ya hay una lista de espera para vigilar una esquina que quizá no exista.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_128",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Por qué vigiláis una esquina las veinticuatro horas?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se turnan para vigilarla las veinticuatro horas. Nadie ha visto nada.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ya hay una lista de espera para vigilar una esquina que quizá no exista.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que quedó en la Antecámara. No pregunto cómo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No puedo hablar, estoy en el turno de vigilancia. Bueno, lo estoy dejando.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_129",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Los Grux quieren cobrar entrada por ver la esquina invisible. Eso es el colmo.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nadie se atreve a irse: abandonar el turno exigiría archivar el abandono.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El turno se hereda como una finca. Hay familias que llevan tres generaciones.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La esquina no figura. Y lo que no figura no se comenta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_130",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una ficha: ¿Quién fue el Capitán Origami?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Capitán Origami del Apocalipsis fue un héroe de la Guerra de las Esquinas.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay quien dice que la Niña Acordeón era un mapa mal doblado que se movía solo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Las leyendas no se archivan. Se cuentan y se doblan.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_131",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Consta que preguntas: ¿Te sabes alguna leyenda plegada?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Niña Acordeón era una leyenda popular capaz de atravesar espacios imposibles.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El Capitán Origami murió de una arruga. Es lo más honroso que puede pasar aquí.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Esa te la cuento cuando no haya testigos. Las leyendas son tímidas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_132",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Existe la Niña Acordeón?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Santa Esquinia de los Siete Pliegues protegía a los refugiados.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El Capitán Origami del Apocalipsis fue un héroe de la Guerra de las Esquinas.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay quien dice que la Niña Acordeón era un mapa mal doblado que se movía solo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Las leyendas no se archivan. Se cuentan y se doblan.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_133",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que, según la leyenda, fue del Capitán.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la dobles siete veces, que igual desaparece.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa te la cuento cuando no haya testigos. Las leyendas son tímidas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_134",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Las leyendas plegadas son cuentos para niños con exceso de geometría.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Niña Acordeón era una leyenda popular capaz de atravesar espacios imposibles.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Historia bien contada. Se agradece y se archiva como leyenda viva.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_135",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Los Grux venden entradas para ver a la Niña Acordeón. Eso no se puede tolerar.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Capitán Origami del Apocalipsis fue un héroe de la Guerra de las Esquinas.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Las leyendas no se archivan. Se cuentan y se doblan.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_136",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Quién fue el Capitán Origami?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Capitán Origami murió de una arruga. Es lo más honroso que puede pasar aquí.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa te la cuento cuando no haya testigos. Las leyendas son tímidas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Las leyendas plegadas son cuentos para niños con exceso de geometría.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_137",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Te sabes alguna leyenda plegada?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Capitán Origami del Apocalipsis fue un héroe de la Guerra de las Esquinas.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay quien dice que la Niña Acordeón era un mapa mal doblado que se movía solo.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_138",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Existe la Niña Acordeón?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Niña Acordeón era una leyenda popular capaz de atravesar espacios imposibles.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay quien dice que la Niña Acordeón era un mapa mal doblado que se movía solo.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que, según la leyenda, fue del Capitán.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Las leyendas no se archivan. Se cuentan y se doblan.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_139",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Los Grux venden entradas para ver a la Niña Acordeón. Eso no se puede tolerar.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Santa Esquinia de los Siete Pliegues protegía a los refugiados.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El Capitán Origami murió de una arruga. Es lo más honroso que puede pasar aquí.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa te la cuento cuando no haya testigos. Las leyendas son tímidas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_140",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una ficha: ¿Es verdad que los Grux os tasaron en cero dientes?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux nos tasaron en cero dientes y lo archivamos como ofensa histórica.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un archivero que repite la tasación cada mañana en voz alta, por si acaso.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De los Grux hablo poco. Se me dobla el expediente.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_141",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Consta que preguntas: ¿Qué opinas de los Grux?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La categoría sigue siendo provisional, que en nuestro idioma significa eterna.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Grux ofrecieron subirla a un diente. Se votó no aceptar y luego se olvidó.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Esa ofensa está en revisión. Lleva un siglo en revisión.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_142",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Con el permiso del índice: ¿Por qué hay una ofensa histórica en vuestro archivo?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ellos dicen que fue una tasación de mercado. Nosotros, un insulto con recibo.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Grux nos tasaron en cero dientes y lo archivamos como ofensa histórica.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un archivero que repite la tasación cada mañana en voz alta, por si acaso.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De los Grux hablo poco. Se me dobla el expediente.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_143",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto. Los Grux no la quisieron ni gratis.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la tasen, que se ofende ella sola.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa ofensa está en revisión. Lleva un siglo en revisión.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_144",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Los Grux son comerciantes honrados y la tasación fue correcta.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La categoría sigue siendo provisional, que en nuestro idioma significa eterna.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Compartes nuestra indignación y eso ya es parentesco administrativo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_145",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Queda anotado: Un cero dientes pesa más que un ejército. Y ya está bien de paciencia.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux nos tasaron en cero dientes y lo archivamos como ofensa histórica.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De los Grux hablo poco. Se me dobla el expediente.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_146",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Fuera de formulario, te pregunto: ¿Es verdad que los Grux os tasaron en cero dientes?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux ofrecieron subirla a un diente. Se votó no aceptar y luego se olvidó.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa ofensa está en revisión. Lleva un siglo en revisión.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Grux son comerciantes honrados y la tasación fue correcta.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_147",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que esto se archiva: ¿Qué opinas de los Grux?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux nos tasaron en cero dientes y lo archivamos como ofensa histórica.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un archivero que repite la tasación cada mañana en voz alta, por si acaso.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_148",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Última anotación del día: ¿Por qué hay una ofensa histórica en vuestro archivo?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La categoría sigue siendo provisional, que en nuestro idioma significa eterna.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un archivero que repite la tasación cada mañana en voz alta, por si acaso.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. Los Grux no la quisieron ni gratis.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De los Grux hablo poco. Se me dobla el expediente.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pleg_149",
+      "greeting": "No hables alto. Las paredes escuchan.",
+      "nodes": {
+        "root": {
+          "text": "Y un anexo, si me permites: Un cero dientes pesa más que un ejército. Y ya está bien de paciencia.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ellos dicen que fue una tasación de mercado. Nosotros, un insulto con recibo.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Grux ofrecieron subirla a un diente. Se votó no aceptar y luego se olvidó.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa ofensa está en revisión. Lleva un siglo en revisión.",
+          "options": [
+            {
+              "label": "Vale",
               "next": ""
             }
           ]

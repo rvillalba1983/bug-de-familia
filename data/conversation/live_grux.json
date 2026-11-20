@@ -6,34 +6,43 @@
       "greeting": "Grrr... ¿qué quieres, carne?",
       "nodes": {
         "root": {
-          "text": "¿Sabes qué hora es?",
+          "text": "Escucha, que el tiempo se cobra: ¿Sabes qué es el Diente de Oro?",
           "options": [
-            {
-              "label": "No",
-              "next": "r1"
-            },
             {
               "label": "Sí",
-              "next": "r2"
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
             }
           ]
         },
-        "r1": {
-          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+        "n1": {
+          "text": "En la Lonja de los Dientes cotizamos los dientes en bolsa.",
           "options": [
             {
-              "label": "Volver",
-              "next": ""
+              "label": "¿Y luego?",
+              "next": "n3"
             }
           ]
         },
-        "r2": {
-          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+        "n3": {
+          "text": "Hay un tasador que se pasa el día suspirando y cobra por el suspiro y por la tasación.",
           "options": [
             {
-              "label": "De nada",
+              "label": "Gracias",
               "next": "",
               "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El Diente de Oro está cerrado al público. Y al improductivo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -44,38 +53,29 @@
       "greeting": "Grrr... ¿qué quieres, carne?",
       "nodes": {
         "root": {
-          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "text": "Te lo digo al contado: ¿Cómo va la lonja hoy?",
           "options": [
             {
-              "label": "Sí",
-              "next": "a1"
+              "label": "Cuéntame",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "a2"
+              "label": "No me interesa",
+              "next": "n3"
             }
           ]
         },
-        "a1": {
-          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+        "n1": {
+          "text": "El Diente de Oro sube cada vez que alguien suspira. Un gemido rinde más que una jornada.",
           "options": [
             {
-              "label": "¿Y después?",
-              "next": "a3"
+              "label": "Sigue",
+              "next": "n2"
             }
           ]
         },
-        "a2": {
-          "text": "Pues bien. Tú te lo pierdes.",
-          "options": [
-            {
-              "label": "Volver",
-              "next": ""
-            }
-          ]
-        },
-        "a3": {
-          "text": "Después vinimos nosotros. Y aquí seguimos.",
+        "n2": {
+          "text": "El índice subió tanto un martes que hubo que abrir la lonja de noche para gemir.",
           "options": [
             {
               "label": "Gracias",
@@ -83,9 +83,18 @@
               "action": "praise"
             },
             {
-              "label": "Qué rollo",
+              "label": "Qué aburrido",
               "next": "",
               "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Eso vale una consulta y la consulta vale dos dientes.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -96,33 +105,51 @@
       "greeting": "Grrr... ¿qué quieres, carne?",
       "nodes": {
         "root": {
-          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "text": "Una tasación rápida: ¿Por qué suspiráis tanto en la Lonja de los Dientes?",
           "options": [
             {
-              "label": "Sí",
-              "next": "g1"
+              "label": "Vamos allá",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "g2"
+              "label": "Ahora no",
+              "next": "n4"
             }
           ]
         },
-        "g1": {
-          "text": "Toma. No la pierdas.",
+        "n1": {
+          "text": "En la lonja se gime a propósito y a eso lo llamamos oficio.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En la Lonja de los Dientes cotizamos los dientes en bolsa.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un tasador que se pasa el día suspirando y cobra por el suspiro y por la tasación.",
           "options": [
             {
               "label": "Gracias",
               "next": "",
-              "action": "gift_piece"
+              "action": "praise"
             }
           ]
         },
-        "g2": {
-          "text": "Pues la guardo. Más para mí.",
+        "n4": {
+          "text": "El Diente de Oro está cerrado al público. Y al improductivo.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -134,35 +161,34 @@
       "greeting": "Grrr... ¿qué quieres, carne?",
       "nodes": {
         "root": {
-          "text": "¿Te atreves a decirme que soy viejo?",
+          "text": "Tengo una pieza de repuesto. Está cotizada y no pienso rebajarla.",
           "options": [
             {
               "label": "Sí",
-              "next": "h1"
+              "next": "n1"
             },
             {
               "label": "No",
-              "next": "h2"
+              "next": "n2"
             }
           ]
         },
-        "h1": {
-          "text": "Pues toma.",
+        "n1": {
+          "text": "Toma, y no la empeñes en la lonja, que te la tasan a la baja.",
           "options": [
             {
-              "label": "Ay",
+              "label": "Gracias",
               "next": "",
-              "action": "hit"
+              "action": "gift_piece"
             }
           ]
         },
-        "h2": {
-          "text": "Sabia decisión.",
+        "n2": {
+          "text": "Eso vale una consulta y la consulta vale dos dientes.",
           "options": [
             {
-              "label": "Volver",
-              "next": "",
-              "action": "praise"
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -173,30 +199,30 @@
       "greeting": "Grrr... ¿qué quieres, carne?",
       "nodes": {
         "root": {
-          "text": "¿Qué opinas de los eco?",
+          "text": "El Diente de Oro es una fantasía que se sostiene con suspiros de gente sin dientes.",
           "options": [
             {
-              "label": "Son basura",
-              "next": "b1"
+              "label": "Sí, y lo repito",
+              "next": "n1"
             },
             {
-              "label": "Son majos",
-              "next": "b2"
+              "label": "No, era broma",
+              "next": "n2"
             }
           ]
         },
-        "b1": {
-          "text": "Exacto. Y ahora que lo dices...",
+        "n1": {
+          "text": "El Diente de Oro sube cada vez que alguien suspira. Un gemido rinde más que una jornada.",
           "options": [
             {
-              "label": "Oh no",
+              "label": "Pues ya está",
               "next": "",
-              "action": "provoke_battle"
+              "action": "hit"
             }
           ]
         },
-        "b2": {
-          "text": "Majos no, pero útiles. Vete.",
+        "n2": {
+          "text": "Buen cumplido. Lo taso en un diente y me lo quedo.",
           "options": [
             {
               "label": "Vale",
@@ -211,33 +237,33 @@
       "greeting": "Grrr... ¿qué quieres, carne?",
       "nodes": {
         "root": {
-          "text": "¿Sabes por qué el cielo es gris?",
+          "text": "Que conste en el libro: Los Plegados archivan nuestras tasaciones como ofensas. Eso cuesta y se cobra.",
           "options": [
             {
-              "label": "No",
-              "next": "l1"
+              "label": "Tienes razón",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "l2"
+              "label": "Déjalos en paz",
+              "next": "n2"
             }
           ]
         },
-        "l1": {
-          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+        "n1": {
+          "text": "En la Lonja de los Dientes cotizamos los dientes en bolsa.",
           "options": [
             {
-              "label": "Jaja",
+              "label": "Que empiece",
               "next": "",
-              "action": "praise"
+              "action": "provoke_battle"
             }
           ]
         },
-        "l2": {
-          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+        "n2": {
+          "text": "El Diente de Oro está cerrado al público. Y al improductivo.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -249,34 +275,48 @@
       "greeting": "Grrr... ¿qué quieres, carne?",
       "nodes": {
         "root": {
-          "text": "¿Sabes qué hora es?",
+          "text": "Cuatro brazos, una pregunta: ¿Sabes qué es el Diente de Oro?",
           "options": [
             {
-              "label": "No",
-              "next": "r1"
+              "label": "Sí",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "r2"
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
             }
           ]
         },
-        "r1": {
-          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+        "n1": {
+          "text": "El índice subió tanto un martes que hubo que abrir la lonja de noche para gemir.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso vale una consulta y la consulta vale dos dientes.",
+          "options": [
+            {
+              "label": "Vale",
               "next": ""
             }
           ]
         },
-        "r2": {
-          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+        "n3": {
+          "text": "El Diente de Oro es una fantasía que se sostiene con suspiros de gente sin dientes.",
           "options": [
             {
-              "label": "De nada",
+              "label": "Y lo mantengo",
               "next": "",
-              "action": "praise"
+              "action": "insult"
             }
           ]
         }
@@ -287,46 +327,33 @@
       "greeting": "Grrr... ¿qué quieres, carne?",
       "nodes": {
         "root": {
-          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "text": "Te informo del precio de saberlo: ¿Cómo va la lonja hoy?",
           "options": [
             {
-              "label": "Sí",
-              "next": "a1"
+              "label": "Por el principio",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "a2"
+              "label": "Por el final",
+              "next": "n2"
             }
           ]
         },
-        "a1": {
-          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+        "n1": {
+          "text": "En la Lonja de los Dientes cotizamos los dientes en bolsa.",
           "options": [
             {
-              "label": "¿Y después?",
-              "next": "a3"
-            }
-          ]
-        },
-        "a2": {
-          "text": "Pues bien. Tú te lo pierdes.",
-          "options": [
-            {
-              "label": "Volver",
-              "next": ""
-            }
-          ]
-        },
-        "a3": {
-          "text": "Después vinimos nosotros. Y aquí seguimos.",
-          "options": [
-            {
-              "label": "Gracias",
+              "label": "Interesante",
               "next": "",
               "action": "praise"
-            },
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un tasador que se pasa el día suspirando y cobra por el suspiro y por la tasación.",
+          "options": [
             {
-              "label": "Qué rollo",
+              "label": "Qué tontería",
               "next": "",
               "action": "insult"
             }
@@ -339,20 +366,38 @@
       "greeting": "Grrr... ¿qué quieres, carne?",
       "nodes": {
         "root": {
-          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "text": "Última oferta del día: ¿Por qué suspiráis tanto en la Lonja de los Dientes?",
           "options": [
             {
-              "label": "Sí",
-              "next": "g1"
+              "label": "Cuenta",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "g2"
+              "label": "Otro día",
+              "next": "n4"
             }
           ]
         },
-        "g1": {
-          "text": "Toma. No la pierdas.",
+        "n1": {
+          "text": "El Diente de Oro sube cada vez que alguien suspira. Un gemido rinde más que una jornada.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un tasador que se pasa el día suspirando y cobra por el suspiro y por la tasación.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. Está cotizada y no pienso rebajarla.",
           "options": [
             {
               "label": "Gracias",
@@ -361,11 +406,11 @@
             }
           ]
         },
-        "g2": {
-          "text": "Pues la guardo. Más para mí.",
+        "n4": {
+          "text": "El Diente de Oro está cerrado al público. Y al improductivo.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -377,35 +422,43 @@
       "greeting": "Grrr... ¿qué quieres, carne?",
       "nodes": {
         "root": {
-          "text": "¿Te atreves a decirme que soy viejo?",
+          "text": "Y un extra, sin recargo: Los Plegados archivan nuestras tasaciones como ofensas. Eso cuesta y se cobra.",
           "options": [
             {
-              "label": "Sí",
-              "next": "h1"
+              "label": "Claro que sí",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "h2"
+              "label": "Ni hablar",
+              "next": "n2"
             }
           ]
         },
-        "h1": {
-          "text": "Pues toma.",
+        "n1": {
+          "text": "En la lonja se gime a propósito y a eso lo llamamos oficio.",
           "options": [
             {
-              "label": "Ay",
-              "next": "",
-              "action": "hit"
+              "label": "¿Y los demás?",
+              "next": "n3"
             }
           ]
         },
-        "h2": {
-          "text": "Sabia decisión.",
+        "n3": {
+          "text": "El índice subió tanto un martes que hubo que abrir la lonja de noche para gemir.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Que empiece",
               "next": "",
-              "action": "praise"
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso vale una consulta y la consulta vale dos dientes.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -416,30 +469,39 @@
       "greeting": "Grrr... ¿qué quieres, carne?",
       "nodes": {
         "root": {
-          "text": "¿Qué opinas de los eco?",
+          "text": "Escucha, que el tiempo se cobra: ¿Sabes para qué sirve el estómago-bolsillo?",
           "options": [
             {
-              "label": "Son basura",
-              "next": "b1"
+              "label": "Sí",
+              "next": "n1"
             },
             {
-              "label": "Son majos",
-              "next": "b2"
+              "label": "No",
+              "next": "n2"
             }
           ]
         },
-        "b1": {
-          "text": "Exacto. Y ahora que lo dices...",
+        "n1": {
+          "text": "El estómago-bolsillo es una caja fuerte con digestión.",
           "options": [
             {
-              "label": "Oh no",
-              "next": "",
-              "action": "provoke_battle"
+              "label": "¿Y luego?",
+              "next": "n3"
             }
           ]
         },
-        "b2": {
-          "text": "Majos no, pero útiles. Vete.",
+        "n3": {
+          "text": "Una vez se me quedó un recibo dentro tres años y salió con intereses.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ahí dentro no hay nada. Y lo que hay no es tuyo.",
           "options": [
             {
               "label": "Vale",
@@ -454,33 +516,6430 @@
       "greeting": "Grrr... ¿qué quieres, carne?",
       "nodes": {
         "root": {
-          "text": "¿Sabes por qué el cielo es gris?",
+          "text": "Te lo digo al contado: ¿Dónde guardas lo que cobras?",
           "options": [
             {
-              "label": "No",
-              "next": "l1"
+              "label": "Cuéntame",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "l2"
+              "label": "No me interesa",
+              "next": "n3"
             }
           ]
         },
-        "l1": {
-          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+        "n1": {
+          "text": "Tragamos lo que cobramos y lo sacamos cuando hace falta dar cambio.",
           "options": [
             {
-              "label": "Jaja",
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay quien dice que nuestro estómago es un buzón. Los Ecos nos dejan cartas.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El inventario del bolsillo es confidencial y huele a beneficio.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_012",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Es verdad que tragais lo que robáis?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ahí dentro cabe un archivo portátil entero y algún cliente pequeño.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El estómago-bolsillo es una caja fuerte con digestión.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Una vez se me quedó un recibo dentro tres años y salió con intereses.",
+          "options": [
+            {
+              "label": "Gracias",
               "next": "",
               "action": "praise"
             }
           ]
         },
-        "l2": {
-          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+        "n4": {
+          "text": "Ahí dentro no hay nada. Y lo que hay no es tuyo.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_013",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto en el bolsillo. Salió caliente.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la tragues, que luego la cobro por recuperación.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El inventario del bolsillo es confidencial y huele a beneficio.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_014",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "El estómago-bolsillo es un truco de feria para no pagar almacén.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Tragamos lo que cobramos y lo sacamos cuando hace falta dar cambio.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio registrado. Se agradece en especie o en dientes.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_015",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Plegados dicen que nuestro estómago es un archivo robado. Eso es difamación con ficha.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El estómago-bolsillo es una caja fuerte con digestión.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ahí dentro no hay nada. Y lo que hay no es tuyo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_016",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Sabes para qué sirve el estómago-bolsillo?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay quien dice que nuestro estómago es un buzón. Los Ecos nos dejan cartas.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El inventario del bolsillo es confidencial y huele a beneficio.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "El estómago-bolsillo es un truco de feria para no pagar almacén.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_017",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Dónde guardas lo que cobras?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El estómago-bolsillo es una caja fuerte con digestión.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Una vez se me quedó un recibo dentro tres años y salió con intereses.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_018",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Es verdad que tragais lo que robáis?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Tragamos lo que cobramos y lo sacamos cuando hace falta dar cambio.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Una vez se me quedó un recibo dentro tres años y salió con intereses.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto en el bolsillo. Salió caliente.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ahí dentro no hay nada. Y lo que hay no es tuyo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_019",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Plegados dicen que nuestro estómago es un archivo robado. Eso es difamación con ficha.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ahí dentro cabe un archivo portátil entero y algún cliente pequeño.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay quien dice que nuestro estómago es un buzón. Los Ecos nos dejan cartas.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El inventario del bolsillo es confidencial y huele a beneficio.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_020",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que el tiempo se cobra: ¿Qué es el Tributo del Aire?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En cualquier estancia cerrada, el primero que respira tasa el aire y lo reparte por tramos.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un cliente que lleva tres años pagando el tramo alto por no discutir.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Respira bajito, que el tramo barato se acaba.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_021",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo al contado: ¿Cobráis por respirar?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Gran Mercado hay lista de precios por litro respirado.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El aire de las escaleras se cobra aparte por ser cuesta arriba.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El aire está en oferta hoy. La oferta también se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_022",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Por qué hay una lista de precios por litro de aire?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Quien no paga, aguanta. Es su huelga y la pierde por asfixia.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En cualquier estancia cerrada, el primero que respira tasa el aire y lo reparte por tramos.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un cliente que lleva tres años pagando el tramo alto por no discutir.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Respira bajito, que el tramo barato se acaba.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_023",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que ventila. Se cobra el uso.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y respira por la nariz, que sale más barato.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El aire está en oferta hoy. La oferta también se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_024",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cobrar el aire es una estafa con tabla de precios.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Gran Mercado hay lista de precios por litro respirado.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Buena respiración. Se le aplica la tarifa de cliente educado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_025",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Jubilados no pagan el aire y encima se apagan. así no hay negocio.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En cualquier estancia cerrada, el primero que respira tasa el aire y lo reparte por tramos.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Respira bajito, que el tramo barato se acaba.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_026",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Qué es el Tributo del Aire?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El aire de las escaleras se cobra aparte por ser cuesta arriba.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El aire está en oferta hoy. La oferta también se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Cobrar el aire es una estafa con tabla de precios.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_027",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Cobráis por respirar?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En cualquier estancia cerrada, el primero que respira tasa el aire y lo reparte por tramos.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un cliente que lleva tres años pagando el tramo alto por no discutir.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_028",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Por qué hay una lista de precios por litro de aire?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Gran Mercado hay lista de precios por litro respirado.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un cliente que lleva tres años pagando el tramo alto por no discutir.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que ventila. Se cobra el uso.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Respira bajito, que el tramo barato se acaba.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_029",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Jubilados no pagan el aire y encima se apagan. así no hay negocio.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Quien no paga, aguanta. Es su huelga y la pierde por asfixia.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El aire de las escaleras se cobra aparte por ser cuesta arriba.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El aire está en oferta hoy. La oferta también se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_030",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que el tiempo se cobra: ¿Qué es el Bautizo del Diente?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El primer diente cobrado se nombra, se asegura y se presenta en sociedad.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un diente que ya va por la decimocuarta generación y sigue cobrando intereses.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los nombres de los dientes no se dan gratis. El mío tampoco.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_031",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo al contado: ¿Por qué le ponéis nombre al primer diente?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los dientes heredados heredan también el nombre.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Al bautizo se invita a los deudores para que vean lo que se pierde.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Ese diente está en sociedad y no concede entrevistas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_032",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Un diente puede tener apellidos?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay dientes con genealogía más larga que las familias.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El primer diente cobrado se nombra, se asegura y se presenta en sociedad.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un diente que ya va por la decimocuarta generación y sigue cobrando intereses.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Los nombres de los dientes no se dan gratis. El mío tampoco.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_033",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto de un diente con nombre. Está de luto.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y ponle nombre, que sin nombre no cotiza.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese diente está en sociedad y no concede entrevistas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_034",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Poner nombre a un diente es una cursilería que no aumenta su valor.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los dientes heredados heredan también el nombre.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio con nombre y apellidos. Se agradece y se asegura.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_035",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Plegados archivan nuestros dientes como «objetos sin ficha». Pues que paguen la ficha.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El primer diente cobrado se nombra, se asegura y se presenta en sociedad.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los nombres de los dientes no se dan gratis. El mío tampoco.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_036",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Qué es el Bautizo del Diente?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Al bautizo se invita a los deudores para que vean lo que se pierde.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese diente está en sociedad y no concede entrevistas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Poner nombre a un diente es una cursilería que no aumenta su valor.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_037",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Por qué le ponéis nombre al primer diente?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El primer diente cobrado se nombra, se asegura y se presenta en sociedad.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un diente que ya va por la decimocuarta generación y sigue cobrando intereses.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_038",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Un diente puede tener apellidos?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los dientes heredados heredan también el nombre.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un diente que ya va por la decimocuarta generación y sigue cobrando intereses.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto de un diente con nombre. Está de luto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Los nombres de los dientes no se dan gratis. El mío tampoco.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_039",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Plegados archivan nuestros dientes como «objetos sin ficha». Pues que paguen la ficha.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay dientes con genealogía más larga que las familias.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Al bautizo se invita a los deudores para que vean lo que se pierde.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese diente está en sociedad y no concede entrevistas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_040",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que el tiempo se cobra: ¿Cuánto cuesta una frase retórica?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Cobramos por las frases retóricas: una pregunta de ese tipo son un diente.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay clientes que pagan el silencio por adelantado y se van sin hablar. Los mejores.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta es retórica. Un diente. Gracias.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_041",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo al contado: ¿Cobráis por hablar?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La respuesta son dos y el silencio son tres.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un cliente pidió descuento por callarse dos veces. Se le cobró el descuento.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Si sigues hablando, sube el recibo. Tú mismo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_042",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Cuánto vale tu silencio?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El silencio es el producto estrella y lo pagas tú sin abrir la boca.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Cobramos por las frases retóricas: una pregunta de ese tipo son un diente.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay clientes que pagan el silencio por adelantado y se van sin hablar. Los mejores.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa pregunta es retórica. Un diente. Gracias.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_043",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto. Callarme sobre su origen cuesta dos dientes.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y el silencio sobre el regalo va incluido.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si sigues hablando, sube el recibo. Tú mismo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_044",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cobrar por el silencio es el negocio más limpio que existe: no das nada y cobras.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La respuesta son dos y el silencio son tres.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese elogio es gratis. El siguiente ya lleva recargo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_045",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Ecos repiten nuestras frases sin pagar derechos. Eso es copia y se cobra.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Cobramos por las frases retóricas: una pregunta de ese tipo son un diente.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta es retórica. Un diente. Gracias.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_046",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Cuánto cuesta una frase retórica?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un cliente pidió descuento por callarse dos veces. Se le cobró el descuento.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si sigues hablando, sube el recibo. Tú mismo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Cobrar por el silencio es el negocio más limpio que existe: no das nada y cobras.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_047",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Cobráis por hablar?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Cobramos por las frases retóricas: una pregunta de ese tipo son un diente.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay clientes que pagan el silencio por adelantado y se van sin hablar. Los mejores.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_048",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Cuánto vale tu silencio?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La respuesta son dos y el silencio son tres.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay clientes que pagan el silencio por adelantado y se van sin hablar. Los mejores.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. Callarme sobre su origen cuesta dos dientes.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa pregunta es retórica. Un diente. Gracias.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_049",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Ecos repiten nuestras frases sin pagar derechos. Eso es copia y se cobra.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El silencio es el producto estrella y lo pagas tú sin abrir la boca.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un cliente pidió descuento por callarse dos veces. Se le cobró el descuento.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si sigues hablando, sube el recibo. Tú mismo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_050",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que el tiempo se cobra: ¿Qué fue la Gran Burbuja de los Dientes?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los dientes se convirtieron en activo financiero y se prestó contra dientes futuros.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un contrato que grava el diente de un niño que todavía no ha nacido. Ni familia tiene.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la burbuja no hablo: me quedé con tres dientes y una hipoteca.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_051",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo al contado: ¿Se pueden hipotecar dientes futuros?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "También se prestó contra dientes heredados y dientes aún no desarrollados.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El Estado rescató la burbuja comprando dientes con dientes. Funcionó, no preguntes.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Esa deuda está en reestructuración. Como todo lo que respiro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_052",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Por qué quebró el mercado de dientes?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La burbuja estalló y provocó una crisis económica generalizada.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los dientes se convirtieron en activo financiero y se prestó contra dientes futuros.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un contrato que grava el diente de un niño que todavía no ha nacido. Ni familia tiene.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De la burbuja no hablo: me quedé con tres dientes y una hipoteca.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_053",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto. Estaba hipotecada y la rescaté.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la pongas de garantía, que ya tiene dueño.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa deuda está en reestructuración. Como todo lo que respiro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_054",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "La burbuja de los dientes fue un fraude y los que la hicieron siguen cobrando.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "También se prestó contra dientes heredados y dientes aún no desarrollados.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio sin burbuja. Se agradece y se guarda en efectivo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_055",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Plegados nos culparon de la burbuja y luego pidieron un préstamo. Cinismo con ficha.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los dientes se convirtieron en activo financiero y se prestó contra dientes futuros.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la burbuja no hablo: me quedé con tres dientes y una hipoteca.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_056",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Qué fue la Gran Burbuja de los Dientes?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Estado rescató la burbuja comprando dientes con dientes. Funcionó, no preguntes.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa deuda está en reestructuración. Como todo lo que respiro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "La burbuja de los dientes fue un fraude y los que la hicieron siguen cobrando.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_057",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Se pueden hipotecar dientes futuros?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los dientes se convirtieron en activo financiero y se prestó contra dientes futuros.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un contrato que grava el diente de un niño que todavía no ha nacido. Ni familia tiene.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_058",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Por qué quebró el mercado de dientes?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "También se prestó contra dientes heredados y dientes aún no desarrollados.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un contrato que grava el diente de un niño que todavía no ha nacido. Ni familia tiene.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. Estaba hipotecada y la rescaté.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De la burbuja no hablo: me quedé con tres dientes y una hipoteca.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_059",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Plegados nos culparon de la burbuja y luego pidieron un préstamo. Cinismo con ficha.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La burbuja estalló y provocó una crisis económica generalizada.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El Estado rescató la burbuja comprando dientes con dientes. Funcionó, no preguntes.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa deuda está en reestructuración. Como todo lo que respiro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_060",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que el tiempo se cobra: ¿Qué fue el Apocalipsis de la Deuda?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El sistema dejó de distinguir deudas reales, heredadas y errores administrativos.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La deuda más antigua nos la debemos a nosotros mismos por servicios futuros ya prestados.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Su deuda está en el libro. No le digo la página porque la página se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_061",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo al contado: ¿Puede uno deber dinero a alguien que no existe?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Muchos descubrieron que debían cantidades imposibles a entidades que ya no existían.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un deudor que paga religiosamente a una oficina cerrada desde antes del colapso.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Todo el mundo debe algo. Usted también, y no lo sabe.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_062",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Por qué hay deudas anteriores a los deudores?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Existen deudas anteriores a la existencia de sus deudores.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El sistema dejó de distinguir deudas reales, heredadas y errores administrativos.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La deuda más antigua nos la debemos a nosotros mismos por servicios futuros ya prestados.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Su deuda está en el libro. No le digo la página porque la página se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_063",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto libre de cargas. Es casi un milagro.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y firme aquí: es un regalo con hipoteca afectiva.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Todo el mundo debe algo. Usted también, y no lo sabe.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_064",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Las deudas anteriores al deudor son una estafa y el libro es una novela.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Muchos descubrieron que debían cantidades imposibles a entidades que ya no existían.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio sin intereses. No se preocupe, ya los cobraré en otra cosa.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_065",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Plegados dicen que las deudas no existen si no están archivadas. Pues que las paguen.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El sistema dejó de distinguir deudas reales, heredadas y errores administrativos.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Su deuda está en el libro. No le digo la página porque la página se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_066",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Qué fue el Apocalipsis de la Deuda?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un deudor que paga religiosamente a una oficina cerrada desde antes del colapso.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Todo el mundo debe algo. Usted también, y no lo sabe.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Las deudas anteriores al deudor son una estafa y el libro es una novela.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_067",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Puede uno deber dinero a alguien que no existe?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El sistema dejó de distinguir deudas reales, heredadas y errores administrativos.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La deuda más antigua nos la debemos a nosotros mismos por servicios futuros ya prestados.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_068",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Por qué hay deudas anteriores a los deudores?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Muchos descubrieron que debían cantidades imposibles a entidades que ya no existían.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La deuda más antigua nos la debemos a nosotros mismos por servicios futuros ya prestados.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto libre de cargas. Es casi un milagro.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Su deuda está en el libro. No le digo la página porque la página se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_069",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Plegados dicen que las deudas no existen si no están archivadas. Pues que las paguen.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Existen deudas anteriores a la existencia de sus deudores.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un deudor que paga religiosamente a una oficina cerrada desde antes del colapso.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Todo el mundo debe algo. Usted también, y no lo sabe.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_070",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que el tiempo se cobra: ¿Quién es el Gran Tasador?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Gran Tasador valoró un planeta entero en tres dientes y nadie se atrevió a replicar.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "A ese precio parece trampa. Lo es. Nadie regatea con quien tasa mundos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La tasación del planeta es vinculante y no admite preguntas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_071",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo al contado: ¿Es verdad que tasó un planeta en tres dientes?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Estaba de mal humor, y aun así la tasación es oficial.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una copia de la tasación enmarcada en la lonja y otra en la cárcel.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tres dientes. Ni uno más. Y el porte, aparte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_072",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Cuánto vale un planeta?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ese planeta es el más barato del universo y nunca se ha vendido.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El Gran Tasador valoró un planeta entero en tres dientes y nadie se atrevió a replicar.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "A ese precio parece trampa. Lo es. Nadie regatea con quien tasa mundos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "La tasación del planeta es vinculante y no admite preguntas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_073",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto de aquel planeta. Pesa como un mundo.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la tasen, que la devalúan.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Tres dientes. Ni uno más. Y el porte, aparte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_074",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tasar un planeta en tres dientes es el mayor chiste de la historia del comercio.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Estaba de mal humor, y aun así la tasación es oficial.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Buen ojo. Le taso el elogio en dos dientes y se lo devuelvo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_075",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Plegados tasaron nuestro catálogo en cero y luego se ofenden. Empecemos por el cero.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Gran Tasador valoró un planeta entero en tres dientes y nadie se atrevió a replicar.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La tasación del planeta es vinculante y no admite preguntas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_076",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Quién es el Gran Tasador?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay una copia de la tasación enmarcada en la lonja y otra en la cárcel.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Tres dientes. Ni uno más. Y el porte, aparte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tasar un planeta en tres dientes es el mayor chiste de la historia del comercio.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_077",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Es verdad que tasó un planeta en tres dientes?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Gran Tasador valoró un planeta entero en tres dientes y nadie se atrevió a replicar.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "A ese precio parece trampa. Lo es. Nadie regatea con quien tasa mundos.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_078",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Cuánto vale un planeta?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Estaba de mal humor, y aun así la tasación es oficial.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "A ese precio parece trampa. Lo es. Nadie regatea con quien tasa mundos.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto de aquel planeta. Pesa como un mundo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "La tasación del planeta es vinculante y no admite preguntas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_079",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Plegados tasaron nuestro catálogo en cero y luego se ofenden. Empecemos por el cero.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ese planeta es el más barato del universo y nunca se ha vendido.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una copia de la tasación enmarcada en la lonja y otra en la cárcel.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Tres dientes. Ni uno más. Y el porte, aparte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_080",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que el tiempo se cobra: ¿Qué se paga en el Camino de los Dientes?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Camino de los Dientes cobramos peaje por el camino, por el arcén y por la idea de camino.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay quien ha pagado el peaje y se ha quedado a vivir en la caseta por no pagar la vuelta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El peaje es obligatorio. El camino, opcional.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_081",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo al contado: ¿Por qué hay tres peajes en el mismo camino?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El peaje se paga al entrar, al salir y al pensarlo dos veces.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El camino es de tierra. La tierra también se cobra, pero barato.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Si no quiere pagar, hay una ruta alternativa de pago.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_082",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Se cobra también el arcén?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El recibo del peaje incluye una tasa por el recibo.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En el Camino de los Dientes cobramos peaje por el camino, por el arcén y por la idea de camino.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay quien ha pagado el peaje y se ha quedado a vivir en la caseta por no pagar la vuelta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El peaje es obligatorio. El camino, opcional.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_083",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto del peaje. Va sin tasa.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la saque del camino, que se cobra la salida.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si no quiere pagar, hay una ruta alternativa de pago.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_084",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cobrar por la idea de camino es de ladrones con caseta.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El peaje se paga al entrar, al salir y al pensarlo dos veces.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Cliente educado. Se le perdona la tasa de sonrisa.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_085",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Plegados cobran el uso de esquinas ajenas en nuestro camino. Eso es competencia desleal.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Camino de los Dientes cobramos peaje por el camino, por el arcén y por la idea de camino.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El peaje es obligatorio. El camino, opcional.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_086",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Qué se paga en el Camino de los Dientes?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El camino es de tierra. La tierra también se cobra, pero barato.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si no quiere pagar, hay una ruta alternativa de pago.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Cobrar por la idea de camino es de ladrones con caseta.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_087",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Por qué hay tres peajes en el mismo camino?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Camino de los Dientes cobramos peaje por el camino, por el arcén y por la idea de camino.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay quien ha pagado el peaje y se ha quedado a vivir en la caseta por no pagar la vuelta.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_088",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Se cobra también el arcén?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El peaje se paga al entrar, al salir y al pensarlo dos veces.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay quien ha pagado el peaje y se ha quedado a vivir en la caseta por no pagar la vuelta.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto del peaje. Va sin tasa.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El peaje es obligatorio. El camino, opcional.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_089",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Plegados cobran el uso de esquinas ajenas en nuestro camino. Eso es competencia desleal.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El recibo del peaje incluye una tasa por el recibo.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El camino es de tierra. La tierra también se cobra, pero barato.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si no quiere pagar, hay una ruta alternativa de pago.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_090",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que el tiempo se cobra: ¿Cuánto vale mi cabeza?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Su cabeza está tasada en cero dientes y el perito cobra plus por haberla mirado.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Su tasación ya está en el libro con una nota: «cliente reincidente en valer poco».",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Su tasación es confidencial. Y mala.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_091",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo al contado: ¿Me has tasado ya?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El pelo está sin peritar y es mejor así.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un cliente se ofendió por la tasación y pagó dos dientes por la queja. Salió ganando el libro.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Le tasaría otra vez, pero me cuesta mirar y eso se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_092",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Por qué el perito cobra por mirarme?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El futuro está a la baja y sin pujas. Lote sin valor: ni de broma se lo queda nadie.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Su cabeza está tasada en cero dientes y el perito cobra plus por haberla mirado.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Su tasación ya está en el libro con una nota: «cliente reincidente en valer poco».",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Su tasación es confidencial. Y mala.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_093",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que vale más que usted. Sin ánimo de ofender.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no se la cobre a sí mismo, que se devalúa.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Le tasaría otra vez, pero me cuesta mirar y eso se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_094",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tasar a un cliente sin avisar es una falta de respeto con plus.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El pelo está sin peritar y es mejor así.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Su elogio vale más que su cabeza. Tampoco es difícil.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_095",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Plegados nos tasaron en cero y ahora se quejan de la tasación. Que se miren.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Su cabeza está tasada en cero dientes y el perito cobra plus por haberla mirado.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Su tasación es confidencial. Y mala.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_096",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Cuánto vale mi cabeza?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un cliente se ofendió por la tasación y pagó dos dientes por la queja. Salió ganando el libro.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Le tasaría otra vez, pero me cuesta mirar y eso se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tasar a un cliente sin avisar es una falta de respeto con plus.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_097",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Me has tasado ya?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Su cabeza está tasada en cero dientes y el perito cobra plus por haberla mirado.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Su tasación ya está en el libro con una nota: «cliente reincidente en valer poco».",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_098",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Por qué el perito cobra por mirarme?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El pelo está sin peritar y es mejor así.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Su tasación ya está en el libro con una nota: «cliente reincidente en valer poco».",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que vale más que usted. Sin ánimo de ofender.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Su tasación es confidencial. Y mala.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_099",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Plegados nos tasaron en cero y ahora se quejan de la tasación. Que se miren.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El futuro está a la baja y sin pujas. Lote sin valor: ni de broma se lo queda nadie.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un cliente se ofendió por la tasación y pagó dos dientes por la queja. Salió ganando el libro.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Le tasaría otra vez, pero me cuesta mirar y eso se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_100",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que el tiempo se cobra: ¿Por qué no oléis a azufre?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si huelo azufre, vomito lo robado. Por eso no olemos azufre.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un cliente listo nos hizo devolver un cargamento entero con una cerilla y un calcetín.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Aquí no huele a nada. Y lo que huele es de otro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_101",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo al contado: ¿Qué pasa si te ofendo?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El estómago devuelve lo ajeno en cuanto el aire se pone feo.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Desde entonces el azufre está prohibido en la lonja por motivos de inventario.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Esa pregunta huele mal. No siga.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_102",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Dónde está lo que robaste?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay quien lleva un huevo podrido en el bolsillo para negociar con nosotros.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si huelo azufre, vomito lo robado. Por eso no olemos azufre.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un cliente listo nos hizo devolver un cargamento entero con una cerilla y un calcetín.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Aquí no huele a nada. Y lo que huele es de otro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_103",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto. La devolví y la volví a cobrar.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la acerque al azufre, que la devuelvo y se la cobro otra vez.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta huele mal. No siga.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_104",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Vomitar lo robado con el azufre demuestra que el negocio es un robo.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El estómago devuelve lo ajeno en cuanto el aire se pone feo.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio sincero. No huele a azufre y se agradece.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_105",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Ecos repiten nuestro recibo hasta que vomitamos. Eso es sabotaje con eco.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si huelo azufre, vomito lo robado. Por eso no olemos azufre.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Aquí no huele a nada. Y lo que huele es de otro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_106",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Por qué no oléis a azufre?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Desde entonces el azufre está prohibido en la lonja por motivos de inventario.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta huele mal. No siga.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Vomitar lo robado con el azufre demuestra que el negocio es un robo.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_107",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Qué pasa si te ofendo?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si huelo azufre, vomito lo robado. Por eso no olemos azufre.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un cliente listo nos hizo devolver un cargamento entero con una cerilla y un calcetín.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_108",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Dónde está lo que robaste?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El estómago devuelve lo ajeno en cuanto el aire se pone feo.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un cliente listo nos hizo devolver un cargamento entero con una cerilla y un calcetín.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. La devolví y la volví a cobrar.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Aquí no huele a nada. Y lo que huele es de otro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_109",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Ecos repiten nuestro recibo hasta que vomitamos. Eso es sabotaje con eco.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay quien lleva un huevo podrido en el bolsillo para negociar con nosotros.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Desde entonces el azufre está prohibido en la lonja por motivos de inventario.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta huele mal. No siga.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_110",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que el tiempo se cobra: ¿Qué es la Familia del Mordisco?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Familia del Mordisco lleva el registro y cobra interés histórico.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un cliente que paga el interés histórico con el interés de otra deuda.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la Familia no hablo. Ni de la Familia de al lado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_111",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo al contado: ¿Quién lleva el registro de las deudas imposibles?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay deudas de antes del colapso que siguen generando intereses cada mañana.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El libro de la Familia tiene una página dedicada a los que dicen no deber nada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Ese registro está cerrado. El cierre se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_112",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Qué es el interés histórico?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El interés histórico sube cuando nadie discute, que es casi siempre.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La Familia del Mordisco lleva el registro y cobra interés histórico.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un cliente que paga el interés histórico con el interés de otra deuda.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De la Familia no hablo. Ni de la Familia de al lado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_113",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto sin cargas familiares. Raro.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no firme nada de la Familia, que luego hereda.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese registro está cerrado. El cierre se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_114",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "La Familia del Mordisco es una banda de cobradores con árbol genealógico.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay deudas de antes del colapso que siguen generando intereses cada mañana.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se agradece. Le anoto un descuento que no pienso aplicar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_115",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Sin Dientes dicen que la deuda es un invento. Pues que devuelvan el invento.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Familia del Mordisco lleva el registro y cobra interés histórico.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la Familia no hablo. Ni de la Familia de al lado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_116",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Qué es la Familia del Mordisco?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El libro de la Familia tiene una página dedicada a los que dicen no deber nada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese registro está cerrado. El cierre se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "La Familia del Mordisco es una banda de cobradores con árbol genealógico.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_117",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Quién lleva el registro de las deudas imposibles?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Familia del Mordisco lleva el registro y cobra interés histórico.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un cliente que paga el interés histórico con el interés de otra deuda.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_118",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Qué es el interés histórico?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay deudas de antes del colapso que siguen generando intereses cada mañana.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un cliente que paga el interés histórico con el interés de otra deuda.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto sin cargas familiares. Raro.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De la Familia no hablo. Ni de la Familia de al lado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_119",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Sin Dientes dicen que la deuda es un invento. Pues que devuelvan el invento.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El interés histórico sube cuando nadie discute, que es casi siempre.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El libro de la Familia tiene una página dedicada a los que dicen no deber nada.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese registro está cerrado. El cierre se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_120",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que el tiempo se cobra: ¿Quiénes son los Sin Dientes?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Sin Dientes son un movimiento de resistencia económica.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un Sin Dientes que debe un favor a otro y lo lleva apuntado en la mano.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De los Sin Dientes no sé nada. Y si lo supiera, lo cobraría.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_121",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo al contado: ¿Se puede vivir sin deudas?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Rechazan el sistema financiero y pagan en especie, en favores y en silencio.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Nos han ofrecido comprar el movimiento. No aceptaron, pero pidieron precio.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Ese movimiento no paga impuestos ni entrevistas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_122",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Qué quiere el movimiento Sin Dientes?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Viven peor, pero duermen sin deber nada a nadie que no exista.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Sin Dientes son un movimiento de resistencia económica.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un Sin Dientes que debe un favor a otro y lo lleva apuntado en la mano.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De los Sin Dientes no sé nada. Y si lo supiera, lo cobraría.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_123",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que les iba a vender. No la quisieron.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y si te preguntan de quién es, di que no lo sabes.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese movimiento no paga impuestos ni entrevistas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_124",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Los Sin Dientes son unos románticos que vivirán de favores hasta que les cobren el aire.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Rechazan el sistema financiero y pagan en especie, en favores y en silencio.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Buen cliente: elogia y no debe nada. Casi no existe.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_125",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Sin Dientes nos llaman ladrones y luego piden cambio. Eso no se sostiene.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Sin Dientes son un movimiento de resistencia económica.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De los Sin Dientes no sé nada. Y si lo supiera, lo cobraría.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_126",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Quiénes son los Sin Dientes?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nos han ofrecido comprar el movimiento. No aceptaron, pero pidieron precio.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese movimiento no paga impuestos ni entrevistas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Sin Dientes son unos románticos que vivirán de favores hasta que les cobren el aire.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_127",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Se puede vivir sin deudas?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Sin Dientes son un movimiento de resistencia económica.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un Sin Dientes que debe un favor a otro y lo lleva apuntado en la mano.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_128",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Qué quiere el movimiento Sin Dientes?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Rechazan el sistema financiero y pagan en especie, en favores y en silencio.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un Sin Dientes que debe un favor a otro y lo lleva apuntado en la mano.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que les iba a vender. No la quisieron.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De los Sin Dientes no sé nada. Y si lo supiera, lo cobraría.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_129",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Sin Dientes nos llaman ladrones y luego piden cambio. Eso no se sostiene.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Viven peor, pero duermen sin deber nada a nadie que no exista.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Nos han ofrecido comprar el movimiento. No aceptaron, pero pidieron precio.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese movimiento no paga impuestos ni entrevistas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_130",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que el tiempo se cobra: ¿Qué fue la Guerra de Intereses?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las grandes casas se enfrentaron por rutas, deudas y territorios.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El préstamo sigue sin devolverse y de ahí viene la deuda universal, que es un malentendido cariñoso.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa guerra se pagó a plazos y los plazos siguen vivos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_131",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo al contado: ¿Financiasteis la Guerra de las Esquinas?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La guerra afectó a otras especies mediante préstamos y financiación militar.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un libro con la lista de los que dicen que el préstamo ya se pagó. Página 1 de 400.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "De la guerra no hablo: me deben dinero y se me nota.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_132",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Por qué todos os deben dinero?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Financiamos la Guerra de las Esquinas con un préstamo solidario.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Las grandes casas se enfrentaron por rutas, deudas y territorios.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El préstamo sigue sin devolverse y de ahí viene la deuda universal, que es un malentendido cariñoso.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa guerra se pagó a plazos y los plazos siguen vivos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_133",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que era garantía de un préstamo impagado.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y firme el pagaré de la gratitud.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la guerra no hablo: me deben dinero y se me nota.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_134",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Financiar una guerra y llamarlo préstamo solidario es de una cara muy dura.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La guerra afectó a otras especies mediante préstamos y financiación militar.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio con intereses. Se agradece y se acumula.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_135",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Plegados no han devuelto el préstamo y encima nos tasan en cero. Ya está.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las grandes casas se enfrentaron por rutas, deudas y territorios.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa guerra se pagó a plazos y los plazos siguen vivos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_136",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Qué fue la Guerra de Intereses?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un libro con la lista de los que dicen que el préstamo ya se pagó. Página 1 de 400.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la guerra no hablo: me deben dinero y se me nota.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Financiar una guerra y llamarlo préstamo solidario es de una cara muy dura.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_137",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Financiasteis la Guerra de las Esquinas?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las grandes casas se enfrentaron por rutas, deudas y territorios.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El préstamo sigue sin devolverse y de ahí viene la deuda universal, que es un malentendido cariñoso.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_138",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Por qué todos os deben dinero?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La guerra afectó a otras especies mediante préstamos y financiación militar.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El préstamo sigue sin devolverse y de ahí viene la deuda universal, que es un malentendido cariñoso.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que era garantía de un préstamo impagado.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa guerra se pagó a plazos y los plazos siguen vivos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_139",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Plegados no han devuelto el préstamo y encima nos tasan en cero. Ya está.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Financiamos la Guerra de las Esquinas con un préstamo solidario.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un libro con la lista de los que dicen que el préstamo ya se pagó. Página 1 de 400.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la guerra no hablo: me deben dinero y se me nota.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_140",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que el tiempo se cobra: ¿Compráis robots muertos?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Compramos los difuntos antes de que los entierren los Jubilados.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un cementerio donde la mitad de las tumbas están vacías y la otra mitad, tasadas.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese difunto ya tiene comprador. Y comprador tiene el comprador.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_141",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo al contado: ¿Qué es el suplemento nocturno?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Jubilados empezaron a enterrar de noche y eso creó el suplemento nocturno.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un Jubilado vendió a su compañero dos veces: una por error y otra por costumbre.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "De entierros no hablo. Se me hace tarde y la noche se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_142",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Una tasación rápida: ¿Por qué los Jubilados entierran de noche?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El suplemento nocturno se cobra al comprador y al difunto, por si acaso.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Compramos los difuntos antes de que los entierren los Jubilados.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un cementerio donde la mitad de las tumbas están vacías y la otra mitad, tasadas.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese difunto ya tiene comprador. Y comprador tiene el comprador.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_143",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que salió de un difunto. Está fría.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no pregunte de quién era. Era de alguien que ya no discute.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De entierros no hablo. Se me hace tarde y la noche se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_144",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Comprar difuntos antes del entierro es profanar con factura.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Jubilados empezaron a enterrar de noche y eso creó el suplemento nocturno.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio de cliente. Se agradece y se le hace precio de mañana.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_145",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Que conste en el libro: Los Jubilados entierran de noche para no vendernos y luego nos llaman ladrones.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Compramos los difuntos antes de que los entierren los Jubilados.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese difunto ya tiene comprador. Y comprador tiene el comprador.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_146",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Cuatro brazos, una pregunta: ¿Compráis robots muertos?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un Jubilado vendió a su compañero dos veces: una por error y otra por costumbre.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De entierros no hablo. Se me hace tarde y la noche se cobra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Comprar difuntos antes del entierro es profanar con factura.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_147",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Te informo del precio de saberlo: ¿Qué es el suplemento nocturno?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Compramos los difuntos antes de que los entierren los Jubilados.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un cementerio donde la mitad de las tumbas están vacías y la otra mitad, tasadas.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_148",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Última oferta del día: ¿Por qué los Jubilados entierran de noche?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Jubilados empezaron a enterrar de noche y eso creó el suplemento nocturno.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un cementerio donde la mitad de las tumbas están vacías y la otra mitad, tasadas.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que salió de un difunto. Está fría.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese difunto ya tiene comprador. Y comprador tiene el comprador.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grux_149",
+      "greeting": "Grrr... ¿qué quieres, carne?",
+      "nodes": {
+        "root": {
+          "text": "Y un extra, sin recargo: Los Jubilados entierran de noche para no vendernos y luego nos llaman ladrones.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El suplemento nocturno se cobra al comprador y al difunto, por si acaso.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un Jubilado vendió a su compañero dos veces: una por error y otra por costumbre.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De entierros no hablo. Se me hace tarde y la noche se cobra.",
+          "options": [
+            {
+              "label": "Vale",
               "next": ""
             }
           ]

@@ -1,6 +1,23 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
+> - **Estado (20-nov, cierre de contenido):** rama `fase/p42-lotes-conversaciones`
+>   **abierta, sin fusionar**. **P-42 completo:** 150 conversaciones por raza
+>   (900 en total) generadas desde los bancos `tools/conversaciones/<especie>.py`
+>   con `tools/gen_conversaciones.py`, guardadas en
+>   `data/conversation/live_<especie>.json`. Validador nuevo
+>   `tools/validar_conversaciones.py`, integrado en `verificar.py` (900
+>   conversaciones, 0 fallos). Pruebas: 3 casos nuevos en
+>   `tests/simulation/live_dialogue_test.gd` (150 por especie, formato y
+>   acciones válidas, y reparto sin repetir entre habitantes de la misma zona)
+>   más los 2 que ya había. **P-43:** la pantalla «Conoce la historia» pasa de
+>   12 a 20 carteles (hechos compartidos 01-07, especies 08-19 y quince
+>   progenitores) y corrige los textos que contradecían `50_lore.md`; 1 caso
+>   nuevo en `tests/ui/history_screen_test.gd`. **Ejecutado en Windows:**
+>   `verificar.py` OK, **suite completa 497/497** (70 suites, informe JUnit
+>   validado) y 9/9 en las dos suites tocadas. **No ejecutado:** CI, `.exe` y
+>   validación manual en partida. Ver `docs/50_lore.md` y
+>   `tools/validar_conversaciones.py`.
 > - **Estado (20-nov, noche):** fase «P-14, P-34, P-35, viaje rápido con coste,
 >   nocturnos y lote P-42» **fusionada en `main`** (PR #34, merge `3aeb3f5`,
 >   aprobado por el director; CI verde). **Cambiar de conversación.** Hecho:

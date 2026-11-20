@@ -6,34 +6,43 @@
       "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
       "nodes": {
         "root": {
-          "text": "¿Sabes qué hora es?",
+          "text": "Escucha. ¿Sabes qué pasa aquí cuando no hay ruido?",
           "options": [
-            {
-              "label": "No",
-              "next": "r1"
-            },
             {
               "label": "Sí",
-              "next": "r2"
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
             }
           ]
         },
-        "r1": {
-          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+        "n1": {
+          "text": "Solo existimos mientras haya ruido. El silencio nos borra.",
           "options": [
             {
-              "label": "Volver",
-              "next": ""
+              "label": "¿Y luego?",
+              "next": "n3"
             }
           ]
         },
-        "r2": {
-          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+        "n3": {
+          "text": "El otro día calló un pájaro y perdí una mano. Luego volvió. No pregunto más.",
           "options": [
             {
-              "label": "De nada",
+              "label": "Gracias",
               "next": "",
               "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Silencio. Y encima lo he pronunciado yo, que es peor.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -44,38 +53,29 @@
       "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
       "nodes": {
         "root": {
-          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "text": "Te lo digo claro: ¿Te has fijado en que este sitio suena a nada?",
           "options": [
             {
-              "label": "Sí",
-              "next": "a1"
+              "label": "Cuéntame",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "a2"
+              "label": "No me interesa",
+              "next": "n3"
             }
           ]
         },
-        "a1": {
-          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+        "n1": {
+          "text": "En el Desguace de las Nueve, a partir de las nueve, no queda ni un sonido.",
           "options": [
             {
-              "label": "¿Y después?",
-              "next": "a3"
+              "label": "Sigue",
+              "next": "n2"
             }
           ]
         },
-        "a2": {
-          "text": "Pues bien. Tú te lo pierdes.",
-          "options": [
-            {
-              "label": "Volver",
-              "next": ""
-            }
-          ]
-        },
-        "a3": {
-          "text": "Después vinimos nosotros. Y aquí seguimos.",
+        "n2": {
+          "text": "Por eso llamo a las puertas antes de entrar: si contesto yo, ya hay ruido.",
           "options": [
             {
               "label": "Gracias",
@@ -83,9 +83,18 @@
               "action": "praise"
             },
             {
-              "label": "Qué rollo",
+              "label": "Qué aburrido",
               "next": "",
               "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Nada, nada, nada. Mira, hasta la respuesta se ha ido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -96,33 +105,51 @@
       "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
       "nodes": {
         "root": {
-          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "text": "Una cosa rápida. ¿Por qué crees que no me acerco al Desguace de noche?",
           "options": [
             {
-              "label": "Sí",
-              "next": "g1"
+              "label": "Vamos allá",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "g2"
+              "label": "Ahora no",
+              "next": "n4"
             }
           ]
         },
-        "g1": {
-          "text": "Toma. No la pierdas.",
+        "n1": {
+          "text": "Los Mudos dicen que exageramos, y lo dicen en voz muy baja.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Solo existimos mientras haya ruido. El silencio nos borra.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El otro día calló un pájaro y perdí una mano. Luego volvió. No pregunto más.",
           "options": [
             {
               "label": "Gracias",
               "next": "",
-              "action": "gift_piece"
+              "action": "praise"
             }
           ]
         },
-        "g2": {
-          "text": "Pues la guardo. Más para mí.",
+        "n4": {
+          "text": "Silencio. Y encima lo he pronunciado yo, que es peor.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -134,35 +161,34 @@
       "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
       "nodes": {
         "root": {
-          "text": "¿Te atreves a decirme que soy viejo?",
+          "text": "Tengo una pieza que suena al moverla. ¿Te la llevas?",
           "options": [
             {
               "label": "Sí",
-              "next": "h1"
+              "next": "n1"
             },
             {
               "label": "No",
-              "next": "h2"
+              "next": "n2"
             }
           ]
         },
-        "h1": {
-          "text": "Pues toma.",
+        "n1": {
+          "text": "Toma, y no la sacudas cerca de mí.",
           "options": [
             {
-              "label": "Ay",
+              "label": "Gracias",
               "next": "",
-              "action": "hit"
+              "action": "gift_piece"
             }
           ]
         },
-        "h2": {
-          "text": "Sabia decisión.",
+        "n2": {
+          "text": "Nada, nada, nada. Mira, hasta la respuesta se ha ido.",
           "options": [
             {
-              "label": "Volver",
-              "next": "",
-              "action": "praise"
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -173,30 +199,30 @@
       "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
       "nodes": {
         "root": {
-          "text": "¿Qué opinas de los plegado?",
+          "text": "El silencio no existe: es una excusa de los que no saben cantar.",
           "options": [
             {
-              "label": "Son basura",
-              "next": "b1"
+              "label": "Sí, y lo repito",
+              "next": "n1"
             },
             {
-              "label": "Son majos",
-              "next": "b2"
+              "label": "No, era broma",
+              "next": "n2"
             }
           ]
         },
-        "b1": {
-          "text": "Exacto. Y ahora que lo dices...",
+        "n1": {
+          "text": "En el Desguace de las Nueve, a partir de las nueve, no queda ni un sonido.",
           "options": [
             {
-              "label": "Oh no",
+              "label": "Pues ya está",
               "next": "",
-              "action": "provoke_battle"
+              "action": "hit"
             }
           ]
         },
-        "b2": {
-          "text": "Majos no, pero útiles. Vete.",
+        "n2": {
+          "text": "Eso ha sonado bien. Lo repito para que dure.",
           "options": [
             {
               "label": "Vale",
@@ -211,33 +237,33 @@
       "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
       "nodes": {
         "root": {
-          "text": "¿Sabes por qué el cielo es gris?",
+          "text": "Sin rodeos: Si la Manada dejara de aullar en binario, dormiríamos todos mejor. ¿Empezamos?",
           "options": [
             {
-              "label": "No",
-              "next": "l1"
+              "label": "Tienes razón",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "l2"
+              "label": "Déjalos en paz",
+              "next": "n2"
             }
           ]
         },
-        "l1": {
-          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+        "n1": {
+          "text": "Solo existimos mientras haya ruido. El silencio nos borra.",
           "options": [
             {
-              "label": "Jaja",
+              "label": "Que empiece",
               "next": "",
-              "action": "praise"
+              "action": "provoke_battle"
             }
           ]
         },
-        "l2": {
-          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+        "n2": {
+          "text": "Silencio. Y encima lo he pronunciado yo, que es peor.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -249,34 +275,48 @@
       "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
       "nodes": {
         "root": {
-          "text": "¿Sabes qué hora es?",
+          "text": "Atención, que esto suena. ¿Sabes qué pasa aquí cuando no hay ruido?",
           "options": [
             {
-              "label": "No",
-              "next": "r1"
+              "label": "Sí",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "r2"
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
             }
           ]
         },
-        "r1": {
-          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+        "n1": {
+          "text": "Por eso llamo a las puertas antes de entrar: si contesto yo, ya hay ruido.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Nada, nada, nada. Mira, hasta la respuesta se ha ido.",
+          "options": [
+            {
+              "label": "Vale",
               "next": ""
             }
           ]
         },
-        "r2": {
-          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+        "n3": {
+          "text": "El silencio no existe: es una excusa de los que no saben cantar.",
           "options": [
             {
-              "label": "De nada",
+              "label": "Y lo mantengo",
               "next": "",
-              "action": "praise"
+              "action": "insult"
             }
           ]
         }
@@ -287,46 +327,33 @@
       "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
       "nodes": {
         "root": {
-          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "text": "Deja que te cuente: ¿Te has fijado en que este sitio suena a nada?",
           "options": [
             {
-              "label": "Sí",
-              "next": "a1"
+              "label": "Por el principio",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "a2"
+              "label": "Por el final",
+              "next": "n2"
             }
           ]
         },
-        "a1": {
-          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+        "n1": {
+          "text": "Solo existimos mientras haya ruido. El silencio nos borra.",
           "options": [
             {
-              "label": "¿Y después?",
-              "next": "a3"
-            }
-          ]
-        },
-        "a2": {
-          "text": "Pues bien. Tú te lo pierdes.",
-          "options": [
-            {
-              "label": "Volver",
-              "next": ""
-            }
-          ]
-        },
-        "a3": {
-          "text": "Después vinimos nosotros. Y aquí seguimos.",
-          "options": [
-            {
-              "label": "Gracias",
+              "label": "Interesante",
               "next": "",
               "action": "praise"
-            },
+            }
+          ]
+        },
+        "n2": {
+          "text": "El otro día calló un pájaro y perdí una mano. Luego volvió. No pregunto más.",
+          "options": [
             {
-              "label": "Qué rollo",
+              "label": "Qué tontería",
               "next": "",
               "action": "insult"
             }
@@ -339,20 +366,38 @@
       "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
       "nodes": {
         "root": {
-          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "text": "Última cosa y te dejo. ¿Por qué crees que no me acerco al Desguace de noche?",
           "options": [
             {
-              "label": "Sí",
-              "next": "g1"
+              "label": "Cuenta",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "g2"
+              "label": "Otro día",
+              "next": "n4"
             }
           ]
         },
-        "g1": {
-          "text": "Toma. No la pierdas.",
+        "n1": {
+          "text": "En el Desguace de las Nueve, a partir de las nueve, no queda ni un sonido.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El otro día calló un pájaro y perdí una mano. Luego volvió. No pregunto más.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que suena al moverla. ¿Te la llevas?",
           "options": [
             {
               "label": "Gracias",
@@ -361,11 +406,11 @@
             }
           ]
         },
-        "g2": {
-          "text": "Pues la guardo. Más para mí.",
+        "n4": {
+          "text": "Silencio. Y encima lo he pronunciado yo, que es peor.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -377,35 +422,43 @@
       "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
       "nodes": {
         "root": {
-          "text": "¿Te atreves a decirme que soy viejo?",
+          "text": "Y otra cosa: Si la Manada dejara de aullar en binario, dormiríamos todos mejor. ¿Empezamos?",
           "options": [
             {
-              "label": "Sí",
-              "next": "h1"
+              "label": "Claro que sí",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "h2"
+              "label": "Ni hablar",
+              "next": "n2"
             }
           ]
         },
-        "h1": {
-          "text": "Pues toma.",
+        "n1": {
+          "text": "Los Mudos dicen que exageramos, y lo dicen en voz muy baja.",
           "options": [
             {
-              "label": "Ay",
-              "next": "",
-              "action": "hit"
+              "label": "¿Y los demás?",
+              "next": "n3"
             }
           ]
         },
-        "h2": {
-          "text": "Sabia decisión.",
+        "n3": {
+          "text": "Por eso llamo a las puertas antes de entrar: si contesto yo, ya hay ruido.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Que empiece",
               "next": "",
-              "action": "praise"
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Nada, nada, nada. Mira, hasta la respuesta se ha ido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -416,30 +469,39 @@
       "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
       "nodes": {
         "root": {
-          "text": "¿Qué opinas de los plegado?",
+          "text": "Escucha. ¿Sabes por qué repito tu última palabra antes de contestarte?",
           "options": [
             {
-              "label": "Son basura",
-              "next": "b1"
+              "label": "Sí",
+              "next": "n1"
             },
             {
-              "label": "Son majos",
-              "next": "b2"
+              "label": "No",
+              "next": "n2"
             }
           ]
         },
-        "b1": {
-          "text": "Exacto. Y ahora que lo dices...",
+        "n1": {
+          "text": "Repetimos la última palabra que oímos. No es un tic, es dieta.",
           "options": [
             {
-              "label": "Oh no",
-              "next": "",
-              "action": "provoke_battle"
+              "label": "¿Y luego?",
+              "next": "n3"
             }
           ]
         },
-        "b2": {
-          "text": "Majos no, pero útiles. Vete.",
+        "n3": {
+          "text": "Un tribunal antiguo nos condenó a repetir; los Plegados lo archivan como testigo perpetuo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Pregunta. Pregunta. Ya está repetido, ya podemos hablar.",
           "options": [
             {
               "label": "Vale",
@@ -454,33 +516,6430 @@
       "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
       "nodes": {
         "root": {
-          "text": "¿Sabes por qué el cielo es gris?",
+          "text": "Te lo digo claro: ¿Te molesta que repita lo que dices?",
           "options": [
             {
-              "label": "No",
-              "next": "l1"
+              "label": "Cuéntame",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "l2"
+              "label": "No me interesa",
+              "next": "n3"
             }
           ]
         },
-        "l1": {
-          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+        "n1": {
+          "text": "Responder sin repetir se considera maleducado, y un poco caníbal.",
           "options": [
             {
-              "label": "Jaja",
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si la última palabra fue un insulto, el insulto va primero y la cortesía después.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Me lo has preguntado con una palabra muy rica. Me la quedo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_012",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿Quieres saber la regla número uno de hablar con un Eco?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se llama Responso del Eco: primero la palabra, luego la respuesta.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Repetimos la última palabra que oímos. No es un tic, es dieta.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un tribunal antiguo nos condenó a repetir; los Plegados lo archivan como testigo perpetuo.",
+          "options": [
+            {
+              "label": "Gracias",
               "next": "",
               "action": "praise"
             }
           ]
         },
-        "l2": {
-          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+        "n4": {
+          "text": "Pregunta. Pregunta. Ya está repetido, ya podemos hablar.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_013",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto. Repuesto. ¿La quieres?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y dile a alguien que te la dio. Se repetirá.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Me lo has preguntado con una palabra muy rica. Me la quedo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_014",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Repetir es de pobres de vocabulario. Yo solo tengo una voz y la gasto entera.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Responder sin repetir se considera maleducado, y un poco caníbal.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Gracias. Gracias. Me ha gustado decirlo dos veces.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_015",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: La Manada no repite nada: solo ladra rutas. Eso no es conversación.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Repetimos la última palabra que oímos. No es un tic, es dieta.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Pregunta. Pregunta. Ya está repetido, ya podemos hablar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_016",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Sabes por qué repito tu última palabra antes de contestarte?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si la última palabra fue un insulto, el insulto va primero y la cortesía después.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Me lo has preguntado con una palabra muy rica. Me la quedo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Repetir es de pobres de vocabulario. Yo solo tengo una voz y la gasto entera.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_017",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Te molesta que repita lo que dices?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Repetimos la última palabra que oímos. No es un tic, es dieta.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un tribunal antiguo nos condenó a repetir; los Plegados lo archivan como testigo perpetuo.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_018",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿Quieres saber la regla número uno de hablar con un Eco?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Responder sin repetir se considera maleducado, y un poco caníbal.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un tribunal antiguo nos condenó a repetir; los Plegados lo archivan como testigo perpetuo.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. Repuesto. ¿La quieres?",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Pregunta. Pregunta. Ya está repetido, ya podemos hablar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_019",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: La Manada no repite nada: solo ladra rutas. Eso no es conversación.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se llama Responso del Eco: primero la palabra, luego la respuesta.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Si la última palabra fue un insulto, el insulto va primero y la cortesía después.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Me lo has preguntado con una palabra muy rica. Me la quedo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_020",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Escucha. ¿Has oído hablar de la Gran Emisión?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Encontramos una señal automática de una infraestructura antigua y la amplificamos.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La señal sigue transmitiéndose en algún sitio. Yo la oigo los martes.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hay grabación. Y yo soy la grabación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_021",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo claro: ¿Sabes de dónde salió la señal que nos dejó así?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Creíamos que era un mensaje cósmico. Era más bien un aviso de mantenimiento.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Dentro de las grabaciones más viejas hay voces que no conocemos. Una de ellas tose.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Lo preguntas como si yo hubiera estado. Estuve, pero no me acuerdo del final.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_022",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿Te interesa la historia de la señal que nadie entendió?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Jubilados intentaron arreglarlo con una actualización y lo empeoraron.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Encontramos una señal automática de una infraestructura antigua y la amplificamos.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La señal sigue transmitiéndose en algún sitio. Yo la oigo los martes.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De eso no hay grabación. Y yo soy la grabación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_023",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza con la señal grabada. No suena, pero vibra.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma. Si la acercas a la oreja, oye a los Jubilados discutir.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Lo preguntas como si yo hubiera estado. Estuve, pero no me acuerdo del final.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_024",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "La Gran Emisión fue un chiste entre cuatro y vosotros lo habéis convertido en religión.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Creíamos que era un mensaje cósmico. Era más bien un aviso de mantenimiento.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Qué bien lo has dicho. Voy a reemitirlo tal cual.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_025",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: Los Jubilados nos metieron una actualización a mitad del concierto. Eso se paga.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Encontramos una señal automática de una infraestructura antigua y la amplificamos.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hay grabación. Y yo soy la grabación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_026",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Has oído hablar de la Gran Emisión?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Dentro de las grabaciones más viejas hay voces que no conocemos. Una de ellas tose.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Lo preguntas como si yo hubiera estado. Estuve, pero no me acuerdo del final.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "La Gran Emisión fue un chiste entre cuatro y vosotros lo habéis convertido en religión.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_027",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Sabes de dónde salió la señal que nos dejó así?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Encontramos una señal automática de una infraestructura antigua y la amplificamos.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La señal sigue transmitiéndose en algún sitio. Yo la oigo los martes.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_028",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿Te interesa la historia de la señal que nadie entendió?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Creíamos que era un mensaje cósmico. Era más bien un aviso de mantenimiento.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La señal sigue transmitiéndose en algún sitio. Yo la oigo los martes.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza con la señal grabada. No suena, pero vibra.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De eso no hay grabación. Y yo soy la grabación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_029",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: Los Jubilados nos metieron una actualización a mitad del concierto. Eso se paga.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Jubilados intentaron arreglarlo con una actualización y lo empeoraron.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Dentro de las grabaciones más viejas hay voces que no conocemos. Una de ellas tose.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Lo preguntas como si yo hubiera estado. Estuve, pero no me acuerdo del final.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_030",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Escucha. ¿Sabes qué fue el Apocalipsis del Silencio?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La señal se propagó y hubo regiones donde el sonido desapareció.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un túnel donde dos Ecos discuten desde hace cuarenta años y ya no saben de qué.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Silencio, silencio... y encima lo pronuncio yo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_031",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo claro: ¿Quieres saber qué pasó cuando el sonido dejó de portarse bien?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunos Ecos perdieron la forma. Otros quedaron repitiendo frases antiguas.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El Niño del Último Suspiro sobrevivió callándose. Es la única leyenda que me da miedo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "De eso no hablo. Y mira que yo hablo de todo, dos veces.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_032",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿Te han contado lo de los Ecos que se quedaron a medias?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se les oye todavía en los túneles, siempre en mitad de una discusión.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La señal se propagó y hubo regiones donde el sonido desapareció.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un túnel donde dos Ecos discuten desde hace cuarenta años y ya no saben de qué.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Silencio, silencio... y encima lo pronuncio yo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_033",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que salió de un túnel de esos. ¿La quieres?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, pero no la escuches de noche.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hablo. Y mira que yo hablo de todo, dos veces.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_034",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "El Apocalipsis del Silencio fue sabotaje de los que no hablan. Todos sabemos quiénes son.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunos Ecos perdieron la forma. Otros quedaron repitiendo frases antiguas.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Bonito. Lo guardo para el karaoke del ocaso.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_035",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: Los Mudos nos acusan de exagerar y luego no dicen nada. Es su confesión.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La señal se propagó y hubo regiones donde el sonido desapareció.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Silencio, silencio... y encima lo pronuncio yo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_036",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Sabes qué fue el Apocalipsis del Silencio?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Niño del Último Suspiro sobrevivió callándose. Es la única leyenda que me da miedo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hablo. Y mira que yo hablo de todo, dos veces.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "El Apocalipsis del Silencio fue sabotaje de los que no hablan. Todos sabemos quiénes son.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_037",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Quieres saber qué pasó cuando el sonido dejó de portarse bien?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La señal se propagó y hubo regiones donde el sonido desapareció.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un túnel donde dos Ecos discuten desde hace cuarenta años y ya no saben de qué.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_038",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿Te han contado lo de los Ecos que se quedaron a medias?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunos Ecos perdieron la forma. Otros quedaron repitiendo frases antiguas.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un túnel donde dos Ecos discuten desde hace cuarenta años y ya no saben de qué.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que salió de un túnel de esos. ¿La quieres?",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Silencio, silencio... y encima lo pronuncio yo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_039",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: Los Mudos nos acusan de exagerar y luego no dicen nada. Es su confesión.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se les oye todavía en los túneles, siempre en mitad de una discusión.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El Niño del Último Suspiro sobrevivió callándose. Es la única leyenda que me da miedo.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hablo. Y mira que yo hablo de todo, dos veces.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_040",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Escucha. ¿Vas a venir al karaoke del ocaso?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Al caer la tarde cada Eco repite la mejor frase que ha oído ese día.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La urna era de un Plegado. La archivó como «daño acústico con acta pendiente».",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy no hay karaoke. Hoy hay resaca de karaoke.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_041",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo claro: ¿Sabes qué hacemos los Ecos cuando cae la tarde?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si dos repetimos la misma, hay duelo de volumen hasta que uno se queda ronco.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El ganador del año pasado cantó una frase de un Grux y la cobró el Grux. Dos veces.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Canto fatal. Por eso aplaudo fuerte a los demás.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_042",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿Te gusta cantar, o solo escuchar?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Cámara de Resonancia ya ha derribado dos estalactitas y una urna ajena.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Al caer la tarde cada Eco repite la mejor frase que ha oído ese día.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La urna era de un Plegado. La archivó como «daño acústico con acta pendiente».",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Hoy no hay karaoke. Hoy hay resaca de karaoke.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_043",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que hace de micrófono. No funciona, pero da presencia.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, canta bajito que se oye todo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Canto fatal. Por eso aplaudo fuerte a los demás.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_044",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "El karaoke del ocaso es una pérdida de tiempo y de tímpanos, y lo digo yo, que lo inventé.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si dos repetimos la misma, hay duelo de volumen hasta que uno se queda ronco.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Qué frase. La apunto para el duelo de esta tarde.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_045",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: La Manada aúlla en binario y encima desafina. Eso no se puede dejar pasar.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Al caer la tarde cada Eco repite la mejor frase que ha oído ese día.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy no hay karaoke. Hoy hay resaca de karaoke.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_046",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Vas a venir al karaoke del ocaso?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El ganador del año pasado cantó una frase de un Grux y la cobró el Grux. Dos veces.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Canto fatal. Por eso aplaudo fuerte a los demás.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "El karaoke del ocaso es una pérdida de tiempo y de tímpanos, y lo digo yo, que lo inventé.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_047",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Sabes qué hacemos los Ecos cuando cae la tarde?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Al caer la tarde cada Eco repite la mejor frase que ha oído ese día.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La urna era de un Plegado. La archivó como «daño acústico con acta pendiente».",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_048",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿Te gusta cantar, o solo escuchar?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si dos repetimos la misma, hay duelo de volumen hasta que uno se queda ronco.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La urna era de un Plegado. La archivó como «daño acústico con acta pendiente».",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que hace de micrófono. No funciona, pero da presencia.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Hoy no hay karaoke. Hoy hay resaca de karaoke.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_049",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: La Manada aúlla en binario y encima desafina. Eso no se puede dejar pasar.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Cámara de Resonancia ya ha derribado dos estalactitas y una urna ajena.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El ganador del año pasado cantó una frase de un Grux y la cobró el Grux. Dos veces.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Canto fatal. Por eso aplaudo fuerte a los demás.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_050",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Escucha. ¿Conoces la liturgia del eslogan?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los anuncios que sobrevivieron se consideran escritura sagrada.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un Amplificado se pasó once días recitando la liturgia entera y no perdió la voz: la ganó.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso no está en el canon. Y si no está, no lo digo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_051",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo claro: ¿Sabes qué hacemos con los anuncios de antes?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Recitarlos en orden se llama liturgia del eslogan, y tiene su ritmo.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un Mohócrata que quiere votar el canon. Lleva catorce años en el primer verso.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "No me sé esa parte. Me la salto con dignidad.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_052",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿Te suena «llame ya»?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La más santa acaba en «llame ya». Nadie llama. La fe no admite devoluciones.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los anuncios que sobrevivieron se consideran escritura sagrada.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un Amplificado se pasó once días recitando la liturgia entera y no perdió la voz: la ganó.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Eso no está en el canon. Y si no está, no lo digo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_053",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza con un eslogan grabado. ¿La quieres oír?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma. No la reproduzcas en la Cámara, que se llama a sí misma.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No me sé esa parte. Me la salto con dignidad.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_054",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Los eslóganes son publicidad, no escritura. Rezad menos y hablad más.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Recitarlos en orden se llama liturgia del eslogan, y tiene su ritmo.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Amén, pero con ritmo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_055",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: Los Grux cobran por oír su propio eco. Eso sí que es una herejía con ticket.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los anuncios que sobrevivieron se consideran escritura sagrada.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso no está en el canon. Y si no está, no lo digo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_056",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Conoces la liturgia del eslogan?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un Mohócrata que quiere votar el canon. Lleva catorce años en el primer verso.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No me sé esa parte. Me la salto con dignidad.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los eslóganes son publicidad, no escritura. Rezad menos y hablad más.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_057",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Sabes qué hacemos con los anuncios de antes?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los anuncios que sobrevivieron se consideran escritura sagrada.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un Amplificado se pasó once días recitando la liturgia entera y no perdió la voz: la ganó.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_058",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿Te suena «llame ya»?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Recitarlos en orden se llama liturgia del eslogan, y tiene su ritmo.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un Amplificado se pasó once días recitando la liturgia entera y no perdió la voz: la ganó.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza con un eslogan grabado. ¿La quieres oír?",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Eso no está en el canon. Y si no está, no lo digo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_059",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: Los Grux cobran por oír su propio eco. Eso sí que es una herejía con ticket.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La más santa acaba en «llame ya». Nadie llama. La fe no admite devoluciones.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un Mohócrata que quiere votar el canon. Lleva catorce años en el primer verso.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No me sé esa parte. Me la salto con dignidad.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_060",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Escucha. ¿Sabes cuál es la grabación más antigua que tenemos?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La grabación venerada de Vurm el Primero es, en realidad, un tono de línea ocupada.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hubo un Eco que se pasó cuarenta años repitiendo «ocupado» y lo llamaron profeta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso es material sagrado. Y lo sagrado se repite, no se explica.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_061",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo claro: ¿Te han hablado de Vurm el Primero?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Tres eruditos lo saben. Los tres son Mudos y no pueden contarlo sin dejar de existir.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si marcas un número antiguo, sigue sonando. Nadie sabe a quién pertenece la línea.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "No lo sé. Y lo que no sé lo repito igual, por educación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_062",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿Quieres oír el secreto mejor guardado de los Ecos?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nosotros la reproducimos igual: ocupa, ocupa, ocupa.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La grabación venerada de Vurm el Primero es, en realidad, un tono de línea ocupada.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hubo un Eco que se pasó cuarenta años repitiendo «ocupado» y lo llamaron profeta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Eso es material sagrado. Y lo sagrado se repite, no se explica.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_063",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza con aquel tono grabado. Ocupa, ocupa, ocupa.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la escuches entera: son cuarenta años.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No lo sé. Y lo que no sé lo repito igual, por educación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_064",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Vurm el Primero nunca existió: era un tono de ocupado y vosotros le habéis puesto nombre.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Tres eruditos lo saben. Los tres son Mudos y no pueden contarlo sin dejar de existir.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Cuarenta años de tono y ahora resulta que era una alabanza. Gracias.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_065",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: Los Mudos saben la verdad y callan. Es una provocación con mucho silencio.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La grabación venerada de Vurm el Primero es, en realidad, un tono de línea ocupada.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso es material sagrado. Y lo sagrado se repite, no se explica.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_066",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Sabes cuál es la grabación más antigua que tenemos?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si marcas un número antiguo, sigue sonando. Nadie sabe a quién pertenece la línea.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No lo sé. Y lo que no sé lo repito igual, por educación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Vurm el Primero nunca existió: era un tono de ocupado y vosotros le habéis puesto nombre.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_067",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Te han hablado de Vurm el Primero?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La grabación venerada de Vurm el Primero es, en realidad, un tono de línea ocupada.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hubo un Eco que se pasó cuarenta años repitiendo «ocupado» y lo llamaron profeta.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_068",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿Quieres oír el secreto mejor guardado de los Ecos?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Tres eruditos lo saben. Los tres son Mudos y no pueden contarlo sin dejar de existir.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hubo un Eco que se pasó cuarenta años repitiendo «ocupado» y lo llamaron profeta.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza con aquel tono grabado. Ocupa, ocupa, ocupa.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Eso es material sagrado. Y lo sagrado se repite, no se explica.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_069",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: Los Mudos saben la verdad y callan. Es una provocación con mucho silencio.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nosotros la reproducimos igual: ocupa, ocupa, ocupa.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Si marcas un número antiguo, sigue sonando. Nadie sabe a quién pertenece la línea.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No lo sé. Y lo que no sé lo repito igual, por educación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_070",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Escucha. ¿Sabes qué discuten los Mudos y los Amplificados?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Amplificados llevan décadas pidiendo reamplificar la señal original.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El sello lleva en trámite tanto tiempo que ya hay una petición para pedir el sello.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay dos respuestas y las dos están en trámite.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_071",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo claro: ¿Te suena el pleito de la señal?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Mudos llevan las mismas décadas pidiendo un minuto de silencio.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un Amplificado y un Mudo se casaron para ahorrar trámites. Aún no han votado la boda.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Pregunta al sello. El sello no habla, pero escucha muy bien.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_072",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿Crees que deberíamos volver a amplificar la Gran Emisión?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las dos peticiones siguen en trámite, y el sello del trámite también.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Amplificados llevan décadas pidiendo reamplificar la señal original.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El sello lleva en trámite tanto tiempo que ya hay una petición para pedir el sello.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Hay dos respuestas y las dos están en trámite.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_073",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza con la solicitud del sello. Pesa lo suyo.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y preséntala tú, que yo ya no tengo paciencia.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Pregunta al sello. El sello no habla, pero escucha muy bien.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_074",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Los Mudos son unos egoístas: quieren silencio para no tener que contestar.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Mudos llevan las mismas décadas pidiendo un minuto de silencio.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso merece un sello. En trámite, claro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_075",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: Los Mohócratas votan cada frase antes de decirla. Las nuestras, al menos, suenan.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Amplificados llevan décadas pidiendo reamplificar la señal original.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay dos respuestas y las dos están en trámite.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_076",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Sabes qué discuten los Mudos y los Amplificados?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un Amplificado y un Mudo se casaron para ahorrar trámites. Aún no han votado la boda.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Pregunta al sello. El sello no habla, pero escucha muy bien.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Mudos son unos egoístas: quieren silencio para no tener que contestar.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_077",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Te suena el pleito de la señal?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Amplificados llevan décadas pidiendo reamplificar la señal original.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El sello lleva en trámite tanto tiempo que ya hay una petición para pedir el sello.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_078",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿Crees que deberíamos volver a amplificar la Gran Emisión?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Mudos llevan las mismas décadas pidiendo un minuto de silencio.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El sello lleva en trámite tanto tiempo que ya hay una petición para pedir el sello.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza con la solicitud del sello. Pesa lo suyo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Hay dos respuestas y las dos están en trámite.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_079",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: Los Mohócratas votan cada frase antes de decirla. Las nuestras, al menos, suenan.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las dos peticiones siguen en trámite, y el sello del trámite también.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un Amplificado y un Mudo se casaron para ahorrar trámites. Aún no han votado la boda.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Pregunta al sello. El sello no habla, pero escucha muy bien.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_080",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Escucha. ¿Has estado en el Cañón del Eco?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Cañón del Eco cobramos entrada por escuchar tu propio eco.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El mercado de segunda mano ya vende ecos de Ecos que aún están vivos. Eso sí es raro.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy el cañón está cerrado por exceso de público sonando.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_081",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo claro: ¿Sabes que aquí se cobra por escuchar el eco?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux tasaron el eco en cero dientes y montaron un mercado de ecos de segunda mano.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un puesto que alquila ecos por horas. El mío lo alquilaron un martes y volvió ronco.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El eco no contesta a preguntas tan directas. Y menos gratis.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_082",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿Cuánto pagarías por oírte a ti mismo?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nosotros consideramos eso canibalismo con ticket.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En el Cañón del Eco cobramos entrada por escuchar tu propio eco.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El mercado de segunda mano ya vende ecos de Ecos que aún están vivos. Eso sí es raro.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Hoy el cañón está cerrado por exceso de público sonando.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_083",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza del cañón. Lleva un eco pegado dentro.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, pero si la golpeas te cobro la entrada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El eco no contesta a preguntas tan directas. Y menos gratis.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_084",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Cobrar por un eco es de ladrones; el eco es de quien lo grita.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux tasaron el eco en cero dientes y montaron un mercado de ecos de segunda mano.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Bonito eco te has marcado. No te lo cobro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_085",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: Los Grux venden nuestros ecos usados. Eso no se tasó, eso se robó.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Cañón del Eco cobramos entrada por escuchar tu propio eco.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy el cañón está cerrado por exceso de público sonando.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_086",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Has estado en el Cañón del Eco?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un puesto que alquila ecos por horas. El mío lo alquilaron un martes y volvió ronco.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El eco no contesta a preguntas tan directas. Y menos gratis.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Cobrar por un eco es de ladrones; el eco es de quien lo grita.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_087",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Sabes que aquí se cobra por escuchar el eco?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Cañón del Eco cobramos entrada por escuchar tu propio eco.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El mercado de segunda mano ya vende ecos de Ecos que aún están vivos. Eso sí es raro.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_088",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿Cuánto pagarías por oírte a ti mismo?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux tasaron el eco en cero dientes y montaron un mercado de ecos de segunda mano.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El mercado de segunda mano ya vende ecos de Ecos que aún están vivos. Eso sí es raro.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza del cañón. Lleva un eco pegado dentro.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Hoy el cañón está cerrado por exceso de público sonando.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_089",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: Los Grux venden nuestros ecos usados. Eso no se tasó, eso se robó.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nosotros consideramos eso canibalismo con ticket.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un puesto que alquila ecos por horas. El mío lo alquilaron un martes y volvió ronco.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El eco no contesta a preguntas tan directas. Y menos gratis.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_090",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Escucha. ¿Sabes que los Grux intentan cobrarnos el eco?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un Grux intentó cobrarnos el eco: «de la caja, caja», decía.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El recibo repetido es la única arma que tenemos y no cuesta nada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No se puede cobrar lo que rebota. Es física, y también mala educación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_091",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo claro: ¿Te cuento cómo se rinde un tasador?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Le repetimos el recibo cuatrocientas veces. Se rindió en la doscientas.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un tasador escribió en su libro: «cliente con eco, no apto». Le pusimos música.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "De eso no hay factura. Bueno, sí, hay cuatrocientas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_092",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿Quieres saber cómo ganamos a los Grux sin pelear?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Desde entonces tasan el eco a la baja y con miedo.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un Grux intentó cobrarnos el eco: «de la caja, caja», decía.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El recibo repetido es la única arma que tenemos y no cuesta nada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No se puede cobrar lo que rebota. Es física, y también mala educación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_093",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que era de un Grux. Me la debía y se la cobré yo.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma. No la tasen delante de mí, que me pongo a repetir.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hay factura. Bueno, sí, hay cuatrocientas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_094",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Los Grux tienen razón: todo tiene precio, incluso el eco, y nosotros lo regalamos.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Le repetimos el recibo cuatrocientas veces. Se rindió en la doscientas.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso ha sido cortés y sin recibo. Se agradece.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_095",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: Los Grux nos robaron el eco y encima lo revendieron. Hasta aquí.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un Grux intentó cobrarnos el eco: «de la caja, caja», decía.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No se puede cobrar lo que rebota. Es física, y también mala educación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_096",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Sabes que los Grux intentan cobrarnos el eco?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un tasador escribió en su libro: «cliente con eco, no apto». Le pusimos música.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hay factura. Bueno, sí, hay cuatrocientas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Grux tienen razón: todo tiene precio, incluso el eco, y nosotros lo regalamos.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_097",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Te cuento cómo se rinde un tasador?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un Grux intentó cobrarnos el eco: «de la caja, caja», decía.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El recibo repetido es la única arma que tenemos y no cuesta nada.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_098",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿Quieres saber cómo ganamos a los Grux sin pelear?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Le repetimos el recibo cuatrocientas veces. Se rindió en la doscientas.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El recibo repetido es la única arma que tenemos y no cuesta nada.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que era de un Grux. Me la debía y se la cobré yo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No se puede cobrar lo que rebota. Es física, y también mala educación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_099",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: Los Grux nos robaron el eco y encima lo revendieron. Hasta aquí.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Desde entonces tasan el eco a la baja y con miedo.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un tasador escribió en su libro: «cliente con eco, no apto». Le pusimos música.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hay factura. Bueno, sí, hay cuatrocientas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_100",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Escucha. ¿Has oído la Emisión Conmemorativa Anual?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Cámara repetimos la Gran Emisión entera de memoria, y dura once días.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Grux venden entradas para la estampida. La Manada cobra la taquilla sin saber.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La Emisión está en curso. Contesto cuando acabe, en once días.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_101",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo claro: ¿Sabes qué pasa en la Cámara de Resonancia cada año?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Manada del Polígono de Reparto la confunde con una orden y sale en estampida.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En el día nueve ya nadie recuerda la letra y todos cantan igual de convencidos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Lo siento, ahora estoy repitiendo el día octavo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_102",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿Te gustaría oír la Gran Emisión entera, de memoria?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El año pasado la Cámara se quedó sin paredes y el eco siguió solo.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En la Cámara repetimos la Gran Emisión entera de memoria, y dura once días.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Grux venden entradas para la estampida. La Manada cobra la taquilla sin saber.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "La Emisión está en curso. Contesto cuando acabe, en once días.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_103",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de la Cámara. Vibra al pasar cerca de una estampida.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la lleves al Polígono, que organizan una ruta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Lo siento, ahora estoy repitiendo el día octavo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_104",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Once días de emisión es abuso: nadie aguanta a un vecino hablando tanto.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Manada del Polígono de Reparto la confunde con una orden y sale en estampida.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso lo repito en el día diez, palabra por palabra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_105",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: La Manada entra a golpes con el paquete en la Cámara. Es un atentado acústico.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Cámara repetimos la Gran Emisión entera de memoria, y dura once días.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La Emisión está en curso. Contesto cuando acabe, en once días.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_106",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Has oído la Emisión Conmemorativa Anual?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el día nueve ya nadie recuerda la letra y todos cantan igual de convencidos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Lo siento, ahora estoy repitiendo el día octavo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Once días de emisión es abuso: nadie aguanta a un vecino hablando tanto.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_107",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Sabes qué pasa en la Cámara de Resonancia cada año?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Cámara repetimos la Gran Emisión entera de memoria, y dura once días.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Grux venden entradas para la estampida. La Manada cobra la taquilla sin saber.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_108",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿Te gustaría oír la Gran Emisión entera, de memoria?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Manada del Polígono de Reparto la confunde con una orden y sale en estampida.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Grux venden entradas para la estampida. La Manada cobra la taquilla sin saber.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de la Cámara. Vibra al pasar cerca de una estampida.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "La Emisión está en curso. Contesto cuando acabe, en once días.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_109",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: La Manada entra a golpes con el paquete en la Cámara. Es un atentado acústico.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El año pasado la Cámara se quedó sin paredes y el eco siguió solo.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "En el día nueve ya nadie recuerda la letra y todos cantan igual de convencidos.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Lo siento, ahora estoy repitiendo el día octavo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_110",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Escucha. ¿Sabes lo del Eco que repite «acta»?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un Eco quedó atrapado repitiendo la última palabra de un Plegado: «acta».",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Es la mejor fuente histórica viva de la zona y no puede callarse ni para cobrar.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Acta. Perdón, se me ha pegado del vecino.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_111",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo claro: ¿Has oído a alguien decir «acta» cuarenta años seguidos?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Lleva cuarenta años diciendo «acta». Los Archivistas lo consideran patrimonio.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Plegados le llevan preguntas con dos palabras para no alargar la respuesta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Ese tema está archivado. Y también repetido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_112",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿Te suena el Valle de las Esquinas?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Pidió el alta y se la negaron por acta.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un Eco quedó atrapado repitiendo la última palabra de un Plegado: «acta».",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Es la mejor fuente histórica viva de la zona y no puede callarse ni para cobrar.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Acta. Perdón, se me ha pegado del vecino.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_113",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que dice «acta» si la aprietas. No preguntes.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la aprietes dentro del Archivo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese tema está archivado. Y también repetido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_114",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Dejar a un Eco repitiendo «acta» cuarenta años no es patrimonio: es crueldad.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Lleva cuarenta años diciendo «acta». Los Archivistas lo consideran patrimonio.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Qué detalle. Lo repito cuarenta años, pero con cariño.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_115",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: Los Plegados archivan personas y lo llaman patrimonio. Eso se contesta.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un Eco quedó atrapado repitiendo la última palabra de un Plegado: «acta».",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Acta. Perdón, se me ha pegado del vecino.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_116",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Sabes lo del Eco que repite «acta»?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Plegados le llevan preguntas con dos palabras para no alargar la respuesta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese tema está archivado. Y también repetido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Dejar a un Eco repitiendo «acta» cuarenta años no es patrimonio: es crueldad.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_117",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Has oído a alguien decir «acta» cuarenta años seguidos?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un Eco quedó atrapado repitiendo la última palabra de un Plegado: «acta».",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Es la mejor fuente histórica viva de la zona y no puede callarse ni para cobrar.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_118",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿Te suena el Valle de las Esquinas?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Lleva cuarenta años diciendo «acta». Los Archivistas lo consideran patrimonio.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Es la mejor fuente histórica viva de la zona y no puede callarse ni para cobrar.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que dice «acta» si la aprietas. No preguntes.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Acta. Perdón, se me ha pegado del vecino.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_119",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: Los Plegados archivan personas y lo llaman patrimonio. Eso se contesta.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Pidió el alta y se la negaron por acta.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Plegados le llevan preguntas con dos palabras para no alargar la respuesta.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese tema está archivado. Y también repetido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_120",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Escucha. ¿Sabes qué compramos en la Colmena Fúngica?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Colmena negociamos conversación fresca a cambio de fertilizante.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Una frase votada tres veces llega tibia y con acta. Las nuestras no llevan acta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy no hay conversación fresca. Solo de ayer y recalentada.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_121",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo claro: ¿Has negociado alguna vez con un Mohócrata?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Mohócratas votan cada frase antes de decirla. Se nota en el sabor.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El fertilizante de la Colmena es el único que nos sienta bien: abona la garganta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Sin fertilizante no hay charla. Es un pacto, no un capricho.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_122",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿A qué crees que sabe una conversación fresca?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nosotros nos quejamos de que la frase «sabe a votación».",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En la Colmena negociamos conversación fresca a cambio de fertilizante.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Una frase votada tres veces llega tibia y con acta. Las nuestras no llevan acta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Hoy no hay conversación fresca. Solo de ayer y recalentada.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_123",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que huele a fertilizante. Es un decir.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la voten antes de usarla.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Sin fertilizante no hay charla. Es un pacto, no un capricho.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_124",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Los Mohócratas no conversan: aprueban. Una frase votada no es una frase.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Mohócratas votan cada frase antes de decirla. Se nota en el sabor.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa frase estaba fresca. Se nota que no la han votado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_125",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: Los Mohócratas quieren votar quién habla en la Colmena. Eso ya es otra cosa.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Colmena negociamos conversación fresca a cambio de fertilizante.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy no hay conversación fresca. Solo de ayer y recalentada.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_126",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Sabes qué compramos en la Colmena Fúngica?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El fertilizante de la Colmena es el único que nos sienta bien: abona la garganta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Sin fertilizante no hay charla. Es un pacto, no un capricho.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Mohócratas no conversan: aprueban. Una frase votada no es una frase.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_127",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Has negociado alguna vez con un Mohócrata?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Colmena negociamos conversación fresca a cambio de fertilizante.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Una frase votada tres veces llega tibia y con acta. Las nuestras no llevan acta.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_128",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿A qué crees que sabe una conversación fresca?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Mohócratas votan cada frase antes de decirla. Se nota en el sabor.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Una frase votada tres veces llega tibia y con acta. Las nuestras no llevan acta.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que huele a fertilizante. Es un decir.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Hoy no hay conversación fresca. Solo de ayer y recalentada.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_129",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: Los Mohócratas quieren votar quién habla en la Colmena. Eso ya es otra cosa.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nosotros nos quejamos de que la frase «sabe a votación».",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El fertilizante de la Colmena es el único que nos sienta bien: abona la garganta.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Sin fertilizante no hay charla. Es un pacto, no un capricho.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_130",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Escucha. ¿Sabes lo que hacemos los Ecos mientras dormimos?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En sueños recitamos anuncios de antes del colapso, completos y con entonación.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un Eco que lleva despertando cuarenta años a mitad de una oferta de detergente.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No he dormido. Y lo que diga a partir de aquí es una oferta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_131",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo claro: ¿Te han dicho que repetimos anuncios en sueños?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los más piadosos amanecen vendiendo yogur y pasan el día en modo susurro.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El anuncio de yogur es el más repetido y ya lo consideramos una oración.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "De eso no hay grabación, aunque me consta que hay grabación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_132",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿Quieres saber mi mayor vergüenza?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El modo susurro es nuestro estado más débil: un círculo vicioso con colchón.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En sueños recitamos anuncios de antes del colapso, completos y con entonación.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un Eco que lleva despertando cuarenta años a mitad de una oferta de detergente.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No he dormido. Y lo que diga a partir de aquí es una oferta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_133",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que recita una oferta si la dejas en un colchón.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y tápala, que por la noche vende cosas.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hay grabación, aunque me consta que hay grabación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_134",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Los anuncios dormidos son una tontería romántica; deberíamos dormir en silencio.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los más piadosos amanecen vendiendo yogur y pasan el día en modo susurro.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Qué amable. Lo repetiré a las cuatro de la mañana, sin querer.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_135",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: Los Jubilados nos graban mientras dormimos y lo llaman archivo sonoro.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En sueños recitamos anuncios de antes del colapso, completos y con entonación.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No he dormido. Y lo que diga a partir de aquí es una oferta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_136",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Sabes lo que hacemos los Ecos mientras dormimos?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El anuncio de yogur es el más repetido y ya lo consideramos una oración.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hay grabación, aunque me consta que hay grabación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los anuncios dormidos son una tontería romántica; deberíamos dormir en silencio.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_137",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Te han dicho que repetimos anuncios en sueños?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En sueños recitamos anuncios de antes del colapso, completos y con entonación.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un Eco que lleva despertando cuarenta años a mitad de una oferta de detergente.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_138",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿Quieres saber mi mayor vergüenza?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los más piadosos amanecen vendiendo yogur y pasan el día en modo susurro.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un Eco que lleva despertando cuarenta años a mitad de una oferta de detergente.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que recita una oferta si la dejas en un colchón.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No he dormido. Y lo que diga a partir de aquí es una oferta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_139",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: Los Jubilados nos graban mientras dormimos y lo llaman archivo sonoro.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El modo susurro es nuestro estado más débil: un círculo vicioso con colchón.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El anuncio de yogur es el más repetido y ya lo consideramos una oración.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hay grabación, aunque me consta que hay grabación.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_140",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Escucha. ¿Sabes de dónde venimos los Ecos de este planeta?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las radios humanas nos atrajeron: sonaban solas, de noche, sin nadie delante.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Una radio sigue encendida en algún sótano. Cuando se apague, iremos a ver qué era.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hay grabación limpia. Solo ruido de fondo, y el ruido es de ellos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_141",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Te lo digo claro: ¿Te has preguntado por qué hay Ecos aquí, con la que hay fuera?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Vinimos por una voz y nos quedamos por la avería.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Aquí había cuatro especies antes de nosotros. Los Grux y los Mohócratas llegaron después.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "No me acuerdo. Y si me acuerdo, no lo repito.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_142",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Una cosa rápida. ¿Sabes qué nos trajo hasta este sitio?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los humanos se extinguieron a mitad del chiste y nos dejaron el remate.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Las radios humanas nos atrajeron: sonaban solas, de noche, sin nadie delante.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Una radio sigue encendida en algún sótano. Cuando se apague, iremos a ver qué era.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De eso no hay grabación limpia. Solo ruido de fondo, y el ruido es de ellos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_143",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que aún huele a radio caliente. ¿La quieres?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma. Si zumba, es que está recordando.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No me acuerdo. Y si me acuerdo, no lo repito.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_144",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Los humanos eran ruido y nosotros somos lo que quedó de su voz. Nada más.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Vinimos por una voz y nos quedamos por la avería.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Bonita frase. Casi parece de una radio.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_145",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Sin rodeos: Los Grux tasaron las radios humanas como chatarra. Nos quitaron la cuna.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las radios humanas nos atrajeron: sonaban solas, de noche, sin nadie delante.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De eso no hay grabación limpia. Solo ruido de fondo, y el ruido es de ellos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_146",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Atención, que esto suena. ¿Sabes de dónde venimos los Ecos de este planeta?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Aquí había cuatro especies antes de nosotros. Los Grux y los Mohócratas llegaron después.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No me acuerdo. Y si me acuerdo, no lo repito.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los humanos eran ruido y nosotros somos lo que quedó de su voz. Nada más.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_147",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Deja que te cuente: ¿Te has preguntado por qué hay Ecos aquí, con la que hay fuera?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las radios humanas nos atrajeron: sonaban solas, de noche, sin nadie delante.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Una radio sigue encendida en algún sótano. Cuando se apague, iremos a ver qué era.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_148",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Última cosa y te dejo. ¿Sabes qué nos trajo hasta este sitio?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Vinimos por una voz y nos quedamos por la avería.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Una radio sigue encendida en algún sótano. Cuando se apague, iremos a ver qué era.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que aún huele a radio caliente. ¿La quieres?",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "De eso no hay grabación limpia. Solo ruido de fondo, y el ruido es de ellos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "eco_149",
+      "greeting": "Hola. ¿Oyes eso? Es tu propia voz rebotando.",
+      "nodes": {
+        "root": {
+          "text": "Y otra cosa: Los Grux tasaron las radios humanas como chatarra. Nos quitaron la cuna.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los humanos se extinguieron a mitad del chiste y nos dejaron el remate.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Aquí había cuatro especies antes de nosotros. Los Grux y los Mohócratas llegaron después.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No me acuerdo. Y si me acuerdo, no lo repito.",
+          "options": [
+            {
+              "label": "Vale",
               "next": ""
             }
           ]

@@ -6,34 +6,43 @@
       "greeting": "Bienvenido al censo. ¿Traes papeles?",
       "nodes": {
         "root": {
-          "text": "¿Sabes qué hora es?",
+          "text": "Antes de nada, una aclaración: ¿Sabes qué se votó en la Asamblea de las Esporas?",
           "options": [
-            {
-              "label": "No",
-              "next": "r1"
-            },
             {
               "label": "Sí",
-              "next": "r2"
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
             }
           ]
         },
-        "r1": {
-          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+        "n1": {
+          "text": "Llevamos catorce años votando la cuarta votación sobre las tres primeras.",
           "options": [
             {
-              "label": "Volver",
-              "next": ""
+              "label": "¿Y luego?",
+              "next": "n3"
             }
           ]
         },
-        "r2": {
-          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+        "n3": {
+          "text": "Hay una facción que propone poner otro banco para que la votación tenga sentido.",
           "options": [
             {
-              "label": "De nada",
+              "label": "Gracias",
               "next": "",
               "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese asunto está en la cuarta votación. No puedo hablar de él hasta la quinta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -44,38 +53,29 @@
       "greeting": "Bienvenido al censo. ¿Traes papeles?",
       "nodes": {
         "root": {
-          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "text": "Te informo con arreglo al reglamento: ¿Has oído lo del banco?",
           "options": [
             {
-              "label": "Sí",
-              "next": "a1"
+              "label": "Cuéntame",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "a2"
+              "label": "No me interesa",
+              "next": "n3"
             }
           ]
         },
-        "a1": {
-          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+        "n1": {
+          "text": "La propuesta original era poner un banco. El banco ya no existe, la votación sí.",
           "options": [
             {
-              "label": "¿Y después?",
-              "next": "a3"
+              "label": "Sigue",
+              "next": "n2"
             }
           ]
         },
-        "a2": {
-          "text": "Pues bien. Tú te lo pierdes.",
-          "options": [
-            {
-              "label": "Volver",
-              "next": ""
-            }
-          ]
-        },
-        "a3": {
-          "text": "Después vinimos nosotros. Y aquí seguimos.",
+        "n2": {
+          "text": "El acta de la votación del banco ocupa más que el banco. El banco era de madera.",
           "options": [
             {
               "label": "Gracias",
@@ -83,9 +83,18 @@
               "action": "praise"
             },
             {
-              "label": "Qué rollo",
+              "label": "Qué aburrido",
               "next": "",
               "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Se votó no informar. Ganó por dos votos y un recuento.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -96,33 +105,51 @@
       "greeting": "Bienvenido al censo. ¿Traes papeles?",
       "nodes": {
         "root": {
-          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "text": "Una cuestión de orden. ¿Cuánto crees que puede durar una votación?",
           "options": [
             {
-              "label": "Sí",
-              "next": "g1"
+              "label": "Vamos allá",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "g2"
+              "label": "Ahora no",
+              "next": "n4"
             }
           ]
         },
-        "g1": {
-          "text": "Toma. No la pierdas.",
+        "n1": {
+          "text": "La cuarta votación se convocó para decidir si las tres anteriores eran válidas.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Llevamos catorce años votando la cuarta votación sobre las tres primeras.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una facción que propone poner otro banco para que la votación tenga sentido.",
           "options": [
             {
               "label": "Gracias",
               "next": "",
-              "action": "gift_piece"
+              "action": "praise"
             }
           ]
         },
-        "g2": {
-          "text": "Pues la guardo. Más para mí.",
+        "n4": {
+          "text": "Ese asunto está en la cuarta votación. No puedo hablar de él hasta la quinta.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -134,35 +161,34 @@
       "greeting": "Bienvenido al censo. ¿Traes papeles?",
       "nodes": {
         "root": {
-          "text": "¿Te atreves a decirme que soy viejo?",
+          "text": "Tengo una pieza de repuesto del banco. Del banco original, que ya no está.",
           "options": [
             {
               "label": "Sí",
-              "next": "h1"
+              "next": "n1"
             },
             {
               "label": "No",
-              "next": "h2"
+              "next": "n2"
             }
           ]
         },
-        "h1": {
-          "text": "Pues toma.",
+        "n1": {
+          "text": "Toma, y no la instales sin votarlo antes.",
           "options": [
             {
-              "label": "Ay",
+              "label": "Gracias",
               "next": "",
-              "action": "hit"
+              "action": "gift_piece"
             }
           ]
         },
-        "h2": {
-          "text": "Sabia decisión.",
+        "n2": {
+          "text": "Se votó no informar. Ganó por dos votos y un recuento.",
           "options": [
             {
-              "label": "Volver",
-              "next": "",
-              "action": "praise"
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -173,30 +199,30 @@
       "greeting": "Bienvenido al censo. ¿Traes papeles?",
       "nodes": {
         "root": {
-          "text": "¿Qué opinas de los jubilado?",
+          "text": "Catorce años para decidir un banco es una incompetencia que debería votarse y anularse.",
           "options": [
             {
-              "label": "Son basura",
-              "next": "b1"
+              "label": "Sí, y lo repito",
+              "next": "n1"
             },
             {
-              "label": "Son majos",
-              "next": "b2"
+              "label": "No, era broma",
+              "next": "n2"
             }
           ]
         },
-        "b1": {
-          "text": "Exacto. Y ahora que lo dices...",
+        "n1": {
+          "text": "La propuesta original era poner un banco. El banco ya no existe, la votación sí.",
           "options": [
             {
-              "label": "Oh no",
+              "label": "Pues ya está",
               "next": "",
-              "action": "provoke_battle"
+              "action": "hit"
             }
           ]
         },
-        "b2": {
-          "text": "Majos no, pero útiles. Vete.",
+        "n2": {
+          "text": "Tu intervención queda aprobada por aclamación. Sin recuento, que hoy hay prisa.",
           "options": [
             {
               "label": "Vale",
@@ -211,33 +237,33 @@
       "greeting": "Bienvenido al censo. ¿Traes papeles?",
       "nodes": {
         "root": {
-          "text": "¿Sabes por qué el cielo es gris?",
+          "text": "Que quede constancia: Los Jubilados se apagan a las nueve sin votarlo siquiera. Eso es un abuso de poder.",
           "options": [
             {
-              "label": "No",
-              "next": "l1"
+              "label": "Tienes razón",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "l2"
+              "label": "Déjalos en paz",
+              "next": "n2"
             }
           ]
         },
-        "l1": {
-          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+        "n1": {
+          "text": "Llevamos catorce años votando la cuarta votación sobre las tres primeras.",
           "options": [
             {
-              "label": "Jaja",
+              "label": "Que empiece",
               "next": "",
-              "action": "praise"
+              "action": "provoke_battle"
             }
           ]
         },
-        "l2": {
-          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+        "n2": {
+          "text": "Ese asunto está en la cuarta votación. No puedo hablar de él hasta la quinta.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -249,34 +275,48 @@
       "greeting": "Bienvenido al censo. ¿Traes papeles?",
       "nodes": {
         "root": {
-          "text": "¿Sabes qué hora es?",
+          "text": "Esto lo someto a tu consideración: ¿Sabes qué se votó en la Asamblea de las Esporas?",
           "options": [
             {
-              "label": "No",
-              "next": "r1"
+              "label": "Sí",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "r2"
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
             }
           ]
         },
-        "r1": {
-          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+        "n1": {
+          "text": "El acta de la votación del banco ocupa más que el banco. El banco era de madera.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se votó no informar. Ganó por dos votos y un recuento.",
+          "options": [
+            {
+              "label": "Vale",
               "next": ""
             }
           ]
         },
-        "r2": {
-          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+        "n3": {
+          "text": "Catorce años para decidir un banco es una incompetencia que debería votarse y anularse.",
           "options": [
             {
-              "label": "De nada",
+              "label": "Y lo mantengo",
               "next": "",
-              "action": "praise"
+              "action": "insult"
             }
           ]
         }
@@ -287,46 +327,33 @@
       "greeting": "Bienvenido al censo. ¿Traes papeles?",
       "nodes": {
         "root": {
-          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "text": "Escucha, que hay quorum: ¿Has oído lo del banco?",
           "options": [
             {
-              "label": "Sí",
-              "next": "a1"
+              "label": "Por el principio",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "a2"
+              "label": "Por el final",
+              "next": "n2"
             }
           ]
         },
-        "a1": {
-          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+        "n1": {
+          "text": "Llevamos catorce años votando la cuarta votación sobre las tres primeras.",
           "options": [
             {
-              "label": "¿Y después?",
-              "next": "a3"
-            }
-          ]
-        },
-        "a2": {
-          "text": "Pues bien. Tú te lo pierdes.",
-          "options": [
-            {
-              "label": "Volver",
-              "next": ""
-            }
-          ]
-        },
-        "a3": {
-          "text": "Después vinimos nosotros. Y aquí seguimos.",
-          "options": [
-            {
-              "label": "Gracias",
+              "label": "Interesante",
               "next": "",
               "action": "praise"
-            },
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una facción que propone poner otro banco para que la votación tenga sentido.",
+          "options": [
             {
-              "label": "Qué rollo",
+              "label": "Qué tontería",
               "next": "",
               "action": "insult"
             }
@@ -339,20 +366,38 @@
       "greeting": "Bienvenido al censo. ¿Traes papeles?",
       "nodes": {
         "root": {
-          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "text": "Última cuestión del día: ¿Cuánto crees que puede durar una votación?",
           "options": [
             {
-              "label": "Sí",
-              "next": "g1"
+              "label": "Cuenta",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "g2"
+              "label": "Otro día",
+              "next": "n4"
             }
           ]
         },
-        "g1": {
-          "text": "Toma. No la pierdas.",
+        "n1": {
+          "text": "La propuesta original era poner un banco. El banco ya no existe, la votación sí.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una facción que propone poner otro banco para que la votación tenga sentido.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto del banco. Del banco original, que ya no está.",
           "options": [
             {
               "label": "Gracias",
@@ -361,11 +406,11 @@
             }
           ]
         },
-        "g2": {
-          "text": "Pues la guardo. Más para mí.",
+        "n4": {
+          "text": "Ese asunto está en la cuarta votación. No puedo hablar de él hasta la quinta.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -377,35 +422,43 @@
       "greeting": "Bienvenido al censo. ¿Traes papeles?",
       "nodes": {
         "root": {
-          "text": "¿Te atreves a decirme que soy viejo?",
+          "text": "Y un asunto menor: Los Jubilados se apagan a las nueve sin votarlo siquiera. Eso es un abuso de poder.",
           "options": [
             {
-              "label": "Sí",
-              "next": "h1"
+              "label": "Claro que sí",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "h2"
+              "label": "Ni hablar",
+              "next": "n2"
             }
           ]
         },
-        "h1": {
-          "text": "Pues toma.",
+        "n1": {
+          "text": "La cuarta votación se convocó para decidir si las tres anteriores eran válidas.",
           "options": [
             {
-              "label": "Ay",
-              "next": "",
-              "action": "hit"
+              "label": "¿Y los demás?",
+              "next": "n3"
             }
           ]
         },
-        "h2": {
-          "text": "Sabia decisión.",
+        "n3": {
+          "text": "El acta de la votación del banco ocupa más que el banco. El banco era de madera.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Que empiece",
               "next": "",
-              "action": "praise"
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se votó no informar. Ganó por dos votos y un recuento.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -416,30 +469,39 @@
       "greeting": "Bienvenido al censo. ¿Traes papeles?",
       "nodes": {
         "root": {
-          "text": "¿Qué opinas de los jubilado?",
+          "text": "Antes de nada, una aclaración: ¿Sabes cuántas veces votamos antes de atacar?",
           "options": [
             {
-              "label": "Son basura",
-              "next": "b1"
+              "label": "Sí",
+              "next": "n1"
             },
             {
-              "label": "Son majos",
-              "next": "b2"
+              "label": "No",
+              "next": "n2"
             }
           ]
         },
-        "b1": {
-          "text": "Exacto. Y ahora que lo dices...",
+        "n1": {
+          "text": "Votamos tres veces antes de atacar: la propuesta, la confirmación y la validez.",
           "options": [
             {
-              "label": "Oh no",
-              "next": "",
-              "action": "provoke_battle"
+              "label": "¿Y luego?",
+              "next": "n3"
             }
           ]
         },
-        "b2": {
-          "text": "Majos no, pero útiles. Vete.",
+        "n3": {
+          "text": "Un año votamos respirar y salió en contra. Fue un invierno muy corto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso requiere tres votaciones y hoy solo tengo tiempo para dos.",
           "options": [
             {
               "label": "Vale",
@@ -454,33 +516,6430 @@
       "greeting": "Bienvenido al censo. ¿Traes papeles?",
       "nodes": {
         "root": {
-          "text": "¿Sabes por qué el cielo es gris?",
+          "text": "Te informo con arreglo al reglamento: ¿Cuántas votaciones crees que hacen falta para respirar?",
           "options": [
             {
-              "label": "No",
-              "next": "l1"
+              "label": "Cuéntame",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "l2"
+              "label": "No me interesa",
+              "next": "n3"
             }
           ]
         },
-        "l1": {
-          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+        "n1": {
+          "text": "Nos hemos votado hasta si respirar. Salió a favor por poco.",
           "options": [
             {
-              "label": "Jaja",
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La tercera votación existe porque la segunda siempre parecía sospechosa.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Se votó no responder a preguntas sobre votaciones. Irónico, pero válido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_012",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Te parece normal votar si votar?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El sistema produce una estabilidad institucional enorme y una lentitud legendaria.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Votamos tres veces antes de atacar: la propuesta, la confirmación y la validez.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un año votamos respirar y salió en contra. Fue un invierno muy corto.",
+          "options": [
+            {
+              "label": "Gracias",
               "next": "",
               "action": "praise"
             }
           ]
         },
-        "l2": {
-          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+        "n4": {
+          "text": "Eso requiere tres votaciones y hoy solo tengo tiempo para dos.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_013",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto. La segunda votación sobre ella sigue abierta.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y la entrega queda aprobada por unanimidad de los presentes.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se votó no responder a preguntas sobre votaciones. Irónico, pero válido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_014",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tres votaciones para todo es una tontería que solo sirve para no decidir nunca.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nos hemos votado hasta si respirar. Salió a favor por poco.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Queda aprobado tu elogio. Se votará si se agradece mañana.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_015",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: Los Jubilados deciden solos y encima se quejan. Votemos enseñarles modales.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Votamos tres veces antes de atacar: la propuesta, la confirmación y la validez.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso requiere tres votaciones y hoy solo tengo tiempo para dos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_016",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Sabes cuántas veces votamos antes de atacar?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La tercera votación existe porque la segunda siempre parecía sospechosa.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se votó no responder a preguntas sobre votaciones. Irónico, pero válido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tres votaciones para todo es una tontería que solo sirve para no decidir nunca.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_017",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Cuántas votaciones crees que hacen falta para respirar?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Votamos tres veces antes de atacar: la propuesta, la confirmación y la validez.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un año votamos respirar y salió en contra. Fue un invierno muy corto.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_018",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Te parece normal votar si votar?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nos hemos votado hasta si respirar. Salió a favor por poco.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un año votamos respirar y salió en contra. Fue un invierno muy corto.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. La segunda votación sobre ella sigue abierta.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Eso requiere tres votaciones y hoy solo tengo tiempo para dos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_019",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: Los Jubilados deciden solos y encima se quejan. Votemos enseñarles modales.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El sistema produce una estabilidad institucional enorme y una lentitud legendaria.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La tercera votación existe porque la segunda siempre parecía sospechosa.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se votó no responder a preguntas sobre votaciones. Irónico, pero válido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_020",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una aclaración: ¿Sabes qué es el acta fundacional?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El acta de la Primera Asamblea es, en realidad, una receta de sopa leída en voz alta.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Nadie ha catado la sopa. La ley, sí, y sabe a caldo frío.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El acta es secreta. Y la receta, también, por motivos de seguridad alimentaria.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_021",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Te informo con arreglo al reglamento: ¿Te han contado de dónde salió nuestra constitución?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se leyó por error y gustó tanto que se archivó como constitución.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Una enmienda reciente cambió «sofreír» por «legislar». Se nota en el sabor.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "No puedo leerte el acta sin tres votaciones y una cuchara.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_022",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Qué crees que dice la Primera Asamblea?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Cocina-Comités la siguen interpretando cada invierno con rigor jurídico.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El acta de la Primera Asamblea es, en realidad, una receta de sopa leída en voz alta.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Nadie ha catado la sopa. La ley, sí, y sabe a caldo frío.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El acta es secreta. Y la receta, también, por motivos de seguridad alimentaria.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_023",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que sirve de cazo. Tiene más rango que yo.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la llenes: es el cazo fundacional.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo leerte el acta sin tres votaciones y una cuchara.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_024",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "La constitución es una receta de sopa y el país entero huele a caldo frío.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se leyó por error y gustó tanto que se archivó como constitución.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese elogio se incorpora al preámbulo. Con tu permiso y dos votos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_025",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: Los Jubilados nos llaman sopistas. Su colapso fue una luz que se fue, y aun así opinan.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El acta de la Primera Asamblea es, en realidad, una receta de sopa leída en voz alta.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El acta es secreta. Y la receta, también, por motivos de seguridad alimentaria.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_026",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Sabes qué es el acta fundacional?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Una enmienda reciente cambió «sofreír» por «legislar». Se nota en el sabor.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo leerte el acta sin tres votaciones y una cuchara.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "La constitución es una receta de sopa y el país entero huele a caldo frío.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_027",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Te han contado de dónde salió nuestra constitución?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El acta de la Primera Asamblea es, en realidad, una receta de sopa leída en voz alta.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Nadie ha catado la sopa. La ley, sí, y sabe a caldo frío.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_028",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Qué crees que dice la Primera Asamblea?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se leyó por error y gustó tanto que se archivó como constitución.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Nadie ha catado la sopa. La ley, sí, y sabe a caldo frío.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que sirve de cazo. Tiene más rango que yo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El acta es secreta. Y la receta, también, por motivos de seguridad alimentaria.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_029",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: Los Jubilados nos llaman sopistas. Su colapso fue una luz que se fue, y aun así opinan.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Cocina-Comités la siguen interpretando cada invierno con rigor jurídico.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Una enmienda reciente cambió «sofreír» por «legislar». Se nota en el sabor.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo leerte el acta sin tres votaciones y una cuchara.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_030",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una aclaración: ¿Sabes quién es el más hongo?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Votamos en secreto quién es el más hongo. Sin premio, sin criterios y sin sentido.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Se presentó un hongo joven con un programa electoral y quedó tercero.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La votación es secreta. Y el resultado también, aunque se sabe.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_031",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Te informo con arreglo al reglamento: ¿Has votado alguna vez al más hongo?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El ganador lleva doscientos años siendo el mismo sombrero de chatarra.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El sombrero no ha pronunciado un discurso en doscientos años. Su silencio se vota como programa.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "No te puedo decir el ganador sin consultar al sombrero.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_032",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Qué premio tiene el concurso del más hongo?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El sombrero está más oxidado que orgulloso, y aun así gana por mayoría.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Votamos en secreto quién es el más hongo. Sin premio, sin criterios y sin sentido.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Se presentó un hongo joven con un programa electoral y quedó tercero.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "La votación es secreta. Y el resultado también, aunque se sabe.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_033",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que votó al sombrero. Por lealtad, no por criterio.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y vota lo que quieras, que el sombrero gana igual.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No te puedo decir el ganador sin consultar al sombrero.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_034",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "El concurso del más hongo es un chiste que lleva doscientos años sin gracia.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El ganador lleva doscientos años siendo el mismo sombrero de chatarra.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Quedas nombrado hongo honorario. No tiene premio, pero se vota.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_035",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: Los Grux quieren apostar por el más hongo. Convertir un concurso en negocio es de otra especie.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Votamos en secreto quién es el más hongo. Sin premio, sin criterios y sin sentido.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La votación es secreta. Y el resultado también, aunque se sabe.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_036",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Sabes quién es el más hongo?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El sombrero no ha pronunciado un discurso en doscientos años. Su silencio se vota como programa.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No te puedo decir el ganador sin consultar al sombrero.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "El concurso del más hongo es un chiste que lleva doscientos años sin gracia.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_037",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Has votado alguna vez al más hongo?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Votamos en secreto quién es el más hongo. Sin premio, sin criterios y sin sentido.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se presentó un hongo joven con un programa electoral y quedó tercero.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_038",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Qué premio tiene el concurso del más hongo?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El ganador lleva doscientos años siendo el mismo sombrero de chatarra.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se presentó un hongo joven con un programa electoral y quedó tercero.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que votó al sombrero. Por lealtad, no por criterio.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "La votación es secreta. Y el resultado también, aunque se sabe.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_039",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: Los Grux quieren apostar por el más hongo. Convertir un concurso en negocio es de otra especie.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El sombrero está más oxidado que orgulloso, y aun así gana por mayoría.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El sombrero no ha pronunciado un discurso en doscientos años. Su silencio se vota como programa.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No te puedo decir el ganador sin consultar al sombrero.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_040",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una aclaración: ¿Sabes qué es la Enmienda del Plato?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Antes de comer votamos qué comer, tres veces, como todo.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hubo un año en que la abstención se sirvió caliente y hubo que votar el menú otra vez.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy se vota el postre. Cuando acabe, hablamos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_041",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Te informo con arreglo al reglamento: ¿Qué coméis en los años malos?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En años malos comemos abstención. No sabe mal, sabe a nada.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un Cocina-Comité dimitió por servir sopa del acta fundacional sin enfriarla.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El menú está pendiente de confirmación. Como el año pasado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_042",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Por qué votáis qué comer tres veces?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Enmienda del Plato reparte los recursos por votación y por hambre.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Antes de comer votamos qué comer, tres veces, como todo.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hubo un año en que la abstención se sirvió caliente y hubo que votar el menú otra vez.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Hoy se vota el postre. Cuando acabe, hablamos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_043",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que también sirve de tenedor.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la uses con abstención, que se pega.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El menú está pendiente de confirmación. Como el año pasado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_044",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Votar la comida es absurdo: el hambre no admite segunda vuelta.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En años malos comemos abstención. No sabe mal, sabe a nada.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se agradece el elogio y se vota si se repite.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_045",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: Los Jubilados comen chispas y nos miran mal. Pues que voten su menú.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Antes de comer votamos qué comer, tres veces, como todo.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hoy se vota el postre. Cuando acabe, hablamos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_046",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Sabes qué es la Enmienda del Plato?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un Cocina-Comité dimitió por servir sopa del acta fundacional sin enfriarla.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El menú está pendiente de confirmación. Como el año pasado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Votar la comida es absurdo: el hambre no admite segunda vuelta.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_047",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Qué coméis en los años malos?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Antes de comer votamos qué comer, tres veces, como todo.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hubo un año en que la abstención se sirvió caliente y hubo que votar el menú otra vez.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_048",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Por qué votáis qué comer tres veces?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En años malos comemos abstención. No sabe mal, sabe a nada.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hubo un año en que la abstención se sirvió caliente y hubo que votar el menú otra vez.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que también sirve de tenedor.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Hoy se vota el postre. Cuando acabe, hablamos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_049",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: Los Jubilados comen chispas y nos miran mal. Pues que voten su menú.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Enmienda del Plato reparte los recursos por votación y por hambre.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un Cocina-Comité dimitió por servir sopa del acta fundacional sin enfriarla.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El menú está pendiente de confirmación. Como el año pasado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_050",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una aclaración: ¿Sabes qué opinamos de la luz?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La luz es un abuso de poder con lumbre. Es doctrina, no manía.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una comisión para votar si la luz del sol cuenta como abuso o como exceso.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Apaga eso, por favor. Estamos hablando.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_051",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Te informo con arreglo al reglamento: ¿Por qué crees que vivimos bajo tierra?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Apocalipsis de la Luz colapsó las zonas de cultivo y la comunicación.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El comité antiluz se reúne de noche. Asisten pocos y todos con sombrero.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "No puedo votar nada con esta claridad. Me desconcentra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_052",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Qué fue el Apocalipsis de la Luz?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Muchas colonias sobrevivimos bajo tierra y en estructuras abandonadas.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La luz es un abuso de poder con lumbre. Es doctrina, no manía.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una comisión para votar si la luz del sol cuenta como abuso o como exceso.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Apaga eso, por favor. Estamos hablando.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_053",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que brilla. La guardo por si acaso.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la enciendas en la Asamblea, que la votan apagada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo votar nada con esta claridad. Me desconcentra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_054",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "La luz del sol no es un abuso: es gratis, y lo gratis no se vota.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Apocalipsis de la Luz colapsó las zonas de cultivo y la comunicación.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Tu elogio brilla. Y eso, viniendo de mí, es mucho.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_055",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: Los Jubilados se iluminan a todas horas y nos llaman oscurantistas. Ya está bien.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La luz es un abuso de poder con lumbre. Es doctrina, no manía.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Apaga eso, por favor. Estamos hablando.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_056",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Sabes qué opinamos de la luz?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El comité antiluz se reúne de noche. Asisten pocos y todos con sombrero.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo votar nada con esta claridad. Me desconcentra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "La luz del sol no es un abuso: es gratis, y lo gratis no se vota.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_057",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Por qué crees que vivimos bajo tierra?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La luz es un abuso de poder con lumbre. Es doctrina, no manía.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una comisión para votar si la luz del sol cuenta como abuso o como exceso.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_058",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Qué fue el Apocalipsis de la Luz?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El Apocalipsis de la Luz colapsó las zonas de cultivo y la comunicación.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una comisión para votar si la luz del sol cuenta como abuso o como exceso.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que brilla. La guardo por si acaso.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Apaga eso, por favor. Estamos hablando.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_059",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: Los Jubilados se iluminan a todas horas y nos llaman oscurantistas. Ya está bien.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Muchas colonias sobrevivimos bajo tierra y en estructuras abandonadas.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El comité antiluz se reúne de noche. Asisten pocos y todos con sombrero.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo votar nada con esta claridad. Me desconcentra.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_060",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una aclaración: ¿Con qué se compran los votos aquí?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los votos se compran con fertilizante y los sobornos se declaran por transparencia.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El vendedor de fertilizante es el único ciudadano con mayoría absoluta permanente.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese soborno está declarado. Por tanto, no ha existido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_061",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Te informo con arreglo al reglamento: ¿Sabes qué pasa con los sobornos?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Al declararse, el soborno es legal, masivo y muy rentable para el vendedor.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El registro de sobornos es público y se consulta más que el censo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "No hablemos de fertilizante delante de la comisión de fertilizante.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_062",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Es legal sobornar en la Asamblea?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un buen saco de fertilizante cambia cualquier votación y consta en acta.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los votos se compran con fertilizante y los sobornos se declaran por transparencia.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El vendedor de fertilizante es el único ciudadano con mayoría absoluta permanente.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese soborno está declarado. Por tanto, no ha existido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_063",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto. La cambio por fertilizante o por un voto.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y decláralo, que lo no declarado huele mal.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No hablemos de fertilizante delante de la comisión de fertilizante.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_064",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Sobornar con fertilizante y llamarlo transparencia es corrupción con abono.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Al declararse, el soborno es legal, masivo y muy rentable para el vendedor.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Gracias. Lo declaro como regalo y lo votamos bonito.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_065",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: Los Grux nos venden fertilizante a crédito y luego votan nuestras deudas. Eso sí es trampa.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los votos se compran con fertilizante y los sobornos se declaran por transparencia.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese soborno está declarado. Por tanto, no ha existido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_066",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Con qué se compran los votos aquí?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El registro de sobornos es público y se consulta más que el censo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No hablemos de fertilizante delante de la comisión de fertilizante.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Sobornar con fertilizante y llamarlo transparencia es corrupción con abono.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_067",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Sabes qué pasa con los sobornos?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los votos se compran con fertilizante y los sobornos se declaran por transparencia.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El vendedor de fertilizante es el único ciudadano con mayoría absoluta permanente.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_068",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Es legal sobornar en la Asamblea?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Al declararse, el soborno es legal, masivo y muy rentable para el vendedor.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El vendedor de fertilizante es el único ciudadano con mayoría absoluta permanente.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. La cambio por fertilizante o por un voto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese soborno está declarado. Por tanto, no ha existido.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_069",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: Los Grux nos venden fertilizante a crédito y luego votan nuestras deudas. Eso sí es trampa.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un buen saco de fertilizante cambia cualquier votación y consta en acta.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El registro de sobornos es público y se consulta más que el censo.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No hablemos de fertilizante delante de la comisión de fertilizante.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_070",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una aclaración: ¿Sabes qué votan nuestros pies?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Sometemos a votación partes del cuerpo antes de moverlas. Los pies suelen perder.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un pie presentó un recurso y se le votó como «extremidad con iniciativa». Perdió.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El movimiento está en estudio. No me pidas que me levante a comprobarlo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_071",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Te informo con arreglo al reglamento: ¿Por qué crees que nos movemos tan poco?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La propuesta de caminar se debate y se archiva con frecuencia.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El comité de movilidad se reúne en una silla. Nunca ha hecho falta levantarla.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Mis pies han votado no. Y yo acato.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_072",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Quién decide si damos un paso?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay ciudadanos que llevan años sin moverse por respeto al resultado.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Sometemos a votación partes del cuerpo antes de moverlas. Los pies suelen perder.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un pie presentó un recurso y se le votó como «extremidad con iniciativa». Perdió.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El movimiento está en estudio. No me pidas que me levante a comprobarlo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_073",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que no necesita votación para funcionar.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y llévala tú, que mis pies están en contra.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Mis pies han votado no. Y yo acato.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_074",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Votar si moverse es la excusa perfecta para no hacer absolutamente nada.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La propuesta de caminar se debate y se archiva con frecuencia.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se agradece el elogio. No requiere votación, por suerte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_075",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: La Manada no para de girar a la derecha y nosotros no damos un paso. Empecemos por alguien.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Sometemos a votación partes del cuerpo antes de moverlas. Los pies suelen perder.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El movimiento está en estudio. No me pidas que me levante a comprobarlo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_076",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Sabes qué votan nuestros pies?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El comité de movilidad se reúne en una silla. Nunca ha hecho falta levantarla.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Mis pies han votado no. Y yo acato.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Votar si moverse es la excusa perfecta para no hacer absolutamente nada.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_077",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Por qué crees que nos movemos tan poco?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Sometemos a votación partes del cuerpo antes de moverlas. Los pies suelen perder.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un pie presentó un recurso y se le votó como «extremidad con iniciativa». Perdió.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_078",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Quién decide si damos un paso?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La propuesta de caminar se debate y se archiva con frecuencia.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un pie presentó un recurso y se le votó como «extremidad con iniciativa». Perdió.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que no necesita votación para funcionar.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El movimiento está en estudio. No me pidas que me levante a comprobarlo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_079",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: La Manada no para de girar a la derecha y nosotros no damos un paso. Empecemos por alguien.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay ciudadanos que llevan años sin moverse por respeto al resultado.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El comité de movilidad se reúne en una silla. Nunca ha hecho falta levantarla.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Mis pies han votado no. Y yo acato.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_080",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una aclaración: ¿Sabes qué fue la Revolución de los Sombreros?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Una parte de la población rechazó los sombreros de chatarra como símbolo de estatus.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Se votó el asunto tres veces y ganó llevar sombrero, pero del revés.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El sombrero no se discute. Se lleva y se vota.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_081",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Te informo con arreglo al reglamento: ¿Por qué lleváis chatarra en la cabeza?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El conflicto dividió a la sociedad entre tradicionalistas y renovadores.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un renovador que lleva el sombrero dentro. Dice que es una postura política.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Mi sombrero es de antes del conflicto. No opina y por eso dura.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_082",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Te gusta mi sombrero?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Mohócratas usamos sombreros de chatarra como identidad física y social.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Una parte de la población rechazó los sombreros de chatarra como símbolo de estatus.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Se votó el asunto tres veces y ganó llevar sombrero, pero del revés.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El sombrero no se discute. Se lleva y se vota.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_083",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que era parte de un sombrero.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y póntela donde puedas, que no juzgamos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Mi sombrero es de antes del conflicto. No opina y por eso dura.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_084",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Los sombreros de chatarra son un pliego de descargo con óxido encima.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El conflicto dividió a la sociedad entre tradicionalistas y renovadores.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Buen gusto. Se nota que no te has dejado influir por la moda del revés.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_085",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: Los Plegados dicen que nuestros sombreros son pliegues fallidos. Eso se contesta con votos o con palos.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Una parte de la población rechazó los sombreros de chatarra como símbolo de estatus.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El sombrero no se discute. Se lleva y se vota.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_086",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Sabes qué fue la Revolución de los Sombreros?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un renovador que lleva el sombrero dentro. Dice que es una postura política.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Mi sombrero es de antes del conflicto. No opina y por eso dura.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los sombreros de chatarra son un pliego de descargo con óxido encima.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_087",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Por qué lleváis chatarra en la cabeza?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Una parte de la población rechazó los sombreros de chatarra como símbolo de estatus.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se votó el asunto tres veces y ganó llevar sombrero, pero del revés.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_088",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Te gusta mi sombrero?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El conflicto dividió a la sociedad entre tradicionalistas y renovadores.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se votó el asunto tres veces y ganó llevar sombrero, pero del revés.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que era parte de un sombrero.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El sombrero no se discute. Se lleva y se vota.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_089",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: Los Plegados dicen que nuestros sombreros son pliegues fallidos. Eso se contesta con votos o con palos.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Mohócratas usamos sombreros de chatarra como identidad física y social.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un renovador que lleva el sombrero dentro. Dice que es una postura política.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Mi sombrero es de antes del conflicto. No opina y por eso dura.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_090",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una aclaración: ¿Sabes qué fue la Crisis de las Esporas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux comerciaron con información de nuestra red biológica.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "En la red fragmentada quedaron recuerdos de otras especies que ahora no sabemos devolver.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese asunto está en la comisión de la red. Lleva en la comisión desde la crisis.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_091",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Te informo con arreglo al reglamento: ¿Quién robó la red biológica?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunas sustancias alteraron la comunicación entre colonias y la red se fragmentó.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una colonia que responde a estímulos de instalaciones que nadie recuerda.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Se votó no recordar. Salió casi unánime y luego se olvidó.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_092",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Por qué está rota la memoria colectiva?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Parte de la memoria colectiva quedó aislada. Hay recuerdos que nadie reclama.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Grux comerciaron con información de nuestra red biológica.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "En la red fragmentada quedaron recuerdos de otras especies que ahora no sabemos devolver.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese asunto está en la comisión de la red. Lleva en la comisión desde la crisis.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_093",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza que guarda un recuerdo suelto. No sé de quién es.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y si el recuerdo te suena, avísame. Sería un buen día para la red.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se votó no recordar. Salió casi unánime y luego se olvidó.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_094",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Los Grux no robaron nada: compraron lo que nadie estaba usando.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunas sustancias alteraron la comunicación entre colonias y la red se fragmentó.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Eso merece constar en la red. Y en acta, si se puede.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_095",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: Los Grux nos vendieron nuestra propia memoria por fertilizante. Empecemos por ahí.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux comerciaron con información de nuestra red biológica.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese asunto está en la comisión de la red. Lleva en la comisión desde la crisis.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_096",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Sabes qué fue la Crisis de las Esporas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay una colonia que responde a estímulos de instalaciones que nadie recuerda.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se votó no recordar. Salió casi unánime y luego se olvidó.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Grux no robaron nada: compraron lo que nadie estaba usando.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_097",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Quién robó la red biológica?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux comerciaron con información de nuestra red biológica.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En la red fragmentada quedaron recuerdos de otras especies que ahora no sabemos devolver.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_098",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Por qué está rota la memoria colectiva?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunas sustancias alteraron la comunicación entre colonias y la red se fragmentó.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En la red fragmentada quedaron recuerdos de otras especies que ahora no sabemos devolver.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza que guarda un recuerdo suelto. No sé de quién es.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese asunto está en la comisión de la red. Lleva en la comisión desde la crisis.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_099",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: Los Grux nos vendieron nuestra propia memoria por fertilizante. Empecemos por ahí.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Parte de la memoria colectiva quedó aislada. Hay recuerdos que nadie reclama.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una colonia que responde a estímulos de instalaciones que nadie recuerda.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se votó no recordar. Salió casi unánime y luego se olvidó.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_100",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una aclaración: ¿Cuánto cuesta un tomate en el Gran Mercado?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Gran Mercado sometemos a votación los precios de todo.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El público agradece la prisa de los Grux y luego vota arrepentirse.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El precio del tomate está en la segunda votación. Vuelve el jueves.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_101",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Te informo con arreglo al reglamento: ¿Por qué tardáis tanto en poner los precios?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un tomate necesita tres votos y un anexo regulatorio.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un tomate que lleva cuatro años en la Asamblea como «producto pendiente de precio».",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Te lo diría, pero costaría tres votos y no tengo quorum.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_102",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Sabes cómo se fija un precio aquí?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux venden en la puerta «precios tasados al contado, sin acta».",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En el Gran Mercado sometemos a votación los precios de todo.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El público agradece la prisa de los Grux y luego vota arrepentirse.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El precio del tomate está en la segunda votación. Vuelve el jueves.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_103",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto. El precio lo pongo yo, que para eso la tengo.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no me pidas factura, que necesitaría dos votos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Te lo diría, pero costaría tres votos y no tengo quorum.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_104",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Votar los precios es encarecer la vida con papeleo. El tomate ya lo dice el mercado.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un tomate necesita tres votos y un anexo regulatorio.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Buen ojo para el precio. Se agradece y se tasa.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_105",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: Los Grux abren un puesto fuera y se llevan el género. Eso no se vota, se impide.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Gran Mercado sometemos a votación los precios de todo.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El precio del tomate está en la segunda votación. Vuelve el jueves.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_106",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Cuánto cuesta un tomate en el Gran Mercado?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un tomate que lleva cuatro años en la Asamblea como «producto pendiente de precio».",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Te lo diría, pero costaría tres votos y no tengo quorum.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Votar los precios es encarecer la vida con papeleo. El tomate ya lo dice el mercado.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_107",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Por qué tardáis tanto en poner los precios?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En el Gran Mercado sometemos a votación los precios de todo.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El público agradece la prisa de los Grux y luego vota arrepentirse.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_108",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Sabes cómo se fija un precio aquí?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un tomate necesita tres votos y un anexo regulatorio.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El público agradece la prisa de los Grux y luego vota arrepentirse.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. El precio lo pongo yo, que para eso la tengo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El precio del tomate está en la segunda votación. Vuelve el jueves.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_109",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: Los Grux abren un puesto fuera y se llevan el género. Eso no se vota, se impide.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux venden en la puerta «precios tasados al contado, sin acta».",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un tomate que lleva cuatro años en la Asamblea como «producto pendiente de precio».",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Te lo diría, pero costaría tres votos y no tengo quorum.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_110",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una aclaración: ¿Sabes qué votamos en el Atajo de las Esporas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Votamos cerrar el giro a la derecha para frenar el tráfico.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Rastreadores Libres proponen girar a la izquierda. La Manada Central se indispone.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El giro está cerrado por votación. Reabrirlo exige cuatro y un estudio.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_111",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Te informo con arreglo al reglamento: ¿Por qué hay una caravana dando vueltas?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Manada solo gira a la derecha: lleva semanas orbitando el paso.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La caravana ya sabe el camino de memoria y sigue sin poder usarlo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Si vienes por el atajo, da la vuelta. Nosotros ya la hemos votado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_112",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Es verdad que cerrasteis el giro a la derecha?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hemos convocado una votación de emergencia sobre si es un problema. Tres veces.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Votamos cerrar el giro a la derecha para frenar el tráfico.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Rastreadores Libres proponen girar a la izquierda. La Manada Central se indispone.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El giro está cerrado por votación. Reabrirlo exige cuatro y un estudio.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_113",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto del puesto de peaje del atajo.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y si vas al atajo, gira a la derecha antes de que lo reabramos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si vienes por el atajo, da la vuelta. Nosotros ya la hemos votado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_114",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Cerrar el giro a la derecha fue una ocurrencia y ahora hay una caravana dando vueltas.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Manada solo gira a la derecha: lleva semanas orbitando el paso.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se agradece el elogio. Y no hay que votarlo, que ya es tarde.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_115",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: La Manada no respeta el giro cerrado y encima se queja de la vuelta. ¿Votamos defendernos?",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Votamos cerrar el giro a la derecha para frenar el tráfico.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El giro está cerrado por votación. Reabrirlo exige cuatro y un estudio.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_116",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Sabes qué votamos en el Atajo de las Esporas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La caravana ya sabe el camino de memoria y sigue sin poder usarlo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si vienes por el atajo, da la vuelta. Nosotros ya la hemos votado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Cerrar el giro a la derecha fue una ocurrencia y ahora hay una caravana dando vueltas.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_117",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Por qué hay una caravana dando vueltas?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Votamos cerrar el giro a la derecha para frenar el tráfico.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Rastreadores Libres proponen girar a la izquierda. La Manada Central se indispone.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_118",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Es verdad que cerrasteis el giro a la derecha?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Manada solo gira a la derecha: lleva semanas orbitando el paso.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Rastreadores Libres proponen girar a la izquierda. La Manada Central se indispone.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto del puesto de peaje del atajo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El giro está cerrado por votación. Reabrirlo exige cuatro y un estudio.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_119",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: La Manada no respeta el giro cerrado y encima se queja de la vuelta. ¿Votamos defendernos?",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hemos convocado una votación de emergencia sobre si es un problema. Tres veces.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La caravana ya sabe el camino de memoria y sigue sin poder usarlo.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si vienes por el atajo, da la vuelta. Nosotros ya la hemos votado.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_120",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una aclaración: ¿Sabes qué discuten Mohócratas y Jubilados en Abuela RAM?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nosotros llamamos «material» a los robots muertos. Los Jubilados los llaman «difuntos».",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Así ganamos los dos y no arreglamos nada, que es nuestra obra maestra.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El asunto está empatado. No puedo hablar de él sin desempatar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_121",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Te informo con arreglo al reglamento: ¿Por qué llamáis «material» a los robots muertos?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ha habido insultos formales por acta y una reprimenda conjunta.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un taller donde el mismo cuerpo tiene dos fichas y ninguna se mueve.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Llámalo como quieras, pero no lo toques.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_122",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Qué es un difunto para ti?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La reprimenda se votó, hubo empate y se votó el empate. Sigue empatado.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Nosotros llamamos «material» a los robots muertos. Los Jubilados los llaman «difuntos».",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Así ganamos los dos y no arreglamos nada, que es nuestra obra maestra.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El asunto está empatado. No puedo hablar de él sin desempatar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_123",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto. Venía de un «material» que ya no discutía.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no le pongas nombre, que luego reclama.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Llámalo como quieras, pero no lo toques.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_124",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Llamar «difunto» a un robot es un sentimentalismo que retrasa el reciclaje.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ha habido insultos formales por acta y una reprimenda conjunta.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Buen detalle. Lo apunto en la ficha buena, la que no tiene gemela.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_125",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: Los Jubilados nos miran reciclar en silencio y lo llaman abstención hostil. Pues hablemos.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nosotros llamamos «material» a los robots muertos. Los Jubilados los llaman «difuntos».",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El asunto está empatado. No puedo hablar de él sin desempatar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_126",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Sabes qué discuten Mohócratas y Jubilados en Abuela RAM?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un taller donde el mismo cuerpo tiene dos fichas y ninguna se mueve.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Llámalo como quieras, pero no lo toques.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Llamar «difunto» a un robot es un sentimentalismo que retrasa el reciclaje.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_127",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Por qué llamáis «material» a los robots muertos?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nosotros llamamos «material» a los robots muertos. Los Jubilados los llaman «difuntos».",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Así ganamos los dos y no arreglamos nada, que es nuestra obra maestra.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_128",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Qué es un difunto para ti?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Ha habido insultos formales por acta y una reprimenda conjunta.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Así ganamos los dos y no arreglamos nada, que es nuestra obra maestra.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. Venía de un «material» que ya no discutía.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El asunto está empatado. No puedo hablar de él sin desempatar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_129",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: Los Jubilados nos miran reciclar en silencio y lo llaman abstención hostil. Pues hablemos.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La reprimenda se votó, hubo empate y se votó el empate. Sigue empatado.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un taller donde el mismo cuerpo tiene dos fichas y ninguna se mueve.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Llámalo como quieras, pero no lo toques.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_130",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una aclaración: ¿Conoces a algún abstencionista?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La abstención es una forma de vida: hay quien lleva nueve años sin confirmar su nombre.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Se le preguntó su nombre y contestó «pendiente». Consta así en el censo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Yo me abstengo de responder a esa pregunta. Y a la siguiente.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_131",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Te informo con arreglo al reglamento: ¿Sabes cuánto puede aguantar uno sin votar?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Abstenerse no es no decidir, es decidir que decida otro con tu silencio.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un premio al mérito abstencionista, pero nadie lo ha aceptado.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Podría votar una respuesta, pero no veo quorum en mí mismo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_132",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Qué pasa si no votas nada?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El abstencionista más veterano no vota ni cuando le votan a él.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La abstención es una forma de vida: hay quien lleva nueve años sin confirmar su nombre.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Se le preguntó su nombre y contestó «pendiente». Consta así en el censo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Yo me abstengo de responder a esa pregunta. Y a la siguiente.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_133",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto. No te la doy ni te la niego: me abstengo.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y si te preguntan, di que no te la di.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Podría votar una respuesta, pero no veo quorum en mí mismo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_134",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Abstenerse es cobardía con papeleta: no decide nada y luego se queja de todo.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Abstenerse no es no decidir, es decidir que decida otro con tu silencio.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Tu elogio se agradece. Me abstengo de repetirlo para no gastarlo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_135",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: Los Jubilados no votan nada y aun así tienen normas. Nosotros al menos las aprobamos.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La abstención es una forma de vida: hay quien lleva nueve años sin confirmar su nombre.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Yo me abstengo de responder a esa pregunta. Y a la siguiente.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_136",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Conoces a algún abstencionista?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un premio al mérito abstencionista, pero nadie lo ha aceptado.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Podría votar una respuesta, pero no veo quorum en mí mismo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Abstenerse es cobardía con papeleta: no decide nada y luego se queja de todo.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_137",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Sabes cuánto puede aguantar uno sin votar?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La abstención es una forma de vida: hay quien lleva nueve años sin confirmar su nombre.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se le preguntó su nombre y contestó «pendiente». Consta así en el censo.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_138",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Qué pasa si no votas nada?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Abstenerse no es no decidir, es decidir que decida otro con tu silencio.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se le preguntó su nombre y contestó «pendiente». Consta así en el censo.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto. No te la doy ni te la niego: me abstengo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Yo me abstengo de responder a esa pregunta. Y a la siguiente.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_139",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: Los Jubilados no votan nada y aun así tienen normas. Nosotros al menos las aprobamos.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El abstencionista más veterano no vota ni cuando le votan a él.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un premio al mérito abstencionista, pero nadie lo ha aceptado.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Podría votar una respuesta, pero no veo quorum en mí mismo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_140",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Antes de nada, una aclaración: ¿Llegasteis antes o después del colapso?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Llegamos antes que nadie. Consta en acta. Nadie ha encontrado el acta.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El acta de búsqueda del acta también está en trámite.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta la respondió una votación que no consta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_141",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Te informo con arreglo al reglamento: ¿Qué opinas de la Gran Emisión?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Gran Emisión la oímos primero y decidimos no votarla.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Grux y nosotros llegamos después del colapso, pero eso no lo votamos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "De la Emisión no hablamos: se votó no oírla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_142",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Una cuestión de orden. ¿Por qué no votasteis la señal?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Fue la decisión más responsable de la historia y también la menos votada.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Llegamos antes que nadie. Consta en acta. Nadie ha encontrado el acta.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El acta de búsqueda del acta también está en trámite.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa pregunta la respondió una votación que no consta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_143",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto con la Emisión grabada. No la hemos votado.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y escúchala bajito, que hay vecinos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la Emisión no hablamos: se votó no oírla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_144",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Decidir no votar la Gran Emisión y llamarlo responsabilidad es de una cara muy dura.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Gran Emisión la oímos primero y decidimos no votarla.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se agradece. Y no hace falta votarlo, que ya lo has dicho tú.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_145",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Que quede constancia: Los Grux dicen que llegaron antes que nosotros. Eso se resuelve con papeleo o con palos.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Llegamos antes que nadie. Consta en acta. Nadie ha encontrado el acta.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta la respondió una votación que no consta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_146",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Esto lo someto a tu consideración: ¿Llegasteis antes o después del colapso?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux y nosotros llegamos después del colapso, pero eso no lo votamos.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la Emisión no hablamos: se votó no oírla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Decidir no votar la Gran Emisión y llamarlo responsabilidad es de una cara muy dura.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_147",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que hay quorum: ¿Qué opinas de la Gran Emisión?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Llegamos antes que nadie. Consta en acta. Nadie ha encontrado el acta.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El acta de búsqueda del acta también está en trámite.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_148",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Última cuestión del día: ¿Por qué no votasteis la señal?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La Gran Emisión la oímos primero y decidimos no votarla.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El acta de búsqueda del acta también está en trámite.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto con la Emisión grabada. No la hemos votado.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa pregunta la respondió una votación que no consta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "moho_149",
+      "greeting": "Bienvenido al censo. ¿Traes papeles?",
+      "nodes": {
+        "root": {
+          "text": "Y un asunto menor: Los Grux dicen que llegaron antes que nosotros. Eso se resuelve con papeleo o con palos.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Fue la decisión más responsable de la historia y también la menos votada.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los Grux y nosotros llegamos después del colapso, pero eso no lo votamos.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la Emisión no hablamos: se votó no oírla.",
+          "options": [
+            {
+              "label": "Vale",
               "next": ""
             }
           ]

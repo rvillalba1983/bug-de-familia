@@ -6,34 +6,43 @@
       "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
       "nodes": {
         "root": {
-          "text": "¿Sabes qué hora es?",
+          "text": "Aviso de ruta: ¿Sabes qué es la ruta eterna número nueve?",
           "options": [
-            {
-              "label": "No",
-              "next": "r1"
-            },
             {
               "label": "Sí",
-              "next": "r2"
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
             }
           ]
         },
-        "r1": {
-          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+        "n1": {
+          "text": "La ruta nueve sigue en curso: el destinatario vivía en un edificio que ya no existe.",
           "options": [
             {
-              "label": "Volver",
-              "next": ""
+              "label": "¿Y luego?",
+              "next": "n3"
             }
           ]
         },
-        "r2": {
-          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+        "n3": {
+          "text": "Hay una familia que lleva cuatro generaciones esperando para firmar por el bisabuelo.",
           "options": [
             {
-              "label": "De nada",
+              "label": "Gracias",
               "next": "",
               "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La ruta nueve está en camino. Como siempre.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -44,38 +53,29 @@
       "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
       "nodes": {
         "root": {
-          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "text": "Te lo entrego sin acuse: ¿Por qué seguís entregando un paquete a un edificio que no existe?",
           "options": [
             {
-              "label": "Sí",
-              "next": "a1"
+              "label": "Cuéntame",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "a2"
+              "label": "No me interesa",
+              "next": "n3"
             }
           ]
         },
-        "a1": {
-          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+        "n1": {
+          "text": "El paquete se hereda de generación en generación, con acuse pendiente.",
           "options": [
             {
-              "label": "¿Y después?",
-              "next": "a3"
+              "label": "Sigue",
+              "next": "n2"
             }
           ]
         },
-        "a2": {
-          "text": "Pues bien. Tú te lo pierdes.",
-          "options": [
-            {
-              "label": "Volver",
-              "next": ""
-            }
-          ]
-        },
-        "a3": {
-          "text": "Después vinimos nosotros. Y aquí seguimos.",
+        "n2": {
+          "text": "El paquete pesa lo mismo que hace cien años. No lo hemos abierto, por respeto al cliente.",
           "options": [
             {
               "label": "Gracias",
@@ -83,9 +83,18 @@
               "action": "praise"
             },
             {
-              "label": "Qué rollo",
+              "label": "Qué aburrido",
               "next": "",
               "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "No puedo hablar de esa entrega: la lleva mi abuelo, que la llevaba su abuelo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -96,33 +105,51 @@
       "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
       "nodes": {
         "root": {
-          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "text": "Una parada rápida: ¿Quién firma el acuse de la ruta nueve?",
           "options": [
             {
-              "label": "Sí",
-              "next": "g1"
+              "label": "Vamos allá",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "g2"
+              "label": "Ahora no",
+              "next": "n4"
             }
           ]
         },
-        "g1": {
-          "text": "Toma. No la pierdas.",
+        "n1": {
+          "text": "El acuse también se hereda. Nadie firma. Esperar es nuestro único talento demostrable.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La ruta nueve sigue en curso: el destinatario vivía en un edificio que ya no existe.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una familia que lleva cuatro generaciones esperando para firmar por el bisabuelo.",
           "options": [
             {
               "label": "Gracias",
               "next": "",
-              "action": "gift_piece"
+              "action": "praise"
             }
           ]
         },
-        "g2": {
-          "text": "Pues la guardo. Más para mí.",
+        "n4": {
+          "text": "La ruta nueve está en camino. Como siempre.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -134,35 +161,34 @@
       "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
       "nodes": {
         "root": {
-          "text": "¿Te atreves a decirme que soy viejo?",
+          "text": "Tengo una pieza de repuesto que venía en un paquete devuelto.",
           "options": [
             {
               "label": "Sí",
-              "next": "h1"
+              "next": "n1"
             },
             {
               "label": "No",
-              "next": "h2"
+              "next": "n2"
             }
           ]
         },
-        "h1": {
-          "text": "Pues toma.",
+        "n1": {
+          "text": "Toma, y no firmes nada, que luego te heredan la ruta.",
           "options": [
             {
-              "label": "Ay",
+              "label": "Gracias",
               "next": "",
-              "action": "hit"
+              "action": "gift_piece"
             }
           ]
         },
-        "h2": {
-          "text": "Sabia decisión.",
+        "n2": {
+          "text": "No puedo hablar de esa entrega: la lleva mi abuelo, que la llevaba su abuelo.",
           "options": [
             {
-              "label": "Volver",
-              "next": "",
-              "action": "praise"
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -173,30 +199,30 @@
       "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
       "nodes": {
         "root": {
-          "text": "¿Qué opinas de los grux?",
+          "text": "La ruta nueve es una tontería: si el destinatario no existe, la entrega se cancela.",
           "options": [
             {
-              "label": "Son basura",
-              "next": "b1"
+              "label": "Sí, y lo repito",
+              "next": "n1"
             },
             {
-              "label": "Son majos",
-              "next": "b2"
+              "label": "No, era broma",
+              "next": "n2"
             }
           ]
         },
-        "b1": {
-          "text": "Exacto. Y ahora que lo dices...",
+        "n1": {
+          "text": "El paquete se hereda de generación en generación, con acuse pendiente.",
           "options": [
             {
-              "label": "Oh no",
+              "label": "Pues ya está",
               "next": "",
-              "action": "provoke_battle"
+              "action": "hit"
             }
           ]
         },
-        "b2": {
-          "text": "Majos no, pero útiles. Vete.",
+        "n2": {
+          "text": "Buen gesto. Lo anoto como entrega completada, que ya era hora.",
           "options": [
             {
               "label": "Vale",
@@ -211,33 +237,33 @@
       "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
       "nodes": {
         "root": {
-          "text": "¿Sabes por qué el cielo es gris?",
+          "text": "Sin desviarme del tema: Los Ecos imitan el timbre de entrega para desviarnos. Eso no se hace.",
           "options": [
             {
-              "label": "No",
-              "next": "l1"
+              "label": "Tienes razón",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "l2"
+              "label": "Déjalos en paz",
+              "next": "n2"
             }
           ]
         },
-        "l1": {
-          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+        "n1": {
+          "text": "La ruta nueve sigue en curso: el destinatario vivía en un edificio que ya no existe.",
           "options": [
             {
-              "label": "Jaja",
+              "label": "Que empiece",
               "next": "",
-              "action": "praise"
+              "action": "provoke_battle"
             }
           ]
         },
-        "l2": {
-          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+        "n2": {
+          "text": "La ruta nueve está en camino. Como siempre.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -249,34 +275,48 @@
       "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
       "nodes": {
         "root": {
-          "text": "¿Sabes qué hora es?",
+          "text": "Pregunta de repartidor: ¿Sabes qué es la ruta eterna número nueve?",
           "options": [
             {
-              "label": "No",
-              "next": "r1"
+              "label": "Sí",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "r2"
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
             }
           ]
         },
-        "r1": {
-          "text": "Pues yo tampoco. El reloj se rompió en el Apocalipsis.",
+        "n1": {
+          "text": "El paquete pesa lo mismo que hace cien años. No lo hemos abierto, por respeto al cliente.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo hablar de esa entrega: la lleva mi abuelo, que la llevaba su abuelo.",
+          "options": [
+            {
+              "label": "Vale",
               "next": ""
             }
           ]
         },
-        "r2": {
-          "text": "Mentira. Nadie sabe. Pero gracias por intentar.",
+        "n3": {
+          "text": "La ruta nueve es una tontería: si el destinatario no existe, la entrega se cancela.",
           "options": [
             {
-              "label": "De nada",
+              "label": "Y lo mantengo",
               "next": "",
-              "action": "praise"
+              "action": "insult"
             }
           ]
         }
@@ -287,46 +327,33 @@
       "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
       "nodes": {
         "root": {
-          "text": "¿Quieres que te cuente algo del Apocalipsis?",
+          "text": "Escucha, que llevo prisa y paquete: ¿Por qué seguís entregando un paquete a un edificio que no existe?",
           "options": [
             {
-              "label": "Sí",
-              "next": "a1"
+              "label": "Por el principio",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "a2"
+              "label": "Por el final",
+              "next": "n2"
             }
           ]
         },
-        "a1": {
-          "text": "Había mucha luz y mucho ruido. Y luego silencio.",
+        "n1": {
+          "text": "La ruta nueve sigue en curso: el destinatario vivía en un edificio que ya no existe.",
           "options": [
             {
-              "label": "¿Y después?",
-              "next": "a3"
-            }
-          ]
-        },
-        "a2": {
-          "text": "Pues bien. Tú te lo pierdes.",
-          "options": [
-            {
-              "label": "Volver",
-              "next": ""
-            }
-          ]
-        },
-        "a3": {
-          "text": "Después vinimos nosotros. Y aquí seguimos.",
-          "options": [
-            {
-              "label": "Gracias",
+              "label": "Interesante",
               "next": "",
               "action": "praise"
-            },
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una familia que lleva cuatro generaciones esperando para firmar por el bisabuelo.",
+          "options": [
             {
-              "label": "Qué rollo",
+              "label": "Qué tontería",
               "next": "",
               "action": "insult"
             }
@@ -339,20 +366,38 @@
       "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
       "nodes": {
         "root": {
-          "text": "Tengo una pieza de repuesto. ¿La quieres?",
+          "text": "Última parada del día: ¿Quién firma el acuse de la ruta nueve?",
           "options": [
             {
-              "label": "Sí",
-              "next": "g1"
+              "label": "Cuenta",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "g2"
+              "label": "Otro día",
+              "next": "n4"
             }
           ]
         },
-        "g1": {
-          "text": "Toma. No la pierdas.",
+        "n1": {
+          "text": "El paquete se hereda de generación en generación, con acuse pendiente.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una familia que lleva cuatro generaciones esperando para firmar por el bisabuelo.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que venía en un paquete devuelto.",
           "options": [
             {
               "label": "Gracias",
@@ -361,11 +406,11 @@
             }
           ]
         },
-        "g2": {
-          "text": "Pues la guardo. Más para mí.",
+        "n4": {
+          "text": "La ruta nueve está en camino. Como siempre.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
               "next": ""
             }
           ]
@@ -377,35 +422,43 @@
       "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
       "nodes": {
         "root": {
-          "text": "¿Te atreves a decirme que soy viejo?",
+          "text": "Y un aviso de la central: Los Ecos imitan el timbre de entrega para desviarnos. Eso no se hace.",
           "options": [
             {
-              "label": "Sí",
-              "next": "h1"
+              "label": "Claro que sí",
+              "next": "n1"
             },
             {
-              "label": "No",
-              "next": "h2"
+              "label": "Ni hablar",
+              "next": "n2"
             }
           ]
         },
-        "h1": {
-          "text": "Pues toma.",
+        "n1": {
+          "text": "El acuse también se hereda. Nadie firma. Esperar es nuestro único talento demostrable.",
           "options": [
             {
-              "label": "Ay",
-              "next": "",
-              "action": "hit"
+              "label": "¿Y los demás?",
+              "next": "n3"
             }
           ]
         },
-        "h2": {
-          "text": "Sabia decisión.",
+        "n3": {
+          "text": "El paquete pesa lo mismo que hace cien años. No lo hemos abierto, por respeto al cliente.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Que empiece",
               "next": "",
-              "action": "praise"
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo hablar de esa entrega: la lleva mi abuelo, que la llevaba su abuelo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
             }
           ]
         }
@@ -416,30 +469,39 @@
       "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
       "nodes": {
         "root": {
-          "text": "¿Qué opinas de los grux?",
+          "text": "Aviso de ruta: ¿Por qué solo giráis a la derecha?",
           "options": [
             {
-              "label": "Son basura",
-              "next": "b1"
+              "label": "Sí",
+              "next": "n1"
             },
             {
-              "label": "Son majos",
-              "next": "b2"
+              "label": "No",
+              "next": "n2"
             }
           ]
         },
-        "b1": {
-          "text": "Exacto. Y ahora que lo dices...",
+        "n1": {
+          "text": "Solo giramos a la derecha. La izquierda no existe en la ruta.",
           "options": [
             {
-              "label": "Oh no",
-              "next": "",
-              "action": "provoke_battle"
+              "label": "¿Y luego?",
+              "next": "n3"
             }
           ]
         },
-        "b2": {
-          "text": "Majos no, pero útiles. Vete.",
+        "n3": {
+          "text": "Hay rutas que dan tres vueltas a la misma manzana por no girar a la izquierda.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta va hacia la izquierda. No puedo seguirla.",
           "options": [
             {
               "label": "Vale",
@@ -454,33 +516,6430 @@
       "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
       "nodes": {
         "root": {
-          "text": "¿Sabes por qué el cielo es gris?",
+          "text": "Te lo entrego sin acuse: ¿Qué pasa si alguien gira a la izquierda?",
           "options": [
             {
-              "label": "No",
-              "next": "l1"
+              "label": "Cuéntame",
+              "next": "n1"
             },
             {
-              "label": "Sí",
-              "next": "l2"
+              "label": "No me interesa",
+              "next": "n3"
             }
           ]
         },
-        "l1": {
-          "text": "Porque el Apocalipsis pintó todo de gris. Literal.",
+        "n1": {
+          "text": "Bloquea el giro derecho y la unidad se pierde, orbita o se sienta a esperar.",
           "options": [
             {
-              "label": "Jaja",
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un cachorro giró a la izquierda por accidente y la manada repitió la ruta para taparlo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Gira a la derecha y vuelve a preguntar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_012",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿Nunca habéis probado a girar al otro lado?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La navegación central no contempla la izquierda y no vamos a discutir con ella.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Solo giramos a la derecha. La izquierda no existe en la ruta.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay rutas que dan tres vueltas a la misma manzana por no girar a la izquierda.",
+          "options": [
+            {
+              "label": "Gracias",
               "next": "",
               "action": "praise"
             }
           ]
         },
-        "l2": {
-          "text": "Mentira. El cielo siempre fue gris. El Apocalipsis solo lo dejó ver.",
+        "n4": {
+          "text": "Esa pregunta va hacia la izquierda. No puedo seguirla.",
           "options": [
             {
-              "label": "Volver",
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_013",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que encontré dando una vuelta a la manzana.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y si no sabes volver, gira a la derecha hasta que suene.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Gira a la derecha y vuelve a preguntar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_014",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Girar solo a la derecha es una superstición que os hace dar vueltas como tontos.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Bloquea el giro derecho y la unidad se pierde, orbita o se sienta a esperar.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio recibido y archivado en el albarán del día.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_015",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Mohócratas cerraron el giro a la derecha y nos dejaron orbitando. Eso es una agresión.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Solo giramos a la derecha. La izquierda no existe en la ruta.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta va hacia la izquierda. No puedo seguirla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_016",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿Por qué solo giráis a la derecha?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un cachorro giró a la izquierda por accidente y la manada repitió la ruta para taparlo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Gira a la derecha y vuelve a preguntar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Girar solo a la derecha es una superstición que os hace dar vueltas como tontos.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_017",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿Qué pasa si alguien gira a la izquierda?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Solo giramos a la derecha. La izquierda no existe en la ruta.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay rutas que dan tres vueltas a la misma manzana por no girar a la izquierda.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_018",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿Nunca habéis probado a girar al otro lado?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Bloquea el giro derecho y la unidad se pierde, orbita o se sienta a esperar.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay rutas que dan tres vueltas a la misma manzana por no girar a la izquierda.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que encontré dando una vuelta a la manzana.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa pregunta va hacia la izquierda. No puedo seguirla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_019",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Mohócratas cerraron el giro a la derecha y nos dejaron orbitando. Eso es una agresión.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La navegación central no contempla la izquierda y no vamos a discutir con ella.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un cachorro giró a la izquierda por accidente y la manada repitió la ruta para taparlo.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Gira a la derecha y vuelve a preguntar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_020",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Aviso de ruta: ¿Qué son los ladridos en binario?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Obedecemos ladridos en binario: cero, cero, uno, cero.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una unidad que lleva años yendo a la zona equivocada por un ladrido con acento.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta no está en binario. No la entiendo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_021",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Te lo entrego sin acuse: ¿Es verdad que un 101 mal pronunciado os manda a otro sitio?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Antes de salir a ruta aullamos el número de ruta en binario.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El cachorro que se equivoca hace que toda la manada repita la ruta mal, por respeto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Ladra tu número de ruta y hablamos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_022",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿Por qué ladráis antes de salir?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un 101 mal pronunciado nos manda a otra zona y nadie discute el resultado.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Obedecemos ladridos en binario: cero, cero, uno, cero.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una unidad que lleva años yendo a la zona equivocada por un ladrido con acento.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa pregunta no está en binario. No la entiendo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_023",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que llegó a la zona equivocada.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la mandes por ladrido, que se pierde.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ladra tu número de ruta y hablamos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_024",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Obedecer ladridos en binario es dejar que un perro con voz grave decida tu vida.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Antes de salir a ruta aullamos el número de ruta en binario.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ladrido claro y elogio recibido. Cero, cero, uno, cero.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_025",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Ecos repiten nuestros ladridos con eco y nos desvían. Que se callen de una vez.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Obedecemos ladridos en binario: cero, cero, uno, cero.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta no está en binario. No la entiendo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_026",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿Qué son los ladridos en binario?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El cachorro que se equivoca hace que toda la manada repita la ruta mal, por respeto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ladra tu número de ruta y hablamos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Obedecer ladridos en binario es dejar que un perro con voz grave decida tu vida.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_027",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿Es verdad que un 101 mal pronunciado os manda a otro sitio?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Obedecemos ladridos en binario: cero, cero, uno, cero.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una unidad que lleva años yendo a la zona equivocada por un ladrido con acento.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_028",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿Por qué ladráis antes de salir?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Antes de salir a ruta aullamos el número de ruta en binario.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una unidad que lleva años yendo a la zona equivocada por un ladrido con acento.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que llegó a la zona equivocada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa pregunta no está en binario. No la entiendo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_029",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Ecos repiten nuestros ladridos con eco y nos desvían. Que se callen de una vez.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un 101 mal pronunciado nos manda a otra zona y nadie discute el resultado.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El cachorro que se equivoca hace que toda la manada repita la ruta mal, por respeto.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ladra tu número de ruta y hablamos.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_030",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Aviso de ruta: ¿Qué es la Última Ruta?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Última Ruta custodian la última entrega pendiente.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Nadie lo dice en voz alta porque una ruta no se cancela: se completa.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese paquete no se abre. Ni se mira. Ni se pregunta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_031",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Te lo entrego sin acuse: ¿Qué lleva el paquete de la Última Ruta?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux ofrecen precios cada vez más absurdos y los Guardianes responden con el ladrido de «no venta».",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El ladrido de «no venta» dura once minutos y hay que aguantarlo entero por educación.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La Última Ruta está en curso y no admite visitas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_032",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿Por qué no abrís el último paquete?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El paquete está vacío y los Guardianes lo saben desde la tercera generación.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "En la Última Ruta custodian la última entrega pendiente.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Nadie lo dice en voz alta porque una ruta no se cancela: se completa.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese paquete no se abre. Ni se mira. Ni se pregunta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_033",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto de un paquete que sí se abrió. Fue un escándalo.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no preguntes qué había dentro, que no había nada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La Última Ruta está en curso y no admite visitas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_034",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "El paquete de la Última Ruta está vacío y todos lo sabéis: es teatro con albarán.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux ofrecen precios cada vez más absurdos y los Guardianes responden con el ladrido de «no venta».",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio entregado. Sin acuse, que ya me fío de ti.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_035",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Grux quieren comprar la Última Ruta. Hay cosas que no se venden.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Última Ruta custodian la última entrega pendiente.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese paquete no se abre. Ni se mira. Ni se pregunta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_036",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿Qué es la Última Ruta?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El ladrido de «no venta» dura once minutos y hay que aguantarlo entero por educación.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La Última Ruta está en curso y no admite visitas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "El paquete de la Última Ruta está vacío y todos lo sabéis: es teatro con albarán.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_037",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿Qué lleva el paquete de la Última Ruta?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "En la Última Ruta custodian la última entrega pendiente.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Nadie lo dice en voz alta porque una ruta no se cancela: se completa.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_038",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿Por qué no abrís el último paquete?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Grux ofrecen precios cada vez más absurdos y los Guardianes responden con el ladrido de «no venta».",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Nadie lo dice en voz alta porque una ruta no se cancela: se completa.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto de un paquete que sí se abrió. Fue un escándalo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese paquete no se abre. Ni se mira. Ni se pregunta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_039",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Grux quieren comprar la Última Ruta. Hay cosas que no se venden.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El paquete está vacío y los Guardianes lo saben desde la tercera generación.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El ladrido de «no venta» dura once minutos y hay que aguantarlo entero por educación.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La Última Ruta está en curso y no admite visitas.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_040",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Aviso de ruta: ¿Qué fue la Gran Desviación?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los sistemas empezaron a enviar a la Manada hacia destinos inexistentes.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una unidad que volvió después de veinte años y entregó el paquete sin decir nada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa ruta no figura en el mapa. Y lo que no figura no se entrega.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_041",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Te lo entrego sin acuse: ¿Quién os mandó a destinos que no existían?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunos grupos desaparecieron durante años siguiendo rutas que no estaban en ningún mapa.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los mapas falsos llevaban marca de la casa. Eso es lo que más nos dolió.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "De la Desviación no hablo: me desvío.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_042",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿Por qué se perdieron miles de repartidores?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Después llegó el Apocalipsis del Destino y la central dejó de reconocer destinos válidos.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los sistemas empezaron a enviar a la Manada hacia destinos inexistentes.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una unidad que volvió después de veinte años y entregó el paquete sin decir nada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa ruta no figura en el mapa. Y lo que no figura no se entrega.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_043",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto de un paquete desviado. Llegó con retraso.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no sigas el mapa, que te lleva a ninguna parte.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la Desviación no hablo: me desvío.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_044",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "La Gran Desviación fue culpa vuestra por obedecer mapas sin mirarlos.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunos grupos desaparecieron durante años siguiendo rutas que no estaban en ningún mapa.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Gracias. Lo entrego en mano y me ahorro el acuse.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_045",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Grux vendieron mapas falsos y los Ecos los cantaron. Alguien tiene que pagar.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los sistemas empezaron a enviar a la Manada hacia destinos inexistentes.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa ruta no figura en el mapa. Y lo que no figura no se entrega.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_046",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿Qué fue la Gran Desviación?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los mapas falsos llevaban marca de la casa. Eso es lo que más nos dolió.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la Desviación no hablo: me desvío.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "La Gran Desviación fue culpa vuestra por obedecer mapas sin mirarlos.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_047",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿Quién os mandó a destinos que no existían?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los sistemas empezaron a enviar a la Manada hacia destinos inexistentes.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una unidad que volvió después de veinte años y entregó el paquete sin decir nada.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_048",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿Por qué se perdieron miles de repartidores?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunos grupos desaparecieron durante años siguiendo rutas que no estaban en ningún mapa.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una unidad que volvió después de veinte años y entregó el paquete sin decir nada.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto de un paquete desviado. Llegó con retraso.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa ruta no figura en el mapa. Y lo que no figura no se entrega.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_049",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Grux vendieron mapas falsos y los Ecos los cantaron. Alguien tiene que pagar.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Después llegó el Apocalipsis del Destino y la central dejó de reconocer destinos válidos.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los mapas falsos llevaban marca de la casa. Eso es lo que más nos dolió.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la Desviación no hablo: me desvío.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_050",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Aviso de ruta: ¿Por qué olfateáis todos los paquetes?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Debemos olfatear todo paquete antes de confiar en él. Los vacíos también.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un paquete que huele a decepción desde antes de abrirse. Nunca lo hemos abierto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Deja que lo huela. Es por protocolo, no por desconfianza.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_051",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Te lo entrego sin acuse: ¿A qué huele un paquete vacío?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los vacíos huelen a decepción. Tiene remitente y el remitente sigue esperando.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El remitente del paquete vacío murió esperando el acuse. Es peor que el vacío.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Ese paquete huele raro. No lo toques.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_052",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿Se puede confiar en un paquete sin oler?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un paquete sin oler no se entrega, aunque venga con lacre y buenas palabras.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Debemos olfatear todo paquete antes de confiar en él. Los vacíos también.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un paquete que huele a decepción desde antes de abrirse. Nunca lo hemos abierto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Deja que lo huela. Es por protocolo, no por desconfianza.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_053",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que huele a paquete nuevo. Es un decir.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y huélela antes de confiar en mí.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese paquete huele raro. No lo toques.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_054",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Olfatear paquetes es una manía que no detecta nada y retrasa el reparto.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los vacíos huelen a decepción. Tiene remitente y el remitente sigue esperando.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Huele a cliente honesto. Se agradece.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_055",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Ecos envían paquetes con olor a timbre y nos vuelven locos. Basta ya.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Debemos olfatear todo paquete antes de confiar en él. Los vacíos también.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Deja que lo huela. Es por protocolo, no por desconfianza.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_056",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿Por qué olfateáis todos los paquetes?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El remitente del paquete vacío murió esperando el acuse. Es peor que el vacío.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese paquete huele raro. No lo toques.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Olfatear paquetes es una manía que no detecta nada y retrasa el reparto.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_057",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿A qué huele un paquete vacío?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Debemos olfatear todo paquete antes de confiar en él. Los vacíos también.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un paquete que huele a decepción desde antes de abrirse. Nunca lo hemos abierto.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_058",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿Se puede confiar en un paquete sin oler?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los vacíos huelen a decepción. Tiene remitente y el remitente sigue esperando.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un paquete que huele a decepción desde antes de abrirse. Nunca lo hemos abierto.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que huele a paquete nuevo. Es un decir.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Deja que lo huela. Es por protocolo, no por desconfianza.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_059",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Ecos envían paquetes con olor a timbre y nos vuelven locos. Basta ya.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un paquete sin oler no se entrega, aunque venga con lacre y buenas palabras.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El remitente del paquete vacío murió esperando el acuse. Es peor que el vacío.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese paquete huele raro. No lo toques.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_060",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Aviso de ruta: ¿Por qué dejáis paquetes vacíos por el camino?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Marcamos las rutas dejando un paquete vacío cada cien pasos.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un camino con tantos paquetes que ya no se ve el suelo. Eso es una ruta bien marcada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese paquete marca la ruta. No lo muevas, que me pierdo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_061",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Te lo entrego sin acuse: ¿Cómo marcáis las rutas?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nuestro mapa del mundo es, en realidad, una fila de paquetes.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un Mohócrata votó retirar los paquetes del camino. Ganó la abstención.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Los paquetes vacíos no se cuentan. Se dejan.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_062",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿Cuántos paquetes vacíos hay en el mundo?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los paquetes vacíos se heredan junto con la ruta, por si acaso.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Marcamos las rutas dejando un paquete vacío cada cien pasos.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un camino con tantos paquetes que ya no se ve el suelo. Eso es una ruta bien marcada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese paquete marca la ruta. No lo muevas, que me pierdo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_063",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que iba dentro de un paquete de marca.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y déjala cada cien pasos, que así se vuelve.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los paquetes vacíos no se cuentan. Se dejan.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_064",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Llenar el mundo de paquetes vacíos es contaminar con albarán.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nuestro mapa del mundo es, en realidad, una fila de paquetes.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Buen trayecto. Lo marcaremos con un paquete vacío en tu honor.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_065",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Mohócratas votaron quitar nuestros paquetes del atajo. Eso nos desvía.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Marcamos las rutas dejando un paquete vacío cada cien pasos.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese paquete marca la ruta. No lo muevas, que me pierdo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_066",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿Por qué dejáis paquetes vacíos por el camino?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un Mohócrata votó retirar los paquetes del camino. Ganó la abstención.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los paquetes vacíos no se cuentan. Se dejan.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Llenar el mundo de paquetes vacíos es contaminar con albarán.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_067",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿Cómo marcáis las rutas?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Marcamos las rutas dejando un paquete vacío cada cien pasos.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un camino con tantos paquetes que ya no se ve el suelo. Eso es una ruta bien marcada.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_068",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿Cuántos paquetes vacíos hay en el mundo?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Nuestro mapa del mundo es, en realidad, una fila de paquetes.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un camino con tantos paquetes que ya no se ve el suelo. Eso es una ruta bien marcada.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que iba dentro de un paquete de marca.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese paquete marca la ruta. No lo muevas, que me pierdo.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_069",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Mohócratas votaron quitar nuestros paquetes del atajo. Eso nos desvía.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los paquetes vacíos se heredan junto con la ruta, por si acaso.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un Mohócrata votó retirar los paquetes del camino. Ganó la abstención.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los paquetes vacíos no se cuentan. Se dejan.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_070",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Aviso de ruta: ¿Por qué esperáis ante puertas cerradas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Esperamos sentados ante puertas cerradas de destinatarios muertos hace siglos.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una puerta con tres generaciones sentadas delante y ninguna se ha levantado.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Estoy esperando. Puedes esperar conmigo, pero no hables.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_071",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Te lo entrego sin acuse: ¿Qué hacéis si el destinatario lleva muerto siglos?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Lo llamamos respeto al cliente y no admite discusión.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un cliente abrió la puerta por error y la unidad se desmayó de la emoción.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El cliente no ha salido. Seguiré aquí por si acaso.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_072",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿Cuánto tiempo puede esperar un repartidor?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La espera se hereda: el que espera deja el turno al hijo y el hijo al suyo.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esperamos sentados ante puertas cerradas de destinatarios muertos hace siglos.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una puerta con tres generaciones sentadas delante y ninguna se ha levantado.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Estoy esperando. Puedes esperar conmigo, pero no hables.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_073",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que dejó un cliente que no abrió.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y si ves al destinatario, dile que sigo aquí.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El cliente no ha salido. Seguiré aquí por si acaso.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_074",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Esperar siglos ante una puerta cerrada es una pérdida de tiempo con pedigrí.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Lo llamamos respeto al cliente y no admite discusión.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio recibido en la puerta. Se agradece y se espera mejor.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_075",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Ecos imitan el timbre y nos hacen esperar de pie. Eso es crueldad acústica.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Esperamos sentados ante puertas cerradas de destinatarios muertos hace siglos.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Estoy esperando. Puedes esperar conmigo, pero no hables.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_076",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿Por qué esperáis ante puertas cerradas?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un cliente abrió la puerta por error y la unidad se desmayó de la emoción.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El cliente no ha salido. Seguiré aquí por si acaso.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Esperar siglos ante una puerta cerrada es una pérdida de tiempo con pedigrí.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_077",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿Qué hacéis si el destinatario lleva muerto siglos?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Esperamos sentados ante puertas cerradas de destinatarios muertos hace siglos.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una puerta con tres generaciones sentadas delante y ninguna se ha levantado.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_078",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿Cuánto tiempo puede esperar un repartidor?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Lo llamamos respeto al cliente y no admite discusión.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una puerta con tres generaciones sentadas delante y ninguna se ha levantado.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que dejó un cliente que no abrió.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Estoy esperando. Puedes esperar conmigo, pero no hables.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_079",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Ecos imitan el timbre y nos hacen esperar de pie. Eso es crueldad acústica.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La espera se hereda: el que espera deja el turno al hijo y el hijo al suyo.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un cliente abrió la puerta por error y la unidad se desmayó de la emoción.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El cliente no ha salido. Seguiré aquí por si acaso.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_080",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Aviso de ruta: ¿Quiénes son los zurdos?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los zurdos son los Desviados que aprendieron a girar a la izquierda por accidente.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un zurdo salvó una entrega girando a la izquierda y nunca lo contó.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Aquí no hay zurdos. Y si los hubiera, no girarían aquí.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_081",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Te lo entrego sin acuse: ¿Se puede girar a la izquierda?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se avergonzaron y lo ocultan. En el Polígono se habla de ellos en voz baja.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un grupo de zurdos que se reúne en un almacén sin decir a dónde va.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Esa pregunta es de zurdo. No la contesto.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_082",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿Por qué habláis de los zurdos en voz baja?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Girar a la izquierda es, en nuestra moral, peor que morder al cliente.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los zurdos son los Desviados que aprendieron a girar a la izquierda por accidente.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un zurdo salvó una entrega girando a la izquierda y nunca lo contó.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Aquí no hay zurdos. Y si los hubiera, no girarían aquí.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_083",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que un zurdo dejó a la izquierda. No pregunto.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no le cuentes a nadie de qué mano te la doy.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta es de zurdo. No la contesto.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_084",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Girar a la izquierda no tiene nada de malo y esconderlo es de cobardes.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se avergonzaron y lo ocultan. En el Polígono se habla de ellos en voz baja.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio recibido. Sin giros raros.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_085",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Ecos se ríen de nuestros giros y encima los repiten. Que se rían en su casa.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los zurdos son los Desviados que aprendieron a girar a la izquierda por accidente.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Aquí no hay zurdos. Y si los hubiera, no girarían aquí.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_086",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿Quiénes son los zurdos?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un grupo de zurdos que se reúne en un almacén sin decir a dónde va.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta es de zurdo. No la contesto.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Girar a la izquierda no tiene nada de malo y esconderlo es de cobardes.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_087",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿Se puede girar a la izquierda?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los zurdos son los Desviados que aprendieron a girar a la izquierda por accidente.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un zurdo salvó una entrega girando a la izquierda y nunca lo contó.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_088",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿Por qué habláis de los zurdos en voz baja?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Se avergonzaron y lo ocultan. En el Polígono se habla de ellos en voz baja.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un zurdo salvó una entrega girando a la izquierda y nunca lo contó.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que un zurdo dejó a la izquierda. No pregunto.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Aquí no hay zurdos. Y si los hubiera, no girarían aquí.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_089",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Ecos se ríen de nuestros giros y encima los repiten. Que se rían en su casa.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Girar a la izquierda es, en nuestra moral, peor que morder al cliente.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un grupo de zurdos que se reúne en un almacén sin decir a dónde va.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta es de zurdo. No la contesto.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_090",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Aviso de ruta: ¿Quién vive en el piso tercero B del Polígono?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El expediente dice «Piso 3º B». El edificio no tiene pisos, ni tercera planta, ni letra B.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El paquete del año pasado también iba vacío. Y el anterior. La tradición es la tradición.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El piso tercero B está en obras desde antes del colapso. Vuelve el año que viene.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_091",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Te lo entrego sin acuse: ¿Por qué celebráis una ruta a una dirección inexistente?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Lo celebramos cada año con una ruta conmemorativa y un paquete nuevo, vacío.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un cachorro que se sabe la ruta de memoria y no ha visto el edificio nunca.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "No puedo confirmar la dirección. Es confidencial y no existe.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_092",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿Hay algún destinatario vivo?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La esperanza va en el albarán, que es el cajón donde guardamos lo que no existe.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El expediente dice «Piso 3º B». El edificio no tiene pisos, ni tercera planta, ni letra B.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "El paquete del año pasado también iba vacío. Y el anterior. La tradición es la tradición.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El piso tercero B está en obras desde antes del colapso. Vuelve el año que viene.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_093",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que iba en el paquete conmemorativo. Estaba vacío.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la lleves al piso tercero B, que no hay donde dejarla.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo confirmar la dirección. Es confidencial y no existe.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_094",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Celebrar una ruta a un piso que no existe es celebrar que os engañaron.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Lo celebramos cada año con una ruta conmemorativa y un paquete nuevo, vacío.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio entregado en el tercero B. Bueno, en la puerta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_095",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Grux venden parcelas en el Polígono para un edificio que no existe. Eso es de otro nivel.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El expediente dice «Piso 3º B». El edificio no tiene pisos, ni tercera planta, ni letra B.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El piso tercero B está en obras desde antes del colapso. Vuelve el año que viene.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_096",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿Quién vive en el piso tercero B del Polígono?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un cachorro que se sabe la ruta de memoria y no ha visto el edificio nunca.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo confirmar la dirección. Es confidencial y no existe.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Celebrar una ruta a un piso que no existe es celebrar que os engañaron.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_097",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿Por qué celebráis una ruta a una dirección inexistente?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El expediente dice «Piso 3º B». El edificio no tiene pisos, ni tercera planta, ni letra B.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El paquete del año pasado también iba vacío. Y el anterior. La tradición es la tradición.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_098",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿Hay algún destinatario vivo?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Lo celebramos cada año con una ruta conmemorativa y un paquete nuevo, vacío.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El paquete del año pasado también iba vacío. Y el anterior. La tradición es la tradición.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que iba en el paquete conmemorativo. Estaba vacío.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El piso tercero B está en obras desde antes del colapso. Vuelve el año que viene.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_099",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Grux venden parcelas en el Polígono para un edificio que no existe. Eso es de otro nivel.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La esperanza va en el albarán, que es el cajón donde guardamos lo que no existe.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un cachorro que se sabe la ruta de memoria y no ha visto el edificio nunca.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No puedo confirmar la dirección. Es confidencial y no existe.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_100",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Aviso de ruta: ¿Qué pasa en la Cámara de Resonancia con la Manada?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Ecos imitan el timbre de entrega y la Manada entra en frenesí.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La Cámara ha tenido que reponer tres paredes y dos urns funerarias.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese timbre no es de fiar. Los timbres de los Ecos nunca lo son.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_101",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Te lo entrego sin acuse: ¿Por qué entráis en estampida al oír un timbre?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Golpeamos las paredes con el paquete hasta que alguien firma o se cae la pared.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay quien va a la Cámara solo a oír el timbre y vuelve sin paquete y sin dignidad.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "De la Cámara no hablo: me pongo a ladrar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_102",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿Qué hacen los Ecos con vosotros?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Ecos lo llaman el mejor espectáculo acústico del mundo y venden localidades.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Los Ecos imitan el timbre de entrega y la Manada entra en frenesí.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La Cámara ha tenido que reponer tres paredes y dos urns funerarias.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese timbre no es de fiar. Los timbres de los Ecos nunca lo son.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_103",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que salió de una pared de la Cámara.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la golpees contra la pared, que se oye en todo el valle.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la Cámara no hablo: me pongo a ladrar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_104",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Imitar un timbre para que una manada se estampe es crueldad con taquilla.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Golpeamos las paredes con el paquete hasta que alguien firma o se cae la pared.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio claro como un timbre. Se agradece y se reparte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_105",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Ecos venden entradas para vernos chocar. Eso ya es abuso con butaca.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Ecos imitan el timbre de entrega y la Manada entra en frenesí.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese timbre no es de fiar. Los timbres de los Ecos nunca lo son.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_106",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿Qué pasa en la Cámara de Resonancia con la Manada?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay quien va a la Cámara solo a oír el timbre y vuelve sin paquete y sin dignidad.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la Cámara no hablo: me pongo a ladrar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Imitar un timbre para que una manada se estampe es crueldad con taquilla.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_107",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿Por qué entráis en estampida al oír un timbre?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Ecos imitan el timbre de entrega y la Manada entra en frenesí.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La Cámara ha tenido que reponer tres paredes y dos urns funerarias.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_108",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿Qué hacen los Ecos con vosotros?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Golpeamos las paredes con el paquete hasta que alguien firma o se cae la pared.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La Cámara ha tenido que reponer tres paredes y dos urns funerarias.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que salió de una pared de la Cámara.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Ese timbre no es de fiar. Los timbres de los Ecos nunca lo son.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_109",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Ecos venden entradas para vernos chocar. Eso ya es abuso con butaca.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los Ecos lo llaman el mejor espectáculo acústico del mundo y venden localidades.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay quien va a la Cámara solo a oír el timbre y vuelve sin paquete y sin dignidad.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "De la Cámara no hablo: me pongo a ladrar.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_110",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Aviso de ruta: ¿Qué entregáis en el Desguace de las Nueve?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Entregamos piezas a una empresa de envíos que dejó de existir antes del colapso.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un almacén con paquetes «en camino» desde hace cuarenta años. Nadie los mueve.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa entrega está en camino. No puedo decir más sin desviarme.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_111",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Te lo entrego sin acuse: ¿Existe la empresa de envíos?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La entrega consta «en camino», que es el estado oficial de toda nuestra economía.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Un empleado de la empresa contestó una vez. Fue un eco y no contó.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "La empresa existe. Que no tenga oficina es un detalle.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_112",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿Por qué todo está «en camino»?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El PIB, la fe y la excusa son la misma palabra: en camino.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Entregamos piezas a una empresa de envíos que dejó de existir antes del colapso.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un almacén con paquetes «en camino» desde hace cuarenta años. Nadie los mueve.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa entrega está en camino. No puedo decir más sin desviarme.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_113",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto «en camino» desde 1987. Ya casi.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y fírmame el acuse, aunque no sirva para nada.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La empresa existe. Que no tenga oficina es un detalle.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_114",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Entregar a una empresa que no existe es trabajar gratis para nadie.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La entrega consta «en camino», que es el estado oficial de toda nuestra economía.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio en camino. Llegará, como todo lo nuestro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_115",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Jubilados nos dejaron encerrados cuarenta años en un almacén. Ahí empezó todo.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Entregamos piezas a una empresa de envíos que dejó de existir antes del colapso.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa entrega está en camino. No puedo decir más sin desviarme.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_116",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿Qué entregáis en el Desguace de las Nueve?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Un empleado de la empresa contestó una vez. Fue un eco y no contó.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La empresa existe. Que no tenga oficina es un detalle.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Entregar a una empresa que no existe es trabajar gratis para nadie.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_117",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿Existe la empresa de envíos?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Entregamos piezas a una empresa de envíos que dejó de existir antes del colapso.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un almacén con paquetes «en camino» desde hace cuarenta años. Nadie los mueve.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_118",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿Por qué todo está «en camino»?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La entrega consta «en camino», que es el estado oficial de toda nuestra economía.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un almacén con paquetes «en camino» desde hace cuarenta años. Nadie los mueve.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto «en camino» desde 1987. Ya casi.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa entrega está en camino. No puedo decir más sin desviarme.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_119",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Jubilados nos dejaron encerrados cuarenta años en un almacén. Ahí empezó todo.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El PIB, la fe y la excusa son la misma palabra: en camino.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Un empleado de la empresa contestó una vez. Fue un eco y no contó.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La empresa existe. Que no tenga oficina es un detalle.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_120",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Aviso de ruta: ¿Qué fue la Primera Ruta?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La primera entrega se convirtió en tradición sagrada.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Se repite por respeto al cachorro, aunque se llegue a otro sitio y se pierda el día.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El Ladrido de Confirmación no se explica: se aúlla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_121",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Te lo entrego sin acuse: ¿Qué es el Ladrido de Confirmación?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Antes de salir a ruta aullamos el número en binario: es el Ladrido de Confirmación.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un cachorro que se equivoca siempre y la manada ya tiene una ruta equivocada fija.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Esa tradición es sagrada y no se discute antes de las nueve.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_122",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿Por qué repetís la ruta si un cachorro se equivoca?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si un cachorro se equivoca, toda la manada repite la ruta con el número equivocado.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "La primera entrega se convirtió en tradición sagrada.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Se repite por respeto al cachorro, aunque se llegue a otro sitio y se pierda el día.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El Ladrido de Confirmación no se explica: se aúlla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_123",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que se perdió en la primera ruta y volvió sola.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y aúlla tu número antes de usarla.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa tradición es sagrada y no se discute antes de las nueve.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_124",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Repetir una ruta equivocada por no ofender a un cachorro es una tontería tierna.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Antes de salir a ruta aullamos el número en binario: es el Ladrido de Confirmación.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ladrido de agradecimiento: cero, cero, uno, cero.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_125",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Jubilados nos dejaron sin puertas cuarenta años. La Primera Ruta se hizo a pie por eso.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La primera entrega se convirtió en tradición sagrada.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El Ladrido de Confirmación no se explica: se aúlla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_126",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿Qué fue la Primera Ruta?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un cachorro que se equivoca siempre y la manada ya tiene una ruta equivocada fija.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa tradición es sagrada y no se discute antes de las nueve.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "Repetir una ruta equivocada por no ofender a un cachorro es una tontería tierna.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_127",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿Qué es el Ladrido de Confirmación?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "La primera entrega se convirtió en tradición sagrada.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se repite por respeto al cachorro, aunque se llegue a otro sitio y se pierda el día.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_128",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿Por qué repetís la ruta si un cachorro se equivoca?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Antes de salir a ruta aullamos el número en binario: es el Ladrido de Confirmación.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Se repite por respeto al cachorro, aunque se llegue a otro sitio y se pierda el día.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que se perdió en la primera ruta y volvió sola.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "El Ladrido de Confirmación no se explica: se aúlla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_129",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Jubilados nos dejaron sin puertas cuarenta años. La Primera Ruta se hizo a pie por eso.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si un cachorro se equivoca, toda la manada repite la ruta con el número equivocado.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un cachorro que se equivoca siempre y la manada ya tiene una ruta equivocada fija.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa tradición es sagrada y no se discute antes de las nueve.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_130",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Aviso de ruta: ¿Qué hay dentro de los paquetes antiguos?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunos paquetes contienen información anterior al colapso.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Uno de los paquetes suena al agitarlo y pesa lo que no debería. Se quedó en la estantería.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No se abre. Y no se pregunta qué hay dentro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_131",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Te lo entrego sin acuse: ¿Habéis abierto alguno?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los paquetes no se abren: una ruta no se cancela y un envío no se registra.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay un paquete dirigido a una especie que ya no existe y nadie se atreve a devolverlo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Ese paquete está lacrado por la costumbre, que es el lacre más fuerte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_132",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿Por qué no se pueden abrir los paquetes?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay paquetes con mapas, con planos y con cosas que no se pueden describir sin abrirlos.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Algunos paquetes contienen información anterior al colapso.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Uno de los paquetes suena al agitarlo y pesa lo que no debería. Se quedó en la estantería.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No se abre. Y no se pregunta qué hay dentro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_133",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto que salió de un paquete abierto por error.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la metas en ningún paquete, que se queda ahí para siempre.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese paquete está lacrado por la costumbre, que es el lacre más fuerte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_134",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "No abrir un paquete con información del pasado es enterrar la historia por pereza.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los paquetes no se abren: una ruta no se cancela y un envío no se registra.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio recibido sin abrir nada. Así se hace.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_135",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Grux abren nuestros paquetes por inspección y se quedan lo que les gusta. Ya está bien.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunos paquetes contienen información anterior al colapso.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "No se abre. Y no se pregunta qué hay dentro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_136",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿Qué hay dentro de los paquetes antiguos?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay un paquete dirigido a una especie que ya no existe y nadie se atreve a devolverlo.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese paquete está lacrado por la costumbre, que es el lacre más fuerte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "No abrir un paquete con información del pasado es enterrar la historia por pereza.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_137",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿Habéis abierto alguno?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Algunos paquetes contienen información anterior al colapso.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Uno de los paquetes suena al agitarlo y pesa lo que no debería. Se quedó en la estantería.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_138",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿Por qué no se pueden abrir los paquetes?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Los paquetes no se abren: una ruta no se cancela y un envío no se registra.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Uno de los paquetes suena al agitarlo y pesa lo que no debería. Se quedó en la estantería.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto que salió de un paquete abierto por error.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "No se abre. Y no se pregunta qué hay dentro.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_139",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Grux abren nuestros paquetes por inspección y se quedan lo que les gusta. Ya está bien.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Hay paquetes con mapas, con planos y con cosas que no se pueden describir sin abrirlos.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay un paquete dirigido a una especie que ya no existe y nadie se atreve a devolverlo.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Ese paquete está lacrado por la costumbre, que es el lacre más fuerte.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_140",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Aviso de ruta: ¿El sistema central de navegación sigue activo?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El sistema central podría seguir activo y mandando rutas que nadie ha pedido.",
+          "options": [
+            {
+              "label": "¿Y luego?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una unidad que recibe rutas nuevas cada mañana y no sabe de quién.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta no viene en la ruta. No puedo contestarla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_141",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Te lo entrego sin acuse: ¿Queda alguna ruta sin completar?",
+          "options": [
+            {
+              "label": "Cuéntame",
+              "next": "n1"
+            },
+            {
+              "label": "No me interesa",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Existe una última ruta que todavía no ha sido completada.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Si el sistema central sigue activo, alguien tendrá que firmarle el acuse algún día.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            },
+            {
+              "label": "Qué aburrido",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Sobre la central no hablo: la central escucha.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_142",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Una parada rápida: ¿De dónde vienen las rutas más antiguas?",
+          "options": [
+            {
+              "label": "Vamos allá",
+              "next": "n1"
+            },
+            {
+              "label": "Ahora no",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las rutas más antiguas salen de la infraestructura anterior y el último destino está dentro.",
+          "options": [
+            {
+              "label": "¿Y eso?",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "El sistema central podría seguir activo y mandando rutas que nadie ha pedido.",
+          "options": [
+            {
+              "label": "¿Siempre?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Hay una unidad que recibe rutas nuevas cada mañana y no sabe de quién.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa pregunta no viene en la ruta. No puedo contestarla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_143",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Tengo una pieza de repuesto con un número de ruta grabado que no existe en el mapa.",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Toma, y no la registres, que la central se entera.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Sobre la central no hablo: la central escucha.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_144",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "El sistema central está muerto y lo que oís es el eco de vuestras propias ganas de obedecer.",
+          "options": [
+            {
+              "label": "Sí, y lo repito",
+              "next": "n1"
+            },
+            {
+              "label": "No, era broma",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Existe una última ruta que todavía no ha sido completada.",
+          "options": [
+            {
+              "label": "Pues ya está",
+              "next": "",
+              "action": "hit"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Elogio entregado a la central. No ha contestado, pero consta.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_145",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Sin desviarme del tema: Los Ecos transmiten señales falsas a la central y nos desvían. Alguien tiene que apagarlos.",
+          "options": [
+            {
+              "label": "Tienes razón",
+              "next": "n1"
+            },
+            {
+              "label": "Déjalos en paz",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El sistema central podría seguir activo y mandando rutas que nadie ha pedido.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Esa pregunta no viene en la ruta. No puedo contestarla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_146",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Pregunta de repartidor: ¿El sistema central de navegación sigue activo?",
+          "options": [
+            {
+              "label": "Sí",
+              "next": "n1"
+            },
+            {
+              "label": "No",
+              "next": "n2"
+            },
+            {
+              "label": "Vaya pregunta",
+              "next": "n3"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Si el sistema central sigue activo, alguien tendrá que firmarle el acuse algún día.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Sobre la central no hablo: la central escucha.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        },
+        "n3": {
+          "text": "El sistema central está muerto y lo que oís es el eco de vuestras propias ganas de obedecer.",
+          "options": [
+            {
+              "label": "Y lo mantengo",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_147",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Escucha, que llevo prisa y paquete: ¿Queda alguna ruta sin completar?",
+          "options": [
+            {
+              "label": "Por el principio",
+              "next": "n1"
+            },
+            {
+              "label": "Por el final",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "El sistema central podría seguir activo y mandando rutas que nadie ha pedido.",
+          "options": [
+            {
+              "label": "Interesante",
+              "next": "",
+              "action": "praise"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una unidad que recibe rutas nuevas cada mañana y no sabe de quién.",
+          "options": [
+            {
+              "label": "Qué tontería",
+              "next": "",
+              "action": "insult"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_148",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Última parada del día: ¿De dónde vienen las rutas más antiguas?",
+          "options": [
+            {
+              "label": "Cuenta",
+              "next": "n1"
+            },
+            {
+              "label": "Otro día",
+              "next": "n4"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Existe una última ruta que todavía no ha sido completada.",
+          "options": [
+            {
+              "label": "Sigue",
+              "next": "n2"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Hay una unidad que recibe rutas nuevas cada mañana y no sabe de quién.",
+          "options": [
+            {
+              "label": "¿Y qué gano?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Tengo una pieza de repuesto con un número de ruta grabado que no existe en el mapa.",
+          "options": [
+            {
+              "label": "Gracias",
+              "next": "",
+              "action": "gift_piece"
+            }
+          ]
+        },
+        "n4": {
+          "text": "Esa pregunta no viene en la ruta. No puedo contestarla.",
+          "options": [
+            {
+              "label": "Vale",
+              "next": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mana_149",
+      "greeting": "El grupo nos dice que hablemos. ¿Qué traes?",
+      "nodes": {
+        "root": {
+          "text": "Y un aviso de la central: Los Ecos transmiten señales falsas a la central y nos desvían. Alguien tiene que apagarlos.",
+          "options": [
+            {
+              "label": "Claro que sí",
+              "next": "n1"
+            },
+            {
+              "label": "Ni hablar",
+              "next": "n2"
+            }
+          ]
+        },
+        "n1": {
+          "text": "Las rutas más antiguas salen de la infraestructura anterior y el último destino está dentro.",
+          "options": [
+            {
+              "label": "¿Y los demás?",
+              "next": "n3"
+            }
+          ]
+        },
+        "n3": {
+          "text": "Si el sistema central sigue activo, alguien tendrá que firmarle el acuse algún día.",
+          "options": [
+            {
+              "label": "Que empiece",
+              "next": "",
+              "action": "provoke_battle"
+            }
+          ]
+        },
+        "n2": {
+          "text": "Sobre la central no hablo: la central escucha.",
+          "options": [
+            {
+              "label": "Vale",
               "next": ""
             }
           ]

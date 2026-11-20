@@ -19,7 +19,8 @@
           240,
           64
         ],
-        "to": "cumbre"
+        "to": "cumbre",
+        "distance": 1970
       },
       {
         "edge": "south",
@@ -29,7 +30,8 @@
           240,
           64
         ],
-        "to": "camara"
+        "to": "camara",
+        "distance": 1970
       },
       {
         "edge": "east",
@@ -39,7 +41,8 @@
           64,
           240
         ],
-        "to": "sendero"
+        "to": "sendero",
+        "distance": 1970
       }
     ],
     "floor_rect": [

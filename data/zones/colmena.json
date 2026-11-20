@@ -67,7 +67,8 @@
           240,
           64
         ],
-        "to": "atajo"
+        "to": "atajo",
+        "distance": 2070
       },
       {
         "edge": "north",
@@ -77,7 +78,8 @@
           240,
           64
         ],
-        "to": "gran_mercado"
+        "to": "gran_mercado",
+        "distance": 2070
       },
       {
         "edge": "south",
@@ -87,7 +89,8 @@
           240,
           64
         ],
-        "to": "encrucijada"
+        "to": "encrucijada",
+        "distance": 1970
       },
       {
         "edge": "west",
@@ -97,7 +100,8 @@
           64,
           240
         ],
-        "to": "asamblea"
+        "to": "asamblea",
+        "distance": 1970
       }
     ],
     "floor_rect": [

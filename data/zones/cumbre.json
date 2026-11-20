@@ -34,7 +34,8 @@
             400
           ]
         ],
-        "sign": "señal_01"
+        "sign": "señal_01",
+        "distance": 2180
       },
       {
         "edge": "south",
@@ -59,7 +60,8 @@
             400
           ]
         ],
-        "sign": "señal_02"
+        "sign": "señal_02",
+        "distance": 1970
       },
       {
         "edge": "south",
@@ -84,7 +86,8 @@
             400
           ]
         ],
-        "sign": "señal_03"
+        "sign": "señal_03",
+        "distance": 2180
       },
       {
         "edge": "east",
@@ -109,7 +112,8 @@
             40
           ]
         ],
-        "sign": "señal_04"
+        "sign": "señal_04",
+        "distance": 1970
       }
     ],
     "floor_rect": [

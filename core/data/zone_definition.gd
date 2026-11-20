@@ -161,6 +161,7 @@ func corridors() -> Array[Dictionary]:
 			"walls": walls,
 			"facades": facades,
 			"sign": str(corridor.get("sign", "")),
+			"distance": int(corridor.get("distance", 0)),
 		})
 	return result
 

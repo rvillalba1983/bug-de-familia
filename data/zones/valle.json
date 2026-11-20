@@ -19,7 +19,8 @@
           240,
           64
         ],
-        "to": "cementerio"
+        "to": "cementerio",
+        "distance": 1970
       },
       {
         "edge": "west",
@@ -29,7 +30,8 @@
           64,
           240
         ],
-        "to": "cumbre"
+        "to": "cumbre",
+        "distance": 2070
       },
       {
         "edge": "west",
@@ -39,7 +41,8 @@
           64,
           240
         ],
-        "to": "encrucijada"
+        "to": "encrucijada",
+        "distance": 2070
       }
     ],
     "floor_rect": [

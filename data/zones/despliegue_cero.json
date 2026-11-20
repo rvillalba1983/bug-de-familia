@@ -158,7 +158,8 @@
           240,
           64
         ],
-        "to": "cumbre"
+        "to": "cumbre",
+        "distance": 1870
       },
       {
         "edge": "south",
@@ -182,7 +183,8 @@
           240,
           64
         ],
-        "to": "desguace"
+        "to": "desguace",
+        "distance": 1980
       },
       {
         "edge": "south",
@@ -206,7 +208,8 @@
           240,
           64
         ],
-        "to": "ultima_ruta"
+        "to": "ultima_ruta",
+        "distance": 1920
       },
       {
         "edge": "east",
@@ -230,7 +233,8 @@
           64,
           240
         ],
-        "to": "asamblea"
+        "to": "asamblea",
+        "distance": 2150
       },
       {
         "edge": "east",
@@ -254,7 +258,8 @@
           64,
           240
         ],
-        "to": "el_enchufe"
+        "to": "el_enchufe",
+        "distance": 1900
       }
     ],
     "cracked_mark": [

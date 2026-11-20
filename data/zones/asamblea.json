@@ -19,7 +19,8 @@
           240,
           64
         ],
-        "to": "lonja"
+        "to": "lonja",
+        "distance": 1970
       },
       {
         "edge": "south",
@@ -29,7 +30,8 @@
           240,
           64
         ],
-        "to": "atajo"
+        "to": "atajo",
+        "distance": 1970
       },
       {
         "edge": "west",
@@ -39,7 +41,8 @@
           64,
           240
         ],
-        "to": "despliegue_cero"
+        "to": "despliegue_cero",
+        "distance": 2070
       },
       {
         "edge": "west",
@@ -49,7 +52,8 @@
           64,
           240
         ],
-        "to": "desguace"
+        "to": "desguace",
+        "distance": 2070
       },
       {
         "edge": "east",
@@ -59,7 +63,8 @@
           64,
           240
         ],
-        "to": "colmena"
+        "to": "colmena",
+        "distance": 1970
       }
     ],
     "floor_rect": [

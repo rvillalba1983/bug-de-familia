@@ -19,7 +19,8 @@
           64,
           240
         ],
-        "to": "gran_mercado"
+        "to": "gran_mercado",
+        "distance": 1970
       },
       {
         "edge": "east",
@@ -29,7 +30,8 @@
           64,
           240
         ],
-        "to": "poligono"
+        "to": "poligono",
+        "distance": 1970
       }
     ],
     "floor_rect": [

@@ -1,6 +1,12 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
+> - **Estado (20-nov, noche):** fase «P-39 estabilización de rutas en Linux»
+>   **fusionada en `main`** (PR #37, merge `783c4e3`, aprobado por el director;
+>   CI verde). **Cambiar de conversación.** Hecho: `WorldSim.stabilized` para
+>   omitir subsistemas aleatorios en las rutas; P-39 cerrado. `.exe`
+>   regenerado en `main` (104,2 MB, `.pck` 29,3 MB). Pruebas: 6/6 rutas y
+>   34/34 simulación. **Siguiente fase:** definir con el director.
 > - **Estado (20-nov, noche):** fase «P-41 señalización de caminos»
 >   **fusionada en `main`** (PR #36, merge `93a92f1`, aprobado por el director;
 >   CI verde). **Cambiar de conversación.** Hecho: campo `distance` (metros) en

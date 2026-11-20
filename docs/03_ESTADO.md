@@ -1,6 +1,12 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
+> - **Estado (20-nov, tarde):** fase «Transiciones de zona (pantalla gris)»
+>   **fusionada en `main`** (PR #33, merge `808c99e`, aprobado por el director;
+>   CI 12/12). **Cambiar de conversación.** Hecho: `ZoneManager.process_mode`
+>   forzado a `ALWAYS`, logging de fallos en `_complete_transition` y
+>   `_on_transition_finished`, prueba `test_transition_hides_loading_when_zone_fails_to_load`.
+>   `.exe` regenerado en `main` (104,2 MB). Pruebas: 493/493.
 > - **Estado (20-nov):** fase «Robustez P-57» **fusionada en `main`** (PR #32,
 >   merge `05a684e`, aprobado por el director; CI verde). **Cambiar de
 >   conversación.** Hecho: corrección de `Guard._exit_tree()` (P-57) con
@@ -81,6 +87,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | Fachadas por zona e identidad visual (18-nov) | **Fusionada en `main`** (PR #30, merge `81589a9`, aprobado por el director). Hecho: **P-56** (32 fachadas SVG propias para las 8 zonas del PR #28: cumbre, desguace, encrucijada, gran_cruce, gran_mercado, paso, poligono, taller; paleta por lore; sistema `CORRIDOR_FACADE_ART_BY_ZONE` en `ZoneBase` sin tocar datos ni lógica de montaje; generador `tools/gen_fachadas_zona.py`) y **P-31** (StrategyView dibuja las fachadas de corredor de la zona actual). P-30 no aplicado (sin medición). **Pruebas:** zones 59/59, `verificar.py` OK, `.exe` regenerado con humo OK. |
 | Culling de rigs y medición del 19-nov (P-30) | **Fusionada en `main`** (PR #31, merge `68cc315`, aprobado por el director; CI 6/6). Hecho: ocultado de rigs fuera de cámara (`GuardVisual.set_visible` + llamada en `Guard._physics_process`); ver `adr/0036-culling-rigs-fuera-de-camara.md`. Medición completa del 19-nov en gráfica real: pelea +38,9 % **no confirmada** (deriva de entorno/ANGLE); la referencia del 15-nov **sin cambiar**. Pruebas: 491/491 en verde (69 suites, JUnit validado), `verificar.py` OK. `.exe` regenerado (109 MB, `.pck` 29,5 MB) con humo OK (zona y 36 habitantes). Ver «Medición en gráfica real del 19-nov» más abajo. |
 | Robustez P-57 (20-nov) | **Fusionada en `main`** (PR #32, merge `05a684e`, aprobado por el director). Hecho: corrección de `Guard._exit_tree()` (P-57) con `is_instance_valid(_view)` para evitar el `SCRIPT ERROR` cuando el suelo se libera antes que el guardia; prueba `guard_exit_tree_test.gd` (1 caso). Pruebas: 492/492 en verde. `.exe` regenerado (104,2 MB) con humo OK. |
+| Transiciones de zona (20-nov) | **Fusionada en `main`** (PR #33, merge `808c99e`, aprobado por el director; CI 12/12). Hecho: `ZoneManager.process_mode = ALWAYS` para que el temporizador de transición avance aunque el árbol esté pausado; logging de fallos en `_complete_transition` y `_on_transition_finished`; prueba `test_transition_hides_loading_when_zone_fails_to_load`. Pruebas: 493/493 en verde. `.exe` regenerado (104,2 MB) con humo OK. |
 erificar.py OK. .exe regenerado. Pendiente validación manual en partida. |
 
 ## Incidente de arranque tras el PR #7 (13-nov)

@@ -203,6 +203,32 @@ func after_enter(from_zone: String) -> void:
 	freeze_player(false)
 
 
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
+	_apply_night_peace()
+
+
+func local_hour() -> int:
+	return posmod(WorldCalendar.now_local() / 3600, 24)
+
+
+func _apply_night_peace() -> void:
+	var hour: int = local_hour()
+	var night: bool = hour >= 21 or hour < 8
+	for enemy: Guard in guards():
+		if enemy.detector.faction != "jubilado":
+			continue
+		if night:
+			if not enemy.no_attack:
+				enemy.no_attack = true
+				if enemy.is_alert():
+					enemy.flee_to(enemy.global_position)
+		else:
+			if enemy.no_attack:
+				enemy.no_attack = false
+				enemy.set_passive(false)
+
+
 func freeze_player(frozen: bool) -> void:
 	if not is_instance_valid(player):
 		return

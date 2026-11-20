@@ -1,6 +1,13 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
+> - **Estado (20-nov, noche):** fase «P-41 señalización de caminos»
+>   **fusionada en `main`** (PR #36, merge `93a92f1`, aprobado por el director;
+>   CI verde). **Cambiar de conversación.** Hecho: campo `distance` (metros) en
+>   `geometry.corridors` de las 24 zonas, expuesto en `ZoneDefinition.corridors()`
+>   y mostrado en los carteles de boca como «Destino → N m». `.exe`
+>   regenerado en `main` (104,2 MB, `.pck` 29,3 MB). Pruebas: 497/497
+>   (60/60 en `tests/zones`). **Siguiente fase:** definir con el director.
 > - **Estado (20-nov, noche):** fase «P-42 lotes de conversaciones y P-43»
 >   **fusionada en `main`** (PR #35, merge `3ee9ebc`, aprobado por el director;
 >   CI verde). **Cambiar de conversación.** Hecho: P-42 completo (150

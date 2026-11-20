@@ -25,11 +25,8 @@ var target: Guard = null
 var _attack_timer: float = 0.0
 var _throw_timer: float = 0.0
 var _repath_timer: float = 0.0
-
-
 var _engaging_automatically: bool = false
 
-var _engaging_automatically: bool = false
 
 func engage(enemy: Guard) -> void:
 	_engage(enemy, false)

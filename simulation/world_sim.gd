@@ -232,6 +232,8 @@ func _generate(seed_value: int) -> void:
 			spawn(species, at, "inicial")
 
 
+var stabilized: bool = false
+
 func _step() -> void:
 	_steps += 1
 	# Paralelizar el calm_down de cada NPC: es independiente por NPC y es el
@@ -242,6 +244,8 @@ func _step() -> void:
 		tasks.append(task_id)
 	for task_id: int in tasks:
 		WorkerThreadPool.wait_for_task_completion(task_id)
+	if stabilized:
+		return
 	rumors.step(self)
 	events.step(self)
 	missions.step(self)

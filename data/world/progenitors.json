@@ -7,7 +7,8 @@
     "fixed_property": "p047",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "despliegue_cero"
   },
   "contestador": {
     "name": "El Contestador",
@@ -15,7 +16,10 @@
     "fixed_property": "p049",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "despliegue_cero",
+    "color": "#60a0e0",
+    "art": "contestador"
   },
   "biela": {
     "name": "Don Biela de la Rodilla",
@@ -23,7 +27,10 @@
     "fixed_property": "p004",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "taller",
+    "color": "#c0c0c0",
+    "art": "biela"
   },
   "pliegue_oculto": {
     "name": "El Pliegue que No Existe",
@@ -31,7 +38,10 @@
     "fixed_property": "p013",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "cumbre",
+    "color": "#a0a0ff",
+    "art": "pliegue_oculto"
   },
   "papel_cebolla": {
     "name": "Don Papel Cebolla",
@@ -39,7 +49,10 @@
     "fixed_property": "p008",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "archivo",
+    "color": "#d0d0b0",
+    "art": "papel_cebolla"
   },
   "susurro": {
     "name": "El Susurro",
@@ -47,7 +60,10 @@
     "fixed_property": "p009",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "camara",
+    "color": "#80e0e0",
+    "art": "susurro"
   },
   "frecuencia": {
     "name": "Doña Frecuencia, la Soprano de los Recibos",
@@ -55,7 +71,10 @@
     "fixed_property": "p019",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "colmena",
+    "color": "#e080e0",
+    "art": "frecuencia"
   },
   "boletina": {
     "name": "Doña Boletina, cuyo Sombrero Vota en Contra",
@@ -63,7 +82,10 @@
     "fixed_property": "p028",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "asamblea",
+    "color": "#80c080",
+    "art": "boletina"
   },
   "yesquero": {
     "name": "Don Yesquero, el Hongo Más Hongo",
@@ -71,7 +93,10 @@
     "fixed_property": "p026",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "paso",
+    "color": "#a0d060",
+    "art": "yesquero"
   },
   "fiador": {
     "name": "Don Fiador, Tasador de Órganos",
@@ -79,7 +104,10 @@
     "fixed_property": "p021",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "lonja",
+    "color": "#d0a040",
+    "art": "fiador"
   },
   "garantia": {
     "name": "Doña Garantía de Tres Segundos",
@@ -87,7 +115,10 @@
     "fixed_property": "p022",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "gran_mercado",
+    "color": "#e0c060",
+    "art": "garantia"
   },
   "avalista": {
     "name": "El Avalista, Prestamista de Brazos",
@@ -95,7 +126,10 @@
     "fixed_property": "p044",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "poligono",
+    "color": "#60c0c0",
+    "art": "avalista"
   },
   "cartero": {
     "name": "El Cartero de los Muertos",
@@ -103,7 +137,10 @@
     "fixed_property": "p036",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "sendero",
+    "color": "#80a0d0",
+    "art": "cartero"
   },
   "paquete": {
     "name": "Don Paquete, Inspector de Paquetes Ajenos",
@@ -111,7 +148,10 @@
     "fixed_property": "p038",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "ultima_ruta",
+    "color": "#b09060",
+    "art": "paquete"
   },
   "ultimo_mono": {
     "name": "El Último Mono, Robot con Peluca",
@@ -119,6 +159,9 @@
     "fixed_property": "p050",
     "deaths": [
       "caida"
-    ]
+    ],
+    "zone": "desguace",
+    "color": "#909090",
+    "art": "ultimo_mono"
   }
 }

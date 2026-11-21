@@ -1,6 +1,13 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
+> - **Estado (21-nov):** fase «P-37 solo autoataque + datos de progenitores»
+>   **fusionada en `main`** (PR #38, merge `5a758ba`, aprobado por el director;
+>   CI verde). **Cambiar de conversación.** Hecho: P-37 (solo autoataque),
+>   P-35 (marcado hecho), P-39 (marcado hecho), datos de los 15 progenitores
+>   (zona/color/art provisional). `.exe` regenerado en `main` (104,2 MB,
+>   `.pck` 28,5 MB). Pruebas: 497/497. **Siguiente fase:** contenido de los
+>   13 progenitores restantes y población de las 24 zonas.
 > - **Estado (20-nov, noche):** fase «P-39 estabilización de rutas en Linux»
 >   **fusionada en `main`** (PR #37, merge `783c4e3`, aprobado por el director;
 >   CI verde). **Cambiar de conversación.** Hecho: `WorldSim.stabilized` para

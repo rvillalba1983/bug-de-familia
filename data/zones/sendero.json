@@ -220,6 +220,20 @@
         2650,
         1100
       ]
+    ],
+    "cartero_route": [
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ]
     ]
   },
   "homes": {
@@ -315,6 +329,15 @@
       "id": "plegado_archivista",
       "route": "plegado_route",
       "species": "plegado"
+    },
+    {
+      "id": "cartero",
+      "passive": true,
+      "progenitor": "cartero",
+      "roles": [
+        "cartero"
+      ],
+      "route": "cartero_route"
     }
   ]
 }

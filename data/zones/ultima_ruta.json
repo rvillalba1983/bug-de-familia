@@ -266,6 +266,20 @@
         2600,
         1100
       ]
+    ],
+    "paquete_route": [
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ]
     ]
   },
   "homes": {
@@ -361,6 +375,15 @@
       "id": "manada_cargadora",
       "route": "manada_route",
       "species": "manada"
+    },
+    {
+      "id": "paquete",
+      "passive": true,
+      "progenitor": "paquete",
+      "roles": [
+        "paquete"
+      ],
+      "route": "paquete_route"
     }
   ]
 }

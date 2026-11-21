@@ -273,6 +273,20 @@
         2450,
         3150
       ]
+    ],
+    "avalista_route": [
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ]
     ]
   },
   "id": "poligono",
@@ -368,6 +382,15 @@
       "id": "manada_de_reparto",
       "route": "ruta_2",
       "species": "manada"
+    },
+    {
+      "id": "avalista",
+      "passive": true,
+      "progenitor": "avalista",
+      "roles": [
+        "avalista"
+      ],
+      "route": "avalista_route"
     }
   ]
 }

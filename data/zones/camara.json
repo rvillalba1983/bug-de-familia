@@ -227,6 +227,20 @@
         1500,
         2900
       ]
+    ],
+    "susurro_route": [
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ]
     ]
   },
   "homes": {
@@ -322,6 +336,15 @@
       "id": "manada_cargadora",
       "route": "manada_route",
       "species": "manada"
+    },
+    {
+      "id": "susurro",
+      "passive": true,
+      "progenitor": "susurro",
+      "roles": [
+        "susurro"
+      ],
+      "route": "susurro_route"
     }
   ]
 }

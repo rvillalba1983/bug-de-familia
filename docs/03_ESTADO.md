@@ -1,6 +1,13 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
+> - **Estado (21-nov):** fase «Progenitores en zonas»
+>   **fusionada en `main`** (PR #39, merge `83f02a1`, aprobado por el director;
+>   CI verde). **Cambiar de conversación.** Hecho: 13 progenitores restantes
+>   asignados a sus zonas como actores pasivos con ruta; `guard_visual` tolera
+>   vistas faltantes; `content_test` acepta progenitores. `.exe` regenerado
+>   en `main` (104,2 MB, `.pck` 28,5 MB). Pruebas: 497/497. **Siguiente
+>   fase:** arte dedicado de los progenitores y encuentros/diálogo.
 > - **Estado (21-nov):** fase «P-37 solo autoataque + datos de progenitores»
 >   **fusionada en `main`** (PR #38, merge `5a758ba`, aprobado por el director;
 >   CI verde). **Cambiar de conversación.** Hecho: P-37 (solo autoataque),

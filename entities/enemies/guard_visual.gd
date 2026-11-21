@@ -191,7 +191,9 @@ func _draw_down() -> void:
 		_draw_shadow()
 		return
 	var art: Texture2D = art_views[VIEW_SOUTH]
-	var height: float = _art_height()
+	if art == null:
+		CircleDot.draw(_guard, Vector2.ZERO, Guard.BODY_HEIGHT * 0.42 * CharacterScale.value, COLOR_DOWN)
+		return
 	var half: float = height * 0.5
 	_guard.draw_set_transform(Vector2(-height * 0.45, -14.0 * CharacterScale.value), PI * 0.5)
 	_guard.draw_texture_rect(art, Rect2(-half, -half, height, height), false, COLOR_FALLEN)
@@ -219,7 +221,9 @@ func _draw_art() -> void:
 	var view: int = view_for(direction)
 	## Respaldo: un juego de vistas corto (datos viejos) no debe reventar el dibujo.
 	var art: Texture2D = art_views[mini(view, art_views.size() - 1)]
-	var height: float = _art_height()
+	if art == null:
+		_draw_placeholder()
+		return
 	var size: Vector2 = Vector2(height * art.get_size().aspect(), height)
 	if is_mirrored(direction):
 		size.x = -size.x

@@ -283,6 +283,20 @@
         1600,
         3200
       ]
+    ],
+    "ultimo_mono_route": [
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ]
     ]
   },
   "id": "desguace",
@@ -378,6 +392,15 @@
       "id": "manada_repartidora",
       "route": "ruta_2",
       "species": "manada"
+    },
+    {
+      "id": "ultimo_mono",
+      "passive": true,
+      "progenitor": "ultimo_mono",
+      "roles": [
+        "ultimo_mono"
+      ],
+      "route": "ultimo_mono_route"
     }
   ]
 }

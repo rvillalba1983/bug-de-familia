@@ -92,7 +92,7 @@ func test_filled_zones_have_objects_decor_and_scripted_actors() -> void:
 		assert_int(zone.list("convertibles").size()).is_greater(0).override_failure_message(
 			"%s: sin convertibles" % zone_id
 		)
-		assert_int(zone.list_optional("actors").size()).is_equal(2).override_failure_message(
+		assert_int(zone.list_optional("actors").size()).is_greater_equal(2).override_failure_message(
 			"%s: sin actores guionados" % zone_id
 		)
 
@@ -117,6 +117,11 @@ func test_filled_zones_place_objects_and_actors_inside_the_floor() -> void:
 			assert_int(zone.points(ruta).size()).is_greater_equal(3).override_failure_message(
 				"%s: la ruta %s es demasiado corta" % [zone_id, ruta]
 			)
-			assert_bool(SpeciesCatalog.has(str(actor["species"]))).override_failure_message(
-				"%s: el actor %s no tiene especie conocida" % [zone_id, str(actor["id"])]
-			).is_true()
+			if actor.has("progenitor"):
+				assert_bool(ProgenitorCatalog.has(str(actor["progenitor"]))).override_failure_message(
+					"%s: el actor %s no tiene progenitor conocido" % [zone_id, str(actor["id"])]
+				).is_true()
+			else:
+				assert_bool(SpeciesCatalog.has(str(actor["species"]))).override_failure_message(
+					"%s: el actor %s no tiene especie conocida" % [zone_id, str(actor["id"])]
+				).is_true()

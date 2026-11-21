@@ -238,6 +238,20 @@
         1500,
         2900
       ]
+    ],
+    "papel_cebolla_route": [
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ]
     ]
   },
   "id": "archivo",
@@ -333,6 +347,15 @@
       "id": "plegado_archivista",
       "route": "ruta_2",
       "species": "plegado"
+    },
+    {
+      "id": "papel_cebolla",
+      "passive": true,
+      "progenitor": "papel_cebolla",
+      "roles": [
+        "papel_cebolla"
+      ],
+      "route": "papel_cebolla_route"
     }
   ]
 }

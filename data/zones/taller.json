@@ -283,6 +283,20 @@
         2500,
         3100
       ]
+    ],
+    "biela_route": [
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ]
     ]
   },
   "id": "taller",
@@ -378,6 +392,15 @@
       "id": "mohocrata_chatarra",
       "route": "ruta_2",
       "species": "mohocrata"
+    },
+    {
+      "id": "biela",
+      "passive": true,
+      "progenitor": "biela",
+      "roles": [
+        "biela"
+      ],
+      "route": "biela_route"
     }
   ]
 }

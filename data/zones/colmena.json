@@ -345,6 +345,20 @@
     "espejo_que_te_hace_mas_guapo": [
       1680,
       1920
+    ],
+    "frecuencia_route": [
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ]
     ]
   },
   "id": "colmena",
@@ -500,6 +514,15 @@
       "id": "mohocrata_archivista",
       "route": "ruta_2",
       "species": "mohocrata"
+    },
+    {
+      "id": "frecuencia",
+      "passive": true,
+      "progenitor": "frecuencia",
+      "roles": [
+        "frecuencia"
+      ],
+      "route": "frecuencia_route"
     }
   ]
 }

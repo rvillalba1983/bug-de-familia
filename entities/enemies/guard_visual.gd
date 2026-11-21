@@ -78,12 +78,19 @@ static func is_mirrored(direction: Vector2) -> bool:
 static func load_views(folder: String, base: String) -> Array[Texture2D]:
 	var views: Array[Texture2D] = []
 	for view: int in VIEW_SUFFIX.size():
-		views.append(_view_texture(folder, base, view))
+		var tex: Texture2D = _view_texture(folder, base, view)
+		if tex != null:
+			views.append(tex)
+		else:
+			views.append(null)
 	return views
 
 
 static func _view_texture(folder: String, base: String, view: int) -> Texture2D:
-	return load(folder + base + VIEW_SUFFIX[view] + ".svg") as Texture2D
+	var path: String = folder + base + VIEW_SUFFIX[view] + ".svg"
+	if not ResourceLoader.exists(path):
+		return null
+	return load(path) as Texture2D
 
 
 func draw() -> void:
@@ -191,6 +198,9 @@ func _draw_down() -> void:
 		_draw_shadow()
 		return
 	var art: Texture2D = art_views[VIEW_SOUTH]
+	if art == null:
+		CircleDot.draw(_guard, Vector2.ZERO, Guard.BODY_HEIGHT * 0.42 * CharacterScale.value, COLOR_DOWN)
+		return
 	var height: float = _art_height()
 	var half: float = height * 0.5
 	_guard.draw_set_transform(Vector2(-height * 0.45, -14.0 * CharacterScale.value), PI * 0.5)
@@ -219,6 +229,9 @@ func _draw_art() -> void:
 	var view: int = view_for(direction)
 	## Respaldo: un juego de vistas corto (datos viejos) no debe reventar el dibujo.
 	var art: Texture2D = art_views[mini(view, art_views.size() - 1)]
+	if art == null:
+		_draw_placeholder()
+		return
 	var height: float = _art_height()
 	var size: Vector2 = Vector2(height * art.get_size().aspect(), height)
 	if is_mirrored(direction):

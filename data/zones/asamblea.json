@@ -264,6 +264,20 @@
         1500,
         2900
       ]
+    ],
+    "boletina_route": [
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ],
+      [
+        2000.0,
+        2000.0
+      ]
     ]
   },
   "id": "asamblea",
@@ -359,6 +373,15 @@
       "id": "plegado_archivista",
       "route": "ruta_2",
       "species": "plegado"
+    },
+    {
+      "id": "boletina",
+      "passive": true,
+      "progenitor": "boletina",
+      "roles": [
+        "boletina"
+      ],
+      "route": "boletina_route"
     }
   ]
 }

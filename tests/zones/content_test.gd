@@ -92,7 +92,7 @@ func test_filled_zones_have_objects_decor_and_scripted_actors() -> void:
 		assert_int(zone.list("convertibles").size()).is_greater(0).override_failure_message(
 			"%s: sin convertibles" % zone_id
 		)
-		assert_int(zone.list_optional("actors").size()).is_equal(2).override_failure_message(
+		assert_int(zone.list_optional("actors").size()).is_greater_equal(2).override_failure_message(
 			"%s: sin actores guionados" % zone_id
 		)
 

@@ -224,6 +224,7 @@ func _draw_art() -> void:
 	if art == null:
 		_draw_placeholder()
 		return
+	var height: float = _art_height()
 	var size: Vector2 = Vector2(height * art.get_size().aspect(), height)
 	if is_mirrored(direction):
 		size.x = -size.x

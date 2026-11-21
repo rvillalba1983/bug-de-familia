@@ -194,6 +194,7 @@ func _draw_down() -> void:
 	if art == null:
 		CircleDot.draw(_guard, Vector2.ZERO, Guard.BODY_HEIGHT * 0.42 * CharacterScale.value, COLOR_DOWN)
 		return
+	var height: float = _art_height()
 	var half: float = height * 0.5
 	_guard.draw_set_transform(Vector2(-height * 0.45, -14.0 * CharacterScale.value), PI * 0.5)
 	_guard.draw_texture_rect(art, Rect2(-half, -half, height, height), false, COLOR_FALLEN)

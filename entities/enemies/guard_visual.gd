@@ -87,7 +87,10 @@ static func load_views(folder: String, base: String) -> Array[Texture2D]:
 
 
 static func _view_texture(folder: String, base: String, view: int) -> Texture2D:
-	return load(folder + base + VIEW_SUFFIX[view] + ".svg") as Texture2D
+	var path: String = folder + base + VIEW_SUFFIX[view] + ".svg"
+	if not ResourceLoader.exists(path):
+		return null
+	return load(path) as Texture2D
 
 
 func draw() -> void:

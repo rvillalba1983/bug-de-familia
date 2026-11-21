@@ -78,7 +78,11 @@ static func is_mirrored(direction: Vector2) -> bool:
 static func load_views(folder: String, base: String) -> Array[Texture2D]:
 	var views: Array[Texture2D] = []
 	for view: int in VIEW_SUFFIX.size():
-		views.append(_view_texture(folder, base, view))
+		var tex: Texture2D = _view_texture(folder, base, view)
+		if tex != null:
+			views.append(tex)
+		else:
+			views.append(null)
 	return views
 
 

@@ -10,6 +10,8 @@ enum Level { FULL, SIMPLIFIED, STATISTICAL, UNKNOWN }
 
 var zone_id: String = ""
 var visited: bool = false
+## Conocida por un rumoreo, sin haber llegado a pisarla todavía (ADR 0039).
+var rumored: bool = false
 var level: int = Level.UNKNOWN
 ## Estado completo del nivel (LevelSaveState) de la última visita.
 var level_state: Dictionary = {}
@@ -32,6 +34,7 @@ static func from_dict(data: Dictionary) -> ZoneRecord:
 	var record: ZoneRecord = ZoneRecord.new()
 	record.zone_id = str(data.get("zone_id", ""))
 	record.visited = bool(data.get("visited", false))
+	record.rumored = bool(data.get("rumored", false))
 	record.level = int(data.get("level", Level.UNKNOWN))
 	record.level_state = data.get("level_state", {})
 	record.world = data.get("world", {})
@@ -45,6 +48,7 @@ func to_dict() -> Dictionary:
 	return {
 		"zone_id": zone_id,
 		"visited": visited,
+		"rumored": rumored,
 		"level": int(level),
 		"level_state": level_state,
 		"world": world,
@@ -59,8 +63,12 @@ func mark_visited(day: int) -> void:
 	last_seen_day = day
 
 
+func mark_rumored() -> void:
+	rumored = true
+
+
 func is_known() -> bool:
-	return visited
+	return visited or rumored
 
 
 func has_state() -> bool:

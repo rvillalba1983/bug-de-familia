@@ -6,6 +6,8 @@ extends Node
 signal transition_started(from_zone: String, to_zone: String)
 signal transition_finished(zone_id: String)
 signal zone_loaded(zone_id: String)
+## Una zona vecina se ha oído por rumor y ya es destino de viaje rápido.
+signal zone_rumored(zone_id: String)
 
 const DESPLEGUE_CERO_SCENE: String = "res://scenes/despliegue_cero/despliegue_cero_zone.tscn"
 const ZONE_SCENE: String = "res://scenes/zones/zone.tscn"
@@ -116,7 +118,7 @@ func can_fast_travel(zone_id: String) -> bool:
 	if loading or not registry.has(zone_id) or zone_id == current_id:
 		return false
 	var record: ZoneRecord = records.get(zone_id) as ZoneRecord
-	if record == null or not record.visited:
+	if record == null or not record.is_known():
 		return false
 	if registry.graph.hops(current_id, zone_id) < 1:
 		return false
@@ -152,6 +154,9 @@ func refresh_levels() -> void:
 		var record: ZoneRecord = _record(zone_id)
 		if zone_id == current_id:
 			record.level = ZoneRecord.Level.FULL
+		elif record.rumored and not record.visited:
+			## Oída pero no pisada: no tiene simulación individual que sostener.
+			record.level = ZoneRecord.Level.STATISTICAL
 		elif registry.graph.neighbours(current_id).has(zone_id):
 			record.level = ZoneRecord.Level.SIMPLIFIED
 		else:
@@ -164,7 +169,27 @@ func level_of(zone_id: String) -> int:
 
 func is_known(zone_id: String) -> bool:
 	var record: ZoneRecord = records.get(zone_id) as ZoneRecord
-	return record != null and record.visited
+	return record != null and record.is_known()
+
+
+## Oír hablar de una zona la hace conocida y simulable en nivel estadístico.
+## Idempotente: no altera una zona ya visitada ni la zona actual.
+func hear_about_zone(zone_id: String) -> bool:
+	if loading or zone_id == current_id or not registry.has(zone_id):
+		return false
+	if is_known(zone_id):
+		return false
+	var record: ZoneRecord = _record(zone_id)
+	record.mark_rumored()
+	record.level = ZoneRecord.Level.STATISTICAL
+	if record.population.is_empty():
+		var limits: Dictionary = registry.zone(zone_id).population()
+		for species_id: String in limits:
+			var initial: int = int((limits[species_id] as Dictionary).get("start", 0))
+			record.population[species_id] = initial
+	zone_rumored.emit(zone_id)
+	autosave()
+	return true
 
 
 ## Guarda la zona actual y el estado de todas las zonas conocidas.
@@ -189,7 +214,7 @@ func record_dicts() -> Dictionary:
 		var record: ZoneRecord = records.get(zone_id) as ZoneRecord
 		if record == null:
 			continue
-		if not record.visited and record.level_state.is_empty() and record.world.is_empty():
+		if not record.is_known() and record.level_state.is_empty() and record.world.is_empty():
 			continue
 		result[zone_id] = record.to_dict()
 	return result
@@ -349,7 +374,7 @@ func _advance_world(seconds: float) -> void:
 		if zone_id == current_id:
 			continue
 		var record: ZoneRecord = records.get(zone_id) as ZoneRecord
-		if record == null or not record.visited:
+		if record == null or not record.is_known():
 			continue
 		if record.level == ZoneRecord.Level.SIMPLIFIED:
 			_tick_simplified(record, seconds)

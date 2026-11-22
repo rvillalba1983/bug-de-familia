@@ -1,6 +1,18 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
+> - **Fase en curso (22-nov):** «Mundo completo: mapa y consecuencias» en la rama
+>   `fase/mundo-completo-mapa-y-consecuencias`, **sin fusionar**. Decisiones del
+>   director: ratificar las 24 zonas y sus tamaños como mapa definitivo; el
+>   tiempo del mundo avanza durante el viaje; el viaje rápido a zonas oídas por
+>   rumor entra en esta fase; la escala 30-80 % se aplica a toda la población,
+>   no solo a nacimientos. Implementado y verificado: **515/515 casos en verde**
+>   (73 suites; informe JUnit validado), `verificar.py` OK y formateador sin
+>   errores. `.exe` regenerado en la rama (104,2 MB, `.pck` 29,6 MB), listo para
+>   la validación del director. Pendiente: validación visual del viaje por rumor
+>   y de la escala de los progenitores; P-58 (arte artístico con modelo para los
+>   15, recreando a Don Ramón y El Contestador) queda para fase posterior. Ver
+>   ADR 0039 y 0040 (rotación de modelo).
 > - **Estado (22-nov):** fase «Post-beta: progenitores y contenido»
 >   **fusionada en `main`** (PR #40, merge `5a89df2`, aprobado por el director;
 >   CI verde 6/6). **Cambiar de conversación.** Hecho: **75 SVG propios**

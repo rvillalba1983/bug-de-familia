@@ -118,3 +118,56 @@ func test_statistical_zone_moves_toward_target() -> void:
 	manager._advance_world(100.0)
 	assert_int(int(record.population.get("jubilado", 0))).is_equal(10)
 	assert_int(int(record.population.get("mohocrata", 0))).is_equal(10)
+
+
+func test_rumored_zone_can_be_fast_travelled() -> void:
+	assert_bool(manager.is_known("cumbre")).is_false()
+	assert_bool(manager.can_fast_travel("cumbre")).is_false()
+	assert_bool(manager.hear_about_zone("cumbre")).is_true()
+	assert_bool(manager.hear_about_zone("cumbre")).is_false()
+	assert_bool(manager.hear_about_zone("despliegue_cero")).is_false()
+	assert_bool(manager.hear_about_zone("zona_inexistente")).is_false()
+	assert_bool(manager.is_known("cumbre")).is_true()
+	assert_bool(manager.can_fast_travel("cumbre")).is_true()
+	var ids: Array[String] = []
+	for entry: Dictionary in manager.travel_destinations():
+		ids.append(str(entry["id"]))
+	assert_array(ids).contains(["cumbre"])
+	var start_seconds: float = manager.world_seconds
+	assert_bool(manager.fast_travel("cumbre")).is_true()
+	assert_str(manager.current_id).is_equal("cumbre")
+	assert_float(manager.world_seconds - start_seconds).is_greater(0.0)
+
+
+func test_rumor_persists_and_simulates_statistically() -> void:
+	assert_bool(manager.hear_about_zone("cumbre")).is_true()
+	assert_int(manager.level_of("cumbre")).is_equal(ZoneRecord.Level.STATISTICAL)
+	var record: ZoneRecord = manager.records["cumbre"]
+	assert_int(int(record.population.get("plegado", 0))).is_equal(10)
+	assert_bool(record.world.is_empty()).is_true()
+	manager._advance_world(100.0)
+	assert_int(int(record.population.get("plegado", 0))).is_equal(12)
+	assert_bool(record.world.is_empty()).is_true()
+	assert_bool(manager.autosave()).is_true()
+	var second: ZoneManager = ZoneManager.new()
+	var second_host: Node2D = Node2D.new()
+	add_child(second_host)
+	second.setup(second_host)
+	second.zone_factory = func(_id: String) -> ZoneBase: return StubZone.new()
+	second.min_transition = 0.0
+	add_child(second)
+	assert_bool(second.start("despliegue_cero")).is_true()
+	assert_bool(second.is_known("cumbre")).is_true()
+	assert_bool(second.can_fast_travel("cumbre")).is_true()
+	assert_int(int(second.records["cumbre"].population.get("plegado", 0))).is_equal(12)
+
+
+func test_visit_supersedes_rumor() -> void:
+	assert_bool(manager.hear_about_zone("cumbre")).is_true()
+	assert_bool(manager.fast_travel("cumbre")).is_true()
+	var record: ZoneRecord = manager.records["cumbre"]
+	assert_bool(record.rumored).is_true()
+	assert_bool(record.visited).is_true()
+	assert_bool(manager.is_known("cumbre")).is_true()
+	assert_str(manager.current_id).is_equal("cumbre")
+	assert_bool(manager.hear_about_zone("cumbre")).is_false()

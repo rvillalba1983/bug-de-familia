@@ -1,6 +1,6 @@
 # Equipo de agentes - Configuración
 
-Última actualización: 10-nov-2026, junto a `adr/0018-agentes-y-modelos.md`. Modelos, precios y procedimiento de cambio: `FALLBACK_MODELS.md`.
+Última actualización: 22-nov-2026, con las rotaciones de `explore` e `ingeniero-godot`. Modelos, precios y procedimiento de cambio: `FALLBACK_MODELS.md`.
 
 ## El equipo
 
@@ -9,7 +9,7 @@
 | Agente | Dominio | Puede tocar | Modelo |
 |---|---|---|---|
 | `arquitecto` | Arquitectura, ADR, coherencia entre sistemas | Todo, con confirmación | Go `glm-5.3` |
-| `ingeniero-godot` | GDScript y escenas de Godot 4.7.2 | `*.gd`, `*.tscn`, con confirmación | Go `kimi-k2.7-code` |
+| `ingeniero-godot` | GDScript y escenas de Godot 4.7.2 | `*.gd`, `*.tscn`, con confirmación | Gratis `big-pickle` (rotado el 22-nov; antes Go `deepseek-v4.1-flash`, ADR 0040) |
 | `gameplay` | Mecánicas, simulación, balance, especies | `*.gd`, `*.tscn`, con confirmación | Go `qwen3.7-plus` |
 | `qa` | Auditoría y diseño de pruebas | Solo lectura | Gratis `deepseek-v4.1-flash-free` |
 | `documentacion` | Documentación, lore, continuidad | `*.md`, `*.json`, con confirmación | Gratis `glm-5.3-flash-free` |
@@ -42,7 +42,7 @@ Reglas comunes a todos: `git push` siempre pide confirmación, los parámetros p
 
 ## Verificación
 
-- `opencode run` desde la raíz del proyecto debe mostrar `big-pickle` en la cabecera de la respuesta (modelo por defecto). `explore` está rotado a `opencode-go/gpt-6-luna` (ADR 0022); `--estado` lo muestra como alternativo 1.
+- `opencode run` desde la raíz del proyecto debe mostrar `big-pickle` en la cabecera de la respuesta (modelo por defecto). `explore` está rotado a `opencode/beam-free` y `ingeniero-godot` a `opencode/big-pickle` (ADR 0022 y 0040); `--estado` lo muestra.
 - `/models` debe listar los modelos de `opencode` (gratuitos) y de `opencode-go` (suscripción).
 - Un subagente se prueba pidiéndole algo de su dominio en una conversación.
 - Validado el 10-nov con peticiones reales: `arquitecto` (Go `glm-5.3`) y `documentacion` (consola `glm-5.3-flash-free`) respondieron correctamente.

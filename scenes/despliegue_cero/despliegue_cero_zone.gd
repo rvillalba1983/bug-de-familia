@@ -246,6 +246,7 @@ func _spawn_actor(actor: Dictionary) -> void:
 		])
 		return
 	var enemy: Guard = _add_guard(id, route, look, str(actor.get("weapon", "")))
+	enemy.visual.individual_scale = NpcState.stable_adult_scale(id)
 	if actor.get("passive", false):
 		enemy.set_passive(true)
 	for role: String in actor.get("roles", []):

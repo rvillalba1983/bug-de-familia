@@ -36,6 +36,17 @@ las ya decididas ese día, en la sección «Decidido el 10 de noviembre».
 | P-55 | **Pedido por el director el 17-nov. Implementado (17-nov) en esta fase** (`fase/contenido-y-diseno-zonas`). Se retiran los carteles de texto de las bocas («Bienvenido a…», «Seguir el camino…», «a X m», el `PanelContainer` de `_build_zone_sign`) y el **nombre de la zona destino** se dibuja encima de las señales SVG nuevas (`señal_XX.svg`) como `Label` con la tipografía y paleta del arte (`UiStyle.FONT_LOUD`, `Palette.HUESO`/`INK`, fondo de `MenuButtonStyle.backing_box()`), con `z_index` por encima de muros y señal y con el mismo `corridor_sign_position()` (norte no se corta con la cámara). Ojo: el texto dentro de los SVG no rasteriza en Godot (ThorVG), por eso el nombre va como `Label`. | Interfaz y mundo | Hecho en esta fase |
 | P-57 | **Resuelto en esta fase.** `Guard._exit_tree()` (`entities/enemies/guard.gd:270`) comprobaba `is_instance_valid(_view)` antes de `queue_free()` y anulaba la referencia, evitando el `SCRIPT ERROR` cuando el suelo se liberaba antes que el guardia. Prueba nueva: `tests/entities/guard_exit_tree_test.gd` (1 caso, orden suelo-primero). Aprobado por el director. | Robustez y pruebas | Hecho en esta fase |
 
+## Decidido el 22 de noviembre
+Decisiones del director para la fase «Post-beta: progenitores y contenido». Ya
+implementadas en la rama `fase/postbeta-progenitores-arte-encuentros`.
+
+| ID | Decisión | Estado | Bloquea |
+|---|---|---|---|
+| — | **Mortalidad:** los 13 progenitores nuevos «pueden morir ya». Se descarta dejarlos inmortales o diferir las consecuencias de lore. Cada árbol de diálogo lleva ya su campo `death` con la consecuencia de su muerte; `ZoneBase.kill_progenitor()` marca el flag `progenitor_<id>_muerto` y oculta al actor | Implementado. Falta validación manual en partida de la pelea y la muerte | No bloquea |
+| — | **Alcance del encuentro:** «Saludo + pista + insulto». Cada progenitor saluda, da su versión del misterio y una pista, y ofrece seguir escuchando o insultar; el insulto deriva en enfado y pelea, coherente con la mortalidad aprobada | Implementado para los 15, incluidos Don Ramón (exige «Discutir» antes de hablar) y El Contestador (conserva su bobina). Falta validación manual en partida | No bloquea |
+
+Detalle técnico y consecuencias: `docs/adr/0038-encuentros-progenitores-y-arte.md`.
+
 ## Decidido el 10 de noviembre
 Decisiones del director del 10-nov. Faltan por implementar, salvo la de IRCap, ya hecha salvo la revisión estética.
 

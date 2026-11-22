@@ -3,7 +3,9 @@ extends RefCounted
 ## Progenitores presentes en el juego, según data/world/progenitors.json.
 
 const PATH: String = "res://data/world/progenitors.json"
-const FIELDS: Array[String] = ["name", "material", "fixed_property"]
+const FIELDS: Array[String] = [
+	"name", "art", "color", "material", "fixed_property", "deaths", "zone",
+]
 
 static var _entries: Dictionary = {}
 

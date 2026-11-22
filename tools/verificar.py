@@ -3,7 +3,8 @@
 
   python tools/verificar.py
 
-Ejecuta, con el mismo interprete, validar_datos.py, validar_rutas.py,
+Antes de nada borra los .log de reports/ con mas de 48 h (limpiar_logs.py).
+Despues ejecuta, con el mismo interprete, validar_datos.py, validar_rutas.py,
 validar_conversaciones.py, formatear.py --comprobar, cambiar_modelo.py
 --validar y las pruebas de las propias herramientas; y si existe medicion.txt
 en la raiz, comparar_medicion.py.
@@ -25,6 +26,7 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
 PASOS = [
+	("Limpieza de logs antiguos", ["tools/limpiar_logs.py"]),
 	("Datos", ["tools/validar_datos.py"]),
 	("Rutas res:// literales", ["tools/validar_rutas.py"]),
 	("Conversaciones P-42", ["tools/validar_conversaciones.py"]),

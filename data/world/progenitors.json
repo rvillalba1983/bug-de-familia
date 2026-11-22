@@ -1,7 +1,7 @@
 {
   "ramon": {
     "name": "Don Ramón",
-    "art": "don_ramon",
+    "art": "progenitores/ramon",
     "color": "#e0a040",
     "material": "nanoacero",
     "fixed_property": "p047",
@@ -19,7 +19,7 @@
     ],
     "zone": "despliegue_cero",
     "color": "#60a0e0",
-    "art": "contestador"
+    "art": "progenitores/contestador"
   },
   "biela": {
     "name": "Don Biela de la Rodilla",
@@ -30,7 +30,7 @@
     ],
     "zone": "taller",
     "color": "#c0c0c0",
-    "art": "biela"
+    "art": "progenitores/biela"
   },
   "pliegue_oculto": {
     "name": "El Pliegue que No Existe",
@@ -41,7 +41,7 @@
     ],
     "zone": "cumbre",
     "color": "#a0a0ff",
-    "art": "pliegue_oculto"
+    "art": "progenitores/pliegue_oculto"
   },
   "papel_cebolla": {
     "name": "Don Papel Cebolla",
@@ -52,7 +52,7 @@
     ],
     "zone": "archivo",
     "color": "#d0d0b0",
-    "art": "papel_cebolla"
+    "art": "progenitores/papel_cebolla"
   },
   "susurro": {
     "name": "El Susurro",
@@ -63,7 +63,7 @@
     ],
     "zone": "camara",
     "color": "#80e0e0",
-    "art": "susurro"
+    "art": "progenitores/susurro"
   },
   "frecuencia": {
     "name": "Doña Frecuencia, la Soprano de los Recibos",
@@ -74,7 +74,7 @@
     ],
     "zone": "colmena",
     "color": "#e080e0",
-    "art": "frecuencia"
+    "art": "progenitores/frecuencia"
   },
   "boletina": {
     "name": "Doña Boletina, cuyo Sombrero Vota en Contra",
@@ -85,7 +85,7 @@
     ],
     "zone": "asamblea",
     "color": "#80c080",
-    "art": "boletina"
+    "art": "progenitores/boletina"
   },
   "yesquero": {
     "name": "Don Yesquero, el Hongo Más Hongo",
@@ -96,7 +96,7 @@
     ],
     "zone": "paso",
     "color": "#a0d060",
-    "art": "yesquero"
+    "art": "progenitores/yesquero"
   },
   "fiador": {
     "name": "Don Fiador, Tasador de Órganos",
@@ -107,7 +107,7 @@
     ],
     "zone": "lonja",
     "color": "#d0a040",
-    "art": "fiador"
+    "art": "progenitores/fiador"
   },
   "garantia": {
     "name": "Doña Garantía de Tres Segundos",
@@ -118,7 +118,7 @@
     ],
     "zone": "gran_mercado",
     "color": "#e0c060",
-    "art": "garantia"
+    "art": "progenitores/garantia"
   },
   "avalista": {
     "name": "El Avalista, Prestamista de Brazos",
@@ -129,7 +129,7 @@
     ],
     "zone": "poligono",
     "color": "#60c0c0",
-    "art": "avalista"
+    "art": "progenitores/avalista"
   },
   "cartero": {
     "name": "El Cartero de los Muertos",
@@ -140,7 +140,7 @@
     ],
     "zone": "sendero",
     "color": "#80a0d0",
-    "art": "cartero"
+    "art": "progenitores/cartero"
   },
   "paquete": {
     "name": "Don Paquete, Inspector de Paquetes Ajenos",
@@ -151,7 +151,7 @@
     ],
     "zone": "ultima_ruta",
     "color": "#b09060",
-    "art": "paquete"
+    "art": "progenitores/paquete"
   },
   "ultimo_mono": {
     "name": "El Último Mono, Robot con Peluca",
@@ -162,6 +162,6 @@
     ],
     "zone": "desguace",
     "color": "#909090",
-    "art": "ultimo_mono"
+    "art": "progenitores/ultimo_mono"
   }
 }

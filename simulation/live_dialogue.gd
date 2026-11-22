@@ -13,6 +13,12 @@ var world: LiveWorld
 var npc: NpcState
 var bar: ConversationBar
 
+## Un progenitor no vive en `world.sim`, pero comparte panel y acciones.
+## Su guardia y su bocadillo se pasan al abrir el diálogo desde la zona.
+var progenitor_id: String = ""
+var progenitor_actor: Node2D = null
+var progenitor_bubble: SpeechBubble = null
+
 var _options: Array = []
 var _insulted: bool = false
 var _branch: String = ""
@@ -47,23 +53,55 @@ func is_open() -> bool:
 	return npc != null
 
 
+func is_progenitor() -> bool:
+	return not progenitor_id.is_empty()
+
+
+## Abre el árbol propio del progenitor con su guardia y su bocadillo de zona.
+## No se registra en `sim.npcs` para no crear un ciudadano duplicado.
+func open_progenitor(id: String, actor: Node2D, bubble: SpeechBubble) -> void:
+	if not ProgenitorCatalog.has(id) or not ProgenitorDialogues.has(id):
+		push_error("LiveDialogue: progenitor sin diálogo: %s" % id)
+		return
+	if world == null or not is_instance_valid(actor) or bubble == null:
+		return
+	progenitor_id = id
+	progenitor_actor = actor
+	progenitor_bubble = bubble
+	var state: NpcState = NpcState.new()
+	state.id = "progenitor_" + id
+	state.species = ProgenitorDialogues.species_for(id)
+	state.name = str(ProgenitorCatalog.entry(id).get("name", id))
+	state.role = "progenitor"
+	state.pos = actor.global_position
+	open(state)
+
+
 func open(target: NpcState) -> void:
 	npc = target
 	_insulted = false
 	_branch = ""
 	_current_node_id = ""
-	_dialogue_tree = DialogueTrees.tree_for(npc.species)
-	_conversation = ConversationCatalog.pick(npc.species, npc.id + npc.role)
+	if is_progenitor():
+		_dialogue_tree = ProgenitorDialogues.tree_for(progenitor_id)
+		_conversation = {}
+	else:
+		_dialogue_tree = DialogueTrees.tree_for(npc.species)
+		_conversation = ConversationCatalog.pick(npc.species, npc.id + npc.role)
 	_conversation_nodes = (_conversation.get("nodes", {}) as Dictionary) if not _conversation.is_empty() else {}
 	world.level.pause.begin_modal()
 	## P-32: hablar con un NPC descubre los retos de la zona.
 	world.level.discover_challenge()
-	if float(world.sim.player_standing.get(npc.species, 0.0)) <= REFUSE_STANDING:
+	if not is_progenitor() and \
+			float(world.sim.player_standing.get(npc.species, 0.0)) <= REFUSE_STANDING:
 		_say(tr("LIVE_REFUSE"))
 		_set_options([[tr("LIVE_HIT"), _hit], [tr("LIVE_BYE"), close]])
 		return
-	_say(_greeting(npc))
-	_refresh()
+	if is_progenitor():
+		_show_dialogue_node("root")
+	else:
+		_say(_greeting(npc))
+		_refresh()
 
 
 ## Saludo según el oficio del habitante. Sin línea de rol, el saludo normal.
@@ -115,7 +153,9 @@ func _wrap_option(label: String, action: Callable) -> Array:
 
 func _exhaust_option() -> void:
 	## Al agotar las repeticiones salta enfado y pelea de inmediato.
-	if world.citizens.has(npc.id):
+	if is_progenitor() and is_instance_valid(progenitor_actor):
+		_hit()
+	elif world.citizens.has(npc.id):
 		_hit()
 	else:
 		close()
@@ -124,16 +164,31 @@ func _exhaust_option() -> void:
 func close() -> void:
 	if npc == null:
 		return
-	world.bubble_of(npc.id).clear()
+	if is_progenitor():
+		if is_instance_valid(progenitor_bubble):
+			progenitor_bubble.clear()
+	else:
+		world.bubble_of(npc.id).clear()
 	npc = null
 	_options = []
 	_conversation = {}
 	_conversation_nodes = {}
+	progenitor_id = ""
+	progenitor_actor = null
+	progenitor_bubble = null
 	bar.clear()
 	world.level.pause.end_modal()
 
 
 func _refresh() -> void:
+	if npc == null:
+		return
+	if is_progenitor():
+		if ProgenitorDialogues.tree_for(progenitor_id).has("root"):
+			_show_dialogue_node("root")
+		else:
+			close()
+		return
 	if _current_node_id != "":
 		_show_dialogue_node(_current_node_id)
 		return
@@ -218,6 +273,8 @@ func _execute_dialogue_action(action: String) -> void:
 			_praise()
 		"insult":
 			_insult()
+		"contestador_bobina":
+			_put_bobina()
 
 
 func _give_piece() -> void:
@@ -225,6 +282,14 @@ func _give_piece() -> void:
 	_say("Toma, una pieza para ti.")
 	if world.level.has_method("give_piece_to_player"):
 		world.level.give_piece_to_player()
+
+
+## El Contestador sigue entregando la bobina de la beta desde su propio diálogo.
+func _put_bobina() -> void:
+	if not world.level.has_method("set_bobina_puesta"):
+		return
+	if not bool(world.level.call("set_bobina_puesta")):
+		_say("No tienes la bobina que falta.")
 
 
 func _set_options(entries: Array) -> void:
@@ -239,7 +304,10 @@ func _set_options(entries: Array) -> void:
 
 
 func _say(text: String) -> void:
-	world.bubble_of(npc.id).say(text, Color.BLACK, 3600.0)
+	var bubble: SpeechBubble = progenitor_bubble if is_progenitor() else world.bubble_of(npc.id)
+	if bubble == null or not is_instance_valid(bubble):
+		return
+	bubble.say(text, Color.BLACK, 3600.0)
 
 
 ## Permite a otros sistemas responder y seguir la conversación.
@@ -308,6 +376,18 @@ func _praise() -> void:
 
 ## Cierra la charla y va a por él. El resto lo decide el combate de siempre.
 func _hit() -> void:
+	if is_progenitor():
+		var target: Node2D = progenitor_actor
+		var target_id: String = progenitor_id
+		close()
+		if not is_instance_valid(target):
+			return
+		if target is Guard:
+			if not (target as Guard).is_down():
+				world.level.attack_citizen(target as Guard)
+		else:
+			world.level.kill_progenitor(target_id)
+		return
 	var guard: Guard = world.citizens[npc.id]
 	close()
 	world.level.attack_citizen(guard)
@@ -329,5 +409,8 @@ func _insult() -> void:
 	_insulted = true
 	npc.feel("ira", 35.0)
 	npc.relate(WorldSim.PLAYER_ID, "afecto", -20.0)
+	if is_progenitor():
+		## El nodo «insultado» dice la réplica; aquí solo cambia el estado.
+		return
 	world.sim.change_standing(npc.species, INSULT_STANDING)
 	reply(_random_line(npc, "angry"))

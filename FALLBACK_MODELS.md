@@ -1,7 +1,6 @@
 # Guía de modelos y fallback de los agentes
 
-Última actualización: 19-nov-2026 (rotación de `documentacion` por modelo
-retirado).
+Última actualización: 22-nov-2026 (rotación de `explore` a `beam-free`).
 
 ## Fuentes de modelos
 
@@ -21,7 +20,7 @@ Cada modelo de Go tiene tres ventanas: 5 horas (20 % del límite mensual), seman
 | Agente | Modelo principal | Alternativos, en orden |
 |---|---|---|
 | Por defecto (`build`, `plan`, `general`) | `opencode/big-pickle` (gratis) | `opencode-go/kimi-k2.7-code`, `opencode/iceman-free`, `opencode/glm-5.3-flash-free` |
-| `explore` (integrado) | `opencode/big-pickle` (gratis) | `opencode-go/gpt-6-luna`, `opencode/beam-free`, `opencode/glm-5.3-flash-free` |
+| `explore` (integrado) | `opencode/beam-free` (rotado el 22-nov) | `opencode-go/gpt-6-luna`, `opencode/beam-free`, `opencode/glm-5.3-flash-free` |
 | `arquitecto` | `opencode-go/glm-5.3` | `opencode/big-pickle`, `opencode-go/kimi-k2.7-code`, `opencode/glm-5.3-flash-free` |
 | `ingeniero-godot` | `opencode-go/kimi-k2.7-code` | `opencode/big-pickle`, `opencode-go/glm-5.3`, `opencode/glm-5.3-flash-free` |
 | `gameplay` | `opencode-go/qwen3.7-plus` | `opencode/big-pickle`, `opencode-go/minimax-m3`, `opencode/glm-5.3-flash-free` |
@@ -34,16 +33,17 @@ Cada modelo de Go tiene tres ventanas: 5 horas (20 % del límite mensual), seman
 
 Criterio: los agentes con versión gemela gratuita (qa, documentacion) o de alto volumen (conversaciones principales, explore) van sobre el gratuito; los especializados sin gemela gratuita usan Go con Big Pickle de primer respaldo, para no gastar ventanas de otros modelos de Go.
 
-## Rotaciones vigentes (19-nov)
+## Rotaciones vigentes (19 y 22-nov)
 
 | Agente | Modelo en config | Motivo | Volver |
 |---|---|---|---|
-| `explore` | `opencode-go/gpt-6-luna` (alternativo 1, de pago) | `Free usage limit reached` en `opencode/big-pickle`; el director pidió «rota a modelo de pago» | `python tools/cambiar_modelo.py --restaurar explore` |
+| `explore` | `opencode/beam-free` (alternativo 2, gratuito; 22-nov) | Decisión del director: pasar de `opencode-go/gpt-6-luna` a un modelo gratuito. Se relanzó la tarea (ADR 0022, addendum del 22-nov) | `python tools/cambiar_modelo.py --restaurar explore` |
 | `documentacion` | `opencode-go/glm-5.3-flash` (alternativo 1, de pago) | `opencode/glm-5.3-flash-free` retirado/indisponible (19-nov-2026); tarea relanzada con el modelo nuevo | `python tools/cambiar_modelo.py --restaurar documentacion` |
 
 La cadena de `tools/modelos_agentes.json` no cambia: sigue siendo la fuente única y el
 principal de la cadena sigue siendo `big-pickle`. Validado con `--validar` (0 errores) y
-la tarea se relanzó con el modelo nuevo. Detalle completo en `adr/0022-rotacion-explore-a-go.md`.
+la tarea se relanzó con el modelo nuevo. Detalle completo en `adr/0022-rotacion-explore-a-go.md`,
+con el addendum del 22-nov (de `gpt-6-luna` a `beam-free`, también gratuito).
 La rotación de `documentacion` está detallada en `docs/adr/0036-culling-rigs-fuera-de-camara.md`.
 
 ## Catálogo Go usado

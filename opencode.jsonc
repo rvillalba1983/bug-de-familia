@@ -268,7 +268,7 @@
 
     // Agente integrado de búsqueda: mismo ID, solo cambia el modelo (hereda su prompt)
     "explore": {
-      "model": "opencode-go/gpt-6-luna"
+      "model": "opencode/beam-free"
     }
   }
 }

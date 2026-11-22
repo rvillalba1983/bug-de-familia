@@ -10,15 +10,17 @@
 >   (104,2 MB, `.pck` 29,6 MB) y **validado por el director**. P-58 (arte
 >   artístico con modelo para los 15, recreando a Don Ramón y El Contestador)
 >   queda para una fase posterior. Ver ADR 0039 y 0040 (rotación de modelo).
-> - **Nuevo encargo del director (22-nov, P-59):** las IAs deben avisar en el
->   chat cuando se crea un rumor y cuando un grupo de NPCs se mueve entre zonas.
->   Registrado en `01_CONFLICTOS_Y_PENDIENTES.md` para una fase posterior de
->   contenido; quedan por concretar quién habla, el texto, la cadencia y el
->   anti-spam. No implementado en esta fase.
-> - **Incidencia vista por el director en el `.exe` (22-nov, P-60):** Don Ramón
->   se queda parado en `despliegue_cero`, sospechando de una barrera en su ruta.
->   Registrado en `01_CONFLICTOS_Y_PENDIENTES.md`: hay que reproducirlo y rehacer
->   `ramon_route` con una prueba de regresión. No corregido todavía.
+> - **Estado (22-nov, esta fase):** `fase/p60-p59-p58-rutas-avisos-arte` (no fusionada todavía).
+>   **P-60 corregido y commiteado:** Don Ramón rehace su ruta en `despliegue_cero`
+>   (`data/zones/despliegue_cero.json`, tramo norte hasta x=1650 antes de la
+>   fachada del corredor) con `tests/despliegue_cero/ramon_route_test.gd` (2
+>   casos). **P-59 implementado y commiteado:** `WorldSim.rumor_born` +
+>   `ZoneManager.population_migrated` → `AiChatter` (conspi/matriz, sin tokens,
+>   cadencia y anti-spam), pruebas nuevas en verde. `verificar.py` OK. Falta
+>   ejecutar `tests/despliegue_cero` completo tras P-59 (ya verde con P-60) y
+>   presentar plan + piloto de P-58 antes de cualquier imagen externa.
+> - **Estado (22-nov, P-59):** las IAs deben avisar en el chat cuando se crea un
+>   rumor y cuando un grupo de NPCs se mueve entre zonas.
 > - **Estado (22-nov):** fase «Post-beta: progenitores y contenido»
 >   **fusionada en `main`** (PR #40, merge `5a89df2`, aprobado por el director;
 >   CI verde 6/6). **Cambiar de conversación.** Hecho: **75 SVG propios**

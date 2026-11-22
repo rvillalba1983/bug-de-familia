@@ -11,10 +11,10 @@ Motor: Godot 4.7.2 estable.
 ```
 godot --headless --import                          # importar el proyecto
 godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode -a res://tests -c   # pruebas
-python tools/verificar.py                     # datos + normas de formato (determinista, local)
+python tools/verificar.py                     # limpieza de logs + datos + normas (determinista, local)
 ```
 
-Comprobaciones deterministas antes de commitear: `tools/verificar.py`. En OpenCode, comando `/verificar`. Ver `docs/adr/0019-herramientas-ci-y-mcp.md`.
+Comprobaciones deterministas antes de commitear: `tools/verificar.py` (borra `reports/*.log` con más de 48 h). En OpenCode, comando `/verificar`. Ver `docs/adr/0019-herramientas-ci-y-mcp.md` y `docs/adr/0037-limpieza-automatica-de-logs.md`.
 
 Escena principal: `res://scenes/world/world.tscn` (la zona inicial la monta `ZoneManager`), igual que en `AGENTS.md`.
 

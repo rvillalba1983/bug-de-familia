@@ -262,6 +262,9 @@ func _spawn_actor(actor: Dictionary) -> void:
 				ramon = enemy
 			"depot":
 				_depot.append(enemy)
+	var progenitor: String = str(actor.get("progenitor", ""))
+	if not progenitor.is_empty():
+		_attach_progenitor(enemy, progenitor)
 
 
 func _look_of(actor: Dictionary) -> Dictionary:
@@ -415,7 +418,11 @@ func _build_investigation() -> void:
 	investigation.case_path = CASE_PATH
 	add_child(investigation)
 	var contestador: Dictionary = ProgenitorCatalog.entry(ID_CONTESTADOR)
-	_add_convertible(ID_CONTESTADOR, investigation.npc_nodes[ID_CONTESTADOR], str(contestador["material"]))
+	var contestador_item: Interactable = investigation.npc_nodes[ID_CONTESTADOR]
+	_add_convertible(ID_CONTESTADOR, contestador_item, str(contestador["material"]))
+	contestador_item.art = load("res://art/shared/progenitores/contestador.svg") as Texture2D
+	var contestador_bubble: SpeechBubble = investigation.bubbles.get(ID_CONTESTADOR) as SpeechBubble
+	_register_progenitor_actor(ID_CONTESTADOR, contestador_item, contestador_bubble)
 	_contestador_at = (entities[ID_CONTESTADOR] as Node2D).global_position
 	_fix_progenitor_property(ID_CONTESTADOR)
 	_fix_progenitor_property(ID_CONTESTADOR)
@@ -514,6 +521,12 @@ func _on_converted(entity_id: String) -> void:
 func on_item_activated(item: Interactable) -> void:
 	if live_world.handles_item(item):
 		return
+	if item.item_id == ID_CONTESTADOR and live_world != null:
+		var bubble: SpeechBubble = _progenitor_bubbles.get(ID_CONTESTADOR) as SpeechBubble
+		if bubble != null:
+			player.gesture_for(item.kind, item.item_id)
+			live_world.dialogue.open_progenitor(ID_CONTESTADOR, item, bubble)
+			return
 	match item.item_id:
 		ID_MINE:
 			challenges.take_mine()
@@ -527,6 +540,14 @@ func on_item_activated(item: Interactable) -> void:
 			if item.kind == Interactable.Kind.CRATE:
 				protagonist.comment("crate", ProtagonistVoice.LONG_COOLDOWN)
 			super(item)
+
+
+## El diálogo del Contestador también entrega la bobina de la beta.
+func set_bobina_puesta() -> bool:
+	if not investigation.has_flag("tiene_bobina"):
+		return false
+	investigation.flags["bobina_puesta"] = true
+	return true
 
 
 func _on_mine_exploded(mine: PetanqueMine) -> void:

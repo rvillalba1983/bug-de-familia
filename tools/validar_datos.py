@@ -1194,6 +1194,113 @@ def validar_arte(informe: Informe) -> dict[str, Any]:
     return conteos
 
 
+## Vistas que GuardVisual espera para cada progenitor (ADR de la fase post-beta).
+VISTAS_PROGENITOR: tuple[str, ...] = ("", "_se", "_e", "_ne", "_n")
+## Nodos que todo árbol debe tener para saludo + versión + respuesta al insulto.
+NODOS_PROGENITOR: tuple[str, ...] = ("root", "version", "insultado")
+## Acciones que LiveDialogue entiende en los diálogos de progenitor.
+ACCIONES_PROGENITOR: tuple[str, ...] = (
+    "gift_piece", "hit", "provoke_battle", "praise", "insult", "contestador_bobina",
+)
+
+
+def validar_dialogos_progenitores(informe: Informe) -> dict[str, Any]:
+    """Diálogos y cinco vistas de arte de los 15 progenitores (fase post-beta)."""
+    conteos: dict[str, Any] = {}
+    rel = "data/conversation/progenitors.json"
+    dialogos = cargar_json(DATA / "conversation" / "progenitors.json", informe)
+    informe.cuenta(rel)
+    ids = claves_unicas(dialogos, rel, informe, "raices")
+    conteos["progenitor_dialogues"] = len(ids)
+
+    # Los árboles deben cubrir exactamente el catálogo de progenitores del mundo.
+    progenitores = cargar_json(DATA / "world" / "progenitors.json", informe)
+    ids_mundo = set(progenitores) if isinstance(progenitores, dict) else set()
+    for pid in sorted(ids_mundo - set(ids)):
+        informe.error(rel, "falta el árbol de diálogo de '%s'" % pid)
+    for pid in sorted(set(ids) - ids_mundo):
+        informe.error(rel, "el árbol '%s' no corresponde a ningún progenitor" % pid)
+
+    if isinstance(dialogos, dict):
+        for pid, datos in dialogos.items():
+            campo = "dialogos.%s" % pid
+            if not isinstance(datos, dict):
+                informe.error(rel, "%s: no es un objeto" % campo)
+                continue
+            # El Contestador es un objeto, no una criatura: su especie es vacía.
+            if not isinstance(datos.get("species"), str):
+                informe.error(rel, "%s.species: debe ser una cadena" % campo)
+            # Mortalidad aprobada: todo progenitor debe tener consecuencia de muerte.
+            muerte = datos.get("death")
+            if not isinstance(muerte, str) or not muerte.strip():
+                informe.error(rel, "%s.death: falta la consecuencia de su muerte" % campo)
+            nodos = datos.get("nodes")
+            if not isinstance(nodos, dict):
+                informe.error(rel, "%s.nodes: falta o no es un objeto" % campo)
+                continue
+            for obligatorio in NODOS_PROGENITOR:
+                if obligatorio not in nodos:
+                    informe.error(rel, "%s.nodes: falta el nodo '%s'" % (campo, obligatorio))
+            if pid != "contestador" and "pista" not in nodos:
+                informe.error(rel, "%s.nodes: falta la pista" % campo)
+            for nid, nodo in nodos.items():
+                ncampo = "%s.nodes.%s" % (campo, nid)
+                if not isinstance(nodo, dict):
+                    informe.error(rel, "%s: no es un objeto" % ncampo)
+                    continue
+                texto = nodo.get("text")
+                if not isinstance(texto, str) or not texto.strip():
+                    informe.error(rel, "%s.text: falta texto" % ncampo)
+                opciones = nodo.get("options")
+                if not isinstance(opciones, list) or not opciones:
+                    informe.error(rel, "%s.options: falta o está vacío" % ncampo)
+                    continue
+                for indice, opcion in enumerate(opciones):
+                    ocampo = "%s.options[%d]" % (ncampo, indice)
+                    if not isinstance(opcion, dict):
+                        informe.error(rel, "%s: no es un objeto" % ocampo)
+                        continue
+                    etiqueta = opcion.get("label")
+                    if not isinstance(etiqueta, str) or not etiqueta.strip():
+                        informe.error(rel, "%s.label: falta etiqueta" % ocampo)
+                    siguiente = opcion.get("next")
+                    if not isinstance(siguiente, str):
+                        informe.error(rel, "%s.next: debe ser una cadena" % ocampo)
+                    elif siguiente and siguiente not in nodos:
+                        informe.error(rel, "%s.next: el nodo '%s' no existe" % (
+                            ocampo, siguiente
+                        ))
+                    accion = opcion.get("action")
+                    if accion is not None and accion not in ACCIONES_PROGENITOR:
+                        informe.error(rel, "%s.action: acción desconocida '%s'" % (
+                            ocampo, accion
+                        ))
+
+    # Las cinco vistas declaradas deben existir y la ruta de arte cuadrar con el id.
+    directorio_arte = RAIZ / "art" / "shared" / "progenitores"
+    rel_arte = "art/shared/progenitores"
+    informe.cuenta(rel_arte)
+    total_vistas = 0
+    if isinstance(progenitores, dict):
+        for pid, datos in progenitores.items():
+            arte = datos.get("art") if isinstance(datos, dict) else None
+            esperado = "progenitores/%s" % pid
+            if arte != esperado:
+                informe.error(
+                    "data/world/progenitors.json",
+                    "%s.art: se esperaba '%s', hay '%s'" % (pid, esperado, arte),
+                )
+            for sufijo in VISTAS_PROGENITOR:
+                nombre = "%s%s.svg" % (pid, sufijo)
+                if (directorio_arte / nombre).is_file():
+                    total_vistas += 1
+                else:
+                    informe.error(rel_arte, "falta '%s'" % nombre)
+    conteos["progenitor_art_views"] = total_vistas
+
+    return conteos
+
+
 def validar_audio(informe: Informe) -> dict[str, Any]:
     """Banco de musica y voces."""
     conteos: dict[str, Any] = {}
@@ -1325,6 +1432,7 @@ def construir_conteos() -> dict[str, Any]:
     conteos.update(validar_combat(informe))
     conteos.update(validar_investigacion(informe))
     conteos.update(validar_arte(informe))
+    conteos.update(validar_dialogos_progenitores(informe))
     conteos.update(validar_audio(informe))
     conteos.update(validar_comentarios(informe))
     conteos.update(validar_i18n(informe))
@@ -1402,6 +1510,7 @@ def main(argv: list[str]) -> int:
     conteos.update(validar_combat(informe))
     conteos.update(validar_investigacion(informe))
     conteos.update(validar_arte(informe))
+    conteos.update(validar_dialogos_progenitores(informe))
     conteos.update(validar_audio(informe))
     conteos.update(validar_comentarios(informe))
     conteos.update(validar_i18n(informe))

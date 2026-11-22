@@ -14,7 +14,7 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 - Una carpeta o suite concreta: mismo comando con `-a res://tests/ai` o `-a res://tests/ai/ai_perks_test.gd`. `-i <ruta>` excluye; `-c` desactiva fail-fast.
 - Un error de script en headless abre un prompt `debug>` y deja la ejecución colgada: usa un timeout y redirige stdin (`timeout 300 ... </dev/null` en bash).
 - Preparación completa del entorno (binario, plantillas de exportación, capturas): `docs/03_ESTADO.md`, sección «Preparar el entorno».
-- Comprobaciones deterministas antes de commitear: `python tools/verificar.py` (datos, normas de formato y medición si existe `medicion.txt`). En OpenCode, comando `/verificar`. Ver `docs/adr/0019-herramientas-ci-y-mcp.md`.
+- Comprobaciones deterministas antes de commitear: `python tools/verificar.py` (limpieza de `reports/*.log` con más de 48 h, datos, normas de formato y medición si existe `medicion.txt`). En OpenCode, comando `/verificar`. Ver `docs/adr/0019-herramientas-ci-y-mcp.md` y `docs/adr/0037-limpieza-automatica-de-logs.md`.
 - Herramientas, rutas, comandos y limitaciones: `HERRAMIENTAS.md`. OpenCode lo carga al empezar cada sesión (`instructions` en `opencode.jsonc`).
 
 ## Estructura

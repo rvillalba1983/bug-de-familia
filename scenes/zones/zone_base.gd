@@ -13,6 +13,7 @@ signal transition_requested(to_zone: String)
 const ART_FOLDER: String = "res://art/shared/"
 const FAST_TRAVEL_LABEL: String = "UI_FAST_TRAVEL"
 const FAST_TRAVEL_ITEM: String = "fast_travel_"
+const PROGENITOR_ITEM_PREFIX: String = "progenitor_"
 const SIGN_LABEL: String = "UI_ZONE_SIGN"
 const SIGN_SHOW_TIME: float = 3.0
 ## Altura de los muros de corredor: por encima de las 48 u de las salas, para que
@@ -113,6 +114,9 @@ var battles: BattleDirector = null
 
 var _zone_enemy_ids: Dictionary = {}
 var _zone_materials: Dictionary = {}
+## Progenitores guionados: id -> guardia, y id -> bocadillo para el diálogo.
+var _zone_progenitors: Dictionary = {}
+var _progenitor_bubbles: Dictionary = {}
 var _corridor_areas: Array[Area2D] = []
 ## Edificios que delimitan los corredores (P-53). No van en `walls`: esa lista es
 ## la que se atenúa al tapar a un personaje y estas fachadas nunca se atenúan.
@@ -571,9 +575,68 @@ func _spawn_actor(actor: Dictionary) -> void:
 	var guard_node: Guard = _add_zone_guard(id, route, look, weapon_id)
 	guard_node.set_passive(true)
 	_add_convertible(id, guard_node, str(_zone_materials.get(guard_node, "")))
+	var progenitor: String = str(actor.get("progenitor", ""))
+	if not progenitor.is_empty():
+		_attach_progenitor(guard_node, progenitor)
 	# La caída la conecta el Sandbox en _connect_enemies, con el id del JSON.
 	if not species.is_empty():
 		guard_node.attacked.connect(_on_zone_citizen_attacked.bind(guard_node, species))
+
+
+## Da al guardia de un progenitor un bocadillo y un objeto de conversación.
+## No se usa `LiveWorld._show_citizen`: ese crearía un ciudadano duplicado.
+func _attach_progenitor(guard: Guard, progenitor: String) -> void:
+	if not ProgenitorDialogues.has(progenitor):
+		push_error("%s: el progenitor %s no tiene diálogo" % [
+			_definition().path, progenitor
+		])
+		return
+	var bubble: SpeechBubble = SpeechBubble.new()
+	bubble.position = Vector2(0.0, -120.0)
+	bubble.visible = false
+	guard.add_child(bubble)
+	var item: Interactable = Interactable.new()
+	item.setup(PROGENITOR_ITEM_PREFIX + progenitor, Interactable.Kind.NPC, Vector2.ZERO)
+	item.custom_label = str(ProgenitorCatalog.entry(progenitor).get("name", progenitor))
+	item.body_hidden = true
+	item.reusable = true
+	item.activated.connect(_on_progenitor_activated.bind(progenitor, guard, bubble))
+	guard.add_child(item)
+	_register_progenitor_actor(progenitor, guard, bubble)
+
+
+func _register_progenitor_actor(
+	progenitor: String, actor: Node2D, bubble: SpeechBubble
+) -> void:
+	_zone_progenitors[progenitor] = actor
+	_progenitor_bubbles[progenitor] = bubble
+
+
+func _on_progenitor_activated(
+	item: Interactable, progenitor: String, actor: Node2D, bubble: SpeechBubble
+) -> void:
+	if live_world == null or not is_instance_valid(actor):
+		return
+	if actor is Guard and (actor as Guard).is_down():
+		return
+	player.gesture_for(item.kind, item.item_id)
+	live_world.dialogue.open_progenitor(progenitor, actor, bubble)
+
+
+## Muerte de un progenitor que no es un guardia (El Contestador).
+func kill_progenitor(progenitor: String) -> void:
+	_on_progenitor_fell(progenitor)
+	var actor: Node2D = _zone_progenitors.get(progenitor) as Node2D
+	if is_instance_valid(actor):
+		actor.visible = false
+
+
+## Consecuencia de lore: si cae un progenitor, su versión desaparece con él.
+func _on_progenitor_fell(progenitor: String) -> void:
+	investigation.flags[PROGENITOR_ITEM_PREFIX + progenitor + "_muerto"] = true
+	var line: String = ProgenitorDialogues.death_line(progenitor)
+	if not line.is_empty():
+		ai.say_custom(line)
 
 
 ## Aspecto de un actor: especie o progenitor, igual que en la zona de despliegue cero.
@@ -747,6 +810,10 @@ func _load_views(base: String) -> Array[Texture2D]:
 ## avisa al mundo vivo, que es lo propio de cada zona.
 func _on_enemy_fell(enemy: Guard) -> void:
 	super(enemy)
+	for progenitor: String in _zone_progenitors:
+		if _zone_progenitors[progenitor] == enemy:
+			_on_progenitor_fell(progenitor)
+			break
 	if live_world != null:
 		live_world.on_citizen_gone(id_of_guard(enemy))
 

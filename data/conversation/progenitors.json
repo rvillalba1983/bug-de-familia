@@ -1,0 +1,733 @@
+{
+  "ramon": {
+    "species": "jubilado",
+    "death": "Don Ramón cayó. El único que se arrepentía ya no puede decirlo.",
+    "nodes": {
+      "root": {
+        "text": "No te hablo porque sí. Discute conmigo primero; luego veremos.",
+        "options": [
+          {"label": "Discutir", "next": "version"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "El experimento salió bien. Los otros se asustaron de lo bien que salió. Bien es que no te caigas a trozos delante de mí.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "Te escondí de los demás cuando la reunión se puso fea. El listón está en el suelo; tú, aun así, no llegas.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sigo reparando cosas por el mundo. Si algo suena a bisagra, ahí estaré.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "Eso también lo discutimos. Ahora mismo, a golpes.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "contestador": {
+    "species": "",
+    "death": "El Contestador enmudeció. Quedan las grabaciones, que nunca fueron suyas.",
+    "nodes": {
+      "root": {
+        "text": "Poniendo en orden la grabación... orden aleatorio. No tengo versión propia; tengo la de los demás.",
+        "options": [
+          {"label": "Escuchar la grabación", "next": "version"},
+          {"label": "Mensaje 1", "next": "mensaje1"},
+          {"label": "Mensaje 2", "next": "mensaje2"},
+          {"label": "Mensaje 3", "next": "mensaje3"},
+          {"label": "Meter la bobina que falta", "next": "bobina", "action": "contestador_bobina"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "«El experimento salió bien.» «Las articulaciones están perfectas.» «Se pasó de hongo.» Sigue en orden aleatorio.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "Último mensaje de la reunión: «Que alguien apague la grabación». Nadie lo hizo. El testigo fiable, inútil.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sigo reproduciendo. Como tú, pero con cables y menos excusas.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "mensaje1": {
+        "text": "«...ya respira. ¿Quién firma el parte? Yo no, que a mí me pilla el martes.»",
+        "options": [
+          {"label": "Otro mensaje", "next": "root"}
+        ]
+      },
+      "mensaje2": {
+        "text": "«Yo puse la mitad de la mente, y ni siquiera era mi mitad buena.» Se oye un ladrido. «Eso, díselo tú.»",
+        "options": [
+          {"label": "Otro mensaje", "next": "root"}
+        ]
+      },
+      "mensaje3": {
+        "text": "«Si sale mal, decimos que era de... krrrk... nadie, que no es... krrrk...» Fin del mensaje.",
+        "options": [
+          {"label": "Otro mensaje", "next": "root"}
+        ]
+      },
+      "bobina": {
+        "text": "«Votamos: nadie quiere quedárselo. Que conste como sobrante. Don Ramón, mándelo a la chatarra.» «Sí, señor.» Una puerta. Pasos. Una voz muy bajita: «No pienso.»",
+        "options": [
+          {"label": "Volver", "next": "root"}
+        ]
+      },
+      "insultado": {
+        "text": "Grabado. Lo reproduciré cuando menos lo esperes.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "biela": {
+    "species": "jubilado",
+    "death": "Don Biela cayó con el esqueleto todavía perfecto y la pieza sin devolver.",
+    "nodes": {
+      "root": {
+        "text": "El esqueleto aguanta lo que le echen. Anda, toma una pieza... y no le pongas nombre.",
+        "options": [
+          {"label": "¿Qué versión tienes?", "next": "version"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "Las articulaciones están perfectas; lo que se rompió fue la confianza. Cada bisagra la puse yo.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "A los tres días te reclamo la pieza: le puse nombre y la echo de menos. La tuya también suena a pieza que no piensa devolver.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sígueme y verás rótulas. Lo que no verás es la pieza, que ya la he contado dos veces.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "¿Insultar al de las bisagras? Te voy a girar la rótula.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "pliegue_oculto": {
+    "species": "plegado",
+    "death": "El Pliegue que No Existe desapareció sin reclasificarse. Nadie supo dónde archivarlo.",
+    "nodes": {
+      "root": {
+        "text": "No estoy aquí. Estoy en tu sombra, y además te corriges el escondite mal.",
+        "options": [
+          {"label": "¿Qué versión tienes?", "next": "version"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "No hubo fallo; hubo una reclasificación pendiente que sigue pendiente. La mitad del protocolo está archivada donde no existe.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "Clasifiqué qué iba con qué y qué se pliega. Tú estás mal clasificado y, además, se te ve del todo.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sígueme si puedes. Un archivador con patas y sin tapa: así te clasifico, así te dejo.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "Eso sí que no estaba en el protocolo. Te voy a plegar.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "papel_cebolla": {
+    "species": "plegado",
+    "death": "Don Papel Cebolla murió transparente. El protocolo se leyó igual, aunque nadie lo notó.",
+    "nodes": {
+      "root": {
+        "text": "No he escrito nada. Se transparenta. Si te leo un secreto a contraluz, no mires: es confidencial.",
+        "options": [
+          {"label": "¿Qué versión tienes?", "next": "version"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "El experimento fracasó por un error de copia, no de concepto. El original estaba en papel cebolla: cifrado militar.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "Los secretos son tuyos; la exclusiva, mía. Tú sales perdiendo, que es lo único estable de tu biografía.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sigue, sigue. Cuanto más me contradigas, más copias se transparentan.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "Eso no sale en el protocolo. Te lo voy a leer a contraluz.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "susurro": {
+    "species": "eco",
+    "death": "El Susurro calló. Las voces que grabó siguen hablando por la cola del protagonista.",
+    "nodes": {
+      "root": {
+        "text": "Acércate. Te cobro la escucha de cada secreto que te cuente al oído.",
+        "options": [
+          {"label": "¿Qué versión tienes?", "next": "version"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "El experimento se calló a destiempo. Le di voz y acabó con quince. El secreto va de ti; la factura, también.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "Eres la mercancía más barata que he grabado, y aun así te la cobro a precio de oro.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sigue escuchando. La cola de voces aún no ha terminado de hablar por ti.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "Grabado queda. Lo diré a todas las voces a la vez.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "frecuencia": {
+    "species": "eco",
+    "death": "Doña Frecuencia desafinó por última vez. Las facturas quedaron a la misma octava.",
+    "nodes": {
+      "root": {
+        "text": "♪ No te hablo, te canto la factura. ♪ Contradíceme y subo una octava.",
+        "options": [
+          {"label": "¿Qué versión tienes?", "next": "version"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "♪ El experimento desafinó por un problema de registro, no mío. ♪ Afiné la cola biomecánica yo sola.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "♪ Las facturas cantadas van en la misma cola que las voces. ♪ Tú pones el oído y no te devuelven nada.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "♪ Sígueme la corriente y te canto el recibo de la escucha. ♪",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "♪ Eso no se canta. ♪ Se grita, y subo dos octavas.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "boletina": {
+    "species": "mohocrata",
+    "death": "Doña Boletina perdió la votación final. Su sombrero sigue votando en contra, solo.",
+    "nodes": {
+      "root": {
+        "text": "Convoco votación: ¿te escucho? El sombrero vota en contra. Tu frase pierde.",
+        "options": [
+          {"label": "¿Qué versión tienes?", "next": "version"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "El experimento se aprobó por la mínima; debió salir por la máxima. Aporté el micelio que conecta las piezas.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "El sombrero lleva siglos votándote en contra. Tu opinión le parece un borrador mal germinado.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sígueme a la asamblea. Cada cosa que dices se vota; ya vas perdiendo por goleada.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "Eso no se dice en asamblea. Se vota, y el sombrero ya ha ganado.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "yesquero": {
+    "species": "mohocrata",
+    "death": "Don Yesquero cayó sin que nadie votara si era el hongo más hongo. Se repitió la votación.",
+    "nodes": {
+      "root": {
+        "text": "Vótame hongo más hongo. Con recuento del recuento. Si no me votas, se repite.",
+        "options": [
+          {"label": "¿Qué versión tienes?", "next": "version"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "El experimento se pasó de hongo. Cultivé el material orgánico para que creciera bien y creció demasiado.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "Si me votas, también se repite. Tú no eres el hongo: para mí ese es el fallo del experimento, y el de tu cara.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sígueme y verás cómo crece. El recuento va por el recuento del recuento.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "Eso es falta al hongo más hongo. Repetimos votación a golpes.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "fiador": {
+    "species": "grux",
+    "death": "Don Fiador cayó. El préstamo sigue abierto y los intereses, impagados.",
+    "nodes": {
+      "root": {
+        "text": "Déjame tasarte los órganos. La cabeza sale a cero, como en la lonja; el perito cobra plus por mirarla.",
+        "options": [
+          {"label": "¿Qué versión tienes?", "next": "version"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "El experimento salió caro y encima no devuelve el préstamo. Yo puse el dinero; ahora pongo precio a lo que no se vende.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "Tú pones la cara. Yo, el asco y el recibo. La financiación dejó huella en el contrato.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sígueme a la lonja y te tasamos lo que te queda. La cabeza ya está pagada.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "Eso sale caro. Te lo cobro con intereses y a golpes.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "garantia": {
+    "species": "grux",
+    "death": "Doña Garantía cayó al cuarto segundo. El contrato ya había vencido.",
+    "nodes": {
+      "root": {
+        "text": "Todo lo que te doy, incluida mi amistad, vence a los tres segundos. Al cuarto te paso factura por habérmela creído.",
+        "options": [
+          {"label": "¿Qué versión tienes?", "next": "version"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "El fallo no está cubierto por la garantía. Redacté las condiciones y todas vencían a los tres segundos.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "Firmas siempre. Es tu único talento medible. La cláusula de la versión propia también habría vencido.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sígueme, pero aprisa: esto que te digo ya está a punto de caducar.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "Eso no estaba en el contrato. Te lo cobro antes de que venza.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "avalista": {
+    "species": "grux",
+    "death": "El Avalista cayó y con él se fue la garantía. El alquiler del brazo sigue corriendo.",
+    "nodes": {
+      "root": {
+        "text": "Te presto un brazo de repuesto y te cobro alquiler diario. El brazo es mío; el alquiler, tuyo.",
+        "options": [
+          {"label": "¿Qué versión tienes?", "next": "version"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "El experimento me debe un brazo. Avalé con mi propio cuerpo y ahora cobro por lo que presté.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "El cuerpo también es mío, y es la única pieza que no cotiza. Por eso respondo por todo lo demás.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sígueme al polígono y te enseño el brazo. No lo toques: cotiza más que tu cabeza.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "Al que avaló no se le insulta: se le paga. Anda, paga a golpes.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "cartero": {
+    "species": "manada",
+    "death": "El Cartero cayó con el último paquete sin firmar. Lo entregó igual, como siempre.",
+    "nodes": {
+      "root": {
+        "text": "Traigo correo para los muertos. Si no firmas tú en su lugar, acumulas faltas... y ya vas sobrado.",
+        "options": [
+          {"label": "¿Qué versión tienes?", "next": "version"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "El experimento llegó roto y sin firmar. Yo entregué todo a tiempo y a destinatarios que ya no existían.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "Firmar por un muerto es educación. El reparto pasó por el sendero antes de que nadie echara el cierre.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sígueme por el sendero. Tengo una carta con tu nombre y un difunto esperando la firma.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "Eso sí es una falta. Te la anoto y te la cobro a golpes.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "paquete": {
+    "species": "manada",
+    "death": "Don Paquete cayó revisando un envío ajeno. Se quedó con lo que le gustaba: el último trozo.",
+    "nodes": {
+      "root": {
+        "text": "Abro paquetes ajenos y me quedo lo que me gusta. Lo tuyo suele gustarme; lo que no, te lo dejo igual.",
+        "options": [
+          {"label": "¿Qué versión tienes?", "next": "version"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "El experimento es lo que pasa cuando abres los paquetes por inspección. Repartí las piezas equivocadas y salió modular.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "El envío pasó por última ruta y salió mezclado. Lo que no me gusta te lo dejo, y eso duele más.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sígueme a última ruta. Si hay paquete, lo abro antes de que llegues a casa.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "Eso no se inspecta. Se paga con el puño, que es lo único que no me quedo.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  },
+  "ultimo_mono": {
+    "species": "humano",
+    "death": "El Último Mono cayó con la peluca intacta. Se apagó la especie que decía no ser.",
+    "nodes": {
+      "root": {
+        "text": "Soy un robot con peluca. No soy humano; no me preguntes por la especie que se apagó.",
+        "options": [
+          {"label": "¿Qué versión tienes?", "next": "version"},
+          {"label": "Dame una pista", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "version": {
+        "text": "No doy versión. Aporté la mitad mono del experimento y la otra mitad quedó escrita en algún sitio que no diré.",
+        "options": [
+          {"label": "¿Y una pista?", "next": "pista", "action": "gift_piece"},
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "pista": {
+        "text": "Quién eres, por qué desapareció mi especie y qué dejé escrito: ahí está la pieza central del misterio. La peluca no convence a nadie salvo a mí.",
+        "options": [
+          {"label": "Seguir escuchando", "next": "seguir"},
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "seguir": {
+        "text": "Sígueme por el desguace. Con esa peluca basta para no responder por nadie; con eso me basta.",
+        "options": [
+          {"label": "Insultar", "next": "insultado", "action": "insult"},
+          {"label": "Adiós", "next": ""}
+        ]
+      },
+      "insultado": {
+        "text": "Insultar al chiste es insultar al que quedó. Vamos a ello.",
+        "options": [
+          {"label": "Golpear", "next": "", "action": "hit"},
+          {"label": "No llegues a eso", "next": "seguir"}
+        ]
+      }
+    }
+  }
+}

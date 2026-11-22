@@ -1,0 +1,12 @@
+<!-- Generado por tools/art/progenitores_gen.py desde data/world/progenitors.json. Sin recursos externos. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="280" viewBox="0 0 512 560">
+<defs><linearGradient id="cuerpo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d0a040"/><stop offset="1" stop-color="#725823"/></linearGradient></defs>
+<ellipse cx="256" cy="520" rx="146" ry="24" fill="#141018" opacity=".45"/>
+<g fill="none" stroke="#725823" stroke-width="30" stroke-linecap="round"><path d="M210 438V500"/><path d="M302 438V500"/></g>
+<path d="M158 252q-14 186 18 210h160q32-24 18-210q-10-72-98-72t-98 72z" fill="url(#cuerpo)" stroke="#725823" stroke-width="9"/>
+<path d="M160 250q-12 150 16 206h44q-18-140-8-206z" fill="#725823" opacity=".55"/>
+<g transform="translate(28 6)"><path d="M256 206v-70M176 206h160" stroke="#d0a040" stroke-width="9"/><path d="M186 206l70 62 70-62z" fill="none" stroke="#725823" stroke-width="8"/><rect x="320" y="300" width="64" height="44" rx="4" fill="#725823" stroke="#d0a040" stroke-width="5"/></g>
+<path d="M156 116q0-92 100-92t100 92q0 82-100 82T156 116z" fill="#d0a040" stroke="#725823" stroke-width="9"/>
+<circle cx="294" cy="130" r="20" fill="#d0a040"/><circle cx="298" cy="134" r="8" fill="#141018"/>
+<path d="M222 180q34 18 68 0" fill="none" stroke="#725823" stroke-width="6"/>
+<title>Don Fiador, Tasador de Órganos</title></svg>

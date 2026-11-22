@@ -27,3 +27,13 @@ de `agents.explore` en `opencode.jsonc`.
 - Se vuelve al principal con `python tools/cambiar_modelo.py --restaurar explore` cuando
   se renueve la ventana o lo pida el director.
 - Documentación sincronizada: `FALLBACK_MODELS.md` y `CONFIG_AGENTS.md`.
+
+## Addendum del 22-nov-2026
+El director dispuso pasar `explore` de `opencode-go/gpt-6-luna` a
+`opencode/beam-free` (alternativo 2 de la cadena, gratuito). Se actualizó solo
+la línea `model` de `agents.explore` en `opencode.jsonc` y se relanzó la tarea,
+porque OpenCode V2 no reintenta la petición en curso con el modelo nuevo.
+`python tools/cambiar_modelo.py --validar` sigue dando OK (11 agentes,
+1 principal + 3 alternativos, 0 errores). La cadena de
+`tools/modelos_agentes.json` no cambia. `FALLBACK_MODELS.md` refleja la rotación
+vigente.

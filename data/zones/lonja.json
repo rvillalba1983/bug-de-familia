@@ -313,8 +313,12 @@
     },
     {
       "id": "fiador",
-      "route": "fiador_route",
-      "species": "grux"
+      "passive": true,
+      "progenitor": "fiador",
+      "roles": [
+        "fiador"
+      ],
+      "route": "fiador_route"
     }
   ]
 }

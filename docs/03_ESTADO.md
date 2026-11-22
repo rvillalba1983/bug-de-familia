@@ -2,18 +2,18 @@
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
 > - **Estado (22-nov):** fase «Post-beta: progenitores y contenido»
->   en rama `fase/postbeta-progenitores-arte-encuentros`, **sin fusionar**:
->   pendiente de confirmación del director para commit, push y PR. Hecho:
->   **75 SVG propios** (15 progenitores × 5 vistas) con campo `art` conectado;
->   **15 árboles de diálogo** con saludo, versión, pista, seguir/insultar y
->   consecuencia de lore al morir (mortalidad aprobada); Don Ramón y El
->   Contestador enganchados en `despliegue_cero` sin romper la bobina;
->   `fiador` convertido en actor progenitor en `lonja`. Se incluyen además
->   ADR 0037 (limpieza de logs) y la rotación de `explore` a `beam-free`.
->   **Pruebas: 506/506 en verde** (72 suites; 9 nuevas de progenitores),
->   `verificar.py` OK e informe JUnit validado. Validación manual pendiente:
->   ver los encuentros en partida, el insulto → pelea y la bobina.
->   Ver `adr/0038-encuentros-progenitores-y-arte.md`.
+>   **fusionada en `main`** (PR #40, merge `5a89df2`, aprobado por el director;
+>   CI verde 6/6). **Cambiar de conversación.** Hecho: **75 SVG propios**
+>   (15 progenitores × 5 vistas) con campo `art` conectado; **15 árboles de
+>   diálogo** con saludo, versión, pista, seguir/insultar y consecuencia de
+>   lore al morir (mortalidad aprobada); Don Ramón y El Contestador enganchados
+>   en `despliegue_cero` sin romper la bobina; `fiador` convertido en actor
+>   progenitor en `lonja`. Se incluyen además ADR 0037 (limpieza de logs) y la
+>   rotación de `explore` a `beam-free`. `.exe` regenerado en `main`
+>   (104,2 MB, `.pck` 29,4 MB). **Pruebas: 506/506 en verde** (72 suites;
+>   9 nuevas de progenitores), `verificar.py` OK e informe JUnit validado.
+>   Validación manual pendiente: ver los encuentros en partida, el insulto →
+>   pelea y la bobina. Ver `adr/0038-encuentros-progenitores-y-arte.md`.
 > - **Estado (21-nov):** fase «Progenitores en zonas»
 >   **fusionada en `main`** (PR #39, merge `83f02a1`, aprobado por el director;
 >   CI verde). **Cambiar de conversación.** Hecho: 13 progenitores restantes

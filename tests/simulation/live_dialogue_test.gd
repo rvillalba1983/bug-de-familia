@@ -121,3 +121,34 @@ func test_los_habitantes_de_una_zona_no_repiten_conversacion() -> void:
 		var otra: Dictionary = ConversationCatalog.pick(npc.species, npc.id + npc.role)
 		assert_str(str(otra.get("id", ""))).is_equal(ident).override_failure_message(
 			"%s cambia de conversación entre dos llamadas" % id)
+
+
+func test_zone_rumor_option_marks_a_neighbour_as_known() -> void:
+	var zone: ZoneBase = await _mount("res://data/zones/valle.json")
+	var manager: ZoneManager = auto_free(ZoneManager.new())
+	add_child(manager)
+	manager.current_id = "valle"
+	zone.zone_manager = manager
+	var world: LiveWorld = zone.live_world
+	var npc: NpcState = world.sim.npcs[world.sim.npc_ids[0]]
+	var neighbours: Array[String] = manager.registry.graph.neighbours("valle")
+	assert_int(neighbours.size()).is_greater(0)
+	world.dialogue.open(npc)
+	var index: int = -1
+	for option_index: int in range(world.dialogue.options().size()):
+		var entry: Array = world.dialogue.options()[option_index]
+		if str(entry[0]) == "¿Sabes de otra zona?":
+			index = option_index
+			break
+	assert_int(index).is_greater_equal(0)
+	world.dialogue.choose(index)
+	var learned: Array[String] = []
+	for zone_id: String in neighbours:
+		if manager.is_known(zone_id):
+			learned.append(zone_id)
+	assert_int(learned.size()).is_equal(1)
+	var record: ZoneRecord = manager.records[learned[0]] as ZoneRecord
+	assert_int(record.level).is_equal(ZoneRecord.Level.STATISTICAL)
+	var zone_name: String = manager.registry.zone(learned[0]).display_name
+	assert_bool(world.bubble_of(npc.id).text.contains(zone_name)).is_true()
+	world.dialogue.close()

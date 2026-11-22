@@ -1,6 +1,9 @@
 # ADR 0027: infraestructura multi-zona
 
-Estado: propuesto por el director el 11-nov-2026. Pendiente de implementación en la fase de infraestructura post-beta.
+Estado: aprobado por el director el 11-nov-2026 e implementado en la
+infraestructura multi-zona fusionada en `main` (PR #7 y siguientes). El
+`docs/adr/0039-mundo-completo-mapa-y-consecuencias.md` ratifica el mapa y
+desarrolla el conocimiento por rumor y la escala de la población.
 
 ## Contexto
 

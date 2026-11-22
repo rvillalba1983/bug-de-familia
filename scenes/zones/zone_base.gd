@@ -573,6 +573,7 @@ func _spawn_actor(actor: Dictionary) -> void:
 	if look.is_empty():
 		return
 	var guard_node: Guard = _add_zone_guard(id, route, look, weapon_id)
+	guard_node.visual.individual_scale = NpcState.stable_adult_scale(id)
 	guard_node.set_passive(true)
 	_add_convertible(id, guard_node, str(_zone_materials.get(guard_node, "")))
 	var progenitor: String = str(actor.get("progenitor", ""))

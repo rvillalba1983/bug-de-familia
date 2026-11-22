@@ -1,6 +1,6 @@
 # Guía de modelos y fallback de los agentes
 
-Última actualización: 22-nov-2026 (rotación de `explore` a `beam-free`).
+Última actualización: 22-nov-2026 (rotación de `explore` a `beam-free` y de `ingeniero-godot` a `big-pickle`).
 
 ## Fuentes de modelos
 
@@ -22,7 +22,7 @@ Cada modelo de Go tiene tres ventanas: 5 horas (20 % del límite mensual), seman
 | Por defecto (`build`, `plan`, `general`) | `opencode/big-pickle` (gratis) | `opencode-go/kimi-k2.7-code`, `opencode/iceman-free`, `opencode/glm-5.3-flash-free` |
 | `explore` (integrado) | `opencode/beam-free` (rotado el 22-nov) | `opencode-go/gpt-6-luna`, `opencode/beam-free`, `opencode/glm-5.3-flash-free` |
 | `arquitecto` | `opencode-go/glm-5.3` | `opencode/big-pickle`, `opencode-go/kimi-k2.7-code`, `opencode/glm-5.3-flash-free` |
-| `ingeniero-godot` | `opencode-go/kimi-k2.7-code` | `opencode/big-pickle`, `opencode-go/glm-5.3`, `opencode/glm-5.3-flash-free` |
+| `ingeniero-godot` | `opencode/big-pickle` (rotado el 22-nov) | `opencode-go/kimi-k2.7-code`, `opencode-go/glm-5.3`, `opencode/glm-5.3-flash-free` |
 | `gameplay` | `opencode-go/qwen3.7-plus` | `opencode/big-pickle`, `opencode-go/minimax-m3`, `opencode/glm-5.3-flash-free` |
 | `qa` | `opencode/deepseek-v4.1-flash-free` (gratis) | `opencode-go/deepseek-v4.1-flash` (¡franja punta!), `opencode/big-pickle`, `opencode/beam-free` |
 | `documentacion` | `opencode-go/glm-5.3-flash` (rotado el 19-nov) | `opencode/big-pickle`, `opencode-go/gpt-6-luna`, `opencode/glm-5.3-flash-free` |
@@ -38,6 +38,7 @@ Criterio: los agentes con versión gemela gratuita (qa, documentacion) o de alto
 | Agente | Modelo en config | Motivo | Volver |
 |---|---|---|---|
 | `explore` | `opencode/beam-free` (alternativo 2, gratuito; 22-nov) | Decisión del director: pasar de `opencode-go/gpt-6-luna` a un modelo gratuito. Se relanzó la tarea (ADR 0022, addendum del 22-nov) | `python tools/cambiar_modelo.py --restaurar explore` |
+| `ingeniero-godot` | `opencode/big-pickle` (gratuito; 22-nov) | Error literal «OpenCode Go monthly usage limit reached» con `opencode-go/deepseek-v4.1-flash`. Se salta `kimi-k2.7-code` (también Go) y se toma el primer gratuito de la cadena. Tarea relanzada (ADR 0040) | `python tools/cambiar_modelo.py --restaurar ingeniero-godot` |
 | `documentacion` | `opencode-go/glm-5.3-flash` (alternativo 1, de pago) | `opencode/glm-5.3-flash-free` retirado/indisponible (19-nov-2026); tarea relanzada con el modelo nuevo | `python tools/cambiar_modelo.py --restaurar documentacion` |
 
 La cadena de `tools/modelos_agentes.json` no cambia: sigue siendo la fuente única y el

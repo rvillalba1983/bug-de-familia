@@ -205,6 +205,7 @@ func _refresh() -> void:
 	if _latest_belief() >= 0:
 		entries.append([tr("LIVE_ASK_SOURCE"), _ask_source])
 	entries.append([tr("LIVE_ASK_LORE"), _ask_lore])
+	entries.append(["¿Sabes de otra zona?", _ask_zone_rumor])
 	if not _dialogue_tree.is_empty():
 		entries.append(["Hablar", _enter_dialogue])
 	if not _conversation_nodes.is_empty():
@@ -365,6 +366,34 @@ func _ask_lore() -> void:
 		return
 	var facts: Array = world.sim.species_data[npc.species]["lore"]
 	reply(facts[int(npc.lore[0])]["text"])
+
+
+## Vecinas del grafo que todavía no se conocen, en orden estable (ADR 0039).
+func _unknown_zone_neighbours() -> Array[String]:
+	var manager: ZoneManager = world.level.zone_manager as ZoneManager
+	if manager == null:
+		return []
+	var candidates: Array[String] = []
+	for zone_id: String in manager.registry.graph.neighbours(manager.current_id):
+		if not manager.is_known(zone_id):
+			candidates.append(zone_id)
+	candidates.sort()
+	return candidates
+
+
+## Rumorear una vecina sin consumir el RNG de la simulación.
+func _ask_zone_rumor() -> void:
+	var manager: ZoneManager = world.level.zone_manager as ZoneManager
+	var candidates: Array[String] = _unknown_zone_neighbours()
+	if manager == null or candidates.is_empty():
+		reply(_random_line(npc, "nothing"))
+		return
+	var index: int = absi((npc.id + manager.current_id).hash()) % candidates.size()
+	var zone_id: String = candidates[index]
+	manager.hear_about_zone(zone_id)
+	var zone_name: String = manager.registry.zone(zone_id).display_name
+	_say("He oído hablar de %s; dicen que merece una visita." % zone_name)
+	_refresh()
 
 
 func _praise() -> void:

@@ -87,6 +87,14 @@ func current_visual_scale(now: float) -> float:
 	return visual_scale if is_child(now) else adult_scale
 
 
+## Escala adulta estable para actores guionados fuera de WorldSim: sin RNG global.
+static func stable_adult_scale(id: String) -> float:
+	var span: float = ADULT_SCALE_MAX - ADULT_SCALE_MIN
+	var steps: int = absi(id.hash()) % 1001
+	var result: float = ADULT_SCALE_MIN + span * float(steps) / 1000.0
+	return clampf(result, ADULT_SCALE_MIN, ADULT_SCALE_MAX)
+
+
 func to_dict() -> Dictionary:
 	return {
 		"id": id, "species": species, "name": name, "role": role, "group": group,

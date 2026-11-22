@@ -122,7 +122,15 @@ func _act(zone: DespliegueCeroZone, action: String) -> void:
 			teller.pos = near + Vector2(90.0, 20.0)
 			sim.events.report(sim, "sombrero_perdido", teller.id, "", near + Vector2(250.0, 60.0))
 			world.dialogue.open(teller)
-			world.dialogue.choose(3)
+			## Elegir por etiqueta: la opción de rumor de zona desplaza los índices.
+			var labels: Array[String] = []
+			for option: Array in world.dialogue.options():
+				labels.append(str(option[0]))
+			var talk_index: int = labels.find("Hablar")
+			if talk_index < 0:
+				talk_index = labels.find("Te cuento algo")
+			if talk_index >= 0:
+				world.dialogue.choose(talk_index)
 		"seleccion", "pegarle", "grupo":
 			zone.set_enemies_active(false)
 			var spot: Vector2 = zone.player.global_position

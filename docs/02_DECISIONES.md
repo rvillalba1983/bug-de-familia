@@ -142,6 +142,29 @@ Fuente única de lo que está decidido. Si otro documento dice otra cosa, manda 
 
 Ver `docs/adr/0027-multi-zona.md`.
 
+## Mundo completo: mapa y consecuencias (22-nov)
+
+Decisiones del director para la fase abierta el 22-nov
+(`fase/mundo-completo-mapa-y-consecuencias`):
+
+- **Mapa ratificado:** las **24 zonas** ya presentes en `data/zones/` y en
+  `art/mapa_zonas_propuesta.svg` son el mapa definitivo, con `world_size` de
+  4000 × 4000 u y el grafo de corredores actual (`despliegue_cero` mantiene su
+  `floor_rect` de 3800 × 3800 u dentro de ese mundo). No se rediseña ni se
+  amplía el mapa en esta fase. Cierra la decisión abierta del 10-nov en
+  `01_CONFLICTOS_Y_PENDIENTES.md`.
+- **Tiempo del mundo durante el viaje:** avanza. Confirma la decisión de la
+  infraestructura multi-zona del 11-nov y cierra la duda del 10-nov.
+  `ZoneManager.fast_travel()` ya avanza 60 s por salto y `_process()` sigue
+  avanzando durante la carga; la fase solo lo valida con pruebas.
+- **Viaje rápido a zonas oídas por rumores:** incluido en esta fase. Se podrá
+  viajar a una zona conocida por rumor sin haberla pisado, además de a las ya
+  visitadas. Detalle técnico en el ADR 0039.
+- **Tamaño variable de la población:** el rango 30-80 % se aplica a **todos**
+  los habitantes, incluidos los iniciales y los ya generados, no solo a
+  nacimientos y llegadas. Solo afecta al dibujo: colisiones, detección y
+  alcances no cambian. Requiere revisión estética de las 24 zonas.
+
 ## Caminos delimitados entre zonas (post-beta, 14-nov)
 
 - Las rutas hacia otras zonas serán **caminos delimitados**, no encontrados por casualidad.

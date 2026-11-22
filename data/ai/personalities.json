@@ -46,6 +46,12 @@
     "taunt": [
      "¡Cinco segundos! ¡Es muchísimo menos de lo que parece!",
      "¡No lo sabes! ¡Lo veo en tu cara! ¡Y en la mía, que no tengo!"
+    ],
+    "rumor_news": [
+     "¡{texto}! ¡Ya están hablando! ¡Y encima lo dicen en voz alta!"
+    ],
+    "zone_news": [
+     "¡Se mueven {especie}! ¡{movimiento} {zona}! ¡O no! ¡No sé!"
     ]
    },
    "face": "{O_O;}",
@@ -101,6 +107,12 @@
     "taunt": [
      "Interesante. Nunca había visto pensar tan despacio.",
      "Tómate tu tiempo. Ah, no. No tienes."
+    ],
+    "rumor_news": [
+     "Me consta: «{texto}». No me hagas repetirlo, primate."
+    ],
+    "zone_news": [
+     "{especie} {movimiento} {zona}. Movimiento mediocre, como todo lo tuyo."
     ]
    },
    "face": "(¬_¬)7",
@@ -163,6 +175,12 @@
     "rain_warn": [
      "¡Que llueve ácido y tú sin paraguas! ¡A cubierto, que te lo dejas todo por ahí!",
      "¡Ponte debajo de algo! ¡Debajo de lo que sea, hijo!"
+    ],
+    "rumor_news": [
+     "Cariño, dicen que {texto}. Abrígate, que con estos rumores se coge frío."
+    ],
+    "zone_news": [
+     "Hijo, {especie} {movimiento} {zona}. No te acerques a según qué barrio."
     ]
    },
    "face": "<3(T^T)",
@@ -218,6 +236,12 @@
     "taunt": [
      "Pista: una de las respuestas no es la otra.",
      "Te grabo y lo pongo en bucle en el grupo de las IAs."
+    ],
+    "rumor_news": [
+     "Me han dicho que {texto}. O me lo he inventado. Jeje."
+    ],
+    "zone_news": [
+     "Jeje, {especie} {movimiento} {zona}. Ve a verlo. Confía en mí."
     ]
    },
    "face": "}:)>D",
@@ -273,6 +297,12 @@
     "taunt": [
      "En mis tiempos esto se contestaba en tres segundos, y con artritis.",
      "Piensa, tesoro, que el tiempo no te espera y yo tampoco."
+    ],
+    "rumor_news": [
+     "Ay, hijo, que {texto}. En mis tiempos eso se arreglaba con una merienda."
+    ],
+    "zone_news": [
+     "Hijo, {especie} {movimiento} {zona}. Anda, ve a ver si es verdad."
     ]
    },
    "face": "(@v@)~",
@@ -328,6 +358,12 @@
     "taunt": [
      "El cronómetro sigue. Su ignorancia queda registrada.",
      "Aviso formal por tardar. Consta en acta."
+    ],
+    "rumor_news": [
+     "Atención al público: {texto}. Juego limpio, por favor."
+    ],
+    "zone_news": [
+     "Cambio de campo: {especie} {movimiento} {zona}. Que nadie invada."
     ]
    },
    "face": "[-_-]/|",
@@ -383,6 +419,12 @@
     "taunt": [
      "¡Vas genial! ¡Te quedan segundos preciosos!",
      "¡Tómatelo con calma! ¡Se acaba ya, pero con calma!"
+    ],
+    "rumor_news": [
+     "Peor noticia aún: {texto}. ¡Y yo sin poder empeorarlo!"
+    ],
+    "zone_news": [
+     "{especie} {movimiento} {zona}. ¡Otro movimiento pésimamente organizado!"
     ]
    },
    "face": "\\o/ :D",
@@ -441,6 +483,12 @@
     ],
     "route": [
      "La ru-ruta buena a {meta} va ha-hacia el {dir}."
+    ],
+    "rumor_news": [
+     "Me llega que {texto}. No es pa-paranoia si lo dice la mat-matriz."
+    ],
+    "zone_news": [
+     "{especie} {movimiento} {zona}. Ru-rutas nuevas. Usa la que yo diga."
     ]
    },
    "face": "[o_o]..",
@@ -499,6 +547,12 @@
     ],
     "in_love": [
      "Ya está. Me he enamorado de tus aciertos. No me hagas daño."
+    ],
+    "rumor_news": [
+     "Dicen que {texto}. Huele a romance mal entendido."
+    ],
+    "zone_news": [
+     "{especie} {movimiento} {zona}. Cuánto reencuentro y qué poco amor."
     ]
    },
    "face": "(*^3^)",
@@ -554,6 +608,12 @@
     "taunt": [
      "…",
      "Sigo esperando una disculpa. Y una respuesta."
+    ],
+    "rumor_news": [
+     "Me han contado que {texto}. Me da igual. Como todo."
+    ],
+    "zone_news": [
+     "{especie} {movimiento} {zona}. Que se muden todos, mejor para mí."
     ]
    },
    "face": "(-_-)",
@@ -612,6 +672,12 @@
     ],
     "material": [
      "Según mis datos inventados, este material puede salir {prop}."
+    ],
+    "rumor_news": [
+     "Dato verificado al 87,3 %: {texto}."
+    ],
+    "zone_news": [
+     "Migración detectada: {especie} {movimiento} {zona}. Probabilidad de drama: alta."
     ]
    },
    "face": "[8-)]",
@@ -667,6 +733,12 @@
     "taunt": [
      "La Pila te observa, y la Pila huele.",
      "Responde, hijo, antes de fermentar."
+    ],
+    "rumor_news": [
+     "Todo se recicla, también esto: {texto}."
+    ],
+    "zone_news": [
+     "{especie} {movimiento} {zona}. La materia cambia de sitio y vuelve."
     ]
    },
    "face": "(+_+)",
@@ -725,6 +797,12 @@
     ],
     "treason": [
      "Te lo digo yo: los {raza} te la van a jugar. Tengo un cordel que lo demuestra."
+    ],
+    "rumor_news": [
+     "Me han soplado: {texto}. No lo digo por paranoia, lo digo porque lo sé."
+    ],
+    "zone_news": [
+     "{especie} {movimiento} {zona}. Ese movimiento no es casual. Nunca lo es."
     ]
    },
    "face": "(0_o)",
@@ -780,6 +858,12 @@
     "taunt": [
      "No contestes. Que pase solo.",
      "Zzz… ¿sigues ahí? Qué esfuerzo."
+    ],
+    "rumor_news": [
+     "Zzz... me han dicho que {texto}. Despiértame cuando sea importante."
+    ],
+    "zone_news": [
+     "{especie} {movimiento} {zona}. Yo mientras duermo, que no me busquen."
     ]
    },
    "face": "(-.-)z",
@@ -836,6 +920,12 @@
     "taunt": [
      "¡CINCO SEGUNDOS, RECLUTA! ¡Y SOBRAN CUATRO!",
      "¡RESPONDA! ¡QUE LE HE PREGUNTADO YO!"
+    ],
+    "rumor_news": [
+     "¡Parte recibido! {texto}. ¡Y no es una sugerencia!"
+    ],
+    "zone_news": [
+     "¡Movimiento de tropa! {especie} {movimiento} {zona}. ¡A formar!"
     ]
    },
    "face": "[>_<]!",
@@ -891,6 +981,12 @@
     "taunt": [
      "Mírame cuando no sepas la respuesta.",
      "Yo ya la sé. Yo soy la respuesta."
+    ],
+    "rumor_news": [
+     "Chica, que {texto}. Qué mal gusto tienen todos."
+    ],
+    "zone_news": [
+     "{especie} {movimiento} {zona}. Espero que no me saquen mala cara."
     ]
    },
    "face": "(^~^)*",
@@ -946,6 +1042,12 @@
     "taunt": [
      "Responder o no, da igual. Pero responde.",
      "El tiempo no existe. Se te acaba igual."
+    ],
+    "rumor_news": [
+     "Dicen que {texto}. Todo da igual, pero se agradece saberlo."
+    ],
+    "zone_news": [
+     "{especie} {movimiento} {zona}. Cambiar de sitio no cambia el vacío."
     ]
    },
    "face": "( . )",
@@ -1004,6 +1106,12 @@
     ],
     "hack": [
      "Solicitud de intrusión: tramitada. De nada."
+    ],
+    "rumor_news": [
+     "Se ha registrado el siguiente rumor: {texto}. Sin sello no vale."
+    ],
+    "zone_news": [
+     "{especie} {movimiento} {zona}. Falta el impreso de trashumancia."
     ]
    },
    "face": "[=_=]§",
@@ -1063,6 +1171,12 @@
     "decoy": [
      "¡Seguidores, allí! ¡Hay sorteo!",
      "¡Chicos, mirad qué señuelo patrocinado!"
+    ],
+    "rumor_news": [
+     "¡Chicos! ¡{texto}! Comentad qué opináis, que esto da views."
+    ],
+    "zone_news": [
+     "¡{especie} {movimiento} {zona}! ¡Dadle like a la migración!"
     ]
    },
    "face": "[o]<3",
@@ -1118,6 +1232,12 @@
     "taunt": [
      "El plato sale ya. Responde o se quema.",
      "Cinco segundos, ni para un huevo."
+    ],
+    "rumor_news": [
+     "Me han traído la noticia: {texto}. Le falta sal."
+    ],
+    "zone_news": [
+     "{especie} {movimiento} {zona}. Servido tibio, como todo aquí."
     ]
    },
    "face": "(^q^)Y",

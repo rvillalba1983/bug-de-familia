@@ -171,3 +171,24 @@ func test_visit_supersedes_rumor() -> void:
 	assert_bool(manager.is_known("cumbre")).is_true()
 	assert_str(manager.current_id).is_equal("cumbre")
 	assert_bool(manager.hear_about_zone("cumbre")).is_false()
+
+
+## P-59: cuando un grupo entra o sale de una zona conocida se emite la señal con
+## los nombres legibles que necesitan los avisos de las IAs.
+func test_population_migration_signal_reports_the_group() -> void:
+	assert_bool(manager.hear_about_zone("cumbre")).is_true()
+	var seen: Array = []
+	manager.population_migrated.connect(
+		func(zone_id: String, zone_name: String, species: String, species_name: String, delta: int) -> void:
+			seen.append({
+				"zone": zone_id, "name": zone_name, "species": species,
+				"plural": species_name, "delta": delta,
+			})
+	)
+	manager._advance_world(100.0)
+	assert_int(seen.size()).is_greater(0)
+	var first: Dictionary = seen[0]
+	assert_str(str(first["zone"])).is_equal("cumbre")
+	assert_str(str(first["name"])).is_not_empty()
+	assert_str(str(first["plural"])).is_not_empty()
+	assert_int(int(first["delta"])).is_greater(0)

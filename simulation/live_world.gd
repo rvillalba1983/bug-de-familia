@@ -61,6 +61,7 @@ func start(data: Dictionary) -> void:
 	sim.npc_added.connect(_show_citizen)
 	sim.npc_died.connect(_on_npc_died)
 	sim.rumor_told.connect(_on_rumor_told)
+	sim.rumor_born.connect(_on_rumor_born)
 	sim.event_happened.connect(_on_event_happened)
 	sim.event_staged.connect(_on_event_staged)
 	sim.mission_changed.connect(_on_mission_changed)
@@ -316,6 +317,16 @@ func _on_npc_died(npc: NpcState) -> void:
 func _on_rumor_told(teller: String, hearer: String, event_id: int) -> void:
 	var said: Dictionary = (sim.npcs[hearer] as NpcState).beliefs[str(event_id)]
 	_speak(sim.npcs[teller], sim.rumors.phrase(sim, said))
+
+
+## P-59: las IAs avisan en el chat cuando nace un rumor.
+func _on_rumor_born(event_id: int) -> void:
+	if level.ai == null:
+		return
+	var record: Dictionary = sim.truth.get_record(event_id)
+	if record.is_empty():
+		return
+	level.ai.announce_rumor(event_id, sim.events.text_for(str(record["type"]), record))
 
 
 func _on_event_staged(entry: Dictionary) -> void:

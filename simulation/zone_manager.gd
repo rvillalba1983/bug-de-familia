@@ -8,6 +8,10 @@ signal transition_finished(zone_id: String)
 signal zone_loaded(zone_id: String)
 ## Una zona vecina se ha oído por rumor y ya es destino de viaje rápido.
 signal zone_rumored(zone_id: String)
+## P-59: un grupo de NPCs ha cambiado de zona (población estadística).
+signal population_migrated(
+	zone_id: String, zone_name: String, species: String, species_name: String, delta: int
+)
 
 const DESPLEGUE_CERO_SCENE: String = "res://scenes/despliegue_cero/despliegue_cero_zone.tscn"
 const ZONE_SCENE: String = "res://scenes/zones/zone.tscn"
@@ -248,6 +252,8 @@ func _load_zone(zone_id: String, from_zone: String) -> bool:
 	record.visited = true
 	zone.transition_requested.connect(_on_transition_requested)
 	zone.after_enter(from_zone)
+	if zone.ai != null and not population_migrated.is_connected(zone.ai.announce_migration):
+		population_migrated.connect(zone.ai.announce_migration)
 	refresh_levels()
 	if record.population.is_empty():
 		record.population = zone.population_counts()
@@ -419,7 +425,15 @@ func _advance_statistical(record: ZoneRecord, seconds: float) -> void:
 		var target: float = float(limits.get("target", count))
 		var maximum: int = int(limits.get("max", int(maxf(count, target))))
 		var next: float = move_toward(count, target, STATISTICAL_RATE * seconds)
-		record.population[species_id] = clampi(int(round(next)), 0, maximum)
+		var before: int = int(round(count))
+		var after: int = clampi(int(round(next)), 0, maximum)
+		record.population[species_id] = after
+		if after != before:
+			## P-59: la diferencia es el grupo que entra o sale de la zona.
+			population_migrated.emit(
+				record.zone_id, zone.display_name, species_id,
+				SpeciesCatalog.plural(species_id), after - before
+			)
 
 
 func _persist_sims() -> void:

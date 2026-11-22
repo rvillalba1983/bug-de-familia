@@ -10,6 +10,15 @@
 >   (104,2 MB, `.pck` 29,6 MB) y **validado por el director**. P-58 (arte
 >   artístico con modelo para los 15, recreando a Don Ramón y El Contestador)
 >   queda para una fase posterior. Ver ADR 0039 y 0040 (rotación de modelo).
+> - **Nuevo encargo del director (22-nov, P-59):** las IAs deben avisar en el
+>   chat cuando se crea un rumor y cuando un grupo de NPCs se mueve entre zonas.
+>   Registrado en `01_CONFLICTOS_Y_PENDIENTES.md` para una fase posterior de
+>   contenido; quedan por concretar quién habla, el texto, la cadencia y el
+>   anti-spam. No implementado en esta fase.
+> - **Incidencia vista por el director en el `.exe` (22-nov, P-60):** Don Ramón
+>   se queda parado en `despliegue_cero`, sospechando de una barrera en su ruta.
+>   Registrado en `01_CONFLICTOS_Y_PENDIENTES.md`: hay que reproducirlo y rehacer
+>   `ramon_route` con una prueba de regresión. No corregido todavía.
 > - **Estado (22-nov):** fase «Post-beta: progenitores y contenido»
 >   **fusionada en `main`** (PR #40, merge `5a89df2`, aprobado por el director;
 >   CI verde 6/6). **Cambiar de conversación.** Hecho: **75 SVG propios**

@@ -1,7 +1,22 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
-> - **Estado (22-nov, cierre de fase):** «Mundo completo: mapa y consecuencias»
+> - **Estado (23-nov, cierre de fase):** «P-60 + P-59: rutas y avisos de IA»
+>   **fusionado en `main`** (PR #42, aprobado por el director; CI verde).
+>   **Cambiar de conversación.** Hecho: P-60 (Don Ramón no se queda parado en
+>   `despliegue_cero`: tramo norte de `ramon_route` termina en x=1650, antes de
+>   la fachada del corredor; prueba de regresión `ramon_route_test.gd` con 2
+>   casos). P-59 (avisos automáticos de las IAs en el chat cuando nace un rumor
+>   y cuando un grupo migra entre zonas: señales `WorldSim.rumor_born` y
+>   `ZoneManager.population_migrated` → `AiChatter`, conspi/matriz, sin tokens,
+>   cadencia y anti-spam). P-58 (arte definitivo de progenitores) queda pendiente
+>   hasta disponer de un modelo de generación de imágenes adecuado; se ha
+>   revertido `art/shared/progenitores/` a su estado original (75 SVG).
+>   **Pruebas: 525/525 en verde** (75 suites), `verificar.py` OK, informe JUnit
+>   validado. `.exe` regenerado en `main` (104,2 MB, `.pck` 29,9 MB).
+>   Validación manual pendiente: ver los avisos de IA en partida y confirmar
+>   que Don Ramón recorre su ruta sin pararse. Ver `adr/0038` y
+>   `adr/0039`.
 >   **fusionado en `main`** (PR #41, merge `ac52ad0`, aprobado por el director;
 >   CI verde 6/6). **Cambiar de conversación.** Hecho: mapa ratificado (24
 >   zonas y grafo actual), viaje por rumor con avance del tiempo y escala

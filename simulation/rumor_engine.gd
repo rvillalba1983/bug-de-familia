@@ -3,6 +3,8 @@ extends RefCounted
 ## Testigos, transmisión y deformación de lo ocurrido. Rumores de 4 minutos (P-14).
 
 var _told_counts: Dictionary = {}
+## P-59: rumores ya anunciados como nacidos (solo presentación, no se guarda).
+var _born: Dictionary = {}
 ## P-14: eventos con hecho del tope (están en espera) y tiempo restante en s.
 var _limited: Dictionary = {}
 var _delays: Dictionary = {}
@@ -35,6 +37,10 @@ func witness(sim: WorldSim, record: Dictionary, npc: NpcState) -> void:
 		"confidence": 1.0, "time": sim.elapsed, "lied": false, "versions": [],
 	}
 	npc.remember(int(record["id"]), float(record["importance"]), sim.elapsed, record["type"])
+	## P-59: el primer testigo es el nacimiento del rumor.
+	if not _born.has(str(int(record["id"]))):
+		_born[str(int(record["id"]))] = true
+		sim.rumor_born.emit(int(record["id"]))
 
 
 func is_fresh(sim: WorldSim, event_id: int) -> bool:

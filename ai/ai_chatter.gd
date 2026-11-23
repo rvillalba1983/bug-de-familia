@@ -24,6 +24,15 @@ const TAIL_IDLE: Color = Color("#404050")
 const MOTE_CHANCE: float = 0.3
 const MOTE_EVENTS: Array[String] = ["danger", "fight", "piece_lost", "right", "wrong", "converted"]
 const TAUNT_EVENT: String = "taunt"
+## P-59, valores aprobados por el director el 22-nov: avisos de mundo con
+## cadencia propia, sin coste de tokens y sin inundar el chat.
+const RUMOR_NEWS_EVENT: String = "rumor_news"
+const MIGRATION_NEWS_EVENT: String = "zone_news"
+const RUMOR_NEWS_AI: String = "conspi"
+const MIGRATION_NEWS_AI: String = "matriz"
+const RUMOR_NEWS_INTERVAL: float = 60.0
+const MIGRATION_NEWS_INTERVAL: float = 90.0
+const NEWS_MAX_QUEUE: int = 3
 const PROTAGONIST: String = "protagonista"
 const PROTAGONIST_NAME: String = "Sujeto Sobrante"
 const PROTAGONIST_COLOR: Color = Color("#ff9a3c")
@@ -50,6 +59,10 @@ var _low_warned: bool = false
 var _line_time: float = 0.0
 var _hint_time: float = HINT_INTERVAL
 var _decoy_time: float = DECOY_INTERVAL
+var _rumor_news_time: float = 0.0
+var _migration_news_time: float = 0.0
+var _announced_rumors: Dictionary = {}
+var _news_turn: int = 0
 
 
 func _ready() -> void:
@@ -68,6 +81,8 @@ func restore(data: Dictionary) -> void:
 func _physics_process(delta: float) -> void:
 	team.tick(delta)
 	_danger_cooldown = maxf(_danger_cooldown - delta, 0.0)
+	_rumor_news_time = maxf(_rumor_news_time - delta, 0.0)
+	_migration_news_time = maxf(_migration_news_time - delta, 0.0)
 	_track_idle(delta)
 	_track_danger()
 	_argument_time -= delta
@@ -105,6 +120,66 @@ func say_custom(text: String) -> void:
 	if not options.is_empty():
 		var speaker: String = options[level.rng.randi_range(0, options.size() - 1)]
 		_queue.append({"id": speaker, "text": text})
+
+
+## P-59: aviso de un rumor recién nacido. Devuelve si se ha encolado.
+## Sin coste de tokens (aviso de sistema) y con anti-spam propio.
+func announce_rumor(event_id: int, text: String) -> bool:
+	var key: String = "rumor_%d" % event_id
+	if _announced_rumors.has(key):
+		return false
+	if _rumor_news_time > 0.0 or _queue.size() >= NEWS_MAX_QUEUE:
+		return false
+	var speaker: String = _news_speaker(RUMOR_NEWS_AI, RUMOR_NEWS_EVENT)
+	if speaker.is_empty():
+		return false
+	_announced_rumors[key] = true
+	_rumor_news_time = RUMOR_NEWS_INTERVAL
+	_push_news(speaker, RUMOR_NEWS_EVENT, {"texto": text})
+	return true
+
+
+## P-59: aviso de un grupo que cambia de zona. La cadencia es más lenta porque
+## la población estadística se mueve a menudo.
+func announce_migration(
+	zone_id: String, zone_name: String, species: String, species_name: String, delta: int
+) -> bool:
+	if _migration_news_time > 0.0 or _queue.size() >= NEWS_MAX_QUEUE:
+		return false
+	var speaker: String = _news_speaker(MIGRATION_NEWS_AI, MIGRATION_NEWS_EVENT)
+	if speaker.is_empty():
+		return false
+	_migration_news_time = MIGRATION_NEWS_INTERVAL
+	_push_news(speaker, MIGRATION_NEWS_EVENT, {
+		"zona": zone_name,
+		"especie": species_name,
+		"movimiento": "entran en" if delta > 0 else "salen de",
+		"cantidad": absi(delta),
+		"id": zone_id,
+		"raza": species,
+	})
+	return true
+
+
+## Quién da el aviso: la IA temática si está despierta y tiene frase; si no, una
+## de las activas. Rotación determinista para no gastar la semilla de la partida.
+func _news_speaker(preferred: String, event: String) -> String:
+	if team.can_speak(preferred) and _has_line(preferred, event):
+		return preferred
+	var options: Array = team.speakers().filter(_has_line.bind(event))
+	if options.is_empty():
+		return ""
+	_news_turn = (_news_turn + 1) % options.size()
+	return str(options[_news_turn])
+
+
+func _push_news(id: String, event: String, values: Dictionary) -> void:
+	var lines: Array = (team.ais[id]["lines"] as Dictionary).get(event, [])
+	if lines.is_empty():
+		return
+	var seed_value: int = absi(str(values).hash())
+	var text: String = str(lines[seed_value % lines.size()]).format(values)
+	_queue.append({"id": id, "text": text, "free": true})
 
 
 func stun_bonus() -> float:
@@ -355,7 +430,10 @@ func _play_next() -> void:
 	voice.speak(float(info["pitch"]), id, str(info.get("timbre", AudioMixer.TIMBRE_NORMAL)))
 	level.player.tail_color = color
 	level.player.tail_speaking = true
-	if level.rng.randf() >= level.player.body.total("token_save"):
+	## Los avisos de mundo (P-59) no gastan tokens, pero se sigue consumiendo la
+	## misma tirada para no alterar la semilla de la partida.
+	var saved: bool = level.rng.randf() < level.player.body.total("token_save")
+	if not bool(entry.get("free", false)) and not saved:
 		team.spend(id, level.rng)
 	if not team.active.has(id):
 		ai_fell_asleep.emit()

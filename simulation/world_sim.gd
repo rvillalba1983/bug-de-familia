@@ -8,6 +8,8 @@ signal event_happened(record: Dictionary)
 signal mission_changed(mission: Dictionary)
 signal event_staged(entry: Dictionary)
 signal rumor_told(teller: String, hearer: String, event_id: int)
+## P-59: un rumor acaba de nacer (primer testigo). Lo usan los avisos de las IAs.
+signal rumor_born(event_id: int)
 
 const SPECIES_PATH: String = "res://data/world/species.json"
 const STEP: float = 1.0

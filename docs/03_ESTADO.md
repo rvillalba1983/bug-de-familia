@@ -10,6 +10,18 @@
 >   (104,2 MB, `.pck` 29,6 MB) y **validado por el director**. P-58 (arte
 >   artístico con modelo para los 15, recreando a Don Ramón y El Contestador)
 >   queda para una fase posterior. Ver ADR 0039 y 0040 (rotación de modelo).
+> - **Estado (22-nov, esta fase):** `fase/p60-p59-p58-rutas-avisos-arte` (no fusionada todavía).
+>   **P-60 corregido y commiteado:** Don Ramón rehace su ruta en `despliegue_cero`
+>   (`data/zones/despliegue_cero.json`, tramo norte hasta x=1650 antes de la
+>   fachada del corredor) con `tests/despliegue_cero/ramon_route_test.gd` (2
+>   casos). **P-59 implementado y commiteado:** `WorldSim.rumor_born` +
+>   `ZoneManager.population_migrated` → `AiChatter` (conspi/matriz, sin tokens,
+>   cadencia y anti-spam), pruebas nuevas en verde. `verificar.py` OK. **P-58
+>   (arte definitivo de progenitores) queda pendiente** hasta disponer de un modelo
+>   de generación de imágenes adecuado; se ha revertido `art/shared/progenitores/`
+>   a su estado original (75 SVG). La rama está lista para PR con P-60 y P-59.
+> - **Estado (22-nov, P-59):** las IAs deben avisar en el chat cuando se crea un
+>   rumor y cuando un grupo de NPCs se mueve entre zonas.
 > - **Estado (22-nov):** fase «Post-beta: progenitores y contenido»
 >   **fusionada en `main`** (PR #40, merge `5a89df2`, aprobado por el director;
 >   CI verde 6/6). **Cambiar de conversación.** Hecho: **75 SVG propios**

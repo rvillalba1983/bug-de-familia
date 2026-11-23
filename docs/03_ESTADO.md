@@ -16,9 +16,10 @@
 >   fachada del corredor) con `tests/despliegue_cero/ramon_route_test.gd` (2
 >   casos). **P-59 implementado y commiteado:** `WorldSim.rumor_born` +
 >   `ZoneManager.population_migrated` → `AiChatter` (conspi/matriz, sin tokens,
->   cadencia y anti-spam), pruebas nuevas en verde. `verificar.py` OK. Falta
->   ejecutar `tests/despliegue_cero` completo tras P-59 (ya verde con P-60) y
->   presentar plan + piloto de P-58 antes de cualquier imagen externa.
+>   cadencia y anti-spam), pruebas nuevas en verde. `verificar.py` OK. **P-58
+>   (arte definitivo de progenitores) queda pendiente** hasta disponer de un modelo
+>   de generación de imágenes adecuado; se ha revertido `art/shared/progenitores/`
+>   a su estado original (75 SVG). La rama está lista para PR con P-60 y P-59.
 > - **Estado (22-nov, P-59):** las IAs deben avisar en el chat cuando se crea un
 >   rumor y cuando un grupo de NPCs se mueve entre zonas.
 > - **Estado (22-nov):** fase «Post-beta: progenitores y contenido»

@@ -1,7 +1,8 @@
 # ADR 0039: arte definitivo de los 15 progenitores con raster incrustado (23-nov)
 
 Estado: aplicado en la rama `fase/p58-arte-progenitores`.
-Pendiente de aprobación del director y fusión en `main`.
+Revisión visual aprobada por el director el 23-nov. Pendiente de push, PR
+y fusión en `main`.
 
 ## Contexto
 ADR 0038 entregó 75 SVG geométricos para los 15 progenitores (5 vistas cada

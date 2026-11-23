@@ -1,6 +1,20 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
+> - **Estado (23-nov, esta fase):** rama `fase/p58-arte-progenitores`
+>   (no fusionada todavía). **P-58 completado:** los 75 SVG geométricos de los
+>   15 progenitores se han sustituido por arte artístico (5 vistas cada uno).
+>   15 bases generadas con Recraft, 17 direccionales con MAI/Seedream y 43
+>   derivadas con el fallback determinista aprobado por el director al
+>   agotarse los créditos de los modelos. Formato intacto: 256 × 280,
+>   `viewBox 0 0 512 560`, PNG embebido y fondo transparente; sin tocar lógica
+>   ni datos. Añadidos `tools/art/progenitores_prompts.py`,
+>   `progenitores_raster_a_svg.py` y `progenitores_derivar_vistas.py`,
+>   `art/shared/progenitores/ORIGEN.md`, ADR 0039 y
+>   `tests/art/art_progenitores_test.gd`. **Ejecutado:** 49/49 en `tests/art`
+>   (4 nuevos), `verificar.py` OK, import sin errores y `.exe` regenerado
+>   (104,2 MB, `.pck` 33,2 MB). **Revisión visual aprobada por el director
+>   (23-nov).** Pendiente: push, PR y fusión. Ver `adr/0039`.
 > - **Estado (23-nov, cierre de fase):** «P-60 + P-59: rutas y avisos de IA»
 >   **fusionado en `main`** (PR #42, aprobado por el director; CI verde).
 >   **Cambiar de conversación.** Hecho: P-60 (Don Ramón no se queda parado en

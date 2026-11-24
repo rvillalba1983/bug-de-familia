@@ -1,8 +1,10 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
-> - **Estado (23-nov, fase EN CURSO):** `fase/cierre-consistencia-mundo-completo`
->   (sin fusionar todavía). Cierre documental de P-58, rotación de
+> - **Estado (24-nov, fase FUSIONADA):** `fase/cierre-consistencia-mundo-completo`
+>   **fusionada en `main`** (PR #44, merge `a1e41ce`, aprobado por el director;
+>   CI 6/6 en verde). **Cambiar de conversación.** Hecho: cierre documental de
+>   P-58, rotación de
 >   `documentacion` a `big-pickle` (ADR 0042), P-26 y P-32, y pruebas de
 >   integridad del arte. Sin arte nuevo, sin cambios en datos ni herramientas.
 >   **Verificación final (24-nov, ejecutada):** `verificar.py` OK (105
@@ -10,8 +12,8 @@
 >   informe JUnit validado: 0 fallos, 0 errores, 0 omitidos), `.exe` regenerado
 >   (109 MB, `.pck` 34,9 MB) con **prueba de humo OK** (`despliegue_cero`,
 >   36 habitantes). CI del PR #44: **6/6 jobs en verde** (run `45356670016`,
->   `despliegue_cero` 12m49s), PR `MERGEABLE` pendiente de aprobación. Sin
->   ejecutar: medición en gráfica real y validación manual.
+>   `despliegue_cero` 12m49s). Sin ejecutar: medición en gráfica real y
+>   validación manual.
 >   **Decisión del director (23-nov, P-61, ADR 0043):** los progenitores deben
 >   seguir visibles tras morir; se conservan insulto, pelea, flag y frase de
 >   lore. NO implementada aquí: va en la fase nueva de zonas.
@@ -239,6 +241,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | Transiciones de zona (20-nov) | **Fusionada en `main`** (PR #33, merge `808c99e`, aprobado por el director; CI 12/12). Hecho: `ZoneManager.process_mode = ALWAYS` para que el temporizador de transición avance aunque el árbol esté pausado; logging de fallos en `_complete_transition` y `_on_transition_finished`; prueba `test_transition_hides_loading_when_zone_fails_to_load`. Pruebas: 493/493 en verde. `.exe` regenerado (104,2 MB) con humo OK. |
 | P-14/P-34/P-35/viaje/nocturnos/P-42 (20-nov) | **Fusionada en `main`** (PR #34, merge `3aeb3f5`, aprobado por el director; CI verde). Hecho: P-14 (límite de rumores + espera 10 s), P-34 (duelo 20 s), P-35 (agotar pregunta → pelea), coste de viaje rápido (piernas + tokens), jubilados nocturnos en zonas genéricas, P-42 lote 1 (72 conversaciones + `ConversationCatalog`). Pruebas: 494/494 en verde. `.exe` regenerado (104,2 MB) con humo OK. |
 erificar.py OK. .exe regenerado. Pendiente validación manual en partida. |
+| Cierre de consistencia del mundo completo (24-nov) | **Fusionada en `main` el 24-nov** (PR #44, merge `a1e41ce`, aprobado por el director; CI 6/6). Hecho: cierre documental de P-58 (ADR 0041), P-26 y P-32 en conversación y 23 zonas con un único `AiSpectres`, y pruebas de integridad del arte. ADR 0042 (rotación de `documentacion`) y 0043 / P-61 (progenitores visibles tras morir; implementación en la fase de zonas). **539/539 pruebas** (79 suites, JUnit validado), `verificar.py` OK y `.exe` (109 MB, `.pck` 34,9 MB) con humo OK. Pendiente: medición en gráfica real y validación manual. |
 
 ## Incidente de arranque tras el PR #7 (13-nov)
 

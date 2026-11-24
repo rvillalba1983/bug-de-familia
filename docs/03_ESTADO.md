@@ -9,7 +9,9 @@
 >   comprobaciones), import sin errores, **suite completa 539/539** (79 suites,
 >   informe JUnit validado: 0 fallos, 0 errores, 0 omitidos), `.exe` regenerado
 >   (109 MB, `.pck` 34,9 MB) con **prueba de humo OK** (`despliegue_cero`,
->   36 habitantes). Sin ejecutar: medición en gráfica real y validación manual.
+>   36 habitantes). CI del PR #44: **6/6 jobs en verde** (run `45356670016`,
+>   `despliegue_cero` 12m49s), PR `MERGEABLE` pendiente de aprobación. Sin
+>   ejecutar: medición en gráfica real y validación manual.
 >   **Decisión del director (23-nov, P-61, ADR 0043):** los progenitores deben
 >   seguir visibles tras morir; se conservan insulto, pelea, flag y frase de
 >   lore. NO implementada aquí: va en la fase nueva de zonas.

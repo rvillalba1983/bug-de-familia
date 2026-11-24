@@ -1,7 +1,8 @@
 # ADR 0039: mapa ratificado, rumor de zonas y escala de toda la población (22-nov)
 
-Estado: decisiones del director del 22-nov; en implementación en la rama
-`fase/mundo-completo-mapa-y-consecuencias`. Pendiente de aprobación y fusión.
+Estado: decisiones del director del 22-nov; aplicadas y fusionadas en `main`
+(PR #41, merge `ac52ad0`, 23-nov). Era el único ADR 0039 hasta el 23-nov;
+el arte de los progenitores (P-58) se documenta en el ADR 0041.
 
 ## Contexto
 

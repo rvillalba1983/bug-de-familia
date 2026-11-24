@@ -1,6 +1,7 @@
 # Guía de modelos y fallback de los agentes
 
-Última actualización: 22-nov-2026 (rotación de `explore` a `beam-free` y de `ingeniero-godot` a `big-pickle`).
+Última actualización: 23-nov-2026 (rotaciones de `explore` a `beam-free`,
+`ingeniero-godot` a `big-pickle` y `documentacion` a `big-pickle`).
 
 ## Fuentes de modelos
 
@@ -22,30 +23,33 @@ Cada modelo de Go tiene tres ventanas: 5 horas (20 % del límite mensual), seman
 | Por defecto (`build`, `plan`, `general`) | `opencode/big-pickle` (gratis) | `opencode-go/kimi-k2.7-code`, `opencode/iceman-free`, `opencode/glm-5.3-flash-free` |
 | `explore` (integrado) | `opencode/beam-free` (rotado el 22-nov) | `opencode-go/gpt-6-luna`, `opencode/beam-free`, `opencode/glm-5.3-flash-free` |
 | `arquitecto` | `opencode-go/glm-5.3` | `opencode/big-pickle`, `opencode-go/kimi-k2.7-code`, `opencode/glm-5.3-flash-free` |
-| `ingeniero-godot` | `opencode/big-pickle` (rotado el 22-nov) | `opencode-go/kimi-k2.7-code`, `opencode-go/glm-5.3`, `opencode/glm-5.3-flash-free` |
+| `ingeniero-godot` | `opencode/big-pickle` (rotado el 22-nov) | `opencode-go/kimi-k2.7-code`, `opencode/big-pickle`, `opencode-go/glm-5.3` |
 | `gameplay` | `opencode-go/qwen3.7-plus` | `opencode/big-pickle`, `opencode-go/minimax-m3`, `opencode/glm-5.3-flash-free` |
 | `qa` | `opencode/deepseek-v4.1-flash-free` (gratis) | `opencode-go/deepseek-v4.1-flash` (¡franja punta!), `opencode/big-pickle`, `opencode/beam-free` |
-| `documentacion` | `opencode-go/glm-5.3-flash` (rotado el 19-nov) | `opencode/big-pickle`, `opencode-go/gpt-6-luna`, `opencode/glm-5.3-flash-free` |
-| `datos` | `opencode-go/minimax-m3` | `opencode/big-pickle`, `opencode-go/glm-5.3-flash`, `opencode/glm-5.3-flash-free` |
+| `documentacion` | `opencode/big-pickle` (rotado el 23-nov; antes `opencode-go/glm-5.3-flash`) | `opencode-go/glm-5.3-flash`, `opencode/big-pickle`, `opencode-go/gpt-6-luna` |
+| `datos` | `opencode-go/deepseek-v4.1-flash` (según `tools/modelos_agentes.json`; antes documentado como `minimax-m3`) | `opencode-go/minimax-m3`, `opencode/big-pickle`, `opencode-go/glm-5.3-flash` |
 | `arte` | `opencode-go/deepseek-v4.1-flash` | `opencode-go/qwen3.8-flash`, `opencode-go/qwen3.7-plus`, `opencode/big-pickle` |
 | `audio` | `opencode-go/glm-5.3-flash` | `opencode/glm-5.3-flash-free`, `opencode/big-pickle`, `opencode/beam-free` |
 | `medidor` | `opencode-go/glm-5.3-flash` | `opencode/glm-5.3-flash-free`, `opencode-go/gpt-6-luna`, `opencode/beam-free` |
 
 Criterio: los agentes con versión gemela gratuita (qa, documentacion) o de alto volumen (conversaciones principales, explore) van sobre el gratuito; los especializados sin gemela gratuita usan Go con Big Pickle de primer respaldo, para no gastar ventanas de otros modelos de Go.
 
-## Rotaciones vigentes (19 y 22-nov)
+## Rotaciones vigentes (19, 22 y 23-nov)
 
 | Agente | Modelo en config | Motivo | Volver |
 |---|---|---|---|
 | `explore` | `opencode/beam-free` (alternativo 2, gratuito; 22-nov) | Decisión del director: pasar de `opencode-go/gpt-6-luna` a un modelo gratuito. Se relanzó la tarea (ADR 0022, addendum del 22-nov) | `python tools/cambiar_modelo.py --restaurar explore` |
 | `ingeniero-godot` | `opencode/big-pickle` (gratuito; 22-nov) | Error literal «OpenCode Go monthly usage limit reached» con `opencode-go/deepseek-v4.1-flash`. Se salta `kimi-k2.7-code` (también Go) y se toma el primer gratuito de la cadena. Tarea relanzada (ADR 0040) | `python tools/cambiar_modelo.py --restaurar ingeniero-godot` |
-| `documentacion` | `opencode-go/glm-5.3-flash` (alternativo 1, de pago) | `opencode/glm-5.3-flash-free` retirado/indisponible (19-nov-2026); tarea relanzada con el modelo nuevo | `python tools/cambiar_modelo.py --restaurar documentacion` |
+| `documentacion` | `opencode/big-pickle` (alternativo 3, gratuito; 23-nov) | Error literal «OpenCode Go monthly usage limit reached. Switch to a free model, or turn on Extra Usage on the Go page in OpenCode Console to keep going.» con `opencode-go/glm-5.3-flash`. Se salta `opencode-go/gpt-6-luna` (también Go) y se toma el primer gratuito de la cadena que queda. Tarea relanzada (ADR 0042) | `python tools/cambiar_modelo.py --restaurar documentacion` |
 
-La cadena de `tools/modelos_agentes.json` no cambia: sigue siendo la fuente única y el
-principal de la cadena sigue siendo `big-pickle`. Validado con `--validar` (0 errores) y
-la tarea se relanzó con el modelo nuevo. Detalle completo en `adr/0022-rotacion-explore-a-go.md`,
+La cadena de `tools/modelos_agentes.json` no cambia: sigue siendo la fuente única y sus
+principales siguen siendo los del archivo (en `documentacion`, `opencode/glm-5.3-flash-free`).
+Las rotaciones de cuota se hicieron con `--rotar` y la tarea fallida se relanzó desde
+cero (ADR 0040 y 0042). Detalle completo en `adr/0022-rotacion-explore-a-go.md`,
 con el addendum del 22-nov (de `gpt-6-luna` a `beam-free`, también gratuito).
-La rotación de `documentacion` está detallada en `docs/adr/0036-culling-rigs-fuera-de-camara.md`.
+La rotación de `documentacion` del 19-nov (modelo retirado) está en
+`docs/adr/0036-culling-rigs-fuera-de-camara.md`; la del 23-nov (cuota de Go) en
+`docs/adr/0042-rotacion-documentacion-a-big-pickle.md`. Extra Usage sigue desactivado.
 
 ## Catálogo Go usado
 
@@ -59,8 +63,8 @@ Precio por millón de tokens y límite mensual de uso incluido en el plan Go (10
 | `qwen3.8-flash` | 0,15 $ | 0,47 $ | 30 $ | Arte (multimodal) |
 | `glm-5.3-flash` | 0,15 $ | 0,50 $ | 60 $ | Audio y medidor |
 | `gpt-6-luna` | 0,10 $ | 0,50 $ | 15 $ | Respaldo barato |
-| `minimax-m3` | 0,30 $ | 1,20 $ | 60 $ | Datos (JSON) |
-| `deepseek-v4.1-flash` | 0,15–0,30 $ | 0,60–1,20 $ | 100 $ | Respaldo de qa |
+| `minimax-m3` | 0,30 $ | 1,20 $ | 60 $ | Respaldo de datos (JSON) |
+| `deepseek-v4.1-flash` | 0,15–0,30 $ | 0,60–1,20 $ | 100 $ | Datos y respaldo de qa (franja punta) |
 
 Premium del catálogo (Kimi K3.1 Pro, Grok 4.7, Gemini 4 Argon, Claude Haiku): solo 15 $ de límite mensual. No se asignan a ningún agente; si una tarea puntual los necesita, se eligen a mano en esa conversación.
 

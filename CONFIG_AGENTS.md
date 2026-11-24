@@ -1,10 +1,15 @@
 # Equipo de agentes - Configuración
 
-Última actualización: 22-nov-2026, con las rotaciones de `explore` e `ingeniero-godot`. Modelos, precios y procedimiento de cambio: `FALLBACK_MODELS.md`.
+Última actualización: 23-nov-2026, con la rotación de `documentacion` a
+`big-pickle` (ADR 0042) y las de `explore` e `ingeniero-godot` (22-nov,
+ADR 0022 y 0040). Estados tomados de `tools/modelos_agentes.json` (fuente
+única de la cadena), `opencode.jsonc` y `FALLBACK_MODELS.md`.
 
 ## El equipo
 
-`opencode.jsonc` define ocho agentes del proyecto y fija el modelo del integrado `explore`. El modelo por defecto (línea `model`) lo usan `build`, `plan` y `general`.
+`opencode.jsonc` define nueve agentes del proyecto y fija el modelo del
+integrado `explore`. El modelo por defecto (línea `model`) lo usan `build`,
+`plan` y `general`.
 
 | Agente | Dominio | Puede tocar | Modelo |
 |---|---|---|---|
@@ -12,17 +17,17 @@
 | `ingeniero-godot` | GDScript y escenas de Godot 4.7.2 | `*.gd`, `*.tscn`, con confirmación | Gratis `big-pickle` (rotado el 22-nov; antes Go `deepseek-v4.1-flash`, ADR 0040) |
 | `gameplay` | Mecánicas, simulación, balance, especies | `*.gd`, `*.tscn`, con confirmación | Go `qwen3.7-plus` |
 | `qa` | Auditoría y diseño de pruebas | Solo lectura | Gratis `deepseek-v4.1-flash-free` |
-| `documentacion` | Documentación, lore, continuidad | `*.md`, `*.json`, con confirmación | Gratis `glm-5.3-flash-free` |
-| `datos` | Contenido del mundo en JSON (`data/`) | `*.json`, con confirmación | Go `minimax-m3` |
-| `arte` | Atlas, estilo visual y capturas | `art/**`, `data/art/**`, con confirmación | Go `qwen3.8-flash` |
+| `documentacion` | Documentación, lore, continuidad | `*.md`, `*.json`, con confirmación | Gratis `big-pickle` (rotada el 23-nov; antes Go `glm-5.3-flash`, ADR 0042) |
+| `datos` | Contenido del mundo en JSON (`data/`) | `*.json`, con confirmación | Go `deepseek-v4.1-flash` |
+| `arte` | Atlas, estilo visual y capturas | `art/**`, `data/art/**`, con confirmación | Go `deepseek-v4.1-flash` |
 | `audio` | Melodías y voces con `gen_audio.py` | `audio/**`, `data/audio/**`, con confirmación | Go `glm-5.3-flash` |
 | `medidor` | Medir rendimiento en la gráfica real | Solo lectura | Go `glm-5.3-flash` |
-| `explore` (integrado) | Búsqueda rápida por código y web | Solo lectura | Go `gpt-6-luna` (rotado el 10-nov; antes gratis `big-pickle`) |
+| `explore` (integrado) | Búsqueda rápida por código y web | Solo lectura | Gratis `beam-free` (alternativo 2; rotado el 22-nov; antes Go `gpt-6-luna`, ADR 0022) |
 | Por defecto (`build`, `plan`, `general`) | Conversación principal, planes, investigación | Según permisos globales | Gratis `big-pickle` |
 
 Reglas comunes a todos: `git push` siempre pide confirmación, los parámetros provisionales se marcan como tales y nadie desactiva pruebas para conseguir verde.
 
-**Tres modelos por agente:** cada agente tiene un principal y tres alternativos en `tools/modelos_agentes.json` (fuente única de verdad). Si un modelo agota su ventana o se retira un gratuito, se rota con `python tools/cambiar_modelo.py --rotar <agente>` y se **relanza la tarea**: OpenCode V2 no reintenta la petición fallida con el modelo nuevo. `--estado`, `--validar` y `--restaurar` completan el mecanismo. Precios, franjas y procedimiento en `FALLBACK_MODELS.md`. Decisión en `adr/0020-tres-modelos-por-agente.md`.
+**Tres modelos por agente:** cada agente tiene un principal y tres alternativos en `tools/modelos_agentes.json` (fuente única de verdad). Si un modelo agota su ventana o se retira un gratuito, se rota con `python tools/cambiar_modelo.py --rotar <agente>` y se **relanza la tarea**: OpenCode V2 no reintenta la petición fallida con el modelo nuevo. `--estado`, `--validar` y `--restaurar` completan el mecanismo. Precios, franjas y procedimiento en `FALLBACK_MODELS.md`. Decisión en `adr/0020-tres-modelos-por-agente.md`; ejemplos de rotación por cuota en `adr/0040` e `adr/0042`.
 
 ## Reparto de dominios entre agentes parecidos
 
@@ -42,7 +47,12 @@ Reglas comunes a todos: `git push` siempre pide confirmación, los parámetros p
 
 ## Verificación
 
-- `opencode run` desde la raíz del proyecto debe mostrar `big-pickle` en la cabecera de la respuesta (modelo por defecto). `explore` está rotado a `opencode/beam-free` y `ingeniero-godot` a `opencode/big-pickle` (ADR 0022 y 0040); `--estado` lo muestra.
+- `opencode run` desde la raíz del proyecto debe mostrar `big-pickle` en la
+  cabecera de la respuesta (modelo por defecto). `explore` está rotado a
+  `opencode/beam-free` (ADR 0022) e `ingeniero-godot` y `documentacion` a
+  `opencode/big-pickle` (ADR 0040 y 0042). Comprobarlo con
+  `python tools/cambiar_modelo.py --estado`; no se ha ejecutado en este turno
+  (documentación).
 - `/models` debe listar los modelos de `opencode` (gratuitos) y de `opencode-go` (suscripción).
 - Un subagente se prueba pidiéndole algo de su dominio en una conversación.
 - Validado el 10-nov con peticiones reales: `arquitecto` (Go `glm-5.3`) y `documentacion` (consola `glm-5.3-flash-free`) respondieron correctamente.

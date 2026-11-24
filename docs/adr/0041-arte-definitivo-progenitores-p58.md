@@ -1,8 +1,11 @@
-# ADR 0039: arte definitivo de los 15 progenitores con raster incrustado (23-nov)
+# ADR 0041: arte definitivo de los 15 progenitores con raster incrustado (23-nov)
 
-Estado: aplicado en la rama `fase/p58-arte-progenitores`.
-Revisión visual aprobada por el director el 23-nov. Pendiente de push, PR
-y fusión en `main`.
+Estado: aplicado y fusionado en main (PR #43, merge 1867e68, 23-nov);
+revisión visual aprobada; falta validación en partida.
+
+Nota de numeración: este ADR era el 0039 hasta el 23-nov. El número 0039
+sigue reservado para `0039-mundo-completo-mapa-y-consecuencias.md`, que es
+el más citado; este documento pasó al 0041 para evitar el doble 0039.
 
 ## Contexto
 ADR 0038 entregó 75 SVG geométricos para los 15 progenitores (5 vistas cada
@@ -76,14 +79,25 @@ Consecuencias de esta decisión:
 - Pruebas nuevas: `tests/art/art_progenitores_test.gd` comprueba las 75 vistas,
   el tamaño, la transparencia, el `viewBox`, la incrustación y la ausencia de
   texto y del generador anterior.
-- `python tools/verificar.py` y la importación con `--headless --import` se
-  ejecutan antes de proponer el PR.
+- **Ejecutado antes del PR:** 49/49 pruebas en `tests/art` (4 nuevas),
+  `python tools/verificar.py` OK e importación con `--headless --import` sin
+  errores. CI del PR #43: 6/6 jobs y 530/530 pruebas.
+- **Pendiente:** comprobación en partida del tamaño, las cinco vistas y los
+  encuentros. La revisión visual de las imágenes sí fue aprobada el 23-nov.
 
 ## Consecuencias
 - El `.pck` crece: cada vista lleva un PNG incrustado en lugar de un SVG de
-  unas pocas líneas. El tamaño exacto se mide al terminar la fase.
+  unas pocas líneas. Medido al fusionar el PR #43: 33,2 MB (antes 29,9 MB).
 - La coherencia entre las cinco vistas de un mismo progenitor depende del
   modelo; se usa la vista base como referencia siempre que el modelo lo
-  permite. La aprobación visual final corresponde al director.
+  permite. La aprobación visual de las imágenes corresponde al director.
 - Esta decisión es específica de los progenitores (P-58). No deroga la regla
   general de `docs/36_pipeline_graficos.md` para el resto del arte de juego.
+
+## Referencias
+- `docs/adr/0038-encuentros-progenitores-y-arte.md`: arte geométrico previo.
+- `docs/adr/0039-mundo-completo-mapa-y-consecuencias.md`: el otro ADR 0039
+  (mapa y consecuencias); no confundir con este documento.
+- `art/shared/progenitores/ORIGEN.md`: origen, modelo y herramienta por imagen.
+- `docs/03_ESTADO.md`: cierre de fase, PR #43, fusionado en `main`.
+- `docs/01_CONFLICTOS_Y_PENDIENTES.md`: P-58, marcado como hecho el 23-nov.

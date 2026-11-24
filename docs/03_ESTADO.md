@@ -1,20 +1,41 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
-> - **Estado (23-nov, esta fase):** rama `fase/p58-arte-progenitores`
->   (no fusionada todavía). **P-58 completado:** los 75 SVG geométricos de los
->   15 progenitores se han sustituido por arte artístico (5 vistas cada uno).
+> - **Estado (23-nov, fase EN CURSO):** `fase/cierre-consistencia-mundo-completo`
+>   (sin fusionar todavía). Cierre documental de P-58, rotación de
+>   `documentacion` a `big-pickle` (ADR 0042), P-26 y P-32, y pruebas de
+>   integridad del arte. Sin arte nuevo, sin cambios en datos ni herramientas.
+>   **Verificación final (24-nov, ejecutada):** `verificar.py` OK (105
+>   comprobaciones), import sin errores, **suite completa 539/539** (79 suites,
+>   informe JUnit validado: 0 fallos, 0 errores, 0 omitidos), `.exe` regenerado
+>   (109 MB, `.pck` 34,9 MB) con **prueba de humo OK** (`despliegue_cero`,
+>   36 habitantes). CI del PR #44: **6/6 jobs en verde** (run `45356670016`,
+>   `despliegue_cero` 12m49s), PR `MERGEABLE` pendiente de aprobación. Sin
+>   ejecutar: medición en gráfica real y validación manual.
+>   **Decisión del director (23-nov, P-61, ADR 0043):** los progenitores deben
+>   seguir visibles tras morir; se conservan insulto, pelea, flag y frase de
+>   lore. NO implementada aquí: va en la fase nueva de zonas.
+>   **Fase siguiente pedida por el director (23-nov):** poblar e interactuar
+>   con NPCs en las 24 zonas y añadir cosas que hacer en `despliegue_cero`;
+>   se empieza por interacción y actividades, y el arte visual de todas las
+>   zonas queda para otra fase. Abrir en conversación nueva.
+> - **Estado (23-nov, cierre de fase):** «P-58: arte de los 15 progenitores»
+>   **fusionado en `main`** (PR #43, merge `1867e68`, aprobado por el director;
+>   CI verde 6/6). **Cambiar de conversación.** Hecho: los 75 SVG geométricos
+>   de los 15 progenitores se han sustituido por arte artístico (5 vistas).
 >   15 bases generadas con Recraft, 17 direccionales con MAI/Seedream y 43
 >   derivadas con el fallback determinista aprobado por el director al
 >   agotarse los créditos de los modelos. Formato intacto: 256 × 280,
 >   `viewBox 0 0 512 560`, PNG embebido y fondo transparente; sin tocar lógica
 >   ni datos. Añadidos `tools/art/progenitores_prompts.py`,
 >   `progenitores_raster_a_svg.py` y `progenitores_derivar_vistas.py`,
->   `art/shared/progenitores/ORIGEN.md`, ADR 0039 y
->   `tests/art/art_progenitores_test.gd`. **Ejecutado:** 49/49 en `tests/art`
->   (4 nuevos), `verificar.py` OK, import sin errores y `.exe` regenerado
->   (104,2 MB, `.pck` 33,2 MB). **Revisión visual aprobada por el director
->   (23-nov).** Pendiente: push, PR y fusión. Ver `adr/0039`.
+>   `art/shared/progenitores/ORIGEN.md`, ADR 0041 y
+>   `tests/art/art_progenitores_test.gd`. **Revisión visual aprobada por el
+>   director (23-nov).** **Ejecutado:** 49/49 en `tests/art` (4 nuevos),
+>   `verificar.py` OK, import sin errores y `.exe` regenerado (104,2 MB,
+>   `.pck` 33,2 MB). CI del PR #43 verde 6/6: **530/530 pruebas** en 77 suites
+>   (core 79, combate 69, simulación 164, despliegue_cero 218), arranque y
+>   verificaciones deterministas OK. Ver `adr/0041`.
 > - **Estado (23-nov, cierre de fase):** «P-60 + P-59: rutas y avisos de IA»
 >   **fusionado en `main`** (PR #42, aprobado por el director; CI verde).
 >   **Cambiar de conversación.** Hecho: P-60 (Don Ramón no se queda parado en
@@ -23,32 +44,36 @@
 >   casos). P-59 (avisos automáticos de las IAs en el chat cuando nace un rumor
 >   y cuando un grupo migra entre zonas: señales `WorldSim.rumor_born` y
 >   `ZoneManager.population_migrated` → `AiChatter`, conspi/matriz, sin tokens,
->   cadencia y anti-spam). P-58 (arte definitivo de progenitores) queda pendiente
->   hasta disponer de un modelo de generación de imágenes adecuado; se ha
->   revertido `art/shared/progenitores/` a su estado original (75 SVG).
+>   cadencia y anti-spam). **SUPERADA (23-nov): P-58 (arte definitivo de
+>   progenitores) ya NO queda pendiente**; se completó el 23-nov en el PR #43
+>   con 75 SVG artísticos (ADR 0041). La reversión a los 75 SVG originales
+>   era el estado de aquel momento.
 >   **Pruebas: 525/525 en verde** (75 suites), `verificar.py` OK, informe JUnit
 >   validado. `.exe` regenerado en `main` (104,2 MB, `.pck` 29,9 MB).
 >   Validación manual pendiente: ver los avisos de IA en partida y confirmar
 >   que Don Ramón recorre su ruta sin pararse. Ver `adr/0038` y
->   `adr/0039`.
+>   `adr/0041`.
+> - **Estado (22-nov, cierre de fase):** «Mundo completo: mapa y consecuencias»
 >   **fusionado en `main`** (PR #41, merge `ac52ad0`, aprobado por el director;
 >   CI verde 6/6). **Cambiar de conversación.** Hecho: mapa ratificado (24
 >   zonas y grafo actual), viaje por rumor con avance del tiempo y escala
 >   30-80 % para toda la población. **515/515 pruebas en verde** (73 suites,
 >   informe JUnit validado), `verificar.py` OK. `.exe` regenerado en `main`
->   (104,2 MB, `.pck` 29,6 MB) y **validado por el director**. P-58 (arte
->   artístico con modelo para los 15, recreando a Don Ramón y El Contestador)
->   queda para una fase posterior. Ver ADR 0039 y 0040 (rotación de modelo).
+>   (104,2 MB, `.pck` 29,6 MB) y **validado por el director**.
+>   **SUPERADA (23-nov):** P-58 (arte artístico con modelo para los 15,
+>   recreando a Don Ramón y El Contestador) ya no queda para una fase posterior:
+>   se completó en el PR #43. Ver ADR 0041 (arte) y 0040 (rotación de modelo).
 > - **Estado (22-nov, esta fase):** `fase/p60-p59-p58-rutas-avisos-arte` (no fusionada todavía).
 >   **P-60 corregido y commiteado:** Don Ramón rehace su ruta en `despliegue_cero`
 >   (`data/zones/despliegue_cero.json`, tramo norte hasta x=1650 antes de la
 >   fachada del corredor) con `tests/despliegue_cero/ramon_route_test.gd` (2
 >   casos). **P-59 implementado y commiteado:** `WorldSim.rumor_born` +
 >   `ZoneManager.population_migrated` → `AiChatter` (conspi/matriz, sin tokens,
->   cadencia y anti-spam), pruebas nuevas en verde. `verificar.py` OK. **P-58
->   (arte definitivo de progenitores) queda pendiente** hasta disponer de un modelo
->   de generación de imágenes adecuado; se ha revertido `art/shared/progenitores/`
->   a su estado original (75 SVG). La rama está lista para PR con P-60 y P-59.
+>   cadencia y anti-spam), pruebas nuevas en verde. `verificar.py` OK.
+>   **SUPERADA (23-nov): P-58 (arte definitivo de progenitores) ya no queda
+>   pendiente**; se completó el 23-nov en el PR #43 con 75 SVG artísticos
+>   (ADR 0041). La reversión a los 75 SVG originales era el estado de ese
+>   momento. La rama estaba lista para PR con P-60 y P-59.
 > - **Estado (22-nov, P-59):** las IAs deben avisar en el chat cuando se crea un
 >   rumor y cuando un grupo de NPCs se mueve entre zonas.
 > - **Estado (22-nov):** fase «Post-beta: progenitores y contenido»

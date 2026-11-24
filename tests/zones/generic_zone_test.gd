@@ -7,6 +7,10 @@ func before_test() -> void:
 	Sandbox.pending_save = {}
 
 
+func after_test() -> void:
+	get_tree().paused = false
+
+
 func _mount(zone_path: String) -> ZoneBase:
 	var zone: ZoneBase = auto_free(load("res://scenes/zones/zone.tscn").instantiate())
 	var definition: ZoneDefinition = ZoneDefinition.load_from(zone_path)
@@ -47,6 +51,28 @@ func test_generic_zone_live_world_starts() -> void:
 	assert_bool(zone.live_world.started).is_true()
 	assert_int(zone.live_world.citizens.size()).is_greater(0)
 	assert_str(zone.objective_key()).is_equal("ZONE_OBJECTIVE")
+
+
+func test_la_pausa_tactica_de_una_zona_generica_ensena_fantasmas() -> void:
+	var zone: ZoneBase = await _mount("res://data/zones/el_enchufe.json")
+	var vista: AiSpectres = null
+	var contados: int = 0
+	for child: Node in zone.hud.get_children():
+		if child is AiSpectres:
+			contados += 1
+			vista = child as AiSpectres
+	assert_int(contados).is_equal(1)
+	assert_object(vista).is_not_null()
+	if vista == null:
+		return
+	assert_bool(vista.visible).is_false()
+	zone.pause.set_paused(true)
+	assert_bool(get_tree().paused).is_true()
+	assert_bool(vista.visible).is_true()
+	assert_int(vista.ghosts().size()).is_equal(3)
+	zone.pause.set_paused(false)
+	assert_bool(get_tree().paused).is_false()
+	assert_bool(vista.visible).is_false()
 
 
 func test_corridor_triggers_transition() -> void:

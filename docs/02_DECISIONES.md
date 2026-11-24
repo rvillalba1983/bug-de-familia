@@ -165,6 +165,15 @@ Decisiones del director para la fase abierta el 22-nov
   nacimientos y llegadas. Solo afecta al dibujo: colisiones, detección y
   alcances no cambian. Requiere revisión estética de las 24 zonas.
 
+## Progenitores visibles tras morir (23-nov)
+
+- El director aprueba el arte definitivo en pantalla (ADR 0041), pero no que el
+  progenitor desaparezca al insultar y pelear. Se mantiene el encuentro completo
+  del 22-nov —saludo, pista, insulto, pelea, mortalidad, flag
+  `progenitor_<id>_muerto` y frase `death`— y se elimina solo la desaparición:
+  el progenitor muerto queda visible y no interactuable. Pendiente de aplicar en
+  la fase de zonas (P-61). Detalle técnico en `adr/0043`.
+
 ## Caminos delimitados entre zonas (post-beta, 14-nov)
 
 - Las rutas hacia otras zonas serán **caminos delimitados**, no encontrados por casualidad.

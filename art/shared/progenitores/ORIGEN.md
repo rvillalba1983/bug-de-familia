@@ -123,4 +123,5 @@ python tools/art/progenitores_prompts.py --manifiesto manifiesto_p58.json
 - Importación de Godot 4.7.2 en modo headless sin errores.
 - `tests/art/art_progenitores_test.gd`: 75 vistas, 256 × 280, transparencia,
   `viewBox`, incrustación PNG y ausencia de texto y del generador anterior.
-- Revisión visual en partida: aprobada por el director el 23-nov-2026.
+- Revisión visual de las imágenes: aprobada por el director el 23-nov-2026.
+- Pendiente: comprobación en partida (tamaño, vistas y encuentros).

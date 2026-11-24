@@ -152,3 +152,21 @@ func test_taunt_comes_from_a_speaking_ai_and_keeps_the_seed() -> void:
 	var taunt: Dictionary = sandbox.ai.question_taunt({"text": "¿Quién?"})
 	assert_str(str(taunt["text"])).is_not_empty()
 	assert_int(sandbox.rng.state).is_equal(state_before)
+
+
+func test_la_conversion_ensena_los_fantasmas_de_las_ias() -> void:
+	var sandbox: Sandbox = _scene()
+	sandbox.conversion.begin_on(_target(sandbox, Sandbox.ID_CRATE))
+	assert_bool(get_tree().paused).is_true()
+	var view: AiSpectres = sandbox.conversion.screen._spectres
+	assert_object(view).is_not_null()
+	if view == null:
+		return
+	assert_bool(view.visible).is_true()
+	assert_int(view.ghosts().size()).is_equal(3)
+	view._process(0.1)
+	assert_int(view.speaking().size()).is_greater_equal(1)
+	sandbox.conversion.screen.close()
+	sandbox.pause.end_modal()
+	assert_bool(view.visible).is_false()
+	assert_bool(get_tree().paused).is_false()

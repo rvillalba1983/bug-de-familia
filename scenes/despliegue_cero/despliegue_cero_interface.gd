@@ -43,12 +43,9 @@ static func _build_chat(zone: DespliegueCeroZone, layer: CanvasLayer) -> void:
 	zone.ai.chat = irc
 
 
-## Lo que aparece solo durante la pausa táctica.
+## Lo que aparece solo durante la pausa táctica. Los fantasmas los crea ya
+## `Sandbox._build_interface()` para todas las zonas: aquí no se duplican.
 static func _build_pause_view(zone: DespliegueCeroZone, layer: CanvasLayer) -> void:
-	var spectres: AiSpectres = AiSpectres.new()
-	spectres.team = zone.ai.team
-	layer.add_child(spectres)
-	zone.pause.paused_changed.connect(spectres.set_shown)
 	zone.screen_filter = ScreenFilter.new()
 	zone.add_child(zone.screen_filter)
 	zone.pause.paused_changed.connect(zone.screen_filter.set_shown)

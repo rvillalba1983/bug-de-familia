@@ -402,8 +402,14 @@ func _build_interface() -> void:
 	add_child(hud)
 	hud.build(player.body, _shows_help_labels(), objective_key())
 	action_bar = hud.action_bar
+	## P-26: un único juego de fantasmas para todas las zonas, en la capa 2 del HUD.
+	var spectres: AiSpectres = AiSpectres.new()
+	spectres.team = ai.team
+	hud.add_child(spectres)
+	pause.paused_changed.connect(spectres.set_shown)
 	var screen: ConversionScreen = ConversionScreen.new()
 	add_child(screen)
+	screen.set_spectres_team(ai.team)
 	conversion = ConversionDirector.new()
 	conversion.catalog = catalog
 	conversion.player = player

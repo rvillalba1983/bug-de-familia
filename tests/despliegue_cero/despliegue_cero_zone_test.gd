@@ -380,3 +380,43 @@ func test_war_after_guards_are_gone_does_not_crash() -> void:
 	await await_millis(60)
 	_case().set_flag("guerra")
 	assert_bool(zone.moved_to_war).is_true()
+
+
+func _known_challenge_count() -> int:
+	var total: int = 0
+	for id: String in DespliegueCeroChallenges.ALL_CHALLENGES:
+		if _case().has_known(id):
+			total += 1
+	return total
+
+
+func test_notice_board_is_reusable_and_discovers_a_challenge() -> void:
+	_quiet()
+	var item: Interactable = zone.items.get("cartel_avisos") as Interactable
+	assert_object(item).is_not_null()
+	if item == null:
+		return
+	assert_bool(item.reusable).is_true()
+	assert_object(item.art).is_not_null()
+	var before: int = _known_challenge_count()
+	item.activate()
+	await await_millis(60)
+	assert_str(zone.hud.notice_label.text).is_equal(tr("BETA_NOTICE_BOARD_TEXT"))
+	assert_int(_known_challenge_count()).is_equal(before + 1)
+	item.activate()
+	assert_bool(item.used).is_false()
+
+
+func test_rest_bench_shows_its_notice_and_is_reusable() -> void:
+	_quiet()
+	var item: Interactable = zone.items.get("banco_descanso") as Interactable
+	assert_object(item).is_not_null()
+	if item == null:
+		return
+	assert_bool(item.reusable).is_true()
+	assert_object(item.art).is_not_null()
+	item.activate()
+	await await_millis(60)
+	assert_str(zone.hud.notice_label.text).is_equal(tr("BETA_REST_BENCH_TEXT"))
+	item.activate()
+	assert_bool(item.used).is_false()

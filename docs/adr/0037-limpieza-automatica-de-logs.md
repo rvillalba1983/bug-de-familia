@@ -1,7 +1,8 @@
 # ADR 0037: limpieza automática de logs de pruebas
 
-Estado: **aceptado por el director el 21-nov-2026**. Implementado en la rama
-`fase/postbeta-progenitores-encuentros`; pendiente de commit, push y PR.
+Estado: **aceptado por el director el 21-nov-2026**. El 25-nov-2026 el director
+redujo el umbral de 48 h a **8 h**; el cambio está pendiente de commit, push y
+PR. La herramienta original ya está en `HEAD`.
 
 ## Contexto
 
@@ -14,7 +15,7 @@ limpiar estos archivos y el consumo crece solo en la máquina local.
 
 ## Decisión
 
-1. **Ámbito:** solo archivos `.log` directos de `reports/` con más de 48 horas
+1. **Ámbito:** solo archivos `.log` directos de `reports/` con más de 8 horas
    desde su última modificación (mtime). Se conservan los informes HTML/XML,
    los subdirectorios, `humo.log` y los enlaces simbólicos.
 2. **Disparador:** `tools/verificar.py`, como primer paso. Se ejecuta al
@@ -28,6 +29,14 @@ limpiar estos archivos y el consumo crece solo en la máquina local.
 5. **Sin tarea programada de Windows:** el director descartó crear una tarea
    del sistema; la limpieza solo ocurre cuando se verifica o se commitea.
 
+### Cambio del umbral (25-nov-2026)
+
+El director pidió bajar el umbral de 48 h a 8 h. El motivo fue que un
+`reports/gz.log` de una prueba colgada alcanzó 50,5 GiB y, con el umbral
+original, seguía sin borrarse horas después. `HORAS` vale 8 en
+`tools/limpiar_logs.py`; `--horas` sigue permitiendo otro valor por ejecución.
+Las pruebas usan 7 h y 9 h alrededor del límite y el caso del límite exacto.
+
 ## Alternativas descartadas
 
 - **Tarea programada de Windows cada hora:** habría sido autónoma, pero
@@ -40,7 +49,7 @@ limpiar estos archivos y el consumo crece solo en la máquina local.
 
 ## Consecuencias y limitaciones
 
-- Un log que deja de escribirse y no se toca en 48 h se borra en la primera
+- Un log que deja de escribirse y no se toca en 8 h se borra en la primera
   verificación posterior. Un log **activo** no se borra: hay que cortar la
   ejecución colgada con `cmd /c "... < NUL"` y un timeout, como ya indica
   `HERRAMIENTAS.md` §4.

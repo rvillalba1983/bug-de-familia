@@ -579,6 +579,8 @@ func _spawn_actor(actor: Dictionary) -> void:
 	var progenitor: String = str(actor.get("progenitor", ""))
 	if not progenitor.is_empty():
 		_attach_progenitor(guard_node, progenitor)
+	elif not species.is_empty():
+		_attach_actor_talk(guard_node, id, species)
 	# La caída la conecta el Sandbox en _connect_enemies, con el id del JSON.
 	if not species.is_empty():
 		guard_node.attacked.connect(_on_zone_citizen_attacked.bind(guard_node, species))
@@ -604,6 +606,43 @@ func _attach_progenitor(guard: Guard, progenitor: String) -> void:
 	item.activated.connect(_on_progenitor_activated.bind(progenitor, guard, bubble))
 	guard.add_child(item)
 	_register_progenitor_actor(progenitor, guard, bubble)
+
+
+## Hace interactuable a un actor guionado de zona para que pueda conversar.
+func _attach_actor_talk(guard: Guard, actor_id: String, species: String) -> void:
+	var bubble: SpeechBubble = SpeechBubble.new()
+	bubble.position = Vector2(0.0, -120.0)
+	bubble.visible = false
+	guard.add_child(bubble)
+	var item: Interactable = Interactable.new()
+	item.setup(actor_id, Interactable.Kind.NPC, Vector2.ZERO)
+	item.custom_label = _actor_display_name(actor_id, species)
+	item.body_hidden = true
+	item.reusable = true
+	item.activated.connect(_on_actor_activated.bind(actor_id, species, guard, bubble))
+	guard.add_child(item)
+
+
+func _actor_display_name(actor_id: String, species: String) -> String:
+	var base: String = species.replace("_", " ").capitalize()
+	if SpeciesCatalog.has(species):
+		base = SpeciesCatalog.plural(species)
+	return "%s · %s" % [actor_id.replace("_", " ").capitalize(), base]
+
+
+func _on_actor_activated(
+	_item: Interactable, actor_id: String, species: String, guard: Guard, bubble: SpeechBubble
+) -> void:
+	if live_world == null or not is_instance_valid(guard) or guard.is_down():
+		return
+	var state: NpcState = NpcState.new()
+	state.id = actor_id
+	state.species = species
+	state.name = _actor_display_name(actor_id, species)
+	state.role = "vecino"
+	state.pos = guard.global_position
+	state.alive = true
+	live_world.dialogue.open_external(state, guard, bubble)
 
 
 func _register_progenitor_actor(
@@ -705,9 +744,13 @@ func _build_items() -> void:
 		var at: Vector2 = _definition().point(str(entry["at"]))
 		match str(entry["type"]):
 			"named":
-				_add_named(id, at, str(entry.get("label", id)), bool(entry.get("reusable", true)))
-				if entry.has("art"):
-					(items[id] as Interactable).art = load(str(entry["art"])) as Texture2D
+				_add_named(
+					id,
+					at,
+					str(entry.get("label", id)),
+					bool(entry.get("reusable", true)),
+					str(entry.get("art", ""))
+				)
 			"crate":
 				_add_item(id, Interactable.Kind.CRATE, at)
 			"leg":
@@ -718,11 +761,15 @@ func _build_items() -> void:
 				push_error("%s: tipo de objeto desconocido en «%s»" % [_definition().path, id])
 
 
-func _add_named(id: String, at: Vector2, label: String, reusable: bool) -> void:
+func _add_named(
+	id: String, at: Vector2, label: String, reusable: bool, art: String = ""
+) -> void:
 	_add_item(id, Interactable.Kind.TERMINAL, at)
 	var item: Interactable = items[id]
 	item.custom_label = label
 	item.reusable = reusable
+	if not art.is_empty():
+		item.art = load(art) as Texture2D
 
 
 func _build_props() -> void:
@@ -787,6 +834,18 @@ func attack_dialogue_speaker(speaker: String) -> void:
 		var citizen: Guard = live_world.citizens[speaker]
 		if is_instance_valid(citizen) and not citizen.is_down():
 			attack_citizen(citizen)
+
+
+func on_item_activated(item: Interactable) -> void:
+	if live_world != null and live_world.handles_item(item):
+		return
+	# Los objetos con nombre de zonas genéricas no abren la puerta del sandbox.
+	if item.kind == Interactable.Kind.TERMINAL and item.item_id != Sandbox.ID_TERMINAL:
+		player.gesture_for(item.kind, item.item_id)
+		if not item.custom_label.is_empty():
+			show_notice(item.custom_label)
+		return
+	super(item)
 
 
 func reward_piece() -> void:

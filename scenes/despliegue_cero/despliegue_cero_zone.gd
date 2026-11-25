@@ -266,6 +266,10 @@ func _spawn_actor(actor: Dictionary) -> void:
 	var progenitor: String = str(actor.get("progenitor", ""))
 	if not progenitor.is_empty():
 		_attach_progenitor(enemy, progenitor)
+	else:
+		var species: String = str(actor.get("species", ""))
+		if not species.is_empty():
+			_attach_actor_talk(enemy, id, species)
 
 
 func _look_of(actor: Dictionary) -> Dictionary:
@@ -328,9 +332,13 @@ func _build_item(entry: Dictionary) -> void:
 	var at: Vector2 = DespliegueCeroLayout.zone.point(str(entry["at"]))
 	match str(entry["type"]):
 		"named":
-			_add_named(id, at, str(entry["label"]), bool(entry["reusable"]))
-			if entry.has("art"):
-				(items[id] as Interactable).art = load(str(entry["art"])) as Texture2D
+			_add_named(
+				id,
+				at,
+				str(entry.get("label", id)),
+				bool(entry.get("reusable", true)),
+				str(entry.get("art", ""))
+			)
 		"crate":
 			_add_item(id, Interactable.Kind.CRATE, at)
 		"leg":
@@ -345,11 +353,15 @@ func _load_views(base: String) -> Array[Texture2D]:
 	return GuardVisual.load_views(ART_FOLDER, base)
 
 
-func _add_named(id: String, at: Vector2, label_key: String, is_reusable: bool) -> void:
+func _add_named(
+	id: String, at: Vector2, label: String, reusable: bool, art: String = ""
+) -> void:
 	_add_item(id, Interactable.Kind.TERMINAL, at)
 	var item: Interactable = items[id]
-	item.custom_label = tr(label_key)
-	item.reusable = is_reusable
+	item.custom_label = tr(label)
+	item.reusable = reusable
+	if not art.is_empty():
+		item.art = load(art) as Texture2D
 
 
 func _add_mine(index: int) -> void:
@@ -564,6 +576,13 @@ func on_item_activated(item: Interactable) -> void:
 			challenges.take_reel()
 		ID_GENERATOR:
 			challenges.break_generator()
+		"cartel_avisos":
+			player.gesture_for(item.kind, item.item_id)
+			show_notice(tr("BETA_NOTICE_BOARD_TEXT"))
+			discover_challenge()
+		"banco_descanso":
+			player.gesture_for(item.kind, item.item_id)
+			show_notice(tr("BETA_REST_BENCH_TEXT"))
 		_:
 			if item.kind == Interactable.Kind.CRATE:
 				protagonist.comment("crate", ProtagonistVoice.LONG_COOLDOWN)

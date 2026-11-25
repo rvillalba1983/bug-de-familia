@@ -90,7 +90,11 @@ func test_corpses_that_expire_leave_nothing_dangling() -> void:
 	for enemy: Guard in enemies:
 		zone._on_corpse_expired(enemy)
 	await _frames()
-	assert_array(zone.guards()).is_empty()
+	# P-61/ADR 0043: los progenitores muertos se quedan visibles e inertes.
+	for enemy: Guard in zone.guards():
+		assert_bool(zone._should_keep_corpse(enemy)).is_true().override_failure_message(
+			"Quedó un cadáver no conservado: %s" % zone.id_of_guard(enemy)
+		)
 	_apply_every_flag(zone)
 	await _reload_and_check()
 

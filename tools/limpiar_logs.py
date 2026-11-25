@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Borra los `.log` de `reports/` con más de 48 horas sin escritura.
+"""Borra los `.log` de `reports/` con más de 8 horas sin escritura.
 
   python tools/limpiar_logs.py
 
@@ -11,7 +11,7 @@ La edad se mide desde la última modificación: un log que sigue escribiéndose
 no se borra aunque se creara hace días. Solo toca archivos `.log` directos de
 `reports/`; no recorre subdirectorios ni toca informes HTML/XML ni `humo.log`.
 
-Opciones: `--directorio`, `--horas` (48 por defecto) y `--dry-run`.
+Opciones: `--directorio`, `--horas` (8 por defecto) y `--dry-run`.
 
 Solo stdlib, sin dependencias y sin llamadas a servicios externos.
 """
@@ -24,7 +24,7 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
 DIRECTORIO = RAIZ / "reports"
-HORAS = 48
+HORAS = 8
 
 
 def limpiar(
@@ -76,7 +76,7 @@ def limpiar(
 
 def main() -> int:
 	analizador = argparse.ArgumentParser(
-		description="Borra los .log de reports/ con más de 48 horas.")
+		description="Borra los .log de reports/ con más de 8 horas.")
 	analizador.add_argument("--directorio", type=Path, default=DIRECTORIO)
 	analizador.add_argument("--horas", type=int, default=HORAS)
 	analizador.add_argument("--dry-run", action="store_true")

@@ -3,7 +3,7 @@
 
   python tools/verificar.py
 
-Antes de nada borra los .log de reports/ con mas de 48 h (limpiar_logs.py).
+Antes de nada borra los .log de reports/ con mas de 8 h (limpiar_logs.py).
 Despues ejecuta, con el mismo interprete, validar_datos.py, validar_rutas.py,
 validar_conversaciones.py, formatear.py --comprobar, cambiar_modelo.py
 --validar y las pruebas de las propias herramientas; y si existe medicion.txt

@@ -152,6 +152,10 @@ func examine(evidence_id: String) -> void:
 
 
 func open_dialogue(npc_id: String) -> void:
+	if npc_nodes.has(npc_id):
+		var node: Variant = npc_nodes[npc_id]
+		if is_instance_valid(node) and node is Interactable and (node as Interactable).used:
+			return
 	for npc: Dictionary in case_data["npcs"]:
 		if npc["id"] == npc_id:
 			level.pause.begin_modal()

@@ -76,3 +76,18 @@ func test_el_contestador_usa_su_dialogo_y_entrega_la_bobina() -> void:
 	dialogue.choose(_option_index(dialogue, "Meter la bobina que falta"))
 	assert_bool(zone.investigation.has_flag("bobina_puesta")).is_true()
 	dialogue.close()
+
+
+func test_el_contestador_muerto_sigue_visible_y_no_reabre_dialogo() -> void:
+	var item: Interactable = zone.investigation.npc_nodes["contestador"]
+	item.activate()
+	var dialogue: LiveDialogue = zone.live_world.dialogue
+	dialogue.choose(_option_index(dialogue, "Insultar"))
+	dialogue.choose(_option_index(dialogue, "Golpear"))
+	await get_tree().process_frame
+	assert_bool(zone.investigation.has_flag("progenitor_contestador_muerto")).is_true()
+	assert_bool(item.visible).is_true()
+	assert_bool(item.used).is_true()
+	item.activate()
+	await get_tree().process_frame
+	assert_bool(dialogue.is_open()).is_false()

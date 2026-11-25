@@ -426,7 +426,6 @@ func _build_investigation() -> void:
 	_register_progenitor_actor(ID_CONTESTADOR, contestador_item, contestador_bubble)
 	_contestador_at = (entities[ID_CONTESTADOR] as Node2D).global_position
 	_fix_progenitor_property(ID_CONTESTADOR)
-	_fix_progenitor_property(ID_CONTESTADOR)
 	challenges = DespliegueCeroChallenges.new()
 	challenges.level = self
 	if forced_hour >= 0:
@@ -509,6 +508,24 @@ func _on_enemy_fell(enemy: Guard) -> void:
 		challenges.on_ramon_fell()
 
 
+## Don Ramón, como progenitor, se queda visible e inerte (ADR 0043).
+func _should_keep_corpse(enemy: Guard) -> bool:
+	return enemy == ramon
+
+
+func should_keep_fallen_entity(id: String) -> bool:
+	return id == ID_RAMON
+
+
+func mark_fallen_entity(id: String) -> void:
+	if id != ID_RAMON:
+		return
+	if not investigation.flags.get(PROGENITOR_ITEM_PREFIX + ID_RAMON + "_muerto", false):
+		_on_progenitor_fell(ID_RAMON)
+	if is_instance_valid(ramon):
+		ramon.restore_fallen()
+
+
 func _on_converted(entity_id: String) -> void:
 	super(entity_id)
 	mines.erase(entity_id)
@@ -517,6 +534,16 @@ func _on_converted(entity_id: String) -> void:
 		challenges.on_ramon_fell()
 	if entity_id == ID_CONTESTADOR and _contestador_at != Vector2.ZERO:
 		challenges.leave_footprint(DespliegueCeroChallenges.ID_CONTESTADOR_TRACE, _contestador_at, "BETA_TRACE_CONTESTADOR", "El Contestador")
+
+
+## P-61/ADR 0043: el Contestador no es Guard; su muerte lo deja visible e inerte.
+func kill_progenitor(progenitor: String) -> void:
+	super(progenitor)
+	if progenitor == ID_CONTESTADOR and _contestador_at != Vector2.ZERO:
+		challenges.leave_footprint(
+			DespliegueCeroChallenges.ID_CONTESTADOR_TRACE, _contestador_at,
+			"BETA_TRACE_CONTESTADOR", "El Contestador"
+		)
 
 
 func on_item_activated(item: Interactable) -> void:

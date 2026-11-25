@@ -76,4 +76,7 @@ static func _restore_entities(level: Sandbox, data: Dictionary) -> void:
 		level.remove_entity(str(id))
 	for id: Variant in data.get("fallen", []):
 		level.fallen_ids.append(id)
-		level.remove_entity(str(id))
+		if level.should_keep_fallen_entity(str(id)):
+			level.mark_fallen_entity(str(id))
+		else:
+			level.remove_entity(str(id))

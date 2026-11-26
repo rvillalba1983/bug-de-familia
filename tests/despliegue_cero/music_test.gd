@@ -38,6 +38,53 @@ func test_toda_situacion_y_barrio_tiene_musica() -> void:
 			assert_str(str(zone.music.pick(state, where)["state"])).is_equal(state)
 
 
+func test_diez_cues_de_cuerda_estan_bien_formados() -> void:
+	var estados: Dictionary = {}
+	var total: int = 0
+	for track: Dictionary in _library()["tracks"]:
+		if str(track.get("palette", "")) != MusicDirector.PALETTE_CUERDA:
+			continue
+		total += 1
+		estados[str(track["state"])] = true
+		assert_bool(["guitarra", "laud", "oud", "shamisen"].has(str(track["lead"]))).is_true()
+		assert_bool(ResourceLoader.exists(str(track["file"]))).is_true()
+		assert_bool(bool(track["ambient"]) == (str(track["state"]) != "tension")).is_true()
+		assert_bool(float(track["bpm_fin"]) >= float(track["bpm"])).is_true()
+		if str(track["state"]) == "tension":
+			assert_bool(float(track["bpm_fin"]) > float(track["bpm"])).is_true()
+	assert_int(total).is_equal(10)
+	for state: String in ["dia", "noche", "tension"]:
+		assert_bool(estados.has(state)).is_true()
+
+
+func test_la_cuerda_se_prefiere_en_calma_y_tension() -> void:
+	var tracks: Array = _library()["tracks"]
+	for state: String in ["dia", "noche", "tension"]:
+		for where: String in ["bosque", "barrio_jubilado", "barrio_mohocrata", "tierra_de_nadie"]:
+			var hay_cuerda: bool = false
+			for track: Dictionary in tracks:
+				if str(track["state"]) == state \
+					and (bool(track["any_zone"]) or str(track["zone"]) == where) \
+					and str(track.get("palette", "")) == MusicDirector.PALETTE_CUERDA:
+					hay_cuerda = true
+					break
+			if not hay_cuerda:
+				continue
+			assert_str(str(zone.music.pick(state, where)["palette"])).is_equal(
+				MusicDirector.PALETTE_CUERDA)
+
+
+func test_la_seleccion_de_cuerda_es_reproducible() -> void:
+	zone.music._recent.clear()
+	zone.music._rng.seed = MusicDirector.RNG_SEED
+	var primera: Dictionary = zone.music.pick("dia", "bosque")
+	zone.music._recent.clear()
+	zone.music._rng.seed = MusicDirector.RNG_SEED
+	var segunda: Dictionary = zone.music.pick("dia", "bosque")
+	assert_str(str(segunda["file"])).is_equal(str(primera["file"]))
+	assert_str(str(primera["palette"])).is_equal(MusicDirector.PALETTE_CUERDA)
+
+
 func test_no_repite_las_ultimas_pistas() -> void:
 	var seen: Dictionary = {}
 	for index: int in range(MusicDirector.RECENT_SIZE):

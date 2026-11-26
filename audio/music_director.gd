@@ -7,6 +7,9 @@ const DATA_PATH: String = "res://data/audio/library.json"
 const CHECK_INTERVAL: float = 1.0
 const COMBAT_HOLD: float = 6.0
 const RECENT_SIZE: int = 6
+const PALETTE_CUERDA: String = "cuerda_pulsada"
+## Semilla propia: la música no consume ni altera la semilla de la partida.
+const RNG_SEED: int = 1234
 
 var level: DespliegueCeroZone
 var current_state: String = ""
@@ -24,6 +27,7 @@ var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_rng.seed = RNG_SEED
 	var data: Variant = JSON.parse_string(FileAccess.get_file_as_string(DATA_PATH))
 	if not data is Dictionary:
 		push_error("Biblioteca de audio ilegible: %s" % DATA_PATH)
@@ -75,12 +79,19 @@ func zone() -> String:
 
 
 ## Elige una pista de esa situación, sin repetir las últimas que han sonado.
+## En calma y tensión prefiere la paleta de cuerda pulsada; si no hay cue de
+## esa paleta para el barrio, se queda con la biblioteca original.
 func pick(state: String, where: String) -> Dictionary:
 	var options: Array = _tracks.filter(func(track: Dictionary) -> bool:
 		return track["state"] == state and (track["any_zone"] or track["zone"] == where))
 	var fresh: Array = options.filter(func(track: Dictionary) -> bool:
 		return not _recent.has(str(track["file"])))
 	var pool: Array = fresh if not fresh.is_empty() else options
+	if state == "dia" or state == "noche" or state == "tension":
+		var cuerdas: Array = pool.filter(func(track: Dictionary) -> bool:
+			return str(track.get("palette", "")) == PALETTE_CUERDA)
+		if not cuerdas.is_empty():
+			pool = cuerdas
 	return pool[_rng.randi_range(0, pool.size() - 1)]
 
 

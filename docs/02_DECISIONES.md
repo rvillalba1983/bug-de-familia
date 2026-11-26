@@ -193,6 +193,23 @@ L3-B** y la petición de que `despliegue_cero` tenga fachadas propias. Coste:
 - Detalle técnico, origen de los recursos y verificación en `adr/0044`. Queda
   pendiente la validación visual en partida por el director.
 
+## Música ambiental de cuerda pulsada (26-nov)
+
+El director eligió esta fase entre tres opciones y autorizó un lote pequeño de
+cues generados en local. Coste: 0 créditos; sin servicios externos ni muestras
+de terceros.
+
+- La biblioteca pasa de 100 a **110 pistas**. Las originales no se regeneran:
+  se añaden 10 cues de guitarra, laúd, oud y shamisen con semillas fijas.
+- `MusicDirector` prefiere esa paleta en día, noche y tensión si hay un cue
+  disponible para la zona; combate y festival siguen con la música anterior.
+- La selección tiene semilla propia (1234) para ser reproducible en pruebas;
+  la semilla de la partida no cambia.
+- Las pistas de tensión aceleran 18 BPM; las tranquilas llevan drone suave y
+  no llevan batería.
+- Detalle técnico, medición y verificación en `adr/0045`. Falta la escucha
+  manual en partida.
+
 ## Caminos delimitados entre zonas (post-beta, 14-nov)
 
 - Las rutas hacia otras zonas serán **caminos delimitados**, no encontrados por casualidad.

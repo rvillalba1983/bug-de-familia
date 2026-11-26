@@ -1,5 +1,5 @@
 {
- "origin": "tools/audio/gen_audio.py, Claude, sin servicios externos",
+ "origin": "tools/audio/gen_audio.py + tools/audio/gen_cuerda_cues.py, Claude, sintesis local, 26-nov-2026, sin servicios externos",
  "tracks": [
   {
    "file": "res://audio/music/pista_001.ogg",
@@ -11,7 +11,11 @@
    "scale": "dorico",
    "duration": 41.68,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 90
   },
   {
    "file": "res://audio/music/pista_002.ogg",
@@ -23,7 +27,11 @@
    "scale": "pentatonica",
    "duration": 38.45,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 78
   },
   {
    "file": "res://audio/music/pista_003.ogg",
@@ -35,7 +43,11 @@
    "scale": "pentatonica",
    "duration": 43.49,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 85
   },
   {
    "file": "res://audio/music/pista_004.ogg",
@@ -47,7 +59,11 @@
    "scale": "hexatonica",
    "duration": 36.13,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 86
   },
   {
    "file": "res://audio/music/pista_005.ogg",
@@ -59,7 +75,11 @@
    "scale": "mixolidio",
    "duration": 37.58,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 90
   },
   {
    "file": "res://audio/music/pista_006.ogg",
@@ -71,7 +91,11 @@
    "scale": "hexatonica",
    "duration": 45.04,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 73
   },
   {
    "file": "res://audio/music/pista_007.ogg",
@@ -83,7 +107,11 @@
    "scale": "mixolidio",
    "duration": 43.03,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 76
   },
   {
    "file": "res://audio/music/pista_008.ogg",
@@ -95,7 +123,11 @@
    "scale": "mixolidio",
    "duration": 43.91,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 72
   },
   {
    "file": "res://audio/music/pista_009.ogg",
@@ -107,7 +139,11 @@
    "scale": "pentatonica",
    "duration": 38.07,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 85
   },
   {
    "file": "res://audio/music/pista_010.ogg",
@@ -119,7 +155,11 @@
    "scale": "pentatonica",
    "duration": 36.72,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 73
   },
   {
    "file": "res://audio/music/pista_011.ogg",
@@ -131,7 +171,11 @@
    "scale": "mixolidio",
    "duration": 39.17,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 90
   },
   {
    "file": "res://audio/music/pista_012.ogg",
@@ -143,7 +187,11 @@
    "scale": "mixolidio",
    "duration": 34.15,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 76
   },
   {
    "file": "res://audio/music/pista_013.ogg",
@@ -155,7 +203,11 @@
    "scale": "pentatonica",
    "duration": 38.38,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 81
   },
   {
    "file": "res://audio/music/pista_014.ogg",
@@ -167,7 +219,11 @@
    "scale": "dorico",
    "duration": 41.14,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 73
   },
   {
    "file": "res://audio/music/pista_015.ogg",
@@ -179,7 +235,11 @@
    "scale": "pentatonica",
    "duration": 37.6,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 77
   },
   {
    "file": "res://audio/music/pista_016.ogg",
@@ -191,7 +251,11 @@
    "scale": "dorico",
    "duration": 44.5,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 93
   },
   {
    "file": "res://audio/music/pista_017.ogg",
@@ -203,7 +267,11 @@
    "scale": "hexatonica",
    "duration": 41.28,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 92
   },
   {
    "file": "res://audio/music/pista_018.ogg",
@@ -215,7 +283,11 @@
    "scale": "pentatonica",
    "duration": 45.36,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 74
   },
   {
    "file": "res://audio/music/pista_019.ogg",
@@ -227,7 +299,11 @@
    "scale": "mixolidio",
    "duration": 39.19,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 89
   },
   {
    "file": "res://audio/music/pista_020.ogg",
@@ -239,7 +315,11 @@
    "scale": "hexatonica",
    "duration": 37.83,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 80
   },
   {
    "file": "res://audio/music/pista_021.ogg",
@@ -251,7 +331,11 @@
    "scale": "mixolidio",
    "duration": 37.77,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 79
   },
   {
    "file": "res://audio/music/pista_022.ogg",
@@ -263,7 +347,11 @@
    "scale": "pentatonica",
    "duration": 42.41,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 71
   },
   {
    "file": "res://audio/music/pista_023.ogg",
@@ -275,7 +363,11 @@
    "scale": "dorico",
    "duration": 39.92,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 80
   },
   {
    "file": "res://audio/music/pista_024.ogg",
@@ -287,7 +379,11 @@
    "scale": "mixolidio",
    "duration": 36.27,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 81
   },
   {
    "file": "res://audio/music/pista_025.ogg",
@@ -299,7 +395,11 @@
    "scale": "mixolidio",
    "duration": 40.58,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 73
   },
   {
    "file": "res://audio/music/pista_026.ogg",
@@ -311,7 +411,11 @@
    "scale": "mixolidio",
    "duration": 38.47,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 80
   },
   {
    "file": "res://audio/music/pista_027.ogg",
@@ -323,7 +427,11 @@
    "scale": "pentatonica",
    "duration": 39.94,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 78
   },
   {
    "file": "res://audio/music/pista_028.ogg",
@@ -335,7 +443,11 @@
    "scale": "pentatonica",
    "duration": 42.11,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 90
   },
   {
    "file": "res://audio/music/pista_029.ogg",
@@ -347,7 +459,11 @@
    "scale": "mixolidio",
    "duration": 39.0,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 89
   },
   {
    "file": "res://audio/music/pista_030.ogg",
@@ -359,7 +475,11 @@
    "scale": "dorico",
    "duration": 43.53,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 89
   },
   {
    "file": "res://audio/music/pista_031.ogg",
@@ -371,7 +491,11 @@
    "scale": "pentatonica",
    "duration": 37.92,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 67
   },
   {
    "file": "res://audio/music/pista_032.ogg",
@@ -383,7 +507,11 @@
    "scale": "pelog",
    "duration": 35.12,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 65
   },
   {
    "file": "res://audio/music/pista_033.ogg",
@@ -395,7 +523,11 @@
    "scale": "hijaz",
    "duration": 45.88,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 55
   },
   {
    "file": "res://audio/music/pista_034.ogg",
@@ -407,7 +539,11 @@
    "scale": "dorico",
    "duration": 38.3,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 58
   },
   {
    "file": "res://audio/music/pista_035.ogg",
@@ -419,7 +555,11 @@
    "scale": "pentatonica",
    "duration": 37.77,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 64
   },
   {
    "file": "res://audio/music/pista_036.ogg",
@@ -431,7 +571,11 @@
    "scale": "pentatonica",
    "duration": 39.0,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 58
   },
   {
    "file": "res://audio/music/pista_037.ogg",
@@ -443,7 +587,11 @@
    "scale": "hijaz",
    "duration": 45.5,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 55
   },
   {
    "file": "res://audio/music/pista_038.ogg",
@@ -455,7 +603,11 @@
    "scale": "hijaz",
    "duration": 41.45,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 69
   },
   {
    "file": "res://audio/music/pista_039.ogg",
@@ -467,7 +619,11 @@
    "scale": "dorico",
    "duration": 45.36,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 57
   },
   {
    "file": "res://audio/music/pista_040.ogg",
@@ -479,7 +635,11 @@
    "scale": "dorico",
    "duration": 37.57,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 56
   },
   {
    "file": "res://audio/music/pista_041.ogg",
@@ -491,7 +651,11 @@
    "scale": "pelog",
    "duration": 42.06,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 69
   },
   {
    "file": "res://audio/music/pista_042.ogg",
@@ -503,7 +667,11 @@
    "scale": "pelog",
    "duration": 35.11,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 53
   },
   {
    "file": "res://audio/music/pista_043.ogg",
@@ -515,7 +683,11 @@
    "scale": "dorico",
    "duration": 41.25,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 58
   },
   {
    "file": "res://audio/music/pista_044.ogg",
@@ -527,7 +699,11 @@
    "scale": "pelog",
    "duration": 41.22,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 68
   },
   {
    "file": "res://audio/music/pista_045.ogg",
@@ -539,7 +715,11 @@
    "scale": "pentatonica",
    "duration": 44.69,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 60
   },
   {
    "file": "res://audio/music/pista_046.ogg",
@@ -551,7 +731,11 @@
    "scale": "hijaz",
    "duration": 36.26,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 57
   },
   {
    "file": "res://audio/music/pista_047.ogg",
@@ -563,7 +747,11 @@
    "scale": "hijaz",
    "duration": 43.45,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 56
   },
   {
    "file": "res://audio/music/pista_048.ogg",
@@ -575,7 +763,11 @@
    "scale": "pentatonica",
    "duration": 41.92,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 62
   },
   {
    "file": "res://audio/music/pista_049.ogg",
@@ -587,7 +779,11 @@
    "scale": "pentatonica",
    "duration": 45.01,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 53
   },
   {
    "file": "res://audio/music/pista_050.ogg",
@@ -599,7 +795,11 @@
    "scale": "dorico",
    "duration": 41.19,
    "layers": 3,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": true,
+   "bpm_fin": 69
   },
   {
    "file": "res://audio/music/pista_051.ogg",
@@ -611,7 +811,11 @@
    "scale": "pelog",
    "duration": 35.62,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 104
   },
   {
    "file": "res://audio/music/pista_052.ogg",
@@ -623,7 +827,11 @@
    "scale": "menor_arm",
    "duration": 38.83,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 106
   },
   {
    "file": "res://audio/music/pista_053.ogg",
@@ -635,7 +843,11 @@
    "scale": "pelog",
    "duration": 34.81,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 88
   },
   {
    "file": "res://audio/music/pista_054.ogg",
@@ -647,7 +859,11 @@
    "scale": "menor_arm",
    "duration": 44.28,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 91
   },
   {
    "file": "res://audio/music/pista_055.ogg",
@@ -659,7 +875,11 @@
    "scale": "menor_arm",
    "duration": 37.86,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 94
   },
   {
    "file": "res://audio/music/pista_056.ogg",
@@ -671,7 +891,11 @@
    "scale": "menor_arm",
    "duration": 38.06,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 84
   },
   {
    "file": "res://audio/music/pista_057.ogg",
@@ -683,7 +907,11 @@
    "scale": "menor_arm",
    "duration": 35.54,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 99
   },
   {
    "file": "res://audio/music/pista_058.ogg",
@@ -695,7 +923,11 @@
    "scale": "hijaz",
    "duration": 34.39,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 97
   },
   {
    "file": "res://audio/music/pista_059.ogg",
@@ -707,7 +939,11 @@
    "scale": "frigio_dom",
    "duration": 40.66,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 95
   },
   {
    "file": "res://audio/music/pista_060.ogg",
@@ -719,7 +955,11 @@
    "scale": "frigio_dom",
    "duration": 40.19,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 95
   },
   {
    "file": "res://audio/music/pista_061.ogg",
@@ -731,7 +971,11 @@
    "scale": "menor_arm",
    "duration": 44.57,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 111
   },
   {
    "file": "res://audio/music/pista_062.ogg",
@@ -743,7 +987,11 @@
    "scale": "hijaz",
    "duration": 37.82,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 104
   },
   {
    "file": "res://audio/music/pista_063.ogg",
@@ -755,7 +1003,11 @@
    "scale": "hijaz",
    "duration": 35.41,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 108
   },
   {
    "file": "res://audio/music/pista_064.ogg",
@@ -767,7 +1019,11 @@
    "scale": "menor_arm",
    "duration": 43.84,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 96
   },
   {
    "file": "res://audio/music/pista_065.ogg",
@@ -779,7 +1035,11 @@
    "scale": "hijaz",
    "duration": 40.7,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 91
   },
   {
    "file": "res://audio/music/pista_066.ogg",
@@ -791,7 +1051,11 @@
    "scale": "pelog",
    "duration": 42.39,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 89
   },
   {
    "file": "res://audio/music/pista_067.ogg",
@@ -803,7 +1067,11 @@
    "scale": "menor_arm",
    "duration": 44.67,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 98
   },
   {
    "file": "res://audio/music/pista_068.ogg",
@@ -815,7 +1083,11 @@
    "scale": "frigio_dom",
    "duration": 41.8,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 85
   },
   {
    "file": "res://audio/music/pista_069.ogg",
@@ -827,7 +1099,11 @@
    "scale": "hijaz",
    "duration": 44.11,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 154
   },
   {
    "file": "res://audio/music/pista_070.ogg",
@@ -839,7 +1115,11 @@
    "scale": "menor_arm",
    "duration": 42.27,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 161
   },
   {
    "file": "res://audio/music/pista_071.ogg",
@@ -851,7 +1131,11 @@
    "scale": "menor_arm",
    "duration": 38.91,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 150
   },
   {
    "file": "res://audio/music/pista_072.ogg",
@@ -863,7 +1147,11 @@
    "scale": "frigio_dom",
    "duration": 38.24,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 134
   },
   {
    "file": "res://audio/music/pista_073.ogg",
@@ -875,7 +1163,11 @@
    "scale": "hijaz",
    "duration": 36.6,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 142
   },
   {
    "file": "res://audio/music/pista_074.ogg",
@@ -887,7 +1179,11 @@
    "scale": "frigio_dom",
    "duration": 38.41,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 131
   },
   {
    "file": "res://audio/music/pista_075.ogg",
@@ -899,7 +1195,11 @@
    "scale": "frigio_dom",
    "duration": 37.21,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 151
   },
   {
    "file": "res://audio/music/pista_076.ogg",
@@ -911,7 +1211,11 @@
    "scale": "hijaz",
    "duration": 37.83,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 132
   },
   {
    "file": "res://audio/music/pista_077.ogg",
@@ -923,7 +1227,11 @@
    "scale": "menor_arm",
    "duration": 36.86,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 131
   },
   {
    "file": "res://audio/music/pista_078.ogg",
@@ -935,7 +1243,11 @@
    "scale": "hijaz",
    "duration": 35.53,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 152
   },
   {
    "file": "res://audio/music/pista_079.ogg",
@@ -947,7 +1259,11 @@
    "scale": "hijaz",
    "duration": 39.08,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 138
   },
   {
    "file": "res://audio/music/pista_080.ogg",
@@ -959,7 +1275,11 @@
    "scale": "frigio_dom",
    "duration": 43.1,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 134
   },
   {
    "file": "res://audio/music/pista_081.ogg",
@@ -971,7 +1291,11 @@
    "scale": "menor_arm",
    "duration": 39.26,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 159
   },
   {
    "file": "res://audio/music/pista_082.ogg",
@@ -983,7 +1307,11 @@
    "scale": "frigio_dom",
    "duration": 43.38,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 135
   },
   {
    "file": "res://audio/music/pista_083.ogg",
@@ -995,7 +1323,11 @@
    "scale": "menor_arm",
    "duration": 34.52,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 138
   },
   {
    "file": "res://audio/music/pista_084.ogg",
@@ -1007,7 +1339,11 @@
    "scale": "hijaz",
    "duration": 34.37,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 148
   },
   {
    "file": "res://audio/music/pista_085.ogg",
@@ -1019,7 +1355,11 @@
    "scale": "frigio_dom",
    "duration": 39.59,
    "layers": 4,
-   "crossfade": 1.0
+   "crossfade": 1.0,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 149
   },
   {
    "file": "res://audio/music/pista_086.ogg",
@@ -1031,7 +1371,11 @@
    "scale": "mixolidio",
    "duration": 38.02,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 117
   },
   {
    "file": "res://audio/music/pista_087.ogg",
@@ -1043,7 +1387,11 @@
    "scale": "hexatonica",
    "duration": 45.49,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 119
   },
   {
    "file": "res://audio/music/pista_088.ogg",
@@ -1055,7 +1403,11 @@
    "scale": "pentatonica",
    "duration": 34.89,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 108
   },
   {
    "file": "res://audio/music/pista_089.ogg",
@@ -1067,7 +1419,11 @@
    "scale": "pentatonica",
    "duration": 36.01,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 130
   },
   {
    "file": "res://audio/music/pista_090.ogg",
@@ -1079,7 +1435,11 @@
    "scale": "pentatonica",
    "duration": 37.56,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 115
   },
   {
    "file": "res://audio/music/pista_091.ogg",
@@ -1091,7 +1451,11 @@
    "scale": "pentatonica",
    "duration": 42.63,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 120
   },
   {
    "file": "res://audio/music/pista_092.ogg",
@@ -1103,7 +1467,11 @@
    "scale": "pentatonica",
    "duration": 45.76,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 113
   },
   {
    "file": "res://audio/music/pista_093.ogg",
@@ -1115,7 +1483,11 @@
    "scale": "mixolidio",
    "duration": 41.54,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 126
   },
   {
    "file": "res://audio/music/pista_094.ogg",
@@ -1127,7 +1499,11 @@
    "scale": "pentatonica",
    "duration": 34.96,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 120
   },
   {
    "file": "res://audio/music/pista_095.ogg",
@@ -1139,7 +1515,11 @@
    "scale": "hexatonica",
    "duration": 37.86,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 113
   },
   {
    "file": "res://audio/music/pista_096.ogg",
@@ -1151,7 +1531,11 @@
    "scale": "mixolidio",
    "duration": 40.59,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 122
   },
   {
    "file": "res://audio/music/pista_097.ogg",
@@ -1163,7 +1547,11 @@
    "scale": "hexatonica",
    "duration": 40.92,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "laud",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 108
   },
   {
    "file": "res://audio/music/pista_098.ogg",
@@ -1175,7 +1563,11 @@
    "scale": "hexatonica",
    "duration": 39.98,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "flauta",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 121
   },
   {
    "file": "res://audio/music/pista_099.ogg",
@@ -1187,7 +1579,11 @@
    "scale": "pentatonica",
    "duration": 36.13,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "acordeon",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 118
   },
   {
    "file": "res://audio/music/pista_100.ogg",
@@ -1199,7 +1595,171 @@
    "scale": "mixolidio",
    "duration": 38.27,
    "layers": 4,
-   "crossfade": 2.5
+   "crossfade": 2.5,
+   "lead": "marimba",
+   "palette": "original",
+   "ambient": false,
+   "bpm_fin": 130
+  },
+  {
+   "file": "res://audio/music/cuerda_001.ogg",
+   "state": "dia",
+   "zone": "bosque",
+   "any_zone": false,
+   "intensity": 0.25,
+   "bpm": 61,
+   "bpm_fin": 61,
+   "scale": "dorico",
+   "duration": 43.65,
+   "layers": 3,
+   "crossfade": 3.5,
+   "lead": "guitarra",
+   "palette": "cuerda_pulsada",
+   "ambient": true
+  },
+  {
+   "file": "res://audio/music/cuerda_002.ogg",
+   "state": "dia",
+   "zone": "barrio_jubilado",
+   "any_zone": false,
+   "intensity": 0.25,
+   "bpm": 66,
+   "bpm_fin": 66,
+   "scale": "mixolidio",
+   "duration": 43.6,
+   "layers": 3,
+   "crossfade": 3.5,
+   "lead": "oud",
+   "palette": "cuerda_pulsada",
+   "ambient": true
+  },
+  {
+   "file": "res://audio/music/cuerda_003.ogg",
+   "state": "dia",
+   "zone": "barrio_mohocrata",
+   "any_zone": false,
+   "intensity": 0.25,
+   "bpm": 62,
+   "bpm_fin": 62,
+   "scale": "dorico",
+   "duration": 43.62,
+   "layers": 3,
+   "crossfade": 3.5,
+   "lead": "shamisen",
+   "palette": "cuerda_pulsada",
+   "ambient": true
+  },
+  {
+   "file": "res://audio/music/cuerda_004.ogg",
+   "state": "dia",
+   "zone": "tierra_de_nadie",
+   "any_zone": false,
+   "intensity": 0.25,
+   "bpm": 58,
+   "bpm_fin": 58,
+   "scale": "dorico",
+   "duration": 42.86,
+   "layers": 3,
+   "crossfade": 3.5,
+   "lead": "laud",
+   "palette": "cuerda_pulsada",
+   "ambient": true
+  },
+  {
+   "file": "res://audio/music/cuerda_005.ogg",
+   "state": "noche",
+   "zone": "bosque",
+   "any_zone": false,
+   "intensity": 0.18,
+   "bpm": 55,
+   "bpm_fin": 55,
+   "scale": "hijaz",
+   "duration": 45.53,
+   "layers": 3,
+   "crossfade": 4.0,
+   "lead": "guitarra",
+   "palette": "cuerda_pulsada",
+   "ambient": true
+  },
+  {
+   "file": "res://audio/music/cuerda_006.ogg",
+   "state": "noche",
+   "zone": "barrio_mohocrata",
+   "any_zone": false,
+   "intensity": 0.18,
+   "bpm": 55,
+   "bpm_fin": 55,
+   "scale": "dorico",
+   "duration": 42.22,
+   "layers": 3,
+   "crossfade": 4.0,
+   "lead": "shamisen",
+   "palette": "cuerda_pulsada",
+   "ambient": true
+  },
+  {
+   "file": "res://audio/music/cuerda_007.ogg",
+   "state": "tension",
+   "zone": "tierra_de_nadie",
+   "any_zone": true,
+   "intensity": 0.6,
+   "bpm": 85,
+   "bpm_fin": 103,
+   "scale": "frigio_dom",
+   "duration": 34.9,
+   "layers": 3,
+   "crossfade": 2.0,
+   "lead": "oud",
+   "palette": "cuerda_pulsada",
+   "ambient": false
+  },
+  {
+   "file": "res://audio/music/cuerda_008.ogg",
+   "state": "tension",
+   "zone": "bosque",
+   "any_zone": true,
+   "intensity": 0.6,
+   "bpm": 91,
+   "bpm_fin": 109,
+   "scale": "hijaz",
+   "duration": 36.69,
+   "layers": 3,
+   "crossfade": 2.0,
+   "lead": "guitarra",
+   "palette": "cuerda_pulsada",
+   "ambient": false
+  },
+  {
+   "file": "res://audio/music/cuerda_009.ogg",
+   "state": "tension",
+   "zone": "barrio_jubilado",
+   "any_zone": true,
+   "intensity": 0.6,
+   "bpm": 86,
+   "bpm_fin": 104,
+   "scale": "frigio_dom",
+   "duration": 39.01,
+   "layers": 3,
+   "crossfade": 2.0,
+   "lead": "shamisen",
+   "palette": "cuerda_pulsada",
+   "ambient": false
+  },
+  {
+   "file": "res://audio/music/cuerda_010.ogg",
+   "state": "tension",
+   "zone": "barrio_mohocrata",
+   "any_zone": true,
+   "intensity": 0.6,
+   "bpm": 84,
+   "bpm_fin": 102,
+   "scale": "hijaz",
+   "duration": 35.42,
+   "layers": 3,
+   "crossfade": 2.0,
+   "lead": "laud",
+   "palette": "cuerda_pulsada",
+   "ambient": false
   }
  ],
  "voices": [

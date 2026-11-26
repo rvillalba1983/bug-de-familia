@@ -1,6 +1,24 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
+> - **Estado (26-nov, fase FUSIONADA):** `fase/arte-identidad-24-zonas`
+>   **fusionada en `main`** (PR #46, aprobado por el director; CI 6/6 en verde
+>   tras repetir un job cuyo import de Linux crashó una vez con `signal 11`).
+>   **Cambiar de conversación.** Hecho: **ADR 0044 / P-62** (opción L3-B
+>   incluida): 96 fachadas SVG propias (4 por zona; las 32 aprobadas intactas),
+>   8 texturas de suelo con bioma y tinte para las 24 zonas (5 nuevas horneadas
+>   en local), `facades` en 42 corredores y `sign` en 47 sin mover geometría ni
+>   cartelería. `despliegue_cero` conserva su suelo y estrena fachadas propias.
+>   Coste 0 créditos, sin servicios externos.
+>   **Verificación ejecutada:** import sin errores; `tests/zones` 83/83
+>   (`report_51`, JUnit validado); `verificar.py` OK (105 comprobaciones,
+>   313 literales `res://`, 900 conversaciones); formato 0 errores (78 avisos
+>   preexistentes); `.exe` regenerado desde esta rama antes de la fusión
+>   (preset «Windows»); CI del PR #46: 6/6 jobs verdes (runs `45875049375` y
+>   `45875096789`, `despliegue_cero` 11m28s y 12m43s).
+>   **Validación visual en partida aprobada por el director el 26-nov.** Sin
+>   ejecutar: suite completa `res://tests` en sesión, capturas con ventana,
+>   medición en gráfica real y prueba de humo del binario exportado.
 > - **Estado (26-nov, fase FUSIONADA):** `fase/zonas-interaccion-actividades`
 >   **fusionada en `main`** (PR #45, merge `d3a1b3e`, aprobado por el director;
 >   CI 6/6 en verde). **Cambiar de conversación.** Hecho: **P-61/ADR 0043**

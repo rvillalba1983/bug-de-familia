@@ -242,12 +242,16 @@ const FLOOR_ART_BY_ZONE: Dictionary = {
 	"ultima_ruta": ["mercado", Color(1.0, 0.82, 0.66)],
 	"valle": ["bosque", Color(0.78, 0.98, 0.92)],
 }
+## Umbrales de noche usados también por la música de las 24 zonas.
+const NIGHT_START: int = 21
+const NIGHT_END: int = 8
 ## Provisional: distancia a la que un grupo se mete en la pelea de los suyos.
 const GROUP_REACT_RADIUS: float = 250.0
 
 var definition: ZoneDefinition = null
 var live_world: LiveWorld = null
 var battles: BattleDirector = null
+var music: MusicDirector = null
 
 var _zone_enemy_ids: Dictionary = {}
 var _zone_materials: Dictionary = {}
@@ -264,6 +268,17 @@ var _zone_signs: Dictionary = {}
 
 func zone_definition() -> ZoneDefinition:
 	return definition
+
+
+## Identificador de la zona para seleccionar la música. Cada zona puede
+## superponerlo: despliegue_cero lo deriva de la posición del jugador.
+func music_zone() -> String:
+	return definition.id if definition != null else ""
+
+
+## Las zonas genéricas solo suenan con sus propios cues de tensión.
+func music_prefers_own_zone() -> bool:
+	return true
 
 
 func set_definition(zone: ZoneDefinition) -> void:
@@ -344,6 +359,13 @@ func after_enter(from_zone: String) -> void:
 	freeze_player(false)
 
 
+func _ready() -> void:
+	super()
+	music = MusicDirector.new()
+	music.level = self
+	add_child(music)
+
+
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	_apply_night_peace()
@@ -351,6 +373,11 @@ func _physics_process(delta: float) -> void:
 
 func local_hour() -> int:
 	return posmod(WorldCalendar.now_local() / 3600, 24)
+
+
+func is_night() -> bool:
+	var hour: int = local_hour()
+	return hour >= NIGHT_START or hour < NIGHT_END
 
 
 func _apply_night_peace() -> void:

@@ -5,6 +5,10 @@ Estado: decisión del director del 26-nov, implementada en la rama
 `2146d76`). El director escuchó los cues en el exe de prueba y aprobó la
 paleta («me parecen bien»); el CI del PR terminó en verde.
 
+**Nota (26-nov, `adr/0047`):** estos diez cues siguen vigentes e intactos en
+`despliegue_cero`. La fase `fase/musica-24-zonas` los amplió con 69 cues
+zonales para las otras 23 zonas; está EN CURSO y sin fusionar.
+
 ## Contexto
 
 `docs/03_ESTADO.md` recogía desde el 14-nov una preferencia de diseño: la música
@@ -65,8 +69,9 @@ Esto no toca la semilla de la partida.
   centroide espectral medio baja de 2590 Hz a 2165 Hz (−16 %) y el RMS de 0,097
   a 0,074; el pico queda en 0,769 (0,772 en las originales), sin saturación.
   El director escuchó los cues en partida y aprobó la paleta.
-- Solo se instancia `MusicDirector` en `despliegue_cero`; las otras 23 zonas no
-  estrenan música. Combate y festival conservan la paleta anterior.
+- En esta fase solo se instanciaba `MusicDirector` en `despliegue_cero`.
+  `adr/0047` lo extiende a las otras 23 zonas con música zonal; combate y
+  festival conservan la paleta anterior.
 - Si se ejecuta el generador completo (`gen_audio.py`) se perderían los nuevos
   campos del catálogo. Para ampliar la paleta hay que usar el generador
   incremental.

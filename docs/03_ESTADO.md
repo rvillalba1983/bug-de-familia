@@ -1,6 +1,23 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesión):**
+> - **Estado (26-nov, fase EN CURSO, SIN FUSIONAR):**
+>   `fase/musica-24-zonas`. PR abierto, pendiente de fusión; **no cambiar de
+>   conversación**.
+>   Hecho: **ADR 0047**: 69 cues zonales `cuerda_zonal` para las 23 zonas
+>   excepto `despliegue_cero` (día/noche/tensión), 179 pistas en el catálogo,
+>   generador incremental y `MusicDirector` en las 24 zonas, con preferencia
+>   del cue propio en tensión. Coste 0 créditos, sin servicios externos.
+>   **Verificación ejecutada:** import sin errores (69 `.import`);
+>   `music_zones_test` 6/6 (`report_60`, JUnit validado); `music_test` 9/9
+>   (`report_61`, JUnit validado); `tests/zones` 88/88 en una pasada previa
+>   (`report_57`); `verificar.py` OK; `validar_datos.py --estricto` OK;
+>   formato 0 errores (78 avisos preexistentes); prueba de humo del exe de
+>   prueba (`build/prueba_cuerda_zonas.exe`) OK. Rotaciones de modelos:
+>   `adr/0046`. El director **escuchó los cues y aprobó la paleta**.
+>   **Sin ejecutar:** suite completa `res://tests` y medición en gráfica real.
+>   Sin `.exe` oficial regenerado desde esta rama: pendiente de aprobación y
+>   fusión del PR.
 > - **Estado (26-nov, fase FUSIONADA):** `fase/audio-ambiental-cuerda`
 >   **fusionada en `main`** (PR #47, aprobado por el director; CI 4/4 jobs
 >   verdes en los runs `45899765032` y `45899809971`, 12m44s y 12m54s).

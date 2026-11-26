@@ -127,3 +127,7 @@ UI_ZONE_SIGN_ARROW,"→  Seguir el camino  →"
 UI_ZONE_SIGN_DISTANCE,"a %s"
 UI_LOADING,Cruzando el mundo…
 UI_LOADING_HINT,Las IAs del destino te esperan al otro lado.
+BETA_ITEM_NOTICE_BOARD,Tablón de avisos
+BETA_ITEM_REST_BENCH,Banco de descanso
+BETA_NOTICE_BOARD_TEXT,El tablón reúne rumores del barrio: ruidos en el generador, huellas en el barro y broncas en la tierra de nadie.
+BETA_REST_BENCH_TEXT,Te sientas un momento. El barrio sigue tenso, pero ahora tienes más claro por dónde moverte.

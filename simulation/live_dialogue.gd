@@ -19,6 +19,10 @@ var progenitor_id: String = ""
 var progenitor_actor: Node2D = null
 var progenitor_bubble: SpeechBubble = null
 
+## Actor guionado de zona: usa el mismo panel, pero no está en `WorldSim`.
+var external_actor: Node2D = null
+var external_bubble: SpeechBubble = null
+
 var _options: Array = []
 var _insulted: bool = false
 var _branch: String = ""
@@ -57,6 +61,10 @@ func is_progenitor() -> bool:
 	return not progenitor_id.is_empty()
 
 
+func is_external() -> bool:
+	return external_actor != null
+
+
 ## Abre el árbol propio del progenitor con su guardia y su bocadillo de zona.
 ## No se registra en `sim.npcs` para no crear un ciudadano duplicado.
 func open_progenitor(id: String, actor: Node2D, bubble: SpeechBubble) -> void:
@@ -77,6 +85,15 @@ func open_progenitor(id: String, actor: Node2D, bubble: SpeechBubble) -> void:
 	open(state)
 
 
+## Abre diálogo con un actor guionado de zona que no vive en `WorldSim`.
+func open_external(target: NpcState, actor: Node2D, bubble: SpeechBubble) -> void:
+	if world == null or not is_instance_valid(actor) or bubble == null:
+		return
+	external_actor = actor
+	external_bubble = bubble
+	open(target)
+
+
 func open(target: NpcState) -> void:
 	npc = target
 	_insulted = false
@@ -92,7 +109,7 @@ func open(target: NpcState) -> void:
 	world.level.pause.begin_modal()
 	## P-32: hablar con un NPC descubre los retos de la zona.
 	world.level.discover_challenge()
-	if not is_progenitor() and \
+	if not is_progenitor() and not is_external() and \
 			float(world.sim.player_standing.get(npc.species, 0.0)) <= REFUSE_STANDING:
 		_say(tr("LIVE_REFUSE"))
 		_set_options([[tr("LIVE_HIT"), _hit], [tr("LIVE_BYE"), close]])
@@ -167,6 +184,9 @@ func close() -> void:
 	if is_progenitor():
 		if is_instance_valid(progenitor_bubble):
 			progenitor_bubble.clear()
+	elif is_external():
+		if is_instance_valid(external_bubble):
+			external_bubble.clear()
 	else:
 		world.bubble_of(npc.id).clear()
 	npc = null
@@ -176,6 +196,8 @@ func close() -> void:
 	progenitor_id = ""
 	progenitor_actor = null
 	progenitor_bubble = null
+	external_actor = null
+	external_bubble = null
 	bar.clear()
 	world.level.pause.end_modal()
 
@@ -201,16 +223,19 @@ func _refresh() -> void:
 		entries.append([tr("LIVE_BYE"), close])
 		_set_options(entries)
 		return
-	var entries: Array = [[tr("LIVE_ASK_NEWS"), _ask_news]]
-	if _latest_belief() >= 0:
-		entries.append([tr("LIVE_ASK_SOURCE"), _ask_source])
-	entries.append([tr("LIVE_ASK_LORE"), _ask_lore])
+	var entries: Array = []
+	if not is_external():
+		entries.append([tr("LIVE_ASK_NEWS"), _ask_news])
+		if _latest_belief() >= 0:
+			entries.append([tr("LIVE_ASK_SOURCE"), _ask_source])
+		entries.append([tr("LIVE_ASK_LORE"), _ask_lore])
 	entries.append(["¿Sabes de otra zona?", _ask_zone_rumor])
 	if not _dialogue_tree.is_empty():
 		entries.append(["Hablar", _enter_dialogue])
 	if not _conversation_nodes.is_empty():
 		entries.append(["Te cuento algo", _enter_conversation])
-	entries.append_array(world.extra_options(npc))
+	if not is_external():
+		entries.append_array(world.extra_options(npc))
 	entries.append([tr("LIVE_BADMOUTH") % SpeciesCatalog.plural(SpeciesCatalog.rival(npc.species)), _badmouth])
 	entries.append([tr("LIVE_PRAISE"), _praise])
 	entries.append([tr("LIVE_HIT"), _hit] if _insulted else [tr("LIVE_INSULT"), _insult])
@@ -305,7 +330,7 @@ func _set_options(entries: Array) -> void:
 
 
 func _say(text: String) -> void:
-	var bubble: SpeechBubble = progenitor_bubble if is_progenitor() else world.bubble_of(npc.id)
+	var bubble: SpeechBubble = progenitor_bubble if is_progenitor() else external_bubble if is_external() else world.bubble_of(npc.id)
 	if bubble == null or not is_instance_valid(bubble):
 		return
 	bubble.say(text, Color.BLACK, 3600.0)
@@ -399,7 +424,8 @@ func _ask_zone_rumor() -> void:
 func _praise() -> void:
 	npc.feel("alegria", 20.0)
 	npc.relate(WorldSim.PLAYER_ID, "afecto", 10.0)
-	world.sim.change_standing(npc.species, PRAISE_STANDING)
+	if not is_external():
+		world.sim.change_standing(npc.species, PRAISE_STANDING)
 	reply(_random_line(npc, "praised"))
 
 
@@ -417,6 +443,12 @@ func _hit() -> void:
 		else:
 			world.level.kill_progenitor(target_id)
 		return
+	if is_external():
+		var target: Node2D = external_actor
+		close()
+		if target is Guard and is_instance_valid(target) and not (target as Guard).is_down():
+			world.level.attack_citizen(target as Guard)
+		return
 	var guard: Guard = world.citizens[npc.id]
 	close()
 	world.level.attack_citizen(guard)
@@ -425,13 +457,16 @@ func _hit() -> void:
 ## Malmeter de la otra raza: a la tercera vez estalla la batalla.
 func _badmouth() -> void:
 	npc.feel("ira", BADMOUTH_ANGER)
-	world.sim.change_species_relation(BADMOUTH_RELATION)
-	world.provocations += 1
-	if world.provocations >= PROVOCATIONS_NEEDED:
-		world.provocations = 0
-		world.provoke_battle(tr("LIVE_BADMOUTH_BOOM"))
+	if not is_external():
+		world.sim.change_species_relation(BADMOUTH_RELATION)
+		world.provocations += 1
+		if world.provocations >= PROVOCATIONS_NEEDED:
+			world.provocations = 0
+			world.provoke_battle(tr("LIVE_BADMOUTH_BOOM"))
+			return
+		reply(tr("LIVE_BADMOUTH_%d" % world.provocations))
 		return
-	reply(tr("LIVE_BADMOUTH_%d" % world.provocations))
+	reply(_random_line(npc, "angry"))
 
 
 func _insult() -> void:
@@ -441,5 +476,6 @@ func _insult() -> void:
 	if is_progenitor():
 		## El nodo «insultado» dice la réplica; aquí solo cambia el estado.
 		return
-	world.sim.change_standing(npc.species, INSULT_STANDING)
+	if not is_external():
+		world.sim.change_standing(npc.species, INSULT_STANDING)
 	reply(_random_line(npc, "angry"))

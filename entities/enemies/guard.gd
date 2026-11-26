@@ -231,6 +231,21 @@ func is_down() -> bool:
 	return state == State.DOWN
 
 
+## Restaura un caído conservado en escena (ADR 0043). No emite `fell`.
+func restore_fallen() -> void:
+	attack.cancel()
+	state = State.DOWN
+	health = 0.0
+	_corpse_time = INF
+	velocity = Vector2.ZERO
+	detector.reset()
+	if _view != null:
+		_view.visible = false
+	collision_layer = 0
+	collision_mask = 0
+	queue_redraw()
+
+
 ## Reacciona a un ruido si llega hasta aquí. Las paredes lo atenúan a la mitad.
 func hear(origin: Vector2, radius: float) -> void:
 	if passive or state == State.ALERT or state == State.STUNNED or state == State.DOWN:

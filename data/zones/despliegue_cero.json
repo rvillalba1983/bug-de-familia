@@ -1161,6 +1161,14 @@
     "world_size": [
       4000.0,
       4000.0
+    ],
+    "cartel_avisos": [
+      1660.0,
+      1180.0
+    ],
+    "banco_descanso": [
+      1500.0,
+      1500.0
     ]
   },
   "homes": {
@@ -1223,6 +1231,22 @@
       "at": "pickup_arm",
       "id": "pickup_arm_1",
       "type": "arm"
+    },
+    {
+      "at": "cartel_avisos",
+      "id": "cartel_avisos",
+      "label": "BETA_ITEM_NOTICE_BOARD",
+      "reusable": true,
+      "type": "named",
+      "art": "res://art/shared/props/panel.svg"
+    },
+    {
+      "at": "banco_descanso",
+      "id": "banco_descanso",
+      "label": "BETA_ITEM_REST_BENCH",
+      "reusable": true,
+      "type": "named",
+      "art": "res://art/shared/props/silla_de_oficina_que_se_mueve_sola.svg"
     }
   ],
   "mine_material": "antimateria",

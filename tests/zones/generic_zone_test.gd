@@ -368,3 +368,109 @@ func test_citizens_and_actors_have_their_faction() -> void:
 		assert_str(enemy.detector.faction).is_not_empty().override_failure_message(
 			"El actor %s no lleva bando" % actor_id
 		)
+
+
+## Los actores guionados no progenitores son hablables en zonas genéricas.
+func test_scripted_actor_can_talk_in_generic_zone() -> void:
+	var zone: ZoneBase = await _mount("res://data/zones/valle.json")
+	var actor_id: String = str(zone.zone_definition().list_optional("actors")[0]["id"])
+	var guard: Guard = null
+	for enemy: Guard in zone.guards():
+		if zone.id_of_guard(enemy) == actor_id:
+			guard = enemy
+			break
+	assert_object(guard).is_not_null().override_failure_message(
+		"No se encontró el actor guionado %s" % actor_id)
+	if guard == null:
+		return
+	var item: Interactable = null
+	for child: Node in guard.get_children():
+		if child is Interactable and (child as Interactable).item_id == actor_id:
+			item = child as Interactable
+			break
+	assert_object(item).is_not_null().override_failure_message(
+		"El actor %s no tiene interactuable de conversación" % actor_id)
+	if item == null:
+		return
+	item.activate()
+	await get_tree().process_frame
+	assert_bool(zone.live_world.dialogue.is_open()).is_true()
+	assert_bool(zone.live_world.dialogue.is_external()).is_true()
+	zone.live_world.dialogue.close()
+
+
+func test_named_terminal_item_in_generic_zone_does_not_open_sandbox_door() -> void:
+	var zone: ZoneBase = auto_free(load("res://scenes/zones/zone.tscn").instantiate())
+	var definition: ZoneDefinition = ZoneDefinition.load_from("res://data/zones/valle.json")
+	definition.data["items"] = [{
+		"at": "start",
+		"id": "cartel_prueba",
+		"label": "Cartel de prueba",
+		"reusable": true,
+		"type": "named",
+		"art": "res://art/shared/props/panel.svg",
+	}]
+	zone.set_definition(definition)
+	zone.world_mode = true
+	add_child(zone)
+	await get_tree().process_frame
+	var item: Interactable = zone.items.get("cartel_prueba") as Interactable
+	assert_object(item).is_not_null()
+	if item == null:
+		return
+	assert_object(item.art).is_not_null()
+	item.activate()
+	await get_tree().process_frame
+	if zone.door != null:
+		assert_bool(zone.door.is_open).is_false()
+	assert_str(zone.hud.notice_label.text).is_equal("Cartel de prueba")
+
+
+## Cobertura de la fase: cada actor guionado de cada zona (salvo la beta, que
+## tiene suite propia) debe tener un interactuable de conversación.
+func test_all_generic_zones_expose_interactable_scripted_actors() -> void:
+	var files: PackedStringArray = DirAccess.get_files_at("res://data/zones")
+	var revisadas: int = 0
+	var actores: int = 0
+	for nombre: String in files:
+		if not nombre.ends_with(".json"):
+			continue
+		revisadas += 1
+		if nombre == "despliegue_cero.json":
+			continue
+		var ruta: String = "res://data/zones/" + nombre
+		var definition: ZoneDefinition = ZoneDefinition.load_from(ruta)
+		var zone: ZoneBase = load("res://scenes/zones/zone.tscn").instantiate()
+		zone.set_definition(definition)
+		zone.world_mode = true
+		add_child(zone)
+		await get_tree().process_frame
+		for entry: Dictionary in definition.list("actors"):
+			var id: String = str(entry.get("id", ""))
+			if str(entry.get("species", "")).is_empty():
+				continue  # Progenitores: cubiertos por progenitor_encounter_test
+			var guard: Guard = null
+			for candidate: Guard in zone.guards():
+				if zone.id_of_guard(candidate) == id:
+					guard = candidate
+					break
+			assert_object(guard).override_failure_message(
+				"%s: actor %s sin guardia" % [ruta, id]
+			).is_not_null()
+			if guard == null:
+				continue
+			var found: bool = false
+			for child: Node in guard.get_children():
+				if child is Interactable \
+						and (child as Interactable).item_id == id \
+						and (child as Interactable).kind == Interactable.Kind.NPC:
+					found = true
+					break
+			assert_bool(found).override_failure_message(
+				"%s: actor %s sin interactuable" % [ruta, id]
+			).is_true()
+			actores += 1
+		zone.queue_free()
+		await get_tree().process_frame
+	assert_int(revisadas).is_equal(24)
+	assert_int(actores).is_greater(20)

@@ -142,7 +142,12 @@ func say_from(npc: NpcState, text: String) -> void:
 
 
 func home_of(species: String) -> Rect2:
-	return sim.spawn_areas[species]
+	if sim.spawn_areas.has(species):
+		return sim.spawn_areas[species] as Rect2
+	for area: Variant in sim.spawn_areas.values():
+		if area is Rect2:
+			return area as Rect2
+	return Rect2(0.0, 0.0, 100.0, 100.0)
 
 
 func _sync_positions() -> void:

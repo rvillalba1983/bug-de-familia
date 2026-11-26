@@ -579,6 +579,8 @@ func _spawn_actor(actor: Dictionary) -> void:
 	var progenitor: String = str(actor.get("progenitor", ""))
 	if not progenitor.is_empty():
 		_attach_progenitor(guard_node, progenitor)
+	elif not species.is_empty():
+		_attach_actor_talk(guard_node, id, species)
 	# La caída la conecta el Sandbox en _connect_enemies, con el id del JSON.
 	if not species.is_empty():
 		guard_node.attacked.connect(_on_zone_citizen_attacked.bind(guard_node, species))
@@ -606,6 +608,43 @@ func _attach_progenitor(guard: Guard, progenitor: String) -> void:
 	_register_progenitor_actor(progenitor, guard, bubble)
 
 
+## Hace interactuable a un actor guionado de zona para que pueda conversar.
+func _attach_actor_talk(guard: Guard, actor_id: String, species: String) -> void:
+	var bubble: SpeechBubble = SpeechBubble.new()
+	bubble.position = Vector2(0.0, -120.0)
+	bubble.visible = false
+	guard.add_child(bubble)
+	var item: Interactable = Interactable.new()
+	item.setup(actor_id, Interactable.Kind.NPC, Vector2.ZERO)
+	item.custom_label = _actor_display_name(actor_id, species)
+	item.body_hidden = true
+	item.reusable = true
+	item.activated.connect(_on_actor_activated.bind(actor_id, species, guard, bubble))
+	guard.add_child(item)
+
+
+func _actor_display_name(actor_id: String, species: String) -> String:
+	var base: String = species.replace("_", " ").capitalize()
+	if SpeciesCatalog.has(species):
+		base = SpeciesCatalog.plural(species)
+	return "%s · %s" % [actor_id.replace("_", " ").capitalize(), base]
+
+
+func _on_actor_activated(
+	_item: Interactable, actor_id: String, species: String, guard: Guard, bubble: SpeechBubble
+) -> void:
+	if live_world == null or not is_instance_valid(guard) or guard.is_down():
+		return
+	var state: NpcState = NpcState.new()
+	state.id = actor_id
+	state.species = species
+	state.name = _actor_display_name(actor_id, species)
+	state.role = "vecino"
+	state.pos = guard.global_position
+	state.alive = true
+	live_world.dialogue.open_external(state, guard, bubble)
+
+
 func _register_progenitor_actor(
 	progenitor: String, actor: Node2D, bubble: SpeechBubble
 ) -> void:
@@ -618,26 +657,46 @@ func _on_progenitor_activated(
 ) -> void:
 	if live_world == null or not is_instance_valid(actor):
 		return
-	if actor is Guard and (actor as Guard).is_down():
+	if _is_progenitor_dead(progenitor, actor):
 		return
 	player.gesture_for(item.kind, item.item_id)
 	live_world.dialogue.open_progenitor(progenitor, actor, bubble)
 
 
-## Muerte de un progenitor que no es un guardia (El Contestador).
+func _is_progenitor_dead(progenitor: String, actor: Node2D) -> bool:
+	if investigation.flags.get(PROGENITOR_ITEM_PREFIX + progenitor + "_muerto", false):
+		return true
+	return actor is Guard and (actor as Guard).is_down()
+
+
+## Muerte de un progenitor que no es un guardia (El Contestador). Mantiene el
+## cuerpo visible e inerte: la versión desaparece, la presencia no (ADR 0043).
 func kill_progenitor(progenitor: String) -> void:
 	_on_progenitor_fell(progenitor)
-	var actor: Node2D = _zone_progenitors.get(progenitor) as Node2D
-	if is_instance_valid(actor):
-		actor.visible = false
 
 
-## Consecuencia de lore: si cae un progenitor, su versión desaparece con él.
+## Consecuencia de lore: si cae un progenitor, su versión muere con él, pero el
+## cuerpo se queda en la zona. La bandera evita que vuelva a hablar o pelear.
 func _on_progenitor_fell(progenitor: String) -> void:
-	investigation.flags[PROGENITOR_ITEM_PREFIX + progenitor + "_muerto"] = true
+	var flag: String = PROGENITOR_ITEM_PREFIX + progenitor + "_muerto"
+	if investigation.flags.get(flag, false):
+		return
+	investigation.flags[flag] = true
+	var actor: Node2D = _zone_progenitors.get(progenitor) as Node2D
+	_disable_progenitor_interaction(actor)
 	var line: String = ProgenitorDialogues.death_line(progenitor)
 	if not line.is_empty():
 		ai.say_custom(line)
+
+
+func _disable_progenitor_interaction(actor: Node2D) -> void:
+	if not is_instance_valid(actor):
+		return
+	if actor is Interactable:
+		(actor as Interactable).mark_used()
+	for child: Node in actor.get_children():
+		if child is Interactable:
+			(child as Interactable).mark_used()
 
 
 ## Aspecto de un actor: especie o progenitor, igual que en la zona de despliegue cero.
@@ -685,9 +744,13 @@ func _build_items() -> void:
 		var at: Vector2 = _definition().point(str(entry["at"]))
 		match str(entry["type"]):
 			"named":
-				_add_named(id, at, str(entry.get("label", id)), bool(entry.get("reusable", true)))
-				if entry.has("art"):
-					(items[id] as Interactable).art = load(str(entry["art"])) as Texture2D
+				_add_named(
+					id,
+					at,
+					str(entry.get("label", id)),
+					bool(entry.get("reusable", true)),
+					str(entry.get("art", ""))
+				)
 			"crate":
 				_add_item(id, Interactable.Kind.CRATE, at)
 			"leg":
@@ -698,11 +761,15 @@ func _build_items() -> void:
 				push_error("%s: tipo de objeto desconocido en «%s»" % [_definition().path, id])
 
 
-func _add_named(id: String, at: Vector2, label: String, reusable: bool) -> void:
+func _add_named(
+	id: String, at: Vector2, label: String, reusable: bool, art: String = ""
+) -> void:
 	_add_item(id, Interactable.Kind.TERMINAL, at)
 	var item: Interactable = items[id]
 	item.custom_label = label
 	item.reusable = reusable
+	if not art.is_empty():
+		item.art = load(art) as Texture2D
 
 
 func _build_props() -> void:
@@ -769,6 +836,18 @@ func attack_dialogue_speaker(speaker: String) -> void:
 			attack_citizen(citizen)
 
 
+func on_item_activated(item: Interactable) -> void:
+	if live_world != null and live_world.handles_item(item):
+		return
+	# Los objetos con nombre de zonas genéricas no abren la puerta del sandbox.
+	if item.kind == Interactable.Kind.TERMINAL and item.item_id != Sandbox.ID_TERMINAL:
+		player.gesture_for(item.kind, item.item_id)
+		if not item.custom_label.is_empty():
+			show_notice(item.custom_label)
+		return
+	super(item)
+
+
 func reward_piece() -> void:
 	_add_pickup([ModularBody.Slot.ARM_MAIN_LEFT, ModularBody.Slot.ARM_MAIN_RIGHT])
 
@@ -817,6 +896,33 @@ func _on_enemy_fell(enemy: Guard) -> void:
 			break
 	if live_world != null:
 		live_world.on_citizen_gone(id_of_guard(enemy))
+
+
+## Los progenitores muertos se quedan visibles e inertes (ADR 0043).
+func _should_keep_corpse(enemy: Guard) -> bool:
+	return not _progenitor_id_of(enemy).is_empty()
+
+
+func should_keep_fallen_entity(id: String) -> bool:
+	return id.begins_with(PROGENITOR_ITEM_PREFIX)
+
+
+func mark_fallen_entity(id: String) -> void:
+	var progenitor: String = id.trim_prefix(PROGENITOR_ITEM_PREFIX)
+	if progenitor.is_empty():
+		return
+	if not investigation.flags.get(id + "_muerto", false):
+		_on_progenitor_fell(progenitor)
+	var actor: Node2D = _zone_progenitors.get(progenitor) as Node2D
+	if actor is Guard:
+		(actor as Guard).restore_fallen()
+
+
+func _progenitor_id_of(enemy: Guard) -> String:
+	for progenitor: String in _zone_progenitors:
+		if _zone_progenitors[progenitor] == enemy:
+			return progenitor
+	return ""
 
 
 func _on_zone_citizen_attacked(victim: Guard, species: String) -> void:

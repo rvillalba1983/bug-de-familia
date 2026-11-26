@@ -22,10 +22,10 @@ class LimpiarLogsTest(unittest.TestCase):
 		os.utime(ruta, (AHORA - horas * 3600, AHORA - horas * 3600))
 		return ruta
 
-	def test_borra_log_de_mas_de_48_horas(self) -> None:
+	def test_borra_log_de_mas_de_8_horas(self) -> None:
 		with tempfile.TemporaryDirectory() as temporal:
 			carpeta = Path(temporal)
-			ruta = self.crear(carpeta, "viejo.log", 49)
+			ruta = self.crear(carpeta, "viejo.log", 9)
 			resultado = limpiar_logs.limpiar(carpeta, ahora=AHORA)
 			self.assertEqual(resultado, (1, 0, []))
 			self.assertFalse(ruta.exists())
@@ -33,7 +33,7 @@ class LimpiarLogsTest(unittest.TestCase):
 	def test_conserva_log_reciente(self) -> None:
 		with tempfile.TemporaryDirectory() as temporal:
 			carpeta = Path(temporal)
-			ruta = self.crear(carpeta, "reciente.log", 47)
+			ruta = self.crear(carpeta, "reciente.log", 7)
 			resultado = limpiar_logs.limpiar(carpeta, ahora=AHORA)
 			self.assertEqual(resultado, (0, 1, []))
 			self.assertTrue(ruta.exists())
@@ -70,7 +70,7 @@ class LimpiarLogsTest(unittest.TestCase):
 	def test_dry_run_no_borra(self) -> None:
 		with tempfile.TemporaryDirectory() as temporal:
 			carpeta = Path(temporal)
-			ruta = self.crear(carpeta, "viejo.log", 49)
+			ruta = self.crear(carpeta, "viejo.log", 9)
 			resultado = limpiar_logs.limpiar(carpeta, ahora=AHORA, seco=True)
 			self.assertEqual(resultado, (1, 0, []))
 			self.assertTrue(ruta.exists())

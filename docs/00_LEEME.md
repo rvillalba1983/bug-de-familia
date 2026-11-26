@@ -67,7 +67,7 @@ Comprobaciones deterministas, de más baratas a más caras (todas locales, sin s
 
 | Comando | Qué comprueba |
 |---|---|
-| `python tools/verificar.py` | Punto de entrada único: limpieza de `reports/*.log` con más de 48 h + datos + normas de formato + medición si existe `medicion.txt` |
+| `python tools/verificar.py` | Punto de entrada único: limpieza de `reports/*.log` con más de 8 h + datos + normas de formato + medición si existe `medicion.txt` |
 | `python tools/validar_datos.py` | Comprobaciones de `data/` (incluidos los diálogos y las vistas de arte de los 15 progenitores); `--actualizar` y `--estricto` |
 | `python tools/formatear.py --comprobar` | UTF-8 sin BOM, LF y línea final de `docs/35_normas_codigo.md` |
 | `python tools/comparar_medicion.py medicion.txt` | Regresiones de rendimiento contra `tools/medir_windows/referencia.txt` |

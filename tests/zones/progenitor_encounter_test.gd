@@ -138,3 +138,36 @@ func test_caer_un_progenitor_deja_constancia_en_la_investigacion() -> void:
 	var zone: ZoneBase = await _mount("res://data/zones/taller.json")
 	zone._on_progenitor_fell("biela")
 	assert_bool(zone.investigation.has_flag(ITEM_PREFIX + "biela_muerto")).is_true()
+
+
+func test_progenitor_muerto_sigue_visible_y_no_se_puede_reabrir() -> void:
+	var zone: ZoneBase = await _mount("res://data/zones/taller.json")
+	var guard: Guard = _guard_with_item(zone, "biela")
+	assert_bool(guard != null).is_true()
+	var item: Interactable = _item_of(guard, "biela")
+	item.activate()
+	var dialogue: LiveDialogue = zone.live_world.dialogue
+	dialogue.choose(_option_index(dialogue, "Insultar"))
+	dialogue.choose(_option_index(dialogue, "Golpear"))
+	await get_tree().process_frame
+	guard.take_damage(1000.0)
+	await get_tree().process_frame
+	assert_bool(guard.is_down()).is_true()
+	assert_bool(guard.visible).is_true()
+	assert_bool(zone.investigation.has_flag(ITEM_PREFIX + "biela_muerto")).is_true()
+	assert_bool(item.used).is_true()
+	item.activate()
+	await get_tree().process_frame
+	assert_bool(dialogue.is_open()).is_false()
+
+
+func test_cadaver_de_progenitor_no_desaparece_al_expirar() -> void:
+	var zone: ZoneBase = await _mount("res://data/zones/taller.json")
+	var guard: Guard = _guard_with_item(zone, "biela")
+	guard.take_damage(1000.0)
+	await get_tree().process_frame
+	zone._on_corpse_expired(guard)
+	await get_tree().process_frame
+	assert_bool(is_instance_valid(guard)).is_true()
+	assert_bool(guard.visible).is_true()
+	assert_bool(guard.is_down()).is_true()

@@ -653,7 +653,23 @@ func _on_enemy_fell(enemy: Guard) -> void:
 
 
 func _on_corpse_expired(enemy: Guard) -> void:
+	if _should_keep_corpse(enemy):
+		return
 	remove_entity(_id_of(enemy))
+
+
+## Zonas pueden conservar cadáveres concretos (p. ej. progenitores, ADR 0043).
+func _should_keep_corpse(_enemy: Guard) -> bool:
+	return false
+
+
+## Un caído conservado se restaura sin quitarlo de escena.
+func should_keep_fallen_entity(_id: String) -> bool:
+	return false
+
+
+func mark_fallen_entity(_id: String) -> void:
+	pass
 
 
 func _on_paused_changed(is_paused: bool) -> void:

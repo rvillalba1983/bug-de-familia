@@ -14,7 +14,7 @@ godot --headless -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadles
 python tools/verificar.py                     # limpieza de logs + datos + normas (determinista, local)
 ```
 
-Comprobaciones deterministas antes de commitear: `tools/verificar.py` (borra `reports/*.log` con más de 48 h). En OpenCode, comando `/verificar`. Ver `docs/adr/0019-herramientas-ci-y-mcp.md` y `docs/adr/0037-limpieza-automatica-de-logs.md`.
+Comprobaciones deterministas antes de commitear: `tools/verificar.py` (borra `reports/*.log` con más de 8 h). En OpenCode, comando `/verificar`. Ver `docs/adr/0019-herramientas-ci-y-mcp.md` y `docs/adr/0037-limpieza-automatica-de-logs.md`.
 
 Escena principal: `res://scenes/world/world.tscn` (la zona inicial la monta `ZoneManager`), igual que en `AGENTS.md`.
 
@@ -29,6 +29,8 @@ Escena principal: `res://scenes/world/world.tscn` (la zona inicial la monta `Zon
 - Actualiza la documentación cuando cambie una decisión técnica, y registra ADR en `docs/adr/`.
 - No subas código ni recursos a servicios externos sin autorización.
 - Registra origen y herramienta de cada recurso generado.
+- Vigilancia permanente de procesos (decisión del director del 25-nov): la tarea programada `aut_214a57db2001HiueaEfF237SmH` avisa cada 5 minutos de procesos con más de 10 minutos (Godot, GdUnit, `cmd.exe`, `python.exe` y servicios de otros proyectos). Solo se pueden matar procesos del juego (Godot/GdUnit) y con confirmación del director; los procesos de otros proyectos y del sistema solo se informan, nunca se matan (decisión del director del 25-nov).
+- Pruebas en paquetes pequeños (decisión del director del 25-nov): ejecuta GdUnit por archivo o grupo reducido que termine en menos de 5 minutos; no lances `res://tests` completo en la conversación. `tests/despliegue_cero/despliegue_cero_robustness_test.gd` tarda ~13,8 min (`report_36`): se deja para CI o se divide. Si una ejecución supera 5 minutos, detenerla y avisar.
 
 ## Modelo
 - `opencode.jsonc` define el equipo: ver `CONFIG_AGENTS.md` (quién es quién) y `FALLBACK_MODELS.md` (precios, límites y alternativos). Decisión: `docs/adr/0018-agentes-y-modelos.md`.

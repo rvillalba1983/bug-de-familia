@@ -266,6 +266,10 @@ func _spawn_actor(actor: Dictionary) -> void:
 	var progenitor: String = str(actor.get("progenitor", ""))
 	if not progenitor.is_empty():
 		_attach_progenitor(enemy, progenitor)
+	else:
+		var species: String = str(actor.get("species", ""))
+		if not species.is_empty():
+			_attach_actor_talk(enemy, id, species)
 
 
 func _look_of(actor: Dictionary) -> Dictionary:
@@ -328,9 +332,13 @@ func _build_item(entry: Dictionary) -> void:
 	var at: Vector2 = DespliegueCeroLayout.zone.point(str(entry["at"]))
 	match str(entry["type"]):
 		"named":
-			_add_named(id, at, str(entry["label"]), bool(entry["reusable"]))
-			if entry.has("art"):
-				(items[id] as Interactable).art = load(str(entry["art"])) as Texture2D
+			_add_named(
+				id,
+				at,
+				str(entry.get("label", id)),
+				bool(entry.get("reusable", true)),
+				str(entry.get("art", ""))
+			)
 		"crate":
 			_add_item(id, Interactable.Kind.CRATE, at)
 		"leg":
@@ -345,11 +353,15 @@ func _load_views(base: String) -> Array[Texture2D]:
 	return GuardVisual.load_views(ART_FOLDER, base)
 
 
-func _add_named(id: String, at: Vector2, label_key: String, is_reusable: bool) -> void:
+func _add_named(
+	id: String, at: Vector2, label: String, reusable: bool, art: String = ""
+) -> void:
 	_add_item(id, Interactable.Kind.TERMINAL, at)
 	var item: Interactable = items[id]
-	item.custom_label = tr(label_key)
-	item.reusable = is_reusable
+	item.custom_label = tr(label)
+	item.reusable = reusable
+	if not art.is_empty():
+		item.art = load(art) as Texture2D
 
 
 func _add_mine(index: int) -> void:
@@ -425,7 +437,6 @@ func _build_investigation() -> void:
 	var contestador_bubble: SpeechBubble = investigation.bubbles.get(ID_CONTESTADOR) as SpeechBubble
 	_register_progenitor_actor(ID_CONTESTADOR, contestador_item, contestador_bubble)
 	_contestador_at = (entities[ID_CONTESTADOR] as Node2D).global_position
-	_fix_progenitor_property(ID_CONTESTADOR)
 	_fix_progenitor_property(ID_CONTESTADOR)
 	challenges = DespliegueCeroChallenges.new()
 	challenges.level = self
@@ -509,6 +520,24 @@ func _on_enemy_fell(enemy: Guard) -> void:
 		challenges.on_ramon_fell()
 
 
+## Don Ramón, como progenitor, se queda visible e inerte (ADR 0043).
+func _should_keep_corpse(enemy: Guard) -> bool:
+	return enemy == ramon
+
+
+func should_keep_fallen_entity(id: String) -> bool:
+	return id == ID_RAMON
+
+
+func mark_fallen_entity(id: String) -> void:
+	if id != ID_RAMON:
+		return
+	if not investigation.flags.get(PROGENITOR_ITEM_PREFIX + ID_RAMON + "_muerto", false):
+		_on_progenitor_fell(ID_RAMON)
+	if is_instance_valid(ramon):
+		ramon.restore_fallen()
+
+
 func _on_converted(entity_id: String) -> void:
 	super(entity_id)
 	mines.erase(entity_id)
@@ -517,6 +546,16 @@ func _on_converted(entity_id: String) -> void:
 		challenges.on_ramon_fell()
 	if entity_id == ID_CONTESTADOR and _contestador_at != Vector2.ZERO:
 		challenges.leave_footprint(DespliegueCeroChallenges.ID_CONTESTADOR_TRACE, _contestador_at, "BETA_TRACE_CONTESTADOR", "El Contestador")
+
+
+## P-61/ADR 0043: el Contestador no es Guard; su muerte lo deja visible e inerte.
+func kill_progenitor(progenitor: String) -> void:
+	super(progenitor)
+	if progenitor == ID_CONTESTADOR and _contestador_at != Vector2.ZERO:
+		challenges.leave_footprint(
+			DespliegueCeroChallenges.ID_CONTESTADOR_TRACE, _contestador_at,
+			"BETA_TRACE_CONTESTADOR", "El Contestador"
+		)
 
 
 func on_item_activated(item: Interactable) -> void:
@@ -537,6 +576,13 @@ func on_item_activated(item: Interactable) -> void:
 			challenges.take_reel()
 		ID_GENERATOR:
 			challenges.break_generator()
+		"cartel_avisos":
+			player.gesture_for(item.kind, item.item_id)
+			show_notice(tr("BETA_NOTICE_BOARD_TEXT"))
+			discover_challenge()
+		"banco_descanso":
+			player.gesture_for(item.kind, item.item_id)
+			show_notice(tr("BETA_REST_BENCH_TEXT"))
 		_:
 			if item.kind == Interactable.Kind.CRATE:
 				protagonist.comment("crate", ProtagonistVoice.LONG_COOLDOWN)

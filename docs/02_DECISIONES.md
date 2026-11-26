@@ -174,6 +174,25 @@ Decisiones del director para la fase abierta el 22-nov
   el progenitor muerto queda visible y no interactuable. Pendiente de aplicar en
   la fase de zonas (P-61). Detalle técnico en `adr/0043`.
 
+## Identidad visual de las 24 zonas (26-nov)
+
+El director aprobó el plan de arte presentado el 26-nov, **incluida la opción
+L3-B** y la petición de que `despliegue_cero` tenga fachadas propias. Coste:
+0 créditos; solo generadores locales, sin modelos ni servicios externos.
+
+- Las 24 zonas tienen **4 fachadas SVG propias** cada una (96 en total). Las 32
+  ya aprobadas se conservan sin cambios; las 64 restantes cubren las 15 zonas
+  sin fachadas y `despliegue_cero`. Las 4 genéricas quedan como fallback.
+- Las 24 zonas tienen **bioma y tinte** declarados. Se reutilizan las 3 texturas
+  de suelo anteriores y se añaden 5 horneadas en local: `taller`, `mercado`,
+  `archivo`, `colmena` y `piedra`. El tinte es solo visual.
+- `despliegue_cero` conserva su suelo propio (`DespliegueCeroGround.paint()`) y
+  deja de usar las fachadas genéricas.
+- Se declaran `facades` en 42 corredores y `sign` en 47, sin mover la geometría
+  ni cambiar la cartelería ya vista en partida.
+- Detalle técnico, origen de los recursos y verificación en `adr/0044`. Queda
+  pendiente la validación visual en partida por el director.
+
 ## Caminos delimitados entre zonas (post-beta, 14-nov)
 
 - Las rutas hacia otras zonas serán **caminos delimitados**, no encontrados por casualidad.

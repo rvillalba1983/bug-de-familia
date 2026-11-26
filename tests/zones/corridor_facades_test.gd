@@ -43,6 +43,15 @@ func _facades_to_walls(definition: ZoneDefinition) -> void:
 		corridor.erase("facades")
 
 
+## Quita los delimitadores en memoria. Desde el ADR 0044 las 24 zonas declaran
+## fachadas, así que el caso «sin delimitar» ya no existe en disco: se sintetiza
+## para conservar la cobertura del comportamiento opt-in sin debilitar el test.
+func _remove_delimiters(definition: ZoneDefinition) -> void:
+	for corridor: Dictionary in definition.data["geometry"]["corridors"]:
+		corridor.erase("facades")
+		corridor.erase("walls")
+
+
 ## Cada rect de `facades` se monta como un edificio con colisión, del alto de los
 ## muros de corredor, con textura de fachada y en `actors` (y-sort).
 func test_corridors_with_facades_mount_buildings_with_collision() -> void:
@@ -184,8 +193,9 @@ func test_legacy_corridors_with_walls_are_unchanged() -> void:
 
 
 ## Sin delimitadores no hay fachadas ni fondo: el cambio sigue siendo opt-in.
+## El caso se construye en memoria porque el ADR 0044 ya delimita las 24 zonas.
 func test_zones_without_corridor_delimiters_have_no_facades() -> void:
-	var zone: ZoneBase = await _mount(EL_ENCHUFE_PATH)
+	var zone: ZoneBase = await _mount_edited(EL_ENCHUFE_PATH, _remove_delimiters)
 	assert_int(zone.corridor_facades.size()).is_equal(0)
 	assert_int(_backdrops_of(zone).size()).is_equal(0)
 	for corridor: Dictionary in zone.zone_definition().corridors():

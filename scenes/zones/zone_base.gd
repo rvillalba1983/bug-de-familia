@@ -43,16 +43,16 @@ const SIGN_SPRITE_Z: int = 1
 const SIGN_NAME_Z: int = 2
 ## Fachadas genéricas de corredor (P-53), dibujadas por el agente `arte` el 17-nov
 ## (registro en `docs/36_pipeline_graficos.md`). Se alternan por orden de montaje.
-## Son el **fallback** para las zonas que no tienen fachadas propias (hoy solo
-## `despliegue_cero`, según la directriz del director del 17-nov: P-56).
+## Son el **fallback** de seguridad: desde el 26-nov las 24 zonas tienen catálogo
+## propio, pero se conserva para una zona todavía no registrada (ADR 0044).
 const CORRIDOR_FACADE_ART_DEFAULT: Array[String] = [
 	"res://art/shared/fachada_corredor_01.svg",
 	"res://art/shared/fachada_corredor_02.svg",
 	"res://art/shared/fachada_corredor_03.svg",
 	"res://art/shared/fachada_corredor_04.svg",
 ]
-## Fachadas propias por zona (P-56): cada zona con identidad visual propia declara
-## aquí sus 4 SVGs. Si una zona no aparece, se usa `CORRIDOR_FACADE_ART_DEFAULT`.
+## Fachadas propias por zona (P-56 y ADR 0044): las 24 zonas declaran aquí sus
+## 4 SVGs. Si una zona no aparece, se usa `CORRIDOR_FACADE_ART_DEFAULT`.
 ## Único punto donde cambiar el juego de fachadas de un zona: no se toca ni datos
 ## (JSON) ni la lógica de montaje (`_build_corridor_facades`).
 const CORRIDOR_FACADE_ART_BY_ZONE: Dictionary = {
@@ -104,6 +104,143 @@ const CORRIDOR_FACADE_ART_BY_ZONE: Dictionary = {
 		"res://art/shared/fachada_corredor_taller_03.svg",
 		"res://art/shared/fachada_corredor_taller_04.svg",
 	],
+	"despliegue_cero": [
+		"res://art/shared/fachada_corredor_despliegue_cero_01.svg",
+		"res://art/shared/fachada_corredor_despliegue_cero_02.svg",
+		"res://art/shared/fachada_corredor_despliegue_cero_03.svg",
+		"res://art/shared/fachada_corredor_despliegue_cero_04.svg",
+	],
+	"antecamara": [
+		"res://art/shared/fachada_corredor_antecamara_01.svg",
+		"res://art/shared/fachada_corredor_antecamara_02.svg",
+		"res://art/shared/fachada_corredor_antecamara_03.svg",
+		"res://art/shared/fachada_corredor_antecamara_04.svg",
+	],
+	"archivo": [
+		"res://art/shared/fachada_corredor_archivo_01.svg",
+		"res://art/shared/fachada_corredor_archivo_02.svg",
+		"res://art/shared/fachada_corredor_archivo_03.svg",
+		"res://art/shared/fachada_corredor_archivo_04.svg",
+	],
+	"asamblea": [
+		"res://art/shared/fachada_corredor_asamblea_01.svg",
+		"res://art/shared/fachada_corredor_asamblea_02.svg",
+		"res://art/shared/fachada_corredor_asamblea_03.svg",
+		"res://art/shared/fachada_corredor_asamblea_04.svg",
+	],
+	"atajo": [
+		"res://art/shared/fachada_corredor_atajo_01.svg",
+		"res://art/shared/fachada_corredor_atajo_02.svg",
+		"res://art/shared/fachada_corredor_atajo_03.svg",
+		"res://art/shared/fachada_corredor_atajo_04.svg",
+	],
+	"camara": [
+		"res://art/shared/fachada_corredor_camara_01.svg",
+		"res://art/shared/fachada_corredor_camara_02.svg",
+		"res://art/shared/fachada_corredor_camara_03.svg",
+		"res://art/shared/fachada_corredor_camara_04.svg",
+	],
+	"camino": [
+		"res://art/shared/fachada_corredor_camino_01.svg",
+		"res://art/shared/fachada_corredor_camino_02.svg",
+		"res://art/shared/fachada_corredor_camino_03.svg",
+		"res://art/shared/fachada_corredor_camino_04.svg",
+	],
+	"canon": [
+		"res://art/shared/fachada_corredor_canon_01.svg",
+		"res://art/shared/fachada_corredor_canon_02.svg",
+		"res://art/shared/fachada_corredor_canon_03.svg",
+		"res://art/shared/fachada_corredor_canon_04.svg",
+	],
+	"cementerio": [
+		"res://art/shared/fachada_corredor_cementerio_01.svg",
+		"res://art/shared/fachada_corredor_cementerio_02.svg",
+		"res://art/shared/fachada_corredor_cementerio_03.svg",
+		"res://art/shared/fachada_corredor_cementerio_04.svg",
+	],
+	"colmena": [
+		"res://art/shared/fachada_corredor_colmena_01.svg",
+		"res://art/shared/fachada_corredor_colmena_02.svg",
+		"res://art/shared/fachada_corredor_colmena_03.svg",
+		"res://art/shared/fachada_corredor_colmena_04.svg",
+	],
+	"el_enchufe": [
+		"res://art/shared/fachada_corredor_el_enchufe_01.svg",
+		"res://art/shared/fachada_corredor_el_enchufe_02.svg",
+		"res://art/shared/fachada_corredor_el_enchufe_03.svg",
+		"res://art/shared/fachada_corredor_el_enchufe_04.svg",
+	],
+	"instalacion": [
+		"res://art/shared/fachada_corredor_instalacion_01.svg",
+		"res://art/shared/fachada_corredor_instalacion_02.svg",
+		"res://art/shared/fachada_corredor_instalacion_03.svg",
+		"res://art/shared/fachada_corredor_instalacion_04.svg",
+	],
+	"lonja": [
+		"res://art/shared/fachada_corredor_lonja_01.svg",
+		"res://art/shared/fachada_corredor_lonja_02.svg",
+		"res://art/shared/fachada_corredor_lonja_03.svg",
+		"res://art/shared/fachada_corredor_lonja_04.svg",
+	],
+	"sendero": [
+		"res://art/shared/fachada_corredor_sendero_01.svg",
+		"res://art/shared/fachada_corredor_sendero_02.svg",
+		"res://art/shared/fachada_corredor_sendero_03.svg",
+		"res://art/shared/fachada_corredor_sendero_04.svg",
+	],
+	"ultima_ruta": [
+		"res://art/shared/fachada_corredor_ultima_ruta_01.svg",
+		"res://art/shared/fachada_corredor_ultima_ruta_02.svg",
+		"res://art/shared/fachada_corredor_ultima_ruta_03.svg",
+		"res://art/shared/fachada_corredor_ultima_ruta_04.svg",
+	],
+	"valle": [
+		"res://art/shared/fachada_corredor_valle_01.svg",
+		"res://art/shared/fachada_corredor_valle_02.svg",
+		"res://art/shared/fachada_corredor_valle_03.svg",
+		"res://art/shared/fachada_corredor_valle_04.svg",
+	],
+}
+## Suelos por lore (ADR 0044). Se reutilizan las tres texturas de la beta y se
+## añaden cinco biomas horneados en local con `tools/art/ground_gen.py`. El tinte
+## solo modula el dibujo: no cambia colisiones, alcances ni detección.
+const FLOOR_TEXTURES: Dictionary = {
+	"bosque": preload("res://art/shared/suelo_bosque.png"),
+	"ciudad": preload("res://art/shared/suelo_ciudad.png"),
+	"barro": preload("res://art/shared/suelo_barro.png"),
+	"taller": preload("res://art/shared/suelo_taller.png"),
+	"mercado": preload("res://art/shared/suelo_mercado.png"),
+	"archivo": preload("res://art/shared/suelo_archivo.png"),
+	"colmena": preload("res://art/shared/suelo_colmena.png"),
+	"piedra": preload("res://art/shared/suelo_piedra.png"),
+}
+## Zona → [bioma, tinte]. `despliegue_cero` se pinta aparte en su propia escena,
+## pero se registra para que las 24 zonas tengan identidad declarada.
+const FLOOR_ART_BY_ZONE: Dictionary = {
+	"despliegue_cero": ["bosque", Color(1.0, 1.0, 1.0)],
+	"cumbre": ["ciudad", Color(0.86, 0.80, 0.98)],
+	"desguace": ["barro", Color(1.0, 0.85, 0.72)],
+	"encrucijada": ["ciudad", Color(0.75, 0.98, 1.0)],
+	"gran_cruce": ["ciudad", Color(1.0, 0.95, 0.72)],
+	"gran_mercado": ["mercado", Color(1.0, 0.92, 0.72)],
+	"paso": ["bosque", Color(0.80, 1.0, 0.78)],
+	"poligono": ["taller", Color(0.78, 0.90, 1.0)],
+	"taller": ["taller", Color(1.0, 0.86, 0.70)],
+	"antecamara": ["ciudad", Color(0.78, 0.90, 1.0)],
+	"archivo": ["archivo", Color(1.0, 0.96, 0.86)],
+	"asamblea": ["colmena", Color(0.82, 1.0, 0.72)],
+	"atajo": ["bosque", Color(0.90, 0.92, 0.70)],
+	"camara": ["taller", Color(0.70, 0.95, 1.0)],
+	"camino": ["mercado", Color(1.0, 0.88, 0.66)],
+	"canon": ["piedra", Color(1.0, 0.82, 0.68)],
+	"cementerio": ["piedra", Color(0.95, 0.95, 0.92)],
+	"colmena": ["colmena", Color(0.90, 1.0, 0.65)],
+	"el_enchufe": ["taller", Color(0.78, 0.95, 1.0)],
+	"instalacion": ["taller", Color(0.78, 0.95, 0.98)],
+	"lonja": ["mercado", Color(1.0, 0.82, 0.90)],
+	"sendero": ["bosque", Color(0.82, 1.0, 0.78)],
+	"ultima_ruta": ["mercado", Color(1.0, 0.82, 0.66)],
+	"valle": ["bosque", Color(0.78, 0.98, 0.92)],
 }
 ## Provisional: distancia a la que un grupo se mete en la pelea de los suyos.
 const GROUP_REACT_RADIUS: float = 250.0
@@ -976,9 +1113,26 @@ func _check_goal(_feet: Vector2) -> void:
 	pass
 
 
+## Bioma y tinte de la zona actual. Si una zona nueva no está registrada, cae
+## en bosque sin teñir y el registro avisa en lugar de dejar el suelo en blanco.
+func _floor_art() -> Array:
+	var zone_id: String = definition.id if definition != null else ""
+	if FLOOR_ART_BY_ZONE.has(zone_id):
+		return FLOOR_ART_BY_ZONE[zone_id]
+	if not zone_id.is_empty():
+		push_warning("ZoneBase: suelo sin registrar para %s" % zone_id)
+	return ["bosque", Color(1.0, 1.0, 1.0)]
+
+
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, world_size()), COLOR_BACKGROUND)
-	draw_rect(floor_rect(), COLOR_FLOOR)
+	var art: Array = _floor_art()
+	var texture: Texture2D = FLOOR_TEXTURES[str(art[0])] as Texture2D
+	if texture == null:
+		push_error("ZoneBase: falta la textura de suelo %s" % str(art[0]))
+		return
+	texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
+	draw_texture_rect(texture, floor_rect(), true, art[1])
 	for block: Rect2 in shape_blocks():
 		draw_rect(block, COLOR_BACKGROUND)
 

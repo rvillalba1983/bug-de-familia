@@ -159,6 +159,7 @@
           64
         ],
         "to": "cumbre",
+        "sign": "señal_04",
         "distance": 1870
       },
       {
@@ -184,6 +185,7 @@
           64
         ],
         "to": "desguace",
+        "sign": "señal_05",
         "distance": 1980
       },
       {
@@ -209,6 +211,7 @@
           64
         ],
         "to": "ultima_ruta",
+        "sign": "señal_03",
         "distance": 1920
       },
       {
@@ -234,6 +237,7 @@
           240
         ],
         "to": "asamblea",
+        "sign": "señal_06",
         "distance": 2150
       },
       {
@@ -259,6 +263,7 @@
           240
         ],
         "to": "el_enchufe",
+        "sign": "señal_04",
         "distance": 1900
       }
     ],

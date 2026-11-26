@@ -12,8 +12,23 @@ func after_test() -> void:
 
 
 func _mount(zone_path: String) -> ZoneBase:
+	return await _mount_edited(zone_path, func(_definition: ZoneDefinition) -> void: pass)
+
+
+## Monta una zona sin delimitadores. Desde el ADR 0044 todas las zonas declaran
+## fachadas, así que el caso opt-in se sintetiza en memoria (no se debilita).
+func _mount_without_delimiters(zone_path: String) -> ZoneBase:
+	var edit: Callable = func(definition: ZoneDefinition) -> void:
+		for corridor: Dictionary in definition.data["geometry"]["corridors"]:
+			corridor.erase("facades")
+			corridor.erase("walls")
+	return await _mount_edited(zone_path, edit)
+
+
+func _mount_edited(zone_path: String, edit: Callable) -> ZoneBase:
 	var zone: ZoneBase = auto_free(load("res://scenes/zones/zone.tscn").instantiate())
 	var definition: ZoneDefinition = ZoneDefinition.load_from(zone_path)
+	edit.call(definition)
 	zone.set_definition(definition)
 	zone.world_mode = true
 	add_child(zone)
@@ -156,8 +171,9 @@ func test_corridor_backdrop_stays_opaque_at_the_mouth() -> void:
 
 
 ## El cambio es opt-in: las zonas que no declaran muros de pasillo no llevan fondo.
+## El caso se sintetiza porque las 24 zonas ya están delimitadas (ADR 0044).
 func test_zones_without_corridor_walls_have_no_backdrop() -> void:
-	var zone: ZoneBase = await _mount("res://data/zones/el_enchufe.json")
+	var zone: ZoneBase = await _mount_without_delimiters("res://data/zones/el_enchufe.json")
 	assert_int(_backdrops_of(zone).size()).is_equal(0)
 	for corridor: Dictionary in zone.zone_definition().corridors():
 		assert_bool((corridor.get("walls", []) as Array).is_empty()).is_true()

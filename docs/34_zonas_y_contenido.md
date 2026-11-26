@@ -241,3 +241,27 @@ Tienen población y vida, pero todavía ni decorado ni objetos ni actores guiona
 - `tests/data/species_content_test.gd`: 3 pruebas nuevas (14-nov) sobre los textos de las especies.
 - `tests/simulation/live_dialogue_test.gd`: 2 pruebas nuevas (14-nov) sobre el saludo por oficio.
 - El total de la carpeta `tests/zones` se anota en `docs/03_ESTADO.md` con el resultado de la corrida.
+
+## Identidad visual por zona (26-nov, ADR 0044)
+
+Las 24 zonas tienen cuatro fachadas SVG propias y un suelo repetible con bioma
+y tinte asignados. Las 32 fachadas de las ocho zonas aprobadas el 18-nov no se
+tocaron; las 64 restantes incluyen las de `despliegue_cero`, que conserva su
+suelo propio. Los corredores que antes no estaban delimitados ahora declaran
+`facades` y `sign` sin cambiar su geometría.
+
+| Bioma | Textura | Zonas |
+|---|---|---|
+| bosque | `suelo_bosque.png` | despliegue_cero (solo declarada), atajo, paso, sendero, valle |
+| ciudad | `suelo_ciudad.png` | cumbre, encrucijada, gran_cruce, antecamara |
+| barro | `suelo_barro.png` | desguace |
+| taller | `suelo_taller.png` | poligono, taller, camara, el_enchufe, instalacion |
+| mercado | `suelo_mercado.png` | gran_mercado, camino, lonja, ultima_ruta |
+| archivo | `suelo_archivo.png` | archivo |
+| colmena | `suelo_colmena.png` | asamblea, colmena |
+| piedra | `suelo_piedra.png` | canon, cementerio |
+
+El tinte solo modula el dibujo: no cambia colisiones, navegación, detección ni
+alcances. `tests/zones/zone_visual_identity_test.gd` comprueba las 24
+asignaciones, las cuatro fachadas por zona, los carteles y que las bocas siguen
+siendo alcanzables. Pendiente: validación visual en partida por el director.

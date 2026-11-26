@@ -1,7 +1,8 @@
-"""Genera las 32 fachadas de corredor por zona (P-56): 8 zonas x 4 variantes.
+"""Genera las 96 fachadas de corredor (24 zonas x 4 variantes; P-56 y 26-nov).
 
-Cada zona usa una paleta propia acorde al lore. Las 4 variantes comparten la
-paleta pero varian en ventanas, puertas, dano y detalles para que no se vean
+Las 8 primeras zonas se conservan byte a byte: su arte está aprobado en partida.
+Las 16 restantes añaden paleta y emblema propios. Las 4 variantes comparten la
+paleta pero varían en ventanas, puertas, daño y detalles para que no se vean
 iguales al alternar por orden de montaje.
 """
 import os
@@ -18,6 +19,24 @@ PALETTES = {
     "paso": ("#4A5A4A", "#2A3A2A", "#8A9A8A", "#3A4A3A", "#a0d060", "#1B0E2A"),
     "poligono": ("#4A5A6A", "#2A3A4A", "#8A9AAA", "#3A4A5A", "#8fdbd8", "#1B0E2A"),
     "taller": ("#6A5A3A", "#3A2A1A", "#A09060", "#4A3A20", "#d8985a", "#1B0E2A"),
+    # 16 zonas nuevas (identidad visual de las 24, 26-nov). Las 8 de arriba se
+    # conservan byte a byte: ya están aprobadas en partida (P-56).
+    "despliegue_cero": ("#3A4A3A", "#2A3A2A", "#6A8A7A", "#2A3A34", "#00E5FF", "#1B0E2A"),
+    "antecamara": ("#3A3A5A", "#282842", "#7A82A8", "#2E2E4A", "#8fdbd8", "#1B0E2A"),
+    "archivo": ("#6A5A4A", "#4A3A2A", "#B8A888", "#4A3A30", "#F6E7C8", "#1B0E2A"),
+    "asamblea": ("#4A5A3A", "#2A3A22", "#8AA878", "#384A2A", "#C6FF00", "#1B0E2A"),
+    "atajo": ("#4A4A32", "#2A2A1E", "#8A8868", "#36362A", "#a0d060", "#1B0E2A"),
+    "camara": ("#2A3A4A", "#1A2838", "#6A8AA8", "#243444", "#00E5FF", "#1B0E2A"),
+    "camino": ("#5A4A38", "#3A2E22", "#9A8868", "#44382A", "#FFD400", "#1B0E2A"),
+    "canon": ("#5A4038", "#3A2822", "#A07868", "#452E28", "#FF6A00", "#1B0E2A"),
+    "cementerio": ("#4A4A4A", "#2E2E2E", "#888888", "#383838", "#F6E7C8", "#1B0E2A"),
+    "colmena": ("#5A4A24", "#3A2E18", "#A89050", "#44361C", "#C6FF00", "#1B0E2A"),
+    "el_enchufe": ("#3A3A48", "#26262E", "#7A7A8A", "#2C2C38", "#00E5FF", "#1B0E2A"),
+    "instalacion": ("#34465A", "#202E3E", "#7892AC", "#28384A", "#8fdbd8", "#1B0E2A"),
+    "lonja": ("#4A4440", "#2E2A28", "#88807A", "#38322E", "#FF1F8F", "#1B0E2A"),
+    "sendero": ("#3E5236", "#293A24", "#78986A", "#30422A", "#a0d060", "#1B0E2A"),
+    "ultima_ruta": ("#54402E", "#36281C", "#95806A", "#403024", "#FF6A00", "#1B0E2A"),
+    "valle": ("#3A5248", "#26382F", "#7A9A88", "#2C4036", "#8fdbd8", "#1B0E2A"),
 }
 
 DETAILS = {
@@ -29,6 +48,77 @@ DETAILS = {
     "paso": ["taller", "zigzag", "engranaje", "mina"],
     "poligono": ["almacen", "caja", "puerta", "camion"],
     "taller": ["maquina", "prensa", "torno", "engranaje"],
+    "despliegue_cero": ["centralita", "chatarra", "bobina", "bosque"],
+    "antecamara": ["antesala", "sello", "espera", "eco"],
+    "archivo": ["expediente", "estante", "sello", "papel"],
+    "asamblea": ["asamblea", "pancarta", "voto", "espora"],
+    "atajo": ["senda", "rastro", "rama", "moho"],
+    "camara": ["camara", "grabacion", "proyector", "eco"],
+    "camino": ["camino", "hito", "polvo", "grux"],
+    "canon": ["canon", "roca", "grieta", "viento"],
+    "cementerio": ["tumba", "hueso", "ladrona", "niebla"],
+    "colmena": ["panal", "espora", "moho", "zumbido"],
+    "el_enchufe": ["enchufe", "cable", "chispa", "cuadro"],
+    "instalacion": ["tuberia", "panel", "vapor", "maquina"],
+    "lonja": ["puesto", "caja", "hielo", "grux"],
+    "sendero": ["sendero", "copa", "rama", "rastro"],
+    "ultima_ruta": ["ruta", "hito", "manada", "grux"],
+    "valle": ["valle", "esquina", "cauce", "niebla"],
+}
+
+## Emblemas de las 16 zonas nuevas. Las 8 originales no llevan emblema para no
+## cambiar un arte ya aprobado; aquí solo se añade un motivo sencillo acorde al
+## lore, dibujado con las mismas formas que el resto de la fachada (sin texto).
+MOTIFS = {
+    "despliegue_cero": '<circle cx="200" cy="96" r="26" fill="none" '
+    'stroke="{acento}" stroke-width="8"/><path d="M184 96h32M200 80v32" '
+    'stroke="{ink}" stroke-width="6"/>',
+    "antecamara": '<rect x="172" y="76" width="56" height="44" fill="none" '
+    'stroke="{acento}" stroke-width="7"/><path d="M200 76v44" '
+    'stroke="{ink}" stroke-width="5"/>',
+    "archivo": '<rect x="168" y="84" width="64" height="12" fill="{cristal}" '
+    'stroke="{ink}" stroke-width="4"/><rect x="172" y="98" width="56" height="12" '
+    'fill="{acento}" stroke="{ink}" stroke-width="4"/>'
+    '<rect x="176" y="112" width="48" height="12" fill="{cristal}" '
+    'stroke="{ink}" stroke-width="4"/>',
+    "asamblea": '<circle cx="182" cy="96" r="12" fill="{acento}" '
+    'stroke="{ink}" stroke-width="4"/><circle cx="200" cy="96" r="12" '
+    'fill="{cristal}" stroke="{ink}" stroke-width="4"/>'
+    '<circle cx="218" cy="96" r="12" fill="{acento}" stroke="{ink}" '
+    'stroke-width="4"/>',
+    "atajo": '<path d="M172 82l20 16-20 16M196 82l20 16-20 16" fill="none" '
+    'stroke="{acento}" stroke-width="8" stroke-linecap="round"/>',
+    "camara": '<ellipse cx="200" cy="98" rx="34" ry="20" fill="none" '
+    'stroke="{acento}" stroke-width="7"/><circle cx="200" cy="98" r="10" '
+    'fill="{ink}"/>',
+    "camino": '<path d="M170 116q14-32 30-18t30-16" fill="none" '
+    'stroke="{acento}" stroke-width="8" stroke-linecap="round"/>'
+    '<circle cx="170" cy="116" r="5" fill="{ink}"/>',
+    "canon": '<path d="M166 118l22-38 16 26 12-18 20 30z" fill="{acento}" '
+    'stroke="{ink}" stroke-width="5"/>',
+    "cementerio": '<rect x="194" y="76" width="12" height="44" '
+    'fill="{acento}"/><rect x="180" y="90" width="40" height="12" '
+    'fill="{acento}"/>',
+    "colmena": '<path d="M200 72l24 14v28l-24 14-24-14V86z" fill="none" '
+    'stroke="{acento}" stroke-width="7"/><circle cx="200" cy="100" r="7" '
+    'fill="{ink}"/>',
+    "el_enchufe": '<rect x="180" y="80" width="40" height="30" fill="none" '
+    'stroke="{acento}" stroke-width="6"/><path d="M190 110v14M210 110v14" '
+    'stroke="{ink}" stroke-width="7"/>',
+    "instalacion": '<circle cx="200" cy="98" r="18" fill="none" '
+    'stroke="{acento}" stroke-width="7"/><path d="M200 68v12M200 116v12M170 98h12M218 '
+    '98h12" stroke="{ink}" stroke-width="6"/>',
+    "lonja": '<path d="M168 80h64l-8 18h-48z" fill="{acento}" '
+    'stroke="{ink}" stroke-width="4"/><path d="M184 80v18M216 80v18" '
+    'stroke="{ink}" stroke-width="4"/>',
+    "sendero": '<path d="M200 122V82" stroke="{ink}" stroke-width="7"/>'
+    '<path d="M200 94l-20-16M200 104l22-18" stroke="{acento}" '
+    'stroke-width="7" stroke-linecap="round"/>',
+    "ultima_ruta": '<path d="M200 122V80" stroke="{ink}" stroke-width="7"/>'
+    '<path d="M200 82h28l-8 10 8 10h-28z" fill="{acento}" '
+    'stroke="{ink}" stroke-width="4"/>',
+    "valle": '<path d="M164 120l24-32 18 20 14-18 18 30z" fill="none" '
+    'stroke="{acento}" stroke-width="7"/>',
 }
 
 def svg(zone, idx):
@@ -66,6 +156,13 @@ def svg(zone, idx):
         if extra:
             high_wins.append("    " + extra)
     high_wins_str = "\n".join(high_wins)
+
+    # Las 8 fachadas aprobadas no cambian; las nuevas llevan un emblema propio.
+    motif = ""
+    if zone in MOTIFS:
+        body = MOTIFS[zone].format(acento=acento, ink=ink, cristal=cristal)
+        motif = "\n".join("  " + line for line in body.splitlines())
+        motif = "  <!-- emblema de %s -->\n%s\n" % (zone, motif)
 
     # Ventanas bajas (4)
     low_states = [(idx+1)%4, (idx+2)%4, (idx+3)%4, idx%4]
@@ -165,7 +262,7 @@ def svg(zone, idx):
 
   <!-- acento tematico: banda central con el color de acento -->
   <rect x="0" y="108" width="400" height="6" fill="{acento}" opacity="0.6"/>
-
+{motif}
   <!-- bajantes de hierro -->
   <g stroke="{ink}" stroke-width="4" stroke-linejoin="round" fill="{cristal}">
     <rect x="4" y="26" width="12" height="186"/>
@@ -195,7 +292,7 @@ def main():
     for zone in PALETTES:
         for idx in range(4):
             path = os.path.join(OUT, f"fachada_corredor_{zone}_{idx+1:02d}.svg")
-            with open(path, "w", encoding="utf-8") as f:
+            with open(path, "w", encoding="utf-8", newline="\n") as f:
                 f.write(svg(zone, idx))
             print("wrote", path)
 

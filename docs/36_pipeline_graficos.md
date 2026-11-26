@@ -57,6 +57,8 @@ uso. El director debe aprobar cualquier imagen nueva antes de integrarla en el j
 | `tools/art/shared_assets_gen.py` | Los 10 elementos de la beta, en `art/shared/fuentes/` |
 | `tools/art/protagonist_gen.py` | Protagonista por piezas, en `data/art/protagonista.json` |
 | `tools/art/ground_gen.py` | Texturas repetibles del suelo |
+| `tools/gen_fachadas_zona.py` | 96 fachadas de corredor, 4 por zona |
+| `tools/gen_fachadas_zonas_json.py` | `facades` y `sign` en los corredores |
 | `tools/art/city_scene_gen.py` | Escena de ejemplo con perspectiva |
 | `tools/art/props_gen.py` | Objetos de la zona beta, en `art/shared/props/` |
 
@@ -77,12 +79,33 @@ Los 50 objetos graciosos convertibles de `docs/borradores/P-23_objetos_graciosos
 Cuatro modelos para delimitar los pasillos entre zonas (ADR 0034, apartado 7): `art/shared/fachada_corredor_01.svg` a `_04.svg`.
 
 - Qué son: frente de edificio de 400 × 240 que se estira al frente del pasillo (200 u de alto y el ancho del rect `facades` del JSON). No llevan puerta caminable: son muros de pasillo. El tejado, la sombra y el contorno del frente los dibuja `CorridorFacade`; el SVG solo pinta la fachada.
-- Modelos: 01 bloque entero, 02 derruido con boquete, 03 en obras con andamio y chapa, 04 carteles y grafiti. **Son solo para `despliegue_cero`**: el director quiere que cada zona tenga edificios, colores y elementos acordes a su lore (P-56). Las otras 8 zonas los usan de forma provisional hasta que tengan fachadas propias; ninguno es de una raza concreta.
+- Modelos: 01 bloque entero, 02 derruido con boquete, 03 en obras con andamio y chapa, 04 carteles y grafiti. **Desde el 26-nov no son el arte de ninguna zona**: las 24 tienen fachadas propias (P-56 ampliado, ADR 0044). Se conservan bajo `CORRIDOR_FACADE_ART_DEFAULT` como salvaguarda; ninguno es de una raza concreta.
 - Herramienta: edición manual de SVG (formas, trazos y degradados; sin filtros ni `<text>`).
 - Autor: agente `arte` del proyecto, 17-nov-2026.
 - Origen: dibujo propio; sin material de terceros.
 - Estilo: muro a sangre (cubre todo el lienzo para que el estirado no abra huecos), contornos `#1B0E2A`, paleta «Cuñado Radiactivo», ventanas con marco `#F6E7C8` como en las fachadas de la beta y detalle repartido en vertical para tolerar el estirado horizontal.
-- Validación: `godot --headless --import` sin errores y las cuatro cargan en ThorVG a 400 × 240 con el lienzo cubierto al 100 % (17-nov-2026). Muestra con los cuatro modelos, una simulación de pasillo y los anchos mínimos: `docs/borradores/muestra_fachadas_corredor.png`. `ZoneBase.CORRIDOR_FACADE_ART` ya apunta a las cuatro (17-nov). Pendiente: verlas en partida.
+- Validación: `godot --headless --import` sin errores y las cuatro cargan en ThorVG a 400 × 240 con el lienzo cubierto al 100 % (17-nov-2026). Muestra con los cuatro modelos, una simulación de pasillo y los anchos mínimos: `docs/borradores/muestra_fachadas_corredor.png`. El 26-nov pasan a `CORRIDOR_FACADE_ART_DEFAULT` y las 24 zonas usan su propia serie (ADR 0044). Pendiente: verlas en partida.
+
+### Identidad visual de las 24 zonas (26-nov, ADR 0044)
+
+- **Fachadas:** 96 SVG en `art/shared/fachada_corredor_<zona>_01..04.svg`.
+  Las 32 de las 8 zonas aprobadas el 18-nov se conservan byte a byte; las 64
+  nuevas corresponden a las 15 zonas sin fachadas y a `despliegue_cero`. Cada
+  zona nueva tiene paleta y emblema propios, sin `<text>` ni filtros.
+- Herramienta y origen: `tools/gen_fachadas_zona.py`, dibujo procedural propio
+  en Python estándar (UTF-8 y LF). Sin modelos de imagen, material de terceros
+  ni servicios externos. Coste: 0 créditos.
+- **Suelos:** ocho PNG repetibles en `art/shared/suelo_*.png`. Se reutilizan
+  `bosque`, `ciudad` y `barro` sin regenerarlos; se añaden `taller`, `mercado`,
+  `archivo`, `colmena` y `piedra`, horneados a 512 × 512 con
+  `tools/art/ground_gen.py` (Playwright y Chromium locales, semillas de filtro
+  8, 3 y 5). Origen: dibujo procedural propio.
+- **Integración:** `ZoneBase.FLOOR_ART_BY_ZONE` declara bioma y tinte de las 24
+  zonas; `tools/gen_fachadas_zonas_json.py` añade `facades` a 42 corredores y
+  `sign` a 47 sin mover la geometría. Los carteles replican el hash del fallback
+  ya visto en partida. `despliegue_cero` mantiene su suelo propio.
+- Validación ejecutada: import sin errores, `tests/zones` 83/83 y
+  `tools/verificar.py` OK. Pendiente: revisión visual del director en partida.
 
 ### Vistas diagonales de NPCs y dron (P-52)
 

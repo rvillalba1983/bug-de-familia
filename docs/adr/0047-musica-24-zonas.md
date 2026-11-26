@@ -102,6 +102,11 @@ zonal hace falta `godot --headless --import` para crear los 69 `.import`.
   preexistentes.
 - `python tools/verificar_humo.py` sobre `build/prueba_cuerda_zonas.exe`: OK
   (motor 4.7.2, partida esquema 3, 36 individuos en `despliegue_cero`).
+- CI del PR #48 verde en los runs `45907863552` y `45907888483` (todos los
+  jobs, incluidos arranque exportado y los cuatro grupos de GdUnit4).
+- `.exe` oficial regenerado desde la rama con el preset «Windows» antes de
+  pedir la fusión (`adr/0023`): 109.268.480 bytes; los 69 cues zonales y los
+  10 de `adr/0045` están dentro del `.pck`.
 
 ## Referencias
 

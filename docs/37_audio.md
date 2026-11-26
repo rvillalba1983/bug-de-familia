@@ -44,10 +44,10 @@ Medición de los diez cues frente a ocho pistas originales: pico 0,769 frente a
 2590 Hz. El director los escuchó en el exe de prueba de la fase y aprobó la
 paleta («me parecen bien»). Fase fusionada en `main` el 26-nov (PR #47).
 
-## Estado en la fase de música zonal (26-nov, EN CURSO)
+## Estado en la fase de música zonal (26-nov, FUSIONADA)
 
-En la rama `fase/musica-24-zonas`, **sin fusionar**, la biblioteca pasa a
-**179 pistas**: las 100 originales, los 10 `cuerda_pulsada` de `adr/0045` y
+Fase `fase/musica-24-zonas` **fusionada en `main`** (PR #48, 27-nov). La
+biblioteca pasa a **179 pistas**: las 100 originales, los 10 `cuerda_pulsada` de `adr/0045` y
 69 nuevas `cuerda_zonal` (`audio/music/zona_<id>_<estado>.ogg`, 23 zonas ×
 día/noche/tensión, excepto `despliegue_cero`). Cada zona genérica usa sus
 propios cues en calma y tensión; `despliegue_cero` mantiene sus cuatro barrios

@@ -1,8 +1,8 @@
 # ADR 0047: música zonal de cuerda pulsada en las 24 zonas (26-nov)
 
 Estado: decisión del director del 26-nov, implementada en la rama
-`fase/musica-24-zonas`, **EN CURSO y sin fusionar**. PR abierto, pendiente de
-aprobación. El director escuchó los cues zonales en el exe de prueba y aprobó
+`fase/musica-24-zonas` y **fusionada en `main`** el 27-nov (PR #48, fusión
+`86ec8da`). El director escuchó los cues zonales en el exe de prueba y aprobó
 la paleta («Sí, abre el PR»), igual que los diez cues de `adr/0045`. Las
 rotaciones de modelos durante la fase se registran en `adr/0046`.
 
@@ -84,8 +84,8 @@ zonal hace falta `godot --headless --import` para crear los 69 `.import`.
   esta decisión los amplía, no los sustituye.
 - Sin ejecutar: suite completa `res://tests` y medición en gráfica real.
   La escucha manual en partida fue aprobada por el director el 26-nov.
-- El `.exe` oficial y `docs/03_ESTADO.md` se actualizarán solo cuando se
-  fusione la rama, según `adr/0023-exe-en-cada-fusion.md`.
+- El `.exe` oficial se regeneró desde la rama antes de pedir la fusión y
+  `docs/03_ESTADO.md` se actualizó al fusionar, según `adr/0023`.
 
 ## Verificación ejecutada (26-nov)
 

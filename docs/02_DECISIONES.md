@@ -210,7 +210,7 @@ de terceros.
 - Detalle técnico, medición y verificación en `adr/0045`. Escucha manual en
   partida aprobada por el director el 26-nov.
 
-## Música zonal en las 24 zonas (26-nov, EN CURSO)
+## Música zonal en las 24 zonas (26-nov, FUSIONADA)
 
 Tras aprobar los diez cues de `adr/0045`, el director eligió «cues nuevos por
 zona» y «día, noche y tensión» para las 23 zonas que no son `despliegue_cero`.
@@ -221,9 +221,9 @@ genéricas. Coste: 0 créditos; síntesis local, sin servicios externos.
   0045 y 69 `cuerda_zonal` (23 zonas × día/noche/tensión).
 - `despliegue_cero` conserva sus cuatro barrios y sus diez cues; combate y
   festival siguen con la biblioteca original.
-- Fase en la rama `fase/musica-24-zonas`, **sin fusionar**; detalle técnico y
-  verificación en `adr/0047`. El director escuchó los cues en partida y aprobó
-  la paleta; queda pendiente la fusión del PR.
+- Fase `fase/musica-24-zonas` **fusionada en `main`** (PR #48, 27-nov);
+  detalle técnico y verificación en `adr/0047`. El director escuchó los cues
+  en partida y aprobó la paleta.
 
 ## Caminos delimitados entre zonas (post-beta, 14-nov)
 

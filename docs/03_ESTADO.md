@@ -1,10 +1,10 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesión):**
-> - **Estado (27-nov, fase EN CURSO, SIN FUSIONAR):**
->   `fase/musica-24-zonas`. **PR #48** abierto, CI verde en los runs
->   `45907863552` y `45907888483`, pendiente de aprobación del director;
->   **no cambiar de conversación**.
+> - **Estado (27-nov, fase FUSIONADA):** `fase/musica-24-zonas`
+>   **fusionada en `main`** (PR #48, aprobado por el director; CI verde en los
+>   runs `45907863552` y `45907888483`, fusión `86ec8da`).
+>   **Cambiar de conversación.**
 >   Hecho: **ADR 0047**: 69 cues zonales `cuerda_zonal` para las 23 zonas
 >   excepto `despliegue_cero` (día/noche/tensión), 179 pistas en el catálogo,
 >   generador incremental y `MusicDirector` en las 24 zonas, con preferencia
@@ -20,7 +20,6 @@
 >   109.268.480 bytes; `.pck` 44.167.928 bytes, con 69 cues zonales y los 10
 >   de `adr/0045` dentro).
 >   **Sin ejecutar:** suite completa `res://tests` y medición en gráfica real.
->   Pendiente solo la aprobación y fusión del PR.
 > - **Estado (26-nov, fase FUSIONADA):** `fase/audio-ambiental-cuerda`
 >   **fusionada en `main`** (PR #47, aprobado por el director; CI 4/4 jobs
 >   verdes en los runs `45899765032` y `45899809971`, 12m44s y 12m54s).

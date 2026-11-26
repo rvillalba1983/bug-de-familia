@@ -1,7 +1,8 @@
 # Guía de modelos y fallback de los agentes
 
-Última actualización: 23-nov-2026 (rotaciones de `explore` a `beam-free`,
-`ingeniero-godot` a `big-pickle` y `documentacion` a `big-pickle`).
+Última actualización: 26-nov-2026 (rotaciones de `explore` a `beam-free`,
+`ingeniero-godot` a `big-pickle`, `documentacion` a `big-pickle`, `arquitecto` a
+`big-pickle` y `audio` a `big-pickle` (tras retirarse `glm-5.3-flash-free`).
 
 ## Fuentes de modelos
 
@@ -22,25 +23,27 @@ Cada modelo de Go tiene tres ventanas: 5 horas (20 % del límite mensual), seman
 |---|---|---|
 | Por defecto (`build`, `plan`, `general`) | `opencode/big-pickle` (gratis) | `opencode-go/kimi-k2.7-code`, `opencode/iceman-free`, `opencode/glm-5.3-flash-free` |
 | `explore` (integrado) | `opencode/beam-free` (rotado el 22-nov) | `opencode-go/gpt-6-luna`, `opencode/beam-free`, `opencode/glm-5.3-flash-free` |
-| `arquitecto` | `opencode-go/glm-5.3` | `opencode/big-pickle`, `opencode-go/kimi-k2.7-code`, `opencode/glm-5.3-flash-free` |
+| `arquitecto` | `opencode/big-pickle` (rotado el 26-nov; antes `opencode-go/glm-5.3`) | `opencode/big-pickle`, `opencode-go/kimi-k2.7-code`, `opencode/glm-5.3-flash-free` |
 | `ingeniero-godot` | `opencode/big-pickle` (rotado el 22-nov) | `opencode-go/kimi-k2.7-code`, `opencode/big-pickle`, `opencode-go/glm-5.3` |
 | `gameplay` | `opencode-go/qwen3.7-plus` | `opencode/big-pickle`, `opencode-go/minimax-m3`, `opencode/glm-5.3-flash-free` |
 | `qa` | `opencode/deepseek-v4.1-flash-free` (gratis) | `opencode-go/deepseek-v4.1-flash` (¡franja punta!), `opencode/big-pickle`, `opencode/beam-free` |
 | `documentacion` | `opencode/big-pickle` (rotado el 23-nov; antes `opencode-go/glm-5.3-flash`) | `opencode-go/glm-5.3-flash`, `opencode/big-pickle`, `opencode-go/gpt-6-luna` |
 | `datos` | `opencode-go/deepseek-v4.1-flash` (según `tools/modelos_agentes.json`; antes documentado como `minimax-m3`) | `opencode-go/minimax-m3`, `opencode/big-pickle`, `opencode-go/glm-5.3-flash` |
 | `arte` | `opencode-go/deepseek-v4.1-flash` | `opencode-go/qwen3.8-flash`, `opencode-go/qwen3.7-plus`, `opencode/big-pickle` |
-| `audio` | `opencode-go/glm-5.3-flash` | `opencode/glm-5.3-flash-free`, `opencode/big-pickle`, `opencode/beam-free` |
+| `audio` | `opencode/big-pickle` (rotado el 26-nov; antes `opencode-go/glm-5.3-flash` y `opencode/glm-5.3-flash-free`, retirado) | `opencode/glm-5.3-flash-free`, `opencode/big-pickle`, `opencode/beam-free` |
 | `medidor` | `opencode-go/glm-5.3-flash` | `opencode/glm-5.3-flash-free`, `opencode-go/gpt-6-luna`, `opencode/beam-free` |
 
 Criterio: los agentes con versión gemela gratuita (qa, documentacion) o de alto volumen (conversaciones principales, explore) van sobre el gratuito; los especializados sin gemela gratuita usan Go con Big Pickle de primer respaldo, para no gastar ventanas de otros modelos de Go.
 
-## Rotaciones vigentes (19, 22 y 23-nov)
+## Rotaciones vigentes (19, 22, 23 y 26-nov)
 
 | Agente | Modelo en config | Motivo | Volver |
 |---|---|---|---|
 | `explore` | `opencode/beam-free` (alternativo 2, gratuito; 22-nov) | Decisión del director: pasar de `opencode-go/gpt-6-luna` a un modelo gratuito. Se relanzó la tarea (ADR 0022, addendum del 22-nov) | `python tools/cambiar_modelo.py --restaurar explore` |
 | `ingeniero-godot` | `opencode/big-pickle` (gratuito; 22-nov) | Error literal «OpenCode Go monthly usage limit reached» con `opencode-go/deepseek-v4.1-flash`. Se salta `kimi-k2.7-code` (también Go) y se toma el primer gratuito de la cadena. Tarea relanzada (ADR 0040) | `python tools/cambiar_modelo.py --restaurar ingeniero-godot` |
 | `documentacion` | `opencode/big-pickle` (alternativo 3, gratuito; 23-nov) | Error literal «OpenCode Go monthly usage limit reached. Switch to a free model, or turn on Extra Usage on the Go page in OpenCode Console to keep going.» con `opencode-go/glm-5.3-flash`. Se salta `opencode-go/gpt-6-luna` (también Go) y se toma el primer gratuito de la cadena que queda. Tarea relanzada (ADR 0042) | `python tools/cambiar_modelo.py --restaurar documentacion` |
+| `arquitecto` | `opencode/big-pickle` (alternativo 2, gratuito; 26-nov) | Mismo error literal de cuota mensual de Go con `opencode-go/glm-5.3`. Se toma el primer gratuito de la cadena y se relanza la tarea (ADR 0046) | `python tools/cambiar_modelo.py --restaurar arquitecto` |
+| `audio` | `opencode/big-pickle` (alternativo 2, gratuito; 26-nov) | Cuota mensual de Go con `opencode-go/glm-5.3-flash` y después `Model unavailable` con `opencode/glm-5.3-flash-free`. Tarea relanzada dos veces (ADR 0046) | `python tools/cambiar_modelo.py --restaurar audio` |
 
 La cadena de `tools/modelos_agentes.json` no cambia: sigue siendo la fuente única y sus
 principales siguen siendo los del archivo (en `documentacion`, `opencode/glm-5.3-flash-free`).

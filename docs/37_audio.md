@@ -44,6 +44,29 @@ Medición de los diez cues frente a ocho pistas originales: pico 0,769 frente a
 2590 Hz. El director los escuchó en el exe de prueba de la fase y aprobó la
 paleta («me parecen bien»). Fase fusionada en `main` el 26-nov (PR #47).
 
+## Estado en la fase de música zonal (26-nov, EN CURSO)
+
+En la rama `fase/musica-24-zonas`, **sin fusionar**, la biblioteca pasa a
+**179 pistas**: las 100 originales, los 10 `cuerda_pulsada` de `adr/0045` y
+69 nuevas `cuerda_zonal` (`audio/music/zona_<id>_<estado>.ogg`, 23 zonas ×
+día/noche/tensión, excepto `despliegue_cero`). Cada zona genérica usa sus
+propios cues en calma y tensión; `despliegue_cero` mantiene sus cuatro barrios
+y combate y festival mantienen la biblioteca original. Ver `adr/0047`.
+
+Los 69 OGG suman 5.024.149 bytes (~4,79 MiB); pico decodificado máximo −2,1 dB
+(0,785 lineal), sin saturación. Coste 0 créditos: síntesis local con `numpy`,
+`scipy` y `ffmpeg`, sin servicios externos ni muestras de terceros. Se generan
+con `tools/audio/gen_cues_zonas.py`, incremental e idempotente; no hay que
+ejecutar `gen_audio.py` ni `gen_cuerda_cues.py` para ampliarlos, y tras el
+generador hace falta `godot --headless --import`.
+
+Ejecutado: `music_zones_test` 6/6 (`report_60`) y `music_test` 9/9
+(`report_61`), con JUnit validado; `tests/zones` 88/88 en una pasada previa
+(`report_57`); `verificar.py` y `validar_datos.py --estricto` OK; prueba de humo
+del exe de prueba (`build/prueba_cuerda_zonas.exe`) OK. Sin ejecutar: suite
+completa y medición en gráfica real. El director escuchó los cues zonales en
+partida y aprobó la paleta el 26-nov.
+
 ## 8. Validación de audio
 
 Comprobar:

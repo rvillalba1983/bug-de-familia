@@ -19,7 +19,6 @@ var challenges: DespliegueCeroChallenges
 var protagonist: ProtagonistVoice
 var rain: AcidRain
 var atmosphere: DespliegueCeroAtmosphere
-var music: MusicDirector
 var screen_filter: ScreenFilter
 var rain_label: Label
 var cracked_wall: Wall
@@ -105,6 +104,23 @@ func is_enemy_id(id: String) -> bool:
 
 func local_hour() -> int:
 	return challenges.hour_source.call()
+
+
+## Barrio de despliegue cero según la posición del jugador (antes en MusicDirector).
+func music_zone() -> String:
+	var feet: Vector2 = player.global_position
+	if DespliegueCeroLayout.north_quarter.has_point(feet):
+		return "barrio_jubilado"
+	if DespliegueCeroLayout.south_quarter.has_point(feet):
+		return "barrio_mohocrata"
+	if DespliegueCeroLayout.no_mans_land.has_point(feet):
+		return "tierra_de_nadie"
+	return "bosque"
+
+
+## Despliegue cero conserva la tensión compartida de sus cuatro barrios.
+func music_prefers_own_zone() -> bool:
+	return false
 
 
 func ramon_item() -> Interactable:
@@ -461,9 +477,6 @@ func _build_investigation() -> void:
 	live_world = LiveWorld.new()
 	live_world.level = self
 	add_child(live_world)
-	music = MusicDirector.new()
-	music.level = self
-	add_child(music)
 	battles = BattleDirector.new()
 	battles.level = self
 	add_child(battles)

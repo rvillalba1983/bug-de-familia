@@ -8,10 +8,12 @@ const CHECK_INTERVAL: float = 1.0
 const COMBAT_HOLD: float = 6.0
 const RECENT_SIZE: int = 6
 const PALETTE_CUERDA: String = "cuerda_pulsada"
+const PALETTE_ZONAL: String = "cuerda_zonal"
+const PALETAS_PREFERIDAS: Array[String] = [PALETTE_CUERDA, PALETTE_ZONAL]
 ## Semilla propia: la música no consume ni altera la semilla de la partida.
 const RNG_SEED: int = 1234
 
-var level: DespliegueCeroZone
+var level: ZoneBase
 var current_state: String = ""
 var current_track: Dictionary = {}
 
@@ -55,7 +57,9 @@ func _process(delta: float) -> void:
 
 
 func situation() -> String:
-	if level.battles.phase == BattleDirector.Phase.RUNNING or level.fight.phase != FightDirector.Phase.CALM:
+	if level.battles != null and level.battles.phase == BattleDirector.Phase.RUNNING:
+		_combat_left = COMBAT_HOLD
+	if level.fight != null and level.fight.phase != FightDirector.Phase.CALM:
 		_combat_left = COMBAT_HOLD
 	if _combat_left > 0.0:
 		return "combate"
@@ -64,34 +68,35 @@ func situation() -> String:
 			return "tension"
 	if level.live_world.sim.festivals.is_running() and not level.live_world.sim.festivals.ruined:
 		return "festival"
-	return "noche" if level.atmosphere.is_night() else "dia"
+	return "noche" if level.is_night() else "dia"
 
 
 func zone() -> String:
-	var feet: Vector2 = level.player.global_position
-	if DespliegueCeroLayout.north_quarter.has_point(feet):
-		return "barrio_jubilado"
-	if DespliegueCeroLayout.south_quarter.has_point(feet):
-		return "barrio_mohocrata"
-	if DespliegueCeroLayout.no_mans_land.has_point(feet):
-		return "tierra_de_nadie"
-	return "bosque"
+	if level == null:
+		return ""
+	return level.music_zone()
 
 
 ## Elige una pista de esa situación, sin repetir las últimas que han sonado.
-## En calma y tensión prefiere la paleta de cuerda pulsada; si no hay cue de
-## esa paleta para el barrio, se queda con la biblioteca original.
+## En calma y tensión prefiere las paletas de cuerda (pulsada y zonal); si no
+## hay cue de esas paletas para el barrio, se queda con la biblioteca original.
 func pick(state: String, where: String) -> Dictionary:
 	var options: Array = _tracks.filter(func(track: Dictionary) -> bool:
 		return track["state"] == state and (track["any_zone"] or track["zone"] == where))
+	if state == "dia" or state == "noche" or state == "tension":
+		if level != null and level.music_prefers_own_zone():
+			var own_zone: Array = options.filter(func(track: Dictionary) -> bool:
+				return str(track["zone"]) == where)
+			if not own_zone.is_empty():
+				options = own_zone
 	var fresh: Array = options.filter(func(track: Dictionary) -> bool:
 		return not _recent.has(str(track["file"])))
 	var pool: Array = fresh if not fresh.is_empty() else options
 	if state == "dia" or state == "noche" or state == "tension":
-		var cuerdas: Array = pool.filter(func(track: Dictionary) -> bool:
-			return str(track.get("palette", "")) == PALETTE_CUERDA)
-		if not cuerdas.is_empty():
-			pool = cuerdas
+		var preferidas: Array = pool.filter(func(track: Dictionary) -> bool:
+			return PALETAS_PREFERIDAS.has(str(track.get("palette", ""))))
+		if not preferidas.is_empty():
+			pool = preferidas
 	return pool[_rng.randi_range(0, pool.size() - 1)]
 
 

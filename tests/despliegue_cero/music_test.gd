@@ -38,6 +38,35 @@ func test_toda_situacion_y_barrio_tiene_musica() -> void:
 			assert_str(str(zone.music.pick(state, where)["state"])).is_equal(state)
 
 
+## El barrio de música de la zona sigue derivándose de la posición del jugador
+## (ahora en `DespliegueCeroZone.music_zone()`): los cuatro rects del layout.
+func test_el_barrio_de_musica_sigue_los_cuatro_rects_del_layout() -> void:
+	var casos: Array = [
+		[DespliegueCeroLayout.north_quarter, "barrio_jubilado"],
+		[DespliegueCeroLayout.south_quarter, "barrio_mohocrata"],
+		[DespliegueCeroLayout.no_mans_land, "tierra_de_nadie"],
+	]
+	var previos: Array[Rect2] = []
+	for caso: Array in casos:
+		var rect: Rect2 = caso[0]
+		var centro: Vector2 = rect.get_center()
+		assert_bool(rect.has_point(centro)).is_true()
+		for previo: Rect2 in previos:
+			assert_bool(previo.has_point(centro)).is_false().override_failure_message(
+				"El centro de %s cae en un rect que se comprueba antes" % str(caso[1]))
+		previos.append(rect)
+		zone.player.global_position = centro
+		assert_str(zone.music_zone()).is_equal(str(caso[1]))
+		assert_str(zone.music.zone()).is_equal(str(caso[1]))
+	var inicio: Vector2 = zone.start_point()
+	for rect: Rect2 in previos:
+		assert_bool(rect.has_point(inicio)).is_false().override_failure_message(
+			"El inicio de la zona cae dentro de un barrio con música")
+	zone.player.global_position = inicio
+	assert_str(zone.music_zone()).is_equal("bosque")
+	assert_str(zone.music.zone()).is_equal("bosque")
+
+
 func test_diez_cues_de_cuerda_estan_bien_formados() -> void:
 	var estados: Dictionary = {}
 	var total: int = 0

@@ -1,6 +1,26 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesiÃ³n):**
+> - **Estado (26-nov, fase FUSIONADA):** `fase/zonas-interaccion-actividades`
+>   **fusionada en `main`** (PR #45, merge `d3a1b3e`, aprobado por el director;
+>   CI 6/6 en verde). **Cambiar de conversación.** Hecho: **P-61/ADR 0043**
+>   (progenitores muertos visibles e inertes, con flag y frase `death`
+>   intactos; commit `2be2da8`), actores guionados interactuables en las
+>   24 zonas mediante `LiveDialogue.open_external()` sin mutar `WorldSim`,
+>   objetos `named` con arte y sin abrir la puerta del sandbox, y dos
+>   actividades nuevas en `despliegue_cero` (tablón de avisos que descubre
+>   un reto y banco de descanso) con arte ya existente. Sin arte nuevo.
+>   **Verificación ejecutada:** `verificar.py` OK (105 comprobaciones);
+>   paquetes pequeños: `generic_zone_test` 20/20 (incluye cobertura de las
+>   24 zonas), `despliegue_cero_zone_test` 33/33, progenitores 12/12,
+>   `live_dialogue_test` 6/6 y `tests/zones` completo 79/79, con JUnit
+>   validado en todos; `despliegue_cero_robustness_test` no se relanzó en
+>   sesión (13,8 min en `report_36`: 11/11 PASS), pero el job del CI pasó
+>   en 11-12 min. `.exe` regenerado (104,2 MB, `.pck` 33,5 MB) con
+>   **prueba de humo OK** (`despliegue_cero`, 36 habitantes). Sin ejecutar:
+>   medición en gráfica real y validación manual en partida de las
+>   conversaciones y las dos actividades. Fase siguiente: definir con el
+>   director (queda el rediseño visual de las 24 zonas).
 > - **Estado (24-nov, fase FUSIONADA):** `fase/cierre-consistencia-mundo-completo`
 >   **fusionada en `main`** (PR #44, merge `a1e41ce`, aprobado por el director;
 >   CI 6/6 en verde). **Cambiar de conversación.** Hecho: cierre documental de
@@ -242,6 +262,7 @@ Se actualiza cada vez que una fase se fusiona en `main`.
 | P-14/P-34/P-35/viaje/nocturnos/P-42 (20-nov) | **Fusionada en `main`** (PR #34, merge `3aeb3f5`, aprobado por el director; CI verde). Hecho: P-14 (límite de rumores + espera 10 s), P-34 (duelo 20 s), P-35 (agotar pregunta → pelea), coste de viaje rápido (piernas + tokens), jubilados nocturnos en zonas genéricas, P-42 lote 1 (72 conversaciones + `ConversationCatalog`). Pruebas: 494/494 en verde. `.exe` regenerado (104,2 MB) con humo OK. |
 erificar.py OK. .exe regenerado. Pendiente validación manual en partida. |
 | Cierre de consistencia del mundo completo (24-nov) | **Fusionada en `main` el 24-nov** (PR #44, merge `a1e41ce`, aprobado por el director; CI 6/6). Hecho: cierre documental de P-58 (ADR 0041), P-26 y P-32 en conversación y 23 zonas con un único `AiSpectres`, y pruebas de integridad del arte. ADR 0042 (rotación de `documentacion`) y 0043 / P-61 (progenitores visibles tras morir; implementación en la fase de zonas). **539/539 pruebas** (79 suites, JUnit validado), `verificar.py` OK y `.exe` (109 MB, `.pck` 34,9 MB) con humo OK. Pendiente: medición en gráfica real y validación manual. |
+| Zonas: interacción y actividades (26-nov) | **Fusionada en `main` el 26-nov** (PR #45, merge `d3a1b3e`, aprobado por el director; CI 6/6). Hecho: P-61/ADR 0043 (progenitores caídos visibles e inertes), actores guionados hablables en las 24 zonas con `LiveDialogue.open_external()`, ítems `named` con arte que no abren la puerta del sandbox, y tablón de avisos y banco de descanso en `despliegue_cero` con arte existente. Pruebas ejecutadas en paquetes pequeños y JUnit validado; `verificar.py` OK. `.exe` regenerado (104,2 MB, `.pck` 33,5 MB) con humo OK. Pendiente: validación manual y medición en gráfica real; queda el rediseño visual de las 24 zonas. |
 
 ## Incidente de arranque tras el PR #7 (13-nov)
 

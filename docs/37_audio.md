@@ -41,8 +41,8 @@ Los metadatos nuevos son `palette`, `ambient`, `lead` y `bpm_fin`; el campo
 
 Medición de los diez cues frente a ocho pistas originales: pico 0,769 frente a
 0,772; RMS medio 0,074 frente a 0,097; centroide espectral 2165 Hz frente a
-2590 Hz. **Nadie los ha escuchado todavía**: la percepción de «menos estridente»
-queda pendiente de validación manual en partida.
+2590 Hz. El director los escuchó en el exe de prueba de la fase y aprobó la
+paleta («me parecen bien»). Fase fusionada en `main` el 26-nov (PR #47).
 
 ## 8. Validación de audio
 

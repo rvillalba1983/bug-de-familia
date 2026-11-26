@@ -1,8 +1,9 @@
 # ADR 0045: música ambiental de cuerda pulsada (26-nov)
 
 Estado: decisión del director del 26-nov, implementada en la rama
-`fase/audio-ambiental-cuerda` y todavía **sin fusionar**. Pendiente de escucha
-manual en partida y del CI del PR.
+`fase/audio-ambiental-cuerda` y **fusionada en `main`** (PR #47, merge
+`2146d76`). El director escuchó los cues en el exe de prueba y aprobó la
+paleta («me parecen bien»); el CI del PR terminó en verde.
 
 ## Contexto
 
@@ -58,19 +59,19 @@ Esto no toca la semilla de la partida.
 
 ## Consecuencias y limitaciones
 
-- Los diez OGG añaden unos 0,8 MB a `audio/music/` y, por tanto, al `.pck`.
-  El tamaño final de la exportación aún no se ha medido en esta rama.
-- La suavidad se ha medido, no escuchado: frente a ocho pistas originales, el
+- Los diez OGG añaden unos 0,8 MB a `audio/music/`. La exportación Windows del
+  26-nov generó un `.exe` de 109.268.480 bytes y un `.pck` de 38.004.572 bytes.
+- La suavidad se ha medido y escuchado: frente a ocho pistas originales, el
   centroide espectral medio baja de 2590 Hz a 2165 Hz (−16 %) y el RMS de 0,097
   a 0,074; el pico queda en 0,769 (0,772 en las originales), sin saturación.
-  Falta la validación manual del director.
+  El director escuchó los cues en partida y aprobó la paleta.
 - Solo se instancia `MusicDirector` en `despliegue_cero`; las otras 23 zonas no
   estrenan música. Combate y festival conservan la paleta anterior.
 - Si se ejecuta el generador completo (`gen_audio.py`) se perderían los nuevos
   campos del catálogo. Para ampliar la paleta hay que usar el generador
   incremental.
-- No se ha ejecutado la suite completa `res://tests`, ni medición en gráfica
-  real, ni prueba de humo del binario exportado en esta rama.
+- No se ha ejecutado la suite completa `res://tests` ni medición en gráfica
+  real. El CI del PR sí ejecutó la prueba de humo del binario Linux exportado.
 
 ## Incidentes y verificación ejecutada (26-nov)
 
@@ -86,6 +87,12 @@ Esto no toca la semilla de la partida.
 - `python tools/verificar.py`: OK (105 comprobaciones, 313 literales `res://`,
   900 conversaciones). `python tools/formatear.py --comprobar`: 0 errores y
   78 avisos preexistentes.
+- CI del PR #47: 4/4 jobs verdes (runs `45899765032` y `45899809971`).
+  `.exe` oficial regenerado con el preset «Windows» antes de la fusión; se
+  comprobó que el `.pck` contiene los diez cues.
+- El director probó `build/prueba_cuerda.exe` y aprobó la paleta sonora
+  («me parecen bien»), registrado en el PR. Fase fusionada en `main`
+  (`2146d76`).
 
 ## Referencias
 

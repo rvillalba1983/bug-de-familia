@@ -207,8 +207,8 @@ de terceros.
   la semilla de la partida no cambia.
 - Las pistas de tensión aceleran 18 BPM; las tranquilas llevan drone suave y
   no llevan batería.
-- Detalle técnico, medición y verificación en `adr/0045`. Falta la escucha
-  manual en partida.
+- Detalle técnico, medición y verificación en `adr/0045`. Escucha manual en
+  partida aprobada por el director el 26-nov.
 
 ## Caminos delimitados entre zonas (post-beta, 14-nov)
 

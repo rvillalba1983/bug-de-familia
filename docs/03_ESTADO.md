@@ -1,6 +1,20 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesión):**
+> - **Estado (27-nov, FASE EN CURSO):** `fase/auditoria-arte-27-11`, rama
+>   creada desde `main` tras el PR #48. **Cambiar de conversación al fusionar.**
+>   Hecho: **ADR 0048**. Dos herramientas lectoras/repetibles en `tools/art/`
+>   (`auditar_arte.py` y `recomprimir_png.py`) con 11 pruebas unitarias nuevas;
+>   dos PNG de carga recomprimidos sin pérdida: −163.475 bytes en total
+>   (art/: 40.500.406 → 40.336.931). MD5 de píxeles idéntico antes y después,
+>   `.import` sin cambios. El director decidió **conservar**
+>   `protagonist_gamberra.png` aunque no tenga referencia literal.
+>   **Verificación ejecutada:** import sin errores; `tests/art` 51/51
+>   (`report_63`) y `tests/ui` 37/37 (`report_62`), JUnit validado; 76 pruebas
+>   de herramientas OK (1 omitida); `verificar.py` OK; formato 0 errores
+>   (78 avisos preexistentes).
+>   **Sin ejecutar:** suite completa, medición en gráfica real (no
+>   autorizada), borrado de huérfanos y reorganización de carpetas.
 > - **Estado (27-nov, fase FUSIONADA):** `fase/musica-24-zonas`
 >   **fusionada en `main`** (PR #48, aprobado por el director; CI verde en los
 >   runs `45907863552` y `45907888483`, fusión `86ec8da`).
@@ -335,7 +349,7 @@ Tras fusionar el PR #7, el `.exe` local y el de GitHub no arrancan. ReproducciÃ
 - ADR 0027 (infraestructura multi-zona) registrado el 11-nov: decisiones de arquitectura acordadas, pendiente de implementaciÃ³n en la fase de infraestructura post-beta. Ver `docs/adr/0027-multi-zona.md`.
 - **DiseÃ±o futuro (validaciÃ³n 13-nov):** en todos los mapas debe haber NPCs conversables en un ~40 % de la poblaciÃ³n, y todas las razas (incluidas las nuevas: plegado, eco, grux, manada) deben tener lÃ­neas de conversaciÃ³n. **Corregido el 14-nov:** la afirmaciÃ³n Â«hoy solo los NPCs especiales del caso son conversables; las 4 especies nuevas no tienen textosÂ» era falsa: las seis especies ya tenÃ­an texto en `data/world/species.json` y cualquier habitante abre `LiveDialogue`. Lo que faltaba era variedad, y en esta fase se amplÃ­a (4 o mÃ¡s frases por situaciÃ³n, clave `sad`, lÃ­neas por oficio, 8 hechos de lore). Sigue pendiente el criterio del ~40 % de habitantes conversables, que no estÃ¡ medido.
 - **DiseÃ±o futuro (conversaciones, 14-nov):** tres mejoras de conversaciÃ³n posibles y no excluyentes, a secuenciar por tamaÃ±o: (1) ampliar nodos en el caso (barato, ya existe el sistema ramificado de `investigation`); (2) ramificar la conversiÃ³n (`conversion/`) con mÃ¡s opciones antes de convertir; (3) ramificar `LiveDialogue` (menÃº plano â†’ nodos de diÃ¡logo por raza/estado), la mÃ¡s grande y ligada al punto anterior de NPCs conversables ~40 %. **Estado tras el PR #10 (fusiÃ³n el 14-nov):** (1) y (3) tienen ya nodos (ampliaciÃ³n del caso y rama Â«newsÂ» de `LiveDialogue`); la conversiÃ³n sigue con un menÃº plano salvo el paso APPROACH. En esta fase se aÃ±ade ademÃ¡s la lÃ­nea de oficio como saludo.
-- **DiseÃ±o futuro (arte, 14-nov):** revisar la carpeta `art/` para (a) organizar por subcarpetas por categorÃ­a/sistema (rig, shared, por zona, sprites, atlas, etc.) y (b) estudiar si los PNG generados estÃ¡n optimizados para Godot (tamaÃ±o, formato, compresiÃ³n, atlas) y si conviene reexportarlos o generarlos con parÃ¡metros mÃ¡s eficientes. Tarea de arte/rendimiento, no bloquea gameplay.
+- **DiseÃ±o futuro (arte, 14-nov):** revisar la carpeta `art/` para (a) organizar por subcarpetas por categorÃ­a/sistema (rig, shared, por zona, sprites, atlas, etc.) y (b) estudiar si los PNG generados estÃ¡n optimizados para Godot (tamaÃ±o, formato, compresiÃ³n, atlas) y si conviene reexportarlos o generarlos con parÃ¡metros mÃ¡s eficientes. Tarea de arte/rendimiento, no bloquea gameplay. **Parcialmente atendido el 27-nov** en `fase/auditoria-arte-27-11` (ADR 0048): se auditÃ³ `art/` y se recomprimieron dos PNG sin pÃ©rdida (-163.475 bytes); la reorganizaciÃ³n (a) sigue abierta y no se han medido FPS ni tiempo de importaciÃ³n.
 - **Diseño futuro (audio, 14-nov):** la música actual a veces es muy estridente; se quiere un enfoque más ambiental y mayor variedad para evitar una canción en bucle continuo. Explorar música ambiental experimental: sonidos relajantes para zonas tranquilas, y sonidos que varíen tempo/velocidad para provocar ansiedad en zonas de tensión. **Preferencia de paleta sonora:** que todo suene a guitarra clásica o instrumentos de cuerda pulsada de todo el mundo (guitarra, laúd, oud, shamisen, etc.). Tarea de audio/contenido, no bloquea gameplay. **Hecho el 26-nov y fusionado en `main` (PR #47):** 10 cues locales de guitarra, laúd, oud y shamisen, prioridad de esa paleta en día/noche/tensión y semilla fija; ver `adr/0045`. El director los escuchó en partida y aprobó la paleta.
 - **DiseÃ±o futuro (UI conversiÃ³n, 14-nov):** en las pantallas de preguntas de conversiÃ³n, centrar mÃ¡s la pregunta y las frases de las IAs en la pantalla. Tarea de UI/visual, no bloquea gameplay. **Hecho en esta fase (14-nov):** el tÃ­tulo de la pregunta y el cuerpo del mensaje se centran en el panel, y la cuenta atrÃ¡s lleva un espacio compensatorio para que el tÃ­tulo no se descentre; las frases de las IAs ya estaban centradas y ahora lo cubren pruebas. La posiciÃ³n vertical del bloque no se cambia (ver `adr/0029-contenido-y-ui-conversion.md`); falta la validaciÃ³n manual en partida.
 - **DecisiÃ³n tomada (validaciÃ³n 13-nov):** en zonas con una sola especie no se ofrece la opciÃ³n Â«malmeterÂ» (no hay rival presente). El sistema ya lo gestiona asÃ­ y se acepta.

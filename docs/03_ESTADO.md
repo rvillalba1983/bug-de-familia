@@ -1,18 +1,23 @@
 # Estado del desarrollo
 
 > **TRASPASO (actualizar en cada sesión):**
-> - **Estado (27-nov, FASE EN CURSO):** `fase/auditoria-arte-27-11`, rama
->   creada desde `main` tras el PR #48. **Cambiar de conversación al fusionar.**
+> - **Estado (27-nov, fase FUSIONADA):** `fase/auditoria-arte-27-11`
+>   **fusionada en `main`** (PR #49, aprobado por el director; CI verde en los
+>   runs `46072900849` y `46072954875`, fusión `fe8cddb`).
+>   **Cambiar de conversación.**
 >   Hecho: **ADR 0048**. Dos herramientas lectoras/repetibles en `tools/art/`
 >   (`auditar_arte.py` y `recomprimir_png.py`) con 11 pruebas unitarias nuevas;
->   dos PNG de carga recomprimidos sin pérdida: −163.475 bytes en total
+>   dos PNG de carga recomprimidos sin pérdida: -163.475 bytes en total
 >   (art/: 40.500.406 → 40.336.931). MD5 de píxeles idéntico antes y después,
 >   `.import` sin cambios. El director decidió **conservar**
 >   `protagonist_gamberra.png` aunque no tenga referencia literal.
 >   **Verificación ejecutada:** import sin errores; `tests/art` 51/51
 >   (`report_63`) y `tests/ui` 37/37 (`report_62`), JUnit validado; 76 pruebas
 >   de herramientas OK (1 omitida); `verificar.py` OK; formato 0 errores
->   (78 avisos preexistentes).
+>   (78 avisos preexistentes); CI completo en las dos corridas, con
+>   `despliegue_cero` en 11m11s y 12m54s; prueba de humo del `.exe` OK.
+>   **`.exe` regenerado desde la rama** (`build/bug_de_familia.exe`,
+>   109.268.480 bytes; `.pck` 44.167.928 bytes).
 >   **Sin ejecutar:** suite completa, medición en gráfica real (no
 >   autorizada), borrado de huérfanos y reorganización de carpetas.
 > - **Estado (27-nov, fase FUSIONADA):** `fase/musica-24-zonas`
